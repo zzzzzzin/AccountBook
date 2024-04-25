@@ -25,7 +25,6 @@ CREATE TABLE tblSurvey (
 	seq                     NUMBER NOT NULL, -- 번호
 	monthlyPaycheck         NUMBER NULL,     -- 월급
 	savingsGoals            NUMBER NULL,     -- 저축 목표 금액
-	seqDebt                 NUMBER NULL,     -- 부채 번호
 	seqCompressionIntensity NUMBER NULL,     -- 압박 강도 번호
 	seqSavingsPeriod        NUMBER NULL      -- 저축 기간 번호
 );
@@ -210,10 +209,11 @@ CREATE TABLE tblAccInfo (
 	content                    VARCHAR2(2000) NOT NULL, -- 내용
 	accInfoDate                DATE           NOT NULL, -- 날짜
 	price                      NUMBER         NOT NULL, -- 금액
+	location                   VARCHAR2(50)   NULL,     -- 사용처
 	seqAcc                     NUMBER         NOT NULL, -- 가계부 번호
 	seqReasonChangeCategory    NUMBER         NOT NULL, -- 변동 사유 카테고리 번호
 	seqFixedFluctuationCheck   NUMBER         NOT NULL, -- 고정 입출금 여부 번호
-	seqDepositWithdrawalStatus NUMBER         NOT NULL  -- 입출금 상태
+	seqDepositWithdrawalStatus NUMBER         NOT NULL  -- 입출금 상태 번호
 );
 
 -- 가계부 내용
@@ -573,7 +573,7 @@ ALTER TABLE tblDepositWithdrawalStatus
 -- 자산
 CREATE TABLE tblProperty (
 	seq  NUMBER NOT NULL, -- 번호
-	cash NUMBER NULL      -- 현금
+	cash NUMBER NOT NULL  -- 현금
 );
 
 -- 자산
@@ -587,7 +587,7 @@ ALTER TABLE tblProperty
 -- 부채
 CREATE TABLE tblDebt (
 	seq  NUMBER NOT NULL, -- 번호
-	cash NUMBER NULL      -- 현금
+	cash NUMBER NOT NULL  -- 현금
 );
 
 -- 부채
@@ -687,17 +687,6 @@ ALTER TABLE tblSurvey
 			seqCompressionIntensity -- 압박 강도 번호
 		)
 		REFERENCES tblCompressionIntensity ( -- 압박 강도
-			seq -- 번호
-		);
-
--- 설문조사
-ALTER TABLE tblSurvey
-	ADD
-		CONSTRAINT FK_tblDebt_TO_tblSurvey -- 부채 -> 설문조사
-		FOREIGN KEY (
-			seqDebt -- 부채 번호
-		)
-		REFERENCES tblDebt ( -- 부채
 			seq -- 번호
 		);
 
@@ -849,7 +838,7 @@ ALTER TABLE tblAccInfo
 	ADD
 		CONSTRAINT FK_tblDepositWithdrawalStatus_TO_tblAccInfo -- 입출금 상태 -> 가계부 내용
 		FOREIGN KEY (
-			seqDepositWithdrawalStatus -- 입출금 상태
+			seqDepositWithdrawalStatus -- 입출금 상태 번호
 		)
 		REFERENCES tblDepositWithdrawalStatus ( -- 입출금 상태
 			seq -- 번호
@@ -1129,5 +1118,3 @@ ALTER TABLE tblNewsCategoryList
 		REFERENCES tblAccCategory ( -- 가계부 카테고리
 			seq -- 번호
 		);
-        
-commit;
