@@ -12,13 +12,18 @@ CREATE TABLE tblMember (
 	seqProfileimg NUMBER       NOT NULL  -- 프로필 이미지 번호
 );
 
--- 회원
+-- 회원 제약 조건
+-- 게시판 카테고리 기본키
 ALTER TABLE tblMember
-	ADD
-		CONSTRAINT PK_tblMember -- 회원 기본키
-		PRIMARY KEY (
-			id -- 아이디(이메일)
-		);
+	ADD CONSTRAINT PK_tblMember PRIMARY KEY (id);
+
+-- 게시판 카테고리 유니크 제약조건
+ALTER TABLE tblMember
+    ADD CONSTRAINT UK_tblMember_phoneNumber UNIQUE (phoneNumber);
+
+ALTER TABLE tblMember
+    ADD CONSTRAINT UK_tblMember_nss UNIQUE (nss);
+
 
 -- 설문조사
 CREATE TABLE tblSurvey (
@@ -60,11 +65,11 @@ CREATE TABLE tblCategory (
 
 -- 게시판 카테고리
 ALTER TABLE tblCategory
-	ADD
-		CONSTRAINT PK_tblCategory -- 게시판 카테고리 기본키
-		PRIMARY KEY (
-			seq -- 번호
-		);
+    ADD CONSTRAINT PK_tblCategory PRIMARY KEY (seq);
+
+-- 게시판 카테고리 유니크 제약 조건
+ALTER TABLE tblCategory
+    ADD CONSTRAINT UK_tblCategory_name UNIQUE (name);
 
 -- 게시판
 CREATE TABLE tblBoard (
@@ -138,6 +143,10 @@ ALTER TABLE tblAccCategory
 		PRIMARY KEY (
 			seq -- 번호
 		);
+        
+-- 가계부 카테고리 유니크 제약 조건
+ALTER TABLE tblAccCategory
+    ADD CONSTRAINT UK_tblAccCategory_name UNIQUE (name);
 
 -- 대댓글
 CREATE TABLE tblReplyComments (
@@ -172,6 +181,11 @@ ALTER TABLE tblPriv
 		PRIMARY KEY (
 			seq -- 번호
 		);
+        
+-- 권한명 유니크 제약 조건
+ALTER TABLE tblPriv
+    ADD CONSTRAINT UK_tblPriv_name UNIQUE (name);
+
 
 -- 첨부 파일
 CREATE TABLE tblAttachedFile (
@@ -238,6 +252,11 @@ ALTER TABLE tblKeyword
 		PRIMARY KEY (
 			seq -- 번호
 		);
+        
+-- 키워드 유니크 제약 조건
+ALTER TABLE tblKeyword
+    ADD CONSTRAINT UK_tblKeyword_content UNIQUE (content);
+
 
 -- 가계부 카테고리 목록
 CREATE TABLE tblAccCategoryList (
@@ -289,19 +308,23 @@ ALTER TABLE tblCardInformation
 			seq -- 번호
 		);
 
--- 카드 카테고리
+-- 카드 혜택 카테고리
 CREATE TABLE tblCardCategory (
 	seq  NUMBER       NOT NULL, -- 번호
 	name VARCHAR2(50) NOT NULL  -- 이름
 );
 
--- 카드 카테고리
+-- 카드 혜택 카테고리
 ALTER TABLE tblCardCategory
 	ADD
-		CONSTRAINT PK_tblCardCategory -- 카드 카테고리 기본키
+		CONSTRAINT PK_tblCardCategory -- 카드 혜택 카테고리 기본키
 		PRIMARY KEY (
 			seq -- 번호
 		);
+        
+-- 카드 혜택 카테고리 유니크 제약 조건
+ALTER TABLE tblCardCategory
+    ADD CONSTRAINT UK_tblCardCategory_name UNIQUE (name);
 
 -- 카드/가계부 카테고리 연결
 CREATE TABLE tblCardAndAcc (
@@ -392,6 +415,10 @@ ALTER TABLE tblBanWord
 		PRIMARY KEY (
 			seq -- 번호
 		);
+        
+-- 금지어 유니크 제약 조건
+ALTER TABLE tblBanWord
+    ADD CONSTRAINT UK_tblBanWord_content UNIQUE (content);
 
 -- 로그
 CREATE TABLE tblLog (
@@ -420,6 +447,10 @@ ALTER TABLE tblAdmin
 		PRIMARY KEY (
 			id -- 아이디
 		);
+
+-- 관리자 닉네임 유니크 제약 조건
+ALTER TABLE tblAdmin
+    ADD CONSTRAINT UK_tblAdmin_nickname UNIQUE (nickname);
 
 -- 회원 권한 목록
 CREATE TABLE tblMemberPriv (
@@ -469,7 +500,7 @@ ALTER TABLE tblUser
 -- 압박 강도
 CREATE TABLE tblCompressionIntensity (
 	seq       NUMBER      NOT NULL, -- 번호
-	Intensity VARCHAR2(5) NULL      -- 강도
+	intensity VARCHAR2(5) NULL      -- 강도
 );
 
 -- 압박 강도
@@ -479,6 +510,10 @@ ALTER TABLE tblCompressionIntensity
 		PRIMARY KEY (
 			seq -- 번호
 		);
+        
+-- 압박 강도 유니크 제약 조건
+ALTER TABLE tblCompressionIntensity
+    ADD CONSTRAINT UK_tblCompressionIntensity_intensity UNIQUE (intensity);
 
 -- 나의 카드
 CREATE TABLE tblMyCard (
@@ -497,6 +532,10 @@ ALTER TABLE tblMyCard
 		PRIMARY KEY (
 			seq -- 번호
 		);
+
+-- 나의 카드 유니크 제약 조건
+ALTER TABLE tblMyCard
+    ADD CONSTRAINT UK_tblMyCard_cardNumber UNIQUE (cardNumber);
 
 -- 카드 타입
 CREATE TABLE tblCardType (
@@ -679,7 +718,7 @@ ALTER TABLE tblMember
 			seq -- 번호
 		);
 
--- 설문조사
+-- 설문조사 제약사항
 ALTER TABLE tblSurvey
 	ADD
 		CONSTRAINT FK_tblCompressionIntensity_TO_tblSurvey -- 압박 강도 -> 설문조사
@@ -1118,3 +1157,5 @@ ALTER TABLE tblNewsCategoryList
 		REFERENCES tblAccCategory ( -- 가계부 카테고리
 			seq -- 번호
 		);
+        
+commit;
