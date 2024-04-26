@@ -32,6 +32,14 @@ values (10, 4, 6, '욕', '욕욕욕욕욕욕욕', '2024-04-29', null, 0, 0, 0, 0
 
 
 --구매 위시 목록 tblPurchaseWishList
+INSERT INTO tblPurchaseWishList(seq,productName,seqUser) VALUES (1,'자동차',6);
+INSERT INTO tblPurchaseWishList(seq,productName,seqUser) VALUES (2,'휴대폰',6);
+INSERT INTO tblPurchaseWishList(seq,productName,seqUser) VALUES (3,'냉장고',6);
+INSERT INTO tblPurchaseWishList(seq,productName,seqUser) VALUES (4,'전자레인지',7);
+INSERT INTO tblPurchaseWishList(seq,productName,seqUser) VALUES (5,'컴퓨터',8);
+INSERT INTO tblPurchaseWishList(seq,productName,seqUser) VALUES (6,'마우스',9);
+INSERT INTO tblPurchaseWishList(seq,productName,seqUser) VALUES (7,'키보드',9);
+
 
 --변동 사유 카테고리 tblReasonChangeCategory
 select * from tblReasonsChangeList;
@@ -66,3 +74,5 @@ insert into tblReasonChangeCategory (seq, seqReasonsChangeList, seqMyCard)
 --현금
 insert into tblReasonChangeCategory (seq, seqReasonsChangeList, seqMyCard) 
     values (12, 4, null);
+
+
