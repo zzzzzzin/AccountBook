@@ -111,6 +111,7 @@ insert into tblSavingsPeriod (seq, period) values (79, 79);
 insert into tblSavingsPeriod (seq, period) values (80, 80);
 
 -- 부채 tblDebt
+insert into tblDebt (seq, cash) values (0, 0);
 insert into tblDebt (seq, cash) values (1, 100000);
 insert into tblDebt (seq, cash) values (2, 200000);
 insert into tblDebt (seq, cash) values (3, 300000);
@@ -123,6 +124,7 @@ insert into tblDebt (seq, cash) values (9, 900000);
 insert into tblDebt (seq, cash) values (10, 1000000);
 
 -- 자산 tblProperty
+insert into tblProperty (seq, cash) values (0, 0);
 insert into tblProperty (seq, cash) values (1, 100000);
 insert into tblProperty (seq, cash) values (2, 200000);
 insert into tblProperty (seq, cash) values (3, 300000);
