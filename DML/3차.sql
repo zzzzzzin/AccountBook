@@ -29,3 +29,7 @@ insert into tblListCardBenefits (seq, seqCardCategory, seqCardInformation) value
 
 
 --회원 tblMember
+INSERT INTO tblMember(id,pw,name,nickname,phoneNumber,nss,gender,reportCount,seqSurvey,seqProfileimg) VALUES ('abc001@naver.com',1234,'홍길동','호랑이','010-1234-0001','9901011234567','남',0,3,1);
+INSERT INTO tblMember(id,pw,name,nickname,phoneNumber,nss,gender,reportCount,seqSurvey,seqProfileimg) VALUES ('abc002@naver.com',1234,'홍길순','토끼','010-1234-0002','9801012234567','여',0,2,1);
+INSERT INTO tblMember(id,pw,name,nickname,phoneNumber,nss,gender,reportCount,seqSurvey,seqProfileimg) VALUES ('abc003@naver.com',1234,'옹길동','강아지','010-1234-0003','0101013234567','남',1,1,1);
+INSERT INTO tblMember(id,pw,name,nickname,phoneNumber,nss,gender,reportCount,seqSurvey,seqProfileimg) VALUES ('abc004@naver.com',1234,'옹길순','고양이','010-1234-0004','0201014234567','여',2,11,1); --설문조사(null)
