@@ -2,4 +2,4 @@
 
 --댓글 tblComments
 
---가계부 카테고리 목록 tblAccCategoryList
+--가계부 내용 tblAccInfo

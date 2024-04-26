@@ -62,6 +62,7 @@ INSERT INTO tblKeyword(seq,content,seqAccCategoryNumber) VALUES (37,'자동차 �
 INSERT INTO tblKeyword(seq,content,seqAccCategoryNumber) VALUES (38,'유지보수',35);
 
 --고정 입출금 여부 tblFixedDepositWithdrawalCheck
+insert into tblFixedDepositWithdrawalCheck (seq, content, seqFixedFluctuationPeriod) values (0, null, 0);
 insert into tblFixedDepositWithdrawalCheck (seq, content, seqFixedFluctuationPeriod) values (1, '월세', 1);
 insert into tblFixedDepositWithdrawalCheck (seq, content, seqFixedFluctuationPeriod) values (2, '헬스장 할부', 2);
 insert into tblFixedDepositWithdrawalCheck (seq, content, seqFixedFluctuationPeriod) values (3, '자동차 할부', 3);
