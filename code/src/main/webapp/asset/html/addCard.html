@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>카드 이미지 등록</title>
+  <style>
+    .container {
+      width: 400px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    .form-group input[type="text"] {
+      width: 100%;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+    .button-group {
+      text-align: right;
+      margin-top: 20px;
+    }
+    .button-group button {
+      margin-left: 10px;
+    }
+    .preview {
+      width: 200px;
+      height: 120px;
+      border: 1px solid #ccc;
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .preview img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>카드 이미지</h2>
+    <div class="form-group">
+      <label for="cardImage">카드 이미지</label>
+      <input type="file" id="cardImage" onchange="previewImage(event)">
+      <div class="preview" id="imagePreview">
+        <span>미리보기</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="cardName">카드명</label>
+      <input type="text" id="cardName">
+    </div>
+    <div class="form-group">
+      <label for="cardIssuer">카드사</label>
+      <input type="text" id="cardIssuer">
+    </div>
+    <div class="form-group">
+      <label for="cardNumber">카드번호</label>
+      <input type="text" id="cardNumber">
+    </div>
+    <div class="form-group">
+      <label for="cardName2">카드명</label>
+      <input type="text" id="cardName2">
+    </div>
+    <div class="form-group">
+      <label for="nickname">별칭</label>
+      <input type="text" id="nickname">
+    </div>
+    <div class="form-group">
+      <label for="expirationDate">유효기간</label>
+      <input type="text" id="expirationDate">
+    </div>
+    <div class="button-group">
+      <button type="button">취소</button>
+      <button type="submit">완료</button>
+    </div>
+  </div>
+
+  <script>
+    function previewImage(event) {
+      var reader = new FileReader();
+      reader.onload = function() {
+        var output = document.getElementById('imagePreview');
+        output.innerHTML = '<img src="' + reader.result + '">';
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  </script>
+</body>
+</html>
