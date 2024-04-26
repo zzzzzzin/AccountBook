@@ -464,4 +464,9 @@ DROP TABLE tblNewsCategoryList;
 -- 저축 기간
 DROP TABLE tblSavingsPeriod;
 
+
+--삭제해야할 제약 조건 명령어 알려주는 구문입니다!
+--SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
+
+
 commit;

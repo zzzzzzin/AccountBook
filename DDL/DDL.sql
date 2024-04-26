@@ -384,6 +384,10 @@ ALTER TABLE tblAPI
 		PRIMARY KEY (
 			seq -- 번호
 		);
+        
+-- API 이름 유니크 제약 조건
+ALTER TABLE tblAPI
+    ADD CONSTRAINT UK_tblAPI_name UNIQUE (name);
 
 -- 뉴스
 CREATE TABLE tblNews (
@@ -466,7 +470,11 @@ ALTER TABLE tblMemberPriv
 		PRIMARY KEY (
 			seq -- 번호
 		);
-
+        
+-- 회원 권한 회원 번호 목록 유니크 제약 조건
+ALTER TABLE tblMemberPriv
+    ADD CONSTRAINT UK_tblMemberPriv_idMember UNIQUE (idMember);
+        
 -- 관리자 권한 목록
 CREATE TABLE tblAdminPriv (
 	seq     NUMBER       NOT NULL, -- 번호
@@ -482,6 +490,10 @@ ALTER TABLE tblAdminPriv
 			seq -- 번호
 		);
 
+-- 관리자 권한 목록 관리자 번호 유니크 제약 조건
+ALTER TABLE tblAdminPriv
+    ADD CONSTRAINT UK_tblAdminPriv_idAdmin UNIQUE (idAdmin);
+
 -- 사용자
 CREATE TABLE tblUser (
 	seq      NUMBER       NOT NULL, -- 번호
@@ -496,6 +508,14 @@ ALTER TABLE tblUser
 		PRIMARY KEY (
 			seq -- 번호
 		);
+        
+-- 사용자 회원 번호 유니크 제약 조건
+ALTER TABLE tblUser
+    ADD CONSTRAINT UK_tblUser_idMember UNIQUE (idMember);
+
+-- 사용자 관리자 번호 유니크 제약 조건
+ALTER TABLE tblUser
+    ADD CONSTRAINT UK_tblUser_idAdmin UNIQUE (idAdmin);
 
 -- 압박 강도
 CREATE TABLE tblCompressionIntensity (
@@ -550,6 +570,10 @@ ALTER TABLE tblCardType
 		PRIMARY KEY (
 			seq -- 번호
 		);
+        
+-- 카드 타입 유니크 제약 조건
+ALTER TABLE tblCardType
+    ADD CONSTRAINT UK_tblCardType_type UNIQUE (type);
 
 -- 변동 사유 카테고리
 CREATE TABLE tblReasonChangeCategory (
@@ -580,6 +604,10 @@ ALTER TABLE tblFixedFluctuationPeriod
 			seq -- 번호
 		);
 
+-- 고정 변동 기간 유니크 제약 조건
+ALTER TABLE tblFixedFluctuationPeriod
+    ADD CONSTRAINT UK_tblFixedFluctuationPeriod_period UNIQUE (period);
+
 -- 고정 입출금 여부
 CREATE TABLE tblFixedDepositWithdrawalCheck (
 	seq                       NUMBER         NOT NULL, -- 번호
@@ -595,6 +623,10 @@ ALTER TABLE tblFixedDepositWithdrawalCheck
 			seq -- 번호
 		);
 
+-- 고정 입출금 여부 유니크 제약 조건
+ALTER TABLE tblFixedDepositWithdrawalCheck
+    ADD CONSTRAINT UK_tblFixedDepositWithdrawalCheck_period UNIQUE (content);
+
 -- 입출금 상태
 CREATE TABLE tblDepositWithdrawalStatus (
 	seq    NUMBER       NOT NULL, -- 번호
@@ -608,6 +640,10 @@ ALTER TABLE tblDepositWithdrawalStatus
 		PRIMARY KEY (
 			seq -- 번호
 		);
+
+-- 입출금 상태 유니크 제약 조건
+ALTER TABLE tblDepositWithdrawalStatus
+    ADD CONSTRAINT UK_tblDepositWithdrawalStatus_status UNIQUE (status);
 
 -- 자산
 CREATE TABLE tblProperty (
@@ -652,6 +688,10 @@ ALTER TABLE tblMemberFinance
 		PRIMARY KEY (
 			seq -- 번호
 		);
+        
+-- 회원 금융 정보 제약 조건
+ALTER TABLE tblMemberFinance
+    ADD CONSTRAINT UK_tblMemberFinance_seqMember UNIQUE (seqMember);
 
 -- 변동 사유 목록
 CREATE TABLE tblReasonsChangeList (
@@ -666,6 +706,10 @@ ALTER TABLE tblReasonsChangeList
 		PRIMARY KEY (
 			seq -- 번호
 		);
+
+-- 변동 사유 목록 제약 조건
+ALTER TABLE tblReasonsChangeList
+    ADD CONSTRAINT UK_tblReasonsChangeList_content UNIQUE (content);
 
 -- 뉴스 카테고리 목록
 CREATE TABLE tblNewsCategoryList (
@@ -695,6 +739,10 @@ ALTER TABLE tblSavingsPeriod
 		PRIMARY KEY (
 			seq -- 번호
 		);
+        
+-- 저축 기간 제약 조건
+ALTER TABLE tblSavingsPeriod
+    ADD CONSTRAINT UK_tblSavingsPeriod_period UNIQUE (period);
 
 -- 회원
 ALTER TABLE tblMember
