@@ -9,23 +9,37 @@ insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate
 values (3, 2, 6, '개발자 질문 입니다.', '개발자 화이팅.', '2024-04-27', null, 10, 4, 0, 0, 0, 0);
 
 insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck) 
-values (4, 2, 7, '나는 문어.', '꿈을 꾸는 문어', '2024-04-27', null, 10, 2, 0, 0, 0, 0);
+values (4, 2, 6, '욕입니다.', '욕 합니다. 이건 협박입니다.', '2024-04-27', null, 10, 4, 0, 0, 0, 1);
 
 insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck) 
-values (5, 3, 7, '건의 사항 입니다.', '다들 행복했으면 좋겠습니다.', '2024-04-28', null, 12, 2, 0, 0, 0, 0);
+values (5, 2, 7, '나는 문어.', '꿈을 꾸는 문어', '2024-04-27', null, 10, 2, 0, 0, 0, 0);
 
 insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck) 
-values (6, 3, 8, '건의', '다들 행복했으면 좋겠습니다.', '2024-04-28', null, 8, 2, 0, 0, 0, 0);
+values (6, 3, 7, '건의 사항 입니다.', '다들 행복했으면 좋겠습니다.', '2024-04-28', null, 12, 2, 0, 0, 1, 0);
 
 insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck) 
-values (7, 4, 9, '출석', '출석체크', '2024-04-28', null, 0, 0, 0, 0, 0, 0);
+values (7, 3, 8, '건의', '다들 행복했으면 좋겠습니다.', '2024-04-28', null, 8, 2, 0, 0, 1, 0);
 
 insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck) 
-values (8, 4, 8, '출석', '출췍', '2024-04-29', null, 0, 0, 0, 0, 0, 0);
+values (8, 4, 9, '출석', '출석체크', '2024-04-28', null, 0, 0, 0, 0, 0, 0);
+
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck) 
+values (9, 4, 8, '출석', '출췍', '2024-04-29', null, 0, 0, 0, 0, 0, 0);
+
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck) 
+values (10, 4, 6, '욕', '욕욕욕욕욕욕욕', '2024-04-29', null, 0, 0, 0, 0, 0, 1);
 
 
 
 --구매 위시 목록 tblPurchaseWishList
+INSERT INTO tblPurchaseWishList(seq,productName,seqUser) VALUES (1,'자동차',6);
+INSERT INTO tblPurchaseWishList(seq,productName,seqUser) VALUES (2,'휴대폰',6);
+INSERT INTO tblPurchaseWishList(seq,productName,seqUser) VALUES (3,'냉장고',6);
+INSERT INTO tblPurchaseWishList(seq,productName,seqUser) VALUES (4,'전자레인지',7);
+INSERT INTO tblPurchaseWishList(seq,productName,seqUser) VALUES (5,'컴퓨터',8);
+INSERT INTO tblPurchaseWishList(seq,productName,seqUser) VALUES (6,'마우스',9);
+INSERT INTO tblPurchaseWishList(seq,productName,seqUser) VALUES (7,'키보드',9);
+
 
 --변동 사유 카테고리 tblReasonChangeCategory
 select * from tblReasonsChangeList;
@@ -60,3 +74,5 @@ insert into tblReasonChangeCategory (seq, seqReasonsChangeList, seqMyCard)
 --현금
 insert into tblReasonChangeCategory (seq, seqReasonsChangeList, seqMyCard) 
     values (12, 4, null);
+
+
