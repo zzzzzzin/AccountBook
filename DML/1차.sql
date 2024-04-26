@@ -1,6 +1,11 @@
 --프로필 이미지 tblProfileimg
+insert into tblProfileimg (seq, fileName, fileLink) values (1, 'default', 'default');
 
 --게시판 카테고리 tblCategory
+insert into tblCategory (seq, name) values (1, '공지사항');
+insert into tblCategory (seq, name) values (2, '자유게시판');
+insert into tblCategory (seq, name) values (3, '건의사항');
+insert into tblCategory (seq, name) values (4, '출석 게시판');
 
 --금지어 tblBanWord
 
@@ -85,7 +90,5 @@ INSERT INTO tblAdmin (id, pw, nickname) VALUES ( 'admin5', 'java1234', 'admin5' 
 --카드 타입 tblCardType
 INSERT INTO tblCardType (seq, type) VALUES ( 1, '신용');
 INSERT INTO tblCardType (seq, type) VALUES ( 2, '체크');
-
-
 
 
