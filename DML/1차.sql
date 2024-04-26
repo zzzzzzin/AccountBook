@@ -40,3 +40,34 @@ insert into tblProperty (seq, cash) values (10, 1000000);
 insert into tblDepositWithdrawalStatus (seq, status) values (1, '입금');
 insert into tblDepositWithdrawalStatus (seq, status) values (2, '출금');
 
+-- 변동사유 목록 
+INSERT INTO tblReasonsChangeList (seq, content) VALUES ( 1, "계좌이체" );
+INSERT INTO tblReasonsChangeList (seq, content) VALUES ( 2, "신용 카드' );
+INSERT INTO tblReasonsChangeList (seq, content) VALUES ( 3, '카드 이체' );
+INSERT INTO tblReasonsChangeList (seq, content) VALUES ( 4, '현금' );
+INSERT INTO tblReasonsChangeList (seq, content) VALUES ( 5, '계좌이체' );
+INSERT INTO tblReasonsChangeList (seq, content) VALUES ( 6, '신용 카드' );
+INSERT INTO tblReasonsChangeList (seq, content) VALUES ( 7, '카드 이체' );
+INSERT INTO tblReasonsChangeList (seq, content) VALUES ( 8, '현금' );
+INSERT INTO tblReasonsChangeList (seq, content) VALUES ( 9, '계좌이체' );
+INSERT INTO tblReasonsChangeList (seq, content) VALUES ( 10, '신용 카드' );
+
+-- 권한
+INSERT INTO tblPriv (id, pw) VALUES ( 1, '비회원' );
+INSERT INTO tblPriv (id, pw) VALUES ( 2, '회원' );
+INSERT INTO tblPriv (id, pw) VALUES ( 3, '관리자' );
+INSERT INTO tblPriv (id, pw) VALUES ( 4, '탈퇴' );
+
+-- 관리자
+INSERT INTO tblAdmin (id, pw, nickname) VALUES ( 'admin1', 'java1234', 'admin1' );
+INSERT INTO tblAdmin (id, pw, nickname) VALUES ( 'admin2', 'java1234', 'admin2' );
+INSERT INTO tblAdmin (id, pw, nickname) VALUES ( 'admin3', 'java1234', 'admin3' );
+INSERT INTO tblAdmin (id, pw, nickname) VALUES ( 'admin4', 'java1234', 'admin4' );
+INSERT INTO tblAdmin (id, pw, nickname) VALUES ( 'admin5', 'java1234', 'admin5' );
+
+-- 카드 타입
+INSERT INTO tblCardType (seq, type) VALUES ( 1, '신용카드' );
+INSERT INTO tblCardType (seq, type) VALUES ( 2, '체크카드' );
+
+
+
