@@ -27,6 +27,10 @@ insert into tblMyCard (seq, cardNumber, alias, validity, idMember, seqCardInform
     values (10, '4916615639346972', '농협 flex', '2034-01-10', 'abc004@naver.com', 8);
 
 --가계부 tblAcc
+insert into tblAcc (seq, seqMember) values (1, 'abc001@naver.com');
+insert into tblAcc (seq, seqMember) values (2, 'abc002@naver.com');
+insert into tblAcc (seq, seqMember) values (3, 'abc003@naver.com');
+insert into tblAcc (seq, seqMember) values (4, 'abc004@naver.com');
 
 --회원 권한 목록 tblMemberPriv
 --권한(1: 비회원, 2:회원, 3:관리자, 4:탈퇴)
