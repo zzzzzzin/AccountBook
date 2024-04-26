@@ -593,7 +593,7 @@ ALTER TABLE tblReasonChangeCategory
 -- 고정 변동 기간
 CREATE TABLE tblFixedFluctuationPeriod (
 	seq    NUMBER NOT NULL, -- 번호
-	period DATE   NOT NULL  -- 기간
+	period NUMBER NOT NULL  -- 기간
 );
 
 -- 고정 변동 기간
