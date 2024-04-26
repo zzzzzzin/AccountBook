@@ -7,13 +7,26 @@ insert into tblCategory (seq, name) values (2, '자유게시판');
 insert into tblCategory (seq, name) values (3, '건의사항');
 insert into tblCategory (seq, name) values (4, '출석 게시판');
 
---금지어 tblBanWord
+-- 금지어 tblBanWord
+INSERT INTO tblBanWord (seq, content) VALUES (1, '2중대');
+INSERT INTO tblBanWord (seq, content) VALUES (2, '3일한');
+INSERT INTO tblBanWord (seq, content) VALUES (3, 'SUCKSEX');
+INSERT INTO tblBanWord (seq, content) VALUES (4, '가카');
+INSERT INTO tblBanWord (seq, content) VALUES (5, '간민정음');
+INSERT INTO tblBanWord (seq, content) VALUES (6, '간철수');
+INSERT INTO tblBanWord (seq, content) VALUES (7, '갓치');
+INSERT INTO tblBanWord (seq, content) VALUES (8, '갓카');
+INSERT INTO tblBanWord (seq, content) VALUES (9, '강된장남');
+INSERT INTO tblBanWord (seq, content) VALUES (10, '개독교');
 
 --배너 이미지 tblBannerImage
 
 --로그 tblLog
 
---압박 강도 tblCompressionIntensity
+-- 압박 강도 tblCompressionIntensity
+INSERT INTO tblCompressionintensity (seq, intensity) VALUES (1, '하');
+INSERT INTO tblCompressionintensity (seq, intensity) VALUES (2, '중');
+INSERT INTO tblCompressionintensity (seq, intensity) VALUES (3, '상');
 
 -- 저축 기간 tblSavingsPeriod
 insert into tblSavingsPeriod (seq, period) values (1, 1);
