@@ -615,7 +615,7 @@ ALTER TABLE tblFixedFluctuationPeriod
 -- 고정 입출금 여부
 CREATE TABLE tblFixedDepositWithdrawalCheck (
 	seq                       NUMBER         NOT NULL, -- 번호
-	content                   VARCHAR2(2000) NOT NULL, -- 내용
+	content                   VARCHAR2(2000) NULL, -- 내용
 	seqFixedFluctuationPeriod NUMBER         NOT NULL  -- 고정 변동 기간 번호
 );
 
