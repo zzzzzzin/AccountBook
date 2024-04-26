@@ -46,7 +46,7 @@ ALTER TABLE tblSurvey
 CREATE TABLE tblProfileimg (
 	seq      NUMBER        NOT NULL, -- 번호
 	fileName VARCHAR2(50)  NOT NULL, -- 파일 이름
-	fileLink VARCHAR2(300) NOT NULL  -- 파일 링크
+	fileLink VARCHAR2(1000) NOT NULL  -- 파일 링크
 );
 
 -- 프로필 이미지
@@ -90,7 +90,7 @@ CREATE TABLE tblPost (
 	seq          NUMBER         NOT NULL, -- 번호
 	seqBoard     NUMBER         NOT NULL, -- 게시판 번호
 	seqUser      NUMBER         NOT NULL, -- 사용자 번호
-	title        VARCHAR2(100)  NOT NULL, -- 제목
+	title        VARCHAR2(200)  NOT NULL, -- 제목
 	content      VARCHAR2(2000) NOT NULL, -- 내용
 	writeDate    DATE           NOT NULL, -- 작성일
 	editDate     DATE           NULL,     -- 수정일
@@ -192,7 +192,7 @@ CREATE TABLE tblAttachedFile (
 	seq      NUMBER        NOT NULL, -- 번호
 	seqPost  NUMBER        NOT NULL, -- 게시글 번호
 	fileName VARCHAR2(50)  NOT NULL, -- 파일 이름
-	fileLink VARCHAR2(300) NOT NULL  -- 파일 링크
+	fileLink VARCHAR2(1000) NOT NULL  -- 파일 링크
 );
 
 -- 첨부 파일
@@ -296,7 +296,7 @@ CREATE TABLE tblCardInformation (
 	annualFee   NUMBER         NOT NULL, -- 연회비
 	overseasUse VARCHAR2(10)   NOT NULL, -- 해외겸용
 	cardCompany VARCHAR2(50)   NOT NULL, -- 카드사
-	fileLink    VARCHAR2(300)  NULL,     -- 파일 링크
+	fileLink    VARCHAR2(1000)  NULL,     -- 파일 링크
 	seqCardType NUMBER         NOT NULL  -- 카드 타입 번호
 );
 
@@ -359,7 +359,7 @@ ALTER TABLE tblListCardBenefits
 -- 배너 이미지
 CREATE TABLE tblBannerImage (
 	seq      NUMBER        NOT NULL, -- 번호
-	fileLink VARCHAR2(300) NOT NULL  -- 파일 링크
+	fileLink VARCHAR2(1000) NOT NULL  -- 파일 링크
 );
 
 -- 배너 이미지
@@ -392,8 +392,8 @@ ALTER TABLE tblAPI
 -- 뉴스
 CREATE TABLE tblNews (
 	seq      NUMBER         NOT NULL, -- 번호
-	title    VARCHAR2(100)  NOT NULL, -- 제목
-	content  VARCHAR2(2000) NOT NULL, -- 내용
+	title    VARCHAR2(200)  NOT NULL, -- 제목
+	link  VARCHAR2(1000) NOT NULL, -- 링크
 	newsDate DATE           NOT NULL, -- 날짜
 	media    VARCHAR2(50)   NULL      -- 언론사
 );
@@ -405,6 +405,10 @@ ALTER TABLE tblNews
 		PRIMARY KEY (
 			seq -- 번호
 		);
+        
+-- 뉴스 유니크 제약 조건
+ALTER TABLE tblNews
+    ADD CONSTRAINT UK_tblNews_link UNIQUE (link);
 
 -- 금지어
 CREATE TABLE tblBanWord (
@@ -593,7 +597,7 @@ ALTER TABLE tblReasonChangeCategory
 -- 고정 변동 기간
 CREATE TABLE tblFixedFluctuationPeriod (
 	seq    NUMBER NOT NULL, -- 번호
-	period DATE   NOT NULL  -- 기간
+	period NUMBER NOT NULL  -- 기간
 );
 
 -- 고정 변동 기간
