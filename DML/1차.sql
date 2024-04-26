@@ -231,6 +231,7 @@ INSERT INTO tblNews(seq,title,link,newsDate,media) VALUES (14,'''직장인의 �
 INSERT INTO tblNews(seq,title,link,newsDate,media) VALUES (15,'청년 식비 부담 덜어준다…광진구, ''천원의 아침밥'' 운영','https://www.sedaily.com/NewsView/2D7ROVKTH2','2024.04.22','데일리뉴스');
 
 --고정 변동 기간 tblFixedFluctuationPeriod
+insert into tblFixedFluctuationPeriod (seq, period) values (0, 0);
 insert into tblFixedFluctuationPeriod (seq, period) values (1, 1);
 insert into tblFixedFluctuationPeriod (seq, period) values (2, 3);
 insert into tblFixedFluctuationPeriod (seq, period) values (3, 12);
@@ -238,7 +239,7 @@ insert into tblFixedFluctuationPeriod (seq, period) values (3, 12);
 -- 변동사유 목록 tblReasonsChangeList
 INSERT INTO tblReasonsChangeList (seq, content) VALUES ( 1, '계좌이체');
 INSERT INTO tblReasonsChangeList (seq, content) VALUES ( 2, '신용 카드');
-INSERT INTO tblReasonsChangeList (seq, content) VALUES ( 3, '카드 이체');
+INSERT INTO tblReasonsChangeList (seq, content) VALUES ( 3, '체크 카드');
 INSERT INTO tblReasonsChangeList (seq, content) VALUES ( 4, '현금');
 
 -- 권한 tblPriv
