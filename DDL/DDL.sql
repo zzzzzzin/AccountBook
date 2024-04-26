@@ -46,7 +46,7 @@ ALTER TABLE tblSurvey
 CREATE TABLE tblProfileimg (
 	seq      NUMBER        NOT NULL, -- 번호
 	fileName VARCHAR2(50)  NOT NULL, -- 파일 이름
-	fileLink VARCHAR2(300) NOT NULL  -- 파일 링크
+	fileLink VARCHAR2(1000) NOT NULL  -- 파일 링크
 );
 
 -- 프로필 이미지
@@ -192,7 +192,7 @@ CREATE TABLE tblAttachedFile (
 	seq      NUMBER        NOT NULL, -- 번호
 	seqPost  NUMBER        NOT NULL, -- 게시글 번호
 	fileName VARCHAR2(50)  NOT NULL, -- 파일 이름
-	fileLink VARCHAR2(300) NOT NULL  -- 파일 링크
+	fileLink VARCHAR2(1000) NOT NULL  -- 파일 링크
 );
 
 -- 첨부 파일
@@ -296,7 +296,7 @@ CREATE TABLE tblCardInformation (
 	annualFee   NUMBER         NOT NULL, -- 연회비
 	overseasUse VARCHAR2(10)   NOT NULL, -- 해외겸용
 	cardCompany VARCHAR2(50)   NOT NULL, -- 카드사
-	fileLink    VARCHAR2(300)  NULL,     -- 파일 링크
+	fileLink    VARCHAR2(1000)  NULL,     -- 파일 링크
 	seqCardType NUMBER         NOT NULL  -- 카드 타입 번호
 );
 
@@ -359,7 +359,7 @@ ALTER TABLE tblListCardBenefits
 -- 배너 이미지
 CREATE TABLE tblBannerImage (
 	seq      NUMBER        NOT NULL, -- 번호
-	fileLink VARCHAR2(300) NOT NULL  -- 파일 링크
+	fileLink VARCHAR2(1000) NOT NULL  -- 파일 링크
 );
 
 -- 배너 이미지
@@ -393,7 +393,7 @@ ALTER TABLE tblAPI
 CREATE TABLE tblNews (
 	seq      NUMBER         NOT NULL, -- 번호
 	title    VARCHAR2(200)  NOT NULL, -- 제목
-	link  VARCHAR2(300) NOT NULL, -- 링크
+	link  VARCHAR2(1000) NOT NULL, -- 링크
 	newsDate DATE           NOT NULL, -- 날짜
 	media    VARCHAR2(50)   NULL      -- 언론사
 );
