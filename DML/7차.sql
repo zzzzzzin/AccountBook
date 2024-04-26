@@ -15,9 +15,6 @@ insert into tblReplyComments (seq, seqComments, seqUser, content, writeDate, lik
 values (5, 6, 7, '운영자님 ㄳ', '2024-04-28', 0, 0, 0);
 
 --가계부 카테고리 목록 tblAccCategoryList
-<<<<<<< HEAD
-
-=======
 INSERT INTO tblAccCategoryList(seq,seqAccCategory,seqAccInfo) VALUES (1,33,1);
 INSERT INTO tblAccCategoryList(seq,seqAccCategory,seqAccInfo) VALUES (2,35,2);
 INSERT INTO tblAccCategoryList(seq,seqAccCategory,seqAccInfo) VALUES (3,8,3);
@@ -29,4 +26,3 @@ INSERT INTO tblAccCategoryList(seq,seqAccCategory,seqAccInfo) VALUES (8,35,8);
 INSERT INTO tblAccCategoryList(seq,seqAccCategory,seqAccInfo) VALUES (9,33,9);
 INSERT INTO tblAccCategoryList(seq,seqAccCategory,seqAccInfo) VALUES (10,35,10);
 INSERT INTO tblAccCategoryList(seq,seqAccCategory,seqAccInfo) VALUES (11,5,11);
->>>>>>> upstream/main
