@@ -90,7 +90,7 @@ CREATE TABLE tblPost (
 	seq          NUMBER         NOT NULL, -- 번호
 	seqBoard     NUMBER         NOT NULL, -- 게시판 번호
 	seqUser      NUMBER         NOT NULL, -- 사용자 번호
-	title        VARCHAR2(100)  NOT NULL, -- 제목
+	title        VARCHAR2(200)  NOT NULL, -- 제목
 	content      VARCHAR2(2000) NOT NULL, -- 내용
 	writeDate    DATE           NOT NULL, -- 작성일
 	editDate     DATE           NULL,     -- 수정일
@@ -392,8 +392,8 @@ ALTER TABLE tblAPI
 -- 뉴스
 CREATE TABLE tblNews (
 	seq      NUMBER         NOT NULL, -- 번호
-	title    VARCHAR2(100)  NOT NULL, -- 제목
-	content  VARCHAR2(2000) NOT NULL, -- 내용
+	title    VARCHAR2(200)  NOT NULL, -- 제목
+	link  VARCHAR2(300) NOT NULL, -- 링크
 	newsDate DATE           NOT NULL, -- 날짜
 	media    VARCHAR2(50)   NULL      -- 언론사
 );
@@ -405,6 +405,10 @@ ALTER TABLE tblNews
 		PRIMARY KEY (
 			seq -- 번호
 		);
+        
+-- 뉴스 유니크 제약 조건
+ALTER TABLE tblNews
+    ADD CONSTRAINT UK_tblNews_link UNIQUE (link);
 
 -- 금지어
 CREATE TABLE tblBanWord (
