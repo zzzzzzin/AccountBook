@@ -1,6 +1,3 @@
-INSERT INTO employees (employee_id, first_name, last_name, email, hire_date)
-VALUES (101, 'John', 'Doe', 'john.doe@example.com', '2024-04-30');
-
 -- 저축 기간 tblSavingsPeriod
 insert into tblSavingsPeriod (seq, period) values (1, 1);
 insert into tblSavingsPeriod (seq, period) values (2, 2);
