@@ -1,6 +1,6 @@
 --사용자 tblUser
 --관리자
-INSERT INTO tblUser(seq, idMember, idAdmin) VALUES(1,'','admin1');
+INSERT INTO tblUser(seq, idMember, idAdmin) VALUES(1, NULL ,'admin1');
 INSERT INTO tblUser(seq, idMember, idAdmin) VALUES(2,'','admin2');
 INSERT INTO tblUser(seq, idMember, idAdmin) VALUES(3,'','admin3');
 INSERT INTO tblUser(seq, idMember, idAdmin) VALUES(4,'','admin4');

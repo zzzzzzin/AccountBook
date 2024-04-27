@@ -32,13 +32,13 @@ values (10, 4, 6, '욕', '욕욕욕욕욕욕욕', '2024-04-29', null, 0, 0, 0, 0
 
 
 --구매 위시 목록 tblPurchaseWishList
-INSERT INTO tblPurchaseWishList(seq,productName,seqUser) VALUES (1,'자동차',6);
-INSERT INTO tblPurchaseWishList(seq,productName,seqUser) VALUES (2,'휴대폰',6);
-INSERT INTO tblPurchaseWishList(seq,productName,seqUser) VALUES (3,'냉장고',6);
-INSERT INTO tblPurchaseWishList(seq,productName,seqUser) VALUES (4,'전자레인지',7);
-INSERT INTO tblPurchaseWishList(seq,productName,seqUser) VALUES (5,'컴퓨터',8);
-INSERT INTO tblPurchaseWishList(seq,productName,seqUser) VALUES (6,'마우스',9);
-INSERT INTO tblPurchaseWishList(seq,productName,seqUser) VALUES (7,'키보드',9);
+INSERT INTO tblPurchaseWishList(seq,productName,seqAcc) VALUES (1,'자동차',1);
+INSERT INTO tblPurchaseWishList(seq,productName,seqAcc) VALUES (2,'휴대폰',1);
+INSERT INTO tblPurchaseWishList(seq,productName,seqAcc) VALUES (3,'냉장고',2);
+INSERT INTO tblPurchaseWishList(seq,productName,seqAcc) VALUES (4,'전자레인지',2);
+INSERT INTO tblPurchaseWishList(seq,productName,seqAcc) VALUES (5,'컴퓨터',3);
+INSERT INTO tblPurchaseWishList(seq,productName,seqAcc) VALUES (6,'마우스',3);
+INSERT INTO tblPurchaseWishList(seq,productName,seqAcc) VALUES (7,'키보드',4);
 
 
 --변동 사유 카테고리 tblReasonChangeCategory
