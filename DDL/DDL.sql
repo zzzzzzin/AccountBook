@@ -277,7 +277,7 @@ ALTER TABLE tblAccCategoryList
 CREATE TABLE tblPurchaseWishList (
 	seq         NUMBER       NOT NULL, -- 번호
 	productName VARCHAR2(50) NULL,     -- 제품명
-	seqUser     NUMBER       NOT NULL  -- 사용자 번호
+	seqAcc      NUMBER       NOT NULL  -- 가계부 번호
 );
 
 -- 구매 위시 목록
@@ -971,11 +971,11 @@ ALTER TABLE tblAccCategoryList
 -- 구매 위시 목록
 ALTER TABLE tblPurchaseWishList
 	ADD
-		CONSTRAINT FK_tblUser_TO_tblPurchaseWishList -- 사용자 -> 구매 위시 목록
+		CONSTRAINT FK_tblAcc_TO_tblPurchaseWishList -- 가계부 -> 구매 위시 목록
 		FOREIGN KEY (
-			seqUser  -- 사용자 번호
+			seqAcc -- 가계부 번호
 		)
-		REFERENCES tblUser ( -- 사용자
+		REFERENCES tblAcc ( -- 가계부
 			seq -- 번호
 		);
 

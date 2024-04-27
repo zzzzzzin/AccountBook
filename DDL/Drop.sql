@@ -12,10 +12,6 @@ ALTER TABLE tblSurvey
 
 -- 설문조사
 ALTER TABLE tblSurvey
-	DROP CONSTRAINT FK_tblDebt_TO_tblSurvey; -- 부채 -> 설문조사
-
--- 설문조사
-ALTER TABLE tblSurvey
 	DROP CONSTRAINT FK_tblSavingsPeriod_TO_tblSurvey; -- 저축 기간 -> 설문조사
 
 -- 게시판
@@ -84,7 +80,7 @@ ALTER TABLE tblAccCategoryList
 
 -- 구매 위시 목록
 ALTER TABLE tblPurchaseWishList
-	DROP CONSTRAINT FK_tblUser_TO_tblPurchaseWishList; -- 사용자 -> 구매 위시 목록
+	DROP CONSTRAINT FK_tblAcc_TO_tblPurchaseWishList; -- 가계부 -> 구매 위시 목록
 
 -- 카드 정보
 ALTER TABLE tblCardInformation
@@ -92,7 +88,7 @@ ALTER TABLE tblCardInformation
 
 -- 카드/가계부 카테고리 연결
 ALTER TABLE tblCardAndAcc
-	DROP CONSTRAINT FK_tblCardCategory_TO_tblCardAndAcc; -- 카드 카테고리 -> 카드/가계부 카테고리 연결
+	DROP CONSTRAINT FK_tblCardCategory_TO_tblCardAndAcc; -- 카드 혜택 카테고리 -> 카드/가계부 카테고리 연결
 
 -- 카드/가계부 카테고리 연결
 ALTER TABLE tblCardAndAcc
@@ -100,7 +96,7 @@ ALTER TABLE tblCardAndAcc
 
 -- 카드 혜택 목록
 ALTER TABLE tblListCardBenefits
-	DROP CONSTRAINT FK_tblCardCategory_TO_tblListCardBenefits; -- 카드 카테고리 -> 카드 혜택 목록
+	DROP CONSTRAINT FK_tblCardCategory_TO_tblListCardBenefits; -- 카드 혜택 카테고리 -> 카드 혜택 목록
 
 -- 카드 혜택 목록
 ALTER TABLE tblListCardBenefits
@@ -238,9 +234,9 @@ ALTER TABLE tblPurchaseWishList
 ALTER TABLE tblCardInformation
 	DROP CONSTRAINT PK_tblCardInformation; -- 카드 정보 기본키
 
--- 카드 카테고리
+-- 카드 혜택 카테고리
 ALTER TABLE tblCardCategory
-	DROP CONSTRAINT PK_tblCardCategory; -- 카드 카테고리 기본키
+	DROP CONSTRAINT PK_tblCardCategory; -- 카드 혜택 카테고리 기본키
 
 -- 카드/가계부 카테고리 연결
 ALTER TABLE tblCardAndAcc
@@ -389,7 +385,7 @@ DROP TABLE tblPurchaseWishList;
 -- 카드 정보
 DROP TABLE tblCardInformation;
 
--- 카드 카테고리
+-- 카드 혜택 카테고리
 DROP TABLE tblCardCategory;
 
 -- 카드/가계부 카테고리 연결
@@ -463,9 +459,5 @@ DROP TABLE tblNewsCategoryList;
 
 -- 저축 기간
 DROP TABLE tblSavingsPeriod;
-
---삭제해야할 제약 조건 명령어 알려주는 구문입니다!
---SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
-
 
 commit;
