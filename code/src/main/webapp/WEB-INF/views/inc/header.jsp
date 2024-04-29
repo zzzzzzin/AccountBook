@@ -69,14 +69,22 @@
 
 <header>
 	<nav>
-		<div class="logo"></div>
-		<ul>
-           <li class="content1"><a href="#">게시판</a></li>
-           <li class="content2"><a href="#">대시보드</a></li>
-           <li class="content3"><a href="#">카드추천</a></li>
-           <li class="content4"><a href="#">로그아웃</a></li>
-         </ul>
-     </nav>
+          <div class="logo"></div>
+          <ul>
+            <li class="content1"><a href="#">게시판</a></li>
+            <li class="content2"><a href="#">대시보드</a></li>
+            <li class="content3"><a href="#">카드추천</a></li>
+            <li class="content4"><a href="/account/user/login.do">로그인</a></li>
+            
+            <!-- 
+            <li class="content1"><a href="#">게시판</a></li>
+            <li class="content2"><a href="#">대시보드</a></li>
+            <li class="content3"><a href="#">카드추천</a></li>
+            <li class="content4"><a href="#">로그아웃</a></li> 
+            -->
+            
+          </ul>
+	</nav>
 </header>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script>
