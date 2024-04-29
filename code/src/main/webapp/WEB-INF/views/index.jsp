@@ -53,7 +53,7 @@
 	<header>
         <div class="banner">
             <!-- 배너 이미지를 여기에 추가하세요 -->
-            <img src="../../images/banner.jpg" alt="배너 이미지">
+            <img src="/account/asset/images/banner.jpg" alt="배너 이미지">
         </div>
     </header>
 
