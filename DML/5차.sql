@@ -74,5 +74,7 @@ insert into tblReasonChangeCategory (seq, seqReasonsChangeList, seqMyCard)
 --현금
 insert into tblReasonChangeCategory (seq, seqReasonsChangeList, seqMyCard) 
     values (12, 4, null);
+    
+commit;
 
 
