@@ -12,10 +12,10 @@ INSERT INTO tblUser(seq, idMember, idAdmin) VALUES(8,'abc003@naver.com','');
 INSERT INTO tblUser(seq, idMember, idAdmin) VALUES(9,'abc004@naver.com','');
 
 --회원 금융 정보 tblMemberFinance
-INSERT INTO tblMemberFinance(seq,seqMember,seqProperty,seqDebt) VALUES (1,'abc001@naver.com',9,2);
-INSERT INTO tblMemberFinance(seq,seqMember,seqProperty,seqDebt) VALUES (2,'abc002@naver.com',5,4);
-INSERT INTO tblMemberFinance(seq,seqMember,seqProperty,seqDebt) VALUES (3,'abc003@naver.com',3,7);
-INSERT INTO tblMemberFinance(seq,seqMember,seqProperty,seqDebt) VALUES (4,'abc004@naver.com',0,0);
+INSERT INTO tblMemberFinance(seq,idMember,seqProperty,seqDebt) VALUES (1,'abc001@naver.com',9,2);
+INSERT INTO tblMemberFinance(seq,idMember,seqProperty,seqDebt) VALUES (2,'abc002@naver.com',5,4);
+INSERT INTO tblMemberFinance(seq,idMember,seqProperty,seqDebt) VALUES (3,'abc003@naver.com',3,7);
+INSERT INTO tblMemberFinance(seq,idMember,seqProperty,seqDebt) VALUES (4,'abc004@naver.com',0,0);
 
 --나의 카드 tblMyCard
 select * from tblMember;
@@ -42,10 +42,10 @@ insert into tblMyCard (seq, cardNumber, alias, validity, idMember, seqCardInform
     values (10, '4916615639346972', '농협 flex', '2034-01-10', 'abc004@naver.com', 8);
 
 --가계부 tblAcc
-insert into tblAcc (seq, seqMember) values (1, 'abc001@naver.com');
-insert into tblAcc (seq, seqMember) values (2, 'abc002@naver.com');
-insert into tblAcc (seq, seqMember) values (3, 'abc003@naver.com');
-insert into tblAcc (seq, seqMember) values (4, 'abc004@naver.com');
+insert into tblAcc (seq, idMember) values (1, 'abc001@naver.com');
+insert into tblAcc (seq, idMember) values (2, 'abc002@naver.com');
+insert into tblAcc (seq, idMember) values (3, 'abc003@naver.com');
+insert into tblAcc (seq, idMember) values (4, 'abc004@naver.com');
 
 --회원 권한 목록 tblMemberPriv
 --권한(1: 비회원, 2:회원, 3:관리자, 4:탈퇴)

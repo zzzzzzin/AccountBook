@@ -206,7 +206,7 @@ ALTER TABLE tblAttachedFile
 -- 가계부
 CREATE TABLE tblAcc (
 	seq       NUMBER       NOT NULL, -- 번호
-	seqMember VARCHAR2(30) NOT NULL  -- 회원 번호
+	idMember VARCHAR2(30) NOT NULL  -- 회원 번호
 );
 
 -- 가계부
@@ -680,7 +680,7 @@ ALTER TABLE tblDebt
 -- 회원 금융 정보
 CREATE TABLE tblMemberFinance (
 	seq         NUMBER       NOT NULL, -- 번호
-	seqMember   VARCHAR2(30) NOT NULL, -- 회원 번호
+	idMember   VARCHAR2(30) NOT NULL, -- 회원 번호
 	seqProperty NUMBER       NOT NULL, -- 자산 번호
 	seqDebt     NUMBER       NOT NULL  -- 부채 번호
 );
@@ -695,7 +695,7 @@ ALTER TABLE tblMemberFinance
         
 -- 회원 금융 정보 제약 조건
 ALTER TABLE tblMemberFinance
-    ADD CONSTRAINT UK_tblMemberFinance_seqMember UNIQUE (seqMember);
+    ADD CONSTRAINT UK_tblMemberFinance_idMember UNIQUE (idMember);
 
 -- 변동 사유 목록
 CREATE TABLE tblReasonsChangeList (
@@ -885,7 +885,7 @@ ALTER TABLE tblAcc
 	ADD
 		CONSTRAINT FK_tblMember_TO_tblAcc -- 회원 -> 가계부
 		FOREIGN KEY (
-			seqMember -- 회원 번호
+			idMember -- 회원 번호
 		)
 		REFERENCES tblMember ( -- 회원
 			id -- 아이디(이메일)
@@ -1182,7 +1182,7 @@ ALTER TABLE tblMemberFinance
 	ADD
 		CONSTRAINT FK_tblMember_TO_tblMemberFinance -- 회원 -> 회원 금융 정보
 		FOREIGN KEY (
-			seqMember -- 회원 번호
+			idMember -- 회원 번호
 		)
 		REFERENCES tblMember ( -- 회원
 			id -- 아이디(이메일)
