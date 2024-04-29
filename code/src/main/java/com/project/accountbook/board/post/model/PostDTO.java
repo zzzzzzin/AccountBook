@@ -1,5 +1,7 @@
 package com.project.accountbook.board.post.model;
 
+import java.util.Date;
+
 /*
 tblPost
 tblAttachedFile
@@ -11,8 +13,8 @@ public class PostDTO {
 	private String seqUser;
 	private String title;
 	private String content;
-	private String writeDate;
-	private String editDate;
+	private Date writeDate;
+	private Date editDate;
 	private int viewCount;
 	private int likeCount;
 	private int dislikeCount;
@@ -49,16 +51,16 @@ public class PostDTO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getWriteDate() {
+	public Date getWriteDate() {
 		return writeDate;
 	}
-	public void setWriteDate(String writeDate) {
-		this.writeDate = writeDate;
+	public void setWriteDate(Date date) {
+		this.writeDate = date;
 	}
-	public String getEditDate() {
+	public Date getEditDate() {
 		return editDate;
 	}
-	public void setEditDate(String editDate) {
+	public void setEditDate(Date editDate) {
 		this.editDate = editDate;
 	}
 	public int getViewCount() {
