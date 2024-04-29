@@ -57,3 +57,5 @@ insert into tblMemberPriv (seq, seqPriv, idMember)
     values (3, 2, 'abc003@naver.com');
 insert into tblMemberPriv (seq, seqPriv, idMember) 
     values (4, 4,'abc004@naver.com');
+
+commit;
