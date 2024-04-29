@@ -1,23 +1,181 @@
 --사용자
 --vwUser 
 --tblMember, tblAdmin, tblPriv, tblMemberPriv, tblAdminPriv, tblProfileim
+create or replace view vwUser
+as select
+    pri.seq as pri_seq,
+    pri.name as pri_name,
+    mp.seq as mp_seq,
+    mp.seqPriv as mp_seqPriv,
+    ap.seq as ad_seq, 
+    ap.seqPriv as ad_seqPriv,
+    me.id as me_id,
+    me.pw as me_pw,
+    me.name as me_name,
+    me.nickname as me_nickname,
+    me.phoneNumber as me_phoneNumber,
+    me.nss as me_nss,
+    me.gender as me_gender,
+    me.reportCount as me_reportCount,
+    me.seqSurvey as me_seqSurvey,
+    me.seqProfileimg as me_seqProfileimg,
+    ad.id as ad_id,
+    ad.pw as ad_pw,
+    ad.nickname as ad_nickname
+from tblPriv pri 
+left join tblMemberPriv mp on mp.seqPriv = pri.seq
+    left join tblAdminPriv ap on ap.seqPriv = pri.seq
+        left join tblMember me on me.id = mp.idmember
+            left join tblAdmin ad on ad.id = ap.idAdmin;
 
 --개인정보
 --vwMemberInfo 
 --tblMember, tblProfileimg
+create or replace view vwMemberInfo
+as select 
+    *
+from tblMember me
+inner join tblProfileimg pf on me.seqProfileimg = pf.seq;
 
 --설문조사
 --vwSurvey
 --tblMember, tblSurvey, tblSavingsPeriod, tblCompressionIntensity
+create or replace view vwSurvey
+as select su.seq as su_seq,
+          su.monthlyPaycheck as su_monthlyPaycheck,
+          su.savingsGoals as su_savingsGoals,
+          ci.seq as ci_seq,
+          ci.intensity as ci_intensity,
+          sp.seq as sp_seq,
+          sp.period as sp_period,
+          me.id as me_id,
+          me.pw as me_pw,
+          me.name as me_name,
+          me.nickname as me_nickname,
+          me.phoneNumber as me_phoneNumber,
+          me.nss as me_nss,
+          me.gender as me_gender,
+          me.reportCount as me_reportCount
+from tblMember me
+inner join tblSurvey su on me.seqSurvey = su.seq
+left outer join tblSavingsPeriod sp on sp.seq = su.seqSavingsPeriod
+        left outer join tblCompressionIntensity ci on ci.seq = su.seqCompressionIntensity;
 
 
 --게시물
 --vwBoard
---tblPost, tblAttachedFile, tblBoard, tblCategory, tblMemberPriv, tblAdminPriv, tblAdmin, tblMember, tblUser, tblProfileimg, tblReplyComments, tblComments, tblBanWord
+--tblPost, tblAttachedFile, tblBoard, tblCategory, tblMemberPriv, tblAdminPriv, tblAdmin, tblMember, tblUser, tblProfileimg, tblReplyComments, tblComments
+create or replace view vwPost
+as select
+    po.seq as po_seq,
+    po.seqUser as po_seqUser,
+    po.title as po_title,
+    po.content as po_content,
+    po.writeDate as po_writeDate,
+    po.editDate as po_editDate,
+    po.viewCount as po_viewCount,
+    po.likeCount as po_likeCount,
+    po.dislikeCount as po_dislikeCount,
+    po.reportCount as po_reportCount,
+    po.secretCheck as po_secretCheck,
+    po.blindCheck as po_blindCheck,
+    bo.seq as bo_seq,
+    bo.seqCategory as bo_seqCategory,
+    ca.seq as ca_seq,
+    ca.name as ca_name,
+    us.seq as us_seq,
+    me.id as me_id,
+    me.pw as me_pw,
+    me.name as me_name,
+    me.nickname as me_nickname,
+    me.phoneNumber as me_phoneNumber,
+    me.nss as me_nss,
+    me.gender as me_gender,
+    me.reportCount as me_reportCount,
+    me.seqSurvey as me_seqSurvey,
+    img.seq as img_seq,
+    img.fileName as img_fileName,
+    img.fileLink as img_fileLink,
+    mp.seq as me_seq,
+    mp.seqPriv as mp_seqPriv,
+    ad.id as ad_id,
+    ad.pw as ad_pw,
+    ad.nickname as ad_nickname,
+    ap.seq as ap_seq,
+    ap.seqPriv as ap_seqPriv,
+    co.seq as co_seq,
+    co.seqUser  as co_seqUser,
+    co.content as co_content,
+    co.writeDate as co_writeDate,
+    co.likeCount as co_likeCount,
+    co.dislikeCount as co_dislikeCount,
+    co.reportCount as co_reportCount,
+    rc.seq as rc_seq,
+    rc.seqComments as rc_seqComments,
+    rc.seqUser as rc_seqUser,
+    rc.content as rc_content,
+    rc.writeDate as rc_writeDate,
+    rc.likeCount as rc_likeCount,
+    rc.dislikeCount as rc_dislikeCount,
+    rc.reportCount as rc_reportCount,
+    af.seq as af_seq,
+    af.seqPost as af_seqPost,
+    af.fileName as af_fileName,
+    af.fileLink as af_fileLink
+from tblPost po
+inner join tblUser us on po.seqUser = us.seq
+    left join tblMember me on me.id = us.idMember
+        left join tblMemberPriv mp on mp.idMember = me.id
+            left join tblAdmin ad on ad.id = us.idAdmin
+                left join tblAdminPriv ap on ap.idAdmin = ad.id
+                    left join tblComments co on co.seqPost = po.seq
+                        left join tblReplyComments rc on rc.seqComments = co.seq
+                            left join tblAttachedFile af on af.seqPost = po.seq
+                                inner join tblBoard bo on bo.seq = po.seqBoard
+                                    inner join tblCategory ca on ca.seq = bo.seqCategory
+                                        left join tblProfileimg img on img.seq = me.seqProfileimg;
 
+select * from vwPost;
+select * from tbladmin;
+select * from tblPost;
+select * from tbluser;
+select * from tblComments;
 --내가 쓴 글
 --vwMyPost
 --tblMember, tblUser, tblPost
+create or replace view vwPost
+as select po.seq as po_seq,
+          po.seqBoard as po_seqBoard,
+          po.title,
+          po.content,
+          po.writeDate,
+          po.editDate,
+          po.viewCount,
+          po.likeCount,
+          po.dislikeCount,
+          po.reportCount,
+          po.secretCheck,
+          po.blindCheck,
+          us.seq as us_seq,
+          us.idMember as us_idMember,
+          me.id as me_id,
+          me.pw as me_pw,
+          me.name as me_name,
+          me.nickname as me_nickname,
+          me.phoneNumber as me_phoneNumber,
+          me.nss as me_nss,
+          me.gender as me_gender,
+          me.reportCount as me_reportCount,
+          me.seqSurvey as me_seqSurvey,
+          me.seqProfileimg as me_seqProfileimg         
+from tblPost po 
+inner join tblUser us on us.seq = po.seqUser
+    inner join tblMember me on me.id = us.idMember;
+
+
+
+
+
 
 --내가 쓴 댓글
 --vwMyComment
