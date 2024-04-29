@@ -23,6 +23,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        margin-bottom: 20px;
     }
     .user-profile-img {
         border: 1px solid black;
@@ -49,14 +50,21 @@
         justify-content: space-evenly;
         width: 300px;
         height: 30px;
-        
+        white-space: nowrap;
+        margin: 5px;
+    }
+
+    .user-profile-name-title, .user-profile-nikname-title, .user-profile-sex-title, .user-profile-phone-title, .user-profile-SSN-title {
+        width: 150px;
+        text-overflow: ellipsis;
+        text-align: center;
     }
 
     .user-profile-name-real, .user-profile-nikname-real, .user-profile-sex-real, .user-profile-phone-real, .user-profile-SSN-real {
         border: 1px solid black;
         background-color: #d9d9d9;
-        width: 200px;
-        
+        width: 150px;
+        text-align: center;
     }
 
     .myPage-btns {
