@@ -1,5 +1,7 @@
 package com.project.accountbook.board.post.model;
 
+import java.util.Date;
+
 /*
 tblPost
 tblAttachedFile
@@ -52,8 +54,8 @@ public class PostDTO {
 	public String getWriteDate() {
 		return writeDate;
 	}
-	public void setWriteDate(String writeDate) {
-		this.writeDate = writeDate;
+	public void setWriteDate(String date) {
+		this.writeDate = date;
 	}
 	public String getEditDate() {
 		return editDate;
