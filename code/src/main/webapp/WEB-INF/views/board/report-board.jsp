@@ -60,81 +60,81 @@
             <!-- Navbar End -->
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
-      <section class="reportboard">
+      	<section class="reportboard">
         <div class="page-title">
               <div class="container">
                   <h3>건의 게시판</h3>
               </div>
           </div>
       
-    <!-- board seach area -->
-    <div id="board-search">
-      <div class="container">
-        <div class="search-window">
-          <form action="">
-            <div class="search-wrap">
-              <select>
-                <option>제목+내용</option>
-                <option>제목</option>
-                <option>내용</option>
-              </select>
-              <label for="search" class="blind">게시판 검색</label>
-              <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
-              <button type="submit" class="btn btn-dark">검색</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-    
-    <!-- board list area -->
-    <div id="board-list">
-        <div class="container">
-            <table class="board-table">
-                <thead>
-                <tr>
-                    <th scope="col" class="th-num">번호</th>
-                    <th scope="col" class="th-title">제목</th>
-                    <th scope="col" class="th-writer">작성자</th>
-                    <th scope="col" class="th-date">등록일</th>
-                    <th scope="col" class="th-view">조회수</th>
-                    <th scope="col" class="th-like">추천</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>3</td>
-                    <th>
-                      <a href="#!">거니더마마사지</a>
-                    </th>
-                    <td>ㅇㅇ</td>
-                    <td>04:20</td>
-                    <td>2</td>
-                    <td>0</td>
-                </tr>
-                
-                <tr>
-                    <td>2</td>
-                    <th><a href="#!">ㅇㅇㅇ</a></th>
-                    <td>ㅇㅇㅇ</td>
-                    <td>2024.04.11</td>
-                    <td>2222</td>
-                    <td>30</td>
-                </tr>
-                </tbody>
-            </table>
-            <div class="write-btn">
-                <a href="/account/board/write.do" class="btn btn-dark">글작성</a>
-            </div>
-        </div>
-    </div>
-	</section>
+	    <!-- board seach area -->
+	    <div id="board-search">
+	      <div class="container">
+	        <div class="search-window">
+	          <form action="">
+	            <div class="search-wrap">
+	              <select>
+	                <option>제목+내용</option>
+	                <option>제목</option>
+	                <option>내용</option>
+	              </select>
+	              <label for="search" class="blind">게시판 검색</label>
+	              <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
+	              <button type="submit" class="btn btn-dark">검색</button>
+	            </div>
+	          </form>
+	        </div>
+	      </div>
+	    </div>
+	    
+	    <!-- board list area -->
+	    <div id="board-list">
+	        <div class="container">
+	            <table class="board-table">
+	                <thead>
+	                <tr>
+	                    <th scope="col" class="th-num">번호</th>
+	                    <th scope="col" class="th-title">제목</th>
+	                    <th scope="col" class="th-writer">작성자</th>
+	                    <th scope="col" class="th-date">등록일</th>
+	                    <th scope="col" class="th-view">조회수</th>
+	                    <th scope="col" class="th-like">추천</th>
+	                </tr>
+	                </thead>
+	                <tbody>
+	                <tr>
+	                    <td>3</td>
+	                    <th>
+	                      <a href="#!">거니더마마사지</a>
+	                    </th>
+	                    <td>ㅇㅇ</td>
+	                    <td>04:20</td>
+	                    <td>2</td>
+	                    <td>0</td>
+	                </tr>
+	                
+	                <tr>
+	                    <td>2</td>
+	                    <th><a href="#!">ㅇㅇㅇ</a></th>
+	                    <td>ㅇㅇㅇ</td>
+	                    <td>2024.04.11</td>
+	                    <td>2222</td>
+	                    <td>30</td>
+	                </tr>
+	                </tbody>
+	            </table>
+	            <div class="write-btn">
+	                <a href="/account/board/write.do" class="btn btn-dark">글작성</a>
+	            </div>
+	        </div>
+	    </div>
+		</section>
 
         <!-- fakecontent 끝 -->
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
         
-    </div>
+    	</div>
     </div>
 
     <!-- JavaScript Libraries -->
