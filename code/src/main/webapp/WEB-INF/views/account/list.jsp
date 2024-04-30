@@ -5,7 +5,6 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>DASHMIN - Bootstrap Admin Template</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -17,7 +16,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -26,9 +24,11 @@
     <!-- Libraries Stylesheet -->
 </head>
 <style>
+
+   
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
-
+      
 </style>
 
 <body>
@@ -44,7 +44,7 @@
 
         <!-- Sidebar Start -->
         <!-- 사이드바  -->
-        <%@include file="/WEB-INF/views/inc/mypage-sidebar.jsp"%>
+        <%@include file="/WEB-INF/views/inc/account-sidebar.jsp"%>
         <!-- 사이드바 끝  -->
         <!-- Sidebar End -->
 
@@ -60,52 +60,12 @@
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
       
+      	<div>구현 필요!</div>
 
         <!-- fakecontent 끝 -->
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
         
-
-           <div class="myPage-mypage">
-        <div class="user-profile-mypage">
-            <div class="user-profile-mypage-img">
-                개인 프로필 이미지
-            </div>
-            <div class="user-profile-mypage-container">
-                <div class="user-profile-mypage-name">
-                    <div class="user-profile-mypage-name-title">이름</div>
-                    <div class="user-profile-mypage-name-real">홍길동</div>
-                </div>
-                <div class="user-profile-mypage-nickname">
-                    <div class="user-profile-mypage-nickname-title">닉네임</div>
-                    <div class="user-profile-mypage-nickname-real">hong</div>
-                </div>
-                <div class="user-profile-mypage-sex">
-                    <div class="user-profile-mypage-sex-title">성별</div>
-                    <div class="user-profile-mypage-sex-real">남</div>
-                </div>
-                <div class="user-profile-mypage-phone">
-                    <div class="user-profile-mypage-phone-title">전화번호</div>
-                    <div class="user-profile-mypage-phone-real">010-1234-5678</div>
-                </div>
-                <div class="user-profile-mypage-SSN">
-                    <div class="user-profile-mypage-SSN-title">주민등록번호</div>
-                    <div class="user-profile-mypage-SSN-real">123456-1234567</div>
-                </div>
-            </div>
-        </div>
-        <div class="myPage-mypage-btns">
-            <div>
-                <button type="button">비밀번호 수정</button>
-            </div>
-            <div>
-                <button type="button">개인정보 수정</button>
-            </div>
-            <div>
-                <button type="button">회원 탈퇴</button>
-            </div>
-        </div>
-    </div>
     </div>
     </div>
 
@@ -127,8 +87,6 @@
     });
 
     </script>
-
-    
 </body>
 
 </html>

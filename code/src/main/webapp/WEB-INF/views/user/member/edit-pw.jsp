@@ -5,7 +5,6 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>DASHMIN - Bootstrap Admin Template</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -17,18 +16,80 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-    <!-- Libraries Stylesheet -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="/account/asset/css/corona_style.css">
+    
 </head>
 <style>
+
+   .container {
+        border: 1px solid black;
+        width: 600px;
+        height: 300px;
+        background-color: #F1F4C7;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+
+    .content {
+        width: 90%;
+        height: 70%;
+    }
+
+    .now-pw, .edit-pw, .edit-pw-check {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 10px;
+        width: 70%;
+        height: 20%;
+        position: relative;
+    }
+
+    .now-pw-title, .edit-pw-title, .edit-pw-check-title {
+        background-color: #ffffff;
+        width: 200px;
+        height: 100%;
+        text-align: center;
+        position: absolute;
+        top: 100%;
+        left: 10%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .now-pw-real, .edit-pw-input, .edit-pw-check-input {
+        background-color: #ffffff;
+        width: 300px;
+        height: 100%;
+        text-align: center;
+        position: absolute;
+        top: 100%;
+        left: 70%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .edit-pw-btn {
+        width: 80%;
+        height: 30px;
+        position: absolute;
+        top: 80%;
+        left: 10%;
+        background-color: #d9d9d9;
+        border: 0;
+    }
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
-
+      
 </style>
 
 <body>
@@ -59,53 +120,33 @@
             <!-- Navbar End -->
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
-      
 
-        <!-- fakecontent 끝 -->
+			<div class="myPage">
+				<form action="">
+					<div class="container">
+						<div class="content">
+							<div class="now-pw">
+								<div class="now-pw-title">현재 비밀번호</div>
+								<div class="now-pw-real">1234</div>
+							</div>
+							<div class="edit-pw">
+								<div class="edit-pw-title">수정 비밀번호</div>
+								<div class="edit-pw-input">4321</div>
+							</div>
+							<div class="edit-pw-check">
+								<div class="edit-pw-check-title">수정 비밀번호 확인</div>
+								<div class="edit-pw-check-input">4321</div>
+							</div>
+						</div>
+						<button type="submit" class="edit-pw-btn">수정 완료</button>
+					</div>
+				</form>
+			</div>
+
+			<!-- fakecontent 끝 -->
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
         
-
-           <div class="myPage-mypage">
-        <div class="user-profile-mypage">
-            <div class="user-profile-mypage-img">
-                개인 프로필 이미지
-            </div>
-            <div class="user-profile-mypage-container">
-                <div class="user-profile-mypage-name">
-                    <div class="user-profile-mypage-name-title">이름</div>
-                    <div class="user-profile-mypage-name-real">홍길동</div>
-                </div>
-                <div class="user-profile-mypage-nickname">
-                    <div class="user-profile-mypage-nickname-title">닉네임</div>
-                    <div class="user-profile-mypage-nickname-real">hong</div>
-                </div>
-                <div class="user-profile-mypage-sex">
-                    <div class="user-profile-mypage-sex-title">성별</div>
-                    <div class="user-profile-mypage-sex-real">남</div>
-                </div>
-                <div class="user-profile-mypage-phone">
-                    <div class="user-profile-mypage-phone-title">전화번호</div>
-                    <div class="user-profile-mypage-phone-real">010-1234-5678</div>
-                </div>
-                <div class="user-profile-mypage-SSN">
-                    <div class="user-profile-mypage-SSN-title">주민등록번호</div>
-                    <div class="user-profile-mypage-SSN-real">123456-1234567</div>
-                </div>
-            </div>
-        </div>
-        <div class="myPage-mypage-btns">
-            <div>
-                <button type="button">비밀번호 수정</button>
-            </div>
-            <div>
-                <button type="button">개인정보 수정</button>
-            </div>
-            <div>
-                <button type="button">회원 탈퇴</button>
-            </div>
-        </div>
-    </div>
     </div>
     </div>
 
@@ -127,8 +168,6 @@
     });
 
     </script>
-
-    
 </body>
 
 </html>
