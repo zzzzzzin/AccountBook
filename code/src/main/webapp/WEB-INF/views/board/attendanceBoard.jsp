@@ -27,8 +27,23 @@
 <style>
 
    
+	#title{
+		text-align: center;
+		margin-top: 50px;
+		margin-bottom: 50px;
+	}
+	
+	#menuTable > td{
+		
+		text-align: center;
+	}
+    
+    .board-list td:last-child {
+    	text-align: center;
+	}
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
+      
       
 </style>
 
@@ -60,6 +75,28 @@
             <!-- Navbar End -->
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
+        <h3 id="title">출석게시판</h3>
+        
+        <table class="board-list">
+          <tbody>
+            <tr id="menuTable">
+            	<td>번호</td>
+            	<td>제목</td>
+            	<td>닉네임</td>
+            	<td>등록 날짜</td>
+            	<td>조회수</td>
+            	<td>추천</td>
+            </tr>
+            <c:if test="${board-list.size() == 0}">
+			<tr>
+				<td colspan="6">게시물이 없습니다.</td>
+			</tr>
+			</c:if>
+            
+          </tbody>
+        </table>
+        
+        
       
 
         <!-- fakecontent 끝 -->

@@ -1,6 +1,7 @@
 package com.project.accountbook.board.repository;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,37 +19,58 @@ public class BoardDAO {
 	// 게시판
 	// 전체 읽어오기
 	public String getBoard() {
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql;
-
-		String maxNumStr = ""; // 최대 숫자값을 문자열 형태로 저장할 변수
+		Connection conn = null; // Connection == DB연결
+		PreparedStatement pstmt = null; // PreparedStatement == 미리 컴파일된 SQL 문을 나타내는 객체
+		ResultSet rs = null; // ResultSet == 데이터베이스에서 가져온 결과 집합을 나타내는 객체
+		
+		
 		try {
-			sql = "SELECT * FROM tblPost WHERE seqboard = 4";
-			pstmt = conn.prepareStatement(sql);
+
+			conn = DriverManager.getConnection(
+					"jdbc:oracle:thin:@192.168.10.47:1521:xe"
+					, "jspProject"
+					, "java1234"); // db에 접속 
+									
+			System.out.println("접속 성공!");
+			//조건 검색 2.
+			//   ?
+			pstmt = conn.prepareStatement("select * from \"MEMBER\" where \"NUM\" = ?");
+			pstmt.setInt(1, 2); // 1(parameterIndex) , 2(번 회원) 찾기
+			// 첫번째 ? 의 값에는 2가 들어간다.
 			rs = pstmt.executeQuery();
-						
-			if (rs.next()) {
-				maxNumStr = rs.getString(1); // 값을 문자열로 가져옴
-				maxNumStr = maxNumStr.replaceAll("[^0-9]", ""); // 숫자 이외의 문자 제거
+			
+			while (rs.next()) {
+				PostDTO dto = new PostDTO(
+						rs.getInt(1), 							// num
+						rs.getString(2), 						// memberid
+						rs.getString("MEMBERPW"), 				// memberpw
+						rs.getString(4)			 				// nicname
+					);
+				vo.setRegdate(rs.getDate("REGDATE"));			//regdate
+				System.out.println(vo);
 			}
+			
 		} catch (SQLException e) {
-			// SQL 예외 처리
-			System.out.println(e.toString());
+			System.out.println("SQLException");
+			e.printStackTrace();
 		} finally {
-			// 리소스 닫기
-			try {
-				if (rs != null) {
+			if (rs != null) {
+				try {
 					rs.close();
-				}
-				if (pstmt != null) {
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}	
+			}
+			if (pstmt != null) {
+				try {
 					pstmt.close();
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}	
 			}
 		}
-		return maxNumStr; // 최대 숫자값의 문자열 형태 반환
 	}// getSeqBoard 전체 읽어오기
 	
 	// 입력(insert) - 넘어오는 데이터는 PostDTO의 dto
