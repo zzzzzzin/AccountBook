@@ -1,0 +1,467 @@
+/* 분석 css 시작 */
+#periodcheck{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+#periodcheck button{
+    margin: 5px;
+}
+/* 파이차트 시작 */
+#chart01{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+#pieblock{
+    display: flex;
+}
+#piepie{
+    float: left;
+}
+#piepie2{
+    float: left;
+}
+#chartLegend{
+    display: flex;
+    justify-content: center;  
+    align-items: center;      
+    width: 100%;              
+    flex-wrap: wrap;  
+    margin-top: 50px;
+}
+/* 파이차트 끝 */
+
+#customMsg{
+    margin: 50px;
+    width: 100px;
+    height: 100px;
+    background-color: aqua;
+    flex: 0 0 auto; /* Does not grow, does not shrink, auto basis */
+    margin-left: 10%; /* Pushes it to the right */
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+#fakecontent{
+}
+
+#firstrow{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+#secondrow{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+#thridrow{
+    display: flex;
+    justify-content: center;
+}
+#monthgoal{
+    width: 300px;
+    height: 100px;
+    background-color: aqua;
+    margin-right: 30px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+#currentsituation{
+    width: 300px;
+    height: 100px;
+    background-color: black;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+#newscontent{
+    width: 500px;
+    height: 100px;
+    margin-top: 100px;
+    border: 1px solid black;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    
+}
+/* 사이드바 시작*/
+.sidebar {
+        width: 300px;
+        background-color: #333;
+        color: #fff;
+        height: 100vh;
+}
+      
+      .logo {
+        padding: 20px;
+        font-size: 20px;
+        font-weight: bold;
+        border-bottom: 1px solid #444;
+      }
+      
+      nav ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+      
+      nav li {
+        padding: 15px 20px;
+        border-bottom: 1px solid #444;
+      }
+      
+      nav li:last-child {
+        border-bottom: none;
+      }
+      
+      nav a {
+        color: #fff;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+      }
+      
+      nav a i {
+        margin-right: 10px;
+      }
+      
+    .sidebar.hidden {
+        width: 0;
+        overflow: hidden;
+        transition: width 0.5s ease;
+    }
+
+    .content.expanded {
+        margin-left: 0;
+        transition: margin-left 0.5s ease;
+    }
+/* 사이드바 끝 */
+
+/* 네비게이션 바 시작 */
+#navheader {
+    
+}
+
+#navheader {
+    background-color: #f3f6f9;
+    padding: 20px;
+  }
+  
+  #navheader nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  #navheader .logo {
+    width: 100px;
+    height: 50px;
+    background-color: #ddd;
+    margin-right: 20px;
+  }
+  
+  #navheader nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  #navheader nav li {
+    margin: 0 20px;
+  }
+  
+  .content1 {
+    margin-left: 100px;
+  }
+  
+  .content2 {
+    margin-left: 300px;
+  }
+
+  .content3 {
+    margin-left: 300px;
+  }
+  
+  .content4 {
+    margin-left: 300px;
+    background-color: red;
+  }
+  
+  #navheader nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  #navheader nav a:hover {
+    color: #000;
+  }
+/* 네비게이션 바 끝 */
+  
+
+/* 달력 모달 시작 */
+  #onerow {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    width: 100%; 
+    margin: auto; 
+  }
+
+#onrowlabel {
+    width: 50px; 
+    height: 50px; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    margin-right: 10px; 
+    text-align: center; 
+}
+
+#onerowinput {
+display: flex;
+align-items: center; 
+width: 100%; 
+}
+
+#eventModalSelect, #eventModalIoc {
+flex: 1; 
+}
+
+#onerowinput #eventModalSelect{
+width: 50px;
+}
+.form-select, .form-control {
+margin: 0 5px; 
+}
+.selectSize{
+width: 100px !;
+}
+/* 달력 모달 끝 */
+
+/* 회원가입 시작 */
+#username{
+  display: flex;
+}
+
+.duplicateBtn{
+  margin-left: 10px;
+  height: 40px;
+  width: 15%;
+}
+
+.colorD9{
+  background-color: #D9D9D9;
+}
+
+.inputbox{
+  height: 40px;
+  
+}
+
+.dupnone{
+  width: 85%;
+}
+
+.colorAAA{
+  background-color: #AAAAAA;
+}
+
+.radsetcss{
+  margin-left: 30px;
+}
+
+.marginfix{
+  /* padding-left: 7rem !important; */
+}
+
+.updatefix{
+  align-items: center;
+}
+
+#survey{
+  /* display: none;  */
+}
+
+#duptext{
+  font-size: 10px;
+}
+/* 회원가입 끝 */
+
+/* 카드사용 시작 */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.card-image {
+  width: 300px;
+  height: 100px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+.transaction-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+.transaction-table th,
+.transaction-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+/* 카드사용 끝 */
+
+/* 메인게시판 시작 */
+.board-section {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.board-block {
+  position: relative;
+  width: calc(50% - 20px);
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+}
+
+.board-block h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.board-list {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.board-list td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.board-list td:last-child {
+  text-align: right;
+}
+
+.more-link {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #999;
+  text-decoration: none;
+}
+
+.more-link:hover {
+  color: #333;
+}
+
+.material-icons {
+  vertical-align: middle;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0 30px;
+  font-size: 15px;
+  font-weight: 400;
+  background: transparent;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  text-transform: uppercase;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+
+.btn-dark {
+  background: #555;
+  color: #fff;
+}
+.btn-dark:hover, .btn-dark:focus {
+  background: #373737;
+  border-color: #373737;
+  color: #fff;
+}
+
+#board-search .search-window {
+  padding: 15px 0;
+  background-color: #f9f7f9;
+}
+#board-search .search-window .search-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  width: 80%;
+  max-width: 564px;
+}
+#board-search .search-window .search-wrap select {
+  width: 20%;
+  height: 40px;
+  font-size: 12px;
+  padding: 7px 14px;
+  border: 1px solid #ccc;
+  margin-right: 10px;
+}
+#board-search .search-window .search-wrap input {
+  height: 40px;
+  width: 70%;
+  font-size: 12px;
+  padding: 7px 14px;
+  border: 1px solid #ccc;
+}
+#board-search .search-window .search-wrap input:focus {
+  border-color: #333;
+  outline: 0;
+  border-width: 1px;
+}
+#board-search .search-window .search-wrap .btn {
+  width: 10%;
+  height: 40px;
+  padding: 0;
+  font-size: 12px;
+  margin-left: 10px;
+}
+.blind {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  margin: -1px;
+  width: 1px;
+  height: 1px;
+}
+/* 메인게시판 끝 */
