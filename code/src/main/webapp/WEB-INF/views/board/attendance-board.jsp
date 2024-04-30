@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.*, " %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,6 +27,21 @@
 </head>
 <style>
 
+	#title{
+		text-align: center;
+		margin-top: 50px;
+		margin-bottom: 50px;
+	}
+	
+	#menuTable > td{
+		
+		text-align: center;
+	}
+    
+    .board-list td:last-child {
+    	text-align: center;
+	}
+	
    
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
@@ -60,7 +76,22 @@
             <!-- Navbar End -->
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
-        <h1>임시 출석게시판</h1>
+        <h3 id="title">출석게시판</h3>
+        
+        <table class="board-list">
+          <tbody>
+            <tr id="menuTable">
+            	<td>번호</td>
+            	<td>제목</td>
+            	<td>닉네임</td>
+            	<td>등록 날짜</td>
+            	<td>조회수</td>
+            	<td>추천</td>
+            </tr>
+            
+          </tbody>
+        </table>
+
 
         <!-- fakecontent 끝 -->
         <!-- Back to Top -->
