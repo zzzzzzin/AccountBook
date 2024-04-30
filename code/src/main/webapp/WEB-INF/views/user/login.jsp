@@ -6,9 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<%@include file="/WEB-INF/views/inc/asset.jsp"%>
+<link rel="stylesheet" href="/account/asset/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/account/asset/css/vendor.bundle.base.css">
 <!-- plugins:css -->
-<link rel="stylesheet" href="/account/asset/css/style.css">
+<!-- <link rel="stylesheet" href="/account/asset/css/style.css"> -->
 <!-- endinject -->
 <!-- Plugin css for this page -->
 <!-- End plugin css for this page -->
@@ -29,6 +30,7 @@
         background-color: #D9D9D9;
         border: none;
       }
+<%@include file="/WEB-INF/views/inc/asset.jsp"%>
 </style>
 </head>
 <body>
