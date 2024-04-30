@@ -6,18 +6,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<%@include file="/WEB-INF/views/inc/asset.jsp"%>
+<link rel="stylesheet" href="/account/asset/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/account/asset/css/vendor.bundle.base.css">
 <!-- plugins:css -->
-<link rel="stylesheet" href="/account/asset/css/style.css">
+<!-- <link rel="stylesheet" href="/account/asset/css/style.css"> -->
 <!-- endinject -->
 <!-- Plugin css for this page -->
 <!-- End plugin css for this page -->
 <!-- inject:css -->
 <!-- endinject -->
 <!-- Layout styles -->
-<link rel="stylesheet" href="/account/assets/css/style.css">
+<link rel="stylesheet" href="/account/asset/css/corona_style.css">
 <!-- End layout styles -->
-<link rel="shortcut icon" href="/account/assets/images/favicon.png" />
+<link rel="shortcut icon" href="/account/asset/images/favicon.png" />
 <style>
 	body { 
         color: black;
@@ -29,6 +30,7 @@
         background-color: #D9D9D9;
         border: none;
       }
+<%@include file="/WEB-INF/views/inc/asset.jsp"%>
 </style>
 </head>
 <body>
@@ -64,10 +66,10 @@
                     <button class="btn btn-google col">
                       <i class="mdi mdi-google-plus"></i> Google plus </button>
                   </div>
-                  <p class="sign-up"><a href="#">Sign Up</a></p>
+                  <p class="sign-up"><a href="/account/user/register.do">Sign Up</a></p>
                   <div class="find">
-                    <a href="#" class="forgot-id">아이디 찾기</a>
-                    <a href="#" class="forgot-pw">비밀번호 찾기</a>
+                    <a href="/account/user/find-id.do" class="forgot-id">아이디 찾기</a>
+                    <a href="/account/user/find-pw.do" class="forgot-pw">비밀번호 찾기</a>
                   </div>
                 </form>
               </div>
