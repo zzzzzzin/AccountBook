@@ -1,4 +1,4 @@
-package com.project.accountbook.account;
+package com.project.accountbook.user;
 
 import java.io.IOException;
 
