@@ -29,8 +29,6 @@
 				</ul></li>
 			<li><a href="#"><i class="fas fa-user"></i> 카드사용</a>
 		</ul>
-		</li>
-		</ul>
 	</nav>
 
 </div>
