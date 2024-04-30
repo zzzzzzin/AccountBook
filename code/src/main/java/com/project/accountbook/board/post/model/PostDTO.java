@@ -13,8 +13,8 @@ public class PostDTO {
 	private String seqUser;
 	private String title;
 	private String content;
-	private Date writeDate;
-	private Date editDate;
+	private String writeDate;
+	private String editDate;
 	private int viewCount;
 	private int likeCount;
 	private int dislikeCount;
@@ -51,16 +51,16 @@ public class PostDTO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Date getWriteDate() {
+	public String getWriteDate() {
 		return writeDate;
 	}
-	public void setWriteDate(Date date) {
+	public void setWriteDate(String date) {
 		this.writeDate = date;
 	}
-	public Date getEditDate() {
+	public String getEditDate() {
 		return editDate;
 	}
-	public void setEditDate(Date editDate) {
+	public void setEditDate(String editDate) {
 		this.editDate = editDate;
 	}
 	public int getViewCount() {

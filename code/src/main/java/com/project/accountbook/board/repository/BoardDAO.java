@@ -3,97 +3,71 @@ package com.project.accountbook.board.repository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.sql.SQLException;
 
 import com.project.accountbook.board.post.model.PostDTO;
 
 public class BoardDAO {
-	
+
 	private Connection conn;
-	private Statement stat;
-	private PreparedStatement pstat;
-	private ResultSet rs;
+
+	public BoardDAO(Connection conn) {
+		this.conn = conn;
+	}
+
+	// 게시판
+	// 전체 읽어오기
+	public String getBoard() {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql;
+
+		String maxNumStr = ""; // 최대 숫자값을 문자열 형태로 저장할 변수
+		try {
+			sql = "SELECT * FROM tblPost WHERE seqboard = 4";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+						
+			if (rs.next()) {
+				maxNumStr = rs.getString(1); // 값을 문자열로 가져옴
+				maxNumStr = maxNumStr.replaceAll("[^0-9]", ""); // 숫자 이외의 문자 제거
+			}
+		} catch (SQLException e) {
+			// SQL 예외 처리
+			System.out.println(e.toString());
+		} finally {
+			// 리소스 닫기
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return maxNumStr; // 최대 숫자값의 문자열 형태 반환
+	}// getSeqBoard 전체 읽어오기
 	
-	//db역할
-		Map<String, PostDTO> db = new HashMap<>();
-
-		//C
-		public void insertBoard(PostDTO dto) {
-			dto.setWriteDate(new Date());
-			db.put(dto.getSeqBoard(), dto);
-		}
+	// 입력(insert) - 넘어오는 데이터는 PostDTO의 dto
+	public int insertBoard(PostDTO dto) {
 		
-		//R
-		public PostDTO selectBoard(int num) {
-			return db.get(num);
-		}// 하나씩 불러오기
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql;
 		
-		public List<PostDTO> selectBoardAll(){
+		try {
 			
-			return new ArrayList<PostDTO>(db.values());
-		}// 전부 불러오기
-		
-		//U
-		public void updateBoard(PostDTO dto) {
-			// 해당 키의 연결된 객체 불러오기
-			db.put(dto.getSeqBoard(), dto);
+		} catch (Exception e) {
+			System.out.println(e.toString());
 		}
 		
-		//D
-		public void deleteMember(int num) {
-			db.remove(num);
-		}// 일부 삭제
 		
-//		public void deleteMemberAll() {
-//			db.clear();
-//		}// 전부 삭제
+		return result; // result로 반환
+		// --여기까지가 입력(insert)
+		
+	}
 
-}//BoardDAO
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}// BoardDAO
