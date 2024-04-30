@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>로그인</title>
+<%@include file="/WEB-INF/views/inc/asset.jsp"%>
 <!-- plugins:css -->
 <link rel="stylesheet" href="/account/asset/css/style.css">
 <!-- endinject -->
