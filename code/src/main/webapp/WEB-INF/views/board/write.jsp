@@ -60,80 +60,38 @@
             <!-- Navbar End -->
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
-      	<section class="freeboard">
-        <div class="page-title">
-        	<div class="container">
-            	<h3>자유 게시판</h3>
-            </div>
-        </div>
-      
-    
-    <!-- board seach area -->
-    <div id="board-search">
-      <div class="container">
-        <div class="search-window">
-          <form action="">
-            <div class="search-wrap">
-              <select>
-                <option>제목+내용</option>
-                <option>제목</option>
-                <option>내용</option>
-              </select>
-              <label for="search" class="blind">게시판 검색</label>
-              <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
-              <button type="submit" class="btn btn-dark">검색</button>
-            </div>
-          </form>
-        </div>
+      	<div class="container">
+    <h2>글쓰기</h2>
+    <form>
+      <div class="form-group">
+        <label for="category">게시판 카테고리</label>
+        <select id="category" name="category">
+          <option value="notice">공지사항</option>
+          <option value="report">신고 게시판</option>
+          <option value="free">자유 게시판</option>
+          <option value="suggestion">건의 사항 게시판</option>
+          <option value="attendance">출석 게시판</option>
+        </select>
       </div>
-    </div>
-    
-    <!-- board list area -->
-    <div id="board-list">
-        <div class="container">
-            <table class="board-table">
-                <thead>
-                <tr>
-                    <th scope="col" class="th-num">번호</th>
-                    <th scope="col" class="th-title">제목</th>
-                    <th scope="col" class="th-writer">작성자</th>
-                    <th scope="col" class="th-date">등록일</th>
-                    <th scope="col" class="th-view">조회수</th>
-                    <th scope="col" class="th-like">추천</th>
-                    <th scope="col" class="th-lock">비밀글</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>3</td>
-                    <th>
-                      <a href="#!">ㄴ어라ㅣㄴ어라ㅣㅓㄴ아ㅣ린어라ㅣㄴ어ㅏㅣ런아ㅣ러ㅏㅣㄴ어리ㅏㄴ어라ㅣㄴ어ㅣㅏ런이ㅏ러ㅣㅏㄴ어리ㅏㄴ어리ㅏㄴ어ㅣㅏ런이ㅏ러ㅣㅏㄴ어리ㅏㄴ어ㅣㅏ런이러ㅏㅣㄴ어라ㅣㄴ어리ㅏㄴ어ㅏㅣ</a>
-                    </th>
-                    <td>ㅇㅇ</td>
-                    <td>04:20</td>
-                    <td>100</td>
-                    <td>100</td>
-                    <td><i class="fas fa-lock lock-icon"></i></td>
-                </tr>
-                
-                <tr>
-                    <td>2</td>
-                    <th><a href="#!">ㅇㅇㅇ</a></th>
-                    <td>ㅇㅇㅇ</td>
-                    <td>2024.04.11</td>
-                    <td>2222</td>
-                    <td>30</td>
-                    <td><i class="fas fa-lock-open lock-icon"></i></td>
-                </tr>
-                </tbody>
-            </table>
-            <div class="write-btn">
-                <a href="/account/board/write.do" class="btn btn-dark">글작성</a>
-            </div>
-        </div>
-    </div>
-      
-      </section>
+      <div class="form-group">
+        <label for="title">제목을 입력해 주세요.</label>
+        <input type="text" id="title" name="title" placeholder="제목을 입력해 주세요.">
+      </div>
+      <div class="form-group">
+        <label for="content">내용을 입력해 주세요.</label>
+        <textarea id="content" name="content" placeholder="내용을 입력해 주세요."></textarea>
+      </div>
+      <div class="file-attach">
+        <label for="file-input">파일 첨부<i class="material-icons">attach_file</i></label>
+        <input type="file" id="file-input" style="display:none;">
+      </div>
+      <div class="button-group">
+        <button type="submit">등록</button>
+        <button type="button">취소</button>
+      </div>
+    </form>
+  </div>  
+      	  
 
         <!-- fakecontent 끝 -->
         <!-- Back to Top -->
