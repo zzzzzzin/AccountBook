@@ -14,10 +14,10 @@
             <div class="logo">이미지</div>
             <nav>
               <ul>
-                <li><a href="#"><i class="fas fa-home"></i> 게시판 홈</a></li>
-                <li><a href="#"><i class="fas fa-tachometer-alt"></i> 공지 게시판</a></li>
-                <li><a href="#"><i class="fas fa-shopping-cart"></i> 자유 게시판</a></li>
-                <li><a href="#"><i class="fas fa-box-open"></i> 건의 게시판</a></li>
+                <li><a href="#"><i class="fas fa-home"></i> 공지사항</a></li>
+                <li><a href="#"><i class="fas fa-tachometer-alt"></i> 자유게시판</a></li>
+                <li><a href="#"><i class="fas fa-shopping-cart"></i> 건의 사항 게시판</a></li>
+                <li><a href="#"><i class="fas fa-box-open"></i> 신고 게시판</a></li>
                 <li><a href="#"><i class="fas fa-box-open"></i> 출석 게시판</a></li>
               </ul>
             </nav>
