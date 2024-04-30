@@ -45,7 +45,7 @@
 
         <!-- Sidebar Start -->
         <!-- 사이드바  -->
-        <%@include file="/WEB-INF/views/inc/board-Sidebar.jsp"%>
+        <%@include file="/WEB-INF/views/inc/board-sidebar.jsp"%>
         <!-- 사이드바 끝  -->
         <!-- Sidebar End -->
 
@@ -60,7 +60,80 @@
             <!-- Navbar End -->
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
-      	<h1>임시 자유게시판</h1>
+      	<section class="freeboard">
+        <div class="page-title">
+        	<div class="container">
+            	<h3>자유 게시판</h3>
+            </div>
+        </div>
+      
+    
+    <!-- board seach area -->
+    <div id="board-search">
+      <div class="container">
+        <div class="search-window">
+          <form action="">
+            <div class="search-wrap">
+              <select>
+                <option>제목+내용</option>
+                <option>제목</option>
+                <option>내용</option>
+              </select>
+              <label for="search" class="blind">게시판 검색</label>
+              <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
+              <button type="submit" class="btn btn-dark">검색</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+    <!-- board list area -->
+    <div id="board-list">
+        <div class="container">
+            <table class="board-table">
+                <thead>
+                <tr>
+                    <th scope="col" class="th-num">번호</th>
+                    <th scope="col" class="th-title">제목</th>
+                    <th scope="col" class="th-writer">작성자</th>
+                    <th scope="col" class="th-date">등록일</th>
+                    <th scope="col" class="th-view">조회수</th>
+                    <th scope="col" class="th-like">추천</th>
+                    <th scope="col" class="th-lock">비밀글</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>3</td>
+                    <th>
+                      <a href="#!">ㄴ어라ㅣㄴ어라ㅣㅓㄴ아ㅣ린어라ㅣㄴ어ㅏㅣ런아ㅣ러ㅏㅣㄴ어리ㅏㄴ어라ㅣㄴ어ㅣㅏ런이ㅏ러ㅣㅏㄴ어리ㅏㄴ어리ㅏㄴ어ㅣㅏ런이ㅏ러ㅣㅏㄴ어리ㅏㄴ어ㅣㅏ런이러ㅏㅣㄴ어라ㅣㄴ어리ㅏㄴ어ㅏㅣ</a>
+                    </th>
+                    <td>ㅇㅇ</td>
+                    <td>04:20</td>
+                    <td>100</td>
+                    <td>100</td>
+                    <td><i class="fas fa-lock lock-icon"></i></td>
+                </tr>
+                
+                <tr>
+                    <td>2</td>
+                    <th><a href="#!">ㅇㅇㅇ</a></th>
+                    <td>ㅇㅇㅇ</td>
+                    <td>2024.04.11</td>
+                    <td>2222</td>
+                    <td>30</td>
+                    <td><i class="fas fa-lock-open lock-icon"></i></td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="write-btn">
+                <a href="/account/board/write.do" class="btn btn-dark">글작성</a>
+            </div>
+        </div>
+    </div>
+      
+      </section>
 
         <!-- fakecontent 끝 -->
         <!-- Back to Top -->
