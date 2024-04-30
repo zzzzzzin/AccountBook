@@ -60,7 +60,7 @@
                     </div>
                   </div>
                   <div class="text-center">
-                    <button type="submit" class="btn btn-primary btn-block enter-btn">로그인</button>
+                    <button type="submit" class="btn btn-primaryz btn-block enter-btn">로그인</button>
                   </div>
                   <div class="d-flex">
                     <button class="btn btn-google col">
