@@ -15,6 +15,7 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import com.project.accountbook.user.model.UserDTO;
 import com.project.accountbook.util.DBUtil;
 
 
@@ -70,4 +71,38 @@ public class UserDAO {
             e.printStackTrace();
         }
     }
+	// 로그인 
+	public UserDTO login(UserDTO dto) {
+		
+		//queryParamDTOReturn
+		try {
+			
+			String sql = "select * from tblUser where id = ? and pw = ? and ing = 2 or 3";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getId());
+			pstat.setString(2, dto.getPw());
+			
+			rs = pstat.executeQuery();
+			
+			if (rs.next()) {
+				
+				UserDTO result = new UserDTO();
+				
+				result.setName(rs.getString("name"));
+				result.setSeqPriv(rs.getString("seqPriv"));
+				
+//				result.setEmail(rs.getString("email"));
+//				result.setPic(rs.getString("pic"));
+//				result.setRegdate(rs.getString("register"));
+				
+				return result;	
+			}	
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 }
