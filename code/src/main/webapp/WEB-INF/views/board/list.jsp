@@ -5,17 +5,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="http://pinnpublic.dothome.co.kr/cdn/example-min.css">
+<%@include file="/WEB-INF/views/inc/asset.jsp"%>
 <style>
 	
 </style>
 </head>
 <body>
 
+	<%@include file="/WEB-INF/views/inc/header.jsp"%>
 	
-	
-	<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 	<script>
 		
 	</script>
