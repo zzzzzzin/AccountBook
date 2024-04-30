@@ -69,11 +69,12 @@
 
 <header>
 	<nav>
-          <div class="logo"></div>
+          <a href="/account/index.do"><div class="logo"></div></a>
           <ul>
             <li class="content1"><a href="#">게시판</a></li>
             <li class="content2"><a href="#">대시보드</a></li>
             <li class="content3"><a href="#">카드추천</a></li>
+            <li class="content3"><a href="#">마이페이지</a></li>
             <li class="content4"><a href="/account/user/login.do">로그인</a></li>
             
             <!-- 
