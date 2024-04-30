@@ -17,7 +17,7 @@ public class AttendanceBoard extends HttpServlet {
 
 		
 
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/attendanceBoard.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/attendance-board.jsp");
 		dispatcher.forward(req, resp);
 
 	}

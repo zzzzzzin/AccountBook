@@ -47,7 +47,7 @@
 
         <!-- Sidebar Start -->
         <!-- 사이드바  -->
-        <%@include file="/WEB-INF/views/inc/sidebar.jsp"%>
+        <%@include file="/WEB-INF/views/inc/board-Sidebar.jsp"%>
         <!-- 사이드바 끝  -->
         <!-- Sidebar End -->
 
@@ -94,7 +94,7 @@
             <tr><td>개시글 제목</td><td>작성</td></tr>
           </tbody>
         </table>
-        <a href="#" class="more-link"><i class="material-icons">chevron_right</i></a>
+        <a href="/account/board/noticeBoard.do" class="more-link"><i class="material-icons">chevron_right</i></a>
       </div>
       <div class="board-block">
         <h3>자유게시판</h3>
@@ -107,7 +107,7 @@
             <tr><td>개시글 제목</td><td>작성</td></tr>
           </tbody>
         </table>
-        <a href="#" class="more-link"><i class="material-icons">chevron_right</i></a>
+        <a href="/account/board/freeBoard.do" class="more-link"><i class="material-icons">chevron_right</i></a>
       </div>
       <div class="board-block">
         <h3>건의게시판</h3>
@@ -120,7 +120,7 @@
             <tr><td>개시글 제목</td><td>작성</td></tr>
           </tbody>
         </table>
-        <a href="#" class="more-link"><i class="material-icons">chevron_right</i></a>
+        <a href="/account/board/reportBoard.do" class="more-link"><i class="material-icons">chevron_right</i></a>
       </div>
       <div class="board-block">
         <h3>출석게시판</h3>
@@ -133,7 +133,7 @@
             <tr><td>개시글 제목</td><td>작성</td></tr>
           </tbody>
         </table>
-        <a href="#" class="more-link"><i class="material-icons">chevron_right</i></a>
+        <a href="/account/board/attendanceBoard.do" class="more-link"><i class="material-icons">chevron_right</i></a>
       </div>
     </div>
   </div>

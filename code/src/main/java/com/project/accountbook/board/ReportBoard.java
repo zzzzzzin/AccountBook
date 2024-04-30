@@ -17,7 +17,7 @@ public class ReportBoard extends HttpServlet {
 
 		
 
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/reportBoard.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/report-board.jsp");
 		dispatcher.forward(req, resp);
 
 	}
