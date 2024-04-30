@@ -12,9 +12,9 @@
 
 <header id="navheader">
 	<nav>
-	<a href="#" class="sidebar-toggler flex-shrink-0" id="sidebar-toggler" onclick="toggleSidebar()">
+	<!-- <a href="#" class="sidebar-toggler flex-shrink-0" id="sidebar-toggler" onclick="toggleSidebar()">
                         <i class="fa fa-bars"></i>
-                    </a>
+                    </a> -->
           <a href="/account/index.do"><div class="logo"></div></a>
           <ul>
             <li class="content1"><a href="/account/board/view.do">게시판</a></li>
