@@ -114,7 +114,7 @@
 
         <!-- Sidebar Start -->
         <!-- 사이드바  -->
-        <%@include file="/WEB-INF/views/inc/sidebar.jsp"%>
+        <%@include file="/WEB-INF/views/inc/mypage-sidebar.jsp"%>
         <!-- 사이드바 끝  -->
         <!-- Sidebar End -->
 
