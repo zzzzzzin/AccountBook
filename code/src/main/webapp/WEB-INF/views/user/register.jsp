@@ -141,11 +141,11 @@
                   <div class="form-group" id="pwboxnow">
                     <input type="number" class="form-control p_input inputbox colorD9">
                   </div>
-                  <label>적축 목표 금액</label>
+                  <label>저축 목표 금액</label>
                   <div class="form-group" id="pwboxnow">
                     <input type="number" class="form-control p_input inputbox colorD9">
                   </div>
-                  <label>적축 목표 기간</label>
+                  <label>저축 목표 기간</label>
                   <div class="form-group" id="pwboxnow">
                     <select class="form-control inputbox colorD9" name="
                     " id="">

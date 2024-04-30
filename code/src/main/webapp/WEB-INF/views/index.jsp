@@ -106,7 +106,7 @@
 
     <main>
         <section class="section">
-            <h2><a href="">게시판</a></h2>
+            <h2><a href="/account/board/list.do">게시판</a></h2>
             <p>게시판에 대한 설명을 여기에 추가하세요.</p>
         </section>
 

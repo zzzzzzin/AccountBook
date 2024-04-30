@@ -17,7 +17,7 @@ public class Freeboard extends HttpServlet {
 
 		
 
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/freeBoard.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/free-board.jsp");
 		dispatcher.forward(req, resp);
 
 	}
