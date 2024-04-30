@@ -79,8 +79,6 @@
 				</ul></li>
 			<li><a href="/account/account/card-use.do"><i class="fas fa-user"></i> 카드 사용</a>
 		</ul>
-		</li>
-		</ul>
 	</nav>
 
 </div>

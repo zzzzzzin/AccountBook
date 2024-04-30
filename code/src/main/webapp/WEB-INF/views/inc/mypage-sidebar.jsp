@@ -75,8 +75,6 @@
 			<li><a href="#"><i class="fas fa-user"></i> 카드 조회</a>
 			<li><a href="#"><i class="fas fa-user"></i> 친구 초대</a>
 		</ul>
-		</li>
-		</ul>
 	</nav>
 </div>
 <script>
