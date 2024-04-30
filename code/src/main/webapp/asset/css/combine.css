@@ -657,7 +657,7 @@ section.notice {
 /* 게시판 틀 끝 */
 
 /* 댓글 시작*/
-.container {
+/* .container {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
@@ -748,5 +748,5 @@ section.notice {
     border-radius: 4px;
     padding: 20px;
     margin-bottom: 20px;
-  }
+  } */
 /* 댓글 끝*/
