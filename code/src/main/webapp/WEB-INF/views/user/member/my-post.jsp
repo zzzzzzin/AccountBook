@@ -5,7 +5,6 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>자유게시판</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -45,7 +44,7 @@
 
         <!-- Sidebar Start -->
         <!-- 사이드바  -->
-        <%@include file="/WEB-INF/views/inc/board-sidebar.jsp"%>
+        <%@include file="/WEB-INF/views/inc/mypage-sidebar.jsp"%>
         <!-- 사이드바 끝  -->
         <!-- Sidebar End -->
 
@@ -60,38 +59,7 @@
             <!-- Navbar End -->
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
-      	<div class="container">
-    <h2>글쓰기</h2>
-    <form>
-      <div class="form-group">
-        <label for="category">게시판 카테고리</label>
-        <select id="category" name="category">
-          <option value="notice">공지사항</option>
-          <option value="report">신고 게시판</option>
-          <option value="free">자유 게시판</option>
-          <option value="suggestion">건의 사항 게시판</option>
-          <option value="attendance">출석 게시판</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="title">제목을 입력해 주세요.</label>
-        <input type="text" id="title" name="title" placeholder="제목을 입력해 주세요.">
-      </div>
-      <div class="form-group">
-        <label for="content">내용을 입력해 주세요.</label>
-        <textarea id="content" name="content" placeholder="내용을 입력해 주세요."></textarea>
-      </div>
-      <div class="file-attach">
-        <label for="file-input">파일 첨부<i class="material-icons">attach_file</i></label>
-        <input type="file" id="file-input" style="display:none;">
-      </div>
-      <div class="button-group">
-        <button type="submit">등록</button>
-        <button type="button">취소</button>
-      </div>
-    </form>
-  </div>  
-      	  
+      
 
         <!-- fakecontent 끝 -->
         <!-- Back to Top -->
@@ -121,4 +89,3 @@
 </body>
 
 </html>
-

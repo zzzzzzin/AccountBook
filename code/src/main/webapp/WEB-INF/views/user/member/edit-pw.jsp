@@ -5,7 +5,6 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>자유게시판</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -22,11 +21,72 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-    <!-- Libraries Stylesheet -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="/account/asset/css/corona_style.css">
+    
 </head>
 <style>
 
-   
+   .container {
+        border: 1px solid black;
+        width: 600px;
+        height: 300px;
+        background-color: #F1F4C7;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+
+    .content {
+        width: 90%;
+        height: 70%;
+    }
+
+    .now-pw, .edit-pw, .edit-pw-check {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 10px;
+        width: 70%;
+        height: 20%;
+        position: relative;
+    }
+
+    .now-pw-title, .edit-pw-title, .edit-pw-check-title {
+        background-color: #ffffff;
+        width: 200px;
+        height: 100%;
+        text-align: center;
+        position: absolute;
+        top: 100%;
+        left: 10%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .now-pw-real, .edit-pw-input, .edit-pw-check-input {
+        background-color: #ffffff;
+        width: 300px;
+        height: 100%;
+        text-align: center;
+        position: absolute;
+        top: 100%;
+        left: 70%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .edit-pw-btn {
+        width: 80%;
+        height: 30px;
+        position: absolute;
+        top: 80%;
+        left: 10%;
+        background-color: #d9d9d9;
+        border: 0;
+    }
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
@@ -45,7 +105,7 @@
 
         <!-- Sidebar Start -->
         <!-- 사이드바  -->
-        <%@include file="/WEB-INF/views/inc/board-sidebar.jsp"%>
+        <%@include file="/WEB-INF/views/inc/mypage-sidebar.jsp"%>
         <!-- 사이드바 끝  -->
         <!-- Sidebar End -->
 
@@ -60,40 +120,30 @@
             <!-- Navbar End -->
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
-      	<div class="container">
-    <h2>글쓰기</h2>
-    <form>
-      <div class="form-group">
-        <label for="category">게시판 카테고리</label>
-        <select id="category" name="category">
-          <option value="notice">공지사항</option>
-          <option value="report">신고 게시판</option>
-          <option value="free">자유 게시판</option>
-          <option value="suggestion">건의 사항 게시판</option>
-          <option value="attendance">출석 게시판</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="title">제목을 입력해 주세요.</label>
-        <input type="text" id="title" name="title" placeholder="제목을 입력해 주세요.">
-      </div>
-      <div class="form-group">
-        <label for="content">내용을 입력해 주세요.</label>
-        <textarea id="content" name="content" placeholder="내용을 입력해 주세요."></textarea>
-      </div>
-      <div class="file-attach">
-        <label for="file-input">파일 첨부<i class="material-icons">attach_file</i></label>
-        <input type="file" id="file-input" style="display:none;">
-      </div>
-      <div class="button-group">
-        <button type="submit">등록</button>
-        <button type="button">취소</button>
-      </div>
-    </form>
-  </div>  
-      	  
 
-        <!-- fakecontent 끝 -->
+			<div class="myPage">
+				<form action="">
+					<div class="container">
+						<div class="content">
+							<div class="now-pw">
+								<div class="now-pw-title">현재 비밀번호</div>
+								<div class="now-pw-real">1234</div>
+							</div>
+							<div class="edit-pw">
+								<div class="edit-pw-title">수정 비밀번호</div>
+								<div class="edit-pw-input">4321</div>
+							</div>
+							<div class="edit-pw-check">
+								<div class="edit-pw-check-title">수정 비밀번호 확인</div>
+								<div class="edit-pw-check-input">4321</div>
+							</div>
+						</div>
+						<button type="submit" class="edit-pw-btn">수정 완료</button>
+					</div>
+				</form>
+			</div>
+
+			<!-- fakecontent 끝 -->
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
         
@@ -121,4 +171,3 @@
 </body>
 
 </html>
-
