@@ -17,7 +17,7 @@ public class NoticeBoard extends HttpServlet {
 
 		
 
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/noticeBoard.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/notice-board.jsp");
 		dispatcher.forward(req, resp);
 
 	}

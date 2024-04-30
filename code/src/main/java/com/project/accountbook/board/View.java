@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/board/list.do")
+@WebServlet("/board/view.do")
 public class View extends HttpServlet {
 
 	@Override
