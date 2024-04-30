@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>웹 페이지</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../css/combine.css">
 </head>
 <style>
     body {
@@ -13,66 +14,19 @@
         background-color: #f0f0f0;
     }
     
-    .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-    }
-    
-    .image-container {
-        width: 800px;
-        height: 600px;
-        background-color: #000;
-        margin-bottom: 20px;
-    }
-    
-    .image-container img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-    
-    .text-container {
-        width: 600px;
-        height: 100px;
-        background-color: #1f1f1f;
-        color: #fff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 20px;
-    }
-    
-    .button-container {
-        width: 100px;
-        height: 40px;
-        background-color: #808080;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    #shareButton {
-        padding: 10px 20px;
-        background-color: #fff;
-        border: none;
-        cursor: pointer;
-    }
 </style>
 <body>
-    <div class="container">
-        <div class="image-container">
+    <div class="container-friendinvite">
+        <div class="image-container-friendinvite">
             <!-- 이미지를 여기에 추가하세요 -->
             <img src="../images/image1.jpg" alt="이미지">
         </div>
-        <div class="text-container">
+        <div class="text-container-friendinvite">
             <!-- 글을 여기에 추가하세요 -->
             <p>쌈@뽕한 가계부 사이트를 친구에게 추천해보세요</p>
         </div>
-        <div class="button-container">
-            <button id="shareButton">공유하기</button>
+        <div class="button-container-friendinvite">
+            <button id="shareButton-friendinvite">공유하기</button>
         </div>
     </div>
 
@@ -80,7 +34,7 @@
 </body>
 <script>
     
-    document.getElementById('shareButton').addEventListener('click', function() {
+    document.getElementById('shareButton-friendinvite').addEventListener('click', function() {
     // 공유하기 버튼 클릭 시 실행될 코드를 여기에 추가하세요.
     alert('공유하기 버튼이 클릭되었습니다!');
 });

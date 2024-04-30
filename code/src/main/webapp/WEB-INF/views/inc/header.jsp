@@ -6,15 +6,71 @@
 <meta charset="UTF-8">
 <%@include file="/WEB-INF/views/inc/asset.jsp"%>
 <style>
+	#navheader {
+    background-color: #f3f6f9;
+    padding: 20px;
+  }
 
+  #navheader nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #navheader .logo {
+    width: 100px;
+    height: 50px;
+    background-color: #ddd;
+    margin-right: 20px;
+  }
+
+  #navheader nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+
+  #navheader nav li {
+    margin: 0 20px;
+  }
+
+  .content1 {
+    margin-left: 100px;
+  }
+  .content2 {
+    margin-left: 300px;
+  }
+  .content3 {
+    margin-left: 300px;
+  }
+  .content4 {
+    margin-left: 300px;
+  }
+  .content5 {
+    margin-left: 300px;
+    background-color: red;
+  }
+
+  #navheader nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  #navheader nav a:hover {
+    color: #000;
+  }
 </style>
 </head>
 
 <header id="navheader">
 	<nav>
-	<a href="#" class="sidebar-toggler flex-shrink-0" id="sidebar-toggler" onclick="toggleSidebar()">
+	<!-- <a href="#" class="sidebar-toggler flex-shrink-0" id="sidebar-toggler" onclick="toggleSidebar()">
                         <i class="fa fa-bars"></i>
-                    </a>
+                    </a> -->
           <a href="/account/index.do"><div class="logo"></div></a>
           <ul>
             <li class="content1"><a href="/account/board/view.do">게시판</a></li>

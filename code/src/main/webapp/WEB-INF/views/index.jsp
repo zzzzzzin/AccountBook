@@ -14,7 +14,7 @@
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Icon Font Stylesheet -->
@@ -106,7 +106,7 @@
 
     <main>
         <section class="section">
-            <h2><a href="/account/board/list.do">게시판</a></h2>
+            <h2><a href="/account/board/view.do">게시판</a></h2>
             <p>게시판에 대한 설명을 여기에 추가하세요.</p>
         </section>
 

@@ -657,7 +657,7 @@ section.notice {
 /* 게시판 틀 끝 */
 
 /* 댓글 시작*/
-/* .container {
+.container {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
@@ -748,5 +748,872 @@ section.notice {
     border-radius: 4px;
     padding: 20px;
     margin-bottom: 20px;
-  } */
+  }
 /* 댓글 끝*/
+
+/* 게시판 글쓰기 */
+.container-write {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input[type="text"],
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.form-group textarea {
+  height: 200px;
+}
+
+.button-group {
+  text-align: right;
+}
+
+.button-group button {
+  padding: 10px 20px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #555;
+  color: #fff;
+  cursor: pointer;
+}
+
+.button-group button:hover {
+  background-color: #373737;
+}
+
+.file-attach {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.file-attach label {
+  margin-right: 10px;
+}
+
+.file-attach .material-icons {
+  font-size: 18px;
+  color: #555;
+  cursor: pointer;
+}
+/* 게시판 글쓰기 */
+
+/* 카드 추가하기 시작*/
+
+.container-addcard {
+  width: 400px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.form-group-addcard {
+  margin-bottom: 15px;
+}
+.form-group-addcard label {
+  display: block;
+  margin-bottom: 5px;
+}
+.form-group-addcard input[type="text"] {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+.button-group-addcard {
+  text-align: right;
+  margin-top: 20px;
+}
+.button-group-addcard button {
+  margin-left: 10px;
+}
+.preview-addcard {
+  width: 200px;
+  height: 120px;
+  border: 1px solid #ccc;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.preview-addcard img {
+  max-width: 100%;
+  max-height: 100%;
+}
+/* 카드 추가하기 끝*/
+
+/* 카드 추천 시작 */
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #f1f1f1;
+  width: 80%;
+  max-width: 600px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-rank {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 36px;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+.card-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-right: 20px;
+  background-color: #ddd;
+}
+
+.card-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.card-company {
+  font-size: 18px;
+  color: #666;
+}
+
+.modal-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+/* 카드 추천 끝 */
+
+/* 카드 조회 시작 */
+.container-myCardTotal {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.date-range-myCardTotal {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.date-input-myCardTotal {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-left: 5px;
+}
+
+.card-list-myCardTotal {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-item-myCardTotal {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.card-item-myCardTotal:hover {
+  transform: translateY(-5px);
+}
+
+.card-image-myCardTotal {
+  width: 100px;
+  height: 60px;
+  background-color: #ddd;
+  border-radius: 8px;
+  margin-right: 20px;
+}
+
+.card-details-myCardTotal {
+  flex: 1;
+}
+
+.card-name-myCardTotal {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.card-usage-myCardTotal {
+  font-size: 14px;
+  color: #777;
+}
+/* 카드 조회 끝 */
+
+/* component find-pw-modal 시작*/
+.card-findpw {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  width: 500px;
+  height: 400px;
+  background-color: #AAAAAA;
+}
+.card-body-findpw {
+  color: black; 
+}
+
+.find {
+  width: 300px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.find-pw-sucess, .find-pw-fail {
+  background-color: #d9d9d9;
+  margin: auto;
+  text-align: center;
+  width: 300px;
+  padding: 5px;
+}
+
+.find-pw-fail {
+visibility: hidden;
+}
+.find-pw-close {
+display: flex;
+justify-content: flex-end;
+}
+
+.find-pw-close-btn {
+align-items: end;
+border: none;
+width: 50px;
+height: 30px;
+}
+/* component find-pw-modal 끝*/
+
+/* editPw 시작 */
+.container-editpw {
+  border: 1px solid black;
+  width: 600px;
+  height: 300px;
+  background-color: #F1F4C7;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.content-editpw {
+  width: 90%;
+  height: 70%;
+}
+
+.now-pw, .edit-pw, .edit-pw-check {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+  width: 70%;
+  height: 20%;
+  position: relative;
+}
+
+.now-pw-title, .edit-pw-title, .edit-pw-check-title {
+  background-color: #ffffff;
+  width: 200px;
+  height: 100%;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.now-pw-real, .edit-pw-input, .edit-pw-check-input {
+  background-color: #ffffff;
+  width: 300px;
+  height: 100%;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit-pw-btn {
+  width: 80%;
+  height: 30px;
+  position: absolute;
+  top: 80%;
+  left: 10%;
+  background-color: #d9d9d9;
+  border: 0;
+}
+/* editPw 끝 */
+
+/* editUserInfo 시작 */
+.myPage {
+  /* border: 1px solid black; */
+  width: 500px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.user-profile {
+  border: 1px solid black;
+  margin-left: 100px;
+
+  width: 600px;
+  height: 300px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.user-profile-img-container {
+  background-color: #F1F4C7;
+  width: 250px;
+  height: 250px;
+  position: relative;
+}
+
+.user-profile-img {
+  border: 1px solid black;
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  background-color: #ffffff;      
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.user-profile-container {
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 300px;
+}
+
+.user-profile-name, .user-profile-nickname, .user-profile-sex, 
+.user-profile-phone {
+  /* border: 1px solid black; */
+  width: 300px;
+  display: flex;
+  justify-content: space-evenly;
+  width: 300px;
+  height: 30px;
+  white-space: nowrap;
+  margin: 5px;
+}
+
+.user-profile-name-title, .user-profile-nickname-title, 
+.user-profile-sex-title, .user-profile-phone-title {
+  width: 150px;
+  text-overflow: ellipsis;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.user-profile-name-edit, .user-profile-nickname-edit, 
+.user-profile-sex-edit, .user-profile-phone-edit {
+  width: 300px;
+  display: flex;
+  justify-content: space-evenly;
+  
+}
+
+.user-profile-name-edit {
+  justify-content: left;
+  margin-left: -6%;
+}
+
+
+.user-profile-name-real, .user-profile-nickname-real, 
+.user-profile-sex-real, .user-profile-phone-real {
+  /* border: 1px solid black; */
+  background-color: #d9d9d9;
+  width: 130px;
+  height: 30px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.material-symbols-outlined {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+}
+
+.user-profile-nickname-duplicate, .user-profile-phone-duplicate {
+  width: 70px;
+  margin-left: 5px;
+}
+/* editUserInfo 끝 */
+
+/* mypage 시작 */
+.myPage-mypage {
+  border: 1px solid black;
+  width: 500px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.user-profile-mypage {
+  border: 1px solid black;
+  width: 400px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.user-profile-mypage-img {
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #ffffff;      
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.user-profile-mypage-container {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 300px;
+}
+
+.user-profile-mypage-name, .user-profile-mypage-nickname, .user-profile-mypage-sex, .user-profile-mypage-phone, .user-profile-mypage-SSN {
+  width: 300px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-evenly;
+  width: 300px;
+  height: 30px;
+  margin-bottom: 5px;
+  
+}
+
+.user-profile-mypage-name-title, .user-profile-mypage-nickname-title, 
+.user-profile-mypage-sex-title, .user-profile-mypage-phone-title, .user-profile-mypage-SSN-title {
+  width: 100px;
+}
+
+.user-profile-mypage-name-real, .user-profile-mypage-nickname-real, .user-profile-mypage-sex-real, .user-profile-mypage-phone-real, .user-profile-mypage-SSN-real {
+  border: 1px solid black;
+  background-color: #d9d9d9;
+  width: 150px;
+  text-align: center;
+}
+
+.myPage-mypage-btns {
+  border: 1px solid black;
+  width: 500px;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 10px;
+}
+/* mypage 끝 */
+
+/* surveysetting 시작 */
+.container-surveysetting {
+  /* border: 1px solid black; */
+  width: 800px;
+  height: 300px;
+  background-color: #F1F4C7;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.content-surveysetting {
+  width: 90%;
+  height: 70%;
+}
+
+.contents-surveysetting {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+  width: 70%;
+  height: 20%;
+  position: relative;
+}
+
+.sallary-title,
+.check-pw-title {
+  background-color: #d9d9d9;
+  width: 200px;
+  height: 100%;
+  text-align: center;
+  position: absolute;
+  top: 70%;
+  left: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sallary-real, .settingPeriod {
+  background-color: #d9d9d9;
+  width: 80%;
+  height: 100%;
+  text-align: center;
+  position: absolute;
+  top: 70%;
+  left: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.settingPeriod {
+  display: flex;
+
+}
+
+.saveSurveySetting {
+  display: flex;
+  justify-content: center;
+}
+
+#start-date, #end-date {
+  text-align: center;
+}
+
+.saveBtn {
+  width: 20%;
+  height: 30px;
+  position: absolute;
+  top: 85%;
+  left: 74%;
+  background-color: #d9d9d9;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+/* surveysetting 끝 */
+
+/* unregister 시작 */
+.container-unregister {
+  /* border: 1px solid black; */
+  width: 600px;
+  height: 300px;
+  background-color: #F1F4C7;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.content-unregister {
+  width: 90%;
+  height: 70%;
+}
+
+.input-pw, .check-pw {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+  width: 70%;
+  height: 20%;
+  position: relative;
+}
+
+.input-pw-title, .check-pw-titles {
+  background-color: #ffffff;
+  width: 200px;
+  height: 100%;
+  text-align: center;
+  position: absolute;
+  top: 170%;
+  left: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-pw-real, .check-pw-input {
+  background-color: #ffffff;
+  width: 300px;
+  height: 100%;
+  text-align: center;
+  position: absolute;
+  top: 170%;
+  left: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.unregister {
+  display: flex;
+  justify-content: center;
+}
+
+.check-pw-btn {
+  width: 80%;
+  height: 30px;
+  position: absolute;
+  top: 80%;
+  left: 10%;
+  background-color: #d9d9d9;
+  border: 0;
+}
+/* unregister 끝 */
+
+/* friendInvite 시작 */
+.container-friendinvite {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.image-container-friendinvite {
+  width: 800px;
+  height: 600px;
+  background-color: #000;
+  margin-bottom: 20px;
+}
+
+.image-container-friendinvite img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.text-container-friendinvite {
+  width: 600px;
+  height: 100px;
+  background-color: #1f1f1f;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.button-container-friendinvite {
+  width: 100px;
+  height: 40px;
+  background-color: #808080;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#shareButton-friendinvite {
+  padding: 10px 20px;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+/* friendInvite 끝 */
+
+/* propertyLiabilities 시작 */
+.container-pl {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+  text-align: center;
+}
+
+#h1-pl {
+  color: #333;
+  font-size: 32px;
+  margin-bottom: 40px;
+}
+
+.blocks {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50px;
+}
+
+.block {
+  width: 250px;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.block:hover {
+  transform: translateY(-5px);
+}
+
+.block h2 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.block p {
+  color: #666;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.add-button {
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-button:hover {
+  background-color: #45a049;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  text-align: center;
+}
+
+.modal-content h3 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.modal-buttons-pl {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-buttons-pl button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal-buttons-pl button:hover {
+  background-color: #45a049;
+}
+
+.modal-buttons-pl .close-button {
+  background-color: #ccc;
+}
+
+.modal-buttons-pl .close-button:hover {
+  background-color: #bbb;
+}
+.hover-message {
+  display: none;
+  color: #666;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.block:hover .hover-message {
+  display: block;
+}
+/* propertyLiabilities 끝 */
