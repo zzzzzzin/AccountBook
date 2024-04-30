@@ -283,7 +283,7 @@
 
         <!-- Sidebar Start -->
         <!-- 사이드바  -->
-        <%@include file="/WEB-INF/views/inc/sidebar.jsp"%>
+        <%@include file="/WEB-INF/views/inc/account-sidebar.jsp"%>
         <!-- 사이드바 끝  -->
         <!-- Sidebar End -->
 
@@ -532,6 +532,17 @@
        	  ] */
         });
         calendar.render();
+        
+        var sidebar = document.querySelector('.sidebar');
+        var sidebarToggler = document.getElementById('sidebar-toggler');
+
+        sidebarToggler.addEventListener('click', function() {
+            sidebar.classList.toggle('active');
+            // Assuming the transition duration is 300ms, adjust accordingly
+            sidebar.addEventListener('transitionend', function() {
+                calendar.updateSize();
+            });
+        });
     });
 
     document.addEventListener('DOMContentLoaded', function() {

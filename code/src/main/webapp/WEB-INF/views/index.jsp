@@ -106,17 +106,17 @@
 
     <main>
         <section class="section">
-            <h2>게시판</h2>
+            <h2><a href="">게시판</a></h2>
             <p>게시판에 대한 설명을 여기에 추가하세요.</p>
         </section>
 
         <section class="section">
-            <h2>대시보드</h2>
+            <h2><a href="">대시보드</a></h2>
             <p>대시보드에 대한 설명을 여기에 추가하세요.</p>
         </section>
 
         <section class="section">
-            <h2>카드추천</h2>
+            <h2><a href="">카드추천</a></h2>
             <p>카드추천에 대한 설명을 여기에 추가하세요.</p>
         </section>
     </main>
