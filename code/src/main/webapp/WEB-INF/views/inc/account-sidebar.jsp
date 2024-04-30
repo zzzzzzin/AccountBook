@@ -13,10 +13,10 @@
 	<div class="logo">이미지</div>
 	<nav>
 		<ul>
-			<li class="dropdown"><a href="#"><i class="fas fa-home"></i>
+			<li class="dropdown"><a href="/account/account/calendar.do"><i class="fas fa-home"></i>
 					가계부</a>
 				<ul class="submenu">
-					<li><a href="#">달력</a></li>
+					<li><a href="/account/account/calendar.do">달력</a></li>
 					<li><a href="#">목록</a></li>
 					<li><a href="#">분석</a></li>
 				</ul></li>
