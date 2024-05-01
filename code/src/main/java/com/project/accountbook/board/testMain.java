@@ -20,9 +20,14 @@ public class testMain {
 			
 			try {
 
+//				conn = DriverManager.getConnection(
+//						"jdbc:oracle:thin:@192.168.10.47:1521:xe"
+//						, "jspProject"
+//						, "java1234"); // db에 접속 
+				
 				conn = DriverManager.getConnection(
-						"jdbc:oracle:thin:@192.168.10.47:1521:xe"
-						, "jspProject"
+						"jdbc:oracle:thin:@localhost:1521:xe"
+						, "c##test123"
 						, "java1234"); // db에 접속 
 										
 				System.out.println("접속 성공!");
@@ -52,8 +57,8 @@ public class testMain {
 				
 				System.out.println(attendance);
 				
-				list.add(attendance);
-				System.out.println(list.toString());
+//				list.add(attendance);
+//				System.out.println(list.toString());
 			}
 				
 			} catch (SQLException e) {

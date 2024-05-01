@@ -1,11 +1,21 @@
+<%@page import="com.project.accountbook.board.repository.BoardDAO"%>
+<%@page import="com.project.accountbook.board.post.model.AttendanceDTO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+
+	BoardDAO dao = new BoardDAO();
+	List<AttendanceDTO> attendanceList = dao.selectAll();
+	pageContext.setAttribute("attendanceList", attendanceList);
+
+%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>공지게시판</title>
+    <title>출석게시판</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -86,7 +96,7 @@
 	        </div>
 	      </div>
 	    </div>
-    
+	    
 	    <!-- board list area -->
 	    <div id="board-list">
 	        <div class="container">
@@ -102,26 +112,34 @@
 	                </tr>
 	                </thead>
 	                <tbody>
-	                <tr>
-	                    <td>3</td>
-	                    <th>
-	                      <a href="#!">거니더마마사지</a>
-	                    </th>
-	                    <td>ㅇㅇ</td>
-	                    <td>04:20</td>
-	                    <td>2</td>
-	                    <td>0</td>
-	                </tr>
+	                <c:if test="${attendanceList.size() == 0}">
+					    <tr>
+					        <td colspan="6">게시물이 없습니다.</td>
+					    </tr>
+					</c:if>
 	                
-	                <tr>
-	                    <td>2</td>
-	                    <th><a href="#!">ㅇㅇㅇ</a></th>
-	                    <td>ㅇㅇㅇ</td>
-	                    <td>2024.04.11</td>
-	                    <td>2222</td>
-	                    <td>30</td>
-	                </tr>
-	                </tbody>
+					<c:forEach var="attendance" items="${attendanceList}">
+						
+					
+		                <tr>
+		                    <td>${attendance.seq}</td>
+					        <td>${attendance.nickname}</td>
+					        <td>${attendance.title}</td>
+					        <td>${attendance.date}</td>
+					        <td>${attendance.viewCount}</td>
+					        <td>${attendance.likeCount}</td>
+		                </tr>
+	                
+		                <tr>
+		                    <td>2</td>
+		                    <th><a href="#!">ㅇㅇㅇ</a></th>
+		                    <td>ㅇㅇㅇ</td>
+		                    <td>2024.04.11</td>
+		                    <td>2222</td>
+		                    <td>30</td>
+		                </tr>
+	                </c:forEach>
+		                </tbody>
 	            </table>
 	            <div class="write-btn">
 	                <a href="/account/board/write.do" class="btn btn-dark">글작성</a>
