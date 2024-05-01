@@ -63,7 +63,7 @@
             <div class="logo">이미지</div>
             <nav>
               <ul>
-                <li><a href="/account/board/view.do"><span class="material-symbols-outlined">home</span> 게시판 홈</a></li>
+                <li><a href="/account/board/view.do"><i class="fas fa-home"></i> 게시판 홈</a></li>
                 <li><a href="/account/board/noticeBoard.do"><span class="material-symbols-outlined">assignment</span> 공지게시판</a></li>
                 <li><a href="/account/board/freeBoard.do"><span class="material-symbols-outlined">assignment</span> 자유게시판</a></li>
                 <li><a href="/account/board/reportBoard.do"><span class="material-symbols-outlined">assignment</span> 건의게시판</a></li>

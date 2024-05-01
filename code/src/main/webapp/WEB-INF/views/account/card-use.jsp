@@ -62,7 +62,6 @@
         <!-- fakecontent 안에서 작성 -->
 
 			<div class="container">
-				<h2>카드 사용</h2>
 				<div class="card-image"></div>
 				<div>
 					<label for="start-date">시작일:</label> <input type="text"

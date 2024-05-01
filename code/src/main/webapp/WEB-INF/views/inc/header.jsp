@@ -76,7 +76,7 @@
             <li class="content1"><a href="/account/board/view.do">게시판</a></li>
             <li class="content2"><a href="/account/account/calendar.do">대시보드</a></li>
             <li class="content3"><a href="/account/card/recommendation.do">카드추천</a></li>
-            <li class="content4"><a href="/account/user/info.do">마이페이지</a></li>
+            <li class="content4"><a href="/account/user/member/info.do">마이페이지</a></li>
             <li class="content5"><a href="/account/user/login.do">로그인</a></li>
             
             <!-- 

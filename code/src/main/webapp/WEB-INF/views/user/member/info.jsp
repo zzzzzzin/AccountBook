@@ -14,7 +14,7 @@
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Icon Font Stylesheet -->
@@ -23,6 +23,7 @@
 
     <!-- Libraries Stylesheet -->
 </head>
+<link rel="stylesheet" href="../../../css/combine.css">
 <style>
 
    
@@ -59,46 +60,47 @@
             <!-- Navbar End -->
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
-        
-        	<div id="fakecontent">
-            <section class="notice">
-            <!-- board list area -->
-            <div id="board-list">
-                <div class="container">
-                    <table class="board-table">
-                        <thead>
-                        <tr>
-                            <th scope="col" class="th-title">제목</th>
-                            <th scope="col" class="th-writer">작성자</th>
-                            <th scope="col" class="th-date">등록일</th>
-                            <th scope="col" class="th-view">조회수</th>
-                            <th scope="col" class="th-like">추천</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th>
-                              <a href="#!">거니더마마사지</a>
-                            </th>
-                            <td>ㅇㅇ</td>
-                            <td>04:20</td>
-                            <td>2</td>
-                            <td>0</td>
-                        </tr>
-                        
-                        <tr>
-                            <th><a href="#!">ㅇㅇㅇ</a></th>
-                            <td>ㅇㅇㅇ</td>
-                            <td>2024.04.11</td>
-                            <td>2222</td>
-                            <td>30</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    </div>
+      
+      		<div class="myPage-mypage">
+        <div class="user-profile-mypage">
+            <div class="user-profile-mypage-img">
+                개인 프로필 이미지
+            </div>
+            <div class="user-profile-mypage-container">
+                <div class="user-profile-mypage-name">
+                    <div class="user-profile-mypage-name-title">이름</div>
+                    <div class="user-profile-mypage-name-real">홍길동</div>
                 </div>
-              </section>
-        </div>      
+                <div class="user-profile-mypage-nickname">
+                    <div class="user-profile-mypage-nickname-title">닉네임</div>
+                    <div class="user-profile-mypage-nickname-real">hong</div>
+                </div>
+                <div class="user-profile-mypage-sex">
+                    <div class="user-profile-mypage-sex-title">성별</div>
+                    <div class="user-profile-mypage-sex-real">남</div>
+                </div>
+                <div class="user-profile-mypage-phone">
+                    <div class="user-profile-mypage-phone-title">전화번호</div>
+                    <div class="user-profile-mypage-phone-real">010-1234-5678</div>
+                </div>
+                <div class="user-profile-mypage-SSN">
+                    <div class="user-profile-mypage-SSN-title">주민등록번호</div>
+                    <div class="user-profile-mypage-SSN-real">123456-1234567</div>
+                </div>
+            </div>
+        </div>
+        <div class="myPage-mypage-btns">
+            <div>
+                <button type="button">비밀번호 수정</button>
+            </div>
+            <div>
+                <button type="button">개인정보 수정</button>
+            </div>
+            <div>
+                <button type="button">회원 탈퇴</button>
+            </div>
+        </div>
+    </div>
 
         <!-- fakecontent 끝 -->
         <!-- Back to Top -->

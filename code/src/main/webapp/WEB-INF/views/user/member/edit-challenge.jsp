@@ -21,11 +21,85 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-    <!-- Libraries Stylesheet -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 <style>
 
-   
+   .container-surveysetting {
+        /* border: 1px solid black; */
+        width: 800px;
+        height: 300px;
+        background-color: #F1F4C7;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+
+    .content-surveysetting {
+        width: 90%;
+        height: 70%;
+    }
+
+    .contents-surveysetting {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 10px;
+        width: 70%;
+        height: 20%;
+        position: relative;
+    }
+
+    .sallary-title,
+    .check-pw-title {
+        background-color: #d9d9d9;
+        width: 200px;
+        height: 100%;
+        text-align: center;
+        position: absolute;
+        top: 70%;
+        left: 10%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .sallary-real, .settingPeriod {
+        background-color: #d9d9d9;
+        width: 80%;
+        height: 100%;
+        text-align: center;
+        position: absolute;
+        top: 70%;
+        left: 70%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .settingPeriod {
+        display: flex;
+
+    }
+
+    .saveSurveySetting {
+        display: flex;
+        justify-content: center;
+    }
+
+    #start-date, #end-date {
+        text-align: center;
+    }
+
+    .saveBtn {
+        width: 20%;
+        height: 30px;
+        position: absolute;
+        top: 85%;
+        left: 74%;
+        background-color: #d9d9d9;
+        border: 2px solid black;
+        border-radius: 10px;
+    }
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
@@ -59,6 +133,43 @@
             <!-- Navbar End -->
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
+        
+        	<div class="myPage">
+        <form action="">
+            <div class="container-surveysetting">
+                <div class="content-surveysetting">
+                    <div class="contents-surveysetting">
+                        <div class="sallary-title">월급</div>
+                        <input type="text" class="sallary-real" value="20,000,000원"></input>
+                    </div>
+                    <div class="contents-surveysetting">
+                        <div class="sallary-title">저축 목표 금액</div>
+                        <input type="text" class="sallary-real" value="10,000,000원"></input>
+                    </div>
+                    <div class="contents-surveysetting">
+                        <div class="sallary-title">현재 부채 금액</div>
+                        <input type="text" class="sallary-real" value="없음"></input>
+                    </div>
+                    <div class="contents-surveysetting">
+                        <div class="sallary-title">저축 목표 기간 설정</div>
+                        <div class="settingPeriod">
+                            <div class="startDate">
+                                <label for="start-date">시작일</label>
+                                <input type="text" id="start-date" name="start-date" value="2024/01/01">
+                            </div>
+                            <div class="endDate">
+                                <label for="end-date">종료일</label>
+                                <input type="text" id="end-date" name="end-date" value="2025/12/31">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="saveSurveySetting">
+                    <button type="submit" class="saveBtn">저장하기</button>
+                </div>
+            </div>
+        </form>
+    </div>
       
 
         <!-- fakecontent 끝 -->
@@ -71,6 +182,8 @@
     <!-- JavaScript Libraries -->
    
     <!-- Template Javascript -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
     <script>
 
@@ -82,6 +195,18 @@
         sidebarToggler.addEventListener('click', function() {
         sidebar.classList.toggle('hidden');
         content.classList.toggle('expanded');
+        });
+    });
+    
+    $(document).ready(function () {
+        // jQuery datepicker 초기화
+        $("#start-date, #end-date").datepicker({
+            dateFormat: "yy-mm-dd"
+        });
+
+        // input 클릭 시 값 없애기
+        $('input[type="text"]').on('focus', function() {
+            $(this).val('');
         });
     });
 
