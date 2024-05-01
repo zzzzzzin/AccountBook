@@ -77,6 +77,8 @@
 					<!-- 카드 아이템들이 동적으로 추가될 곳 -->
 				</div>
 			</div>
+			
+			<button class="modal-button" onclick="openModal()">카드 추가</button>
 
 			<!-- fakecontent 끝 -->
         <!-- Back to Top -->
@@ -91,6 +93,14 @@
     <!-- Template Javascript -->
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
     <script>
+    
+    function openModal() {
+        // 모달 열기 함수 구현
+        console.log("모달 열기");
+        
+        window.location.href = '/account/card/add.do';
+    }
+    
 
     document.addEventListener('DOMContentLoaded', function() {
     const sidebarToggler = document.getElementById('sidebar-toggler');
