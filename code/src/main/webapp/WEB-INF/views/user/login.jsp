@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="/account/asset/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="/account/asset/css/vendor.bundle.base.css">
+<link rel="stylesheet" href="/account/asset/css/vendor.bundle.base.css">
 <!-- plugins:css -->
 <!-- <link rel="stylesheet" href="/account/asset/css/style.css"> -->
 <!-- endinject -->
@@ -83,16 +83,16 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
-    <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="/account/asset/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
     <!-- End plugin js for this page -->
     <!-- inject:js -->
-    <script src="../../assets/js/off-canvas.js"></script>
-    <script src="../../assets/js/hoverable-collapse.js"></script>
-    <script src="../../assets/js/misc.js"></script>
-    <script src="../../assets/js/settings.js"></script>
-    <script src="../../assets/js/todolist.js"></script>
+    <script src="/account/asset/js/off-canvas.js"></script>
+    <script src="/account/asset/js/hoverable-collapse.js"></script>
+    <script src="/account/asset/js/misc.js"></script>
+    <script src="/account/asset/js/settings.js"></script>
+    <script src="/account/asset/js/todolist.js"></script>
     <!-- endinject -->
   </body>
 </html>

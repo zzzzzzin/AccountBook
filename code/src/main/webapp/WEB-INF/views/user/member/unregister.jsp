@@ -25,7 +25,70 @@
 </head>
 <style>
 
-   
+   .container-unregister {
+        /* border: 1px solid black; */
+        width: 600px;
+        height: 300px;
+        background-color: #F1F4C7;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+
+    .content-unregister {
+        width: 90%;
+        height: 70%;
+    }
+
+    .input-pw, .check-pw {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 10px;
+        width: 70%;
+        height: 20%;
+        position: relative;
+    }
+
+    .input-pw-title, .check-pw-titles {
+        background-color: #ffffff;
+        width: 200px;
+        height: 100%;
+        text-align: center;
+        position: absolute;
+        top: 170%;
+        left: 10%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .input-pw-real, .check-pw-input {
+        background-color: #ffffff;
+        width: 300px;
+        height: 100%;
+        text-align: center;
+        position: absolute;
+        top: 170%;
+        left: 70%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .unregister {
+        display: flex;
+        justify-content: center;
+    }
+
+    .check-pw-btn {
+        width: 80%;
+        height: 30px;
+        position: absolute;
+        top: 80%;
+        left: 10%;
+        background-color: #d9d9d9;
+        border: 0;
+    }
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
@@ -59,9 +122,30 @@
             <!-- Navbar End -->
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
-      
 
-        <!-- fakecontent 끝 -->
+			<div class="myPage">
+				<form action="">
+					<div class="container-unregister">
+						<div class="content-unregister">
+							<div class="input-pw">
+								<div class="input-pw-title">현재 비밀번호</div>
+								<div class="input-pw-real">1234</div>
+							</div>
+							<div class="check-pw">
+								<div class="check-pw-titles">비밀번호 확인</div>
+								<div class="check-pw-input">4321</div>
+							</div>
+						</div>
+						<div class="unregister">
+							<div>탈퇴하시겠습니까?</div>
+							<input type="checkbox" class="unregisterCheckBox">
+						</div>
+						<button type="submit" class="check-pw-btn">탈퇴하기</button>
+					</div>
+				</form>
+			</div>
+
+			<!-- fakecontent 끝 -->
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
         

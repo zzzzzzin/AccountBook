@@ -14,7 +14,7 @@
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Icon Font Stylesheet -->
@@ -44,7 +44,7 @@
 
         <!-- Sidebar Start -->
         <!-- 사이드바  -->
-        <%@include file="/WEB-INF/views/inc/mypage-sidebar.jsp"%>
+        <%@include file="/WEB-INF/views/inc/sidebar.jsp"%>
         <!-- 사이드바 끝  -->
         <!-- Sidebar End -->
 
@@ -59,46 +59,7 @@
             <!-- Navbar End -->
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
-        
-        	<div id="fakecontent">
-            <section class="notice">
-            <!-- board list area -->
-            <div id="board-list">
-                <div class="container">
-                    <table class="board-table">
-                        <thead>
-                        <tr>
-                            <th scope="col" class="th-title">제목</th>
-                            <th scope="col" class="th-writer">작성자</th>
-                            <th scope="col" class="th-date">등록일</th>
-                            <th scope="col" class="th-view">조회수</th>
-                            <th scope="col" class="th-like">추천</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th>
-                              <a href="#!">거니더마마사지</a>
-                            </th>
-                            <td>ㅇㅇ</td>
-                            <td>04:20</td>
-                            <td>2</td>
-                            <td>0</td>
-                        </tr>
-                        
-                        <tr>
-                            <th><a href="#!">ㅇㅇㅇ</a></th>
-                            <td>ㅇㅇㅇ</td>
-                            <td>2024.04.11</td>
-                            <td>2222</td>
-                            <td>30</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    </div>
-                </div>
-              </section>
-        </div>      
+      
 
         <!-- fakecontent 끝 -->
         <!-- Back to Top -->

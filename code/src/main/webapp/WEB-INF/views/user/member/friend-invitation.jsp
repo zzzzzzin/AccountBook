@@ -59,48 +59,23 @@
             <!-- Navbar End -->
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
-        
-        	<div id="fakecontent">
-            <section class="notice">
-            <!-- board list area -->
-            <div id="board-list">
-                <div class="container">
-                    <table class="board-table">
-                        <thead>
-                        <tr>
-                            <th scope="col" class="th-title">제목</th>
-                            <th scope="col" class="th-writer">작성자</th>
-                            <th scope="col" class="th-date">등록일</th>
-                            <th scope="col" class="th-view">조회수</th>
-                            <th scope="col" class="th-like">추천</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th>
-                              <a href="#!">거니더마마사지</a>
-                            </th>
-                            <td>ㅇㅇ</td>
-                            <td>04:20</td>
-                            <td>2</td>
-                            <td>0</td>
-                        </tr>
-                        
-                        <tr>
-                            <th><a href="#!">ㅇㅇㅇ</a></th>
-                            <td>ㅇㅇㅇ</td>
-                            <td>2024.04.11</td>
-                            <td>2222</td>
-                            <td>30</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    </div>
-                </div>
-              </section>
-        </div>      
 
-        <!-- fakecontent 끝 -->
+			<div class="container-friendinvite">
+				<div class="image-container-friendinvite">
+					<!-- 이미지를 여기에 추가하세요 -->
+					<img src="../images/image1.jpg" alt="이미지">
+				</div>
+				<div class="text-container-friendinvite">
+					<!-- 글을 여기에 추가하세요 -->
+					<p>쌈@뽕한 가계부 사이트를 친구에게 추천해보세요</p>
+				</div>
+				<div class="button-container-friendinvite">
+					<button id="shareButton-friendinvite">공유하기</button>
+				</div>
+			</div>
+
+
+			<!-- fakecontent 끝 -->
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
         
@@ -122,6 +97,11 @@
         sidebar.classList.toggle('hidden');
         content.classList.toggle('expanded');
         });
+    });
+    
+    document.getElementById('shareButton-friendinvite').addEventListener('click', function() {
+        // 공유하기 버튼 클릭 시 실행될 코드를 여기에 추가하세요.
+        alert('공유하기 버튼이 클릭되었습니다!');
     });
 
     </script>
