@@ -21,7 +21,7 @@ public class AccountDAO {
 		this.conn = DBUtil.open();
 	}
 	
-	//가계부 작성(테이블 많이 필요해서 view 사용해야할 듯)
+	//가계부 작성(테이블 많이 필요해서 view 사용해야할 듯) > 프론트에서 카드 선택해서 작성하는 거면 카드 seq넘겨 받아서 `tblReasonChangeCategory`에서 seq 찾아야할 듯(map?)
 	public int add(AccountInfoDTO dto) {
 		
 		try {
@@ -42,8 +42,14 @@ public class AccountDAO {
 		return 0;
 	}
 	
-	//가계부 읽기
-	//map으로 상황에 따라 선택 상황 찾고 그 경우에 따라 출력하는 식으로 구현?
+	//가계부 작성할 때 카테고리 자동 매칭(AccountInfoDTO에 키워드랑 카테고리 테이블에 대한 대용 추가할지? 따로 뺄지)
+	public int addCategory(AccountInfoDTO dto) {
+		
+		return 0;
+	}
+	
+	
+	//가계부 읽기(map으로 상황 선택해야할 듯)
 	public int get(AccountInfoDTO dto) {
 		
 		return 0;
@@ -57,7 +63,6 @@ public class AccountDAO {
 	 
 	
 	//가계부 목록 읽기
-	//map으로 상황에 따라 선택 상황 찾고 그 경우에 따라 출력하는 식으로 구현?
 	public int list(AccountInfoDTO dto) {
 		
 		return 0;
