@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="java.util.*, " %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,21 +26,6 @@
 </head>
 <style>
 
-	#title{
-		text-align: center;
-		margin-top: 50px;
-		margin-bottom: 50px;
-	}
-	
-	#menuTable > td{
-		
-		text-align: center;
-	}
-    
-    .board-list td:last-child {
-    	text-align: center;
-	}
-	
    
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
@@ -76,30 +60,6 @@
         <!-- Navbar End -->
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
-<<<<<<< HEAD
-        <h3 id="title">출석게시판</h3>
-        
-        <table class="board-list">
-          <tbody>
-            <tr id="menuTable">
-            	<td>번호</td>
-            	<td>제목</td>
-            	<td>닉네임</td>
-            	<td>등록 날짜</td>
-            	<td>조회수</td>
-            	<td>추천</td>
-            </tr>
-            
-          </tbody>
-        </table>
-
-
-        <!-- fakecontent 끝 -->
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-        
-    </div>
-=======
         <section class="noticeboard">
         <div class="page-title">
         	<div class="container">
@@ -174,7 +134,6 @@
 	    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 	        
 	    </div>
->>>>>>> ad1c3a1d41be5bdddacbf728ca1b9766c72f9250
     </div>
 
     <!-- JavaScript Libraries -->
@@ -198,4 +157,3 @@
 </body>
 
 </html>
-
