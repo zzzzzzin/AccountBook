@@ -9,6 +9,7 @@ tblAttachedFile
 public class PostDTO {
 	
 	//게시글
+	private String seq;
 	private String seqBoard;
 	private String seqUser;
 	private String title;
@@ -22,6 +23,21 @@ public class PostDTO {
 	private int secretCheck;
 	private int blindCheck;
 	
+	public PostDTO() {
+		
+	}
+	
+	// 출석 게시판
+	public PostDTO(String seq, String seqUser, String title, String writeDate) {
+		super();
+		this.seq = seq;
+		this.seqUser = seqUser;
+		this.title = title;
+		this.writeDate = writeDate;
+	}
+	
+	
+
 	//첨부파일
 	private String seqPost;
 	private String fileName;
