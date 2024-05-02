@@ -25,12 +25,7 @@
 </head>
 <style>
 
-   body {
-        font-family: 'Noto Sans KR', sans-serif;
-        background-color: #f5f5f5;
-        margin: 0;
-        padding: 20px;
-    }
+   
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
@@ -49,7 +44,7 @@
 
         <!-- Sidebar Start -->
         <!-- 사이드바  -->
-        <%@include file="/WEB-INF/views/inc/account-sidebar.jsp"%>
+        <%@include file="/WEB-INF/views/inc/mypage-sidebar.jsp"%>
         <!-- 사이드바 끝  -->
         <!-- Sidebar End -->
 
@@ -64,20 +59,9 @@
             <!-- Navbar End -->
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
+      
 
-			<div class="container-myCardTotal">
-				<div class="date-range-myCardTotal">
-					<label for="start-date-myCardTotal">시작일:</label> <input type="text"
-						id="start-date" class="date-input-myCardTotal"> <label
-						for="end-date">종료일:</label> <input type="text" id="end-date"
-						class="date-input-myCardTotal">
-				</div>
-				<div class="card-list-myCardTotal">
-					<!-- 카드 아이템들이 동적으로 추가될 곳 -->
-				</div>
-			</div>
-
-			<!-- fakecontent 끝 -->
+        <!-- fakecontent 끝 -->
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
         
@@ -100,51 +84,6 @@
         content.classList.toggle('expanded');
         });
     });
-    
-    $(document).ready(function() {
-        // 달력 초기화
-        $(".date-input-myCardTotal").datepicker({
-            dateFormat: "yy-mm-dd"
-        });
-    
-        // 카드 데이터
-        const cards = [
-            { name: "카드이미지1", usage: "총 사용 금액1" },
-            { name: "카드이미지2", usage: "총 사용 금액2" },
-            { name: "카드이미지3", usage: "총 사용 금액3" },
-            { name: "카드이미지4", usage: "총 사용 금액4" },
-            { name: "카드이미지5", usage: "총 사용 금액5" }
-        ];
-    
-        // 카드 아이템 생성 함수
-        function createCardItem(card) {
-            const cardItem = `
-                <div class="card-item-myCardTotal">
-                    <div class="card-image-myCardTotal"></div>
-                    <div class="card-details-myCardTotal">
-                        <div class="card-name-myCardTotal">${card.name}</div>
-                        <div class="card-usage-myCardTotal">${card.usage}</div>
-                    </div>
-                </div>
-            `;
-            return cardItem;
-        }
-    
-        // 카드 아이템들을 동적으로 추가
-        cards.forEach(function(card) {
-            const cardItem = createCardItem(card);
-            $(".card-list-myCardTotal").append(cardItem);
-        });
-        
-     // card-item-myCardTotal를 클릭하면 CardUseageInfo 함수 실행
-        $(document).on("click", ".card-item-myCardTotal", function() {
-            CardUseageInfo();
-        });
-    });
-    
-    function CardUseageInfo() {
-    	window.location.href = '/account/account/card-use-detail.do';  	
-    }
 
     </script>
 </body>

@@ -1,4 +1,4 @@
-package com.project.accountbook.card;
+package com.project.accountbook.user.member;
 
 import java.io.IOException;
 
@@ -9,15 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/card/view.do")
-public class View extends HttpServlet {
+@WebServlet("/user/member/add-my-card.do")
+public class AddMyCard extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		
 
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/card/view.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/member/add-my-card.jsp");
 		dispatcher.forward(req, resp);
 
 	}
