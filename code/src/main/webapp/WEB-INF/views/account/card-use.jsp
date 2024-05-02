@@ -14,19 +14,23 @@
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="../../css/combine.css">
+    <!-- Libraries Stylesheet -->
 </head>
 <style>
 
-   
+   body {
+        font-family: 'Noto Sans KR', sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 20px;
+    }
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
@@ -61,29 +65,27 @@
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
 
-			<div class="container">
-				<div class="card-image"></div>
-				<div>
-					<label for="start-date">시작일:</label> <input type="text"
-						id="start-date" name="start-date"> <label for="end-date">종료일:</label>
-					<input type="text" id="end-date" name="end-date">
-					<button id="search-btn">검색</button>
-				</div>
-				<table class="transaction-table">
-					<thead>
-						<tr>
-							<th>날짜</th>
-							<th>금액</th>
-							<th>카테고리</th>
-							<th>결제처</th>
-							<th>입금/지출</th>
-						</tr>
-					</thead>
-					<tbody id="transaction-list"></tbody>
-				</table>
-			</div>
+		<div class="date-range-myCardTotal">
+			<label for="start-date-myCardTotal">시작일:</label> 
+			<input type="text" id="start-date" class="date-input-myCardTotal"> 
+				<label for="end-date">종료일:</label> 
+				<input type="text" id="end-date" class="date-input-myCardTotal">
+				<button id="submit-dates">확인</button> <!-- 시작일과 종료일을 선택한 후 서블릿으로 전송하는 버튼 -->
+		</div>
+		<div class="card-list-myCardTotal">
+			<c:forEach items="${list}" var="dto">
+					<div class="card-item-myCardTotal">
+						<div class="card-image-myCardTotal"></div>
+						<div class="card-details-myCardTotal">
+							<div class="card-name-myCardTotal">${dto.alias}</div>
+							<div class="card-usage-myCardTotal">${dto.totalPrice}</div>
+						</div>
+						<input type="hidden" id="seqMyCard" name="seqMyCard" value="${dto.seqMyCard}">
+					</div>
+				</c:forEach>
+		</div>
 
-			<!-- fakecontent 끝 -->
+		<!-- fakecontent 끝 -->
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
         
@@ -93,8 +95,6 @@
     <!-- JavaScript Libraries -->
    
     <!-- Template Javascript -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
     <script>
 
@@ -110,51 +110,86 @@
     });
     
     $(document).ready(function() {
-        // jQuery datepicker 초기화
-        $("#start-date, #end-date").datepicker({
+        $(".date-input-myCardTotal").datepicker({
             dateFormat: "yy-mm-dd"
         });
+    });
 
-        // 검색 버튼 클릭 이벤트 처리
-        $("#search-btn").click(function() {
-            var startDate = $("#start-date").val();
-            var endDate = $("#end-date").val();
+        // 확인 버튼 클릭 이벤트
+        $("#submit-dates").click(function() {
+            var startDate = $("#start-date").val(); // 시작일
+            var endDate = $("#end-date").val(); // 종료일
 
-            // 서버에서 데이터 가져오기 (AJAX 요청)
+            // Ajax를 사용하여 서블릿으로 데이터 전송
             $.ajax({
-                url: "/get-transactions",
-                method: "POST",
+                url: "/account/account/card-use.do", // 서블릿 주소
+                type: "GET",
                 data: {
                     startDate: startDate,
                     endDate: endDate
                 },
                 success: function(response) {
-                    // 가져온 데이터를 날짜 순으로 정렬
-                    var transactions = response.sort(function(a, b) {
-                        return new Date(b.date) - new Date(a.date);
-                    });
-
-                    // 데이터를 테이블에 표시
-                    var transactionList = $("#transaction-list");
-                    transactionList.empty();
-
-                    transactions.forEach(function(transaction) {
-                        var row = "<tr>" +
-                            "<td>" + transaction.date + "</td>" +
-                            "<td>" + transaction.amount + "</td>" +
-                            "<td>" + transaction.category + "</td>" +
-                            "<td>" + transaction.payee + "</td>" +
-                            "<td>" + (transaction.isIncome ? "입금" : "지출") + "</td>" +
-                            "</tr>";
-                        transactionList.append(row);
-                    });
+                    console.log("서블릿으로부터 데이터를 성공적으로 받았습니다.");
+                    // 받아온 데이터를 이용하여 카드 정보를 업데이트
+                    updateCardList(response);
                 },
-                error: function() {
-                    alert("데이터를 가져오는데 실패했습니다.");
+                error: function(xhr, status, error) {
+                    console.error("서블릿과의 통신 중 오류가 발생했습니다.");
                 }
             });
         });
-    });
+
+        
+     // 카드 정보 업데이트 함수
+        function updateCardList(data) {
+            // 받아온 데이터를 이용하여 카드 정보를 업데이트
+            $(".card-list-myCardTotal").empty(); // 이전 카드 정보를 비웁니다.
+            
+            $.each(data, function(index, dto) {
+                var cardItem = `
+                    <div class="card-item-myCardTotal">
+                        <div class="card-image-myCardTotal"></div>
+                        <div class="card-details-myCardTotal">
+                            <div class="card-name-myCardTotal">\${dto.alias}</div>
+                            <div class="card-usage-myCardTotal">\${dto.totalPrice}</div>
+                        </div>
+                        <input type="hidden" id="seqMyCard" name="seqMyCard" value="\${dto.seqMyCard}">
+                    </div>
+                `;
+                
+                $(".card-list-myCardTotal").append(cardItem); // 새로운 카드 정보를 추가합니다.
+            });
+        }
+
+    
+//         // 카드 아이템 생성 함수
+//         function createCardItem(card) {
+//             const cardItem = `
+//                 <div class="card-item-myCardTotal">
+//                     <div class="card-image-myCardTotal"></div>
+//                     <div class="card-details-myCardTotal">
+//                         <div class="card-name-myCardTotal">${card.name}</div>
+//                         <div class="card-usage-myCardTotal">${card.usage}</div>
+//                     </div>
+//                 </div>
+//             `;
+//             return cardItem;
+//         }
+    
+//         // 카드 아이템들을 동적으로 추가
+//         cards.forEach(function(card) {
+//             const cardItem = createCardItem(card);
+//             $(".card-list-myCardTotal").append(cardItem);
+//         });
+        
+//      // card-item-myCardTotal를 클릭하면 CardUseageInfo 함수 실행
+//         $(document).on("click", ".card-item-myCardTotal", function() {
+//             CardUseageInfo();
+//         });
+    
+//     function CardUseageInfo() {
+//     	window.location.href = '/account/account/card-use-detail.do';  	
+//     }
 
     </script>
 </body>

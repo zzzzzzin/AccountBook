@@ -243,23 +243,23 @@ insert into tblSurvey (seq, monthlyPaycheck, savingsGoals, seqCompressionIntensi
     values (9, 3600000, 5400000, 1, 36);
 insert into tblSurvey (seq, monthlyPaycheck, savingsGoals, seqCompressionIntensity, seqSavingsPeriod) 
     values (10, 2800000, 5000000, 2, 50);
-insert into tblSurvey (seq) 
-    values (11);
-insert into tblSurvey (seq) 
-    values (12);
-insert into tblSurvey (seq) 
-    values (13);
-insert into tblSurvey (seq) 
-    values (14);
-insert into tblSurvey (seq) 
-    values (15);
-insert into tblSurvey (seq) 
-    values (16);
-insert into tblSurvey (seq) 
-    values (17);
-insert into tblSurvey (seq) 
-    values (18);
-insert into tblSurvey (seq) 
-    values (19);
-insert into tblSurvey (seq) 
-    values (20);
+--insert into tblSurvey (seq) 
+--    values (11);
+--insert into tblSurvey (seq) 
+--    values (12);
+--insert into tblSurvey (seq) 
+--    values (13);
+--insert into tblSurvey (seq) 
+--    values (14);
+--insert into tblSurvey (seq) 
+--    values (15);
+--insert into tblSurvey (seq) 
+--    values (16);
+--insert into tblSurvey (seq) 
+--    values (17);
+--insert into tblSurvey (seq) 
+--    values (18);
+--insert into tblSurvey (seq) 
+--    values (19);
+--insert into tblSurvey (seq) 
+--    values (20);

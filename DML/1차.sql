@@ -110,32 +110,6 @@ insert into tblSavingsPeriod (seq, period) values (78, 78);
 insert into tblSavingsPeriod (seq, period) values (79, 79);
 insert into tblSavingsPeriod (seq, period) values (80, 80);
 
--- 부채 tblDebt
-insert into tblDebt (seq, cash) values (0, 0);
-insert into tblDebt (seq, cash) values (1, 100000);
-insert into tblDebt (seq, cash) values (2, 200000);
-insert into tblDebt (seq, cash) values (3, 300000);
-insert into tblDebt (seq, cash) values (4, 400000);
-insert into tblDebt (seq, cash) values (5, 500000);
-insert into tblDebt (seq, cash) values (6, 600000);
-insert into tblDebt (seq, cash) values (7, 700000);
-insert into tblDebt (seq, cash) values (8, 800000);
-insert into tblDebt (seq, cash) values (9, 900000);
-insert into tblDebt (seq, cash) values (10, 1000000);
-
--- 자산 tblProperty
-insert into tblProperty (seq, cash) values (0, 0);
-insert into tblProperty (seq, cash) values (1, 100000);
-insert into tblProperty (seq, cash) values (2, 200000);
-insert into tblProperty (seq, cash) values (3, 300000);
-insert into tblProperty (seq, cash) values (4, 400000);
-insert into tblProperty (seq, cash) values (5, 500000);
-insert into tblProperty (seq, cash) values (6, 600000);
-insert into tblProperty (seq, cash) values (7, 700000);
-insert into tblProperty (seq, cash) values (8, 800000);
-insert into tblProperty (seq, cash) values (9, 900000);
-insert into tblProperty (seq, cash) values (10, 1000000);
-
 --API tblAPI
 
 -- 입출금 상태 tblDepositWithdrawalStatus

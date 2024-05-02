@@ -28,6 +28,10 @@ left join tblMemberPriv mp on mp.seqPriv = pri.seq
         left join tblMember me on me.id = mp.idmember
             left join tblAdmin ad on ad.id = ap.idAdmin;
 
+select * from tblsurvey s
+inner join tblMember m on s.seq = m.seqSurvey;
+
+
 --개인정보
 --vwMemberInfo 
 --tblMember, tblProfileimg
@@ -346,15 +350,126 @@ from tblMember me
 --가계부 카테고리
 --vwAccountBookCategory
 --tblCardAndAcc, tblAccCategoryList, tblKeyWord, tblAccCategory
+create or replace view vwAccountBookCategory as (
+    select 
+        ac.seq as ac_seq,
+        ac.name as ac_name,
+        ke.seq as ke_seq,
+        ke.content as ke_content,
+        caa.seq as caa_seq,
+        caa.seqCardCategory as caa_seqCardCategory, --tblCardCategory seq = fk
+        acl.seq as acl_seq,
+        acl.seqAccInfo as acl_seqAccInfo -- tblAccInfo seq = fk - 연결점
+    from tblAccCategory ac
+        inner join tblKeyWord ke 
+        on ac.seq = ke.seqAccCategoryNumber
+            inner join tblCardAndAcc caa 
+            on ac.seq = caa.seqAccCategory
+                inner join tblAccCategoryList acl 
+                on ac.seq = acl.seqAccCategory);
+
 
 --가계부 내용
 --vwAcc
 --tblAcc, tblAccInfo, tblFixedDepositWithdrawalCheck, tblFixedFluctuationPeriod, tblMyCard, tblReasonChangeCategory, tblReasonsChangeList, tblPurchaseWishList
+create or replace view vwAcc as (
+select 
+    acc.seq as acc_seq,
+    acc.idMember as acc_idMember,
+    ai.seq as ai_seq,
+    ai.content as ai_content,
+    ai.accInfoDate as ai_accInfoDate,
+    ai.price as ai_price,
+    ai.location as ai_location,
+    rcc.seq as rcc_seq,
+    rcl.seq as rcl_seq,
+    rcl.content as rcl_content,
+    mc.seq as mc_seq,
+    mc.cardNumber as mc_cardNumber,
+    mc.alias as mc_alias,
+    mc.validity as mc_validity,
+    fdw.seq as fdw_seq,
+    fdw.content as fdw_content,
+    ffp.seq as ffp_seq,
+    ffp.period as ffp_period
+from tblAcc acc
+    inner join tblAccInfo ai
+    on acc.seq = ai.seqAcc
+        inner join tblReasonChangeCategory rcc
+        on ai.seqReasonChangeCategory = rcc.seq
+         inner join tblReasonsChangeList rcl
+         on rcc.seqReasonsChangeList = rcl.seq
+            inner join tblMyCard mc
+            on rcc.seqMyCard = mc.seq
+                inner join tblFixedDepositWithdrawalCheck fdw
+                on ai.seqFixedFluctuationCheck= fdw.seq
+                    inner join tblFixedFluctuationPeriod ffp
+                    on fdw.seqFixedFluctuationPeriod = ffp.seq);
+
 
 --사용자 금융 정보
 --vwMemberFinance
 --tblMemberFinance, tblProperty, tblDebt
+create or replace view vwMemberFinance as (
+select 
+    mf.seq as mf_seq,
+    mf.idMember as mf_idMember,
+    mf.seqProperty as mf_seqProperty, -- pro.seq
+    pro.cash as pro_cash,
+    mf.seqDebt as mf_seqDebt, -- de.seq
+    de.cash as de_cash
+from tblMemberFinance mf
+    inner join tblProperty pro
+    on mf.seqProperty = pro.seq
+        inner join tblDebt de
+        on mf.seqDebt = de.seq);
 
 --대시보드 정보
 --vwAccContent
 --tblNews, tblNewsCategoryList, vwAcc, vwSurvey, vwAccountBookCategory, vwMemberFinance
+create or replace view vwAccContent as (
+select 
+    vwaccountbookcategory.ac_seq,
+    vwaccountbookcategory.ac_name,
+    vwaccountbookcategory.ke_content,
+    vwaccountbookcategory.caa_seq,
+    vwaccountbookcategory.caa_seqcardcategory,
+    vwAccountBookCategory.acl_seq,
+    vwaccountbookcategory.acl_seqaccinfo,
+    vwAcc.acc_seq,
+    vwacc.acc_idmember,
+    vwacc.ai_seq,
+    vwacc.ai_content,
+    vwacc.ai_accinfodate,
+    vwacc.ai_price,
+    vwacc.ai_location,
+    vwacc.rcc_seq,
+    vwacc.rcl_seq,
+    vwAcc.rcl_content,
+    vwAcc.mc_seq,
+    vwacc.mc_cardnumber,
+    vwacc.mc_alias,
+    vwacc.mc_validity,
+    vwacc.fdw_seq,
+    vwacc.fdw_content,
+    vwacc.ffp_seq,
+    vwacc.ffp_period,
+    vwsurvey.su_seq,
+    vwsurvey.su_monthlypaycheck,
+    vwsurvey.su_savingsgoals,
+    vwsurvey.ci_seq,
+    vwsurvey.ci_intensity,
+    vwsurvey.sp_seq,
+    vwsurvey.sp_period,
+    vwSurvey.me_pw,
+    vwSurvey.me_name,
+    vwsurvey.me_phonenumber,
+    vwSurvey.me_nss,
+    vwsurvey.me_reportcount
+from vwAccountBookCategory 
+    inner join vwAcc
+    on vwAccountBookCategory.acl_seqAccInfo = vwAcc.ai_seq
+        inner join tblMember me
+        on vwacc.acc_idmember = me.id
+            inner join vwSurvey
+            on me.seqSurvey = vwSurvey.su_seq);

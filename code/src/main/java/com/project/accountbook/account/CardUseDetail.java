@@ -9,15 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/account/fluctuations.do")
-public class Fluctuations extends HttpServlet {
+@WebServlet("/account/card-use-detail.do")
+public class CardUseDetail extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		
 
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/account/fluctuations.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/account/card-use-detail.jsp");
 		dispatcher.forward(req, resp);
 
 	}

@@ -14,7 +14,7 @@
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Icon Font Stylesheet -->
@@ -44,7 +44,7 @@
 
         <!-- Sidebar Start -->
         <!-- 사이드바  -->
-        <%@include file="/WEB-INF/views/inc/account-sidebar.jsp"%>
+        <%@include file="/WEB-INF/views/inc/mypage-sidebar.jsp"%>
         <!-- 사이드바 끝  -->
         <!-- Sidebar End -->
 
@@ -60,7 +60,6 @@
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
       
-      	<div>구현 필요!</div>
 
         <!-- fakecontent 끝 -->
         <!-- Back to Top -->

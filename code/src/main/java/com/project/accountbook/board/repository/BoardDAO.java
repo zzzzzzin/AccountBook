@@ -1,113 +1,113 @@
 package com.project.accountbook.board.repository;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
 
+import com.project.accountbook.board.post.model.AttendanceDTO;
 import com.project.accountbook.board.post.model.PostDTO;
+import com.project.accountbook.util.DBUtil;
 
 public class BoardDAO {
 
+	private DBUtil db;
 	private Connection conn;
-	
+	private Statement stat;
+	private PreparedStatement pstat;
+	private ResultSet rs;
+
 	public BoardDAO() {
-		
+		this.conn = DBUtil.open("192.168.10.47", "jspProject", "java1234");
 	}
 
-	public BoardDAO(Connection conn) {
-		this.conn = conn;
-	}
+//	public BoardDAO() {
+//		this.conn = DBUtil.open("localhost", "c##test123", "java1234");
+//	}
 
-	// 게시판
-	// 출석게시판 전체 읽어오기
-	public void selectAttendanceBoard() {
-		
-		Connection conn = null; // Connection == DB연결
-		PreparedStatement pstmt = null; // PreparedStatement == 미리 컴파일된 SQL 문을 나타내는 객체
-		ResultSet rs = null; // ResultSet == 데이터베이스에서 가져온 결과 집합을 나타내는 객체
-		
-		ArrayList<PostDTO> list = new ArrayList<>();
-		
-		
+	// 삽입(C)
+	public int insert(PostDTO dto) {
+
 		try {
-		
-			conn = DriverManager.getConnection(
-					"jdbc:oracle:thin:@192.168.10.47:1521:xe"
-					, "jspProject"
-					, "java1234"); // db에 접속 
-									
-			System.out.println("접속 성공!");
+			
+			String sql = "";
 
-			pstmt = conn.prepareStatement("select * from vwAttendance;");
-			rs = pstmt.executeQuery();
+			pstat = conn.prepareStatement(sql);
+
+		} catch (SQLException e) {
+
+		}
+
+		return 0;
+	}
+
+	// 조회(R)
+	public List<AttendanceDTO> selectAll() {
+
+		ArrayList<AttendanceDTO> list = new ArrayList<>();
+		try {
+
+			String sql = "select * from vwAttendance";
+			stat = conn.createStatement();
+			rs = stat.executeQuery(sql);
+
 			
 			while (rs.next()) {
-				
-				PostDTO attendance = new PostDTO();
-				
-				String seq = rs.getString("번호");
-				String seqUser = rs.getString("닉네임");
-				String title = rs.getString("제목");
-				String writeDate = rs.getString("등록날짜");
-				String date = writeDate.substring(0, Math.min(writeDate.length(), 10));
-				int viewCount = rs.getInt("조회수");
-				int likeCount = rs.getInt("추천");
+				AttendanceDTO dto = new AttendanceDTO(
+				        //rs.getString("seq"), 
+				       // rs.getString("seqBoard"), 
+				        //rs.getString("seqUser"), 
+				       // rs.getString("title"), 
+				       // rs.getString("content"), 
+				       // rs.getString("writeDate"),
+				        //rs.getString("editDate"), 
+				        //rs.getInt("viewCount"), 
+				        //rs.getInt("likeCount"), 
+				       // rs.getInt("dislikeCount"), 
+				       // rs.getInt("reportCount"), 
+				        //rs.getInt("secretCheck"),
+				        //rs.getInt("blindCheck"), 
+				        //rs.getString("seqPost"), 
+				       // rs.getString("fileName"), 
+				        //rs.getString("fileLink")
+				        
+				        rs.getInt("seq"), 
+				        rs.getString("nickname"), 
+				        rs.getString("title"), 
+				        rs.getString("date"), 
+				        rs.getInt("viewCount"),
+				        rs.getInt("likeCount")
 
-			PostDTO dto = new PostDTO(seq, seqUser, title, date); // Content는 null로 설정
-			attendance.setSeqPost(seq);
-			attendance.setSeqUser(seqUser);
-			attendance.setTitle(title);
-			attendance.setWriteDate(date);
-			attendance.setViewCount(viewCount);
-			attendance.setLikeCount(likeCount);
-			list.add(attendance);
-		}
-			
+				    );
+				String seq = rs.getString("seq");
+				String seqUser = rs.getString("nickname");
+				String title = rs.getString("title");
+				String writeDate = rs.getString("date");
+				String date = writeDate.substring(0, Math.min(writeDate.length(), 10));
+				int viewCount = rs.getInt("viewCount");
+				int likeCount = rs.getInt("likeCount");
+				
+				//dto.setSeqPost("seq");
+				//dto.setSeqUser("seqUser");
+				//dto.setTitle("title");
+				//dto.setWriteDate(date);
+				//dto.setViewCount(viewCount);
+				//dto.setLikeCount(likeCount);
+				
+				list.add(dto);
+			}
+
 		} catch (SQLException e) {
-			System.out.println("SQLException");
 			e.printStackTrace();
-		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}	
-			}
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}	
-			}
 		}
-	}// getSeqBoard 전체 읽어오기
-	
-	// 입력(insert) - 넘어오는 데이터는 PostDTO의 dto
-	public int insertAttendanceBoard(PostDTO dto) {
-		
-		int result = 0;
-		PreparedStatement pstmt = null;
-		String sql;
-		
-		try {
-			
-		} catch (Exception e) {
-			System.out.println(e.toString());
-		}
-		
-		
-		return result; // result로 반환
-		// --여기까지가 입력(insert)
-		
+		return list;
 	}
 
+	// 수정(U)
+
+	// 삭제(D)
 
 }// BoardDAO
