@@ -14,7 +14,7 @@
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Icon Font Stylesheet -->
@@ -25,80 +25,7 @@
 </head>
 <style>
 
-   .container-unregister {
-        /* border: 1px solid black; */
-        width: 600px;
-        height: 300px;
-        background-color: #F1F4C7;
-        display: flex;
-        flex-direction: column;
-        position: relative;
-    }
-
-    .content-unregister {
-        width: 90%;
-        height: 70%;
-    }
-
-    .input-pw, .check-pw {
-        display: flex;
-        justify-content: space-around;
-        margin-bottom: 10px;
-        width: 70%;
-        height: 20%;
-        position: relative;
-    }
-    
-    
-
-    .input-pw-title, .check-pw-titles {
-        background-color: #ffffff;
-        width: 200px;
-        height: 100%;
-        text-align: center;
-        position: absolute;
-        top: 170%;
-        left: 10%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .input-pw-real, .check-pw-input {
-        background-color: #ffffff;
-        width: 300px;
-        height: 100%;
-        text-align: center;
-        position: absolute;
-        top: 100%;
-        left: 70%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    .input-pw-real > input, .check-pw-input > input {
-    	border: none;
-    }
-
-    .unregister {
-        display: flex;
-        justify-content: center;
-    }
-    
-    .unregister > div {
-    	margin-right: 10px;
-    }
-
-    .check-pw-btn {
-        width: 80%;
-        height: 30px;
-        position: absolute;
-        top: 80%;
-        left: 10%;
-        background-color: #d9d9d9;
-        border: 0;
-    }
+   
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
@@ -117,7 +44,7 @@
 
         <!-- Sidebar Start -->
         <!-- 사이드바  -->
-        <%@include file="/WEB-INF/views/inc/mypage-sidebar.jsp"%>
+        <%@include file="/WEB-INF/views/inc/account-sidebar.jsp"%>
         <!-- 사이드바 끝  -->
         <!-- Sidebar End -->
 
@@ -133,31 +60,26 @@
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
 
-			<div class="myPage">
-				<form action="">
-					<div class="container-unregister">
-						<div class="content-unregister">
-							<div class="input-pw">
-								<div class="input-pw-title">현재 비밀번호</div>
-								<div class="input-pw-real">
-									<input class="unregisterPw" type="text" value="비밀번호를 입력하세요.">
-								</div>
-							</div>
-							<div class="check-pw">
-								<div class="check-pw-titles">비밀번호 확인</div>
-								<div class="check-pw-input">
-									<input class="unregisterPw" type="text" value="비밀번호를 입력하세요.">
-								</div>
-							</div>
-						</div>
-						<div class="unregister">
-							<div>탈퇴하시겠습니까?</div>
-							<input type="checkbox" class="unregisterCheckBox">
-						</div>
-						<button type="submit" class="check-pw-btn">탈퇴하기</button>
-					</div>
-				</form>
+			<div class="card-image"></div>
+			<div>
+				<label for="start-date">시작일:</label> <input type="text"
+					id="start-date" name="start-date"> <label for="end-date">종료일:</label>
+				<input type="text" id="end-date" name="end-date">
+				<button id="search-btn">검색</button>
 			</div>
+			<table class="transaction-table">
+				<thead>
+					<tr>
+						<th>날짜</th>
+						<th>금액</th>
+						<th>카테고리</th>
+						<th>결제처</th>
+						<th>입금/지출</th>
+					</tr>
+				</thead>
+				<tbody id="transaction-list"></tbody>
+			</table>
+
 
 			<!-- fakecontent 끝 -->
         <!-- Back to Top -->
@@ -183,16 +105,52 @@
         });
     });
     
-    document.addEventListener('DOMContentLoaded', function () {
-        const unregisterPwInputs = document.querySelectorAll('.unregisterPw');
+    $(document).ready(function() {
+        // jQuery datepicker 초기화
+        $("#start-date, #end-date").datepicker({
+            dateFormat: "yy-mm-dd"
+        });
 
-        unregisterPwInputs.forEach(input => {
-            input.addEventListener('focus', function () {
-                this.value = '';
+        // 검색 버튼 클릭 이벤트 처리
+        $("#search-btn").click(function() {
+            var startDate = $("#start-date").val();
+            var endDate = $("#end-date").val();
+
+            // 서버에서 데이터 가져오기 (AJAX 요청)
+            $.ajax({
+                url: "/get-transactions",
+                method: "POST",
+                data: {
+                    startDate: startDate,
+                    endDate: endDate
+                },
+                success: function(response) {
+                    // 가져온 데이터를 날짜 순으로 정렬
+                    var transactions = response.sort(function(a, b) {
+                        return new Date(b.date) - new Date(a.date);
+                    });
+
+                    // 데이터를 테이블에 표시
+                    var transactionList = $("#transaction-list");
+                    transactionList.empty();
+
+                    transactions.forEach(function(transaction) {
+                        var row = "<tr>" +
+                            "<td>" + transaction.date + "</td>" +
+                            "<td>" + transaction.amount + "</td>" +
+                            "<td>" + transaction.category + "</td>" +
+                            "<td>" + transaction.payee + "</td>" +
+                            "<td>" + (transaction.isIncome ? "입금" : "지출") + "</td>" +
+                            "</tr>";
+                        transactionList.append(row);
+                    });
+                },
+                error: function() {
+                    alert("데이터를 가져오는데 실패했습니다.");
+                }
             });
         });
     });
-
 
     </script>
 </body>

@@ -15,6 +15,8 @@ public class MemberInfoDTO {
 	private int savingsGoals;
 	private String seqCompressionIntensity;
 	private String seqSavingsPeriod;
+
+	
 	
 	public String getIdMember() {
 		return idMember;

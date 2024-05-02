@@ -28,6 +28,10 @@ left join tblMemberPriv mp on mp.seqPriv = pri.seq
         left join tblMember me on me.id = mp.idmember
             left join tblAdmin ad on ad.id = ap.idAdmin;
 
+select * from tblsurvey s
+inner join tblMember m on s.seq = m.seqSurvey;
+
+
 --개인정보
 --vwMemberInfo 
 --tblMember, tblProfileimg
