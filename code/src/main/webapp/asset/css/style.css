@@ -1,4 +1,4 @@
-/********** Template CSS **********/
+/* /* ********* Template CSS *********
 :root {
     --primary: #009CFF;
     --light: #F3F6F9;
@@ -14,7 +14,7 @@
 }
 
 
-/*** Spinner ***/
+** Spinner **
 #spinner {
     opacity: 0;
     visibility: hidden;
@@ -29,7 +29,7 @@
 }
 
 
-/*** Button ***/
+** Button **
 .btn {
     transition: .5s;
 }
@@ -65,7 +65,7 @@
 }
 
 
-/*** Layout ***/
+** Layout **
 .sidebar {
     position: fixed;
     top: 0;
@@ -121,7 +121,7 @@
 }
 
 
-/*** Navbar ***/
+** Navbar **
 .sidebar .navbar .navbar-nav .nav-link {
     padding: 7px 20px;
     color: var(--dark);
@@ -217,7 +217,7 @@
 }
 
 
-/*** Date Picker ***/
+** Date Picker **
 .bootstrap-datetimepicker-widget.bottom {
     top: auto !important;
 }
@@ -245,14 +245,14 @@
 }
 
 
-/*** Testimonial ***/
+** Testimonial **
 .progress .progress-bar {
     width: 0px;
     transition: 2s;
 }
 
 
-/*** Testimonial ***/
+** Testimonial **
 .testimonial-carousel .owl-dots {
     margin-top: 24px;
     display: flex;
@@ -274,4 +274,4 @@
 .testimonial-carousel .owl-dot.active {
     background: var(--dark);
     border-color: var(--primary);
-}
+} */ 
