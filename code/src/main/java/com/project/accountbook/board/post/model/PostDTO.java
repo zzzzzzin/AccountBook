@@ -59,10 +59,56 @@ public class PostDTO {
 		this.fileLink = fileLink;
 	}
 	
+	//출석 게시판
+	public PostDTO(
+			String seq, 
+			String seqUser, 
+			String title, 
+			String writeDate,
+			String editDate, 
+			int viewCount, 
+			int likeCount, 
+			int dislikeCount, 
+			int reportCount, 
+			int secretCheck,
+			int blindCheck, 
+			String seqPost, 
+			String fileName, 
+			String fileLink) {
+		super();
+		this.seq = seq;
+		this.seqBoard = seqBoard;
+		this.seqUser = seqUser;
+		this.title = title;
+		this.content = content;
+		this.writeDate = writeDate;
+		this.editDate = editDate;
+		this.viewCount = viewCount;
+		this.likeCount = likeCount;
+		this.dislikeCount = dislikeCount;
+		this.reportCount = reportCount;
+		this.secretCheck = secretCheck;
+		this.blindCheck = blindCheck;
+		this.seqPost = seqPost;
+		this.fileName = fileName;
+		this.fileLink = fileLink;
+	}
+	
 	public PostDTO() {
 		
 	}
 	
+	// 출석 게시판
+//	public PostDTO(String seq, String seqUser, String title, String writeDate) {
+//		super();
+//		this.seq = seq;
+//		this.seqUser = seqUser;
+//		this.title = title;
+//		this.writeDate = writeDate;
+//	}
+	
+	
+
 	//첨부파일
 	private String seqPost;
 	private String fileName;
