@@ -24,7 +24,7 @@
 </head>
 <style>
 
-   .container {
+   .delContainer {
         border: 1px solid black;
         width: 600px;
         height: 300px;
@@ -34,7 +34,7 @@
         position: relative;
     }
 
-    .content {
+    .delContent {
         width: 90%;
         height: 70%;
     }
@@ -47,7 +47,12 @@
         height: 20%;
         position: relative;
     }
-
+    
+    .editPw, .checkPw {
+    	border: none;
+    	text-align: center;
+    }
+    
     .now-pw-title, .edit-pw-title, .edit-pw-check-title {
         background-color: #ffffff;
         width: 200px;
@@ -84,7 +89,11 @@
         border: 0;
     }
     
+    
+    
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
+    
+    
       
 </style>
 
@@ -119,19 +128,23 @@
 
 			<div class="myPage">
 				<form action="">
-					<div class="container">
-						<div class="content">
+					<div class="delContainer">
+						<div class="delContent">
 							<div class="now-pw">
 								<div class="now-pw-title">현재 비밀번호</div>
 								<div class="now-pw-real">1234</div>
 							</div>
 							<div class="edit-pw">
 								<div class="edit-pw-title">수정 비밀번호</div>
-								<div class="edit-pw-input">4321</div>
+								<div class="edit-pw-input">
+									<input type="text" value="4321" class="editPw">
+								</div>
 							</div>
 							<div class="edit-pw-check">
 								<div class="edit-pw-check-title">수정 비밀번호 확인</div>
-								<div class="edit-pw-check-input">4321</div>
+								<div class="check-pw-input">
+									<input type="text" value="4321" class="checkPw">
+								</div>
 							</div>
 						</div>
 						<button type="submit" class="edit-pw-btn">수정 완료</button>
