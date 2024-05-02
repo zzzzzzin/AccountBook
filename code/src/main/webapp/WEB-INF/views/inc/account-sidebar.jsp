@@ -71,11 +71,6 @@
 					<li><a href="/account/account/analysis.do">분석</a></li>
 				</ul></li>
 			<li><a href="/account/account/cost-revenue.do"><i class="fas fa-tachometer-alt"></i> 비용 수익</a></li>
-			<li class="dropdown"><a href="/account/account/property-liabilities.do"><i class="fas fa-shopping-cart"></i> 자산</a>
-				<ul class="submenu">
-					<li><a href="/account/account/property-liabilities.do">자산부채</a></li>
-					<li><a href="/account/account/fluctuations.do">자산변동</a></li>
-				</ul></li>
 			<li><a href="/account/account/card-use.do"><i class="fas fa-user"></i> 카드 사용</a>
 		</ul>
 	</nav>
