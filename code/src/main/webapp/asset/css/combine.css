@@ -620,7 +620,7 @@ section.notice {
   display: block;
   clear: both;
 }
-.container {
+.container-reset {
   width: 1100px;
   margin: 0 auto;
 }
@@ -657,7 +657,7 @@ section.notice {
 /* 게시판 틀 끝 */
 
 /* 댓글 시작*/
-.container {
+.container-comment {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
@@ -1129,6 +1129,11 @@ height: 30px;
   position: relative;
 }
 
+
+#editImgIcon {
+  border: 1px;
+}
+
 .user-profile-img {
   border: 1px solid black;
   width: 80%;
@@ -1204,12 +1209,31 @@ height: 30px;
   position: absolute;
   top: 5%;
   right: 5%;
+  border: 0;
+  background-color: #F1F4C7;
 }
 
 .user-profile-nickname-duplicate, .user-profile-phone-duplicate {
   width: 70px;
   margin-left: 5px;
 }
+
+.userSaveBtn {
+  border: none;
+  background-color: #ffffff;
+  position: relative;
+}
+
+.userSaveBtn > button {
+  width: 100px;
+  height: 30px;
+  border-radius: 10px;
+  border: none;
+  position: absolute;
+  bottom:-50px;
+  right: -150px;
+}
+
 /* editUserInfo 끝 */
 
 /* mypage 시작 */
@@ -1481,7 +1505,7 @@ height: 30px;
 /* friendInvite 끝 */
 
 /* propertyLiabilities 시작 */
-.container-pl {
+/* .container-pl {
   max-width: 800px;
   margin: 0 auto;
   padding: 40px;
@@ -1615,5 +1639,5 @@ height: 30px;
 
 .block:hover .hover-message {
   display: block;
-}
+} */
 /* propertyLiabilities 끝 */

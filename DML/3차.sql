@@ -35,4 +35,7 @@ INSERT INTO tblMember(id,pw,name,nickname,phoneNumber,nss,gender,reportCount,joi
 INSERT INTO tblMember(id,pw,name,nickname,phoneNumber,nss,gender,reportCount,joinDate, seqSurvey,seqProfileimg) VALUES ('abc002@naver.com',1234,'홍길순','토끼','010-1234-0002','9801012234567','여',0,'2023-01-10',2,1);
 INSERT INTO tblMember(id,pw,name,nickname,phoneNumber,nss,gender,reportCount,joinDate, seqSurvey,seqProfileimg) VALUES ('abc003@naver.com',1234,'옹길동','강아지','010-1234-0003','0101013234567','남',1,'2024-02-23',1,1);
 INSERT INTO tblMember(id,pw,name,nickname,phoneNumber,nss,gender,reportCount,joinDate, seqSurvey,seqProfileimg) VALUES ('abc004@naver.com',1234,'옹길순','고양이','010-1234-0004','0201014234567','여',2,'2023-02-18',5,1);
+INSERT INTO tblMember(id,pw,name,nickname,phoneNumber,ssn,gender,reportCount,joinDate, seqSurvey,seqProfileimg) VALUES ('abc005@naver.com',1234,'옹길순미','고양이','010-1234-0001','0201014234567','여',3,'2023-02-18',8,1);
+INSERT INTO tblMember(id,pw,name,nickname,phoneNumber,ssn,gender,reportCount,joinDate, seqSurvey,seqProfileimg) VALUES ('abc0000@naver.com',1234,'옹길','고아','010-1234-7531','020101412567','여',2,'2023-02-18',2,1);
+
 commit;

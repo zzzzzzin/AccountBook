@@ -21,7 +21,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="/account/asset/css/combine.css">
+    <!-- Libraries Stylesheet -->
 </head>
 <style>
 
@@ -59,45 +59,7 @@
             <!-- Navbar End -->
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
-        
-        	<div class="container-addcard">
-    <h2>카드 이미지</h2>
-    <div class="form-group-addcard">
-      <label for="cardImage">카드 이미지</label>
-      <input type="file" id="cardImage" onchange="preview-addcardImage(event)">
-      <div class="preview-addcard" id="imagepreview-addcard">
-        <span>미리보기</span>
-      </div>
-    </div>
-    <div class="form-group-addcard">
-      <label for="cardName">카드명</label>
-      <input type="text" id="cardName">
-    </div>
-    <div class="form-group-addcard">
-      <label for="cardIssuer">카드사</label>
-      <input type="text" id="cardIssuer">
-    </div>
-    <div class="form-group-addcard">
-      <label for="cardNumber">카드번호</label>
-      <input type="text" id="cardNumber">
-    </div>
-    <div class="form-group-addcard">
-      <label for="cardName2">카드명</label>
-      <input type="text" id="cardName2">
-    </div>
-    <div class="form-group-addcard">
-      <label for="nickname">별칭</label>
-      <input type="text" id="nickname">
-    </div>
-    <div class="form-group-addcard">
-      <label for="expirationDate">유효기간</label>
-      <input type="text" id="expirationDate">
-    </div>
-    <div class="button-group-addcard">
-      <button type="button">취소</button>
-      <button type="submit">완료</button>
-    </div>
-  </div>     
+      
 
         <!-- fakecontent 끝 -->
         <!-- Back to Top -->
@@ -122,15 +84,6 @@
         content.classList.toggle('expanded');
         });
     });
-    
-    function previewImage(event) {
-        var reader = new FileReader();
-        reader.onload = function() {
-          var output = document.getElementById('imagepreview-addcard');
-          output.innerHTML = '<img src="' + reader.result + '">';
-        }
-        reader.readAsDataURL(event.target.files[0]);
-      }
 
     </script>
 </body>

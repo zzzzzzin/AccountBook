@@ -14,19 +14,23 @@
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="../../css/combine.css">
+    <!-- Libraries Stylesheet -->
 </head>
 <style>
 
-   
+   body {
+        font-family: 'Noto Sans KR', sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 20px;
+    }
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
@@ -61,26 +65,16 @@
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
 
-			<div class="container">
-				<div class="card-image"></div>
-				<div>
-					<label for="start-date">시작일:</label> <input type="text"
-						id="start-date" name="start-date"> <label for="end-date">종료일:</label>
-					<input type="text" id="end-date" name="end-date">
-					<button id="search-btn">검색</button>
+			<div class="container-myCardTotal">
+				<div class="date-range-myCardTotal">
+					<label for="start-date-myCardTotal">시작일:</label> <input type="text"
+						id="start-date" class="date-input-myCardTotal"> <label
+						for="end-date">종료일:</label> <input type="text" id="end-date"
+						class="date-input-myCardTotal">
 				</div>
-				<table class="transaction-table">
-					<thead>
-						<tr>
-							<th>날짜</th>
-							<th>금액</th>
-							<th>카테고리</th>
-							<th>결제처</th>
-							<th>입금/지출</th>
-						</tr>
-					</thead>
-					<tbody id="transaction-list"></tbody>
-				</table>
+				<div class="card-list-myCardTotal">
+					<!-- 카드 아이템들이 동적으로 추가될 곳 -->
+				</div>
 			</div>
 
 			<!-- fakecontent 끝 -->
@@ -93,8 +87,6 @@
     <!-- JavaScript Libraries -->
    
     <!-- Template Javascript -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
     <script>
 
@@ -110,51 +102,49 @@
     });
     
     $(document).ready(function() {
-        // jQuery datepicker 초기화
-        $("#start-date, #end-date").datepicker({
+        // 달력 초기화
+        $(".date-input-myCardTotal").datepicker({
             dateFormat: "yy-mm-dd"
         });
-
-        // 검색 버튼 클릭 이벤트 처리
-        $("#search-btn").click(function() {
-            var startDate = $("#start-date").val();
-            var endDate = $("#end-date").val();
-
-            // 서버에서 데이터 가져오기 (AJAX 요청)
-            $.ajax({
-                url: "/get-transactions",
-                method: "POST",
-                data: {
-                    startDate: startDate,
-                    endDate: endDate
-                },
-                success: function(response) {
-                    // 가져온 데이터를 날짜 순으로 정렬
-                    var transactions = response.sort(function(a, b) {
-                        return new Date(b.date) - new Date(a.date);
-                    });
-
-                    // 데이터를 테이블에 표시
-                    var transactionList = $("#transaction-list");
-                    transactionList.empty();
-
-                    transactions.forEach(function(transaction) {
-                        var row = "<tr>" +
-                            "<td>" + transaction.date + "</td>" +
-                            "<td>" + transaction.amount + "</td>" +
-                            "<td>" + transaction.category + "</td>" +
-                            "<td>" + transaction.payee + "</td>" +
-                            "<td>" + (transaction.isIncome ? "입금" : "지출") + "</td>" +
-                            "</tr>";
-                        transactionList.append(row);
-                    });
-                },
-                error: function() {
-                    alert("데이터를 가져오는데 실패했습니다.");
-                }
-            });
+    
+        // 카드 데이터
+        const cards = [
+            { name: "카드이미지1", usage: "총 사용 금액1" },
+            { name: "카드이미지2", usage: "총 사용 금액2" },
+            { name: "카드이미지3", usage: "총 사용 금액3" },
+            { name: "카드이미지4", usage: "총 사용 금액4" },
+            { name: "카드이미지5", usage: "총 사용 금액5" }
+        ];
+    
+        // 카드 아이템 생성 함수
+        function createCardItem(card) {
+            const cardItem = `
+                <div class="card-item-myCardTotal">
+                    <div class="card-image-myCardTotal"></div>
+                    <div class="card-details-myCardTotal">
+                        <div class="card-name-myCardTotal">${card.name}</div>
+                        <div class="card-usage-myCardTotal">${card.usage}</div>
+                    </div>
+                </div>
+            `;
+            return cardItem;
+        }
+    
+        // 카드 아이템들을 동적으로 추가
+        cards.forEach(function(card) {
+            const cardItem = createCardItem(card);
+            $(".card-list-myCardTotal").append(cardItem);
+        });
+        
+     // card-item-myCardTotal를 클릭하면 CardUseageInfo 함수 실행
+        $(document).on("click", ".card-item-myCardTotal", function() {
+            CardUseageInfo();
         });
     });
+    
+    function CardUseageInfo() {
+    	window.location.href = '/account/account/card-use-detail.do';  	
+    }
 
     </script>
 </body>

@@ -14,24 +14,18 @@
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-<link rel="stylesheet" href="/account/asset/css/combine.css">
+    <link rel="stylesheet" href="/account/asset/css/combine.css">
 </head>
 <style>
 
-   body {
-        font-family: 'Noto Sans KR', sans-serif;
-        background-color: #f5f5f5;
-        margin: 0;
-        padding: 20px;
-    }
-    
+   
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
@@ -65,22 +59,47 @@
             <!-- Navbar End -->
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
+        
+        	<div class="container-addcard">
+    <h2>카드 이미지</h2>
+    <div class="form-group-addcard">
+      <label for="cardImage">카드 이미지</label>
+      <input type="file" id="cardImage" onchange="preview-addcardImage(event)">
+      <div class="preview-addcard" id="imagepreview-addcard">
+        <span>미리보기</span>
+      </div>
+    </div>
+    <div class="form-group-addcard">
+      <label for="cardName">카드명</label>
+      <input type="text" id="cardName">
+    </div>
+    <div class="form-group-addcard">
+      <label for="cardIssuer">카드사</label>
+      <input type="text" id="cardIssuer">
+    </div>
+    <div class="form-group-addcard">
+      <label for="cardNumber">카드번호</label>
+      <input type="text" id="cardNumber">
+    </div>
+    <div class="form-group-addcard">
+      <label for="cardName2">카드명</label>
+      <input type="text" id="cardName2">
+    </div>
+    <div class="form-group-addcard">
+      <label for="nickname">별칭</label>
+      <input type="text" id="nickname">
+    </div>
+    <div class="form-group-addcard">
+      <label for="expirationDate">유효기간</label>
+      <input type="text" id="expirationDate">
+    </div>
+    <div class="button-group-addcard">
+      <button type="button">취소</button>
+      <button type="submit">완료</button>
+    </div>
+  </div>      
 
-			<div class="container-myCardTotal">
-				<div class="date-range-myCardTotal">
-					<label for="start-date-myCardTotal">시작일:</label> <input type="text"
-						id="start-date" class="date-input-myCardTotal"> <label
-						for="end-date">종료일:</label> <input type="text" id="end-date"
-						class="date-input-myCardTotal">
-				</div>
-				<div class="card-list-myCardTotal">
-					<!-- 카드 아이템들이 동적으로 추가될 곳 -->
-				</div>
-			</div>
-			
-			<button class="modal-button" onclick="openModal()">카드 추가</button>
-
-			<!-- fakecontent 끝 -->
+        <!-- fakecontent 끝 -->
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
         
@@ -88,19 +107,10 @@
     </div>
 
     <!-- JavaScript Libraries -->
-
    
     <!-- Template Javascript -->
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
     <script>
-    
-    function openModal() {
-        // 모달 열기 함수 구현
-        console.log("모달 열기");
-        
-        window.location.href = '/account/card/add.do';
-    }
-    
 
     document.addEventListener('DOMContentLoaded', function() {
     const sidebarToggler = document.getElementById('sidebar-toggler');
@@ -113,41 +123,15 @@
         });
     });
     
-    $(document).ready(function() {
-        // 달력 초기화
-        $(".date-input-myCardTotal").datepicker({
-            dateFormat: "yy-mm-dd"
-        });
     
-        // 카드 데이터
-        const cards = [
-            { name: "카드이미지1", usage: "총 사용 금액1" },
-            { name: "카드이미지2", usage: "총 사용 금액2" },
-            { name: "카드이미지3", usage: "총 사용 금액3" },
-            { name: "카드이미지4", usage: "총 사용 금액4" },
-            { name: "카드이미지5", usage: "총 사용 금액5" }
-        ];
-    
-        // 카드 아이템 생성 함수
-        function createCardItem(card) {
-            const cardItem = `
-                <div class="card-item-myCardTotal">
-                    <div class="card-image-myCardTotal"></div>
-                    <div class="card-details-myCardTotal">
-                        <div class="card-name-myCardTotal">${card.name}</div>
-                        <div class="card-usage-myCardTotal">${card.usage}</div>
-                    </div>
-                </div>
-            `;
-            return cardItem;
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function() {
+          var output = document.getElementById('imagepreview-addcard');
+          output.innerHTML = '<img src="' + reader.result + '">';
         }
-    
-        // 카드 아이템들을 동적으로 추가
-        cards.forEach(function(card) {
-            const cardItem = createCardItem(card);
-            $(".card-list-myCardTotal").append(cardItem);
-        });
-    });
+        reader.readAsDataURL(event.target.files[0]);
+      }
 
     </script>
 </body>
