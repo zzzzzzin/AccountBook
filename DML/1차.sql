@@ -233,5 +233,4 @@ INSERT INTO tblAdmin (id, pw, nickname) VALUES ( 'admin5', 'java1234', 'admin5')
 INSERT INTO tblCardType (seq, type) VALUES ( 1, '신용');
 INSERT INTO tblCardType (seq, type) VALUES ( 2, '체크');
 
-
 commit;
