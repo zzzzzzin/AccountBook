@@ -1129,6 +1129,11 @@ height: 30px;
   position: relative;
 }
 
+
+#editImgIcon {
+  border: 1px;
+}
+
 .user-profile-img {
   border: 1px solid black;
   width: 80%;
@@ -1204,12 +1209,31 @@ height: 30px;
   position: absolute;
   top: 5%;
   right: 5%;
+  border: 0;
+  background-color: #F1F4C7;
 }
 
 .user-profile-nickname-duplicate, .user-profile-phone-duplicate {
   width: 70px;
   margin-left: 5px;
 }
+
+.userSaveBtn {
+  border: none;
+  background-color: #ffffff;
+  position: relative;
+}
+
+.userSaveBtn > button {
+  width: 100px;
+  height: 30px;
+  border-radius: 10px;
+  border: none;
+  position: absolute;
+  bottom:-50px;
+  right: -150px;
+}
+
 /* editUserInfo 끝 */
 
 /* mypage 시작 */
