@@ -93,13 +93,33 @@ public class UserDAO {
 		        pstat.setString(2, pw);
 		        rs = pstat.executeQuery();
 		        
+		        
 		        if (rs.next() && rs.getInt(1) == 1) {
-		            sql = "UPDATE tblMember SET pw = '0000', name = '탈퇴', email = '탈퇴', pic = DEFAULT, intro = NULL, ing = 4 WHERE id = ?";
+		            sql = "UPDATE tblMember SET pw = '0000', name = '탈퇴' WHERE id = ?";
 		            pstat = conn.prepareStatement(sql);
 		            pstat.setString(1, id);
-		            return pstat.executeUpdate();
+		            pstat.executeUpdate();
+		            
+		            
+		            sql = "UPDATE tblMemberPriv SET seqPriv = 4 WHERE idMember = ?";
+		            pstat = conn.prepareStatement(sql);
+		            pstat.setString(1, id);
+		            pstat.executeUpdate();
+		            
+		            // 트랜잭션 커밋
+		            conn.commit();
+		            
+		            return 1;
 		        }
 		    } catch (Exception e) {
+		        // 트랜잭션 롤백
+		        if (conn != null) {
+		            try {
+		                conn.rollback();
+		            } catch (Exception ex) {
+		                ex.printStackTrace();
+		            }
+		        }
 		        System.out.println("MemberInfoDAO.unregister");
 		        e.printStackTrace();
 		    } finally {
@@ -112,6 +132,5 @@ public class UserDAO {
 		        }
 		    }
 		    return 0;
-		}
-	
+}
 }
