@@ -18,8 +18,12 @@ public class AccountDAO {
 	private PreparedStatement pstat;
 	private ResultSet rs;
 	
+//	public AccountDAO() {
+//		this.conn = DBUtil.open();
+//	}
+	
 	public AccountDAO() {
-		this.conn = DBUtil.open();
+		this.conn = DBUtil.open("localhost", "jsp", "java1234");
 	}
 	
 	//가계부 작성 > 프론트에서 카드 선택해서 작성하는 거면 카드 seq넘겨 받아서 `tblReasonChangeCategory`에서 seq 찾아야할 듯(map?)
@@ -135,10 +139,6 @@ public class AccountDAO {
 			
 			String startDate = map.get("startDate");
 		    String endDate = map.get("endDate");
-		    
-		    System.out.println(startDate);
-		    System.out.println(endDate);
-			
 			
 			String sql = "select \r\n"
 	                + "sum(ai.price) totalPrice,\r\n"

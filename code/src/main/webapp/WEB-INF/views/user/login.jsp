@@ -60,7 +60,7 @@ body {
 									class="form-group d-flex align-items-center justify-content-between">
 									<div class="form-check">
 										<label class="form-check-label"> <input
-											type="checkbox" class="form-check-input">자동 로그인
+											type="checkbox" class="form-check-input" name="autoLogin">자동 로그인
 										</label>
 									</div>
 								</div>

@@ -29,9 +29,6 @@ public class CardUse extends HttpServlet {
 	    String startDate = req.getParameter("startDate");
 	    String endDate = req.getParameter("endDate");
 	    
-//	    System.out.println(startDate);
-//	    System.out.println(endDate);
-//	    
 	    HashMap<String, String> map = new HashMap<>();
 	    
 	    map.put("startDate", startDate);
@@ -42,6 +39,7 @@ public class CardUse extends HttpServlet {
 		ArrayList<AccountInfoDTO> list = dao.list(id, map);
 				
 		req.setAttribute("list", list);
+		req.setAttribute("map", map);
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/account/card-use.jsp");
 		dispatcher.forward(req, resp);

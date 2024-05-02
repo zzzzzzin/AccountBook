@@ -14,7 +14,7 @@ as select
     me.name as me_name,
     me.nickname as me_nickname,
     me.phoneNumber as me_phoneNumber,
-    me.nss as me_nss,
+    me.ssn as me_ssn,
     me.gender as me_gender,
     me.reportCount as me_reportCount,
     me.seqSurvey as me_seqSurvey,
@@ -30,6 +30,13 @@ left join tblMemberPriv mp on mp.seqPriv = pri.seq
 
 select * from tblsurvey s
 inner join tblMember m on s.seq = m.seqSurvey;
+
+select * from vwuser;
+
+select * from tblMember m 
+inner join tblMemberPriv mp on m.id = mp.idMember;
+
+set pw = '0000', name = '탈퇴', email = '탈퇴', pic = DEFAULT, intro = NULL, ing = 4 WHERE id = ?";
 
 
 --개인정보
