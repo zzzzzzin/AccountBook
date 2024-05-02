@@ -154,4 +154,21 @@ public class UserDAO {
 		    }
 		    return 0;
 }
+		//아이디 찾기 코드 
+		public String findId(String name, String ssn) {
+		    try {
+		        String sql = "SELECT id FROM tblMember WHERE name = ? AND ssn = ?";
+		        pstat = conn.prepareStatement(sql);
+		        pstat.setString(1, name);
+		        pstat.setString(2, ssn);
+		        rs = pstat.executeQuery();
+
+		        if (rs.next()) {
+		            return rs.getString("id");
+		        }
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    }
+		    return null;
+		}
 }
