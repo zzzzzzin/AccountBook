@@ -126,25 +126,6 @@ public class AccountDAO {
 	}
 	
 	
-	//tblMemberFinance이 멤버의 개인정보라고 생각해서 MemberInfoDTO에 작성했는데 자산, 부채를 추가하는 것도 UserDAO에서 할 건지? 해당 DTO에 tblDebt, tblProperty 추가도 필요해 보임
-	// 자산 작성
-	public int editProperty(MemberInfoDTO dto) {
-
-		return 0;
-	}
-
-	// 부채 작성
-	public int editLiabilities(MemberInfoDTO dto) {
-
-		return 0;
-	}
-	
-	// 자산/부채 읽기(자산 변동에서 시작일, 종료일할 거면 그것도 매개 변수로 받아서 사용할지?)
-	public int getPropertyLiabilities(MemberInfoDTO dto) {
-		
-		return 0;
-	}
-	
 	
 	//기존에 DAO에 tblReasonChangeCategory 없었는데 추가해야할 듯(추가 완료)
 	//카드 사용 읽기(기간을 매개 변수로 받아야할 듯)
