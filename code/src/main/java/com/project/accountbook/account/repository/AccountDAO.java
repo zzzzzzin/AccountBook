@@ -18,8 +18,12 @@ public class AccountDAO {
 	private PreparedStatement pstat;
 	private ResultSet rs;
 	
+//	public AccountDAO() {
+//		this.conn = DBUtil.open();
+//	}
+	
 	public AccountDAO() {
-		this.conn = DBUtil.open();
+		this.conn = DBUtil.open("localhost", "jsp", "java1234");
 	}
 	
 	//가계부 작성 > 프론트에서 카드 선택해서 작성하는 거면 카드 seq넘겨 받아서 `tblReasonChangeCategory`에서 seq 찾아야할 듯(map?)
@@ -164,7 +168,7 @@ public class AccountDAO {
 	        sql += "group by mc.alias, cf.name, cf.fileLink, mc.seq, mc.idMember";
 			
 			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, id);
+			pstat.setString(1, "abc001@naver.com");
 			
 			 // 시작일과 종료일이 둘 다 비어 있지 않은 경우에만 파라미터로 설정
 	        if (startDate != null && !startDate.isEmpty() && endDate != null && !endDate.isEmpty()) {

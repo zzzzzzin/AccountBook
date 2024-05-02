@@ -65,13 +65,15 @@
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
 
-		<div class="date-range-myCardTotal">
-			<label for="start-date-myCardTotal">시작일:</label> 
-			<input type="text" id="start-date" class="date-input-myCardTotal"> 
-				<label for="end-date">종료일:</label> 
-				<input type="text" id="end-date" class="date-input-myCardTotal">
-				<button id="submit-dates">확인</button> <!-- 시작일과 종료일을 선택한 후 서블릿으로 전송하는 버튼 -->
-		</div>
+		<form id="selectDateForm" method="GET">
+			<div class="date-range-myCardTotal">
+				<label for="start-date-myCardTotal">시작일:</label> 
+				<input type="text" name = "startDate" id="start-date" class="date-input-myCardTotal" value="${map.startDate}"> 
+					<label for="end-date">종료일:</label> 
+					<input type="text" name = "endDate" id="end-date" class="date-input-myCardTotal" value="${map.endDate}">
+					<input type="submit" value="확인"/>
+			</div>
+		</form>
 		<div class="card-list-myCardTotal">
 			<c:forEach items="${list}" var="dto">
 					<div class="card-item-myCardTotal">
@@ -115,72 +117,6 @@
         });
     });
 
-        // 확인 버튼 클릭 이벤트
-        $("#submit-dates").click(function() {
-            var startDate = $("#start-date").val(); // 시작일
-            var endDate = $("#end-date").val(); // 종료일
-
-            // Ajax를 사용하여 서블릿으로 데이터 전송
-            $.ajax({
-                url: "/account/account/card-use.do", // 서블릿 주소
-                type: "GET",
-                data: {
-                    startDate: startDate,
-                    endDate: endDate
-                },
-                success: function(response) {
-                    console.log("서블릿으로부터 데이터를 성공적으로 받았습니다.");
-                    // 받아온 데이터를 이용하여 카드 정보를 업데이트
-                    updateCardList(response);
-                },
-                error: function(xhr, status, error) {
-                    console.error("서블릿과의 통신 중 오류가 발생했습니다.");
-                }
-            });
-        });
-
-        
-     // 카드 정보 업데이트 함수
-        function updateCardList(data) {
-            // 받아온 데이터를 이용하여 카드 정보를 업데이트
-            $(".card-list-myCardTotal").empty(); // 이전 카드 정보를 비웁니다.
-            
-            $.each(data, function(index, dto) {
-                var cardItem = `
-                    <div class="card-item-myCardTotal">
-                        <div class="card-image-myCardTotal"></div>
-                        <div class="card-details-myCardTotal">
-                            <div class="card-name-myCardTotal">\${dto.alias}</div>
-                            <div class="card-usage-myCardTotal">\${dto.totalPrice}</div>
-                        </div>
-                        <input type="hidden" id="seqMyCard" name="seqMyCard" value="\${dto.seqMyCard}">
-                    </div>
-                `;
-                
-                $(".card-list-myCardTotal").append(cardItem); // 새로운 카드 정보를 추가합니다.
-            });
-        }
-
-    
-//         // 카드 아이템 생성 함수
-//         function createCardItem(card) {
-//             const cardItem = `
-//                 <div class="card-item-myCardTotal">
-//                     <div class="card-image-myCardTotal"></div>
-//                     <div class="card-details-myCardTotal">
-//                         <div class="card-name-myCardTotal">${card.name}</div>
-//                         <div class="card-usage-myCardTotal">${card.usage}</div>
-//                     </div>
-//                 </div>
-//             `;
-//             return cardItem;
-//         }
-    
-//         // 카드 아이템들을 동적으로 추가
-//         cards.forEach(function(card) {
-//             const cardItem = createCardItem(card);
-//             $(".card-list-myCardTotal").append(cardItem);
-//         });
         
 //      // card-item-myCardTotal를 클릭하면 CardUseageInfo 함수 실행
 //         $(document).on("click", ".card-item-myCardTotal", function() {
