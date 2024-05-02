@@ -75,6 +75,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        
     }
     
     .input-pw-real > input, .check-pw-input > input {
