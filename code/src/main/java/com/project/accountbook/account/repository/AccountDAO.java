@@ -139,10 +139,6 @@ public class AccountDAO {
 			
 			String startDate = map.get("startDate");
 		    String endDate = map.get("endDate");
-		    
-		    System.out.println(startDate);
-		    System.out.println(endDate);
-			
 			
 			String sql = "select \r\n"
 	                + "sum(ai.price) totalPrice,\r\n"
@@ -168,7 +164,7 @@ public class AccountDAO {
 	        sql += "group by mc.alias, cf.name, cf.fileLink, mc.seq, mc.idMember";
 			
 			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, "abc001@naver.com");
+			pstat.setString(1, id);
 			
 			 // 시작일과 종료일이 둘 다 비어 있지 않은 경우에만 파라미터로 설정
 	        if (startDate != null && !startDate.isEmpty() && endDate != null && !endDate.isEmpty()) {
