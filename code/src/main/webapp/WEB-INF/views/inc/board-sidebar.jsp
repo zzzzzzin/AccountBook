@@ -7,10 +7,10 @@
 <%-- <%@include file="/WEB-INF/views/inc/asset.jsp"%> --%>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <style>
-    #assignment_board {
-      position: static;
-      margin-right: 3px;
-    }
+	#assignment_board {
+	  position: static;
+	  margin-right: 3px;
+	}
 </style>
 </head>
 
@@ -27,7 +27,8 @@
             </nav>
           </div>
 <script>
-
+		
 </script>
 
 </html>
+
