@@ -63,7 +63,9 @@
         	<div class="myPage">
         <div class="user-profile">
             <div class="user-profile-img-container">
-                <span class="material-symbols-outlined">edit</span>
+                <button type="submit" class="material-symbols-outlined" id="editImgIcon">
+                    edit
+                </button>
                 <div class="user-profile-img">
                     <span>개인 프로필 이미지</span>
                 </div>
@@ -72,13 +74,13 @@
                 <div class="user-profile-name">
                     <div class="user-profile-name-title">이름</div>
                     <div class="user-profile-name-edit">
-                        <div class="user-profile-name-real">홍길동</div>
+                        <input type="text" class="user-profile-name-real"></input>
                     </div>
                 </div>
                 <div class="user-profile-nickname">
                     <div class="user-profile-nickname-title">닉네임</div>
                     <div class="user-profile-nickname-edit">
-                        <div class="user-profile-nickname-real">hong</div>
+                        <input type="text" class="user-profile-nickname-real"></input>
                         <button type="submit" class="user-profile-nickname-duplicate">중복확인</button>
                     </div>
                 </div>
@@ -94,13 +96,16 @@
                 <div class="user-profile-phone">
                     <div class="user-profile-phone-title">전화번호</div>
                     <div class="user-profile-phone-edit">
-                        <div class="user-profile-phone-real">010-1234-5678</div>
+                        <input type="text" class="user-profile-phone-real"></input>
                         <button type="submit" class="user-profile-phone-duplicate">중복확인</button>
                     </div>
                 </div>
+                <div class="userSaveBtn">
+                    <button type="submit">저장하기</button>
+                </div>
             </form>
         </div>
-    </div>      
+    </div>
 
         <!-- fakecontent 끝 -->
         <!-- Back to Top -->
