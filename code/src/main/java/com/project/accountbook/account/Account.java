@@ -8,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 @WebServlet("/account/calendar.do")
 public class Account extends HttpServlet {
@@ -21,19 +20,5 @@ public class Account extends HttpServlet {
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/account/calendar.jsp");
 		dispatcher.forward(req, resp);
 
-	}
-	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		// 1. 데이터 가져오기()
-		// 2. DB 작업 > select
-		// 3. 결과 > 인증 티켓
-		
-		HttpSession session = req.getSession();
-		String id = (String) session.getAttribute("id");
-		
-		
-		
 	}
 }
