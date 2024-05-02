@@ -294,18 +294,34 @@
 					class="bi bi-arrow-up"></i></a>
 			</div>
 		</div>
-		</div>
 
 		<!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/chart/chart.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js"></script><script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
    
     <!-- Template Javascript -->
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
     <script>
 
+    document.addEventListener('DOMContentLoaded', function() {
+    const sidebarToggler = document.getElementById('sidebar-toggler');
+    const sidebar = document.querySelector('.sidebar');
+    const content = document.querySelector('.content');
 
+        sidebarToggler.addEventListener('click', function() {
+        sidebar.classList.toggle('hidden');
+        content.classList.toggle('expanded');
+        });
+    });
+    
     var ctx = document.getElementById('piepie').getContext('2d');
     var chart1 = new Chart(ctx, {
         type: 'pie',
@@ -363,9 +379,7 @@
         charts[0].data.labels.forEach((label, index) => {
             const color = charts[0].data.datasets[0].backgroundColor[index];
             const legendItem = document.createElement('div');
-            console.log('color');
-            console.log('legendItem');
-            legendItem.innerHTML = `<span style="background-color:\${color}; width: 12px; height: 12px; display: inline-block; margin-right: 5px; margin-left: 5px;"></span> \${label}`;
+            legendItem.innerHTML = `<span style="background-color:${color}; width: 12px; height: 12px; display: inline-block; margin-right: 5px; margin-left: 5px;"></span> ${label}`;
             legendItem.style.cursor = 'pointer';
             legendItem.onclick = function() {
                 charts.forEach(chart => {
@@ -379,17 +393,6 @@
     }
 
     createSharedCustomLegend([chart1, chart2]);
-
-    document.addEventListener('DOMContentLoaded', function() {
-        const sidebarToggler = document.getElementById('sidebar-toggler');
-        const sidebar = document.querySelector('.sidebar');
-        const content = document.querySelector('.content');
-
-        sidebarToggler.addEventListener('click', function() {
-            sidebar.classList.toggle('hidden');
-            content.classList.toggle('expanded');
-        });
-    });
 
     </script>
 </body>

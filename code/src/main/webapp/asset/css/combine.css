@@ -620,7 +620,7 @@ section.notice {
   display: block;
   clear: both;
 }
-.container-reset {
+.container {
   width: 1100px;
   margin: 0 auto;
 }
@@ -657,7 +657,7 @@ section.notice {
 /* 게시판 틀 끝 */
 
 /* 댓글 시작*/
-.container-comment {
+.container {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
@@ -1505,7 +1505,7 @@ height: 30px;
 /* friendInvite 끝 */
 
 /* propertyLiabilities 시작 */
-/* .container-pl {
+.container-pl {
   max-width: 800px;
   margin: 0 auto;
   padding: 40px;
@@ -1639,5 +1639,5 @@ height: 30px;
 
 .block:hover .hover-message {
   display: block;
-} */
+}
 /* propertyLiabilities 끝 */
