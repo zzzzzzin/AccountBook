@@ -72,7 +72,7 @@
 			<li><a href="/account/user/member/edit-challenge.do"><i class="fas fa-user"></i> 챌린지 설정</a></li>
 			<li><a href="/account/user/member/my-post.do"><i class="fas fa-user"></i> 내가 쓴 글</a></li>
 			<li><a href="/account/user/member/my-comment.do"><i class="fas fa-user"></i> 내가 쓴 댓글</a>
-			<li><a href="/account/card/view.do"><i class="fas fa-user"></i> 카드 조회</a>
+			<li><a href="/account/user/member/my-card.do"><i class="fas fa-user"></i> 카드 조회</a>
 			<li><a href="/account/user/member/friend-invitation.do"><i class="fas fa-user"></i> 친구 초대</a>
 		</ul>
 	</nav>
