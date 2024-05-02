@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import com.project.accountbook.card.model.CardDTO;
 import com.project.accountbook.util.DBUtil;
@@ -41,6 +42,10 @@ public class CardDAO {
 		}
 		return 0;
 	}
+	
+//	public ArrayList<CardDTO dto> categoryCard{
+//		
+//	}
 	
 	
 }

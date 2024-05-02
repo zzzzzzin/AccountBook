@@ -2,6 +2,7 @@ package com.project.accountbook.card.model;
 
 public class CardDTO {
 
+	//카드 정보
 	private String ciName;
 	private String explanation;
 	private int annualFee;
@@ -10,11 +11,14 @@ public class CardDTO {
 	private String fileLink;
 	private int seqCardType;
 	
+	//카드 혜택 목록
 	private int lcbseqCardCategory;
 	private int SeqCardInformation;
 	
+	//카드 혜택 카테고리
 	private String ccName;
 	
+	//카드/가계부 카테고리 연결
 	private int caaSeqCardCategory;
 	private int seqAccCategory;
 	
