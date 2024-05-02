@@ -38,9 +38,4 @@ INSERT INTO tblMember(id,pw,name,nickname,phoneNumber,nss,gender,reportCount,joi
 INSERT INTO tblMember(id,pw,name,nickname,phoneNumber,ssn,gender,reportCount,joinDate, seqSurvey,seqProfileimg) VALUES ('abc005@naver.com',1234,'옹길순미','고양이','010-1234-0001','0201014234567','여',3,'2023-02-18',8,1);
 INSERT INTO tblMember(id,pw,name,nickname,phoneNumber,ssn,gender,reportCount,joinDate, seqSurvey,seqProfileimg) VALUES ('abc0000@naver.com',1234,'옹길','고아','010-1234-7531','020101412567','여',2,'2023-02-18',2,1);
 
-select * from tbladmin;
-
-select * from tblMember;
-
 commit;
-

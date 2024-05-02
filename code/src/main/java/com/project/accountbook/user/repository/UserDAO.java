@@ -62,51 +62,29 @@ public class UserDAO {
 		}
 	}
 
-//  로그인
+// 일반 회원 로그인
 	public UserDTO login(UserDTO dto) {
-	    try {
-	        String sql = "SELECT m.*, mp.seqPriv FROM tblMember m " +
-	                     "INNER JOIN tblMemberPriv mp ON m.id = mp.idMember " +
-	                     "WHERE m.id = ? AND m.pw = ? AND mp.seqPriv = 2";
-	        pstat = conn.prepareStatement(sql);
-	        pstat.setString(1, dto.getId());
-	        pstat.setString(2, dto.getPw());
-	        rs = pstat.executeQuery();
+		try {
+			String sql = "SELECT * FROM tblMember m " + "INNER JOIN tblMemberPriv mp ON m.id = mp.idMember "
+					+ "WHERE m.id = ? AND m.pw = ? AND mp.seqPriv = 2";
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getId());
+			pstat.setString(2, dto.getPw());
+			rs = pstat.executeQuery();
 
-	        if (rs.next()) {
-	            UserDTO result = new UserDTO();
-	            result.setId(rs.getString("id"));
-	            result.setName(rs.getString("name"));
-	            result.setSeqPriv(rs.getString("seqPriv"));
-	            return result;
-	        }
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
-	    return null;
+			if (rs.next()) {
+				UserDTO result = new UserDTO();
+				result.setId(rs.getString("id"));
+				result.setName(rs.getString("name"));
+				result.setSeqPriv(rs.getString("seqPriv"));
+				return result;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
-	public UserDTO loginAdmin(UserDTO dto) {
-	    try {
-	        String sql = "SELECT * FROM tblAdmin WHERE id = ? AND pw = ?";
-	        pstat = conn.prepareStatement(sql);
-	        pstat.setString(1, dto.getId());
-	        pstat.setString(2, dto.getPw());
-	        rs = pstat.executeQuery();
-
-	        if (rs.next()) {
-	            UserDTO result = new UserDTO();
-	            result.setId(rs.getString("id"));
-	            result.setSeqPriv("3");
-	            return result;
-	        }
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
-	    return null;
-	}
-	
-//회원 탈퇴
 		public int unregister(String id, String pw) {
 		    try {
 		        String sql = "SELECT COUNT(*) FROM tblMember WHERE id = ? AND pw = ?";

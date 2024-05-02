@@ -4,10 +4,9 @@ package com.project.accountbook.user.model;
 tblUser(회원가입 시 insert 필요)
 tblProfileimg
 tblMemberPriv
-tblAdmin
 */
 public class UserDTO {
-//회원
+//회원, 관리자
 	private String id;
 	private String pw;
 	private String name;
@@ -26,9 +25,6 @@ public class UserDTO {
 //권한
 	private String seqPriv;
 
-//관리자 테이블 	
-	
-	
 	public String getId() {
 		return id;
 	}
