@@ -9,9 +9,14 @@ public class DBUtil {
 
 		Connection conn;
 
-		String url = "jdbc:oracle:thin:@192.168.10.47:1521:xe";
-		String id = "jspProject";
+//		String url = "jdbc:oracle:thin:@192.168.10.47:1521:xe";
+//		String id = "jspProject";
+//		String pw = "java1234";
+		
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String id = "c##test123";
 		String pw = "java1234";
+		
 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -27,6 +32,7 @@ public class DBUtil {
 
 		return null;
 	} // open
+	
 
 	
 	//오버로딩
