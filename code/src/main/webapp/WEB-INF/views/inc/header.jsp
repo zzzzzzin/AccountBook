@@ -73,12 +73,21 @@
                     </a> -->
           <a href="/account/index.do"><div class="logo"></div></a>
           <ul>
+          <c:if test="${empty id}">
             <li class="content1"><a href="/account/board/view.do">게시판</a></li>
             <li class="content2"><a href="/account/account/calendar.do">대시보드</a></li>
             <li class="content3"><a href="/account/card/recommendation.do">카드추천</a></li>
             <li class="content4"><a href="/account/user/member/info.do">마이페이지</a></li>
             <li class="content5"><a href="/account/user/login.do">로그인</a></li>
+            </c:if>
             
+            <c:if test="${not empty id}">
+			<li class="content1"><a href="/account/board/view.do">게시판</a></li>
+            <li class="content2"><a href="/account/account/calendar.do">대시보드</a></li>
+            <li class="content3"><a href="/account/card/recommendation.do">카드추천</a></li>
+            <li class="content4"><a href="/account/user/member/info.do">마이페이지</a></li>
+            <li class="content5"><a href="/account/user/logout.do">로그아웃</a></li>
+            </c:if>
             <!-- 
             <li class="content1"><a href="#">게시판</a></li>
             <li class="content2"><a href="#">대시보드</a></li>
@@ -90,7 +99,7 @@
 	</nav>
 </header>
 <script>
-		
+
 </script>
 
 </html>

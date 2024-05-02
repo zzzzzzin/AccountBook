@@ -134,7 +134,7 @@
         <!-- fakecontent 안에서 작성 -->
 
 			<div class="myPage">
-				<form action="">
+				<form method="POST" action="/account/user/unregister.do">
 					<div class="container-unregister">
 						<div class="content-unregister">
 							<div class="input-pw">
