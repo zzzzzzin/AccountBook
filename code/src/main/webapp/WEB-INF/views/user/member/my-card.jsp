@@ -67,7 +67,7 @@
 				<div class="myCards">
         <div class="myCard">
             <div class="myCardImg">
-                <img src="../../../html/images/myPage-viewCards-card.png" alt="">
+                <img src="${pageContext.request.contextPath}/asset/html/images/myPage-viewCards-card.png" alt="">
             </div>
             <div class="myCard-detail">
                 <div class="myCardName">
@@ -116,7 +116,7 @@
         </div>
         <div class="myCard">
             <div class="myCardImg">
-                <img src="../../../html/images/myPage-viewCards-card.png" alt="">
+                <img src="${pageContext.request.contextPath}/asset/html/images/myPage-viewCards-card.png" alt="">
             </div>
             <div class="myCard-detail">
                 <div class="myCardName">
@@ -164,7 +164,7 @@
             </div>
         </div>
         <div class="addMyCard">
-            <button type="submit">추가하기</button>
+            <button type="submit" onclick="location.href='/account/user/member/add-my-card.do';">추가하기</button>
         </div>
     </div>
 			</div>
@@ -199,15 +199,14 @@
     });
     
     document.addEventListener('DOMContentLoaded', function () {
+    	
         const expandButtons = document.querySelectorAll('.material-symbols-outlined');
         const moreCards = document.querySelectorAll('.moreMyCard');
 
-        // 초기에는 모든 moreMyCard를 숨깁니다.
         moreCards.forEach(card => {
             card.style.display = 'none';
         });
 
-        // 각각의 버튼에 대해 이벤트 리스너를 추가합니다.
         expandButtons.forEach((button, index) => {
             button.addEventListener('click', function () {
                 if (moreCards[index].style.display === 'none') {
@@ -221,14 +220,7 @@
         });
     });
     
-    document.addEventListener('DOMContentLoaded', function() {
-        // addMyCard 버튼을 클릭하면 다른 파일로 이동합니다.
-        document.getElementById('addCardButton').addEventListener('click', function() {
-            // 새로운 URL로 이동합니다.
-            window.location.href = '.jsp';
-        });
-    });
-
+    
     </script>
 </body>
 
