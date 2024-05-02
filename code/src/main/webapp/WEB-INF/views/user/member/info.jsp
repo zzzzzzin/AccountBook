@@ -97,7 +97,7 @@
                 <button type="button">개인정보 수정</button>
             </div>
             <div>
-                <button type="button">회원 탈퇴</button>
+                <button type="button"><a href="/account/user/unregister.do">회원 탈퇴</button>
             </div>
         </div>
     </div>
