@@ -1,14 +1,9 @@
-<%@page import="com.project.accountbook.board.repository.BoardDAO"%>
-<%@page import="com.project.accountbook.board.post.model.ReportDTO"%>
-<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html>
 <head>
-	<!-- <link rel="stylesheet" href="path/to/font-awesome/css/all.min.css"> -->
     <meta charset="utf-8">
     <title>건의게시판</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -32,9 +27,7 @@
 <style>
 
    
-    #secret > .material-symbols-outlined{
-    	position: relative;
-    }
+    
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
 </style>
@@ -106,48 +99,28 @@
 	                    <th scope="col" class="th-date">등록일</th>
 	                    <th scope="col" class="th-view">조회수</th>
 	                    <th scope="col" class="th-like">추천</th>
-	                    <th scope="col" class="th-like">비밀글 여부</th>
 	                </tr>
 	                </thead>
 	                <tbody>
-	                <c:if test="${reportList.size() == 0}">
-					    <tr>
-					        <td colspan="6">게시물이 없습니다.</td>
-					    </tr>
-					</c:if>
+	                <tr>
+	                    <td>3</td>
+	                    <th>
+	                      <a href="#!">거니더마마사지</a>
+	                    </th>
+	                    <td>ㅇㅇ</td>
+	                    <td>04:20</td>
+	                    <td>2</td>
+	                    <td>0</td>
+	                </tr>
 	                
-					<c:forEach var="report" items="${reportList}">
-			                <tr>
-			                    <td>${report.seq}</td>
-						        <td>
-						            <c:choose>
-						                <c:when test="${report.blindCheck eq '1'}">
-						                    블라인드 처리 되었습니다.
-						                </c:when>
-						                <c:otherwise>
-						                    ${report.title}
-						                </c:otherwise>
-						            </c:choose>
-						        </td>
-						        <td>${report.nickname}</td>
-						        <td>${report.date}</td>
-						        <td>${report.viewCount}</td>
-						        <td>${report.likeCount}</td>
-						        <%-- <td>${report.reportCount}</td> --%>
-						        <%-- <td>${report.secretCheck}</td> --%>
-						        <td id="secret">
-						            <c:choose>
-						                <c:when test="${report.secretCheck eq '1'}">
-						                    <div class="material-symbols-outlined">lock</div>	
-						                </c:when>
-						                <c:otherwise>
-						                    <div class="material-symbols-outlined">unlock</div>
-						                </c:otherwise>
-						            </c:choose>
-						        </td>
-						        <%-- <td>${report.blindCheck}</td> --%>
-			                </tr>
-	                </c:forEach>
+	                <tr>
+	                    <td>2</td>
+	                    <th><a href="#!">ㅇㅇㅇ</a></th>
+	                    <td>ㅇㅇㅇ</td>
+	                    <td>2024.04.11</td>
+	                    <td>2222</td>
+	                    <td>30</td>
+	                </tr>
 	                </tbody>
 	            </table>
 	            <div class="write-btn">
