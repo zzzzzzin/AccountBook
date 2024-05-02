@@ -46,7 +46,7 @@ public class AttendanceBoard extends HttpServlet {
 				dto.setSeq(rs.getInt("seq"));
 				dto.setNickname(rs.getString("nickname"));
 				dto.setTitle(rs.getString("title"));
-				dto.setDate(rs.getString("writedate"));
+				dto.setDate((rs.getString("writedate").substring(0, Math.min(rs.getString("writedate").length(), 10))));
 				dto.setViewCount(rs.getInt("viewcount"));
 				dto.setLikeCount(rs.getInt("likecount"));
 				// DTO를 리스트에 추가

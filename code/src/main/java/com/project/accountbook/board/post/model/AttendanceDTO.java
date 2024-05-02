@@ -18,6 +18,7 @@ public class AttendanceDTO {
 		this.date = date;
 		this.viewCount = viewCount;
 		this.likeCount = likeCount;
+		
 	}
 	public AttendanceDTO() {
 		// TODO Auto-generated constructor stub
