@@ -3,6 +3,13 @@ package com.project.accountbook.board.post.model;
 public class AttendanceDTO {
 	
 	private int seq;
+	private String nickname;
+	private String title;
+	private String date;
+	private int viewCount;
+	private int likeCount;
+	
+	
 	public AttendanceDTO(int seq, String nickname, String title, String date, int viewCount, int likeCount) {
 		super();
 		this.seq = seq;
@@ -15,11 +22,6 @@ public class AttendanceDTO {
 	public AttendanceDTO() {
 		// TODO Auto-generated constructor stub
 	}
-	private String nickname;
-	private String title;
-	private String date;
-	private int viewCount;
-	private int likeCount;
 	
 	public int getSeq() {
 		return seq;

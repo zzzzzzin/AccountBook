@@ -5,9 +5,9 @@
     pageEncoding="UTF-8"%>
 <%
 
-	BoardDAO dao = new BoardDAO();
+/* 	BoardDAO dao = new BoardDAO();
 	List<AttendanceDTO> attendanceList = dao.selectAll();
-	pageContext.setAttribute("attendanceList", attendanceList);
+	pageContext.setAttribute("attendanceList", attendanceList); */
 
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -55,7 +55,7 @@
 
         <!-- Sidebar Start -->
         <!-- 사이드바  -->
-        <%@include file="/WEB-INF/views/inc/board-sidebar.jsp"%>
+       <%@include file="/WEB-INF/views/inc/board-sidebar.jsp"%><!--  -->
         <!-- 사이드바 끝  -->
         <!-- Sidebar End -->
 
@@ -128,15 +128,6 @@
 					        <td>${attendance.date}</td>
 					        <td>${attendance.viewCount}</td>
 					        <td>${attendance.likeCount}</td>
-		                </tr>
-	                
-		                <tr>
-		                    <td>2</td>
-		                    <th><a href="#!">ㅇㅇㅇ</a></th>
-		                    <td>ㅇㅇㅇ</td>
-		                    <td>2024.04.11</td>
-		                    <td>2222</td>
-		                    <td>30</td>
 		                </tr>
 	                </c:forEach>
 		                </tbody>

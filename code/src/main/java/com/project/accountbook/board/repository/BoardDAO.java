@@ -20,13 +20,13 @@ public class BoardDAO {
 	private PreparedStatement pstat;
 	private ResultSet rs;
 
-//	public BoardDAO() {
-//		this.conn = DBUtil.open("192.168.10.47", "jspProject", "java1234");
-//	}
-
 	public BoardDAO() {
-		this.conn = DBUtil.open("localhost", "c##test123", "java1234");
+		this.conn = DBUtil.open("192.168.10.47", "jspProject", "java1234");
 	}
+
+//	public BoardDAO() {
+//		this.conn = DBUtil.open("localhost", "c##test123", "java1234");
+//	}
 
 	// 삽입(C)
 	public int insert(PostDTO dto) {
