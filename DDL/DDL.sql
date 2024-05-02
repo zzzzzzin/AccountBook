@@ -8,6 +8,7 @@ CREATE TABLE tblMember (
 	nss           VARCHAR2(13) NOT NULL, -- 주민등록 번호
 	gender        VARCHAR2(10) NOT NULL, -- 성별
 	reportCount   NUMBER       NOT NULL, -- 누적 신고 수
+    joinDate      DATE         NOT NULL, -- 가입일
 	seqSurvey     NUMBER       NOT NULL, -- 설문조사 번호
 	seqProfileimg NUMBER       NOT NULL  -- 프로필 이미지 번호
 );
@@ -28,10 +29,10 @@ ALTER TABLE tblMember
 -- 설문조사
 CREATE TABLE tblSurvey (
 	seq                     NUMBER NOT NULL, -- 번호
-	monthlyPaycheck         NUMBER NULL,     -- 월급
-	savingsGoals            NUMBER NULL,     -- 저축 목표 금액
-	seqCompressionIntensity NUMBER NULL,     -- 압박 강도 번호
-	seqSavingsPeriod        NUMBER NULL      -- 저축 기간 번호
+	monthlyPaycheck         NUMBER NOT NULL, -- 월급
+	savingsGoals            NUMBER NOT NULL, -- 저축 목표 금액
+	seqCompressionIntensity NUMBER NOT NULL, -- 압박 강도 번호
+	seqSavingsPeriod        NUMBER NOT NULL  -- 저축 기간 번호
 );
 
 -- 설문조사
@@ -344,6 +345,7 @@ ALTER TABLE tblCardAndAcc
 -- 카드 혜택 목록
 CREATE TABLE tblListCardBenefits (
 	seq                NUMBER NOT NULL, -- 번호
+    content            VARCHAR2(2000) NOT NULL, -- 내용
 	seqCardCategory    NUMBER NOT NULL, -- 카드 카테고리 번호
 	seqCardInformation NUMBER NOT NULL  -- 카드 번호
 );
@@ -648,54 +650,6 @@ ALTER TABLE tblDepositWithdrawalStatus
 -- 입출금 상태 유니크 제약 조건
 ALTER TABLE tblDepositWithdrawalStatus
     ADD CONSTRAINT UK_tblDepositWithdrawalStatus_status UNIQUE (status);
-
--- 자산
-CREATE TABLE tblProperty (
-	seq  NUMBER NOT NULL, -- 번호
-	cash NUMBER NOT NULL  -- 현금
-);
-
--- 자산
-ALTER TABLE tblProperty
-	ADD
-		CONSTRAINT PK_tblProperty -- 자산 기본키
-		PRIMARY KEY (
-			seq -- 번호
-		);
-
--- 부채
-CREATE TABLE tblDebt (
-	seq  NUMBER NOT NULL, -- 번호
-	cash NUMBER NOT NULL  -- 현금
-);
-
--- 부채
-ALTER TABLE tblDebt
-	ADD
-		CONSTRAINT PK_tblDebt -- 부채 기본키
-		PRIMARY KEY (
-			seq -- 번호
-		);
-
--- 회원 금융 정보
-CREATE TABLE tblMemberFinance (
-	seq         NUMBER       NOT NULL, -- 번호
-	idMember   VARCHAR2(30) NOT NULL, -- 회원 번호
-	seqProperty NUMBER       NOT NULL, -- 자산 번호
-	seqDebt     NUMBER       NOT NULL  -- 부채 번호
-);
-
--- 회원 금융 정보
-ALTER TABLE tblMemberFinance
-	ADD
-		CONSTRAINT PK_tblMemberFinance -- 회원 금융 정보 기본키
-		PRIMARY KEY (
-			seq -- 번호
-		);
-        
--- 회원 금융 정보 제약 조건
-ALTER TABLE tblMemberFinance
-    ADD CONSTRAINT UK_tblMemberFinance_idMember UNIQUE (idMember);
 
 -- 변동 사유 목록
 CREATE TABLE tblReasonsChangeList (
@@ -1153,39 +1107,6 @@ ALTER TABLE tblFixedDepositWithdrawalCheck
 		)
 		REFERENCES tblFixedFluctuationPeriod ( -- 고정 변동 기간
 			seq -- 번호
-		);
-
--- 회원 금융 정보
-ALTER TABLE tblMemberFinance
-	ADD
-		CONSTRAINT FK_tblProperty_TO_tblMemberFinance -- 자산 -> 회원 금융 정보
-		FOREIGN KEY (
-			seqProperty -- 자산 번호
-		)
-		REFERENCES tblProperty ( -- 자산
-			seq -- 번호
-		);
-
--- 회원 금융 정보
-ALTER TABLE tblMemberFinance
-	ADD
-		CONSTRAINT FK_tblDebt_TO_tblMemberFinance -- 부채 -> 회원 금융 정보
-		FOREIGN KEY (
-			seqDebt -- 부채 번호
-		)
-		REFERENCES tblDebt ( -- 부채
-			seq -- 번호
-		);
-
--- 회원 금융 정보
-ALTER TABLE tblMemberFinance
-	ADD
-		CONSTRAINT FK_tblMember_TO_tblMemberFinance -- 회원 -> 회원 금융 정보
-		FOREIGN KEY (
-			idMember -- 회원 번호
-		)
-		REFERENCES tblMember ( -- 회원
-			id -- 아이디(이메일)
 		);
 
 -- 뉴스 카테고리 목록

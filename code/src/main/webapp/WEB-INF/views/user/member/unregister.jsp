@@ -48,6 +48,8 @@
         height: 20%;
         position: relative;
     }
+    
+    
 
     .input-pw-title, .check-pw-titles {
         background-color: #ffffff;

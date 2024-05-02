@@ -78,7 +78,11 @@
 
     .settingPeriod {
         display: flex;
-
+		padding: 30px
+    }
+    
+    .startDate {
+    	margin-right: 10px;
     }
 
     .saveSurveySetting {

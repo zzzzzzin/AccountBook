@@ -69,6 +69,7 @@
                         <thead>
                         <tr>
                             <th scope="col" class="th-title">제목</th>
+                            <th scope="col" class="th-comment">나의 댓글</th>
                             <th scope="col" class="th-writer">작성자</th>
                             <th scope="col" class="th-date">등록일</th>
                             <th scope="col" class="th-view">조회수</th>
@@ -80,6 +81,7 @@
                             <th>
                               <a href="#!">거니더마마사지</a>
                             </th>
+                            <td>실제 댓글 내용</td>
                             <td>ㅇㅇ</td>
                             <td>04:20</td>
                             <td>2</td>
@@ -88,6 +90,7 @@
                         
                         <tr>
                             <th><a href="#!">ㅇㅇㅇ</a></th>
+                            <td>실제 댓글 내용</td>
                             <td>ㅇㅇㅇ</td>
                             <td>2024.04.11</td>
                             <td>2222</td>
