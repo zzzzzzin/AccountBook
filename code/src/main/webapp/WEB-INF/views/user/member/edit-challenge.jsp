@@ -35,10 +35,7 @@
         position: relative;
     }
 
-    .content-surveysetting {
-        width: 90%;
-        height: 70%;
-    }
+   
 
     .contents-surveysetting {
         display: flex;
@@ -74,6 +71,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        
     }
 
     .settingPeriod {
@@ -149,10 +147,6 @@
                     <div class="contents-surveysetting">
                         <div class="sallary-title">저축 목표 금액</div>
                         <input type="text" class="sallary-real" value="10,000,000원"></input>
-                    </div>
-                    <div class="contents-surveysetting">
-                        <div class="sallary-title">현재 부채 금액</div>
-                        <input type="text" class="sallary-real" value="없음"></input>
                     </div>
                     <div class="contents-surveysetting">
                         <div class="sallary-title">저축 목표 기간 설정</div>
