@@ -32,8 +32,16 @@ public class Account extends HttpServlet {
 		
 		HttpSession session = req.getSession();
 		String id = (String) session.getAttribute("id");
-		
-		
+		 
+		String content = req.getParameter("content");
+		String accInfoDate = req.getParameter("accInfoDate");
+		String price = req.getParameter("price");
+		String location = req.getParameter("location");
+		String seqAcc = req.getParameter("seqAcc");
+		String seqReasonChangeCategory = req.getParameter("seqReasonChangeCategory");
+		String seqFixedFluctuationCheck = req.getParameter("seqFixedFluctuationCheck");
+		String fixedContent = req.getParameter("fixedContent"); //고정 입출금 내용
+		String seqDepositWithdrawalStatus = req.getParameter("seqDepositWithdrawalStatus");
 		
 	}
 }
