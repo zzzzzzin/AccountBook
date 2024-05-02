@@ -12,7 +12,26 @@ public class UserDTO {
 	private String name;
 	private String nickname;
 	private String phoneNumber;
-	private String nss;
+	private String ssn;
+	
+	public String getSsn() {
+		return ssn;
+	}
+
+	public void setSsn(String ssn) {
+		this.ssn = ssn;
+	}
+
+	
+	
+	public String getIdMember() {
+		return idMember;
+	}
+
+	public void setIdMember(String idMember) {
+		this.idMember = idMember;
+	}
+
 	private String gender;
 	private int reportCount;
 	private String seqSurvey;
@@ -65,13 +84,6 @@ public class UserDTO {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public String getNss() {
-		return nss;
-	}
-
-	public void setNss(String nss) {
-		this.nss = nss;
-	}
 
 	public String getGender() {
 		return gender;
@@ -132,7 +144,7 @@ public class UserDTO {
 	@Override
 	public String toString() {
 		return "UserDTO [id=" + id + ", pw=" + pw + ", name=" + name + ", nickname=" + nickname + ", phoneNumber="
-				+ phoneNumber + ", nss=" + nss + ", gender=" + gender + ", reportCount=" + reportCount + ", seqSurvey="
+				+ phoneNumber + ", ssn=" + ssn + ", gender=" + gender + ", reportCount=" + reportCount + ", seqSurvey="
 				+ seqSurvey + ", seqProfileimg=" + seqProfileimg + ", fileName=" + fileName + ", fileLink=" + fileLink
 				+ ", seqPriv=" + seqPriv + "]";
 	}

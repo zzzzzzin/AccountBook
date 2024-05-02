@@ -163,11 +163,26 @@ public class UserDAO {
 		        pstat.setString(2, ssn);
 		        rs = pstat.executeQuery();
 
+		        System.out.println("SQL Query: " + sql);
+		        System.out.println("Name: " + name);
+		        System.out.println("SSN: " + ssn);
+
 		        if (rs.next()) {
-		            return rs.getString("id");
+		            String foundId = rs.getString("id");
+		            System.out.println("Found ID: " + foundId);
+		            return foundId;
+		        } else {
+		            System.out.println("No matching ID found.");
 		        }
 		    } catch (Exception e) {
 		        e.printStackTrace();
+		    } finally {
+		        try {
+		            if (rs != null) rs.close();
+		            if (pstat != null) pstat.close();
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        }
 		    }
 		    return null;
 		}
