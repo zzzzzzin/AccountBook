@@ -84,4 +84,53 @@ public class UserDAO {
 		}
 		return null;
 	}
+
+		public int unregister(String id, String pw) {
+		    try {
+		        String sql = "SELECT COUNT(*) FROM tblMember WHERE id = ? AND pw = ?";
+		        pstat = conn.prepareStatement(sql);
+		        pstat.setString(1, id);
+		        pstat.setString(2, pw);
+		        rs = pstat.executeQuery();
+		        
+		        
+		        if (rs.next() && rs.getInt(1) == 1) {
+		            sql = "UPDATE tblMember SET pw = '0000', name = '탈퇴' WHERE id = ?";
+		            pstat = conn.prepareStatement(sql);
+		            pstat.setString(1, id);
+		            pstat.executeUpdate();
+		            
+		            
+		            sql = "UPDATE tblMemberPriv SET seqPriv = 4 WHERE idMember = ?";
+		            pstat = conn.prepareStatement(sql);
+		            pstat.setString(1, id);
+		            pstat.executeUpdate();
+		            
+		            // 트랜잭션 커밋
+		            conn.commit();
+		            
+		            return 1;
+		        }
+		    } catch (Exception e) {
+		        // 트랜잭션 롤백
+		        if (conn != null) {
+		            try {
+		                conn.rollback();
+		            } catch (Exception ex) {
+		                ex.printStackTrace();
+		            }
+		        }
+		        System.out.println("MemberInfoDAO.unregister");
+		        e.printStackTrace();
+		    } finally {
+		        try {
+		            if (rs != null) rs.close();
+		            if (pstat != null) pstat.close();
+		            if (conn != null) conn.close();
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        }
+		    }
+		    return 0;
+}
 }

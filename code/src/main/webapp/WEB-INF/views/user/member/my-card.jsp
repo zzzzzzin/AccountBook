@@ -225,7 +225,7 @@
         // addMyCard 버튼을 클릭하면 다른 파일로 이동합니다.
         document.getElementById('addCardButton').addEventListener('click', function() {
             // 새로운 URL로 이동합니다.
-            window.location.href = '새로운파일.jsp';
+            window.location.href = '.jsp';
         });
     });
 

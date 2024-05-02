@@ -9,15 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/user/member/unregister.do")
-public class Unregister extends HttpServlet {
+@WebServlet("/user/member/add-my-card.do")
+public class AddMyCard extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		
 
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/member/unregister.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/member/add-my-card.jsp");
 		dispatcher.forward(req, resp);
 
 	}
