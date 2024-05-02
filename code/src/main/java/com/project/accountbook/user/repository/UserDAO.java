@@ -62,26 +62,113 @@ public class UserDAO {
 		}
 	}
 
-// 일반 회원 로그인
+// 회원 로그인 (관리자,일반회원)
 	public UserDTO login(UserDTO dto) {
-		try {
-			String sql = "SELECT * FROM tblMember m " + "INNER JOIN tblMemberPriv mp ON m.id = mp.idMember "
-					+ "WHERE m.id = ? AND m.pw = ? AND mp.seqPriv = 2";
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, dto.getId());
-			pstat.setString(2, dto.getPw());
-			rs = pstat.executeQuery();
+	    try {
+	        String sql = "SELECT m.*, mp.seqPriv FROM tblMember m " +
+	                     "INNER JOIN tblMemberPriv mp ON m.id = mp.idMember " +
+	                     "WHERE m.id = ? AND m.pw = ? AND mp.seqPriv = 2";
+	        pstat = conn.prepareStatement(sql);
+	        pstat.setString(1, dto.getId());
+	        pstat.setString(2, dto.getPw());
+	        rs = pstat.executeQuery();
 
-			if (rs.next()) {
-				UserDTO result = new UserDTO();
-				result.setId(rs.getString("id"));
-				result.setName(rs.getString("name"));
-				result.setSeqPriv(rs.getString("seqPriv"));
-				return result;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
+	        if (rs.next()) {
+	            UserDTO result = new UserDTO();
+	            result.setId(rs.getString("id"));
+	            result.setName(rs.getString("name"));
+	            result.setSeqPriv(rs.getString("seqPriv"));
+	            return result;
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return null;
 	}
+
+	public UserDTO loginAdmin(UserDTO dto) {
+	    try {
+	        String sql = "SELECT * FROM tblAdmin WHERE id = ? AND pw = ?";
+	        pstat = conn.prepareStatement(sql);
+	        pstat.setString(1, dto.getId());
+	        pstat.setString(2, dto.getPw());
+	        rs = pstat.executeQuery();
+
+	        if (rs.next()) {
+	            UserDTO result = new UserDTO();
+	            result.setId(rs.getString("id"));
+	            result.setSeqPriv("3");
+	            return result;
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return null;
+	}
+
+		public int unregister(String id, String pw) {
+		    try {
+		        String sql = "SELECT COUNT(*) FROM tblMember WHERE id = ? AND pw = ?";
+		        pstat = conn.prepareStatement(sql);
+		        pstat.setString(1, id);
+		        pstat.setString(2, pw);
+		        rs = pstat.executeQuery();
+		        
+		        
+		        if (rs.next() && rs.getInt(1) == 1) {
+		            sql = "UPDATE tblMember SET pw = '0000', name = '탈퇴' WHERE id = ?";
+		            pstat = conn.prepareStatement(sql);
+		            pstat.setString(1, id);
+		            pstat.executeUpdate();
+		            
+		            
+		            sql = "UPDATE tblMemberPriv SET seqPriv = 4 WHERE idMember = ?";
+		            pstat = conn.prepareStatement(sql);
+		            pstat.setString(1, id);
+		            pstat.executeUpdate();
+		            
+		            // 트랜잭션 커밋
+		            conn.commit();
+		            
+		            return 1;
+		        }
+		    } catch (Exception e) {
+		        // 트랜잭션 롤백
+		        if (conn != null) {
+		            try {
+		                conn.rollback();
+		            } catch (Exception ex) {
+		                ex.printStackTrace();
+		            }
+		        }
+		        System.out.println("MemberInfoDAO.unregister");
+		        e.printStackTrace();
+		    } finally {
+		        try {
+		            if (rs != null) rs.close();
+		            if (pstat != null) pstat.close();
+		            if (conn != null) conn.close();
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        }
+		    }
+		    return 0;
+}
+		//아이디 찾기 코드 
+		public String findId(String name, String ssn) {
+		    try {
+		        String sql = "SELECT id FROM tblMember WHERE name = ? AND ssn = ?";
+		        pstat = conn.prepareStatement(sql);
+		        pstat.setString(1, name);
+		        pstat.setString(2, ssn);
+		        rs = pstat.executeQuery();
+
+		        if (rs.next()) {
+		            return rs.getString("id");
+		        }
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    }
+		    return null;
+		}
 }
