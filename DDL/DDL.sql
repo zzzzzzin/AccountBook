@@ -5,7 +5,7 @@ CREATE TABLE tblMember (
 	name          VARCHAR2(50) NOT NULL, -- 이름
 	nickname      VARCHAR2(20) NOT NULL, -- 닉네임
 	phoneNumber   VARCHAR2(30) NOT NULL, -- 전화번호
-	ssn           VARCHAR2(13) NOT NULL, -- 주민등록 번호
+	nss           VARCHAR2(13) NOT NULL, -- 주민등록 번호
 	gender        VARCHAR2(10) NOT NULL, -- 성별
 	reportCount   NUMBER       NOT NULL, -- 누적 신고 수
     joinDate      DATE         NOT NULL, -- 가입일
