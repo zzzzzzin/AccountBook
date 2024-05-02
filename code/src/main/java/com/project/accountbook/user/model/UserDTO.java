@@ -6,8 +6,7 @@ tblProfileimg
 tblMemberPriv
 */
 public class UserDTO {
-	
-	//회원, 관리자
+//회원, 관리자
 	private String id;
 	private String pw;
 	private String name;
@@ -18,18 +17,14 @@ public class UserDTO {
 	private int reportCount;
 	private String seqSurvey;
 	private String seqProfileimg;
-	
-	//사용자 테이블
+//사용자 테이블
 	private String idMember;
-	
-	//프로필 이미지
+//프로필 이미지
 	private String fileName;
 	private String fileLink;
-
-	//권한
+//권한
 	private String seqPriv;
 
-	
 	public String getId() {
 		return id;
 	}
@@ -141,5 +136,4 @@ public class UserDTO {
 				+ seqSurvey + ", seqProfileimg=" + seqProfileimg + ", fileName=" + fileName + ", fileLink=" + fileLink
 				+ ", seqPriv=" + seqPriv + "]";
 	}
-	
 }
