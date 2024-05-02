@@ -146,18 +146,6 @@ ALTER TABLE tblReasonChangeCategory
 ALTER TABLE tblFixedDepositWithdrawalCheck
 	DROP CONSTRAINT FK_tblFixedFluctuationPeriod_TO_tblFixedDepositWithdrawalCheck; -- 고정 변동 기간 -> 고정 입출금 여부
 
--- 회원 금융 정보
-ALTER TABLE tblMemberFinance
-	DROP CONSTRAINT FK_tblProperty_TO_tblMemberFinance; -- 자산 -> 회원 금융 정보
-
--- 회원 금융 정보
-ALTER TABLE tblMemberFinance
-	DROP CONSTRAINT FK_tblDebt_TO_tblMemberFinance; -- 부채 -> 회원 금융 정보
-
--- 회원 금융 정보
-ALTER TABLE tblMemberFinance
-	DROP CONSTRAINT FK_tblMember_TO_tblMemberFinance; -- 회원 -> 회원 금융 정보
-
 -- 뉴스 카테고리 목록
 ALTER TABLE tblNewsCategoryList
 	DROP CONSTRAINT FK_tblNews_TO_tblNewsCategoryList; -- 뉴스 -> 뉴스 카테고리 목록
@@ -310,18 +298,6 @@ ALTER TABLE tblFixedDepositWithdrawalCheck
 ALTER TABLE tblDepositWithdrawalStatus
 	DROP CONSTRAINT PK_tblDepositWithdrawalStatus; -- 입출금 상태 기본키
 
--- 자산
-ALTER TABLE tblProperty
-	DROP CONSTRAINT PK_tblProperty; -- 자산 기본키
-
--- 부채
-ALTER TABLE tblDebt
-	DROP CONSTRAINT PK_tblDebt; -- 부채 기본키
-
--- 회원 금융 정보
-ALTER TABLE tblMemberFinance
-	DROP CONSTRAINT PK_tblMemberFinance; -- 회원 금융 정보 기본키
-
 -- 변동 사유 목록
 ALTER TABLE tblReasonsChangeList
 	DROP CONSTRAINT PK_tblReasonsChangeList; -- 변동 사유 목록 기본키
@@ -441,15 +417,6 @@ DROP TABLE tblFixedDepositWithdrawalCheck;
 
 -- 입출금 상태
 DROP TABLE tblDepositWithdrawalStatus;
-
--- 자산
-DROP TABLE tblProperty;
-
--- 부채
-DROP TABLE tblDebt;
-
--- 회원 금융 정보
-DROP TABLE tblMemberFinance;
 
 -- 변동 사유 목록
 DROP TABLE tblReasonsChangeList;

@@ -119,16 +119,26 @@
 					</c:if>
 	                
 					<c:forEach var="attendance" items="${attendanceList}">
-						
-					
-		                <tr>
-		                    <td>${attendance.seq}</td>
-					        <td>${attendance.nickname}</td>
-					        <td>${attendance.title}</td>
-					        <td>${attendance.date}</td>
-					        <td>${attendance.viewCount}</td>
-					        <td>${attendance.likeCount}</td>
-		                </tr>
+			                <tr>
+			                    <td>${attendance.seq}</td>
+						        <td>
+						            <c:choose>
+						                <c:when test="${attendance.blindCheck eq '1'}">
+						                    블라인드 처리 되었습니다.
+						                </c:when>
+						                <c:otherwise>
+						                    ${attendance.title}
+						                </c:otherwise>
+						            </c:choose>
+						        </td>
+						        <td>${attendance.nickname}</td>
+						        <td>${attendance.date}</td>
+						        <td>${attendance.viewCount}</td>
+						        <td>${attendance.likeCount}</td>
+						        <%-- <td>${attendance.reportCount}</td>
+						        <td>${attendance.secretCheck}</td>
+						        <td>${attendance.blindCheck}</td> --%>
+			                </tr>
 	                </c:forEach>
 		                </tbody>
 	            </table>
