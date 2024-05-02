@@ -15,7 +15,7 @@
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     
@@ -63,86 +63,86 @@
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
         <div class="container-boardTotal">
-    <div id="board-search">
-      <div class="container">
-        <div class="search-window">
-          <form action="">
-            <div class="search-wrap">
-              <select>
-                <option>제목+내용</option>
-                <option>제목</option>
-                <option>내용</option>
-              </select>
-              <label for="search" class="blind">게시판 검색</label>
-              <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
-              <button type="submit" class="btn btn-dark">검색</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+		    <div id="board-search">
+		      <div class="container">
+		        <div class="search-window">
+		          <form action="">
+		            <div class="search-wrap">
+		              <select>
+		                <option>제목+내용</option>
+		                <option>제목</option>
+		                <option>내용</option>
+		              </select>
+		              <label for="search" class="blind">게시판 검색</label>
+		              <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
+		              <button type="submit" class="btn btn-dark">검색</button>
+		            </div>
+		          </form>
+		        </div>
+		      </div>
+		    </div>
    
-    <div class="board-section">
-      <div class="board-block">
-        <h3>공지사항</h3>
-        <table class="board-list">
-          <tbody>
-            <tr><td>개시글 제목</td><td>작성</td></tr>
-            <tr><td>개시글 제목</td><td>작성</td></tr>
-            <tr><td>개시글 제목</td><td>작성</td></tr>
-            <tr><td>개시글 제목</td><td>작성</td></tr>
-            <tr><td>개시글 제목</td><td>작성</td></tr>
-          </tbody>
-        </table>
-        <a href="/account/board/noticeBoard.do" class="more-link"><i class="material-icons">chevron_right</i></a>
-      </div>
-      <div class="board-block">
-        <h3>자유게시판</h3>
-        <table class="board-list">
-          <tbody>
-            <tr><td>개시글 제목</td><td>작성</td></tr>
-            <tr><td>개시글 제목</td><td>작성</td></tr>
-            <tr><td>개시글 제목</td><td>작성</td></tr>
-            <tr><td>개시글 제목</td><td>작성</td></tr>
-            <tr><td>개시글 제목</td><td>작성</td></tr>
-          </tbody>
-        </table>
-        <a href="/account/board/freeBoard.do" class="more-link"><i class="material-icons">chevron_right</i></a>
-      </div>
-      <div class="board-block">
-        <h3>건의게시판</h3>
-        <table class="board-list">
-          <tbody>
-            <tr><td>개시글 제목</td><td>작성</td></tr>
-            <tr><td>개시글 제목</td><td>작성</td></tr>
-            <tr><td>개시글 제목</td><td>작성</td></tr>
-            <tr><td>개시글 제목</td><td>작성</td></tr>
-            <tr><td>개시글 제목</td><td>작성</td></tr>
-          </tbody>
-        </table>
-        <a href="/account/board/reportBoard.do" class="more-link"><i class="material-icons">chevron_right</i></a>
-      </div>
-      <div class="board-block">
-        <h3>출석게시판</h3>
-        <table class="board-list">
-          <tbody>
-            <tr><td>개시글 제목</td><td>작성</td></tr>
-            <tr><td>개시글 제목</td><td>작성</td></tr>
-            <tr><td>개시글 제목</td><td>작성</td></tr>
-            <tr><td>개시글 제목</td><td>작성</td></tr>
-            <tr><td>개시글 제목</td><td>작성</td></tr>
-          </tbody>
-        </table>
-        <a href="/account/board/attendanceBoard.do" class="more-link"><i class="material-icons">chevron_right</i></a>
-      </div>
-    </div>
-  </div>
+		    <div class="board-section">
+		      <div class="board-block">
+		        <h3>공지사항</h3>
+		        <table class="board-list">
+		          <tbody>
+		            <tr><td>개시글 제목</td><td>작성</td></tr>
+		            <tr><td>개시글 제목</td><td>작성</td></tr>
+		            <tr><td>개시글 제목</td><td>작성</td></tr>
+		            <tr><td>개시글 제목</td><td>작성</td></tr>
+		            <tr><td>개시글 제목</td><td>작성</td></tr>
+		          </tbody>
+		        </table>
+		        <a href="/account/board/noticeBoard.do" class="more-link"><i class="material-icons">chevron_right</i></a>
+		      </div>
+		      <div class="board-block">
+		        <h3>자유게시판</h3>
+		        <table class="board-list">
+		          <tbody>
+		            <tr><td>개시글 제목</td><td>작성</td></tr>
+		            <tr><td>개시글 제목</td><td>작성</td></tr>
+		            <tr><td>개시글 제목</td><td>작성</td></tr>
+		            <tr><td>개시글 제목</td><td>작성</td></tr>
+		            <tr><td>개시글 제목</td><td>작성</td></tr>
+		          </tbody>
+		        </table>
+		        <a href="/account/board/freeBoard.do" class="more-link"><i class="material-icons">chevron_right</i></a>
+		      </div>
+		      <div class="board-block">
+		        <h3>건의게시판</h3>
+		        <table class="board-list">
+		          <tbody>
+		            <tr><td>개시글 제목</td><td>작성</td></tr>
+		            <tr><td>개시글 제목</td><td>작성</td></tr>
+		            <tr><td>개시글 제목</td><td>작성</td></tr>
+		            <tr><td>개시글 제목</td><td>작성</td></tr>
+		            <tr><td>개시글 제목</td><td>작성</td></tr>
+		          </tbody>
+		        </table>
+		        <a href="/account/board/reportBoard.do" class="more-link"><i class="material-icons">chevron_right</i></a>
+		      </div>
+		      <div class="board-block">
+		        <h3>출석게시판</h3>
+		        <table class="board-list">
+		          <tbody>
+		            <tr><td>개시글 제목</td><td>작성</td></tr>
+		            <tr><td>개시글 제목</td><td>작성</td></tr>
+		            <tr><td>개시글 제목</td><td>작성</td></tr>
+		            <tr><td>개시글 제목</td><td>작성</td></tr>
+		            <tr><td>개시글 제목</td><td>작성</td></tr>
+		          </tbody>
+		        </table>
+		        <a href="/account/board/attendanceBoard.do" class="more-link"><i class="material-icons">chevron_right</i></a>
+		      </div>
+		    </div>
+		  </div>
 
         <!-- fakecontent 끝 -->
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
         
-    </div>
+    	</div>
     </div>
 
     <!-- JavaScript Libraries -->

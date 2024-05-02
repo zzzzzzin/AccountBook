@@ -15,7 +15,7 @@
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Icon Font Stylesheet -->
@@ -45,7 +45,7 @@
 
         <!-- Sidebar Start -->
         <!-- 사이드바  -->
-        <%@include file="/WEB-INF/views/inc/board-Sidebar.jsp"%>
+        <%@include file="/WEB-INF/views/inc/board-sidebar.jsp"%>
         <!-- 사이드바 끝  -->
         <!-- Sidebar End -->
 
@@ -53,51 +53,50 @@
         <!-- Content Start -->
         <div class="content">
             
-            <!-- Navbar Start -->
-            <!-- 상당 메뉴 -->
-            <%@include file="/WEB-INF/views/inc/header.jsp"%>
-            <!-- 상당 메뉴 끝-->
-            <!-- Navbar End -->
+        <!-- Navbar Start -->
+        <!-- 상당 메뉴 -->
+        <%@include file="/WEB-INF/views/inc/header.jsp"%>
+        <!-- 상당 메뉴 끝-->
+        <!-- Navbar End -->
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
       	<div class="container">
-    <h2>글쓰기</h2>
-    <form>
-      <div class="form-group">
-        <label for="category">게시판 카테고리</label>
-        <select id="category" name="category">
-          <option value="notice">공지사항</option>
-          <option value="report">신고 게시판</option>
-          <option value="free">자유 게시판</option>
-          <option value="suggestion">건의 사항 게시판</option>
-          <option value="attendance">출석 게시판</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="title">제목을 입력해 주세요.</label>
-        <input type="text" id="title" name="title" placeholder="제목을 입력해 주세요.">
-      </div>
-      <div class="form-group">
-        <label for="content">내용을 입력해 주세요.</label>
-        <textarea id="content" name="content" placeholder="내용을 입력해 주세요."></textarea>
-      </div>
-      <div class="file-attach">
-        <label for="file-input">파일 첨부<i class="material-icons">attach_file</i></label>
-        <input type="file" id="file-input" style="display:none;">
-      </div>
-      <div class="button-group">
-        <button type="submit">등록</button>
-        <button type="button">취소</button>
-      </div>
-    </form>
-  </div>  
+		   <h2>글쓰기</h2>
+		   <form>
+		     <div class="form-group">
+		       <label for="category">게시판 카테고리</label>
+		       <select id="category" name="category">
+		         <option value="notice">공지사항</option>
+		         <option value="report">신고 게시판</option>
+		         <option value="free">자유 게시판</option>
+		         <option value="suggestion">건의 사항 게시판</option>
+		         <option value="attendance">출석 게시판</option>
+		       </select>
+		     </div>
+		     <div class="form-group">
+		       <label for="title">제목을 입력해 주세요.</label>
+		       <input type="text" id="title" name="title" placeholder="제목을 입력해 주세요.">
+		     </div>
+		     <div class="form-group">
+		       <label for="content">내용을 입력해 주세요.</label>
+		       <textarea id="content" name="content" placeholder="내용을 입력해 주세요."></textarea>
+		     </div>
+		     <div class="file-attach">
+		       <label for="file-input">파일 첨부<i class="material-icons">attach_file</i></label>
+		       <input type="file" id="file-input" style="display:none;">
+		     </div>
+		     <div class="button-group">
+		       <button type="submit">등록</button>
+		       <button type="button">취소</button>
+		     </div>
+		   </form>
+  		</div>  
       	  
 
-        <!-- fakecontent 끝 -->
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-        
-    </div>
+		<!-- fakecontent 끝 -->
+		<!-- Back to Top -->
+		<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>    
+    	</div>
     </div>
 
     <!-- JavaScript Libraries -->

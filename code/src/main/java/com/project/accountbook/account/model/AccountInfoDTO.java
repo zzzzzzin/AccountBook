@@ -6,6 +6,7 @@ tblAcc
 tblPurchaseWishList
 tblFixedDepositWithdrawalCheck
 tblAccCategoryList
+tblReasonChangeCategory
 */
 public class AccountInfoDTO {
 	
@@ -33,6 +34,21 @@ public class AccountInfoDTO {
 	//가계부 카테고리 목록
 	private String seqAccCategory;
 	private String seqAccInfo;
+	
+	//(추가)
+	//뉴스 카테고리 목록
+	private String seqnews;
+	
+	//뉴스
+	private String title;
+	private String link;
+	private String newsDate;
+	private String media;
+		
+	
+	//변동 사유 카테고리
+	private String seqReasonsChangeList;
+	private String seqMyCard;
 	
 	public String getContent() {
 		return content;
@@ -118,7 +134,18 @@ public class AccountInfoDTO {
 	public void setSeqAccInfo(String seqAccInfo) {
 		this.seqAccInfo = seqAccInfo;
 	}
-	
+	public String getSeqReasonsChangeList() {
+		return seqReasonsChangeList;
+	}
+	public void setSeqReasonsChangeList(String seqReasonsChangeList) {
+		this.seqReasonsChangeList = seqReasonsChangeList;
+	}
+	public String getSeqMyCard() {
+		return seqMyCard;
+	}
+	public void setSeqMyCard(String seqMyCard) {
+		this.seqMyCard = seqMyCard;
+	}
 	@Override
 	public String toString() {
 		return "AccountInfoDTO [content=" + content + ", accInfoDate=" + accInfoDate + ", price=" + price
@@ -126,7 +153,10 @@ public class AccountInfoDTO {
 				+ seqReasonChangeCategory + ", seqFixedFluctuationCheck=" + seqFixedFluctuationCheck
 				+ ", seqDepositWithdrawalStatus=" + seqDepositWithdrawalStatus + ", idMember=" + idMember
 				+ ", productName=" + productName + ", fdwContent=" + fdwContent + ", seqFixedFluctuationPeriod="
-				+ seqFixedFluctuationPeriod + ", seqAccCategory=" + seqAccCategory + ", seqAccInfo=" + seqAccInfo + "]";
-	}
+				+ seqFixedFluctuationPeriod + ", seqAccCategory=" + seqAccCategory + ", seqAccInfo=" + seqAccInfo
+				+ ", seqReasonsChangeList=" + seqReasonsChangeList + ", seqMyCard=" + seqMyCard + "]";
+	}	
+	
+	
 	
 }

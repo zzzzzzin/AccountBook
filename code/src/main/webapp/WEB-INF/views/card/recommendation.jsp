@@ -25,6 +25,8 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js"   
     integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="   
 	crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="/account/asset/css/combine.css">
 </script>
 </head>
 <style>
@@ -160,6 +162,8 @@
             <p id="description"></p>
         </div>
     </div>
+    
+    <button class="modal-button" onclick="openModal()">카테고리 선택</button>
 
         <!-- fakecontent 끝 -->
         <!-- Back to Top -->
@@ -173,6 +177,14 @@
     <!-- Template Javascript -->
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
     <script>
+    
+    function openModal() {
+        // 모달 열기 함수 구현
+        console.log("모달 열기");
+        
+        window.location.href = '/account/card/recommendation-list.do';
+    }
+        
 
     document.addEventListener('DOMContentLoaded', function() {
     const sidebarToggler = document.getElementById('sidebar-toggler');
