@@ -1,6 +1,6 @@
 package com.project.accountbook.board.post.model;
 
-public class AttendanceDTO {
+public class ReportDTO {
 	
 	private int seq;
 	private String nickname;
@@ -13,8 +13,8 @@ public class AttendanceDTO {
 	private String blindCheck;
 	
 	
-	//출석 게시판
-	public AttendanceDTO(int seq, String nickname, String title, String date, int viewCount, int likeCount,
+	//건의 게시판
+	public ReportDTO(int seq, String nickname, String title, String date, int viewCount, int likeCount,
 			String reportCount, String secretCheck, String blindCheck) {
 		super();
 		this.seq = seq;
@@ -28,7 +28,7 @@ public class AttendanceDTO {
 		this.blindCheck = blindCheck;
 	}
 	
-	public AttendanceDTO() {
+	public ReportDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -106,10 +106,12 @@ public class AttendanceDTO {
 
 	@Override
 	public String toString() {
-		return "AttendanceDTO [seq=" + seq + ", nickname=" + nickname + ", title=" + title + ", date=" + date
+		return "ReportDTO [seq=" + seq + ", nickname=" + nickname + ", title=" + title + ", date=" + date
 				+ ", viewCount=" + viewCount + ", likeCount=" + likeCount + ", reportCount=" + reportCount
 				+ ", secretCheck=" + secretCheck + ", blindCheck=" + blindCheck + "]";
 	}
+
+	
 
 	
 	
