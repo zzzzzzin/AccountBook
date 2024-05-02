@@ -14,6 +14,7 @@ values (4, 4, 7, '문문문어어어', '2024-04-28', 0, 0, 0);
 insert into tblReplyComments (seq, seqComments, seqUser, content, writeDate, likeCount, dislikeCount, reportCount) 
 values (5, 6, 7, '운영자님 ㄳ', '2024-04-28', 0, 0, 0);
 
+
 --가계부 카테고리 목록 tblAccCategoryList
 INSERT INTO tblAccCategoryList(seq,seqAccCategory,seqAccInfo) VALUES (1,33,1);
 INSERT INTO tblAccCategoryList(seq,seqAccCategory,seqAccInfo) VALUES (2,35,2);
