@@ -68,16 +68,24 @@
         height: 100%;
         text-align: center;
         position: absolute;
-        top: 170%;
+        top: 100%;
         left: 70%;
         display: flex;
         justify-content: center;
         align-items: center;
     }
+    
+    .input-pw-real > input, .check-pw-input > input {
+    	border: none;
+    }
 
     .unregister {
         display: flex;
         justify-content: center;
+    }
+    
+    .unregister > div {
+    	margin-right: 10px;
     }
 
     .check-pw-btn {
@@ -129,11 +137,15 @@
 						<div class="content-unregister">
 							<div class="input-pw">
 								<div class="input-pw-title">현재 비밀번호</div>
-								<div class="input-pw-real">1234</div>
+								<div class="input-pw-real">
+									<input class="unregisterPw" type="text" value="비밀번호를 입력하세요.">
+								</div>
 							</div>
 							<div class="check-pw">
 								<div class="check-pw-titles">비밀번호 확인</div>
-								<div class="check-pw-input">4321</div>
+								<div class="check-pw-input">
+									<input class="unregisterPw" type="text" value="비밀번호를 입력하세요.">
+								</div>
 							</div>
 						</div>
 						<div class="unregister">
@@ -168,6 +180,17 @@
         content.classList.toggle('expanded');
         });
     });
+    
+    document.addEventListener('DOMContentLoaded', function () {
+        const unregisterPwInputs = document.querySelectorAll('.unregisterPw');
+
+        unregisterPwInputs.forEach(input => {
+            input.addEventListener('focus', function () {
+                this.value = '';
+            });
+        });
+    });
+
 
     </script>
 </body>
