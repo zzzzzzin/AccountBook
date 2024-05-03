@@ -21,6 +21,7 @@ public class MemberInfoDAO {
 			this.conn = DBUtil.open("192.168.10.47", "jspProject", "java1234");
 		}
 
+		//나의 카드 추가
 		public int addMycard(MemberInfoDTO dto) {
 			
 			try {
@@ -43,7 +44,7 @@ public class MemberInfoDAO {
 			return 0;
 		}
 		
-		
+		//나의 카드 삭제
 		public int delMyCard(MemberInfoDTO dto) {
 			
 			try {
@@ -62,6 +63,7 @@ public class MemberInfoDAO {
 			return 0;
 		}
 		
+		//나의카드 수정
 		public int updateMyCard(MemberInfoDTO dto) {
 			
 			try {
@@ -82,6 +84,7 @@ public class MemberInfoDAO {
 			return 0;
 		}
 
+		//나의 카드 정보 가져오기
 		public MemberInfoDTO getMyCard(String cardNumber) {
 			
 			try {
@@ -113,6 +116,7 @@ public class MemberInfoDAO {
 		}
 		
 		
+		//나의 카드 리스트
 		public ArrayList<MemberInfoDTO> listMyCard(String McIdMember){
 			
 			try {

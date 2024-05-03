@@ -20,6 +20,7 @@ public class CardDAO {
 		this.conn = DBUtil.open();
 	}
 	
+	//카드 추가
 	public int addCard(CardDTO dto) {
 		try {
 
@@ -43,9 +44,43 @@ public class CardDAO {
 		return 0;
 	}
 	
-//	public ArrayList<CardDTO dto> categoryCard{
-//		
-//	}
+	//카테고리별 카드 리스트
+	public ArrayList<CardDTO> categoryCard(String name){
+		//String sql = "SELECT name as ciname, explanation, annualFee, overseasUse, cardCompany, fileLink, seqCardType FROM tblCardInformation WHERE seq IN (SELECT seqCardInformation FROM tblListCardBenefits WHERE seqCardCategory = (SELECT seq FROM tblCardCategory WHERE name LIKE ?))";
+		try {
+			String sql = "SELECT name as ciname, explanation, annualFee, overseasUse, cardCompany, fileLink, seqCardType " +
+	                 "FROM tblCardInformation " +
+	                 "WHERE seq IN (SELECT seqCardInformation " +
+	                               "FROM tblListCardBenefits " +
+	                               "WHERE seqCardCategory = (SELECT seq FROM tblCardCategory WHERE name LIKE (?)))";
+
+	    pstat = conn.prepareStatement(sql);
+	    pstat.setString(1, "%" + name + "%");
+
+	    rs = pstat.executeQuery();
+
+	    ArrayList<CardDTO> list = new ArrayList<>();
+
+	    while (rs.next()) {
+	        CardDTO dto = new CardDTO();
+	        
+	        dto.setCiName(rs.getString("ciname"));
+	        dto.setExplanation(rs.getString("explanation"));
+	        dto.setAnnualFee(rs.getInt("annualFee"));
+	        dto.setOverseasUse(rs.getString("overseasUse"));
+	        dto.setCardCompany(rs.getString("cardCompany"));
+	        dto.setFileLink(rs.getString("fileLink"));
+	        dto.setSeqCardType(rs.getInt("seqCardType"));
+	        
+	        list.add(dto);			
+			}	
+			return list;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 	
 }
