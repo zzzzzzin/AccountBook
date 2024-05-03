@@ -25,7 +25,24 @@
 </head>
 <style>
 
-   
+   #fakecontent{
+		display: flex;
+		justify-content: center;
+		align-content: center;
+	}
+	
+	.user-profile {
+  border: 1px solid black;
+  margin-left: 0 !important;
+  width: 600px;
+  height: 300px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 20px;
+  position: relative;
+}
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
@@ -59,6 +76,16 @@
             <!-- Navbar End -->
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
+        <div id="fakecontent">
+        <div id="infoeditcontent" >
+        	
+        </div>
+        
+        
+        
+        
+        
+        
         
         	<div class="myPage">
         <div class="user-profile">
@@ -113,7 +140,7 @@
         
     </div>
     </div>
-
+</div>
     <!-- JavaScript Libraries -->
    
     <!-- Template Javascript -->
