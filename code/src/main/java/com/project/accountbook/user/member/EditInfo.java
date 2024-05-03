@@ -8,6 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.project.accountbook.user.member.repository.MemberInfoDAO;
+import com.project.accountbook.user.model.UserDTO;
 
 @WebServlet("/user/member/edit-info.do")
 public class EditInfo extends HttpServlet {
@@ -21,4 +25,5 @@ public class EditInfo extends HttpServlet {
 		dispatcher.forward(req, resp);
 
 	}
+
 }
