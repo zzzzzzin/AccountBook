@@ -25,7 +25,110 @@
 </head>
 <link rel="stylesheet" href="../../../css/combine.css">
 <style>
+   #fakecontent{
+    display: flex;
+    justify-content: center;
+   }
 
+   .myPage-mypage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+.user-profile-mypage {
+  width: 600px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 30px;
+  background-color: #f3f6f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1); 
+  border-radius: 10px;
+}
+.user-profile-mypage-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            color: #666;
+            margin: 50px;
+            border: 1px solid black;
+            
+        }
+
+
+
+.left{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  
+}
+.right{
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#userinfo {
+  display: flex;
+  flex-direction: column;
+  width: 100%; 
+  max-width: 600px; 
+  margin: 0 auto; 
+  padding: 20px;
+  background: #f3f6f9; 
+  border-radius: 8px; 
+}
+
+.userinfo-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; 
+  align-items: baseline;
+  margin-bottom: 10px; 
+  padding: 10px; 
+  border-bottom: 1px solid #ddd; 
+  
+}
+
+.userinfo.left {
+  flex: 1;
+  text-align: left;
+  font-weight: bold;
+  padding: 10px 20px; 
+  background-color: #e8e8e8; 
+  border-right: 2px solid #ccc; 
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.1); 
+  margin-right: 10px; 
+}
+
+.userinfo.right {
+  flex: 1.5; 
+  text-align: right;
+  font-weight: normal;
+  padding: 10px 20px; 
+  color: #555;
+  background-color: #fff;
+  border-left: none;
+}
+
+/* Enhances the last item by removing the bottom border */
+.userinfo-content:last-child {
+  border-bottom: none;
+}
    
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
@@ -60,52 +163,39 @@
             <!-- Navbar End -->
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
-      
-      		<div class="myPage-mypage">
-        <div class="user-profile-mypage">
-            <div class="user-profile-mypage-img">
-                개인 프로필 이미지
-            </div>
-            <div class="user-profile-mypage-container">
-                <div class="user-profile-mypage-name">
-                    <div class="user-profile-mypage-name-title">이름</div>
-                    <div class="user-profile-mypage-name-real">홍길동</div>
+      <div id="fakecontent">
+        <div class="myPage-mypage">
+          <div class="user-profile-mypage">
+              <div class="user-profile-mypage-img">
+                  개인 프로필 이미지
+              </div>
+              <div id="userinfo">
+                <div class="userinfo-content">
+                    <div class="userinfo left">이름</div>
+                    <div class="userinfo right">홍길동</div>
                 </div>
-                <div class="user-profile-mypage-nickname">
-                    <div class="user-profile-mypage-nickname-title">닉네임</div>
-                    <div class="user-profile-mypage-nickname-real">hong</div>
+                <div class="userinfo-content">
+                    <div class="userinfo left">닉네임</div>
+                    <div class="userinfo right">hong</div>
                 </div>
-                <div class="user-profile-mypage-sex">
-                    <div class="user-profile-mypage-sex-title">성별</div>
-                    <div class="user-profile-mypage-sex-real">남</div>
+                <div class="userinfo-content">
+                    <div class="userinfo left">성별</div>
+                    <div class="userinfo right">남</div>
                 </div>
-                <div class="user-profile-mypage-phone">
-                    <div class="user-profile-mypage-phone-title">전화번호</div>
-                    <div class="user-profile-mypage-phone-real">010-1234-5678</div>
+                <div class="userinfo-content">
+                    <div class="userinfo left">전화번호</div>
+                    <div class="userinfo right">010-1234-5678</div>
                 </div>
-                <div class="user-profile-mypage-SSN">
-                    <div class="user-profile-mypage-SSN-title">주민등록번호</div>
-                    <div class="user-profile-mypage-SSN-real">123456-1234567</div>
+                <div class="userinfo-content">
+                    <div class="userinfo left">주민등록번호</div>
+                    <div class="userinfo right" id="ssn">123456-1234567</div>
                 </div>
-            </div>
-        </div>
-        <div class="myPage-mypage-btns">
-            <div>
-                <button type="button">비밀번호 수정</button>
-            </div>
-            <div>
-                <button type="button">개인정보 수정</button>
-            </div>
-            <div>
-                <button type="button"><a href="/account/user/unregister.do">회원 탈퇴</button>
-            </div>
-        </div>
+              </div>
+      </div>
     </div>
-
         <!-- fakecontent 끝 -->
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-        
     </div>
     </div>
 

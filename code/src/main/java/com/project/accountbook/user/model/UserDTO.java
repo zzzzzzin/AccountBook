@@ -6,134 +6,144 @@ tblProfileimg
 tblMemberPriv
 */
 public class UserDTO {
-//회원, 관리자
+	//회원, 관리자
 	private String id;
 	private String pw;
 	private String name;
 	private String nickname;
 	private String phoneNumber;
-	private String nss;
+	private String ssn;
+	
+	private int monthlyPaycheck;
+	public int getMonthlyPaycheck() {
+		return monthlyPaycheck;
+	}
+	public void setMonthlyPaycheck(int monthlyPaycheck) {
+		this.monthlyPaycheck = monthlyPaycheck;
+	}
+	public int getSavingsGoals() {
+		return savingsGoals;
+	}
+	public void setSavingsGoals(int savingsGoals) {
+		this.savingsGoals = savingsGoals;
+	}
+	public String getSeqCompressionIntensity() {
+		return seqCompressionIntensity;
+	}
+	public void setSeqCompressionIntensity(String seqCompressionIntensity) {
+		this.seqCompressionIntensity = seqCompressionIntensity;
+	}
+	public String getSeqSavingsPeriod() {
+		return seqSavingsPeriod;
+	}
+	public void setSeqSavingsPeriod(String seqSavingsPeriod) {
+		this.seqSavingsPeriod = seqSavingsPeriod;
+	}
+	private int savingsGoals;
+	private String seqCompressionIntensity;
+	private String seqSavingsPeriod;
+	
+	
+	public String getSsn() {
+	return ssn;
+	}
+	public void setSsn(String ssn) {
+	this.ssn = ssn;
+	}
+	public String getIdMember() {
+	return idMember;
+	}
+	public void setIdMember(String idMember) {
+	this.idMember = idMember;
+	}
 	private String gender;
 	private int reportCount;
 	private String seqSurvey;
 	private String seqProfileimg;
-//사용자 테이블
+	//사용자 테이블
 	private String idMember;
-//프로필 이미지
+	//프로필 이미지
 	private String fileName;
 	private String fileLink;
-//권한
+	//권한
 	private String seqPriv;
-
 	public String getId() {
-		return id;
+	return id;
 	}
-
 	public void setId(String id) {
-		this.id = id;
+	this.id = id;
 	}
-
 	public String getPw() {
-		return pw;
+	return pw;
 	}
-
 	public void setPw(String pw) {
-		this.pw = pw;
+	this.pw = pw;
 	}
-
 	public String getName() {
-		return name;
+	return name;
 	}
-
 	public void setName(String name) {
-		this.name = name;
+	this.name = name;
 	}
-
 	public String getNickname() {
-		return nickname;
+	return nickname;
 	}
-
 	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	this.nickname = nickname;
 	}
-
 	public String getPhoneNumber() {
-		return phoneNumber;
+	return phoneNumber;
 	}
-
 	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	this.phoneNumber = phoneNumber;
 	}
-
-	public String getNss() {
-		return nss;
-	}
-
-	public void setNss(String nss) {
-		this.nss = nss;
-	}
-
 	public String getGender() {
-		return gender;
+	return gender;
 	}
-
 	public void setGender(String gender) {
-		this.gender = gender;
+	this.gender = gender;
 	}
-
 	public int getReportCount() {
-		return reportCount;
+	return reportCount;
 	}
-
 	public void setReportCount(int reportCount) {
-		this.reportCount = reportCount;
+	this.reportCount = reportCount;
 	}
-
 	public String getSeqSurvey() {
-		return seqSurvey;
+	return seqSurvey;
 	}
-
 	public void setSeqSurvey(String seqSurvey) {
-		this.seqSurvey = seqSurvey;
+	this.seqSurvey = seqSurvey;
 	}
-
 	public String getSeqProfileimg() {
-		return seqProfileimg;
+	return seqProfileimg;
 	}
-
 	public void setSeqProfileimg(String seqProfileimg) {
-		this.seqProfileimg = seqProfileimg;
+	this.seqProfileimg = seqProfileimg;
 	}
-
 	public String getFileName() {
-		return fileName;
+	return fileName;
 	}
-
 	public void setFileName(String fileName) {
-		this.fileName = fileName;
+	this.fileName = fileName;
 	}
-
 	public String getFileLink() {
-		return fileLink;
+	return fileLink;
 	}
-
 	public void setFileLink(String fileLink) {
-		this.fileLink = fileLink;
+	this.fileLink = fileLink;
 	}
-
 	public String getSeqPriv() {
-		return seqPriv;
+	return seqPriv;
 	}
-
 	public void setSeqPriv(String seqPriv) {
-		this.seqPriv = seqPriv;
+	this.seqPriv = seqPriv;
 	}
-
 	@Override
 	public String toString() {
-		return "UserDTO [id=" + id + ", pw=" + pw + ", name=" + name + ", nickname=" + nickname + ", phoneNumber="
-				+ phoneNumber + ", nss=" + nss + ", gender=" + gender + ", reportCount=" + reportCount + ", seqSurvey="
-				+ seqSurvey + ", seqProfileimg=" + seqProfileimg + ", fileName=" + fileName + ", fileLink=" + fileLink
-				+ ", seqPriv=" + seqPriv + "]";
+	return "UserDTO [id=" + id + ", pw=" + pw + ", name=" + name + ", nickname=" + nickname + ", phoneNumber="
+	+ phoneNumber + ", ssn=" + ssn + ", gender=" + gender + ", reportCount=" + reportCount + ", seqSurvey="
+	+ seqSurvey + ", seqProfileimg=" + seqProfileimg + ", fileName=" + fileName + ", fileLink=" + fileLink
+	+ ", seqPriv=" + seqPriv + ", monthlyPaycheck=" + monthlyPaycheck + ", savingsGoals" + savingsGoals + ", seqCompressionIntensity" + seqCompressionIntensity + ", seqSavingsPeriod" + seqSavingsPeriod + "]";
 	}
-}
+	}

@@ -1,182 +1,215 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="" name="keywords">
+<meta content="" name="description">
 
-    <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+<!-- Favicon -->
+<link href="img/favicon.ico" rel="icon">
 
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+<!-- Google Web Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
 
-    <script src="https://code.jquery.com/jquery-3.4.1.js"   
-    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="   
+<!-- Icon Font Stylesheet -->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+	rel="stylesheet">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+	rel="stylesheet">
+
+<script src="https://code.jquery.com/jquery-3.4.1.js"
+	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
 	crossorigin="anonymous">
     
     <link rel="stylesheet" href="/account/asset/css/combine.css">
 </script>
 </head>
 <style>
+.flipster--loop { .flipster__item--past { transform:translateX(-100%);
+	
+}
 
-.flipster--loop {
-	  
-    .flipster__item { 
-      position: absolute;
-    }
-    
-  /*  .flipster__item--past { transform: translateX(-100%); }
-    .flipster__item--future { transform: translateX(100%); }*/
-    
-    .flipster__item--past-2 { transform: translateX(-100%); }
-    .flipster__item--future-2 { transform: translateX(100%); }
-    
-    .flipster__item--past-1 { transform: translateX(-50%); }
-    .flipster__item--future-1 { transform: translateX(50%); }
-  }
-  
-  .flipster--infinite-carousel {
-  
-      .flipster__container,
-      .flipster__item {
-          transition: all 350ms ease-in-out;
-          transition-timing-function: cubic-bezier(.56,.12,.12,.98);
-      }
-  
-      .flipster__item__content { transition: inherit; }
-  
-      .flipster__item {
-          position: absolute;
-          opacity: 0;
-          perspective: 800px;
-      }
-  
-      .flipster__item--past-2,
-      .flipster__item--future-2 {
-          opacity: 0.6;
-          transition-delay: 90ms;
-      }
-  
-      .flipster__item--past-1,
-      .flipster__item--future-1 {
-          opacity: 0.8;
-          transition-delay: 60ms;
-      }
-  
-      .flipster__item--current {
-          opacity: 1;
-          transition-delay: 0;
-      }
-  
-      .flipster__item--past .flipster__item__content,
-      .flipster__item--future .flipster__item__content { transform: scale(0.4); }
-  
-      .flipster__item--past-2 .flipster__item__content { transform: translateX(-75%) rotateY(45deg) scale(0.6); }
-      .flipster__item--future-2 .flipster__item__content { transform: translateX(75%) rotateY(-45deg) scale(0.6); }
-  
-      .flipster__item--past-1 .flipster__item__content { transform: translateX(-50%) rotateY(45deg) scale(0.8); }
-      .flipster__item--future-1 .flipster__item__content { transform: translateX(50%) rotateY(-45deg) scale(0.8); }
-  
-      .flipster__item--current .flipster__item__content { transform: translateX(0) rotateY(0deg) scale(1); }
-  }
-  .flipster-container {
-    position: relative;
+.flipster__item--future {
+	transform: translateX(100%);
+}
+
+.flipster__item--past-2 {
+	transform: translateX(-100%);
+}
+
+.flipster__item--future-2 {
+	transform: translateX(100%);
+}
+
+.flipster__item--past-1 {
+	transform: translateX(-50%);
+}
+
+.flipster__item--future-1 {
+	transform: translateX(50%);
+}
+
+}
+.flipster--infinite-carousel { .flipster__container , .flipster__item {
+	transition:all350msease-in-out;
+	transition-timing-function: cubic-bezier(.56, .12, .12, .98);
+}
+
+.flipster__item__content {
+	transition: inherit;
+}
+
+.flipster__item {
+	position: absolute;
+	opacity: 0;
+	perspective: 800px;
+}
+
+.flipster__item--past-2, .flipster__item--future-2 {
+	opacity: 0.6;
+	transition-delay: 90ms;
+}
+
+.flipster__item--past-1, .flipster__item--future-1 {
+	opacity: 0.8;
+	transition-delay: 60ms;
+}
+
+.flipster__item--current {
+	opacity: 1;
+	transition-delay: 0;
+}
+
+.flipster__item--past .flipster__item__content, .flipster__item--future .flipster__item__content
+	{
+	transform: scale(0.4);
+}
+
+.flipster__item--past-2 .flipster__item__content {
+	transform: translateX(-75%) rotateY(45deg) scale(0.6);
+}
+
+.flipster__item--future-2 .flipster__item__content {
+	transform: translateX(75%) rotateY(-45deg) scale(0.6);
+}
+
+.flipster__item--past-1 .flipster__item__content {
+	transform: translateX(-50%) rotateY(45deg) scale(0.8);
+}
+
+.flipster__item--future-1 .flipster__item__content {
+	transform: translateX(50%) rotateY(-45deg) scale(0.8);
+}
+
+.flipster__item--current .flipster__item__content {
+	transform: translateX(0) rotateY(0deg) scale(1);
+}
+
+}
+.flipster-container {
+	position: relative;
 }
 
 .description-box {
-    position: absolute;
-    bottom: -80px;
-    left: 0;
-    right: 0;
-    padding: 10px;
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
+	margin-top: 20px;
+	padding: 10px;
+	border: 1px solid #ccc;
+	background-color: #f9f9f9;
 }
-    
-    <%@include file="/WEB-INF/views/inc/asset.jsp"%>
-      
+
+<%@include file ="/WEB-INF/views/inc/asset.jsp"%>.flipster-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
 </style>
 
 <body>
-    <div class="container-xxl position-relative bg-white d-flex p-0">
-        <!-- Spinner Start -->
-        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-        </div>
-        <!-- Spinner End -->
+	<div class="container-xxl position-relative bg-white d-flex p-0">
+		<!-- Spinner Start -->
+		<div id="spinner"
+			class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+			<div class="spinner-border text-primary"
+				style="width: 3rem; height: 3rem;" role="status">
+				<span class="sr-only">Loading...</span>
+			</div>
+		</div>
+		<!-- Spinner End -->
 
 
-        <!-- Sidebar Start -->
-        <!-- 사이드바  -->
-        <%@include file="/WEB-INF/views/inc/card-sidebar.jsp"%>
-        <!-- 사이드바 끝  -->
-        <!-- Sidebar End -->
+		<!-- Sidebar Start -->
+		<!-- 사이드바  -->
+		<%@include file="/WEB-INF/views/inc/card-sidebar.jsp"%>
+		<!-- 사이드바 끝  -->
+		<!-- Sidebar End -->
 
 
-        <!-- Content Start -->
-        <div class="content">
-            
-            <!-- Navbar Start -->
-            <!-- 상당 메뉴 -->
-            <%@include file="/WEB-INF/views/inc/header.jsp"%>
-            <!-- 상당 메뉴 끝-->
-            <!-- Navbar End -->
-        <!-- Content End -->
-        <!-- fakecontent 안에서 작성 -->
-      
-        <div class="flipster-container">
-        <div class="flipster">
-            <ul class="flip-items">
-                <li data-flip-title="1" data-flip-category="1" data-description="이미지 1에 대한 설명입니다. VARCHAR2(2000) 크기로 충분한 내용을 담을 수 있습니다.">
-                    <img src="http://brokensquare.com/Code/jquery-flipster/demo/img/text1.gif">
-                </li>
-                <li data-flip-title="2" data-flip-category="2" data-description="이미지 2에 대한 설명입니다. VARCHAR2(2000) 크기로 충분한 내용을 담을 수 있습니다.">
-                    <img src="http://brokensquare.com/Code/jquery-flipster/demo/img/text2.gif">
-                </li>
-                <li data-flip-title="3" data-flip-category="3" data-description="이미지 3에 대한 설명입니다. VARCHAR2(2000) 크기로 충분한 내용을 담을 수 있습니다.">
-                    <img src="http://brokensquare.com/Code/jquery-flipster/demo/img/text3.gif">
-                </li>
-                <li data-flip-title="4" data-flip-category="4" data-description="이미지 4에 대한 설명입니다. VARCHAR2(2000) 크기로 충분한 내용을 담을 수 있습니다.">
-                    <img src="http://brokensquare.com/Code/jquery-flipster/demo/img/text4.gif">
-                </li>
-                <li data-flip-title="5" data-flip-category="5" data-description="이미지 5에 대한 설명입니다. VARCHAR2(2000) 크기로 충분한 내용을 담을 수 있습니다.">
-                    <img src="http://brokensquare.com/Code/jquery-flipster/demo/img/text5.gif">
-                </li>
-            </ul>
-        </div>
-        <div class="description-box">
-            <p id="description"></p>
-        </div>
-    </div>
-    
-    <button class="modal-button" onclick="openModal()">카테고리 선택</button>
+		<!-- Content Start -->
+		<div class="content">
 
-        <!-- fakecontent 끝 -->
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-        
-    </div>
-    </div>
+			<!-- Navbar Start -->
+			<!-- 상당 메뉴 -->
+			<%@include file="/WEB-INF/views/inc/header.jsp"%>
+			<!-- 상당 메뉴 끝-->
+			<!-- Navbar End -->
+			<!-- Content End -->
+			<!-- fakecontent 안에서 작성 -->
+			<div id="fakecontent_card">
+				<div class="flipster-container">
+					<div class="flipster">
+						<ul class="flip-items">
+							<c:forEach var="dto" items="${list}" varStatus="loop">
+								<li data-flip-title="${loop.index + 1}"
+									data-flip-category="${loop.index + 1}"
+									data-description="               
+                    <div>${loop.index + 1}</div>
+                    <div>카드 이름 : ${dto.ciName}</div>
+                    <div>카드사 : ${dto.cardCompany}</div>
+                    <div>설명 : ${dto.explanation}</div>
+                    <div>연회비 : ${dto.annualFee}원</div>
+                    <div>해외 겸용 : ${dto.overseasUse}</div>
+                ">
+									<img
+									src="http://brokensquare.com/Code/jquery-flipster/demo/img/text${loop.index + 1}.gif">
+								</li>
+							</c:forEach>
+						</ul>
+					</div>
+				</div>
+				<div class="description-box">
+					<p id="description"></p>
+				</div>
+			</div>
+		</div>
+		<button class="modal-button" onclick="openModal()">카테고리 선택</button>
+	</div>
+	</div>
 
-    <!-- JavaScript Libraries -->
-   
-    <!-- Template Javascript -->
-    <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
-    <script>
+	<!-- fakecontent 끝 -->
+	<!-- Back to Top -->
+	<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i
+		class="bi bi-arrow-up"></i></a>
+
+
+
+	<!-- JavaScript Libraries -->
+
+	<!-- Template Javascript -->
+	<script
+		src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
+	<script>
     
     function openModal() {
         // 모달 열기 함수 구현
@@ -908,8 +941,9 @@ flipContainer.flipster({
     buttons: false,
     onItemSwitch: function (currentItem, previousItem) {
         var description = $(currentItem).data('description');
-        $('#description').text(description);
-    }
+        $('#description').html(description);
+    },
+    maxItems: 1
 });
 
 

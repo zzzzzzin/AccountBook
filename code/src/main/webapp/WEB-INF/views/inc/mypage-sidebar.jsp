@@ -67,7 +67,7 @@
 				<ul class="submenu">
 					<li><a href="/account/user/member/edit-pw.do">비밀번호 수정</a></li>
 					<li><a href="/account/user/member/edit-info.do">개인정보 수정</a></li>
-					<li><a href="/account/user/member/unregister.do">회원탈퇴</a></li>
+					<li><a href="/account/user/unregister.do">회원탈퇴</a></li>
 				</ul></li>
 			<li><a href="/account/user/member/edit-challenge.do"><i class="fas fa-user"></i> 챌린지 설정</a></li>
 			<li><a href="/account/user/member/my-post.do"><i class="fas fa-user"></i> 내가 쓴 글</a></li>

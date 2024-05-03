@@ -24,7 +24,91 @@
     <!-- Libraries Stylesheet -->
 </head>
 <style>
+	    #fakecontent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; 
+    margin: auto; 
+    padding: 20px;
+    background: #FFFFFF; 
+}
 
+#transcontent {
+    border: 1px solid #ccc; /* Lighter border color */
+    width: 80%;
+    height: 85px;
+    display: flex;
+    margin: 10px 0;
+    background-color: #ffffff; /* White background for each transaction */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Soft shadow for each transaction */
+    border-radius: 8px; /* Rounded corners */
+}
+
+.transin {
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border-right: 1px solid #eee; */
+}
+
+.transin:last-child {
+    border-right: none; /* Remove border for the last element */
+}
+
+/* #transdate, #transamount, #transcategory, #transwhere, #transtype {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+/* Additional styling for specific needs */
+#transamount, #transtype  { color: red; } 
+#transamountplus { color: #4CAF50; }
+
+#transamount, #transamountplus { font-weight: bold; }  
+
+
+#transdate {
+    font-weight: bold; /* Applying bold font style */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0; 
+    padding: 5px 10px; 
+    margin: 10px 10px; 
+    border-radius: 10px; 
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1); 
+    width: 20%;
+}
+.transmiddle{
+  display: flex;
+  flex-direction: column;
+  width: 65%;
+  align-items: baseline;
+  justify-content: center;
+}
+
+#transwhere{
+  font-weight: bold;
+  font-size: 20px;
+  padding: 0px;
+}
+#transcategory{
+  padding: 0px;
+}
+
+.transrightbox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  padding: 10px;
+  width: 20%;
+}
    
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
@@ -60,7 +144,10 @@
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
       
-      	<div>구현 필요!</div>
+      	<div id="fakecontent">
+          
+          
+        </div>
 
         <!-- fakecontent 끝 -->
         <!-- Back to Top -->
@@ -75,15 +162,56 @@
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
     <script>
 
-    document.addEventListener('DOMContentLoaded', function() {
-    const sidebarToggler = document.getElementById('sidebar-toggler');
-    const sidebar = document.querySelector('.sidebar');
-    const content = document.querySelector('.content');
+    function addTransaction(date, category, where, amount) {
+        // Create main transaction container
+        const transContent = document.createElement('div');
+        transContent.id = 'transcontent';
 
-        sidebarToggler.addEventListener('click', function() {
-        sidebar.classList.toggle('hidden');
-        content.classList.toggle('expanded');
-        });
+        const transDate = document.createElement('div');
+        transDate.className = 'transin';
+        transDate.id = 'transdate';
+        transDate.textContent = date;
+
+        const transMiddle = document.createElement('div');
+        transMiddle.className = 'transmiddle';
+
+        const transCategory = document.createElement('div');
+        transCategory.className = 'transin';
+        transCategory.id = 'transcategory';
+        transCategory.textContent = category;
+
+        const transWhere = document.createElement('div');
+        transWhere.className = 'transin';
+        transWhere.id = 'transwhere';
+        transWhere.textContent = where;
+
+        transMiddle.appendChild(transCategory);
+        transMiddle.appendChild(transWhere);
+
+        const transRightBox = document.createElement('div');
+        transRightBox.className = 'transrightbox';
+
+        const transAmountPlus = document.createElement('div');
+        transAmountPlus.className = 'transin';
+        transAmountPlus.id = 'transamountplus';
+        transAmountPlus.textContent = amount;
+
+        transRightBox.appendChild(transAmountPlus);
+
+        transContent.appendChild(transDate);
+        transContent.appendChild(transMiddle);
+        transContent.appendChild(transRightBox);
+
+        document.getElementById('fakecontent').appendChild(transContent);
+    }
+
+    const transactions = [
+        { date: '02/08', category: '월급', where: '쌍용건설', amount: '+10,000,000' },
+        { date: '03/08', category: '식비', where: '레스토랑', amount: '-200,000' }
+    ];
+
+    transactions.forEach(transaction => {
+        addTransaction(transaction.date, transaction.category, transaction.where, transaction.amount);
     });
 
     </script>
