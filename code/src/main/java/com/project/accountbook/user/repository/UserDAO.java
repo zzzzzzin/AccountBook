@@ -223,7 +223,7 @@ public class UserDAO {
 		        System.out.println("tblSurvey 데이터 삽입 결과: " + surveyResult);
 
 		        // seq 값 가져오기
-		        sql = "SELECT tblSurvey_seq.CURRVAL FROM DUAL";
+		        sql = "SELECT seqSurvey.CURRVAL FROM DUAL";
 		        pstat = conn.prepareStatement(sql);
 		        rs = pstat.executeQuery();
 		        int seq = 0;

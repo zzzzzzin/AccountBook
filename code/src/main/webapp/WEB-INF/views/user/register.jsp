@@ -149,11 +149,11 @@
 									<div>압박 강도</div>
 									<div>
 										<input type="radio" id="high" name="seqCompressionIntensity"
-											value="상" checked /> <label for="high">상</label> <input
+											value="3" checked /> <label for="high">상</label> <input
 											class="radsetcss" type="radio" id="medium"
-											name="seqCompressionIntensity" value="중" /> <label
+											name="seqCompressionIntensity" value="2" /> <label
 											for="medium">중</label> <input class="radsetcss" type="radio"
-											id="low" name="seqCompressionIntensity" value="하" /> <label
+											id="low" name="seqCompressionIntensity" value="1" /> <label
 											for="low">하</label>
 									</div>
 									<label>월급</label>
