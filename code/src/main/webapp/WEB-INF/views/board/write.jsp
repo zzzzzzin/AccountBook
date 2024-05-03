@@ -62,7 +62,7 @@
         <!-- fakecontent 안에서 작성 -->
       	<div class="container">
 		   <h2>글쓰기</h2>
-		   <form>
+		   <form method="POST" action="/account/board/write.do" enctype="multipart/form-data">
 		     <div class="form-group">
 		       <label for="category">게시판 카테고리</label>
 		       <select id="category" name="category">
