@@ -19,7 +19,7 @@ public class Write extends HttpServlet {
 
 		PostDTO dto = new PostDTO();
 		
-		dto.
+		//dto.
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/write.jsp");
 		dispatcher.forward(req, resp);
