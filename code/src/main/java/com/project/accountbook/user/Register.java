@@ -74,4 +74,5 @@ public class Register extends HttpServlet {
 	        resp.sendRedirect("/account/user/register.do");
 	    }
 	}
+
 }
