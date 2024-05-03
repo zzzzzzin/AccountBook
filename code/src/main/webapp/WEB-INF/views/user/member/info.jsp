@@ -26,6 +26,110 @@
 <link rel="stylesheet" href="../../../css/combine.css">
 <style>
 
+    #fakecontent{
+    display: flex;
+    justify-content: center;
+   }
+
+   .myPage-mypage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+.user-profile-mypage {
+  width: 600px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 30px;
+  background-color: #f3f6f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1); 
+  border-radius: 10px;
+}
+.user-profile-mypage-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            color: #666;
+            margin: 50px;
+            border: 1px solid black;
+            
+        }
+
+
+
+.left{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  
+}
+.right{
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#userinfo {
+  display: flex;
+  flex-direction: column;
+  width: 100%; 
+  max-width: 600px; 
+  margin: 0 auto; 
+  padding: 20px;
+  background: #f3f6f9; 
+  border-radius: 8px; 
+}
+
+.userinfo-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; 
+  align-items: baseline;
+  margin-bottom: 10px; 
+  padding: 10px; 
+  border-bottom: 1px solid #ddd; 
+  
+}
+
+.userinfo.left {
+  flex: 1;
+  text-align: left;
+  font-weight: bold;
+  padding: 10px 20px; 
+  background-color: #e8e8e8; 
+  border-right: 2px solid #ccc; 
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.1); 
+  margin-right: 10px; 
+}
+
+.userinfo.right {
+  flex: 1.5; 
+  text-align: right;
+  font-weight: normal;
+  padding: 10px 20px; 
+  color: #555;
+  background-color: #fff;
+  border-left: none;
+}
+
+/* Enhances the last item by removing the bottom border */
+.userinfo-content:last-child {
+  border-bottom: none;
+}
    
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
