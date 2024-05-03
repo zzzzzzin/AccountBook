@@ -312,7 +312,7 @@
     <!-- Template Javascript -->
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
     <script>
-
+    
     document.addEventListener('DOMContentLoaded', function() {
     const sidebarToggler = document.getElementById('sidebar-toggler');
     const sidebar = document.querySelector('.sidebar');
@@ -326,18 +326,24 @@
     
     
     let category = [];
-    
+    let colors = {}; // 객체로 변경
+      
     <c:forEach items="${cList}" var = "dto">
 		category.push('${dto.acName}');
 	</c:forEach>
 
-
-//     let categoryColors = {
-//     	    "카테고리1": "rgb(54, 162, 235)",
-//     	    "카테고리2": "rgb(255, 99, 132)",
-//     	    "카테고리3": "rgb(255, 205, 86)",
-//     	    // 카테고리와 색상을 계속 추가하세요
-//     	};
+	// 미리 정의된 색상 팔레트
+	const colorPalette = [
+		'#36A2EB', '#FF6384', '#4BC0C0', '#FC9D3F', '#9966FF', '#FFCD56', '#C9CBCF', '#F9F871', '#A0F48B', '#A3459B',
+	    '#E17AA7', '#EEE8A9', '#265E58', '#F47558', '#D25F9C', '#9B61A3', '#00524A', '#655E96', '#3E567A', '#2F4858',
+	    '#DD6C41', '#A57A11', '#647E17', '#007A3E', '#007165', '#96525D', '#FFE3E9', '#BFA5A8', '#53D0B9', '#6FDEAA',
+	    '#97EA96', '#C6F381', '#F6746C', '#CA638D', '#896095', '#4D587F', '#C7B1E6', '#FAEAFF', '#65BAA9', '#FFCA57'
+	];
+	
+	// colors 객체에 각 카테고리에 고유한 색상 할당
+	category.forEach((categoryName, index) => {
+	    colors[categoryName] = colorPalette[index % colorPalette.length];
+	});
     
     /* 금액 담을 배열 */
     let nowTotalPriceArray = [];
@@ -356,7 +362,13 @@
     	beforeAcNameArray.push('${dto.acName}');
     </c:forEach>
     
-    
+	let beforeBackgroundColorArray = beforeAcNameArray.map(categoryName => colors[categoryName]);
+	let nowBackgroundColorArray = nowAcNameArray.map(categoryName => colors[categoryName]);
+
+	
+	console.log(beforeBackgroundColorArray);
+	console.log(nowBackgroundColorArray);
+	
     var ctx = document.getElementById('piepie').getContext('2d');
     var chart1 = new Chart(ctx, {
         type: 'pie',
@@ -365,23 +377,7 @@
             datasets: [{
             	label: 'My First Dataset',
                 data: beforeTotalPriceArray,
-                backgroundColor: [
-                    'rgb(54, 162, 235)',
-                	'rgb(255, 99, 132)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)'
-                ],
+                backgroundColor: beforeBackgroundColorArray,
                 hoverOffset: 4
             }]
         },
@@ -402,24 +398,7 @@
             datasets: [{
                 label: 'My Second Dataset',
                 data: nowTotalPriceArray,
-                backgroundColor: [
-                	'rgb(255, 99, 132)',
-                    'rgb(54, 162, 235)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)'
-                ],
+                backgroundColor: nowBackgroundColorArray,
                 hoverOffset: 4
             }]
         },
@@ -432,27 +411,26 @@
         }
     });
 
-    function createSharedCustomLegend(charts) {
-        const legendContainer = document.getElementById('chartLegend');
-        legendContainer.innerHTML = ''; // Clear any existing legend content
+    
+function createSharedCustomLegend(charts) {
+    const legendContainer = document.getElementById('chartLegend');
+    legendContainer.innerHTML = ''; // Clear any existing legend content
 
-        charts[0].data.labels.forEach((label, index) => {
+    const allLabels = [...new Set([...charts[0].data.labels, ...charts[1].data.labels])];
+
+    allLabels.forEach((label) => {
+        if (charts[0].data.labels.includes(label) || charts[1].data.labels.includes(label)) {
+            const index = charts[0].data.labels.indexOf(label);
             const color = charts[0].data.datasets[0].backgroundColor[index];
             const legendItem = document.createElement('div');
             legendItem.innerHTML = `<span style="background-color:\${color}; width: 12px; height: 12px; display: inline-block; margin-right: 5px; margin-left: 5px;"></span> \${label}`;
             legendItem.style.cursor = 'pointer';
-            legendItem.onclick = function() {
-                charts.forEach(chart => {
-                    const meta = chart.getDatasetMeta(0);
-                    meta.data[index].hidden = !meta.data[index].hidden; // Toggle visibility
-                    chart.update();
-                });
-            };
             legendContainer.appendChild(legendItem);
-        });
-    }
+        }
+    });
+}
 
-    createSharedCustomLegend([chart1, chart2]);
+createSharedCustomLegend([chart1, chart2]);
 
     </script>
 </body>

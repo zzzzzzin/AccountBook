@@ -33,12 +33,19 @@ public class Analysis extends HttpServlet {
 		} else {
 			map.put("period", period);			
 		}
-		System.out.println(period);
 		
 		AccountDAO dao = new AccountDAO();
 		ArrayList<AccountInfoDTO> nList = dao.nowAnalysis(id, map);
 		ArrayList<AccountInfoDTO> bList = dao.beforeAnalysis(id, map);
 		ArrayList<AccountInfoDTO> cList = dao.getCategory();
+		ArrayList<AccountInfoDTO> tList = new ArrayList<>();
+		
+		for (AccountInfoDTO list : cList) {
+			list.getAcName();
+		}
+		
+		
+		
 				
 		req.setAttribute("map", map);
 		req.setAttribute("nList", nList);

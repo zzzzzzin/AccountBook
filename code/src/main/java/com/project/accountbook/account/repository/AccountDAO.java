@@ -223,9 +223,6 @@ public class AccountDAO {
 				
 				AccountInfoDTO dto = new AccountInfoDTO();
 				
-				System.out.println(rs.getInt("totalPrice"));
-				System.out.println(rs.getString("acName"));
-				
 				dto.setTotalPrice(rs.getInt("totalPrice"));
 				dto.setAcName(rs.getString("acName"));
 				

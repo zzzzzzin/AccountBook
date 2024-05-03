@@ -1,6 +1,5 @@
 --가계부 작성(add)
 
-   select * from tblAccCategory;                           
 -- 가계부 분석
 --analysis
 select
@@ -16,13 +15,14 @@ from tblAccInfo ai
                         on rcc.seq = ai.seqReasonChangeCategory
                             inner join tblMyCard mc
                                 on mc.seq = rcc.seqMyCard
-                                    where mc.idMember = 'abc002@naver.com'
+                                    where mc.idMember = 'abc001@naver.com'
                                         and ai.accInfoDate 
                                             between to_date(sysdate, 'YY/MM/DD') 
                                                 - interval '1' month and to_date(sysdate, 'YY/MM/DD')
                                                     and ai.seqDepositWithdrawalStatus = 2 --입출금 상태
                                                         group by ac.name, mc.idMember;
                                                      
+--지난 달                                                     
 select
 sum(ai.price) totalPrice,
 ac.name acName, --카테고리
@@ -38,13 +38,10 @@ from tblAccInfo ai
                                 on mc.seq = rcc.seqMyCard
                                     where mc.idMember = 'abc002@naver.com'
                                         and ai.accInfoDate 
-                                            between to_date(sysdate, 'YY/MM/DD') 
-                                                - interval '2' month and to_date(sysdate, 'YY/MM/DD')
-                                                    - interval '1' month
-                                                        and ai.seqDepositWithdrawalStatus = 2 --입출금 상태
-                                                            group by ac.name, mc.idMember;
-
-                    
+                                            between to_date(sysdate, 'YY/MM/DD') - interval '2' month 
+                                                and to_date(sysdate, 'YY/MM/DD') - interval '1' month
+                                                    and ai.seqDepositWithdrawalStatus = 2 --입출금 상태
+                                                        group by ac.name, mc.idMember;
 
 -- 이번주 쿼리
 select

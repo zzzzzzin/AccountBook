@@ -28,4 +28,10 @@ INSERT INTO tblAccCategoryList(seq,seqAccCategory,seqAccInfo) VALUES (9,33,9);
 INSERT INTO tblAccCategoryList(seq,seqAccCategory,seqAccInfo) VALUES (10,35,10);
 INSERT INTO tblAccCategoryList(seq,seqAccCategory,seqAccInfo) VALUES (11,5,11);
 
+--테스트
+INSERT INTO tblAccCategoryList(seq,seqAccCategory,seqAccInfo) VALUES (12,39,12);
+INSERT INTO tblAccCategoryList(seq,seqAccCategory,seqAccInfo) VALUES (13,33,13);
+
+
+
 commit;
