@@ -167,13 +167,11 @@
         const transContent = document.createElement('div');
         transContent.id = 'transcontent';
 
-        // Create date element
         const transDate = document.createElement('div');
         transDate.className = 'transin';
         transDate.id = 'transdate';
         transDate.textContent = date;
 
-        // Create middle container for category and where
         const transMiddle = document.createElement('div');
         transMiddle.className = 'transmiddle';
 
@@ -190,7 +188,6 @@
         transMiddle.appendChild(transCategory);
         transMiddle.appendChild(transWhere);
 
-        // Create right container for amount
         const transRightBox = document.createElement('div');
         transRightBox.className = 'transrightbox';
 
@@ -201,12 +198,10 @@
 
         transRightBox.appendChild(transAmountPlus);
 
-        // Append all parts to the main container
         transContent.appendChild(transDate);
         transContent.appendChild(transMiddle);
         transContent.appendChild(transRightBox);
 
-        // Append the main container to the DOM
         document.getElementById('fakecontent').appendChild(transContent);
     }
 
