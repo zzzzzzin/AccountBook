@@ -223,7 +223,7 @@ public class UserDAO {
 		        System.out.println("tblSurvey 데이터 삽입 결과: " + surveyResult);
 
 		        // seq 값 가져오기
-		        sql = "SELECT tblSurvey_seq.CURRVAL FROM DUAL";
+		        sql = "SELECT seqSurvey.CURRVAL FROM DUAL";
 		        pstat = conn.prepareStatement(sql);
 		        rs = pstat.executeQuery();
 		        int seq = 0;
@@ -262,5 +262,68 @@ public class UserDAO {
 		        e.printStackTrace();
 		    }
 		    return 0;
+		}
+		public boolean isIdDuplicate(String id) {
+		    try {
+		        String sql = "SELECT COUNT(*) FROM tblMember WHERE id = ?";
+		        pstat = conn.prepareStatement(sql);
+		        pstat.setString(1, id);
+		        rs = pstat.executeQuery();
+		        if (rs.next()) {
+		            int count = rs.getInt(1);
+		            return count > 0;
+		        }
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    }
+		    return false;
+		}
+
+		public boolean isNicknameDuplicate(String nickname) {
+		    try {
+		        String sql = "SELECT COUNT(*) FROM tblMember WHERE nickname = ?";
+		        pstat = conn.prepareStatement(sql);
+		        pstat.setString(1, nickname);
+		        rs = pstat.executeQuery();
+		        if (rs.next()) {
+		            int count = rs.getInt(1);
+		            return count > 0;
+		        }
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    }
+		    return false;
+		}
+
+		public boolean isPhoneNumberDuplicate(String phoneNumber) {
+		    try {
+		        String sql = "SELECT COUNT(*) FROM tblMember WHERE phoneNumber = ?";
+		        pstat = conn.prepareStatement(sql);
+		        pstat.setString(1, phoneNumber);
+		        rs = pstat.executeQuery();
+		        if (rs.next()) {
+		            int count = rs.getInt(1);
+		            return count > 0;
+		        }
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    }
+		    return false;
+		}
+
+		public boolean isSsnDuplicate(String ssn) {
+		    try {
+		        String sql = "SELECT COUNT(*) FROM tblMember WHERE ssn = ?";
+		        pstat = conn.prepareStatement(sql);
+		        pstat.setString(1, ssn);
+		        rs = pstat.executeQuery();
+		        if (rs.next()) {
+		            int count = rs.getInt(1);
+		            return count > 0;
+		        }
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    }
+		    return false;
 		}
 }

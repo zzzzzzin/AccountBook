@@ -91,12 +91,12 @@
 									<input type="text" name="id"
 										class="form-control p_input inputbox updatefix colorD9">
 
-									<button class="duplicateBtn">
+									<button class="duplicateBtn" data-field="id">
 										<span id="duptext">중복 확인</span>
 									</button>
 								</div>
 								<label>비밀번호</label>
-								<div class="form-group" id="pwboxnow">
+								<div class="form-group" id="pwboxnow" >
 									<input type="text" type="password" name="pw"
 										class="form-control p_input inputbox dupnone colorD9">
 								</div>
@@ -114,7 +114,7 @@
 								<div class="form-group" id="username">
 									<input type="text" name="nickname"
 										class="form-control p_input inputbox colorD9">
-									<button class="duplicateBtn">
+									<button class="duplicateBtn" data-field="nickname">
 										<span id="duptext">중복 확인</span>
 									</button>
 								</div>
@@ -122,7 +122,7 @@
 								<div class="form-group" id="username">
 									<input type="text" name="phoneNumber"
 										class="form-control p_input inputbox colorD9">
-									<button class="duplicateBtn">
+									<button class="duplicateBtn" data-field="phoneNumber">
 										<span id="duptext">중복 확인</span>
 									</button>
 								</div>
@@ -130,7 +130,7 @@
 								<div class="form-group" id="username">
 									<input type="text" name="ssn"
 										class="form-control p_input inputbox colorD9">
-									<button class="duplicateBtn">
+									<button class="duplicateBtn" data-field="ssn">
 										<span id="duptext">중복 확인</span>
 									</button>
 								</div>
@@ -149,11 +149,11 @@
 									<div>압박 강도</div>
 									<div>
 										<input type="radio" id="high" name="seqCompressionIntensity"
-											value="상" checked /> <label for="high">상</label> <input
+											value="3" checked /> <label for="high">상</label> <input
 											class="radsetcss" type="radio" id="medium"
-											name="seqCompressionIntensity" value="중" /> <label
+											name="seqCompressionIntensity" value="2" /> <label
 											for="medium">중</label> <input class="radsetcss" type="radio"
-											id="low" name="seqCompressionIntensity" value="하" /> <label
+											id="low" name="seqCompressionIntensity" value="1" /> <label
 											for="low">하</label>
 									</div>
 									<label>월급</label>
@@ -214,13 +214,27 @@
 	<!-- endinject -->
 
 	<script>
-    document.getElementById("challenge").addEventListener("change", function () {
-        var survey = document.getElementById("survey");
-        if (this.checked) {
-            survey.style.display = "block";
-        } else {
-            survey.style.display = "none";
-        }
+    $(document).ready(function() {
+        $(".duplicateBtn").click(function() {
+            var field = $(this).data("field");
+            var value = $(this).siblings("input").val();
+
+            $.ajax({
+                url: "/account/user/checkDuplicate.do",
+                method: "POST",
+                data: {
+                    field: field,
+                    value: value
+                },
+                success: function(response) {
+                    if (response === "duplicate") {
+                        alert("중복된 데이터입니다. 바꿔주세요");
+                    } else {
+                        alert("사용 가능한 값입니다.");
+                    }
+                }
+            });
+        });
     });
 	</script>
 </body>

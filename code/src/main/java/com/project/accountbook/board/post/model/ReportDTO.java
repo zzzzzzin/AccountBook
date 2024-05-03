@@ -12,25 +12,6 @@ public class ReportDTO {
 	private String secretCheck;
 	private String blindCheck;
 	
-	
-	//건의 게시판
-	public ReportDTO(int seq, String nickname, String title, String date, int viewCount, int likeCount,
-			String reportCount, String secretCheck, String blindCheck) {
-		super();
-		this.seq = seq;
-		this.nickname = nickname;
-		this.title = title;
-		this.date = date;
-		this.viewCount = viewCount;
-		this.likeCount = likeCount;
-		this.reportCount = reportCount;
-		this.secretCheck = secretCheck;
-		this.blindCheck = blindCheck;
-	}
-	
-	public ReportDTO() {
-		// TODO Auto-generated constructor stub
-	}
 
 	public int getSeq() {
 		return seq;
