@@ -28,10 +28,14 @@ public class UserDAO {
 		this.conn = DBUtil.open("192.168.10.47", "jspProject", "java1234");
 	}
 
+	
 //비밀번호 찾기 시 이메일 전송
 	public static void gmailSend() {
 		String user = "ktko@gmail.com"; // email
 		String password = "password";// 패스워드
+	
+	
+		
 // SMTP 서버 정보를 설정한다.
 		Properties prop = new Properties();
 		prop.put("mail.smtp.host", "smtp.gmail.com");
@@ -62,6 +66,7 @@ public class UserDAO {
 		}
 	}
 
+	
 // 회원 로그인 (관리자,일반회원)
 	public UserDTO login(UserDTO dto) {
 	    try {
@@ -105,7 +110,7 @@ public class UserDAO {
 	    }
 	    return null;
 	}
-
+//탈퇴
 		public int unregister(String id, String pw) {
 		    try {
 		        String sql = "SELECT COUNT(*) FROM tblMember WHERE id = ? AND pw = ?";
@@ -154,7 +159,7 @@ public class UserDAO {
 		    }
 		    return 0;
 }
-		//아이디 찾기 코드 
+		//아이디 찾기 코드
 		public String findId(String name, String ssn) {
 		    try {
 		        String sql = "SELECT id FROM tblMember WHERE name = ? AND ssn = ?";
@@ -185,5 +190,70 @@ public class UserDAO {
 		        }
 		    }
 		    return null;
+		}
+		
+		//계정 생성
+		public int register(UserDTO dto) {
+		    try {
+		        // tblSurvey 데이터 삽입
+		        String sql = "INSERT INTO tblSurvey (seq, monthlyPaycheck, savingsGoals, seqCompressionIntensity, seqSavingsPeriod) " +
+		                     "VALUES (seqSurvey.NEXTVAL, ?, ?, ?, ?)";
+		        pstat = conn.prepareStatement(sql);
+		        if (dto.getSeqCompressionIntensity() != null && dto.getSeqSavingsPeriod() != null) {
+		            pstat.setInt(1, dto.getMonthlyPaycheck());
+		            pstat.setInt(2, dto.getSavingsGoals());
+		            pstat.setString(3, dto.getSeqCompressionIntensity());
+		            pstat.setString(4, dto.getSeqSavingsPeriod());
+		            System.out.println("tblSurvey 데이터 삽입 (사용자 입력 값)");
+		        } else {
+		            pstat.setInt(1, 0);
+		            pstat.setInt(2, 0);
+		            pstat.setString(3, "1");
+		            pstat.setString(4, "1");
+		            System.out.println("tblSurvey 데이터 삽입 (기본값)");
+		        }
+		        int surveyResult = pstat.executeUpdate();
+		        System.out.println("tblSurvey 데이터 삽입 결과: " + surveyResult);
+
+		        // seq 값 가져오기
+		        sql = "SELECT tblSurvey_seq.CURRVAL FROM DUAL";
+		        pstat = conn.prepareStatement(sql);
+		        rs = pstat.executeQuery();
+		        int seq = 0;
+		        if (rs.next()) {
+		            seq = rs.getInt(1);
+		            System.out.println("seq 값: " + seq);
+		        }
+
+		        // tblMember 데이터 삽입
+		        sql = "INSERT INTO tblMember (id, pw, name, nickname, phoneNumber, ssn, gender, reportCount, joinDate, seqSurvey, seqProfileimg) " +
+		              "VALUES (?, ?, ?, ?, ?, ?, ?, 0, SYSDATE, ?, 1)";
+		        pstat = conn.prepareStatement(sql);
+		        pstat.setString(1, dto.getId());
+		        pstat.setString(2, dto.getPw());
+		        pstat.setString(3, dto.getName());
+		        pstat.setString(4, dto.getNickname());
+		        pstat.setString(5, dto.getPhoneNumber());
+		        pstat.setString(6, dto.getSsn());
+		        pstat.setString(7, dto.getGender());
+		        pstat.setInt(8, seq);
+		        int result = pstat.executeUpdate();
+		        System.out.println("tblMember 데이터 삽입 결과: " + result);
+
+		        if (result == 1) {
+		            // tblMemberPriv 데이터 삽입
+		            sql = "INSERT INTO tblMemberPriv (seq, seqPriv, idMember) " +
+		                  "VALUES (seqMemberPriv.NEXTVAL, 2, ?)";
+		            pstat = conn.prepareStatement(sql);
+		            pstat.setString(1, dto.getId());
+		            int privResult = pstat.executeUpdate();
+		            System.out.println("tblMemberPriv 데이터 삽입 결과: " + privResult);
+		        }
+
+		        return result;
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    }
+		    return 0;
 		}
 }
