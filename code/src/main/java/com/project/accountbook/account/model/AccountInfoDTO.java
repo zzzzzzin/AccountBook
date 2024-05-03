@@ -39,6 +39,9 @@ public class AccountInfoDTO {
 	private String seqAccCategory;
 	private String seqAccInfo;
 	
+	//가계부 카테고리
+	private String acName;
+	
 	//(추가)
 	//뉴스 카테고리 목록
 	private String seqnews;
@@ -125,6 +128,14 @@ public class AccountInfoDTO {
 		this.seqDepositWithdrawalStatus = seqDepositWithdrawalStatus;
 	}
 
+	public int getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
 	public String getIdMember() {
 		return idMember;
 	}
@@ -171,6 +182,14 @@ public class AccountInfoDTO {
 
 	public void setSeqAccInfo(String seqAccInfo) {
 		this.seqAccInfo = seqAccInfo;
+	}
+
+	public String getAcName() {
+		return acName;
+	}
+
+	public void setAcName(String acName) {
+		this.acName = acName;
 	}
 
 	public String getSeqnews() {
@@ -252,14 +271,8 @@ public class AccountInfoDTO {
 	public void setAlias(String alias) {
 		this.alias = alias;
 	}
-
-	public int getTotalPrice() {
-		return totalPrice;
-	}
-
-	public void setTotalPrice(int totalPrice) {
-		this.totalPrice = totalPrice;
-	}
+	
+	
 	
 	
 	

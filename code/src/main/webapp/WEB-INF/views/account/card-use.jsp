@@ -32,6 +32,11 @@
         padding: 20px;
     }
     
+    #cardImgPlace {
+    	margin: 0;
+    	width: 150px;
+    }
+    
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
 </style>
@@ -67,24 +72,32 @@
 
 		<form id="selectDateForm" method="GET">
 			<div class="date-range-myCardTotal">
-				<label for="start-date-myCardTotal">시작일:</label> 
-				<input type="text" name = "startDate" id="start-date" class="date-input-myCardTotal" value="${map.startDate}"> 
-					<label for="end-date">종료일:</label> 
+				<label for="start-date-myCardTotal">시작일 </label> 
+					<input type="text" name = "startDate" id="start-date" class="date-input-myCardTotal" value="${map.startDate}"> 
+				<label for="end-date">종료일 </label> 
 					<input type="text" name = "endDate" id="end-date" class="date-input-myCardTotal" value="${map.endDate}">
-					<input type="submit" value="확인"/>
+				<input type="submit" value="확인"/>
 			</div>
 		</form>
+		
 		<div class="card-list-myCardTotal">
-			<c:forEach items="${list}" var="dto">
-					<div class="card-item-myCardTotal">
-						<div class="card-image-myCardTotal"></div>
-						<div class="card-details-myCardTotal">
-							<div class="card-name-myCardTotal">${dto.alias}</div>
-							<div class="card-usage-myCardTotal">${dto.totalPrice}</div>
-						</div>
-						<input type="hidden" id="seqMyCard" name="seqMyCard" value="${dto.seqMyCard}">
-					</div>
-				</c:forEach>
+				<c:forEach items="${list}" var="dto">
+						<button type="submit" class="card-item-myCardTotal" id="useCardDetail" onclick="location.href='/account/account/card-use-detail.do?seqMyCard=${dto.seqMyCard}&startDate=${map.startDate}&endDate=${map.endDate}';">
+<!-- 							<div class="card-image-myCardTotal"></div> -->
+							<img src="/account/asset/images/${dto.fileLink}" id="cardImgPlace" >
+							<div class="card-details-myCardTotal">
+								<div class="card-name-myCardTotal">
+									<c:if test="${dto.alias != null}">
+										${dto.alias}
+									</c:if>
+									<c:if test="${dto.alias == null}">
+										${dto.cfName}
+									</c:if>
+								</div>
+								<div class="card-usage-myCardTotal">${dto.totalPrice}</div>
+							</div>
+						</button>
+					</c:forEach>
 		</div>
 
 		<!-- fakecontent 끝 -->
