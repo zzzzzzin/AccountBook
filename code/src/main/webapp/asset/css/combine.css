@@ -924,71 +924,140 @@ section.notice {
 /* 카드 추천 끝 */
 
 /* 카드 조회 시작 */
-.container-myCardTotal {
-  max-width: 600px;
-  margin: 0 auto;
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
+.myCards {
+        width: 80%;
+    }
 
-.date-range-myCardTotal {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 20px;
-}
+    .myCard {
+        border: 1px solid black;
+        width: 600px;
+        height: 150px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        border-radius: 10px;
+        margin-top: 30px;
+       
+    }
 
-.date-input-myCardTotal {
-  padding: 5px 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
-  margin-left: 5px;
-}
+    .myCardImg {
+        background-color: aqua;
+        width: 100px;
+        height: 70px;
+        border-radius: 50%;
+        position: relative;
+    }
 
-.card-list-myCardTotal {
-  display: flex;
-  flex-direction: column;
-}
+    .myCardImg>img {
+        width: 80px;
+        height: 50px;
+        /* position: absolute; */
+        top: 10%;
+        right: 10%;
+    }
 
-.card-item-myCardTotal {
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-}
+    .myCardName,
+    .myCardCompany,
+    .myCardNickname {
+        width: 200px;
+        height: 30px;
+        display: flex;
+        justify-content: space-between;
+    }
 
-.card-item-myCardTotal:hover {
-  transform: translateY(-5px);
-}
+    .myCardName>div:first-child,
+    .myCardCompany>div:first-child,
+    .myCardNickname>div:first-child {
+        margin-right: 10px;
+        background-color: #ffffff;
+        margin: 2px;
+    }
 
-.card-image-myCardTotal {
-  width: 100px;
-  height: 60px;
-  background-color: #ddd;
-  border-radius: 8px;
-  margin-right: 20px;
-}
+    .myCardName>div:nth-child(2),
+    .myCardCompany>div:nth-child(2),
+    .myCardNickname>div:nth-child(2) {
+        background-color: #ffffff;
+        margin: 2px;
 
-.card-details-myCardTotal {
-  flex: 1;
-}
+    }
 
-.card-name-myCardTotal {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
+    .moreMyCard {
+        border: 1px solid black;
+        width: 600px;
+        height: 150px;
+        border-radius: 10px;
+        padding: 10px;
+    }
 
-.card-usage-myCardTotal {
-  font-size: 14px;
-  color: #777;
-}
+    .myCardMoreNum {
+        display: flex;
+        justify-content: space-evenly;
+        margin-top: 10px;
+        margin-bottom: 30px;
+    }
+
+    .myCardMoreNum>div {
+        background-color: #ffffff;
+    }
+
+    .myCardMoreNoneNum {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .myCardMoreCompany,
+    .myCardMoreName,
+    .myCardMoreNickname,
+    .myCardMorePeriod {
+        text-align: center;
+    }
+
+    .myCardMoreCompany>div:nth-child(1),
+    .myCardMoreName>div:nth-child(1),
+    .myCardMoreNickname>div:nth-child(1),
+    .myCardMorePeriod>div:nth-child(1) {
+        background-color: #ffffff;
+        margin-bottom: 3px;
+    }
+
+    .myCardMoreCompany>div:nth-child(2),
+    .myCardMoreName>div:nth-child(2),
+    .myCardMoreNickname>div:nth-child(2),
+    .myCardMorePeriod>div:nth-child(2) {
+        background-color: #ffffff;
+    }
+
+    .myCardBtn {
+        position: relative;        
+    }
+
+    .myCardBtn > button {
+        border: none;
+        border-radius: 10px;
+        background-color: aquamarine;
+        position: absolute;
+        top: 20px;
+        left: 10px;
+        width: 50px;
+        height: 40px;
+    }
+
+    .addMyCard {
+        position: relative;
+    }
+
+    .addMyCard > button {
+        width: 100px;
+        height: 50px;
+        border: none;
+        border-radius: 10px;
+        position: absolute;
+        top: 30px;
+        right: 250px;
+        background-color: aquamarine;
+        text-align: center;
+        font-weight: bold;
+    }
 /* 카드 조회 끝 */
 
 /* component find-pw-modal 시작*/

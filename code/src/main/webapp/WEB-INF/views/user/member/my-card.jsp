@@ -30,8 +30,18 @@
 <!-- Libraries Stylesheet -->
 </head>
 <style>
-<%@ include file="/WEB-INF/views/inc/asset.jsp"%>
+<%@ include file="/WEB-INF/views/inc/asset.jsp" %>
+.fakecontent {
+	display: flex;
+	justify-content: center;
+}
+
+.myCard {
+	
+}
+
 </style>
+
 
 <body>
 	<div class="container-xxl position-relative bg-white d-flex p-0">
@@ -63,110 +73,107 @@
 			<!-- Navbar End -->
 			<!-- Content End -->
 			<!-- fakecontent 안에서 작성 -->
-			<div id="fakecontent">
+			<div class="fakecontent">
 				<div class="myCards">
-        <div class="myCard">
-            <div class="myCardImg">
-                <img src="../../../html/images/myPage-viewCards-card.png" alt="">
-            </div>
-            <div class="myCard-detail">
-                <div class="myCardName">
-                    <div>카드명</div>
-                    <div>OO카드</div>
-                </div>
-                <div class="myCardCompany">
-                    <div>카드사</div>
-                    <div>OO은행</div>
-                </div>
-                <div class="myCardNickname">
-                    <div>별칭</div>
-                    <div>교통카드</div>
-                </div>
-            </div>
-            <div class="myCardBtn">
-                <button class="material-symbols-outlined">
-                    expand_more
-                </button>
-            </div>
-        </div>
-        <div class="moreMyCard">
-            <!-- 카드 번호, 카드사, 카드명, 별칭, 유효기간 -->
-            <div class="myCardMoreNum">
-                <div>카드 번호</div>
-                <div>1234-1234</div>
-            </div>
-            <div class="myCardMoreNoneNum">
-                <div class="myCardMoreCompany">
-                    <div>카드사</div>
-                    <div>OO은행</div>
-                </div>
-                <div class="myCardMoreName">
-                    <div>카드명</div>
-                    <div>OO카드</div>
-                </div>
-                <div class="myCardMoreNickname">
-                    <div>별칭</div>
-                    <div>교통카드</div>
-                </div>
-                <div class="myCardMorePeriod">
-                    <div>유효기간</div>
-                    <div>0000년 00월</div>
-                </div>
-            </div>
-        </div>
-        <div class="myCard">
-            <div class="myCardImg">
-                <img src="../../../html/images/myPage-viewCards-card.png" alt="">
-            </div>
-            <div class="myCard-detail">
-                <div class="myCardName">
-                    <div>카드명</div>
-                    <div>OO카드</div>
-                </div>
-                <div class="myCardCompany">
-                    <div>카드사</div>
-                    <div>OO은행</div>
-                </div>
-                <div class="myCardNickname">
-                    <div>별칭</div>
-                    <div>교통카드</div>
-                </div>
-            </div>
-            <div class="myCardBtn">
-                <button class="material-symbols-outlined">
-                    expand_more
-                </button>
-            </div>
-        </div>
-        <div class="moreMyCard">
-            <!-- 카드 번호, 카드사, 카드명, 별칭, 유효기간 -->
-            <div class="myCardMoreNum">
-                <div>카드 번호</div>
-                <div>1234-1234</div>
-            </div>
-            <div class="myCardMoreNoneNum">
-                <div class="myCardMoreCompany">
-                    <div>카드사</div>
-                    <div>OO은행</div>
-                </div>
-                <div class="myCardMoreName">
-                    <div>카드명</div>
-                    <div>OO카드</div>
-                </div>
-                <div class="myCardMoreNickname">
-                    <div>별칭</div>
-                    <div>교통카드</div>
-                </div>
-                <div class="myCardMorePeriod">
-                    <div>유효기간</div>
-                    <div>0000년 00월</div>
-                </div>
-            </div>
-        </div>
-        <div class="addMyCard">
-            <button type="submit">추가하기</button>
-        </div>
-    </div>
+					<div class="myCard">
+						<div class="myCardImg">
+							<img src="../../../html/images/myPage-viewCards-card.png" alt="">
+						</div>
+						<div class="myCard-detail">
+							<div class="myCardName">
+								<div>카드명</div>
+								<div>OO카드</div>
+							</div>
+							<div class="myCardCompany">
+								<div>카드사</div>
+								<div>OO은행</div>
+							</div>
+							<div class="myCardNickname">
+								<div>별칭</div>
+								<div>교통카드</div>
+							</div>
+						</div>
+						<div class="myCardBtn">
+							<button class="material-symbols-outlined">expand_more</button>
+						</div>
+					</div>
+					<div class="moreMyCard">
+						<!-- 카드 번호, 카드사, 카드명, 별칭, 유효기간 -->
+						<div class="myCardMoreNum">
+							<div>카드 번호</div>
+							<div>1234-1234</div>
+						</div>
+						<div class="myCardMoreNoneNum">
+							<div class="myCardMoreCompany">
+								<div>카드사</div>
+								<div>OO은행</div>
+							</div>
+							<div class="myCardMoreName">
+								<div>카드명</div>
+								<div>OO카드</div>
+							</div>
+							<div class="myCardMoreNickname">
+								<div>별칭</div>
+								<div>교통카드</div>
+							</div>
+							<div class="myCardMorePeriod">
+								<div>유효기간</div>
+								<div>0000년 00월</div>
+							</div>
+						</div>
+					</div>
+					<div class="myCard">
+						<div class="myCardImg">
+							<img src="../../../html/images/myPage-viewCards-card.png" alt="">
+						</div>
+						<div class="myCard-detail">
+							<div class="myCardName">
+								<div>카드명</div>
+								<div>OO카드</div>
+							</div>
+							<div class="myCardCompany">
+								<div>카드사</div>
+								<div>OO은행</div>
+							</div>
+							<div class="myCardNickname">
+								<div>별칭</div>
+								<div>교통카드</div>
+							</div>
+						</div>
+						<div class="myCardBtn">
+							<button class="material-symbols-outlined">expand_more</button>
+						</div>
+					</div>
+					<div class="moreMyCard">
+						<!-- 카드 번호, 카드사, 카드명, 별칭, 유효기간 -->
+						<div class="myCardMoreNum">
+							<div>카드 번호</div>
+							<div>1234-1234</div>
+						</div>
+						<div class="myCardMoreNoneNum">
+							<div class="myCardMoreCompany">
+								<div>카드사</div>
+								<div>OO은행</div>
+							</div>
+							<div class="myCardMoreName">
+								<div>카드명</div>
+								<div>OO카드</div>
+							</div>
+							<div class="myCardMoreNickname">
+								<div>별칭</div>
+								<div>교통카드</div>
+							</div>
+							<div class="myCardMorePeriod">
+								<div>유효기간</div>
+								<div>0000년 00월</div>
+							</div>
+						</div>
+					</div>
+					<div class="addMyCard">
+						<button type="submit"
+							onclick="location.href='/account/user/member/add-my-card.do';">추가하기</button>
+					</div>
+				</div>
 			</div>
 
 
