@@ -127,23 +127,25 @@
         <!-- fakecontent 안에서 작성 -->
 
 			<div class="myPage">
-				<form action="">
+				<form action="/account/user/member/edit-pw.do">
 					<div class="delContainer">
 						<div class="delContent">
 							<div class="now-pw">
 								<div class="now-pw-title">현재 비밀번호</div>
-								<div class="now-pw-real">1234</div>
+								<div class="now-pw-real">
+									<input type="text" class="editPw" name="nowPw">
+								</div>
 							</div>
 							<div class="edit-pw">
 								<div class="edit-pw-title">수정 비밀번호</div>
 								<div class="edit-pw-input">
-									<input type="text" value="4321" class="editPw">
+									<input type="text" class="editPw" name="editPw">
 								</div>
 							</div>
 							<div class="edit-pw-check">
 								<div class="edit-pw-check-title">수정 비밀번호 확인</div>
 								<div class="check-pw-input">
-									<input type="text" value="4321" class="checkPw">
+									<input type="text" class="checkPw" name="checkPw">
 								</div>
 							</div>
 						</div>
@@ -175,6 +177,8 @@
         content.classList.toggle('expanded');
         });
     });
+    
+    
 
     </script>
 </body>
