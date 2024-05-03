@@ -4,9 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.project.accountbook.account.model.AccountInfoDTO;
-import com.project.accountbook.user.member.model.MemberInfoDTO;
 import com.project.accountbook.user.model.UserDTO;
 import com.project.accountbook.util.DBUtil;
 
@@ -21,12 +22,16 @@ public class AccountDAO {
 		this.conn = DBUtil.open();
 	}
 	
-	//가계부 작성(테이블 많이 필요해서 view 사용해야할 듯) > 프론트에서 카드 선택해서 작성하는 거면 카드 seq넘겨 받아서 `tblReasonChangeCategory`에서 seq 찾아야할 듯(map?)
+//	public AccountDAO() {
+//		this.conn = DBUtil.open("localhost", "jsp", "java1234");
+//	}
+	
+	//가계부 작성 > 프론트에서 카드 선택해서 작성하는 거면 카드 seq넘겨 받아서 `tblReasonChangeCategory`에서 seq 찾아야할 듯(map?)
 	public int add(AccountInfoDTO dto) {
 		
 		try {
 			
-			String sql = "insert into vwAcc";
+			String sql = "insert into ";
 
 			pstat = conn.prepareStatement(sql);
 //			pstat.setString(1, dto.get);
@@ -126,37 +131,159 @@ public class AccountDAO {
 	}
 	
 	
-	//tblMemberFinance이 멤버의 개인정보라고 생각해서 MemberInfoDTO에 작성했는데 자산, 부채를 추가하는 것도 UserDAO에서 할 건지? 해당 DTO에 tblDebt, tblProperty 추가도 필요해 보임
-	// 자산 작성
-	public int editProperty(MemberInfoDTO dto) {
 
-		return 0;
-	}
-
-	// 부채 작성
-	public int editLiabilities(MemberInfoDTO dto) {
-
-		return 0;
-	}
-	
-	// 자산/부채 읽기(자산 변동에서 시작일, 종료일할 거면 그것도 매개 변수로 받아서 사용할지?)
-	public int getPropertyLiabilities(MemberInfoDTO dto) {
+	//카드 사용 읽기
+	public ArrayList<AccountInfoDTO> list(String id, HashMap<String, String> map) {
 		
-		return 0;
-	}
-	
-	
-	//기존에 DAO에 tblReasonChangeCategory 없었는데 추가해야할 듯(추가 완료)
-	//카드 사용 읽기(기간을 매개 변수로 받아야할 듯)
-	public int getCardUsage(AccountInfoDTO dto) {
+		try {
+			
+			String startDate = map.get("startDate");
+		    String endDate = map.get("endDate");
+			
+			String sql = "select \r\n"
+	                + "sum(ai.price) totalPrice,\r\n"
+	                + "mc.alias alias, --카드 별칭\r\n"
+	                + "cf.name cfName, -- 카드명\r\n"
+	                + "cf.fileLink fileLink, --카드 이미지\r\n"
+	                + "mc.seq seqMyCard, --카드 번호\r\n"
+	                + "mc.idMember idMember\r\n"
+	                + "from tblAccInfo ai\r\n"
+	                + "    inner join tblReasonChangeCategory rcc \r\n"
+	                + "        on rcc.seq = ai.seqReasonChangeCategory\r\n"
+	                + "            inner join tblMyCard mc \r\n"
+	                + "                on mc.seq = rcc.seqMyCard\r\n"
+	                + "                    inner join tblCardInformation cf \r\n"
+	                + "                        on cf.seq = mc.seqCardInformation\r\n"
+	                + "                            where mc.idMember = ?\r\n";
+
+			// 시작일과 종료일이 둘 다 비어 있지 않은 경우에만 조건을 추가
+	        if (startDate != null && !startDate.isEmpty() && endDate != null && !endDate.isEmpty()) {
+	            sql += "and ai.accInfoDate between to_date(?, 'YYYY-MM-DD') and to_date(?, 'YYYY-MM-DD')\r\n";
+	        }
+
+	        sql += "group by mc.alias, cf.name, cf.fileLink, mc.seq, mc.idMember";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, id);
+			
+			 // 시작일과 종료일이 둘 다 비어 있지 않은 경우에만 파라미터로 설정
+	        if (startDate != null && !startDate.isEmpty() && endDate != null && !endDate.isEmpty()) {
+	            pstat.setString(2, startDate);
+	            pstat.setString(3, endDate);
+	        }
+			
+			rs = pstat.executeQuery();
+			
+			ArrayList<AccountInfoDTO> list = new ArrayList<AccountInfoDTO>();
+			
+			while (rs.next()) {
+				
+				AccountInfoDTO dto = new AccountInfoDTO();
+				
+				dto.setTotalPrice(rs.getInt("totalPrice"));
+				dto.setAlias(rs.getString("alias"));
+				dto.setCfName(rs.getString("cfName"));
+				dto.setFileLink(rs.getString("fileLink"));
+				dto.setSeqMyCard(rs.getString("seqMyCard"));
+				
+				list.add(dto);
+
+			}	
+				
+			return list;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
-		return 0;
+		return null;
+		
 	}
 	
 	//특정 카드 사용 읽기
-	public int getCardUsageDetails(AccountInfoDTO dto) {
+	public ArrayList<AccountInfoDTO> getCardUsageDetails(String id, HashMap<String, String> map) {
+
+		try {
+			
+			String seqMyCard = map.get("seqMyCard");
+			String startDate = map.get("startDate");
+		    String endDate = map.get("endDate");
+			
+			String sql = "select \r\n"
+					+ "ai.accInfoDate accInfoDate, --날짜\r\n"
+					+ "ai.price price, --금액\r\n"
+					+ "ac.name acName, --카테고리\r\n"
+					+ "ai.location location, --사용처\r\n"
+					+ "ai.seqDepositWithdrawalStatus seqDepositWithdrawalStatus, --입출금 상태\r\n"
+					+ "mc.alias alias, --카드 별칭\r\n"
+					+ "cf.name cfName, -- 카드명\r\n"
+					+ "cf.fileLink fileLink, --카드 이미지\r\n"
+					+ "mc.seq seqMyCard, --카드 번호\r\n"
+					+ "mc.idMember idMember\r\n"
+					+ "from tblAccInfo ai\r\n"
+					+ "    inner join tblAccCategoryList acl\r\n"
+					+ "        on acl.seqAccInfo = ai.seq\r\n"
+					+ "            inner join tblAccCategory ac\r\n"
+					+ "                on ac.seq = acl.seqAccCategory\r\n"
+					+ "                    inner join tblReasonChangeCategory rcc \r\n"
+					+ "                        on rcc.seq = ai.seqReasonChangeCategory\r\n"
+					+ "                            inner join tblMyCard mc \r\n"
+					+ "                                on mc.seq = rcc.seqMyCard\r\n"
+					+ "                                    inner join tblCardInformation cf \r\n"
+					+ "                                        on cf.seq = mc.seqCardInformation\r\n"
+					+ "                                            where mc.idMember = ?\r\n";
+
+			
+			
+			// 시작일과 종료일이 둘 다 비어 있지 않은 경우에만 조건을 추가
+	        if (startDate != null && !startDate.isEmpty() && endDate != null && !endDate.isEmpty()) {
+	            sql += "and ai.accInfoDate between to_date(?, 'YYYY-MM-DD') and to_date(?, 'YYYY-MM-DD')\r\n";
+	        }
+
+	        sql += "and mc.seq = ?"
+	        	+ "order by ai.accInfoDate desc";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, id);
+			
+			 // 시작일과 종료일이 둘 다 비어 있지 않은 경우에만 파라미터로 설정
+	        if (startDate != null && !startDate.isEmpty() && endDate != null && !endDate.isEmpty()) {
+	            pstat.setString(2, startDate);
+	            pstat.setString(3, endDate);
+	            pstat.setString(4, seqMyCard);
+	        } else {
+	        	pstat.setString(2, seqMyCard);
+	        }
+	        
+			
+			rs = pstat.executeQuery();
+			
+			ArrayList<AccountInfoDTO> list = new ArrayList<AccountInfoDTO>();
+			
+			while (rs.next()) {
+				
+				AccountInfoDTO dto = new AccountInfoDTO();
+				
+				dto.setAccInfoDate(rs.getString("accInfoDate"));
+				dto.setPrice(rs.getInt("price"));
+				dto.setAcName(rs.getString("acName"));
+				dto.setLocation(rs.getString("location"));
+				dto.setSeqDepositWithdrawalStatus(rs.getString("seqDepositWithdrawalStatus"));
+				dto.setAlias(rs.getString("alias"));
+				dto.setCfName(rs.getString("cfName"));
+				dto.setFileLink(rs.getString("fileLink"));
+				dto.setSeqMyCard(rs.getString("seqMyCard"));
+
+				list.add(dto);				
+			}	
+			
+			return list;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
-		return 0;
+		return null;
 	}
 		
 	  

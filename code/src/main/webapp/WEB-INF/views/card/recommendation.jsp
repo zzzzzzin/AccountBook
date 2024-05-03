@@ -32,13 +32,10 @@
 <style>
 
 .flipster--loop {
-	  
-    .flipster__item { 
-      position: absolute;
-    }
+	
     
-  /*  .flipster__item--past { transform: translateX(-100%); }
-    .flipster__item--future { transform: translateX(100%); }*/
+    .flipster__item--past { transform: translateX(-100%); }
+    .flipster__item--future { transform: translateX(100%); }
     
     .flipster__item--past-2 { transform: translateX(-100%); }
     .flipster__item--future-2 { transform: translateX(100%); }
@@ -96,7 +93,7 @@
 }
 
 .description-box {
-    position: absolute;
+    /* position: absolute; */
     bottom: -80px;
     left: 0;
     right: 0;
@@ -106,6 +103,13 @@
 }
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
+    
+    
+    .flipster-container{
+    	display: flex;
+    	flex-direction: column;
+    	justify-content: center;
+    }
       
 </style>
 
@@ -137,40 +141,51 @@
             <!-- Navbar End -->
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
-      
+        <c:forEach items="${list}" var="dto" varStatus="loop">
+      	<div id="fakecontent_card">
         <div class="flipster-container">
         <div class="flipster">
             <ul class="flip-items">
-                <li data-flip-title="1" data-flip-category="1" data-description="이미지 1에 대한 설명입니다. VARCHAR2(2000) 크기로 충분한 내용을 담을 수 있습니다.">
+                <li data-flip-title="1" data-flip-category="1">
+                	<!-- <img src="${dto.fileLink}"> -->
                     <img src="http://brokensquare.com/Code/jquery-flipster/demo/img/text1.gif">
                 </li>
-                <li data-flip-title="2" data-flip-category="2" data-description="이미지 2에 대한 설명입니다. VARCHAR2(2000) 크기로 충분한 내용을 담을 수 있습니다.">
+                <li data-flip-title="2" data-flip-category="2">
                     <img src="http://brokensquare.com/Code/jquery-flipster/demo/img/text2.gif">
                 </li>
-                <li data-flip-title="3" data-flip-category="3" data-description="이미지 3에 대한 설명입니다. VARCHAR2(2000) 크기로 충분한 내용을 담을 수 있습니다.">
+                <li data-flip-title="3" data-flip-category="3">
                     <img src="http://brokensquare.com/Code/jquery-flipster/demo/img/text3.gif">
                 </li>
-                <li data-flip-title="4" data-flip-category="4" data-description="이미지 4에 대한 설명입니다. VARCHAR2(2000) 크기로 충분한 내용을 담을 수 있습니다.">
+                <li data-flip-title="4" data-flip-category="4">
                     <img src="http://brokensquare.com/Code/jquery-flipster/demo/img/text4.gif">
                 </li>
-                <li data-flip-title="5" data-flip-category="5" data-description="이미지 5에 대한 설명입니다. VARCHAR2(2000) 크기로 충분한 내용을 담을 수 있습니다.">
+                <li data-flip-title="$5" data-flip-category="5">
                     <img src="http://brokensquare.com/Code/jquery-flipster/demo/img/text5.gif">
                 </li>
             </ul>
         </div>
         <div class="description-box">
-            <p id="description"></p>
+         
+               <div>${loop.index + 1}</div>
+               <div>카드 이름 : ${dto.ciName}</div>
+               <div>카드사 : ${dto.cardCompany}</div>
+               <div>설명 : ${dto.explanation}</div>
+               <div>연회비 : ${dto.annualFee}원</div>
+               <div>해외 겸용 : ${dto.overseasUse}</div>
+                    
         </div>
+    </div>    
+	</div>
+	</c:forEach>
+	<button class="modal-button" onclick="openModal()">카테고리 선택</button>
+	</div>
     </div>
     
-    <button class="modal-button" onclick="openModal()">카테고리 선택</button>
-
         <!-- fakecontent 끝 -->
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
         
-    </div>
-    </div>
+  
 
     <!-- JavaScript Libraries -->
    

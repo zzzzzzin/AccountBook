@@ -1,6 +1,6 @@
 package com.project.accountbook.board.post.model;
 
-public class AttendanceDTO {
+public class NoticeDTO {
 	
 	private int seq;
 	private String nickname;
@@ -12,9 +12,8 @@ public class AttendanceDTO {
 	private String secretCheck;
 	private String blindCheck;
 	
-	
-	//출석 게시판
-	public AttendanceDTO(int seq, String nickname, String title, String date, int viewCount, int likeCount,
+	// 공지 게시판
+	public NoticeDTO(int seq, String nickname, String title, String date, int viewCount, int likeCount,
 			String reportCount, String secretCheck, String blindCheck) {
 		super();
 		this.seq = seq;
@@ -28,92 +27,72 @@ public class AttendanceDTO {
 		this.blindCheck = blindCheck;
 	}
 	
-	public AttendanceDTO() {
+	public NoticeDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public int getSeq() {
 		return seq;
 	}
-
 	public void setSeq(int seq) {
 		this.seq = seq;
 	}
-
 	public String getNickname() {
 		return nickname;
 	}
-
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
-
 	public String getTitle() {
 		return title;
 	}
-
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
 	public String getDate() {
 		return date;
 	}
-
 	public void setDate(String date) {
 		this.date = date;
 	}
-
 	public int getViewCount() {
 		return viewCount;
 	}
-
 	public void setViewCount(int viewCount) {
 		this.viewCount = viewCount;
 	}
-
 	public int getLikeCount() {
 		return likeCount;
 	}
-
 	public void setLikeCount(int likeCount) {
 		this.likeCount = likeCount;
 	}
-
 	public String getReportCount() {
 		return reportCount;
 	}
-
 	public void setReportCount(String reportCount) {
 		this.reportCount = reportCount;
 	}
-
 	public String getSecretCheck() {
 		return secretCheck;
 	}
-
 	public void setSecretCheck(String secretCheck) {
 		this.secretCheck = secretCheck;
 	}
-
 	public String getBlindCheck() {
 		return blindCheck;
 	}
-
 	public void setBlindCheck(String blindCheck) {
 		this.blindCheck = blindCheck;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "AttendanceDTO [seq=" + seq + ", nickname=" + nickname + ", title=" + title + ", date=" + date
+		return "NoticeDTO [seq=" + seq + ", nickname=" + nickname + ", title=" + title + ", date=" + date
 				+ ", viewCount=" + viewCount + ", likeCount=" + likeCount + ", reportCount=" + reportCount
 				+ ", secretCheck=" + secretCheck + ", blindCheck=" + blindCheck + "]";
 	}
-
 	
 	
 	
-
-
 }

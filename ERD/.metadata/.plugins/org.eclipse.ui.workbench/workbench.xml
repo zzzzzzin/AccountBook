@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
+<workbench progressCount="16" version="2.0">
+=======
+<<<<<<< HEAD
+<workbench progressCount="15" version="2.0">
+=======
 <workbench progressCount="14" version="2.0">
+>>>>>>> 3ea887b44927f09a862b35f489b0effdd3a34370
+>>>>>>> f8e5f3f5375e24e180c38f878db4f16e8e85713a
 <workbenchAdvisor/>
-<window height="1038" maximized="true" minimized="true" width="976" x="-8" y="0">
+<window height="1039" minimized="true" width="974" x="-7" y="0">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
 <itemSize x="160"/>
@@ -26,7 +34,6 @@
 <folder appearance="1" expanded="2">
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
-<part id="1"/>
 </presentation>
 </folder>
 </info>

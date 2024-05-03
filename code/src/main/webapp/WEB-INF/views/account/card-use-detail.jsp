@@ -25,6 +25,10 @@
 </head>
 <style>
 
+	#cardDetailImgPlace {
+    	margin: 0;
+    	width: 250px;
+    }
    
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
@@ -60,13 +64,19 @@
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
 
-			<div class="card-image"></div>
-			<div>
-				<label for="start-date">시작일:</label> <input type="text"
-					id="start-date" name="start-date"> <label for="end-date">종료일:</label>
-				<input type="text" id="end-date" name="end-date">
-				<button id="search-btn">검색</button>
+			<c:if test="${not empty list}">
+    			<img src="/account/asset/images/${list[0].fileLink}" id="cardDetailImgPlace">
+			</c:if>
+			<form id="selectDateForm" method="GET">
+			<div class="date-range-myCardTotal">
+				<input type="hidden" name="seqMyCard" value="${map.seqMyCard}">
+				<label for="start-date-myCardTotal">시작일 </label> 
+					<input type="text" name = "startDate" id="start-date" class="date-input-myCardTotal" value="${map.startDate}"> 
+				<label for="end-date">종료일 </label> 
+					<input type="text" name = "endDate" id="end-date" class="date-input-myCardTotal" value="${map.endDate}">
+				<input type="submit" value="확인"/>
 			</div>
+		</form>
 			<table class="transaction-table">
 				<thead>
 					<tr>
@@ -76,6 +86,22 @@
 						<th>결제처</th>
 						<th>입금/지출</th>
 					</tr>
+					<c:forEach items="${list}" var="dto">
+						<tr>
+							<td>${dto.accInfoDate}</td>
+							<td>${dto.price}</td>
+							<td>${dto.acName}</td>
+							<td>${dto.location}</td>
+							<td>
+								<c:if test="${dto.seqDepositWithdrawalStatus == 1}">
+									입금
+								</c:if>
+								<c:if test="${dto.seqDepositWithdrawalStatus == 2}">
+									출금
+								</c:if>
+							</td>
+						</tr>
+					</c:forEach>
 				</thead>
 				<tbody id="transaction-list"></tbody>
 			</table>
@@ -111,45 +137,45 @@
             dateFormat: "yy-mm-dd"
         });
 
-        // 검색 버튼 클릭 이벤트 처리
-        $("#search-btn").click(function() {
-            var startDate = $("#start-date").val();
-            var endDate = $("#end-date").val();
+//         // 검색 버튼 클릭 이벤트 처리
+//         $("#search-btn").click(function() {
+//             var startDate = $("#start-date").val();
+//             var endDate = $("#end-date").val();
 
-            // 서버에서 데이터 가져오기 (AJAX 요청)
-            $.ajax({
-                url: "/get-transactions",
-                method: "POST",
-                data: {
-                    startDate: startDate,
-                    endDate: endDate
-                },
-                success: function(response) {
-                    // 가져온 데이터를 날짜 순으로 정렬
-                    var transactions = response.sort(function(a, b) {
-                        return new Date(b.date) - new Date(a.date);
-                    });
+//             // 서버에서 데이터 가져오기 (AJAX 요청)
+//             $.ajax({
+//                 url: "/get-transactions",
+//                 method: "POST",
+//                 data: {
+//                     startDate: startDate,
+//                     endDate: endDate
+//                 },
+//                 success: function(response) {
+//                     // 가져온 데이터를 날짜 순으로 정렬
+//                     var transactions = response.sort(function(a, b) {
+//                         return new Date(b.date) - new Date(a.date);
+//                     });
 
-                    // 데이터를 테이블에 표시
-                    var transactionList = $("#transaction-list");
-                    transactionList.empty();
+//                     // 데이터를 테이블에 표시
+//                     var transactionList = $("#transaction-list");
+//                     transactionList.empty();
 
-                    transactions.forEach(function(transaction) {
-                        var row = "<tr>" +
-                            "<td>" + transaction.date + "</td>" +
-                            "<td>" + transaction.amount + "</td>" +
-                            "<td>" + transaction.category + "</td>" +
-                            "<td>" + transaction.payee + "</td>" +
-                            "<td>" + (transaction.isIncome ? "입금" : "지출") + "</td>" +
-                            "</tr>";
-                        transactionList.append(row);
-                    });
-                },
-                error: function() {
-                    alert("데이터를 가져오는데 실패했습니다.");
-                }
-            });
-        });
+//                     transactions.forEach(function(transaction) {
+//                         var row = "<tr>" +
+//                             "<td>" + transaction.date + "</td>" +
+//                             "<td>" + transaction.amount + "</td>" +
+//                             "<td>" + transaction.category + "</td>" +
+//                             "<td>" + transaction.payee + "</td>" +
+//                             "<td>" + (transaction.isIncome ? "입금" : "지출") + "</td>" +
+//                             "</tr>";
+//                         transactionList.append(row);
+//                     });
+//                 },
+//                 error: function() {
+//                     alert("데이터를 가져오는데 실패했습니다.");
+//                 }
+//             });
+//         });
     });
 
     </script>

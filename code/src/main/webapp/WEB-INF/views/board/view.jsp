@@ -87,11 +87,27 @@
 		        <h3>공지사항</h3>
 		        <table class="board-list">
 		          <tbody>
-		            <tr><td>개시글 제목</td><td>작성</td></tr>
-		            <tr><td>개시글 제목</td><td>작성</td></tr>
-		            <tr><td>개시글 제목</td><td>작성</td></tr>
-		            <tr><td>개시글 제목</td><td>작성</td></tr>
-		            <tr><td>개시글 제목</td><td>작성</td></tr>
+	            	<c:if test="${noticeList.size() == 0}">
+					    <tr>
+					        <td>게시물이 없습니다.</td>
+					    </tr>
+					</c:if>
+                
+					<c:forEach var="notice" items="${noticeList}">
+			                <tr>
+						        <td>
+						            <c:choose>
+						                <c:when test="${notice.blindCheck eq '1'}">
+						                    관리자에 의해 블라인드 처리 되었습니다.
+						                </c:when>
+						                <c:otherwise>
+						                    ${notice.title}
+						                </c:otherwise>
+						            </c:choose>
+					        	</td>
+						        <td>추천수 ${notice.likeCount}</td>
+			                </tr>
+	                </c:forEach>
 		          </tbody>
 		        </table>
 		        <a href="/account/board/noticeBoard.do" class="more-link"><i class="material-icons">chevron_right</i></a>
@@ -100,11 +116,27 @@
 		        <h3>자유게시판</h3>
 		        <table class="board-list">
 		          <tbody>
-		            <tr><td>개시글 제목</td><td>작성</td></tr>
-		            <tr><td>개시글 제목</td><td>작성</td></tr>
-		            <tr><td>개시글 제목</td><td>작성</td></tr>
-		            <tr><td>개시글 제목</td><td>작성</td></tr>
-		            <tr><td>개시글 제목</td><td>작성</td></tr>
+	           		<c:if test="${freeList.size() == 0}">
+					    <tr>
+					        <td>게시물이 없습니다.</td>
+					    </tr>
+					</c:if>
+	               
+					<c:forEach var="free" items="${freeList}">
+			                <tr>
+						    	<td>
+						            <c:choose>
+						                <c:when test="${free.blindCheck eq '1'}">
+						                    관리자에 의해 블라인드 처리 되었습니다.
+						                </c:when>
+						                <c:otherwise>
+						                    ${free.title}
+						                </c:otherwise>
+						            </c:choose>
+					        	</td>
+					        <td>추천수 ${free.likeCount}</td>
+			                </tr>
+	                </c:forEach>
 		          </tbody>
 		        </table>
 		        <a href="/account/board/freeBoard.do" class="more-link"><i class="material-icons">chevron_right</i></a>
@@ -113,11 +145,27 @@
 		        <h3>건의게시판</h3>
 		        <table class="board-list">
 		          <tbody>
-		            <tr><td>개시글 제목</td><td>작성</td></tr>
-		            <tr><td>개시글 제목</td><td>작성</td></tr>
-		            <tr><td>개시글 제목</td><td>작성</td></tr>
-		            <tr><td>개시글 제목</td><td>작성</td></tr>
-		            <tr><td>개시글 제목</td><td>작성</td></tr>
+		            <c:if test="${reportList.size() == 0}">
+					    <tr>
+					        <td>게시물이 없습니다.</td>
+					    </tr>
+					</c:if>
+                
+					<c:forEach var="report" items="${reportList}">
+			                <tr>
+						    	<td>
+						            <c:choose>
+						                <c:when test="${report.blindCheck eq '1'}">
+						                    관리자에 의해 블라인드 처리 되었습니다.
+						                </c:when>
+						                <c:otherwise>
+						                    ${report.title}
+						                </c:otherwise>
+						            </c:choose>
+					        	</td>
+					        <td>추천수 ${report.likeCount}</td>
+			                </tr>
+	                </c:forEach>
 		          </tbody>
 		        </table>
 		        <a href="/account/board/reportBoard.do" class="more-link"><i class="material-icons">chevron_right</i></a>
@@ -126,11 +174,27 @@
 		        <h3>출석게시판</h3>
 		        <table class="board-list">
 		          <tbody>
-		            <tr><td>개시글 제목</td><td>작성</td></tr>
-		            <tr><td>개시글 제목</td><td>작성</td></tr>
-		            <tr><td>개시글 제목</td><td>작성</td></tr>
-		            <tr><td>개시글 제목</td><td>작성</td></tr>
-		            <tr><td>개시글 제목</td><td>작성</td></tr>
+		            <c:if test="${attendanceList.size() == 0}">
+					    <tr>
+					        <td>게시물이 없습니다.</td>
+					    </tr>
+					</c:if>
+                
+					<c:forEach var="attendance" items="${attendanceList}">
+			                <tr>
+						    	<td>
+						            <c:choose>
+						                <c:when test="${attendance.blindCheck eq '1'}">
+						                    관리자에 의해 블라인드 처리 되었습니다.
+						                </c:when>
+						                <c:otherwise>
+						                    ${attendance.title}
+						                </c:otherwise>
+						            </c:choose>
+					        	</td>
+					        <td>추천수 ${attendance.likeCount}</td>
+			                </tr>
+	                </c:forEach>
 		          </tbody>
 		        </table>
 		        <a href="/account/board/attendanceBoard.do" class="more-link"><i class="material-icons">chevron_right</i></a>
