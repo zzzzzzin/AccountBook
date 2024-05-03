@@ -9,7 +9,8 @@
 <style>
 	#assignment_board {
 	  position: static;
-	  margin-right: 3px;
+	  margin-right: 7px;
+	  background-color: transparent;
 	}
 </style>
 </head>

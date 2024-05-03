@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,80 +60,27 @@
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
         
-        	<div class="card-container">
+        <div class="card-container">
+        <c:forEach items="${list}" var="dto" varStatus="status">
         <div class="card">
-            <div class="card-rank">1</div>
+            <div class="card-rank">${status.count}</div>
             <div class="card-image"></div>
             <div class="card-details">
-                <div class="card-name">카드명</div>
-                <div class="card-company">카드사</div>
+                <div class="card-name">${dto.ciName}</div>
+                <div class="card-company">${dto.cardCompany}</div>
             </div>
         </div>
-        <div class="card">
+        </c:forEach>
+        
+        <!-- <div class="card">
             <div class="card-rank">2</div>
             <div class="card-image"></div>
             <div class="card-details">
                 <div class="card-name">카드명</div>
                 <div class="card-company">카드사</div>
             </div>
-        </div>
-        <div class="card">
-            <div class="card-rank">3</div>
-            <div class="card-image"></div>
-            <div class="card-details">
-                <div class="card-name">카드명</div>
-                <div class="card-company">카드사</div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-image"></div>
-            <div class="card-details">
-                <div class="card-name">카드명</div>
-                <div class="card-company">카드사</div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-image"></div>
-            <div class="card-details">
-                <div class="card-name">카드명</div>
-                <div class="card-company">카드사</div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-image"></div>
-            <div class="card-details">
-                <div class="card-name">카드명</div>
-                <div class="card-company">카드사</div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-image"></div>
-            <div class="card-details">
-                <div class="card-name">카드명</div>
-                <div class="card-company">카드사</div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-image"></div>
-            <div class="card-details">
-                <div class="card-name">카드명</div>
-                <div class="card-company">카드사</div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-image"></div>
-            <div class="card-details">
-                <div class="card-name">카드명</div>
-                <div class="card-company">카드사</div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-image"></div>
-            <div class="card-details">
-                <div class="card-name">카드명</div>
-                <div class="card-company">카드사</div>
-            </div>
-        </div>
+        </div> -->
+        
     </div>     
     
     <button class="modal-button" onclick="openModal()">카테고리 선택</button>
