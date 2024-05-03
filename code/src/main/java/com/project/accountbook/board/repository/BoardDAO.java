@@ -192,8 +192,6 @@ public class BoardDAO {
 
 	}
 
-<<<<<<< Updated upstream
-=======
 	// 수정(U)
 
 	// 삭제(D)
@@ -222,7 +220,6 @@ public class BoardDAO {
 		}
 		return 0;
 	}
->>>>>>> Stashed changes
 }// BoardDAO
 
 
