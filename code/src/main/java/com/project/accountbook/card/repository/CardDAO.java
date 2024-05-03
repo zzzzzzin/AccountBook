@@ -27,7 +27,7 @@ public class CardDAO {
 	public int addCard(CardDTO dto) {
 		try {
 
-			String sql = "insert into tblCardInformation (seq, name, explanation, annualFee, overseasUse, cardCompany, fileLink, seqCardType) values (SEQCARDINFORMATION.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "insert into tblCardInformation (seq, name, explanation, annualFee, overseasUse, cardCompany, fileLink, seqCardType) values ((SELECT NVL(MAX(seq), 0) + 1 FROM tblCardInformation), ?, ?, ?, ?, ?, ?, ?)";
 
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, dto.getCiName());
