@@ -141,10 +141,22 @@
         <div class="flipster-container">
         <div class="flipster">
             <ul class="flip-items">
-                <li data-flip-title="1" data-flip-category="1" data-description="이미지 1에 대한 설명입니다. VARCHAR2(2000) 크기로 충분한 내용을 담을 수 있습니다.">
+                <li data-flip-title="1" data-flip-category="1" data-description="               
+                <div>${loop.index + 1}</div>
+               <div>카드 이름 : ${dto.ciName}</div>
+               <div>카드사 : ${dto.cardCompany}</div>
+               <div>설명 : ${dto.explanation}</div>
+               <div>연회비 : ${dto.annualFee}원</div>
+               <div>해외 겸용 : ${dto.overseasUse}</div>
+               ">
                     <img src="http://brokensquare.com/Code/jquery-flipster/demo/img/text1.gif">
                 </li>
-                <li data-flip-title="2" data-flip-category="2" data-description="이미지 2에 대한 설명입니다. VARCHAR2(2000) 크기로 충분한 내용을 담을 수 있습니다.">
+                <li data-flip-title="2" data-flip-category="2" data-description="                <div>${loop.index + 1}</div>
+               <div>카드 이름 : ${dto.ciName}</div>
+               <div>카드사 : ${dto.cardCompany}</div>
+               <div>설명 : ${dto.explanation}</div>
+               <div>연회비 : ${dto.annualFee}원</div>
+               <div>해외 겸용 : ${dto.overseasUse}</div>">
                     <img src="http://brokensquare.com/Code/jquery-flipster/demo/img/text2.gif">
                 </li>
                 <li data-flip-title="3" data-flip-category="3" data-description="이미지 3에 대한 설명입니다. VARCHAR2(2000) 크기로 충분한 내용을 담을 수 있습니다.">
