@@ -48,5 +48,5 @@ select * from tblsavingsperiod;
 select * from tblMemberPriv;
 
 INSERT INTO tblSurvey VALUES (seqSurvey.NEXTVAL, 0, 0, 1, 1);
-
+select * from tblpost;
 commit;
