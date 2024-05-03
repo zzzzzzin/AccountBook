@@ -139,37 +139,23 @@
         <!-- fakecontent 안에서 작성 -->
       
         <div class="flipster-container">
-        <div class="flipster">
-            <ul class="flip-items">
-                <li data-flip-title="1" data-flip-category="1" data-description="               
+<div class="flipster">
+    <ul class="flip-items">
+        <c:forEach var="card" items="${recommendedCards}" varStatus="loop">
+            <li data-flip-title="${loop.index + 1}" data-flip-category="${loop.index + 1}" data-description="               
                 <div>${loop.index + 1}</div>
-               <div>카드 이름 : ${dto.ciName}</div>
-               <div>카드사 : ${dto.cardCompany}</div>
-               <div>설명 : ${dto.explanation}</div>
-               <div>연회비 : ${dto.annualFee}원</div>
-               <div>해외 겸용 : ${dto.overseasUse}</div>
-               ">
-                    <img src="http://brokensquare.com/Code/jquery-flipster/demo/img/text1.gif">
-                </li>
-                <li data-flip-title="2" data-flip-category="2" data-description="                <div>${loop.index + 1}</div>
-               <div>카드 이름 : ${dto.ciName}</div>
-               <div>카드사 : ${dto.cardCompany}</div>
-               <div>설명 : ${dto.explanation}</div>
-               <div>연회비 : ${dto.annualFee}원</div>
-               <div>해외 겸용 : ${dto.overseasUse}</div>">
-                    <img src="http://brokensquare.com/Code/jquery-flipster/demo/img/text2.gif">
-                </li>
-                <li data-flip-title="3" data-flip-category="3" data-description="이미지 3에 대한 설명입니다. VARCHAR2(2000) 크기로 충분한 내용을 담을 수 있습니다.">
-                    <img src="http://brokensquare.com/Code/jquery-flipster/demo/img/text3.gif">
-                </li>
-                <li data-flip-title="4" data-flip-category="4" data-description="이미지 4에 대한 설명입니다. VARCHAR2(2000) 크기로 충분한 내용을 담을 수 있습니다.">
-                    <img src="http://brokensquare.com/Code/jquery-flipster/demo/img/text4.gif">
-                </li>
-                <li data-flip-title="5" data-flip-category="5" data-description="이미지 5에 대한 설명입니다. VARCHAR2(2000) 크기로 충분한 내용을 담을 수 있습니다.">
-                    <img src="http://brokensquare.com/Code/jquery-flipster/demo/img/text5.gif">
-                </li>
-            </ul>
-        </div>
+                <div>카드 이름 : ${dto.ciName}</div>
+                <div>카드사 : ${dto.cardCompany}</div>
+                <div>설명 : ${dto.explanation}</div>
+                <div>연회비 : ${dto.annualFee}원</div>
+                <div>해외 겸용 : ${dto.overseasUse}</div>
+                <div>할인율 : ${dto.discountRate}</div>
+            ">
+                <img src="${dto.fileLink}">
+            </li>
+        </c:forEach>
+    </ul>
+</div>
         <div class="description-box">
             <p id="description"></p>
         </div>
@@ -187,7 +173,11 @@
     <!-- Template Javascript -->
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
     <script>
-
+    
+    console.log("Recommended Cards: ${recommendedCards}");
+    console.log("Recommended Cards Size: ${recommendedCards.size()}");
+    
+    
     document.addEventListener('DOMContentLoaded', function() {
     const sidebarToggler = document.getElementById('sidebar-toggler');
     const sidebar = document.querySelector('.sidebar');
