@@ -19,6 +19,7 @@ public class RecommendationList extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		//카테고리 선택 시
 		//String category = req.getParameter("category"); 	
 		String category = "푸드";
 		
