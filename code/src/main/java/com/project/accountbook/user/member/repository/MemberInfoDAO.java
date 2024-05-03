@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.project.accountbook.user.member.model.MemberInfoDTO;
+import com.project.accountbook.user.model.UserDTO;
 import com.project.accountbook.util.DBUtil;
 
 
@@ -147,4 +148,54 @@ public class MemberInfoDAO {
 			return null;
 			
 		}
+
+		public UserDTO getMemberInfo(String id) {
+
+			try {
+				
+				String sql = "select * from tblMember where id = ?";
+				
+				pstat = conn.prepareStatement(sql);
+				pstat.setString(1, id);
+				
+				 rs = pstat.executeQuery();
+				 
+				 if (rs.next()) {
+					 
+					 UserDTO dto= new UserDTO();
+					
+					 //이름, 닉네임, 성별, 전화번호, 주민등록번호
+					 dto.setName(rs.getString("name"));
+					 dto.setNickname(rs.getString("nickname"));
+					 dto.setGender(rs.getString("gender"));
+					 dto.setPhoneNumber(rs.getString("phoneNumber"));
+					 dto.setSsn(rs.getString("SSN"));
+					 
+					 return dto;
+					 
+				 }
+
+			} catch (Exception e) {
+
+				e.printStackTrace();
+			
+			}
+			
+			return null;
+		}
+
+		
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
