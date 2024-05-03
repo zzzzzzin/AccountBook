@@ -271,11 +271,19 @@ public class AccountInfoDTO {
 	public void setAlias(String alias) {
 		this.alias = alias;
 	}
-	
-	
-	
-	
-	
 
+	@Override
+	public String toString() {
+		return "AccountInfoDTO [content=" + content + ", accInfoDate=" + accInfoDate + ", price=" + price
+				+ ", location=" + location + ", seqAcc=" + seqAcc + ", seqReasonChangeCategory="
+				+ seqReasonChangeCategory + ", seqFixedFluctuationCheck=" + seqFixedFluctuationCheck
+				+ ", seqDepositWithdrawalStatus=" + seqDepositWithdrawalStatus + ", totalPrice=" + totalPrice
+				+ ", idMember=" + idMember + ", productName=" + productName + ", fdwContent=" + fdwContent
+				+ ", seqFixedFluctuationPeriod=" + seqFixedFluctuationPeriod + ", seqAccCategory=" + seqAccCategory
+				+ ", seqAccInfo=" + seqAccInfo + ", acName=" + acName + ", seqnews=" + seqnews + ", title=" + title
+				+ ", link=" + link + ", newsDate=" + newsDate + ", media=" + media + ", seqReasonsChangeList="
+				+ seqReasonsChangeList + ", seqMyCard=" + seqMyCard + ", cfName=" + cfName + ", fileLink=" + fileLink
+				+ ", alias=" + alias + "]";
+	}
 	
 }

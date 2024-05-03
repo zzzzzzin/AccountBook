@@ -1,6 +1,90 @@
 --가계부 작성(add)
 
-                              
+   select * from tblAccCategory;                           
+-- 가계부 분석
+--analysis
+select
+sum(ai.price) totalPrice,
+ac.name acName, --카테고리
+mc.idMember idMember
+from tblAccInfo ai
+    inner join tblAccCategoryList acl
+        on acl.seqAccInfo = ai.seq
+            inner join tblAccCategory ac
+                on ac.seq = acl.seqAccCategory
+                    inner join tblReasonChangeCategory rcc 
+                        on rcc.seq = ai.seqReasonChangeCategory
+                            inner join tblMyCard mc
+                                on mc.seq = rcc.seqMyCard
+                                    where mc.idMember = 'abc002@naver.com'
+                                        and ai.accInfoDate 
+                                            between to_date(sysdate, 'YY/MM/DD') 
+                                                - interval '1' month and to_date(sysdate, 'YY/MM/DD')
+                                                    and ai.seqDepositWithdrawalStatus = 2 --입출금 상태
+                                                        group by ac.name, mc.idMember;
+                                                     
+select
+sum(ai.price) totalPrice,
+ac.name acName, --카테고리
+mc.idMember idMember
+from tblAccInfo ai
+    inner join tblAccCategoryList acl
+        on acl.seqAccInfo = ai.seq
+            inner join tblAccCategory ac
+                on ac.seq = acl.seqAccCategory
+                    inner join tblReasonChangeCategory rcc 
+                        on rcc.seq = ai.seqReasonChangeCategory
+                            inner join tblMyCard mc
+                                on mc.seq = rcc.seqMyCard
+                                    where mc.idMember = 'abc002@naver.com'
+                                        and ai.accInfoDate 
+                                            between to_date(sysdate, 'YY/MM/DD') 
+                                                - interval '2' month and to_date(sysdate, 'YY/MM/DD')
+                                                    - interval '1' month
+                                                        and ai.seqDepositWithdrawalStatus = 2 --입출금 상태
+                                                            group by ac.name, mc.idMember;
+
+                    
+
+-- 이번주 쿼리
+select
+    sum(ai.price) totalPrice,
+    ac.name acName, --카테고리
+    mc.idMember idMember
+from 
+    tblAccInfo ai
+    inner join tblAccCategoryList acl on acl.seqAccInfo = ai.seq
+    inner join tblAccCategory ac on ac.seq = acl.seqAccCategory
+    inner join tblReasonChangeCategory rcc on rcc.seq = ai.seqReasonChangeCategory
+    inner join tblMyCard mc on mc.seq = rcc.seqMyCard
+where 
+    mc.idMember = 'abc001@naver.com'
+    and ai.accInfoDate >= trunc(sysdate, 'IW') -- 이번주 시작 날짜
+    and ai.accInfoDate < trunc(sysdate) + 1 -- 이번주 종료 날짜
+    and ai.seqDepositWithdrawalStatus = 2 --입출금 상태
+group by 
+    ac.name, mc.idMember;
+    
+-- 저번주 쿼리
+select
+    sum(ai.price) totalPrice,
+    ac.name acName, --카테고리
+    mc.idMember idMember
+from 
+    tblAccInfo ai
+    inner join tblAccCategoryList acl on acl.seqAccInfo = ai.seq
+    inner join tblAccCategory ac on ac.seq = acl.seqAccCategory
+    inner join tblReasonChangeCategory rcc on rcc.seq = ai.seqReasonChangeCategory
+    inner join tblMyCard mc on mc.seq = rcc.seqMyCard
+where 
+    mc.idMember = 'abc001@naver.com'
+    and ai.accInfoDate >= trunc(sysdate, 'IW') - 7 -- 저번주 시작 날짜
+    and ai.accInfoDate < trunc(sysdate, 'IW') -- 저번주 종료 날짜
+    and ai.seqDepositWithdrawalStatus = 2 --입출금 상태
+group by 
+    ac.name, mc.idMember;
+    
+    
 
 --카드 사용    
 --getCardUsage                       
@@ -53,6 +137,6 @@ from tblAccInfo ai
                                                     between to_date('24/02/01', 'YY/MM/DD') 
                                                         and to_date('24/04/10', 'YY/MM/DD') -- 기간 지정
                                                             and mc.seq = 1 -- 카드 지정
-                                                                order by ai.accInfoDate;
+                                                                order by ai.accInfoDate desc;
 
 

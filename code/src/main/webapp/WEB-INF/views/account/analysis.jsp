@@ -260,11 +260,13 @@
 			<!-- Navbar End -->
 			<!-- Content End -->
 			<div id="fakecontent">
+			<form method="GET">
 				<div id="periodcheck">
-					<button>일일</button>
-					<button>주간</button>
-					<button>월간</button>
+					<button name="period" value="day">일일</button>
+					<button name="period" value="week">주간</button>
+					<button name="period" value="month">월간</button>
 				</div>
+			</form>
 
 				<div id="firstrow">
 					<!-- Sales Chart Start -->
@@ -276,7 +278,7 @@
 							<canvas id="piepie2" class="pie"></canvas>
 						</div>
 					</div>
-					<div id="customMsg">이번달 목표를 달성할거 샅습니다!!!</div>
+					<div id="customMsg">이번달 목표를 달성할거 같습니다!!!</div>
 					<!-- Sales Chart End -->
 				</div>
 
@@ -322,17 +324,62 @@
         });
     });
     
+    
+    let category = [];
+    
+    <c:forEach items="${cList}" var = "dto">
+		category.push('${dto.acName}');
+	</c:forEach>
+
+
+//     let categoryColors = {
+//     	    "카테고리1": "rgb(54, 162, 235)",
+//     	    "카테고리2": "rgb(255, 99, 132)",
+//     	    "카테고리3": "rgb(255, 205, 86)",
+//     	    // 카테고리와 색상을 계속 추가하세요
+//     	};
+    
+    /* 금액 담을 배열 */
+    let nowTotalPriceArray = [];
+    let nowAcNameArray = [];
+    
+    let beforeTotalPriceArray = [];
+    let beforeAcNameArray = [];
+    
+    <c:forEach items="${nList}" var = "dto">
+    	nowTotalPriceArray.push(${dto.totalPrice});
+    	nowAcNameArray.push('${dto.acName}');
+    </c:forEach>
+    
+    <c:forEach items="${bList}" var = "dto">
+    	beforeTotalPriceArray.push(${dto.totalPrice});
+    	beforeAcNameArray.push('${dto.acName}');
+    </c:forEach>
+    
+    
     var ctx = document.getElementById('piepie').getContext('2d');
     var chart1 = new Chart(ctx, {
         type: 'pie',
         data: {
-            labels: ['식비', '교통', '현금'],
+            labels: beforeAcNameArray,
             datasets: [{
-                label: 'My First Dataset',
-                data: [300, 50, 100],
+            	label: 'My First Dataset',
+                data: beforeTotalPriceArray,
                 backgroundColor: [
-                    'rgb(255, 99, 132)',
                     'rgb(54, 162, 235)',
+                	'rgb(255, 99, 132)',
+                    'rgb(255, 205, 86)',
+                    'rgb(255, 205, 86)',
+                    'rgb(255, 205, 86)',
+                    'rgb(255, 205, 86)',
+                    'rgb(255, 205, 86)',
+                    'rgb(255, 205, 86)',
+                    'rgb(255, 205, 86)',
+                    'rgb(255, 205, 86)',
+                    'rgb(255, 205, 86)',
+                    'rgb(255, 205, 86)',
+                    'rgb(255, 205, 86)',
+                    'rgb(255, 205, 86)',
                     'rgb(255, 205, 86)'
                 ],
                 hoverOffset: 4
@@ -351,13 +398,26 @@
     var chart2 = new Chart(ctx1, {
         type: 'pie',
         data: {
-            labels: ['식비', 'Blue', 'Green'],
+            labels: nowAcNameArray,
             datasets: [{
                 label: 'My Second Dataset',
-                data: [300, 50, 800],
+                data: nowTotalPriceArray,
                 backgroundColor: [
-                    'rgb(255, 99, 132)',
+                	'rgb(255, 99, 132)',
                     'rgb(54, 162, 235)',
+                    'rgb(255, 205, 86)',
+                    'rgb(255, 205, 86)',
+                    'rgb(255, 205, 86)',
+                    'rgb(255, 205, 86)',
+                    'rgb(255, 205, 86)',
+                    'rgb(255, 205, 86)',
+                    'rgb(255, 205, 86)',
+                    'rgb(255, 205, 86)',
+                    'rgb(255, 205, 86)',
+                    'rgb(255, 205, 86)',
+                    'rgb(255, 205, 86)',
+                    'rgb(255, 205, 86)',
+                    'rgb(255, 205, 86)',
                     'rgb(255, 205, 86)'
                 ],
                 hoverOffset: 4
@@ -379,7 +439,7 @@
         charts[0].data.labels.forEach((label, index) => {
             const color = charts[0].data.datasets[0].backgroundColor[index];
             const legendItem = document.createElement('div');
-            legendItem.innerHTML = `<span style="background-color:${color}; width: 12px; height: 12px; display: inline-block; margin-right: 5px; margin-left: 5px;"></span> ${label}`;
+            legendItem.innerHTML = `<span style="background-color:\${color}; width: 12px; height: 12px; display: inline-block; margin-right: 5px; margin-left: 5px;"></span> \${label}`;
             legendItem.style.cursor = 'pointer';
             legendItem.onclick = function() {
                 charts.forEach(chart => {
