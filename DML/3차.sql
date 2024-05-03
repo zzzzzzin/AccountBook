@@ -41,4 +41,12 @@ INSERT INTO tblMember(id,pw,name,nickname,phoneNumber,ssn,gender,reportCount,joi
 select * from tblMember m 
 inner join tblMemberPriv mp on m.id = mp.idmember;
 
+
+select * from tblMember;
+select * from tblSurvey;
+select * from tblsavingsperiod;
+select * from tblMemberPriv;
+
+INSERT INTO tblSurvey VALUES (seqSurvey.NEXTVAL, 0, 0, 1, 1);
+
 commit;
