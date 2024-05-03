@@ -27,10 +27,6 @@ public class BoardDAO {
 		this.conn = DBUtil.open("192.168.10.47", "jspProject", "java1234");
 	}
 
-//	public BoardDAO() {
-//		this.conn = DBUtil.open("localhost", "c##test123", "java1234");
-//	}
-
 	// 삽입(C)
 	public int insert(PostDTO dto) {
 
@@ -196,4 +192,48 @@ public class BoardDAO {
 
 	}
 
+	// 수정(U)
+
+	// 삭제(D)
+
+	
+	//글쓰기
+	public int write(PostDTO dto) {
+		try {
+
+			String sql = "insert into tblPost values ((SELECT NVL(MAX(seq), 0) + 1 FROM tblPost), ?, ?, ?, ?, ?, null, 0, 0, 0, 0, ?, ?)";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getSeqBoard());
+			pstat.setString(2, dto.getSeqUser());
+			pstat.setString(3, dto.getTitle());
+			pstat.setString(4, dto.getContent());
+			pstat.setString(5, dto.getWriteDate());
+			pstat.setInt(6, dto.getSecretCheck());
+			pstat.setInt(7, dto.getBlindCheck());
+
+			pstat.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("BoardDAO.write");
+			e.printStackTrace();
+		}
+		return 0;
+	}
 }// BoardDAO
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -172,23 +172,23 @@
               <div id="userinfo">
                 <div class="userinfo-content">
                     <div class="userinfo left">이름</div>
-                    <div class="userinfo right">홍길동</div>
+                    <div class="userinfo right">${dto.name}</div>
                 </div>
                 <div class="userinfo-content">
                     <div class="userinfo left">닉네임</div>
-                    <div class="userinfo right">hong</div>
+                    <div class="userinfo right">${dto.nickname}</div>
                 </div>
                 <div class="userinfo-content">
                     <div class="userinfo left">성별</div>
-                    <div class="userinfo right">남</div>
+                    <div class="userinfo right">${dto.gender}</div>
                 </div>
                 <div class="userinfo-content">
                     <div class="userinfo left">전화번호</div>
-                    <div class="userinfo right">010-1234-5678</div>
+                    <div class="userinfo right">${dto.phoneNumber}</div>
                 </div>
                 <div class="userinfo-content">
                     <div class="userinfo left">주민등록번호</div>
-                    <div class="userinfo right" id="ssn">123456-1234567</div>
+                    <div class="userinfo right" id="ssn">${dto.ssn}</div>
                 </div>
               </div>
       </div>
