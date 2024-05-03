@@ -32,6 +32,11 @@
         padding: 20px;
     }
     
+    #cardImgPlace {
+    	margin: 0;
+    	width: 150px;
+    }
+    
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
 </style>
@@ -65,19 +70,37 @@
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
 
-			<div class="container-myCardTotal">
-				<div class="date-range-myCardTotal">
-					<label for="start-date-myCardTotal">시작일:</label> <input type="text"
-						id="start-date" class="date-input-myCardTotal"> <label
-						for="end-date">종료일:</label> <input type="text" id="end-date"
-						class="date-input-myCardTotal">
-				</div>
-				<div class="card-list-myCardTotal">
-					<!-- 카드 아이템들이 동적으로 추가될 곳 -->
-				</div>
+		<form id="selectDateForm" method="GET">
+			<div class="date-range-myCardTotal">
+				<label for="start-date-myCardTotal">시작일 </label> 
+					<input type="text" name = "startDate" id="start-date" class="date-input-myCardTotal" value="${map.startDate}"> 
+				<label for="end-date">종료일 </label> 
+					<input type="text" name = "endDate" id="end-date" class="date-input-myCardTotal" value="${map.endDate}">
+				<input type="submit" value="확인"/>
 			</div>
+		</form>
+		
+		<div class="card-list-myCardTotal">
+				<c:forEach items="${list}" var="dto">
+						<button type="submit" class="card-item-myCardTotal" id="useCardDetail" onclick="location.href='/account/account/card-use-detail.do?seqMyCard=${dto.seqMyCard}&startDate=${map.startDate}&endDate=${map.endDate}';">
+<!-- 							<div class="card-image-myCardTotal"></div> -->
+							<img src="/account/asset/images/${dto.fileLink}" id="cardImgPlace" >
+							<div class="card-details-myCardTotal">
+								<div class="card-name-myCardTotal">
+									<c:if test="${dto.alias != null}">
+										${dto.alias}
+									</c:if>
+									<c:if test="${dto.alias == null}">
+										${dto.cfName}
+									</c:if>
+								</div>
+								<div class="card-usage-myCardTotal">${dto.totalPrice}</div>
+							</div>
+						</button>
+					</c:forEach>
+		</div>
 
-			<!-- fakecontent 끝 -->
+		<!-- fakecontent 끝 -->
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
         
@@ -102,49 +125,20 @@
     });
     
     $(document).ready(function() {
-        // 달력 초기화
         $(".date-input-myCardTotal").datepicker({
             dateFormat: "yy-mm-dd"
         });
-    
-        // 카드 데이터
-        const cards = [
-            { name: "카드이미지1", usage: "총 사용 금액1" },
-            { name: "카드이미지2", usage: "총 사용 금액2" },
-            { name: "카드이미지3", usage: "총 사용 금액3" },
-            { name: "카드이미지4", usage: "총 사용 금액4" },
-            { name: "카드이미지5", usage: "총 사용 금액5" }
-        ];
-    
-        // 카드 아이템 생성 함수
-        function createCardItem(card) {
-            const cardItem = `
-                <div class="card-item-myCardTotal">
-                    <div class="card-image-myCardTotal"></div>
-                    <div class="card-details-myCardTotal">
-                        <div class="card-name-myCardTotal">${card.name}</div>
-                        <div class="card-usage-myCardTotal">${card.usage}</div>
-                    </div>
-                </div>
-            `;
-            return cardItem;
-        }
-    
-        // 카드 아이템들을 동적으로 추가
-        cards.forEach(function(card) {
-            const cardItem = createCardItem(card);
-            $(".card-list-myCardTotal").append(cardItem);
-        });
-        
-     // card-item-myCardTotal를 클릭하면 CardUseageInfo 함수 실행
-        $(document).on("click", ".card-item-myCardTotal", function() {
-            CardUseageInfo();
-        });
     });
+
+        
+//      // card-item-myCardTotal를 클릭하면 CardUseageInfo 함수 실행
+//         $(document).on("click", ".card-item-myCardTotal", function() {
+//             CardUseageInfo();
+//         });
     
-    function CardUseageInfo() {
-    	window.location.href = '/account/account/card-use-detail.do';  	
-    }
+//     function CardUseageInfo() {
+//     	window.location.href = '/account/account/card-use-detail.do';  	
+//     }
 
     </script>
 </body>

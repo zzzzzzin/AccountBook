@@ -219,7 +219,7 @@ insert into tblCardInformation (seq, name, explanation, annualFee, overseasUse, 
     values (9, '신한카드 Deep Dream', '속 깊은 디지털 라이프', 8000, '가능', '신한카드', '1111', 1);
 insert into tblCardInformation (seq, name, explanation, annualFee, overseasUse, cardCompany, fileLink, seqCardType) 
     values (10, '삼성카드 taptap O', '직접 선택하는 혜택, 탭탭 옵션형!', 10000, '가능', '삼성카드', '1111', 1);
-    
+
 --설문조사 tblSurvey
 --압박강도(1:하, 2:중, 3:상)
 --저축기간(1~80)

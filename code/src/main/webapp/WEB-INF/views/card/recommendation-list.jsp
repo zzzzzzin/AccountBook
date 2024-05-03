@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,90 +60,45 @@
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
         
-        	<div class="card-container">
-        <div class="card">
-            <div class="card-rank">1</div>
-            <div class="card-image"></div>
-            <div class="card-details">
-                <div class="card-name">카드명</div>
-                <div class="card-company">카드사</div>
-            </div>
-        </div>
-        <div class="card">
+        
+        <div class="card-container">   
+        <c:choose>
+    		<c:when test="${empty list}">
+        		<div class="card">
+            	<div>추천 카드가 없습니다.</div>
+        		</div>
+    		</c:when>
+    		<c:otherwise>
+	        	<c:forEach items="${list}" var="dto" varStatus="loop">
+	            	<div class="card">
+	                	<div class="card-rank">${loop.index + 1}</div>
+	                	<div class="card-image"></div>
+	                	<div class="card-details">
+	                    	<div class="card-name">${dto.ciName}</div>
+	                    	<div class="card-company">${dto.cardCompany}</div>
+	                	</div>
+	            	</div>
+	        	</c:forEach>
+	    	</c:otherwise>
+		</c:choose>
+        
+        <!-- <div class="card">
             <div class="card-rank">2</div>
             <div class="card-image"></div>
             <div class="card-details">
                 <div class="card-name">카드명</div>
                 <div class="card-company">카드사</div>
             </div>
-        </div>
-        <div class="card">
-            <div class="card-rank">3</div>
-            <div class="card-image"></div>
-            <div class="card-details">
-                <div class="card-name">카드명</div>
-                <div class="card-company">카드사</div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-image"></div>
-            <div class="card-details">
-                <div class="card-name">카드명</div>
-                <div class="card-company">카드사</div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-image"></div>
-            <div class="card-details">
-                <div class="card-name">카드명</div>
-                <div class="card-company">카드사</div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-image"></div>
-            <div class="card-details">
-                <div class="card-name">카드명</div>
-                <div class="card-company">카드사</div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-image"></div>
-            <div class="card-details">
-                <div class="card-name">카드명</div>
-                <div class="card-company">카드사</div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-image"></div>
-            <div class="card-details">
-                <div class="card-name">카드명</div>
-                <div class="card-company">카드사</div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-image"></div>
-            <div class="card-details">
-                <div class="card-name">카드명</div>
-                <div class="card-company">카드사</div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-image"></div>
-            <div class="card-details">
-                <div class="card-name">카드명</div>
-                <div class="card-company">카드사</div>
-            </div>
+        </div> -->
         </div>
     </div>     
-    
+    </div>
     <button class="modal-button" onclick="openModal()">카테고리 선택</button>
 
         <!-- fakecontent 끝 -->
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
         
-    </div>
-    </div>
 
     <!-- JavaScript Libraries -->
    
@@ -151,21 +106,7 @@
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
     <script>
 
-    document.addEventListener('DOMContentLoaded', function() {
-    const sidebarToggler = document.getElementById('sidebar-toggler');
-    const sidebar = document.querySelector('.sidebar');
-    const content = document.querySelector('.content');
-
-        sidebarToggler.addEventListener('click', function() {
-        sidebar.classList.toggle('hidden');
-        content.classList.toggle('expanded');
-        });
-    });
     
-    function openModal() {
-        // 모달 열기 함수 구현
-        console.log("모달 열기");
-    }
 
     </script>
 </body>

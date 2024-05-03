@@ -20,129 +20,136 @@ public class MemberInfoDAO {
 		this.conn = DBUtil.open("192.168.10.47", "jspProject", "java1234");
 	}
 
-	public int addMycard(MemberInfoDTO dto) {
+	//나의 카드 추가
+			public int addMycard(MemberInfoDTO dto) {
+				
+				try {
 
-		try {
+					String sql = "insert into tblMyCard (seq, cardNumber, alias, validity, idMember, seqCardInformation) values (seqMyCard.nextVal, ?, ?, ?, ?)";
+					pstat = conn.prepareStatement(sql);
+					pstat.setString(1, dto.getCardNumber());
+					pstat.setString(2, dto.getAlias());
+					pstat.setString(3, dto.getValidity());
+					pstat.setString(4, dto.getMcIdMember());
+					pstat.setString(5, dto.getSeqCardInformation());
 
-			String sql = "insert into tblMyCard (seq, cardNumber, alias, validity, idMember, seqCardInformation) values (seqMyCard.nextVal, ?, ?, ?, ?)";
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, dto.getCardNumber());
-			pstat.setString(2, dto.getAlias());
-			pstat.setString(3, dto.getValidity());
-			pstat.setString(4, dto.getMcIdMember());
-			pstat.setString(5, dto.getSeqCardInformation());
+					pstat.executeUpdate();
 
-			pstat.executeUpdate();
+				} catch (Exception e) {
+					System.out.println("CardDAO.addMyCard");
+					e.printStackTrace();
+				}		
+				
+				return 0;
+			}
+			
+			//나의 카드 삭제
+			public int delMyCard(MemberInfoDTO dto) {
+				
+				try {
 
-		} catch (Exception e) {
-			System.out.println("CardDAO.addMyCard");
-			e.printStackTrace();
-		}
+					String sql = "update tblMyCard set cardNumber = 'xxxxxxxxxxxxxxxx' where cardnumber = ?";
 
-		return 0;
-	}
+					pstat = conn.prepareStatement(sql);
+					pstat.setString(1, dto.getCardNumber());
 
-	public int delMyCard(MemberInfoDTO dto) {
+					pstat.executeUpdate();
 
-		try {
+				} catch (Exception e) {
+					System.out.println("CardDAO.delMyCard");
+					e.printStackTrace();
+				}
+				return 0;
+			}
+			
+			//나의카드 수정
+			public int updateMyCard(MemberInfoDTO dto) {
+				
+				try {
 
-			String sql = "update tblMyCard set cardNumber = 'xxxxxxxxxxxxxxxx' where cardnumber = ?";
+					String sql = "update tblMyCard set alias = ? where cardnumber = ?";
 
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, dto.getCardNumber());
+					pstat = conn.prepareStatement(sql);
+					pstat.setString(1, dto.getAlias());
+					pstat.setString(2, dto.getCardNumber());
 
-			pstat.executeUpdate();
+					pstat.executeUpdate();
 
-		} catch (Exception e) {
-			System.out.println("CardDAO.delMyCard");
-			e.printStackTrace();
-		}
-		return 0;
-	}
-
-	public int updateMyCard(MemberInfoDTO dto) {
-
-		try {
-
-			String sql = "update tblMyCard set alias = ? where cardnumber = ?";
-
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, dto.getAlias());
-			pstat.setString(2, dto.getCardNumber());
-
-			pstat.executeUpdate();
-
-		} catch (Exception e) {
-			System.out.println("CardDAO.updateMyCard");
-			e.printStackTrace();
-		}
-
-		return 0;
-	}
-
-	public MemberInfoDTO getMyCard(String cardNumber) {
-
-		try {
-
-			String sql = "select * from tblMyCard where cardnumber = ?";
-
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, cardNumber);
-
-			rs = pstat.executeQuery(sql);
-
-			if (rs.next()) {
-
-				MemberInfoDTO dto = new MemberInfoDTO();
-
-				dto.setAlias(rs.getString("alias"));
-				dto.setValidity(rs.getString("validity"));
-				dto.setMcIdMember(rs.getString("McIdMember"));
-				dto.setSeqCardInformation(rs.getString("seqCardInformation"));
-
-				return dto;
+				} catch (Exception e) {
+					System.out.println("CardDAO.updateMyCard");
+					e.printStackTrace();
+				}
+				
+				return 0;
 			}
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return null;
-	}
-
-	public ArrayList<MemberInfoDTO> listMyCard(String McIdMember) {
-
-		try {
-
-			String sql = "select * from tblmycard where idMember = ?";
-
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, McIdMember);
-
-			rs = pstat.executeQuery();
-
-			ArrayList<MemberInfoDTO> list = new ArrayList<MemberInfoDTO>();
-
-			while (rs.next()) {
-
-				MemberInfoDTO dto = new MemberInfoDTO();
-
-				dto.setCardNumber(rs.getString("cardNumber"));
-				dto.setAlias(rs.getString("alias"));
-				dto.setValidity(rs.getString("validity"));
-				dto.setMcIdMember(rs.getString("mcIdMember"));
-				dto.setExplanation(rs.getString("seqCardInformation"));
-
-				list.add(dto);
+			//나의 카드 정보 가져오기
+			public MemberInfoDTO getMyCard(String cardNumber) {
+				
+				try {
+					
+					String sql = "select * from tblMyCard where cardnumber = ?";
+					
+					pstat = conn.prepareStatement(sql);
+					pstat.setString(1, cardNumber);
+					
+					rs = pstat.executeQuery(sql);
+					
+					if (rs.next()) {
+						
+						MemberInfoDTO dto = new MemberInfoDTO();
+						
+						dto.setAlias(rs.getString("alias"));
+						dto.setValidity(rs.getString("validity"));
+						dto.setMcIdMember(rs.getString("McIdMember"));
+						dto.setSeqCardInformation(rs.getString("seqCardInformation"));
+						
+						return dto;				
+					}	
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+				return null;
 			}
-			return list;
+			
+			
+			//나의 카드 리스트
+			public ArrayList<MemberInfoDTO> listMyCard(String McIdMember){
+				
+				try {
+					
+					String sql = "select * from tblmycard where idMember = ?";
+					
+					pstat = conn.prepareStatement(sql);
+					pstat.setString(1, McIdMember);
+					
+					rs = pstat.executeQuery();
+					
+					ArrayList<MemberInfoDTO> list = new ArrayList<MemberInfoDTO>();
+					
+					while (rs.next()) {
+						
+						MemberInfoDTO dto = new MemberInfoDTO();
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-
-	}
+						
+						dto.setCardNumber(rs.getString("cardNumber"));
+						dto.setAlias(rs.getString("alias"));
+						dto.setValidity(rs.getString("validity"));
+						dto.setMcIdMember(rs.getString("mcIdMember"));
+						dto.setExplanation(rs.getString("seqCardInformation"));
+						
+						list.add(dto);				
+					}	
+					return list;
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return null;
+				
+			}
 
 	public UserDTO getMemberInfo(String id) {
 
