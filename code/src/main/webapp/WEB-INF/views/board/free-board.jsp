@@ -100,31 +100,37 @@
 	                    <th scope="col" class="th-date">등록일</th>
 	                    <th scope="col" class="th-view">조회수</th>
 	                    <th scope="col" class="th-like">추천</th>
-	                    <th scope="col" class="th-lock">비밀글</th>
 	                </tr>
 	                </thead>
 	                <tbody>
-	                <tr>
-	                    <td>3</td>
-	                    <th>
-	                      <a href="#!">ㄴ어라ㅣㄴ어라ㅣㅓㄴ아ㅣ린어라ㅣㄴ어ㅏㅣ런아ㅣ러ㅏㅣㄴ어리ㅏㄴ어라ㅣㄴ어ㅣㅏ런이ㅏ러ㅣㅏㄴ어리ㅏㄴ어리ㅏㄴ어ㅣㅏ런이ㅏ러ㅣㅏㄴ어리ㅏㄴ어ㅣㅏ런이러ㅏㅣㄴ어라ㅣㄴ어리ㅏㄴ어ㅏㅣ</a>
-	                    </th>
-	                    <td>ㅇㅇ</td>
-	                    <td>04:20</td>
-	                    <td>100</td>
-	                    <td>100</td>
-	                    <td><i class="fas fa-lock lock-icon"></i></td>
-	                </tr>
+	                <c:if test="${freeList.size() == 0}">
+					    <tr>
+					        <td>게시물이 없습니다.</td>
+					    </tr>
+					</c:if>
 	                
-	                <tr>
-	                    <td>2</td>
-	                    <th><a href="#!">ㅇㅇㅇ</a></th>
-	                    <td>ㅇㅇㅇ</td>
-	                    <td>2024.04.11</td>
-	                    <td>2222</td>
-	                    <td>30</td>
-	                    <td><i class="fas fa-lock-open lock-icon"></i></td>
-	                </tr>
+					<c:forEach var="free" items="${freeList}">
+			                <tr>
+			                    <td>${free.seq}</td>
+						        <td>
+						            <c:choose>
+						                <c:when test="${free.blindCheck eq '1'}">
+						                    관리자에 의해 블라인드 처리 되었습니다.
+						                </c:when>
+						                <c:otherwise>
+						                    ${free.title}
+						                </c:otherwise>
+						            </c:choose>
+						        </td>
+						        <td>${free.nickname}</td>
+						        <td>${free.date}</td>
+						        <td>${free.viewCount}</td>
+						        <td>${free.likeCount}</td>
+						        <%-- <td>${free.reportCount}</td> --%>
+						        <%-- <td>${free.secretCheck}</td> --%>
+						        <%-- <td>${free.blindCheck}</td> --%>
+			                </tr>
+	                </c:forEach>
 	                </tbody>
 	            </table>
 	            <div class="write-btn">

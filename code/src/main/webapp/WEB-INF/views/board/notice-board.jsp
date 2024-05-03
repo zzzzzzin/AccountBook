@@ -75,37 +75,12 @@
         <!-- Navbar End -->
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
-<<<<<<< HEAD
-        <h3 id="title">출석게시판</h3>
-        
-        <table class="board-list">
-          <tbody>
-            <tr id="menuTable">
-            	<td>번호</td>
-            	<td>제목</td>
-            	<td>닉네임</td>
-            	<td>등록 날짜</td>
-            	<td>조회수</td>
-            	<td>추천</td>
-            </tr>
-            <c:if test="${board-list.size() == 0}">
-			<tr>
-				<td colspan="6">게시물이 없습니다.</td>
-			</tr>
-			</c:if>
-            
-          </tbody>
-        </table>
-        
-        
-=======
         <section class="noticeboard">
         <div class="page-title">
         	<div class="container">
             	<h3>공지 게시판</h3>
             </div>
         </div>
->>>>>>> ad1c3a1d41be5bdddacbf728ca1b9766c72f9250
       
 	    <!-- board seach area -->
 	    <div id="board-search">
@@ -142,25 +117,25 @@
 		                </tr>
 	                </thead>
 	                <tbody>
-		                <tr>
-		                    <td>3</td>
-		                    <th>
-		                      <a href="#!">거니더마마사지</a>
-		                    </th>
-		                    <td>ㅇㅇ</td>
-		                    <td>04:20</td>
-		                    <td>2</td>
-		                    <td>0</td>
-		                </tr>
-		                
-		                <tr>
-		                    <td>2</td>
-		                    <th><a href="#!">ㅇㅇㅇ</a></th>
-		                    <td>ㅇㅇㅇ</td>
-		                    <td>2024.04.11</td>
-		                    <td>2222</td>
-		                    <td>30</td>
-		                </tr>
+		                <c:if test="${noticeList.size() == 0}">
+						    <tr>
+						        <td>게시물이 없습니다.</td>
+						    </tr>
+						</c:if>
+	                
+					<c:forEach var="notice" items="${noticeList}">
+			                <tr>
+			                    <td>${notice.seq}</td>
+						        <td>${notice.title}</td>
+						        <td>${notice.nickname}</td>
+						        <td>${notice.date}</td>
+						        <td>${notice.viewCount}</td>
+						        <td>${notice.likeCount}</td>
+						        <%-- <td>${notice.reportCount}</td> --%>
+						        <%-- <td>${notice.secretCheck}</td> --%>
+						        <%-- <td>${notice.blindCheck}</td> --%>
+			                </tr>
+	                </c:forEach>
 	                </tbody>
 	            </table>
 	            <div class="write-btn">
