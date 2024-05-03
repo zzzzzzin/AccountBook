@@ -25,7 +25,7 @@ public class UserDAO {
 	private ResultSet rs;
 
 	public UserDAO() {
-		this.conn = DBUtil.open("192.168.10.47", "jspProject", "java1234");
+		this.conn = DBUtil.open("125.241.245.222", "webproject", "java1234");
 	}
 
 	

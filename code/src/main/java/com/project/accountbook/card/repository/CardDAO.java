@@ -20,7 +20,7 @@ public class CardDAO {
 	private ResultSet rs;
 
 	public CardDAO() {
-		this.conn = DBUtil.open();
+		this.conn = DBUtil.open("125.241.245.222", "webproject", "java1234");
 	}
 	
 	//카드 추가
