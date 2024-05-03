@@ -379,7 +379,7 @@
         charts[0].data.labels.forEach((label, index) => {
             const color = charts[0].data.datasets[0].backgroundColor[index];
             const legendItem = document.createElement('div');
-            legendItem.innerHTML = `<span style="background-color:${color}; width: 12px; height: 12px; display: inline-block; margin-right: 5px; margin-left: 5px;"></span> ${label}`;
+            legendItem.innerHTML = `<span style="background-color:\${color}; width: 12px; height: 12px; display: inline-block; margin-right: 5px; margin-left: 5px;"></span> \${label}`;
             legendItem.style.cursor = 'pointer';
             legendItem.onclick = function() {
                 charts.forEach(chart => {

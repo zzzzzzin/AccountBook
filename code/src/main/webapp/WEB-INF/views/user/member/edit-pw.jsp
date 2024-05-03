@@ -23,15 +23,30 @@
    
 </head>
 <style>
-
+	
+	#fakecontent{
+		display: flex;
+		justify-content: center;
+	}
+	
+	.mypage{
+		width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+	}
+	
    .delContainer {
-        border: 1px solid black;
         width: 600px;
         height: 300px;
-        background-color: #F1F4C7;
+        background-color: #F3f6f9;
+        border-radius: 5px;
         display: flex;
         flex-direction: column;
         position: relative;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1); 
     }
 
     .delContent {
@@ -54,7 +69,11 @@
     }
     
     .now-pw-title, .edit-pw-title, .edit-pw-check-title {
-        background-color: #ffffff;
+        background-color: #e8e8e8 !important; 
+        text-align: left;
+  		font-weight: bold;
+  		box-shadow: inset 0 0 5px rgba(0,0,0,0.1); 
+  		margin-right: 10px; 
         width: 200px;
         height: 100%;
         text-align: center;
@@ -87,6 +106,7 @@
         left: 10%;
         background-color: #d9d9d9;
         border: 0;
+        border-radius: 5px;
     }
     
     
@@ -125,7 +145,7 @@
             <!-- Navbar End -->
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
-
+		<div id="fakecontent">
 			<div class="myPage">
 				<form action="/account/user/member/edit-pw.do">
 					<div class="delContainer">
@@ -153,7 +173,7 @@
 					</div>
 				</form>
 			</div>
-
+</div>
 			<!-- fakecontent 끝 -->
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
