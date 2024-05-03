@@ -1237,75 +1237,7 @@ height: 30px;
 /* editUserInfo 끝 */
 
 /* mypage 시작 */
-.myPage-mypage {
-  border: 1px solid black;
-  width: 500px;
-  height: 500px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.user-profile-mypage {
-  border: 1px solid black;
-  width: 400px;
-  height: 400px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.user-profile-mypage-img {
-  border: 1px solid black;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background-color: #ffffff;      
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.user-profile-mypage-container {
-  border: 1px solid black;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 300px;
-  height: 300px;
-}
 
-.user-profile-mypage-name, .user-profile-mypage-nickname, .user-profile-mypage-sex, .user-profile-mypage-phone, .user-profile-mypage-SSN {
-  width: 300px;
-  border: 1px solid black;
-  display: flex;
-  justify-content: space-evenly;
-  width: 300px;
-  height: 30px;
-  margin-bottom: 5px;
-  
-}
-
-.user-profile-mypage-name-title, .user-profile-mypage-nickname-title, 
-.user-profile-mypage-sex-title, .user-profile-mypage-phone-title, .user-profile-mypage-SSN-title {
-  width: 100px;
-}
-
-.user-profile-mypage-name-real, .user-profile-mypage-nickname-real, .user-profile-mypage-sex-real, .user-profile-mypage-phone-real, .user-profile-mypage-SSN-real {
-  border: 1px solid black;
-  background-color: #d9d9d9;
-  width: 150px;
-  text-align: center;
-}
-
-.myPage-mypage-btns {
-  border: 1px solid black;
-  width: 500px;
-  display: flex;
-  justify-content: space-evenly;
-  margin-top: 10px;
-}
 /* mypage 끝 */
 
 /* surveysetting 시작 */

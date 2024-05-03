@@ -25,8 +25,7 @@
 </head>
 <link rel="stylesheet" href="../../../css/combine.css">
 <style>
-
-    #fakecontent{
+   #fakecontent{
     display: flex;
     justify-content: center;
    }
@@ -164,52 +163,39 @@
             <!-- Navbar End -->
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
-      
-      		<div class="myPage-mypage">
-        <div class="user-profile-mypage">
-            <div class="user-profile-mypage-img">
-                개인 프로필 이미지
-            </div>
-            <div class="user-profile-mypage-container">
-                <div class="user-profile-mypage-name">
-                    <div class="user-profile-mypage-name-title">이름</div>
-                    <div class="user-profile-mypage-name-real">홍길동</div>
+      <div id="fakecontent">
+        <div class="myPage-mypage">
+          <div class="user-profile-mypage">
+              <div class="user-profile-mypage-img">
+                  개인 프로필 이미지
+              </div>
+              <div id="userinfo">
+                <div class="userinfo-content">
+                    <div class="userinfo left">이름</div>
+                    <div class="userinfo right">홍길동</div>
                 </div>
-                <div class="user-profile-mypage-nickname">
-                    <div class="user-profile-mypage-nickname-title">닉네임</div>
-                    <div class="user-profile-mypage-nickname-real">hong</div>
+                <div class="userinfo-content">
+                    <div class="userinfo left">닉네임</div>
+                    <div class="userinfo right">hong</div>
                 </div>
-                <div class="user-profile-mypage-sex">
-                    <div class="user-profile-mypage-sex-title">성별</div>
-                    <div class="user-profile-mypage-sex-real">남</div>
+                <div class="userinfo-content">
+                    <div class="userinfo left">성별</div>
+                    <div class="userinfo right">남</div>
                 </div>
-                <div class="user-profile-mypage-phone">
-                    <div class="user-profile-mypage-phone-title">전화번호</div>
-                    <div class="user-profile-mypage-phone-real">010-1234-5678</div>
+                <div class="userinfo-content">
+                    <div class="userinfo left">전화번호</div>
+                    <div class="userinfo right">010-1234-5678</div>
                 </div>
-                <div class="user-profile-mypage-SSN">
-                    <div class="user-profile-mypage-SSN-title">주민등록번호</div>
-                    <div class="user-profile-mypage-SSN-real">123456-1234567</div>
+                <div class="userinfo-content">
+                    <div class="userinfo left">주민등록번호</div>
+                    <div class="userinfo right" id="ssn">123456-1234567</div>
                 </div>
-            </div>
-        </div>
-        <div class="myPage-mypage-btns">
-            <div>
-                <button type="button">비밀번호 수정</button>
-            </div>
-            <div>
-                <button type="button">개인정보 수정</button>
-            </div>
-            <div>
-                <button type="button"><a href="/account/user/unregister.do">회원 탈퇴</button>
-            </div>
-        </div>
+              </div>
+      </div>
     </div>
-
         <!-- fakecontent 끝 -->
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-        
     </div>
     </div>
 
