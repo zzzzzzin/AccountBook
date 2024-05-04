@@ -60,10 +60,8 @@
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
         
-    
 <div class="fakecontent">
     <h2>선택된 카테고리: ${selectedCategory}</h2>
-
     <div class="card-container">
         <c:choose>
             <c:when test="${empty list}">
@@ -74,7 +72,6 @@
             <c:otherwise>
                 <c:forEach items="${list}" var="dto" varStatus="loop">
                     <div class="card">
-                        <div class="card-rank">${loop.index + 1}</div>
                         <div class="card-image">
                             <img src="${dto.fileLink}" alt="Card Image">
                         </div>
@@ -88,9 +85,6 @@
         </c:choose>
     </div>
 </div>
-</div>
-</div>
-    <button class="modal-button" onclick="openModal()">카테고리 선택</button>
 
         <!-- fakecontent 끝 -->
         <!-- Back to Top -->
@@ -102,7 +96,7 @@
     <!-- Template Javascript -->
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
     <script>
-
+    console.log("recommendation-list.jsp - Script");
     console.log("Selected Category in JSP: ${selectedCategory}");
     console.log("Number of Cards in JSP: ${list.size()}");
 

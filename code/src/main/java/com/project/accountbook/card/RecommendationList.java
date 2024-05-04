@@ -21,16 +21,16 @@ public class RecommendationList extends HttpServlet {
         "레저/스포츠", "영화/문화", "간편결제", "항공마일리지", "공항라운지/PP", "프리미엄",
         "여행/숙박", "해외", "비즈니스"
     };
-
+    
+    
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String category = req.getParameter("category");
+        System.out.println("Selected Category: " + category); // 선택한 카테고리 값 출력
 
         if (category == null || category.isEmpty()) {
             category = "통신";
-        }
-
-        boolean isValidCategory = false;
+        }     boolean isValidCategory = false;
         for (String validCategory : CATEGORIES) {
             if (validCategory.equals(category)) {
                 isValidCategory = true;
@@ -44,13 +44,13 @@ public class RecommendationList extends HttpServlet {
 
         CardDAO dao = new CardDAO();
         ArrayList<CardDTO> list = dao.categoryCard(category);
-
+        
         req.setAttribute("list", list);
         req.setAttribute("selectedCategory", category);
-
+        
         System.out.println("Selected Category in Servlet: " + category);
         System.out.println("Number of Cards in Servlet: " + list.size());
-
+        
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/card/recommendation-list.jsp");
         dispatcher.forward(req, resp);
     }

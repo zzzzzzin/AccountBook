@@ -135,9 +135,11 @@ public class CardDAO {
 	//카테고리 선택했을때 나올 카드
 	public ArrayList<CardDTO> categoryCard(String category) {
 	    try {
-	        String sql = "select * from tblcardinformation ci"
-	        		+ "inner join tblListCardBenefits lcb on lcb.seqcardinformation = ci.seq\r\n"
-	        		+ "inner join tblCardCategory cc on cc.seq = lcb.seqcardcategory;";
+	        String sql = "SELECT ci.name, ci.cardcompany, ci.filelink " +
+	                     "FROM tblcardinformation ci " +
+	                     "INNER JOIN tblListCardBenefits lcb ON lcb.seqcardinformation = ci.seq " +
+	                     "INNER JOIN tblCardCategory cc ON cc.seq = lcb.seqcardcategory " +
+	                     "WHERE cc.name = ?";
 
 	        pstat = conn.prepareStatement(sql);
 	        pstat.setString(1, category);
@@ -147,40 +149,22 @@ public class CardDAO {
 
 	        while (rs.next()) {
 	            CardDTO dto = new CardDTO();
-	            dto.setCiName(rs.getString("ciName"));
-	            dto.setExplanation(rs.getString("explanation"));
-	            dto.setAnnualFee(rs.getInt("annualfee"));
-	            dto.setOverseasUse(rs.getString("overseasuse"));
+	            dto.setCiName(rs.getString("name"));
 	            dto.setCardCompany(rs.getString("cardcompany"));
 	            dto.setFileLink(rs.getString("filelink"));
-	            dto.setSeqCardType(rs.getInt("seqcardtype"));
 	            list.add(dto);
 	        }
 
+	        System.out.println("CardDAO - categoryCard");
 	        System.out.println("Selected Category: " + category);
 	        System.out.println("Number of Cards: " + list.size());
 
 	        return list;
 	    } catch (Exception e) {
+	        System.out.println("CardDAO - categoryCard - Exception");
 	        e.printStackTrace();
 	    }
 	    return null;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	
