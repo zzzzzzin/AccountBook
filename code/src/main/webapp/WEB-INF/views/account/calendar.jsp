@@ -20,6 +20,7 @@
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Libraries Stylesheet -->
 </head>
@@ -263,14 +264,226 @@
     margin: 0 5px; 
 }
 .selectSize{
-    width: 100px !;
+    width: 100px ;
 }
+
+   .abovestat{
+        display: flex;
+        align-items: center;
+    }
+
+    .abovestat div{
+        margin-left: 10px;
+        margin-bottom: 10px;
+    }
+
+    #spendstat{
+        margin-top: 10px;
+    }
+
+    #aboverow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+    width: 100%; 
+    }
     
+    .right-icon{
+        width: auto;
+        height: 100%;
+    }
+
+
+
+#spendstat :nth-child(2){
+    color: rgb(244, 0, 0);
+}
+
+#incomestat :nth-child(2){
+    color: rgb(0, 76, 216);
+}
+
+#bottomrow{
+    display: flex;
+    flex-direction: row;
+    align-items: center; 
+    justify-content: flex-start; 
+    width: 100%; 
+}
+
+.right-icon i {
+    font-size: 24px;  
+    width: 30px;      
+    height: 30px; 
+    margin: 10px;    
+}
+
+#wishlist {
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin: 10px;
+    border: 1px solid black;
+    width: 40%;
+    
+}
+
+#wishlist h3 {
+    color: #333;
+}
+
+#wishlist form {
+    margin-bottom: 10px;
+}
+
+#wishlist input[type="text"] {
+    padding: 8px;
+    margin-right: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 70%;
+}
+
+#newitembutton{
+    width: 30%;
+}
+
+#wishlist button {
+    padding: 8px 16px;
+    background-color: #009CFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#wishlist button:hover {
+    background-color: #007dca;
+}
+
+#wishListItems li {
+    list-style: none;
+    margin-top: 8px;
+    background: white;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#bottomrow{
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    padding: 20px;
+}
+
+#wishlist{
+    width: 50%;
+}
+
+#wishlistrow1{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+#wishlistrow1 h3{
+    margin-right: 10px;
+}
+
+#addWishItemtitle{
+    display: flex;
+    justify-content: center;
+}
+
+#transcontent {
+    border: 1px solid #ccc;
+    width: 100%;
+    display: flex;
+    margin: 10px 0;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+    
+}
+#thismonthstat {
+    flex-grow: 1; 
+    font-weight: bold;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border: 1px solid black;
+    width: 40%;
+}
+
+.transin {
+    flex: 1;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.frontback{
+    margin: 10px;
+}
+
+#listdelbutton :hover{
+    cursor: pointer;
+}
+
+#wishlistrow2{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.categorylist{
+    border: 1px solid black;
+    width: 50%;
+    height: 30px;
+    margin: 5px;
+}
+
+#categorymodalbody{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.categorylistselector{
+    display: flex;
+    border: 1px solid #CCC;
+    background-color: #F3f6f9;
+    width: auto;
+    margin: 5px;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.categorylistselector:hover{
+    cursor: pointer;
+    box-shadow: 0 4px 4px rgba(0,0,0,0.1);
+}
+
+#searchbar{
+    display: none;
+}
+#totalbody{
+	background-color: #FFFFFF 
+}    
+    
+
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
+
 </style>
 
-<body>
+<body id="totalbody">
     <div class="container-xxl position-relative bg-white d-flex p-0">
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -298,14 +511,44 @@
             <!-- Navbar End -->
         <!-- Content End -->
         <div id="fakecontent">
+            <div id="aboverow">
+                <div><input type="text" id="searchbar"></div>
+                <div class="right-icon" id="searchicon"><i class="fa-solid fa-magnifying-glass"></i></div> 
+                <div class="right-icon" id="categoryselector"><i class="fa-solid fa-list-check"></i></div> 
+            </div>
             <div id='calendar'></div>
-
+            <div id="bottomrow">
+                <div id="thismonthstat">
+                    <div class="abovestat" id="spendstat">
+                        <div>이번달 지출:</div>
+                        <div>$30000</div>
+                    </div>
+                    <div class="abovestat" id="incomestat">
+                        <div>이번달 수입:</div>
+                        <div>$20000</div>
+                    </div>
+                </div>
+                <div id="wishlist">
+                    <div id="wishlistrow1">
+                        <h3>Wish List</h3>
+                        <div id="addWishItemtitle">
+                            <button id="addrightnow">Add Item</button>
+                        </div>
+                    </div>
+                    <div id="wishlistrow2">
+                        <input type="text" id="newItemInput" placeholder="Type and press enter" style="display: none;">
+                        <button id="newItemButton" style="display: none">추가하기</button>
+                    </div>
+                    <div id="wishListItems">
+                        
+                    </div>
+                </div>
+            </div>
         <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
         </div>
         
     </div>
-    
+
     <div class="modal fade" id="eventProduceModal" tabindex="-1"
     aria-labelledby="eventProduceModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -385,6 +628,31 @@
     </div>
 </div>
 
+<div class="modal fade" id="categorymodal" tabindex="-1"
+    aria-labelledby="eventProduceModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modalBackground">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="eventProduceModalLabel">카테고리 선택</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="categorymodalbody">
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">취소</button>
+                    <button type="button" class="btn btn-primary" id="btnEventProduce">완료
+                        </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -404,23 +672,69 @@
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
     <script>
 
-    document.addEventListener('DOMContentLoaded', function() {
-    const sidebarToggler = document.getElementById('sidebar-toggler');
-    const sidebar = document.querySelector('.sidebar');
-    const content = document.querySelector('.content');
+    function openEventModal() {
+        var modal = new bootstrap.Modal(document.getElementById("eventProduceModal"));
+        // Clear previous data in the modal or set defaults
+        document.getElementById('eventModalStartDate').value = new Date().toISOString().slice(0, 16); // Set to current date and time
+        document.getElementById('eventModalContent').value = '';
+        document.getElementById('eventModalUsage').value = ''; // Corrected for unique ID
+        document.getElementById('eventModalCategory').selectedIndex = 0; // Resets the category dropdown, corrected ID
+        document.getElementById('eventModalPaymentMethod').selectedIndex = 0; // Resets the payment method dropdown, corrected ID
+        modal.show();
+    }
 
-        sidebarToggler.addEventListener('click', function() {
-        sidebar.classList.toggle('hidden');
-        content.classList.toggle('expanded');
-        });
-    });
-    
-    
+
+
+            
     document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
         var checkbox = document.getElementById('fixedexpense');
         var fixedDateDiv = document.getElementById('fixeddate');
         var eventProduceModal = document.getElementById('eventProduceModal');
+        var addwishlistnow = document.getElementById('addrightnow');
+        var categoryselector = document.getElementById('categoryselector')
+        var categorymodalbody = document.getElementById('categorymodalbody')
+
+        
+        
+        // 카테고리 선택
+        const categories = [
+        "SNS수입", "건강", "경조사", "교육", "교통", "구독료", "금융수입", "급여", "기부금", "기타",
+        "더치페이", "로열티", "문화생활", "미용", "보험금", "부동산수입", "부업", "사업수입", "상속", "상여금",
+        "생활용품", "세금", "쇼핑", "수수료", "숙박", "아르바이트", "앱테크", "여가", "여행", "용돈",
+        "유흥", "육아", "음식", "이자", "자동차", "장학금", "저축", "주거", "카페", "통신"
+    ];
+        console.log(categories)
+        categoryselector.addEventListener('click', function() {
+            var modal = new bootstrap.Modal(document.getElementById("categorymodal"));
+
+            if (categorymodalbody.children.length <= 0) {
+                categories.forEach(category => {
+                    var cate = document.createElement('div');
+                    console.log(category)
+                    cate.className = 'categorylistselector';
+                    cate.innerHTML = '<div>' + category + '</div>';
+                    categorymodalbody.appendChild(cate);
+                });
+            }
+
+
+            modal.show();
+        })
+
+        // 검색 기능
+        var searchicon = document.getElementById('searchicon');
+        var searchbar = document.getElementById('searchbar');
+        searchicon.onclick = function() {
+            if (searchbar.style.display === 'none') {
+                searchbar.style.display = 'block';
+                searchbar.focus();
+            } else {
+                searchbar.style.display = 'none';
+            }
+        };
+
+        
 
     // Reset the checkbox and hide elements when the modal is about to be shown
     eventProduceModal.addEventListener('show.bs.modal', function () {
@@ -531,22 +845,115 @@
        		  }) 
        	  ] */
         });
-        calendar.render();
         
-        var sidebar = document.querySelector('.sidebar');
-        var sidebarToggler = document.getElementById('sidebar-toggler');
+        calendar.render();
 
-        sidebarToggler.addEventListener('click', function() {
-            sidebar.classList.toggle('active');
-            // Assuming the transition duration is 300ms, adjust accordingly
-            sidebar.addEventListener('transitionend', function() {
-                calendar.updateSize();
-            });
-        });
     });
 
     document.addEventListener('DOMContentLoaded', function() {
+        const addForm = document.getElementById('addWishItemForm');
+        const wishList = document.getElementById('wishListItems');
+        const wishInput = document.getElementById('wishInput');
+
+        const wishlistcheckbox = document.getElementById('addcheckbox');
+        console.log(wishlistcheckbox);
+        
+        wishlistcheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                console.log('Checkbox is checked');
+                openEventModal();
+            }
+        });
        
+    })
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const addButton = document.getElementById('addrightnow');
+        const newItemInput = document.getElementById('newItemInput');
+        const wishList = document.getElementById('wishListItems');
+        const newItemButton = document.getElementById('newItemButton');
+        const cbcbbox = document.getElementById('addcheckbox');
+
+        // Toggle input field visibility and focus when the button is clicked
+        addButton.onclick = function() {
+            if (newItemInput.style.display === 'none') {
+                newItemInput.style.display = 'block';
+                newItemButton.style.display = 'block';
+                newItemInput.focus();
+            } else {
+                newItemInput.style.display = 'none';
+                newItemButton.style.display = 'none';
+            }
+        };
+
+        // Function to add a new transaction item to the wish list
+        function addNewTransContent(itemText) {
+            const transContent = document.createElement('div');
+            transContent.id = 'transcontent';
+        
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.className = 'frontback';
+            checkbox.id = 'addcheckbox';
+
+            const transDesc = document.createElement('div');
+            transDesc.className = 'transin';
+            transDesc.id = 'transdate';
+            transDesc.textContent = itemText;
+
+            const deleteBtn = document.createElement('div');
+            deleteBtn.className = 'frontback';
+            deleteBtn.id = 'listdelbutton';
+            deleteBtn.innerHTML = '<div id="listdelbutton" class="frontback"><i class="fa-solid fa-xmark"></i></div>';
+            deleteBtn.onclick = function() {
+                wishList.removeChild(transContent);
+            };
+
+            transContent.appendChild(checkbox);
+            transContent.appendChild(transDesc);
+            transContent.appendChild(deleteBtn);
+
+            wishList.appendChild(transContent);
+        }
+
+        newItemInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                const text = newItemInput.value.trim();
+                if (text) {
+                    addNewTransContent(text);
+                    newItemInput.value = ''; 
+                    newItemInput.style.display = 'none'; 
+                    newItemButton.style.display = 'none';  
+                }
+            }
+        });
+        newItemButton.addEventListener('click', function() {
+            const text = newItemInput.value.trim();
+            if (text) {
+                addNewTransContent(text);
+                newItemInput.value = ''; 
+                newItemInput.style.display = 'none'; 
+                newItemButton.style.display = 'none';  
+            }
+        });
+
+
+        // Event delegation for dynamically added checkboxes
+        wishList.addEventListener('change', function(event) {
+            // Check if the event target is a checkbox with the class 'frontback'
+            if (event.target.type === 'checkbox' && event.target.classList.contains('frontback')) {
+                // Check if the checkbox is checked
+                if (event.target.checked) {
+                    console.log('Checkbox is checked');
+                    var container = document.getElementById("eventProduceModal");//
+                    var modal = new bootstrap.Modal(container);
+                    modal.show();
+                    event.target.checked=false;
+                }
+            }
+        });
 
         
     });

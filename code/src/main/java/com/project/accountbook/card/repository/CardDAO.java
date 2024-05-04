@@ -20,7 +20,7 @@ public class CardDAO {
 	private ResultSet rs;
 
 	public CardDAO() {
-		this.conn = DBUtil.open();
+		this.conn = DBUtil.open("125.241.245.222", "webproject", "java1234");
 	}
 	
 	//카드 추가
@@ -134,7 +134,7 @@ public class CardDAO {
 				
 				CardDTO dto = new CardDTO();
 				
-				dto.setCiName(rs.getString("ciname"));
+				dto.setCiName(rs.getString("ciName"));
 		        dto.setExplanation(rs.getString("explanation"));
 		        dto.setAnnualFee(rs.getInt("annualFee"));
 		        dto.setOverseasUse(rs.getString("overseasUse"));
@@ -152,8 +152,58 @@ public class CardDAO {
 		
 		return null;
 	}
-	
-	
+	//카드 맞춤 추천
+	public List<CardDTO> getPersonalizedRecommendation(String memberId) {
+	    List<CardDTO> recommendedCards = new ArrayList<>();
+
+	    try {
+	        String sql = "SELECT ci.seq AS seqCardInformation, ci.name AS ciName, ci.explanation, ci.annualFee, ci.overseasUse, ci.cardCompany, ci.fileLink, lcb.content AS discountRate " +
+	                     "FROM (" +
+	                     "    SELECT cc.name AS category_name, SUM(ai.price) AS total_price " +
+	                     "    FROM tblMember m " +
+	                     "    INNER JOIN tblAcc a ON a.idMember = m.id " +
+	                     "    INNER JOIN tblAccinfo ai ON ai.seqAcc = a.seq " +
+	                     "    INNER JOIN tblAccCategoryList acl ON acl.seqAccInfo = ai.seq " +
+	                     "    INNER JOIN tblAccCategory ac ON ac.seq = acl.seqAccCategory " +
+	                     "    INNER JOIN tblCardAndAcc caa ON caa.seqacccategory = ac.seq " +
+	                     "    INNER JOIN tblCardCategory cc ON cc.seq = caa.seqcardcategory " +
+	                     "    WHERE m.id = ? " +
+	                     "    GROUP BY cc.name " +
+	                     "    ORDER BY SUM(ai.price) DESC " +
+	                     ") t " +
+	                     "INNER JOIN tblCardCategory cc ON cc.name = t.category_name " +
+	                     "INNER JOIN tblListCardBenefits lcb ON lcb.seqcardcategory = cc.seq " +
+	                     "INNER JOIN tblCardInformation ci ON ci.seq = lcb.seqcardinformation " +
+	                     "ORDER BY lcb.content DESC";
+
+	        System.out.println("SQL: " + sql);
+	        System.out.println("Member ID: " + memberId);
+
+	        pstat = conn.prepareStatement(sql);
+	        pstat.setString(1, memberId);
+	        rs = pstat.executeQuery();
+
+	        while (rs.next()) {
+	            CardDTO dto = new CardDTO();
+	            dto.setSeqCardInformation(rs.getInt("seqCardInformation"));
+	            dto.setCiName(rs.getString("ciName"));
+	            dto.setExplanation(rs.getString("explanation"));
+	            dto.setAnnualFee(rs.getInt("annualFee"));
+	            dto.setOverseasUse(rs.getString("overseasUse"));
+	            dto.setCardCompany(rs.getString("cardCompany"));
+	            dto.setFileLink(rs.getString("fileLink"));
+	            dto.setDiscountRate(rs.getString("discountRate"));
+	            recommendedCards.add(dto);
+	            System.out.println("Recommended Card: " + dto.getCiName());
+	        }
+
+	        System.out.println("Recommended Cards Size: " + recommendedCards.size());
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+
+	    return recommendedCards;
+	}
 }
 
 
