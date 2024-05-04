@@ -85,9 +85,14 @@ public class UserDAO {
 
 			// Subject
 			message.setSubject("[BudgetBuddy] 비밀번호 재설정 안내"); // 메일 제목을 입력
+			
+			
+			String resetLink = "http://localhost:8090/account/user/member/reset-pw.do?id=" + id;
+			String emailContent = "비밀번호를 재설정하려면 아래 링크를 클릭하세요.\r\n\r\n" + resetLink;
+			message.setText(emailContent);
 
-			// Text
-			message.setText("내용을 입력하세요"); // 메일 내용을 입력
+//			// Text
+//			message.setText("내용을 입력하세요"); // 메일 내용을 입력
 
 			// send the message
 			Transport.send(message); //// 전송
