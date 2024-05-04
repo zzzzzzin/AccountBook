@@ -68,11 +68,11 @@ body {
 									<button type="submit"
 										class="btn btn-primaryz btn-block enter-btn">로그인</button>
 								</div>
-								<div class="d-flex">
-									<button class="btn btn-google col">
-										<i class="mdi mdi-google-plus"></i> Google plus
-									</button>
-								</div>
+<!-- 								<div class="d-flex"> -->
+<!-- 									<button class="btn btn-google col"> -->
+<!-- 										<i class="mdi mdi-google-plus"></i> Google plus -->
+<!-- 									</button> -->
+<!-- 								</div> -->
 								<p class="sign-up">
 									<a href="/account/user/register.do">Sign Up</a>
 								</p>
