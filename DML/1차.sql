@@ -112,6 +112,7 @@ insert into tblSavingsPeriod (seq, period) values (80, 80);
 
 --API tblAPI
 
+
 -- 입출금 상태 tblDepositWithdrawalStatus
 insert into tblDepositWithdrawalStatus (seq, status) values (1, '입금');
 insert into tblDepositWithdrawalStatus (seq, status) values (2, '출금');

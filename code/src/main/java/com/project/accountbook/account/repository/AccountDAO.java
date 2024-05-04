@@ -19,12 +19,8 @@ public class AccountDAO {
 	private ResultSet rs;
 	
 	public AccountDAO() {
-		this.conn = DBUtil.open();
+		this.conn = DBUtil.open("125.241.245.222", "webproject", "java1234");
 	}
-	
-//	public AccountDAO() {
-//		this.conn = DBUtil.open("localhost", "jsp", "java1234");
-//	}
 	
 	//가계부 작성 > 프론트에서 카드 선택해서 작성하는 거면 카드 seq넘겨 받아서 `tblReasonChangeCategory`에서 seq 찾아야할 듯(map?)
 	public int add(AccountInfoDTO dto) {
