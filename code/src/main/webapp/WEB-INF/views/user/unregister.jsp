@@ -30,77 +30,97 @@
 <!-- Libraries Stylesheet -->
 </head>
 <style>
-.container-unregister {
-	/* border: 1px solid black; */
-	width: 600px;
-	height: 300px;
-	background-color: #F1F4C7;
-	display: flex;
-	flex-direction: column;
-	position: relative;
-}
+#fakecontent{
+    display: flex;
+    justify-content: center;
+   }
+   .container-unregister{
+    display: flex;
+    border: 1px solid black;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 600px;
+    height: 100%;
+    margin: 20px;
+    background-color: #f3f6f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1); 
+    border-radius: 10px;
+    padding: 10px;
+   }
+   .input-pw, .check-pw{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    align-items: center;
+    width: 100%;
+   }
+   .input-pw-title, .check-pw-titles{
+    width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
 
-.content-unregister {
-	width: 90%;
-	height: 70%;
-}
+  flex: 1;
+  text-align: left;
+  font-weight: bold;
+  padding: 10px 20px; 
+  background-color: #e8e8e8; 
+  border-right: 2px solid #ccc; 
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.1); 
+  margin-right: 10px; 
 
-.input-pw, .check-pw {
-	display: flex;
-	justify-content: space-around;
-	margin-bottom: 10px;
-	width: 70%;
-	height: 20%;
-	position: relative;
-}
+   }
 
-.input-pw-title, .check-pw-titles {
-	background-color: #ffffff;
-	width: 200px;
-	height: 100%;
-	text-align: center;
-	position: absolute;
-	top: 170%;
-	left: 10%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
+   .input-pw-real, .check-pw-input{
+    width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-.input-pw-real, .check-pw-input {
-	background-color: #ffffff;
-	width: 300px;
-	height: 100%;
-	text-align: center;
-	position: absolute;
-	top: 100%;
-	left: 70%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
+  flex: 1.5; 
+  text-align: right;
+  font-weight: normal;
+  padding: 10px 20px; 
+  color: #555;
+  background-color: #fff;
+  border-left: none;
 
-.input-pw-real>input, .check-pw-input>input {
-	border: none;
-}
+   }
 
-.unregister {
-	display: flex;
-	justify-content: center;
-}
+   .unregisterPw{
+    display: flex;
+  justify-content: center;
+  text-align: center;
+  border: none;
+   }
 
-.unregister>div {
-	margin-right: 10px;
-}
+   .unregister{
+    display: flex;
+  justify-content: center;
+  margin: 10px;
+   }
 
-.check-pw-btn {
-	width: 80%;
-	height: 30px;
-	position: absolute;
-	top: 80%;
-	left: 10%;
-	background-color: #d9d9d9;
-	border: 0;
+   .unregister div{
+    margin: 10px;
+   }
+
+   .check-pw-btn{
+    margin-bottom: 10px;
+    background-color: #d9d9d9;
+  color: black;
+  padding: 5px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 60%;
+   }
+
+   .check-pw-btn:hover{
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+  border-radius: 5px;
 }
 <%@include file="/WEB-INF/views/inc/asset.jsp"%>
 </style>
@@ -135,7 +155,7 @@
 			<!-- Navbar End -->
 			<!-- Content End -->
 			<!-- fakecontent 안에서 작성 -->
-
+<div id="fakecontent">
 			<div class="myPage">
 				<!-- ... -->
 				<!-- ... -->
@@ -167,11 +187,9 @@
 				<!-- ... -->
 				<!-- ... -->
 			</div>
-
+</div>
 			<!-- fakecontent 끝 -->
 			<!-- Back to Top -->
-			<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i
-				class="bi bi-arrow-up"></i></a>
 
 		</div>
 	</div>

@@ -26,22 +26,136 @@
 <style>
 
    #fakecontent{
-		display: flex;
-		justify-content: center;
-		align-content: center;
-	}
-	
-	.user-profile {
-  border: 1px solid black;
-  margin-left: 0 !important;
-  width: 600px;
-  height: 300px;
+    display: flex;
+    justify-content: center;
+   }
+
+   .myPage-mypage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  border: none;
+}
+.user-profile-mypage {
+  width:90%;
+  height: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
-  position: relative;
+  background-color: #f3f6f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1); 
+  border-radius: 10px;
+}
+.user-profile-mypage-img {
+            min-width: 200px;
+            min-height: 200px;
+            border-radius: 50%;
+            background-color: #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            color: #666;
+            margin: 50px;
+            border: 1px solid black;
+            
+        }
+
+
+
+.left{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  
+}
+.right{
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#userinfo {
+  display: flex;
+  flex-direction: column;
+  width: 100%; 
+  max-width: 600px; 
+  padding: 20px;
+  background: #f3f6f9; 
+  border-radius: 8px; 
+}
+
+.userinfo-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; 
+  align-items: baseline;
+  margin-bottom: 10px; 
+  padding: 10px; 
+  border-bottom: 1px solid #ddd; 
+  
+}
+
+.userinfo.left {
+  flex: 1;
+  text-align: left;
+  font-weight: bold;
+  padding: 10px 20px; 
+  background-color: #e8e8e8; 
+  border-right: 2px solid #ccc; 
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.1); 
+  margin-right: 10px; 
+}
+
+.userinfo.right {
+  flex: 1.5; 
+  text-align: right;
+  font-weight: normal;
+  padding: 10px 20px; 
+  color: #555;
+  background-color: #fff;
+  border-left: none;
+}
+
+/* Enhances the last item by removing the bottom border */
+.userinfo-content:last-child {
+  border-bottom: none;
+}
+
+#picture{
+  width: 100%;
+  border: 1px solid black;
+}
+
+.editcontrol{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  border: none;
+}
+
+#submit-button{
+  width: 100%;
+  background-color: #d9d9d9;
+  color: black;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#submit-button:hover{
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+  border-radius: 5px;
 }
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
@@ -77,66 +191,40 @@
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
         <div id="fakecontent">
-        <div id="infoeditcontent" >
-        	
-        </div>
-        
-        
-        
-        
-        
-        
-        
-        	<div class="myPage">
-        <div class="user-profile">
-            <div class="user-profile-img-container">
-                <button type="submit" class="material-symbols-outlined" id="editImgIcon">
-                    edit
-                </button>
-                <div class="user-profile-img">
-                    <span>개인 프로필 이미지</span>
+        <div class="myPage-mypage">
+          <div class="user-profile-mypage">
+              <div class="user-profile-mypage-img">
+                  개인 프로필 이미지
+              </div>
+              <div id="userinfo">
+                <div class="userinfo-content">
+                    <div class="userinfo left">이름</div>
+                    <div class="userinfo right"><input class="editcontrol" type="text" value="홍길동"></div>
                 </div>
-            </div>
-            <form class="user-profile-container">
-                <div class="user-profile-name">
-                    <div class="user-profile-name-title">이름</div>
-                    <div class="user-profile-name-edit">
-                        <input type="text" class="user-profile-name-real"></input>
+                <div class="userinfo-content">
+                    <div class="userinfo left">닉네임</div>
+                    <div class="userinfo right"><input class="editcontrol" type="text" value="hong"></div>
+                </div>
+                <div class="userinfo-content">
+                    <div class="userinfo left">전화번호</div>
+                    <div class="userinfo right"><input class="editcontrol" type="text" value="010-1234-5678"></div>
+                </div>
+                <div class="userinfo-content">
+                    <div class="userinfo left">주민등록번호</div>
+                    <div class="userinfo right" id="ssn">
+                      <input class="editcontrol" type="text" value="123456-1234567">
                     </div>
                 </div>
-                <div class="user-profile-nickname">
-                    <div class="user-profile-nickname-title">닉네임</div>
-                    <div class="user-profile-nickname-edit">
-                        <input type="text" class="user-profile-nickname-real"></input>
-                        <button type="submit" class="user-profile-nickname-duplicate">중복확인</button>
-                    </div>
-                </div>
-                <div class="user-profile-sex">
-                    <div class="user-profile-sex-title">성별</div>
-                    <div class="user-profile-sex-edit">
-                        <input type="radio" id="user-profile-sex-male" name="gender" class="user-profile-sex-choice">
-                        <label for="male">남자</label><br>
-                        <input type="radio" id="user-profile-sex-female" name="gender" class="user-profile-sex-choice">
-                        <label for="female">여자</label><br>
-                    </div>
-                </div>
-                <div class="user-profile-phone">
-                    <div class="user-profile-phone-title">전화번호</div>
-                    <div class="user-profile-phone-edit">
-                        <input type="text" class="user-profile-phone-real"></input>
-                        <button type="submit" class="user-profile-phone-duplicate">중복확인</button>
-                    </div>
-                </div>
-                <div class="userSaveBtn">
-                    <button type="submit">저장하기</button>
-                </div>
-            </form>
-        </div>
+                <div class="userinfo-content">
+                    <button type="submit" id="submit-button">수정</button>
+              </div>
+              </div>
+      </div>
     </div>
+  </div>
 
         <!-- fakecontent 끝 -->
         <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
         
     </div>
     </div>
