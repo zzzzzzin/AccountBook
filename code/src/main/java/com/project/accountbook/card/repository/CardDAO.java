@@ -170,16 +170,15 @@ public class CardDAO {
 	                     "    WHERE m.id = ? " +
 	                     "    GROUP BY cc.name " +
 	                     "    ORDER BY SUM(ai.price) DESC " +
-	                     "    FETCH FIRST 1 ROWS ONLY" +
 	                     ") t " +
 	                     "INNER JOIN tblCardCategory cc ON cc.name = t.category_name " +
 	                     "INNER JOIN tblListCardBenefits lcb ON lcb.seqcardcategory = cc.seq " +
 	                     "INNER JOIN tblCardInformation ci ON ci.seq = lcb.seqcardinformation " +
 	                     "ORDER BY lcb.content DESC";
-	        
-	        
+
 	        System.out.println("SQL: " + sql);
 	        System.out.println("Member ID: " + memberId);
+
 	        pstat = conn.prepareStatement(sql);
 	        pstat.setString(1, memberId);
 	        rs = pstat.executeQuery();
@@ -195,10 +194,9 @@ public class CardDAO {
 	            dto.setFileLink(rs.getString("fileLink"));
 	            dto.setDiscountRate(rs.getString("discountRate"));
 	            recommendedCards.add(dto);
-	            
-	            System.out.println("Recommended Card: " + dto);
-	            
+	            System.out.println("Recommended Card: " + dto.getCiName());
 	        }
+
 	        System.out.println("Recommended Cards Size: " + recommendedCards.size());
 	    } catch (Exception e) {
 	        e.printStackTrace();
