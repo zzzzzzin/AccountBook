@@ -1,4 +1,8 @@
 /* 분석 css 시작 */
+body{
+  background-color: #FFFFFF;
+}
+
 #periodcheck{
     display: flex;
     justify-content: center;
@@ -198,7 +202,6 @@
   }
   .content5 {
     margin-left: 300px;
-    background-color: red;
   }
   
   #navheader nav a {
@@ -1388,8 +1391,8 @@ height: 30px;
 /* surveysetting 끝 */
 
 /* unregister 시작 */
-.container-unregister {
-  /* border: 1px solid black; */
+/* .container-unregister {
+  border: 1px solid black;
   width: 600px;
   height: 300px;
   background-color: #F1F4C7;
@@ -1451,7 +1454,7 @@ height: 30px;
   left: 10%;
   background-color: #d9d9d9;
   border: 0;
-}
+} */
 /* unregister 끝 */
 
 /* friendInvite 시작 */

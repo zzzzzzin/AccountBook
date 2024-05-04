@@ -8,7 +8,11 @@
 <style>
 	#navheader {
     background-color: #f3f6f9;
-    padding: 20px;
+        padding: 20px;
+        border-bottom-right-radius: 13px;
+        border-bottom-left-radius: 13px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+        margin-bottom:10px;
   }
 
   #navheader nav {
@@ -22,6 +26,7 @@
     height: 50px;
     background-color: #ddd;
     margin-right: 20px;
+    border:none;
   }
 
   #navheader nav ul {
@@ -35,10 +40,12 @@
 
   #navheader nav li {
     margin: 0 20px;
+    border:none;
   }
 
   .content1 {
     margin-left: 100px;
+   
   }
   .content2 {
     margin-left: 300px;
@@ -51,7 +58,6 @@
   }
   .content5 {
     margin-left: 300px;
-    background-color: red;
   }
 
   #navheader nav a {
@@ -94,7 +100,6 @@
             <li class="content3"><a href="#">카드추천</a></li>
             <li class="content4"><a href="#">로그아웃</a></li> 
             -->
-            
           </ul>
 	</nav>
 </header>
