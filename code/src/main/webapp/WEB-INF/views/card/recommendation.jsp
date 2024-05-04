@@ -238,9 +238,8 @@
 				</div>
 			</div>
 		</div>
-		<button class="modal-button" onclick="openModal()">카테고리 선택</button>
 	</div>
-	</div>
+	
 
 	<!-- fakecontent 끝 -->
 	<!-- Back to Top -->
@@ -278,6 +277,7 @@
 		src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
 	<script>
     document.addEventListener('DOMContentLoaded', function() {
+    	console.log("recommendation.jsp - DOMContentLoaded");
         var categoryselector = document.getElementById('categoryselector');
         var categorymodalbody = document.getElementById('categorymodalbody');
 
@@ -292,6 +292,7 @@
     });
 
     function openCategoryModal() {
+    	console.log("recommendation.jsp - openCategoryModal");
         var modal = new bootstrap.Modal(document.getElementById("categorymodal"));
 
         var categorymodalbody = document.getElementById('categorymodalbody');
@@ -316,7 +317,7 @@
     }
 
     function openModal(category) {
-        console.log("Selected Category:", category); // 디버깅: 선택한 카테고리 출력
+        console.log("Selected Category:", category); // 선택한 카테고리 값 출력
         window.location.href = '/account/card/recommendation-list.do?category=' + encodeURIComponent(category);
     }
 
