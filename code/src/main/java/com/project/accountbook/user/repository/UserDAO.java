@@ -24,7 +24,7 @@ public class UserDAO {
 	private ResultSet rs;
 
 	public UserDAO() {
-		this.conn = DBUtil.open("125.241.245.222", "webproject", "java1234");
+	    this.conn = DBUtil.open("125.241.245.222", "webproject", "java1234");
 	}
 
 	//비밀번호 찾기 > 회원 정보 확인

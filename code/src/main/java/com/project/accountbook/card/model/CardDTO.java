@@ -14,7 +14,16 @@ public class CardDTO {
 	//카드 혜택 목록
 	private int lcbseqCardCategory;
 	private int seqCardInformation;
+	private String category;
 	
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
 	public int getSeqCardInformation() {
 		return seqCardInformation;
 	}
