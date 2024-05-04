@@ -19,12 +19,8 @@ public class AccountDAO {
 	private ResultSet rs;
 	
 	public AccountDAO() {
-		this.conn = DBUtil.open();
+		this.conn = DBUtil.open("125.241.245.222", "webproject", "java1234");
 	}
-	
-//	public AccountDAO() {
-//		this.conn = DBUtil.open("localhost", "jsp", "java1234");
-//	}
 	
 	//가계부 작성 > 프론트에서 카드 선택해서 작성하는 거면 카드 seq넘겨 받아서 `tblReasonChangeCategory`에서 seq 찾아야할 듯(map?)
 	public int add(AccountInfoDTO dto) {
@@ -105,11 +101,138 @@ public class AccountDAO {
 	}
 	
 	
-	//가계부 분석 읽기(기간에 매개 변수로 받아야할 듯)
-	public int analysis(AccountInfoDTO dto) {
+	
+	
+	//가계부 분석 읽기
+	public ArrayList<AccountInfoDTO> nowAnalysis(String id, HashMap<String, String> map) {
 		
-		return 0;
+		try {
+			
+			String period = map.get("period");
+			
+			String sql = "select\r\n"
+					+ "sum(ai.price) totalPrice,\r\n"
+					+ "ac.name acName, --카테고리\r\n"
+					+ "mc.idMember idMember\r\n"
+					+ "from tblAccInfo ai\r\n"
+					+ "    inner join tblAccCategoryList acl\r\n"
+					+ "        on acl.seqAccInfo = ai.seq\r\n"
+					+ "            inner join tblAccCategory ac\r\n"
+					+ "                on ac.seq = acl.seqAccCategory\r\n"
+					+ "                    inner join tblReasonChangeCategory rcc \r\n"
+					+ "                        on rcc.seq = ai.seqReasonChangeCategory\r\n"
+					+ "                            inner join tblMyCard mc\r\n"
+					+ "                                on mc.seq = rcc.seqMyCard\r\n"
+					+ "                                    where mc.idMember = ?\r\n";
+			
+			
+			if (period.equals("day")) {
+				sql +=    "and trunc(ai.accInfoDate) = trunc(sysdate) -- 오늘 날짜\r\n";
+				
+			} else if (period.equals("week")) {
+				sql +=  "and ai.accInfoDate >= trunc(sysdate, 'IW') -- 이번주 시작 날짜\r\n"
+						+ "    and ai.accInfoDate < trunc(sysdate) + 1 -- 이번주 종료 날짜\r\n";
+
+			} else if (period.equals("month")) {
+				sql +=    "                                        and ai.accInfoDate \r\n"
+						+ "                                            between to_date(sysdate, 'YY/MM/DD') \r\n"
+						+ "                                                - interval '1' month and to_date(sysdate, 'YY/MM/DD')\r\n";
+
+			}
+			
+			 sql += "and ai.seqDepositWithdrawalStatus = 2 group by ac.name, mc.idMember";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, id);
+			
+			rs = pstat.executeQuery();
+			
+			ArrayList<AccountInfoDTO> list = new ArrayList<AccountInfoDTO>();
+			
+			while (rs.next()) {
+				
+				AccountInfoDTO dto = new AccountInfoDTO();
+				
+				dto.setTotalPrice(rs.getInt("totalPrice"));
+				dto.setAcName(rs.getString("acName"));
+				
+				list.add(dto);				
+			}	
+			
+			return list;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
+	
+	public ArrayList<AccountInfoDTO> beforeAnalysis(String id, HashMap<String, String> map) {
+		
+		try {
+			
+			String period = map.get("period");
+			
+			String sql = "select\r\n"
+					+ "sum(ai.price) totalPrice,\r\n"
+					+ "ac.name acName, --카테고리\r\n"
+					+ "mc.idMember idMember\r\n"
+					+ "from tblAccInfo ai\r\n"
+					+ "    inner join tblAccCategoryList acl\r\n"
+					+ "        on acl.seqAccInfo = ai.seq\r\n"
+					+ "            inner join tblAccCategory ac\r\n"
+					+ "                on ac.seq = acl.seqAccCategory\r\n"
+					+ "                    inner join tblReasonChangeCategory rcc \r\n"
+					+ "                        on rcc.seq = ai.seqReasonChangeCategory\r\n"
+					+ "                            inner join tblMyCard mc\r\n"
+					+ "                                on mc.seq = rcc.seqMyCard\r\n"
+					+ "                                    where mc.idMember = ?\r\n";
+			
+			
+			if (period.equals("day")) {
+				sql +=    "and trunc(ai.accInfoDate) = trunc(sysdate) - 1 -- 어제 날짜\r\n";
+				
+			} else if (period.equals("week")) {
+				sql +=  " and ai.accInfoDate >= trunc(sysdate, 'IW') - 7 -- 저번주 시작 날짜\r\n"
+				   + "    and ai.accInfoDate < trunc(sysdate, 'IW') -- 저번주 종료 날짜\r\n";
+
+			} else if (period.equals("month")) {
+				sql +=    "and ai.accInfoDate \r\n"
+						+ "                                            between to_date(sysdate, 'YY/MM/DD') \r\n"
+						+ "                                                - interval '2' month and to_date(sysdate, 'YY/MM/DD')\r\n"
+						+ "                                                    - interval '1' month\r\n";
+
+			}
+			
+			 sql += "and ai.seqDepositWithdrawalStatus = 2 --입출금 상태\r\n"
+			 		+ "                                                            group by ac.name, mc.idMember";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, id);
+			
+			rs = pstat.executeQuery();
+			
+			ArrayList<AccountInfoDTO> list = new ArrayList<AccountInfoDTO>();
+			
+			while (rs.next()) {
+				
+				AccountInfoDTO dto = new AccountInfoDTO();
+				
+				dto.setTotalPrice(rs.getInt("totalPrice"));
+				dto.setAcName(rs.getString("acName"));
+				
+				list.add(dto);				
+			}	
+			
+			return list;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}		
 	
 	//가계부 분석 > 챌린지에 대한 정보 읽기(이번달 목표치, 현상황)
 	public int getChallenge(UserDTO dto) {
@@ -208,6 +331,7 @@ public class AccountDAO {
 			String seqMyCard = map.get("seqMyCard");
 			String startDate = map.get("startDate");
 		    String endDate = map.get("endDate");
+		    
 			
 			String sql = "select \r\n"
 					+ "ai.accInfoDate accInfoDate, --날짜\r\n"
@@ -285,6 +409,35 @@ public class AccountDAO {
 		
 		return null;
 	}
+
+	public ArrayList<AccountInfoDTO> getCategory() {
 		
+		try {
+			
+			String sql = "select * from tblAccCategory";
+			
+			stat = conn.createStatement();
+			rs = stat.executeQuery(sql);
+			
+			ArrayList<AccountInfoDTO> list = new ArrayList<AccountInfoDTO>();
+			
+			while (rs.next()) {
+				
+				AccountInfoDTO dto = new AccountInfoDTO();
+				
+				dto.setSeqAccCategory(rs.getString("seq"));
+				dto.setAcName(rs.getString("name"));
+				
+				list.add(dto);				
+			}	
+			
+			return list;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 	  
 }

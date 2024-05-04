@@ -11,6 +11,9 @@ INSERT INTO tblUser(seq, idMember, idAdmin) VALUES(7,'abc002@naver.com','');
 INSERT INTO tblUser(seq, idMember, idAdmin) VALUES(8,'abc003@naver.com','');
 INSERT INTO tblUser(seq, idMember, idAdmin) VALUES(9,'abc004@naver.com','');
 
+--테스트
+INSERT INTO tblUser(seq, idMember, idAdmin) VALUES(10,'j26725053@naver.com','');
+
 --나의 카드 tblMyCard
 select * from tblMember;
 select * from tblCardInformation;
@@ -41,6 +44,10 @@ insert into tblAcc (seq, idMember) values (2, 'abc002@naver.com');
 insert into tblAcc (seq, idMember) values (3, 'abc003@naver.com');
 insert into tblAcc (seq, idMember) values (4, 'abc004@naver.com');
 
+--테스트
+insert into tblAcc (seq, idMember) values (5, 'j26725053@naver.com');
+
+
 --회원 권한 목록 tblMemberPriv
 --권한(1: 비회원, 2:회원, 3:관리자, 4:탈퇴)
 insert into tblMemberPriv (seq, seqPriv, idMember) 
@@ -51,5 +58,8 @@ insert into tblMemberPriv (seq, seqPriv, idMember)
     values (3, 2, 'abc003@naver.com');
 insert into tblMemberPriv (seq, seqPriv, idMember) 
     values (4, 4,'abc004@naver.com');
+insert into tblMemberPriv (seq, seqPriv, idMember) 
+    values (5, 2,'j26725053@naver.com');
+
 
 commit;
