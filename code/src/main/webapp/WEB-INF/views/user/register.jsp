@@ -17,7 +17,6 @@
 <!-- Plugin css for this page -->
 <!-- End plugin css for this page -->
 <!-- inject:css -->
-
 <!-- endinject -->
 <!-- Layout styles -->
 <link rel="stylesheet" href="/account/asset/css/corona_style.css">
@@ -27,56 +26,44 @@
 #username {
 	display: flex;
 }
-
 .duplicateBtn {
 	margin-left: 10px;
 	height: 40px;
 	width: 15%;
 }
-
 .colorD9 {
 	background-color: #D9D9D9;
 }
-
 .inputbox {
 	height: 40px;
 }
-
 .dupnone {
 	width: 85%;
 }
-
 .colorAAA {
 	background-color: #AAAAAA;
 }
-
 .radsetcss {
 	margin-left: 30px;
 }
-
 .marginfix {
 	/* padding-left: 7rem !important; */
 	
 }
-
 .updatefix {
 	align-items: center;
 }
-
 #survey {
 	/* display: none;  */
 	
 }
-
 #duptext {
 	font-size: 10px;
 }
 </style>
 </head>
 <body>
-
 	<%@include file="/WEB-INF/views/inc/header.jsp"%>
-
 	<div class="container-scroller">
 		<div class="container-fluid page-body-wrapper full-page-wrapper">
 			<div class="row w-100 m-0">
@@ -90,13 +77,12 @@
 								<div class="form-group " id="username">
 									<input type="text" name="id"
 										class="form-control p_input inputbox updatefix colorD9">
-
-									<button class="duplicateBtn" data-field="id">
+									<button class="duplicateBtn">
 										<span id="duptext">중복 확인</span>
 									</button>
 								</div>
 								<label>비밀번호</label>
-								<div class="form-group" id="pwboxnow" >
+								<div class="form-group" id="pwboxnow">
 									<input type="text" type="password" name="pw"
 										class="form-control p_input inputbox dupnone colorD9">
 								</div>
@@ -114,7 +100,7 @@
 								<div class="form-group" id="username">
 									<input type="text" name="nickname"
 										class="form-control p_input inputbox colorD9">
-									<button class="duplicateBtn" data-field="nickname">
+									<button class="duplicateBtn">
 										<span id="duptext">중복 확인</span>
 									</button>
 								</div>
@@ -122,7 +108,7 @@
 								<div class="form-group" id="username">
 									<input type="text" name="phoneNumber"
 										class="form-control p_input inputbox colorD9">
-									<button class="duplicateBtn" data-field="phoneNumber">
+									<button class="duplicateBtn">
 										<span id="duptext">중복 확인</span>
 									</button>
 								</div>
@@ -130,7 +116,7 @@
 								<div class="form-group" id="username">
 									<input type="text" name="ssn"
 										class="form-control p_input inputbox colorD9">
-									<button class="duplicateBtn" data-field="ssn">
+									<button class="duplicateBtn">
 										<span id="duptext">중복 확인</span>
 									</button>
 								</div>
@@ -157,6 +143,17 @@
 											for="low">하</label>
 									</div>
 									<label>월급</label>
+
+    
+          
+            
+    
+
+          
+          Expand Down
+    
+    
+  
 									<div class="form-group" id="pwboxnow">
 										<input type="number" name="monthlyPaycheck"
 											class="form-control p_input inputbox colorD9">
@@ -178,7 +175,6 @@
 										</select>
 									</div>
 								</div>
-
 								<div
 									class="form-group d-flex align-items-center justify-content-between">
 									<div class="form-check">
@@ -212,29 +208,14 @@
 	<script src="/account/asset/js/settings.js"></script>
 	<script src="/account/asset/js/todolist.js"></script>
 	<!-- endinject -->
-
 	<script>
-    $(document).ready(function() {
-        $(".duplicateBtn").click(function() {
-            var field = $(this).data("field");
-            var value = $(this).siblings("input").val();
-
-            $.ajax({
-                url: "/account/user/checkDuplicate.do",
-                method: "POST",
-                data: {
-                    field: field,
-                    value: value
-                },
-                success: function(response) {
-                    if (response === "duplicate") {
-                        alert("중복된 데이터입니다. 바꿔주세요");
-                    } else {
-                        alert("사용 가능한 값입니다.");
-                    }
-                }
-            });
-        });
+    document.getElementById("challenge").addEventListener("change", function () {
+        var survey = document.getElementById("survey");
+        if (this.checked) {
+            survey.style.display = "block";
+        } else {
+            survey.style.display = "none";
+        }
     });
 	</script>
 </body>
