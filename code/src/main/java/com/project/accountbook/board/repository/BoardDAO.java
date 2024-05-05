@@ -70,15 +70,18 @@ public class BoardDAO {
                     dto.setReportCount(rs.getString("reportCount"));
                     dto.setSecretCheck(rs.getString("secretCheck"));
                     dto.setBlindCheck(rs.getString("blindCheck"));
+                    
                     list.add(dto);
+                    
                 }
+                return list;
             }
 
 //            conn.close();
         } catch (Exception e) {
             e.printStackTrace();
         } 
-        return list;
+        return null;
     }
 	
 
@@ -107,15 +110,18 @@ public class BoardDAO {
                     dto.setReportCount(rs.getString("reportCount"));
                     dto.setSecretCheck(rs.getString("secretCheck"));
                     dto.setBlindCheck(rs.getString("blindCheck"));
+                    
                     list.add(dto);
                 }
+                
+                return list;
             }
 
 //            conn.close();
         } catch (Exception e) {
             e.printStackTrace();
         } 
-        return list;
+        return null;
     }
 //------------------------------------------------------------------------------------------------ 건의 게시판
 	public ArrayList<ReportDTO> selectReportDTOs(PostDTO pDto) {
@@ -144,13 +150,16 @@ public class BoardDAO {
                     dto.setBlindCheck(rs.getString("blindCheck"));
                     list.add(dto);
                 }
+                
+                return list;
+                
             }
 
 //            conn.close();
         } catch (Exception e) {
             e.printStackTrace();
         } 
-        return list;
+        return null;
     }
 //------------------------------------------------------------------------------------------------ 출석 게시판
 	public ArrayList<AttendanceDTO> selectAttendanceDTOs(PostDTO pDto) {
@@ -179,13 +188,14 @@ public class BoardDAO {
                     dto.setBlindCheck(rs.getString("blindCheck"));
                     list.add(dto);
                 }
+                return list;
             }
 
 //            conn.close();
         } catch (Exception e) {
             e.printStackTrace();
         } 
-        return list;
+        return null;
 
 		// 수정(U)
 
