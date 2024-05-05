@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import com.project.accountbook.account.model.AccountInfoDTO;
 import com.project.accountbook.user.member.model.MemberInfoDTO;
 import com.project.accountbook.user.model.UserDTO;
 import com.project.accountbook.util.DBUtil;
@@ -275,7 +276,5 @@ public class MemberInfoDAO {
 		}
 		return null;
 	}
-	
-	
 
 }

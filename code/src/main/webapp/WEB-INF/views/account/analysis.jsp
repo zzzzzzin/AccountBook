@@ -24,209 +24,6 @@
     <!-- Libraries Stylesheet -->
 </head>
 <style>
-
-   #periodcheck{
-        display: flex;
-        justify-content: center;
-        margin: auto;
-    }
-    #periodcheck button{
-        margin: 5px;
-    }
-
-    #chart01{
-
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-    }
-
-    #pieblock{
-        display: flex;
-    }
-
-    #piepie{
-        float: left;
-    }
-    #piepie2{
-        float: left;
-    }
-    #customMsg{
-        margin: 50px;
-        width: 100px;
-        height: 100px;
-        background-color: aqua;
-        flex: 0 0 auto; /* Does not grow, does not shrink, auto basis */
-        margin-left: 10%; /* Pushes it to the right */
-        width: 100px;
-        height: 100px;
-        text-align: center;
-        align-items: center;
-        justify-content: center;
-        display: flex;
-    }
-
-    
-    #fakecontent{
-    }
-
-    #firstrow{
-        display: flex;
-        justify-content: center;
-        align-items: center; 
-    }
-
-    #secondrow{
-        display: flex;
-        justify-content: center;
-        margin-top: 50px;
-    }
-
-    #thridrow{
-        display: flex;
-        justify-content: center;
-    }
-    #monthgoal{
-        width: 300px;
-        height: 100px;
-        background-color: aqua;
-        margin-right: 30px;
-        align-items: center;
-        justify-content: center;
-        display: flex;
-    }
-    #currentsituation{
-        width: 300px;
-        height: 100px;
-        background-color: black;
-        align-items: center;
-        justify-content: center;
-        display: flex;
-    }
-
-    #newscontent{
-        width: 500px;
-        height: 100px;
-        margin-top: 100px;
-        border: 1px solid black;
-        align-items: center;
-        justify-content: center;
-        display: flex;
-        
-    }
-
-    .sidebar {
-            width: 200px;
-            background-color: #333;
-            color: #fff;
-            height: 100vh;
-    }
-          
-          .logo {
-            padding: 20px;
-            font-size: 20px;
-            font-weight: bold;
-            border-bottom: 1px solid #444;
-          }
-          
-          nav ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-          }
-          
-          nav li {
-            padding: 15px 20px;
-            border-bottom: 1px solid #444;
-          }
-          
-          nav li:last-child {
-            border-bottom: none;
-          }
-          
-          nav a {
-            color: #fff;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-          }
-          
-          nav a i {
-            margin-right: 10px;
-          }
-
-
-    /* nav header css */
-    #navheader {
-        
-    }
-
-    #navheader {
-        background-color: #f1f1f1;
-        padding: 20px;
-      }
-      
-      #navheader nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-      
-      #navheader .logo {
-        width: 100px;
-        height: 50px;
-        background-color: #ddd;
-        margin-right: 20px;
-      }
-      
-      #navheader nav ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        width: 100%;
-        justify-content: center;
-      }
-      
-      #navheader nav li {
-        margin: 0 20px;
-      }
-      
-      .content1 {
-        margin-left: 100px;
-      }
-      
-      .content2 {
-        margin-left: 300px;
-      }
-
-      .content3 {
-        margin-left: 300px;
-      }
-      
-      .content4 {
-        margin-left: 300px;
-        background-color: red;
-      }
-      
-      #navheader nav a {
-        color: #333;
-        text-decoration: none;
-        font-weight: bold;
-      }
-      
-      #navheader nav a:hover {
-        color: #000;
-      }
-
-      #chartLegend{
-        display: flex;
-        justify-content: center;  
-        align-items: center;      
-        width: 100%;              
-        flex-wrap: wrap;  
-        margin-top: 50px;
-      }
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
@@ -271,24 +68,31 @@
 				<div id="firstrow">
 					<!-- Sales Chart Start -->
 					<div id="chart01">
+
 						<div id="pieblock">
 							<canvas id="piepie" class="pie"></canvas>
 						</div>
+					</div>
+
+					<div id="chart02">
 						<div id="pieblock">
 							<canvas id="piepie2" class="pie"></canvas>
 						</div>
 					</div>
+
+
 					<div id="customMsg">이번달 목표를 달성할거 같습니다!!!</div>
+
 					<!-- Sales Chart End -->
 				</div>
 
 				<div id="secondrow">
-					<div id="monthgoal">이번달 목표 : 200만원</div>
-					<div id="currentsituation">이번달 사용 : 100만원</div>
+					<div id="monthgoal" class="black-border-box">이번달 목표 : 200만원</div>
+					<div id="currentsituation" class="black-border-box">이번달 사용 : 100만원</div>
 				</div>
 				<div id="chartLegend"></div>
 				<div id="thridrow">
-					<div id="newscontent">뉴스 뉴스 뉴스 뉴스 뉴스 뉴스</div>
+					<div id="newscontent" class="black-border-box">뉴스 뉴스 뉴스 뉴스 뉴스 뉴스</div>
 				</div>
 
 				<!-- Back to Top -->
@@ -369,66 +173,98 @@
 	console.log(beforeBackgroundColorArray);
 	console.log(nowBackgroundColorArray);
 	
-    var ctx = document.getElementById('piepie').getContext('2d');
-    var chart1 = new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: beforeAcNameArray,
-            datasets: [{
-            	label: 'My First Dataset',
-                data: beforeTotalPriceArray,
-                backgroundColor: beforeBackgroundColorArray,
-                hoverOffset: 4
-            }]
-        },
-        options: {
-            plugins: {
-                legend: {
-                    display: false
-                }
-            }
-        }
-    });
+	var ctx = document.getElementById('piepie').getContext('2d');
+	var chart1 = null;
+	if (beforeAcNameArray.length > 0) {
+	    chart1 = new Chart(ctx, {
+	        type: 'pie',
+	        data: {
+	            labels: beforeAcNameArray,
+	            datasets: [{
+	                label: '총 금액',
+	                data: beforeTotalPriceArray,
+	                backgroundColor: beforeBackgroundColorArray,
+	                hoverOffset: 4
+	            }]
+	        },
+	        options: {
+	            plugins: {
+	                legend: {
+	                    display: false
+	                }
+	            }
+	        }
+	    });
+	}
 
-    var ctx1 = document.getElementById('piepie2').getContext('2d');
-    var chart2 = new Chart(ctx1, {
-        type: 'pie',
-        data: {
-            labels: nowAcNameArray,
-            datasets: [{
-                label: 'My Second Dataset',
-                data: nowTotalPriceArray,
-                backgroundColor: nowBackgroundColorArray,
-                hoverOffset: 4
-            }]
-        },
-        options: {
-            plugins: {
-                legend: {
-                    display: false
-                }
-            }
-        }
-    });
+	var ctx1 = document.getElementById('piepie2').getContext('2d');
+	var chart2 = null;
+	if (nowAcNameArray.length > 0) {
+	    chart2 = new Chart(ctx1, {
+	        type: 'pie',
+	        data: {
+	            labels: nowAcNameArray,
+	            datasets: [{
+	                label: '총 금액',
+	                data: nowTotalPriceArray,
+	                backgroundColor: nowBackgroundColorArray,
+	                hoverOffset: 4
+	            }]
+	        },
+	        options: {
+	            plugins: {
+	                legend: {
+	                    display: false
+	                }
+	            }
+	        }
+	    });
+	}
+
+	if (beforeAcNameArray.length === 0 && nowAcNameArray.length === 0) {
+	    // 두 차트 모두 데이터가 없을 경우 메시지를 출력
+	    document.getElementById('chart02').innerHTML = '<div class="chart-no-data-msg">데이터가 존재하지 않습니다.</div>';
+	} else if (beforeAcNameArray.length === 0) {
+	    document.getElementById('chart01').innerHTML = '<div class="chart-no-data-msg">비교 데이터가<br>존재하지 않습니다.</div>';
+		
+	} else if (nowAcNameArray.length === 0) {
+	    document.getElementById('chart02').innerHTML = '<div class="chart-no-data-msg">비교 데이터가<br>존재하지 않습니다.</div>';
+		
+	} else {
+	    // 두 차트 중 하나라도 데이터가 있는 경우에만 레전드 생성
+	    createSharedCustomLegend([chart1, chart2]);
+	}
 
     
-function createSharedCustomLegend(charts) {
-    const legendContainer = document.getElementById('chartLegend');
-    legendContainer.innerHTML = ''; // Clear any existing legend content
+    function createSharedCustomLegend(charts) {
+        const legendContainer = document.getElementById('chartLegend');
+        legendContainer.innerHTML = ''; // Clear any existing legend content
 
-    const allLabels = [...new Set([...charts[0].data.labels, ...charts[1].data.labels])];
+        const addedCategories = new Set();
 
-    allLabels.forEach((label) => {
-        if (charts[0].data.labels.includes(label) || charts[1].data.labels.includes(label)) {
-            const index = charts[0].data.labels.indexOf(label);
-            const color = charts[0].data.datasets[0].backgroundColor[index];
-            const legendItem = document.createElement('div');
-            legendItem.innerHTML = `<span style="background-color:\${color}; width: 12px; height: 12px; display: inline-block; margin-right: 5px; margin-left: 5px;"></span> \${label}`;
-            legendItem.style.cursor = 'pointer';
-            legendContainer.appendChild(legendItem);
-        }
-    });
-}
+        charts.forEach((chart, chartIndex) => {
+            chart.data.datasets.forEach((dataset, datasetIndex) => {
+                dataset.data.forEach((dataPoint, dataPointIndex) => {
+                    const label = chart.data.labels[dataPointIndex];
+                    const color = dataset.backgroundColor[dataPointIndex];
+                    
+                    // 이미 추가된 카테고리인지 확인
+                    if (!addedCategories.has(label)) {
+                        const legendItem = document.createElement('div');
+                        legendItem.innerHTML = `<span style="background-color:\${color}; width: 12px; height: 12px; display: inline-block; margin-right: 5px;"></span> \${label}`;
+                        legendItem.style.cursor = 'pointer';
+                        legendItem.style.marginRight = '10px';
+                        legendContainer.appendChild(legendItem);
+
+                        // Set에 추가
+                        addedCategories.add(label);
+                    }
+                });
+            });
+        });
+    }
+
+
 
 createSharedCustomLegend([chart1, chart2]);
 

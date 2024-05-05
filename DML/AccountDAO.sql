@@ -1,6 +1,39 @@
 --가계부 작성(add)
+select * from tblMember;
+select * from tblMemberPriv;
+
+
 
 -- 가계부 분석
+--고정 지출 찾기
+select * from tblFixedFluctuationPeriod; --0, 1, 3, 12
+select 
+ai.accInfoDate accInfoDate,
+ai.price price,
+fdw.seqFixedFluctuationPeriod seqFixedFluctuationPeriod
+from tblAccInfo ai
+    inner join tblFixedDepositWithdrawalCheck fdw
+        on fdw.seq = ai.seqFixedFluctuationCheck
+            inner join tblAcc acc
+                on acc.seq = ai.seqAcc
+                    where fdw.seqFixedFluctuationPeriod != 0
+                        and acc.idMember = 'abc001@naver.com';
+
+
+select * from tblCompressionIntensity; --하, 중, 상
+--챌린지 정보 불러오기
+select 
+su.monthlyPaycheck monthlyPaycheck, --월급
+su.savingsGoals savingsGoals, --저축 목표 금액
+seqCompressionIntensity seqCompressionIntensity,
+seqSavingsPeriod seqSavingsPeriod,
+me.joinDate joinDate
+from tblSurvey su
+    inner join tblMember me
+        on su.seq = me.seqSurvey
+            where me.id = 'abc001@naver.com';
+
+
 --analysis
 select
 sum(ai.price) totalPrice,

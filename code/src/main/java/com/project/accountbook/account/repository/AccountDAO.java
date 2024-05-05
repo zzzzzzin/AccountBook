@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.project.accountbook.account.model.AccountInfoDTO;
+import com.project.accountbook.user.member.model.MemberInfoDTO;
 import com.project.accountbook.user.model.UserDTO;
 import com.project.accountbook.util.DBUtil;
 
@@ -99,8 +100,6 @@ public class AccountDAO {
 		
 		return 0;
 	}
-	
-	
 	
 	
 	//가계부 분석 읽기
@@ -234,8 +233,175 @@ public class AccountDAO {
 		return null;
 	}		
 	
+	// 가계부 분석 > 고정 지출 찾기
+	public ArrayList<AccountInfoDTO> getFixedFluctuation(String id) {
+
+		try {
+
+			String sql = "select \r\n"
+					+ "ai.accInfoDate accInfoDate,\r\n"
+					+ "ai.price price,\r\n"
+					+ "fdw.seqFixedFluctuationPeriod seqFixedFluctuationPeriod\r\n"
+					+ "from tblAccInfo ai\r\n"
+					+ "    inner join tblFixedDepositWithdrawalCheck fdw\r\n"
+					+ "        on fdw.seq = ai.seqFixedFluctuationCheck\r\n"
+					+ "            inner join tblAcc acc\r\n"
+					+ "                on acc.seq = ai.seqAcc\r\n"
+					+ "                    where fdw.seqFixedFluctuationPeriod != 0\r\n"
+					+ "                        and acc.idMember = ?";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, id);
+
+			rs = pstat.executeQuery();
+
+			ArrayList<AccountInfoDTO> list = new ArrayList<AccountInfoDTO>();
+
+			while (rs.next()) {
+
+				AccountInfoDTO dto = new AccountInfoDTO();
+
+				dto.setAccInfoDate(rs.getString("accInfoDate"));
+				dto.setPrice(rs.getInt("price"));
+				dto.setSeqFixedFluctuationPeriod(rs.getString("seqFixedFluctuationPeriod"));
+				
+				list.add(dto);
+			}
+
+			return list;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+	
+	//가계부 분석 > 챌린지 정보 불러오기
+	public UserDTO getsavingsGoals(String id) {
+
+		try {
+
+			String sql = "select \r\n"
+					+ "su.monthlyPaycheck monthlyPaycheck, --월급\r\n"
+					+ "su.savingsGoals savingsGoals, --저축 목표 금액\r\n"
+					+ "seqCompressionIntensity seqCompressionIntensity,\r\n"
+					+ "seqSavingsPeriod seqSavingsPeriod,\r\n"
+					+ "me.joinDate joinDate\r\n"
+					+ "from tblSurvey su\r\n"
+					+ "    inner join tblMember me\r\n"
+					+ "        on su.seq = me.seqSurvey\r\n"
+					+ "            where me.id = ?";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, id);
+
+			rs = pstat.executeQuery();
+
+			while (rs.next()) {
+
+				UserDTO dto = new UserDTO();
+				
+				dto.setMonthlyPaycheck(rs.getInt("monthlyPaycheck"));
+				dto.setSavingsGoals(rs.getInt("savingsGoals"));
+				dto.setSeqCompressionIntensity(rs.getString("seqCompressionIntensity"));
+				dto.setSeqSavingsPeriod(rs.getString("seqSavingsPeriod"));
+				dto.setJoinDate(rs.getString("joinDate"));
+								
+				return dto;
+			}
+
+		} catch (Exception e) {
+			System.out.println("MemberInfoDTO.getFixedFluctuation");
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+	
+	//가계부 분석 > 이번달 사용 금액 불러오기
+	public AccountInfoDTO getMonthUsage (String id) {
+
+		try {
+
+			String sql = "select\r\n"
+					+ "sum(ai.price) totalPrice,\r\n"
+					+ "ac.name acName, --카테고리\r\n"
+					+ "mc.idMember idMember\r\n"
+					+ "from tblAccInfo ai\r\n"
+					+ "    inner join tblAccCategoryList acl\r\n"
+					+ "        on acl.seqAccInfo = ai.seq\r\n"
+					+ "            inner join tblAccCategory ac\r\n"
+					+ "                on ac.seq = acl.seqAccCategory\r\n"
+					+ "                    inner join tblReasonChangeCategory rcc \r\n"
+					+ "                        on rcc.seq = ai.seqReasonChangeCategory\r\n"
+					+ "                            inner join tblMyCard mc\r\n"
+					+ "                                on mc.seq = rcc.seqMyCard\r\n"
+					+ "                                    where mc.idMember = ?\r\n"
+					+ "                                        and ai.accInfoDate \r\n"
+					+ "                                            between to_date(sysdate, 'YY/MM/DD') \r\n"
+					+ "                                                - interval '1' month and to_date(sysdate, 'YY/MM/DD')\r\n"
+					+ "                                                    and ai.seqDepositWithdrawalStatus = 2 --입출금 상태\r\n"
+					+ "                                                        group by ac.name, mc.idMember";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, id);
+
+			rs = pstat.executeQuery();
+
+			while (rs.next()) {
+
+				AccountInfoDTO dto = new AccountInfoDTO();
+				
+				dto.setTotalPrice(rs.getInt("totalPrice"));
+				dto.setAcName(rs.getString("acName"));
+								
+				return dto;
+			}
+
+		} catch (Exception e) {
+			System.out.println("MemberInfoDTO.getFixedFluctuation");
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+	
+	
 	//가계부 분석 > 챌린지에 대한 정보 읽기(이번달 목표치, 현상황)
-	public int getChallenge(UserDTO dto) {
+	public int getChallenge(String id) {
+		
+		String accInfoDate = null;
+		int price = 0;
+		String seqFixedFluctuationPeriod = null;
+		
+		//고정 지출
+		ArrayList<AccountInfoDTO> fixedFluctuationList = getFixedFluctuation(id);
+
+		for (AccountInfoDTO dto : fixedFluctuationList) {
+			
+			accInfoDate = dto.getAccInfoDate();
+			price = dto.getPrice();
+			seqFixedFluctuationPeriod = dto.getSeqFixedFluctuationPeriod();
+			
+		}
+		
+		
+		//챌린지 정보
+		UserDTO userDTO = getsavingsGoals(id);
+				
+		userDTO.getMonthlyPaycheck();
+		userDTO.getSavingsGoals();
+		userDTO.getSeqCompressionIntensity();
+		userDTO.getSeqSavingsPeriod();
+		userDTO.getJoinDate();
+		
+		
+		//이번달 사용 금액
+		AccountInfoDTO accountInfoDTO = getMonthUsage(id);
+		
+		accountInfoDTO.getTotalPrice();
+		
 		
 		return 0;
 	}
