@@ -20,6 +20,17 @@ public class CommentDTO {
 		this.profileImage = profileImage;
 	}
 
+	public int getReplyCount() {
+		return replyCount;
+	}
+
+	public void setReplyCount(int replyCount) {
+		this.replyCount = replyCount;
+	}
+
+
+
+
 	private String profileImage;
 	//댓글
 	private String seqPost;
