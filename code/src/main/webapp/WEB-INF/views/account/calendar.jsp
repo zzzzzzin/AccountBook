@@ -207,7 +207,6 @@
       
       .content4 {
         margin-left: 300px;
-        background-color: red;
       }
       
       #navheader nav a {
@@ -549,7 +548,7 @@
         
     </div>
 
-    <div class="modal fade" id="eventProduceModal" tabindex="-1"
+   <div class="modal fade" id="eventProduceModal" tabindex="-1"
     aria-labelledby="eventProduceModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modalBackground">
@@ -573,15 +572,15 @@
                         </div>
                         <div class="mb-3">
                             <label for="eventModalTitle" class="col-form-label">내용</label> <textarea
-                                type="text" class="form-control" id="eventModalTitle"></textarea>
+                                type="text" class="form-control" id="eventModalcontent"></textarea>
                         </div>
                         <div class="mb-3">
                             <label for="eventModalTitle" class="col-form-label">사용처</label> <input
-                                type="text" class="form-control" id="eventModalTitle">
+                                type="text" class="form-control" id="eventModaluseloc">
                         </div>
                         <div class="mb-3">
                             <label for="eventModalSelect" class="col-form-label">카테고리</label>
-                            <select class="form-select" aria-label="Default select example"
+                            <select class="form-select modalselectcategory" aria-label="Default select example"
                                 id="eventModalSelect">
                                 <option selected>카테고리</option>
                                 <option value="1">개인일정</option>
@@ -591,7 +590,7 @@
 
                         <div class="mb-3">
                             <label for="eventModalSelect" class="col-form-label">지불 방식</label>
-                            <select class="form-select" aria-label="Default select example"
+                            <select class="form-select modalmethodofpayment" aria-label="Default select example"
                                 id="eventModalSelect">
                                 <option selected>지불 방식</option>
                                 <option value="1">카드</option>
@@ -601,7 +600,7 @@
                         <div class="mb-3" id="onerow">
                             <div for="eventModalEnd" class="col-form-label" id="onrowlabel">금액</div>
                             <div id="onerowinput">
-                                <select class="form-select selectSize" aria-label="Default select example"
+                                <select class="form-select selectSize modalincreasedecrease" aria-label="Default select example"
                                     id="eventModalSelect">
                                     <option selected>+/-</option>
                                     <option value="+">+</option>
@@ -619,7 +618,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary"
-                        data-bs-dismiss="modal">취소</button>
+                        data-bs-dismiss="modal" id="btnAddEventCancel">취소</button>
                     <button type="button" class="btn btn-primary" id="btnEventProduce">완료
                         </button>
                 </div>
@@ -682,7 +681,24 @@
         document.getElementById('eventModalPaymentMethod').selectedIndex = 0; // Resets the payment method dropdown, corrected ID
         modal.show();
     }
-
+    //모달 소환시 입력 무 (시작)
+    function clearModalInputs() {
+        document.getElementById('eventModalcontent').value = '';
+        document.getElementById('eventModalStart').value = '';
+        if (document.getElementsByClassName('modalselectcategory').length > 0) {
+            document.getElementsByClassName('modalselectcategory')[0].selectedIndex = 0;
+        }
+        if (document.getElementsByClassName('modalmethodofpayment').length > 0) {
+            document.getElementsByClassName('modalmethodofpayment')[0].selectedIndex = 0;
+        }
+        if (document.getElementsByClassName('modalincreasedecrease').length > 0) {
+            document.getElementsByClassName('modalincreasedecrease')[0].selectedIndex = 0;
+        }
+        document.getElementById('eventModaluseloc').value = '';
+        document.getElementById('eventModalIoc').value = '';
+        document.getElementById('fixedexpense').checked = false; 
+    }
+    //모달 소환시 입력 무 (끝)
 
 
             
@@ -694,16 +710,27 @@
         var addwishlistnow = document.getElementById('addrightnow');
         var categoryselector = document.getElementById('categoryselector')
         var categorymodalbody = document.getElementById('categorymodalbody')
-
-        
-        
-        // 카테고리 선택
+        var categorySelector = document.getElementById('eventModalSelect'); 
+        // 카테고리 선택 시작
         const categories = [
-        "SNS수입", "건강", "경조사", "교육", "교통", "구독료", "금융수입", "급여", "기부금", "기타",
+        "없음","SNS수입", "건강", "경조사", "교육", "교통", "구독료", "금융수입", "급여", "기부금", "기타",
         "더치페이", "로열티", "문화생활", "미용", "보험금", "부동산수입", "부업", "사업수입", "상속", "상여금",
         "생활용품", "세금", "쇼핑", "수수료", "숙박", "아르바이트", "앱테크", "여가", "여행", "용돈",
         "유흥", "육아", "음식", "이자", "자동차", "장학금", "저축", "주거", "카페", "통신"
     ];
+
+    function populateCategorySelector() {
+            categorySelector.innerHTML = ''; // Clear existing options
+            categories.forEach(function(category) {
+                var option = document.createElement('option');
+                option.value = category;
+                option.textContent = category;
+                categorySelector.appendChild(option);
+            });
+        }
+
+        populateCategorySelector();
+
         console.log(categories)
         categoryselector.addEventListener('click', function() {
             var modal = new bootstrap.Modal(document.getElementById("categorymodal"));
@@ -721,7 +748,7 @@
 
             modal.show();
         })
-
+        //카테고리 선택 끝
         // 검색 기능
         var searchicon = document.getElementById('searchicon');
         var searchbar = document.getElementById('searchbar');
@@ -733,13 +760,14 @@
                 searchbar.style.display = 'none';
             }
         };
-
+        //검색 기능 끝
         
 
-    // Reset the checkbox and hide elements when the modal is about to be shown
+    // 고정 지출 시작
     eventProduceModal.addEventListener('show.bs.modal', function () {
         checkbox.checked = false; // Uncheck the checkbox
         fixedDateDiv.style.display = 'none'; // Hide the date input
+
     });
 
         checkbox.addEventListener('change', function() {
@@ -749,20 +777,83 @@
                 fixedDateDiv.style.display = 'none'; // Hide the fixed date input
             }
         });
+    //고정 지출 끝
+
+    //항목 추가 시작
+    document.getElementById('btnEventProduce').addEventListener('click', function() {
+        var title = document.getElementById('eventModalcontent').value;
+        var start = document.getElementById('eventModalStart').value;
+        var category = document.getElementsByClassName('modalselectcategory')[0].value;
+        var useLocation = document.getElementById('eventModaluseloc').value;
+        var paymentMethod = document.getElementsByClassName('modalmethodofpayment')[0].value;
+        var amountindicator = document.getElementsByClassName('modalincreasedecrease')[0].value;
+        var amount = document.getElementById('eventModalIoc').value;
+        var isFixedExpense = document.getElementById('fixedexpense').checked;
+        
+        // Validate the inputs
+        if (!title || !start || !category || !amount) {
+            alert('모든 필수 필드를 입력해주세요.'); // Alert if any required field is missing
+            return;
+        }
+        console.log(title, start, category, useLocation, paymentMethod,amountindicator, amount, isFixedExpense);
+
+        // Create a new event object
+        var event = {
+            title: title,
+            start: start,
+            allDay: true,
+            color: category === '1' ? '#ff0000' : '#0000ff', 
+            extendedProps: {
+                useLocation: useLocation,
+                category: category,
+                paymentMethod: paymentMethod,
+                amount: amount,
+                amountindicator: amountindicator,
+                isFixedExpense: isFixedExpense
+            }
+        };
+
+        // Add the event to the calendar
+        calendar.addEvent(event);
+
+        // Optionally clear the modal inputs
+        document.getElementById('eventModalcontent').value = '';
+        document.getElementById('eventModalStart').value = '';
+        Array.from(document.querySelectorAll('#eventProduceModal select')).forEach(select => select.selectedIndex = 0);
+        document.getElementById('eventModaluseloc').value = '';
+        document.getElementById('eventModalIoc').value = '';
+        document.getElementById('fixedexpense').checked = false;
+
+        // Hide the modal, assuming using Bootstrap's modal
+        $('#eventProduceModal').modal('hide');
+
+        // Log or handle the data as needed, e.g., send it to a server
+        console.log('Event data:', event);
+        // Here you can also make an AJAX call to send the data to the server
+    });
+
+    //항목 추가 끝
+
+        
 
      var calendar = new FullCalendar.Calendar(calendarEl, {
+            timeZone:'UTC',
             editable: true,
     		eventClick: function(info) {
+                console.log('workd');
     		    info.jsEvent.preventDefault();
-    			var container = document.getElementById("editEventModal");
-    			var modal = new bootstrap.Modal(container);
-    			$('#editEventModalTitle').val(info.event.title);
-    			$('#editEventModalStart').val(moment(info.event.start).format('YYYY-MM-DDTHH:mm'));
-    			$('#editEventModalEnd').val(moment(info.event.end).format('YYYY-MM-DDTHH:mm'));
-    			$('#editEventModalColor').val(info.event.backgroundColor);
-    			$('#editEventModalLoc').val(info.event.extendedProps.loc);
-    			$('#editEventModalContent').val(info.event.extendedProps.content);
-            	modal.show();
+                var container = document.getElementById("eventProduceModal");//
+                var modal = new bootstrap.Modal(container);
+                $('#eventModalcontent').val(info.event.title); 
+                $('#eventModalStart').val(info.event.start.toISOString().slice(0, 16)); 
+                $('.modalselectcategory').val(info.event.extendedProps.category);
+                $('#eventModaluseloc').val(info.event.extendedProps.useLocation);
+                $('.modalmethodofpayment').val(info.event.extendedProps.paymentMethod);
+                $('.modalincreasedecrease').val(info.event.extendedProps.amountindicator);
+                $('#eventModalIoc').val(info.event.extendedProps.amount);
+                $('#fixedexpense').prop('checked', info.event.extendedProps.isFixedExpense);
+                
+            modal.show();
 
     			$('#deleteEventBtn').on('click', function() {
     				if(window.confirm('일정을 삭제하시겠습니까?'))
@@ -777,6 +868,7 @@
     		},
     		
     		eventMouseEnter: function (info) {
+                console.log('in')
     			var popover = new bootstrap.Popover(info.el, {
     				title: $('<div />', {
     					text: info.event.title
@@ -785,25 +877,33 @@
     					'font-weight': 'bold',
     					'font-size': '20px'
     				}),
-    			content: $('<div />', {
-    				class: 'popoverInfoEvent'
-            		}).append('<strong>카테고리:</strong> ' + '<br>')
-            .append('<strong>시간:</strong> ' + getDisplayEventDate(info.event) + '<br>')
-            .append('<strong>내용:</strong> ' + info.event.extendedProps.content),
-    			trigger: 'hover',
-    			delay: { show: 400, hide: 300 },
-    			placement: 'top',
-    			html: true,
-    			container: 'body'
+                    content: $('<div />', {
+                class: 'popoverInfoEvent'
+            }).append('<strong>내용:</strong> ' + info.event.extendedProps.category + '<br>')
+            .append('<strong>금액:</strong> '+info.event.extendedProps.amountindicator + info.event.extendedProps.amount + '<br>')
+            ,
+            trigger: 'hover',
+            delay: { show: 400, hide: 300 },
+            placement: 'top',
+            html: true,
+            container: 'body'
     			});
     			setTimeout(function () {
     			popover.dispose();
     			}, 1500); 
     		},
     		dateClick: function(info) {
-            var container = document.getElementById("eventProduceModal");//
-            var modal = new bootstrap.Modal(container);
+                console.log('dateclick',info.dateStr);
+            clearModalInputs(); // Clear all modal inputs first
+            var dateValue = new Date(info.dateStr);
+            var localDate = new Date(dateValue.getTime() - dateValue.getTimezoneOffset() * 60000);
+            var dateISOString = localDate.toISOString().slice(0, 16);
+        
+        // Set the date input to the clicked date
+        document.getElementById('eventModalStart').value = dateISOString;
+        
             
+            var modal = new bootstrap.Modal(document.getElementById('eventProduceModal'));
             modal.show();
           },
           select: function(info) {
@@ -820,6 +920,13 @@
         //   businessHours: true, // display business hours
           editable: true,
           selectable: true,
+          events:[
+            {
+              title: 'event 1',
+              start: '2024-05-01',
+            }
+          ]
+
           /* events: [
        		   $.ajax({
        			type: 'get',
@@ -850,6 +957,8 @@
 
     });
 
+
+
     document.addEventListener('DOMContentLoaded', function() {
         const addForm = document.getElementById('addWishItemForm');
         const wishList = document.getElementById('wishListItems');
@@ -867,7 +976,7 @@
        
     })
 
-
+    //위시리스트
     document.addEventListener('DOMContentLoaded', function() {
         const addButton = document.getElementById('addrightnow');
         const newItemInput = document.getElementById('newItemInput');
@@ -949,6 +1058,10 @@
                     console.log('Checkbox is checked');
                     var container = document.getElementById("eventProduceModal");//
                     var modal = new bootstrap.Modal(container);
+                    let content = document.getElementById('transdate').innerHTML;
+                        clearModalInputs();
+                        $('#eventModalcontent').val(content); 
+                        console.log(content);
                     modal.show();
                     event.target.checked=false;
                 }
@@ -957,6 +1070,8 @@
 
         
     });
+
+
 
     </script>
 </body>
