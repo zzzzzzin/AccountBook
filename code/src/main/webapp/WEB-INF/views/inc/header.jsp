@@ -8,11 +8,14 @@
 <style>
 	#navheader {
     background-color: #f3f6f9;
-        padding: 20px;
-        border-bottom-right-radius: 13px;
-        border-bottom-left-radius: 13px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
-        margin-bottom:10px;
+    padding: 20px;
+    border-bottom-right-radius: 13px;
+    border-bottom-left-radius: 13px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom:10px;
+	display: flex;
+	justify-content: center; /* 가운데 정렬을 위해 추가 */
+    align-items: center; /* 세로 가운데 정렬을 위해 추가 */
   }
 
   #navheader nav {
@@ -69,6 +72,10 @@
   #navheader nav a:hover {
     color: #000;
   }
+  
+  #logo {
+  	width: 70px;
+  }
 </style>
 </head>
 
@@ -77,34 +84,39 @@
 	<!-- <a href="#" class="sidebar-toggler flex-shrink-0" id="sidebar-toggler" onclick="toggleSidebar()">
                         <i class="fa fa-bars"></i>
                     </a> -->
-          <a href="/account/index.do"><div class="logo"></div></a>
+          <a href="/account/index.do"><div class="logo"><img id="logo" alt="" src="/account/asset/images/logo.jpg"></div></a>
           <ul>
-          <c:if test="${empty id}">
             <li class="content1"><a href="/account/board/view.do">게시판</a></li>
             <li class="content2"><a href="/account/account/calendar.do">대시보드</a></li>
             <li class="content3"><a href="/account/card/recommendation.do">카드추천</a></li>
             <li class="content4"><a href="/account/user/member/info.do">마이페이지</a></li>
-            <li class="content5"><a href="/account/user/login.do">로그인</a></li>
-            </c:if>
-            
-            <c:if test="${not empty id}">
-			<li class="content1"><a href="/account/board/view.do">게시판</a></li>
-            <li class="content2"><a href="/account/account/calendar.do">대시보드</a></li>
-            <li class="content3"><a href="/account/card/recommendation.do">카드추천</a></li>
-            <li class="content4"><a href="/account/user/member/info.do">마이페이지</a></li>
-            <li class="content5"><a href="/account/user/logout.do">로그아웃</a></li>
-            </c:if>
-            <!-- 
-            <li class="content1"><a href="#">게시판</a></li>
-            <li class="content2"><a href="#">대시보드</a></li>
-            <li class="content3"><a href="#">카드추천</a></li>
-            <li class="content4"><a href="#">로그아웃</a></li> 
-            -->
-          </ul>
+
+			<c:if test="${empty id}">
+				<li class="content5"><a href="/account/user/login.do">로그인</a></li>
+			</c:if>
+
+			<c:if test="${not empty id}">
+				<li class="content5"><a href="/account/user/logout.do">로그아웃</a></li>
+			</c:if>
+
+		</ul>
 	</nav>
 </header>
 <script>
 
+	// 현재 URL
+	var currentUrl = window.location.pathname;
+	
+	if (currentUrl.endsWith("login.do") || currentUrl.endsWith("register.do") || currentUrl.endsWith("find-id.do") || currentUrl.endsWith("find-pw.do") || currentUrl.endsWith("reset-pw.do")) {
+		// 나머지 메뉴 요소를 숨김 처리
+		document.querySelectorAll("nav ul li").forEach(function(item) {
+			item.style.display = "none";
+		});
+		
+		// 로고를 가운데 정렬
+	    document.querySelector(".logo").style.marginRight = "auto";
+	    document.querySelector(".logo").style.marginLeft = "auto";
+	}
 </script>
 
 </html>
