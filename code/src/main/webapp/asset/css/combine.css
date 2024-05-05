@@ -1467,7 +1467,7 @@ height: 30px;
 }
 
 .image-container-friendinvite {
-  width: 800px;
+  width: 1060px;
   height: 600px;
   background-color: #000;
   margin-bottom: 20px;
@@ -1480,20 +1480,21 @@ height: 30px;
 }
 
 .text-container-friendinvite {
-  width: 600px;
+  width: 1060px;
   height: 100px;
-  background-color: #1f1f1f;
-  color: #fff;
+/*   background-color: #1f1f1f; */
+  color: #344648;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   margin-bottom: 20px;
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em
+  
 }
 
 .button-container-friendinvite {
   width: 100px;
   height: 40px;
-  background-color: #808080;
   display: flex;
   align-items: center;
   justify-content: center;
