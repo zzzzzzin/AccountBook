@@ -37,13 +37,7 @@ public class Analysis extends HttpServlet {
 		AccountDAO dao = new AccountDAO();
 		ArrayList<AccountInfoDTO> nList = dao.nowAnalysis(id, map);
 		ArrayList<AccountInfoDTO> bList = dao.beforeAnalysis(id, map);
-		ArrayList<AccountInfoDTO> cList = dao.getCategory();
-		ArrayList<AccountInfoDTO> tList = new ArrayList<>();
-		
-		for (AccountInfoDTO list : cList) {
-			list.getAcName();
-		}
-		
+		ArrayList<AccountInfoDTO> cList = dao.getCategory();		
 		
 		
 				
