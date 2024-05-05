@@ -19,7 +19,10 @@ public class Account extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		
+//		// 인증받지 못한 사용자 or 권한이 없는 사용자 > 거부
+//		if (Auth.check(req, resp)) {
+//			return;
+//		}
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/account/calendar.jsp");
 		dispatcher.forward(req, resp);
