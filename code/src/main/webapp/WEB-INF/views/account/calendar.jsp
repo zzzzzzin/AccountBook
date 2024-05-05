@@ -670,6 +670,8 @@
     <!-- Template Javascript -->
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
     <script>
+    
+    /* console.log(${eventsev}); */
 
     function openEventModal() {
         var modal = new bootstrap.Modal(document.getElementById("eventProduceModal"));
@@ -899,7 +901,6 @@
             var localDate = new Date(dateValue.getTime() - dateValue.getTimezoneOffset() * 60000);
             var dateISOString = localDate.toISOString().slice(0, 16);
         
-        // Set the date input to the clicked date
         document.getElementById('eventModalStart').value = dateISOString;
         
             
@@ -920,44 +921,43 @@
         //   businessHours: true, // display business hours
           editable: true,
           selectable: true,
-          events:[
+          /* events:[
             {
               title: 'event 1',
               start: '2024-05-01',
             }
+          ], */
+          events: [
+        	  $.ajax({
+         			type: 'get',
+         			url: '/account/account/calendarjson.do',
+         			dataType: 'json',
+         			success: function(result){
+         				result.forEach(obj =>{
+         					calendar.addEvent({
+         						title: obj.category ,
+         						allDay: true,
+         						start: obj.start,
+         						extendedProps: {
+      			   					loc: obj.loc,
+      			   					content: obj.content,
+      			   					amount: obj.amount,
+      			   					indicator: obj.amountindicator,
+      			   					category: obj.category,
+      			   					fixed: obj.fixed,
+      			   					fixedPeriod: obj.fixedperiod
+         						}
+         					})
+         				})
+        			},
+         			error: function(a,b,c){
+         				console.log(a,b,c);
+         			}
+         		 }) 
           ]
-
-          /* events: [
-       		   $.ajax({
-       			type: 'get',
-       			url: '/plan/listevent.do',
-       			dataType: 'json',
-       			success: function(result){
-       				result.forEach(obj =>{
-       					calendar.addEvent({
-       						title: obj.title,
-       						start: obj.start,
-       						end: obj.end,
-       						color: obj.colSeq,
-       						extendedProps: {
-    			   				loc: obj.loc,
-    			   				content: obj.content
-       						}
-       					})
-       				})
-      			},
-       			error: function(a,b,c){
-       				console.log(a,b,c);
-       			}
-       		  }) 
-       	  ] */
         });
-        
         calendar.render();
-
-    });
-
-
+      });
 
     document.addEventListener('DOMContentLoaded', function() {
         const addForm = document.getElementById('addWishItemForm');
