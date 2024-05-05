@@ -73,10 +73,10 @@
                 <c:forEach items="${list}" var="dto" varStatus="loop">
                     <div class="card">
                         <div class="card-image">
-                            <img src="${dto.fileLink}" alt="Card Image">
+                            <img src="${dto.fileLink}" alt="Card">
                         </div>
                         <div class="card-details">
-                            <div class="card-name">${dto.ciName}</div>
+                            <div class="card-name" >${dto.ciName}</div>
                             <div class="card-company">${dto.cardCompany}</div>
                         </div>
                     </div>
