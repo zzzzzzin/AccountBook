@@ -1,6 +1,7 @@
 package com.project.accountbook.account;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
 import com.project.accountbook.account.model.AccountInfoDTO;
 import com.project.accountbook.account.repository.AccountDAO;
 
@@ -23,6 +25,26 @@ public class Account extends HttpServlet {
 //		if (Auth.check(req, resp)) {
 //			return;
 //		}
+		
+		
+		HttpSession session = req.getSession();
+		String id = (String)session.getAttribute("id");
+		System.out.println(id);
+		AccountDAO dao = new AccountDAO();
+		
+		ArrayList<AccountInfoDTO> calenderdata = dao.accEventContent(id);
+		
+		
+		 // Serialize data to JSON
+        Gson gson = new Gson();
+        String json = gson.toJson(calenderdata);
+
+        // Set response content type to JSON and send the JSON as response
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+        resp.getWriter().write(json);
+		
+        req.setAttribute("eventsev", json);
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/account/calendar.jsp");
 		dispatcher.forward(req, resp);
@@ -37,41 +59,65 @@ public class Account extends HttpServlet {
 		// 3. 결과 > 인증 티켓
 		
 		HttpSession session = req.getSession();
-		String id = (String) session.getAttribute("id");
-		 
-		String content = req.getParameter("content");
-		String accInfoDate = req.getParameter("accInfoDate");
-		String price = req.getParameter("price");
-		String location = req.getParameter("location");
-		String seqAcc = req.getParameter("seqAcc");
-		String seqReasonChangeCategory = req.getParameter("seqReasonChangeCategory");
-		
-		String seqReasonsChangeList = req.getParameter("seqReasonsChangeList");
-		
-		String seqFixedFluctuationCheck = req.getParameter("seqFixedFluctuationCheck");
-		
-		String seqDepositWithdrawalStatus = req.getParameter("seqDepositWithdrawalStatus");
-		
-		String productName = req.getParameter("productName"); //구매 위시 목록 내용
-		
+		String id = (String)session.getAttribute("id");
+		System.out.println(id);
 		AccountDAO dao = new AccountDAO();
 		
-		//고정 입출금 설정한 경우
-		if (Integer.parseInt(seqFixedFluctuationCheck) != 0) {
+		ArrayList<AccountInfoDTO> calenderdata = dao.accEventContent(id);
+		
+		
+		 // Serialize data to JSON
+        Gson gson = new Gson();
+        String json = gson.toJson(calenderdata);
 
-			String fdwContent = req.getParameter("fdwContent"); //고정 입출금 내용
-			
-		} 
+        // Set response content type to JSON and send the JSON as response
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+        resp.getWriter().write(json);
 		
-		//카드인 경우
-		if (Integer.parseInt(seqReasonsChangeList) == 2 || Integer.parseInt(seqReasonsChangeList) == 3) {
-			
-			String seqMyCard = req.getParameter("seqMyCard");
-		}
+        req.setAttribute("eventsev", json);
+
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/account/calendar.jsp");
+		dispatcher.forward(req, resp);
+
 		
-		AccountInfoDTO AccountInfoDTO = new AccountInfoDTO();
+//		HttpSession session = req.getSession();
+//		String id = (String) session.getAttribute("id");
+//		 
+//		String content = req.getParameter("content");
+//		String accInfoDate = req.getParameter("accInfoDate");
+//		String price = req.getParameter("price");
+//		String location = req.getParameter("location");
+//		String seqAcc = req.getParameter("seqAcc");
+//		String seqReasonChangeCategory = req.getParameter("seqReasonChangeCategory");
+//		
+//		String seqReasonsChangeList = req.getParameter("seqReasonsChangeList");
+//		
+//		String seqFixedFluctuationCheck = req.getParameter("seqFixedFluctuationCheck");
+//		
+//		String seqDepositWithdrawalStatus = req.getParameter("seqDepositWithdrawalStatus");
+//		
+//		String productName = req.getParameter("productName"); //구매 위시 목록 내용
+//		
+//		AccountDAO dao = new AccountDAO();
+//		
+//		//고정 입출금 설정한 경우
+//		if (Integer.parseInt(seqFixedFluctuationCheck) != 0) {
+//
+//			String fdwContent = req.getParameter("fdwContent"); //고정 입출금 내용
+//			
+//		} 
+//		
+//		//카드인 경우
+//		if (Integer.parseInt(seqReasonsChangeList) == 2 || Integer.parseInt(seqReasonsChangeList) == 3) {
+//			
+//			String seqMyCard = req.getParameter("seqMyCard");
+//		}
+//		
+//		AccountInfoDTO AccountInfoDTO = new AccountInfoDTO();
 				
 		
 	}
 
 }
+
