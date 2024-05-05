@@ -16,18 +16,17 @@ import com.project.accountbook.card.repository.CardDAO;
 
 @WebServlet("/card/recommendation.do")
 public class Recommendation extends HttpServlet {
-
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		CardDAO dao = new CardDAO();
-		
-		ArrayList<CardDTO> list = dao.randomCard();
-		
-		req.setAttribute("list", list);
-
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/card/recommendation.jsp");
-		dispatcher.forward(req, resp);
-
-	}
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("Recommendation - doGet");
+        
+        CardDAO dao = new CardDAO();
+        ArrayList<CardDTO> list = dao.randomCard();
+        
+        req.setAttribute("list", list);
+        System.out.println("Random Card List Size: " + list.size());
+        
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/card/recommendation.jsp");
+        dispatcher.forward(req, resp);
+    }
 }

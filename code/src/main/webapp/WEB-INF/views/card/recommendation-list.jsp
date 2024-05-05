@@ -30,7 +30,7 @@
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
 </style>
-
+<script type="module" src="chart.min.js"></script>
 <body>
     <div class="container-xxl position-relative bg-white d-flex p-0">
         <!-- Spinner Start -->
@@ -60,40 +60,31 @@
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
         
-        
-        <div class="card-container">   
+<div class="fakecontent">
+    <h2>선택된 카테고리: ${selectedCategory}</h2>
+    <div class="card-container">
         <c:choose>
-    		<c:when test="${empty list}">
-        		<div class="card">
-            	<div>추천 카드가 없습니다.</div>
-        		</div>
-    		</c:when>
-    		<c:otherwise>
-	        	<c:forEach items="${list}" var="dto" varStatus="loop">
-	            	<div class="card">
-	                	<div class="card-rank">${loop.index + 1}</div>
-	                	<div class="card-image"></div>
-	                	<div class="card-details">
-	                    	<div class="card-name">${dto.ciName}</div>
-	                    	<div class="card-company">${dto.cardCompany}</div>
-	                	</div>
-	            	</div>
-	        	</c:forEach>
-	    	</c:otherwise>
-		</c:choose>
-        
-        <!-- <div class="card">
-            <div class="card-rank">2</div>
-            <div class="card-image"></div>
-            <div class="card-details">
-                <div class="card-name">카드명</div>
-                <div class="card-company">카드사</div>
-            </div>
-        </div> -->
-        </div>
-    </div>     
+            <c:when test="${empty list}">
+                <div class="card">
+                    <div>선택된 카테고리에 해당하는 추천 카드가 없습니다.</div>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <c:forEach items="${list}" var="dto" varStatus="loop">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="${dto.fileLink}" alt="Card Image">
+                        </div>
+                        <div class="card-details">
+                            <div class="card-name">${dto.ciName}</div>
+                            <div class="card-company">${dto.cardCompany}</div>
+                        </div>
+                    </div>
+                </c:forEach>
+            </c:otherwise>
+        </c:choose>
     </div>
-    <button class="modal-button" onclick="openModal()">카테고리 선택</button>
+</div>
 
         <!-- fakecontent 끝 -->
         <!-- Back to Top -->
@@ -105,8 +96,9 @@
     <!-- Template Javascript -->
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
     <script>
-
-    
+    console.log("recommendation-list.jsp - Script");
+    console.log("Selected Category in JSP: ${selectedCategory}");
+    console.log("Number of Cards in JSP: ${list.size()}");
 
     </script>
 </body>
