@@ -34,7 +34,7 @@ public class AuthFilter implements Filter {
 
 				response.setCharacterEncoding("UTF-8");
 				PrintWriter writer = ((HttpServletResponse) response).getWriter();
-				writer.print(OutputUtil.redirect("비회원은 접근이 불가능합니다."));
+				writer.print(OutputUtil.redirect("로그인한 사용자만 이용할 수 있습니다."));
 				writer.close();
 
 			}
