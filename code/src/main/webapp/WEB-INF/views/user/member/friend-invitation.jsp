@@ -61,17 +61,24 @@
         <!-- fakecontent 안에서 작성 -->
 
 			<div class="container-friendinvite">
+			<div class="text-container-friendinvite">
+					<!-- 글을 여기에 추가하세요 -->
+					<p>소비 패턴 분석을 통한 지출 관리 친구 BudgetBuddy를 <br> 친구에게 공유하세요!</p>
+					<a id="kakaotalk-sharing-btn" href="javascript:;"> <img
+						src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png"
+						alt="카카오톡 공유 보내기 버튼" />
+				</div>
 				<div class="image-container-friendinvite">
 					<!-- 이미지를 여기에 추가하세요 -->
-					<img src="../images/image1.jpg" alt="이미지">
+					<img src="/account/asset/images/BudgetBuddy.jpg" alt="이미지" id = "img-friendinvite">
 				</div>
-				<div class="text-container-friendinvite">
-					<!-- 글을 여기에 추가하세요 -->
-					<p>쌈@뽕한 가계부 사이트를 친구에게 추천해보세요</p>
-				</div>
-				<div class="button-container-friendinvite">
-					<button id="shareButton-friendinvite">공유하기</button>
-				</div>
+<!-- 				<div class="text-container-friendinvite"> -->
+<!-- 					글을 여기에 추가하세요 -->
+<!-- 					<p>소비 패턴 분석을 통한 지출 관리 친구 BudgetBuddy를 <br> 친구에게 공유하세요!</p> -->
+<!-- 					<a id="kakaotalk-sharing-btn" href="javascript:;"> <img -->
+<!-- 						src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png" -->
+<!-- 						alt="카카오톡 공유 보내기 버튼" /> -->
+<!-- 				</div> -->
 			</div>
 
 
@@ -85,8 +92,15 @@
     <!-- JavaScript Libraries -->
    
     <!-- Template Javascript -->
-    <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
-    <script>
+	<script
+		src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
+	<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.1/kakao.min.js"
+		integrity="sha384-kDljxUXHaJ9xAb2AzRd59KxjrFjzHa5TAoFQ6GbYTCAG0bjM55XohjjDT7tDDC01"
+		crossorigin="anonymous"></script>
+	<script>
+		Kakao.init('${key}'); // 사용하려는 앱의 JavaScript 키 입력
+	</script>
+	<script>
 
     document.addEventListener('DOMContentLoaded', function() {
     const sidebarToggler = document.getElementById('sidebar-toggler');
@@ -98,13 +112,40 @@
         content.classList.toggle('expanded');
         });
     });
-    
-    document.getElementById('shareButton-friendinvite').addEventListener('click', function() {
-        // 공유하기 버튼 클릭 시 실행될 코드를 여기에 추가하세요.
-        alert('공유하기 버튼이 클릭되었습니다!');
-    });
 
-    </script>
+		Kakao.Share
+				.createDefaultButton({
+					container : '#kakaotalk-sharing-btn',
+					objectType : 'feed',
+					content : {
+						title : 'BudgetBuddy',
+						description : '소비 패턴 분석을 통한 지출 관리 친구 BudgetBuddy!',
+						imageUrl : 'https://img.freepik.com/free-vector/hands-with-money-flat-composition-with-top-view-table-with-laptop-paper-calculations-cash-vector-illustration_1284-80352.jpg?t=st=1714872951~exp=1714876551~hmac=ea8293e187b5648b76d78376a64fdf5c902bedd4fc9113bcff518ac04bf42b67&w=740',
+						link : {
+							// [내 애플리케이션] > [플랫폼] 에서 등록한 사이트 도메인과 일치해야 함
+							mobileWebUrl : 'http://localhost:8090',
+							webUrl : 'http://localhost:8090',
+						},
+					},
+					buttons : [ {
+						title : '웹으로 보기',
+						link : {
+							mobileWebUrl : 'http://localhost:8090/account/index.do',
+							webUrl : 'http://localhost:8090/account/index.do',
+						},
+					}, 
+// 					{
+// 						title : '앱으로 보기',
+// 						link : {
+// 							mobileWebUrl : 'http://localhost:8090',
+// 							webUrl : 'http://localhost:8090',
+// 						},
+// 					}, 
+					],
+				});
+	</script>
+
+
 </body>
 
 </html>

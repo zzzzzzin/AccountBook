@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<title>Insert title here</title>
+<title>BudgetBuddy</title>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/asset/css/temp/reset.css">
 
