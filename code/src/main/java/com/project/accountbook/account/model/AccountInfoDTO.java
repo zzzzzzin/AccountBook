@@ -23,6 +23,7 @@ public class AccountInfoDTO {
 	private String seqDepositWithdrawalStatus;
 	
 	private int totalPrice;
+	private int totalSaving;
 	
 	//가계부
 	private String idMember;
@@ -34,6 +35,9 @@ public class AccountInfoDTO {
 	//고정 입출금 여부
 	private String fdwContent;
 	private String seqFixedFluctuationPeriod;
+	
+	//고정 입출금 기간
+	private int ffpPeriod;
 	
 	//가계부 카테고리 목록
 	private String seqAccCategory;
@@ -135,6 +139,14 @@ public class AccountInfoDTO {
 	public void setTotalPrice(int totalPrice) {
 		this.totalPrice = totalPrice;
 	}
+	
+	public int getTotalSaving() {
+		return totalSaving;
+	}
+
+	public void setTotalSaving(int totalSaving) {
+		this.totalSaving = totalSaving;
+	}
 
 	public String getIdMember() {
 		return idMember;
@@ -166,6 +178,14 @@ public class AccountInfoDTO {
 
 	public void setSeqFixedFluctuationPeriod(String seqFixedFluctuationPeriod) {
 		this.seqFixedFluctuationPeriod = seqFixedFluctuationPeriod;
+	}
+
+	public int getFfpPeriod() {
+		return ffpPeriod;
+	}
+
+	public void setFfpPeriod(int ffpPeriod) {
+		this.ffpPeriod = ffpPeriod;
 	}
 
 	public String getSeqAccCategory() {
@@ -279,11 +299,14 @@ public class AccountInfoDTO {
 				+ seqReasonChangeCategory + ", seqFixedFluctuationCheck=" + seqFixedFluctuationCheck
 				+ ", seqDepositWithdrawalStatus=" + seqDepositWithdrawalStatus + ", totalPrice=" + totalPrice
 				+ ", idMember=" + idMember + ", productName=" + productName + ", fdwContent=" + fdwContent
-				+ ", seqFixedFluctuationPeriod=" + seqFixedFluctuationPeriod + ", seqAccCategory=" + seqAccCategory
-				+ ", seqAccInfo=" + seqAccInfo + ", acName=" + acName + ", seqnews=" + seqnews + ", title=" + title
-				+ ", link=" + link + ", newsDate=" + newsDate + ", media=" + media + ", seqReasonsChangeList="
-				+ seqReasonsChangeList + ", seqMyCard=" + seqMyCard + ", cfName=" + cfName + ", fileLink=" + fileLink
-				+ ", alias=" + alias + "]";
+				+ ", seqFixedFluctuationPeriod=" + seqFixedFluctuationPeriod + ", ffpPeriod=" + ffpPeriod
+				+ ", seqAccCategory=" + seqAccCategory + ", seqAccInfo=" + seqAccInfo + ", acName=" + acName
+				+ ", seqnews=" + seqnews + ", title=" + title + ", link=" + link + ", newsDate=" + newsDate + ", media="
+				+ media + ", seqReasonsChangeList=" + seqReasonsChangeList + ", seqMyCard=" + seqMyCard + ", cfName="
+				+ cfName + ", fileLink=" + fileLink + ", alias=" + alias + "]";
 	}
+	
+	
+
 	
 }

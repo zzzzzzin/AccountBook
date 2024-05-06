@@ -14,7 +14,6 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import com.google.gson.Gson;
 import com.project.accountbook.account.model.AccountInfoDTO;
 import com.project.accountbook.account.repository.AccountDAO;
 
@@ -83,15 +82,15 @@ public class Account extends HttpServlet {
 		
 		
 		 // Serialize data to JSON
-        Gson gson = new Gson();
-        String json = gson.toJson(calenderdata);
+//        Gson gson = new Gson();
+//        String json = gson.toJson(calenderdata);
 
         // Set response content type to JSON and send the JSON as response
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
-        resp.getWriter().write(json);
-		
-        req.setAttribute("eventsev", json);
+//        resp.getWriter().write(json);
+//		
+//        req.setAttribute("eventsev", json);
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/account/calendar.jsp");
 		dispatcher.forward(req, resp);
@@ -136,4 +135,3 @@ public class Account extends HttpServlet {
 	}
 
 }
-

@@ -60,6 +60,7 @@ insert into tblMemberPriv (seq, seqPriv, idMember)
     values (4, 4,'abc004@naver.com');
 insert into tblMemberPriv (seq, seqPriv, idMember) 
     values (5, 2,'j26725053@naver.com');
-
+    
+update  tblMemberPriv set seqPriv = '2' where idMember = 'abc001@naver.com';
 
 commit;

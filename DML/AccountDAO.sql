@@ -1,6 +1,124 @@
 --가계부 작성(add)
+select * from tblMember;
+select * from tblMemberPriv;
+
+
 
 -- 가계부 분석
+-- 입급 - 출금
+select
+    sum(case when ai.seqdepositwithdrawalstatus = 1 then ai.price else -ai.price end) as totalsaving,
+    acc.idmember as idmember
+from
+    tblaccinfo ai
+    inner join tblacc acc on acc.seq = ai.seqacc
+where
+    acc.idmember = 'abc001@naver.com'
+    and ai.seqdepositwithdrawalstatus in (1, 2) -- 입금 및 출금
+group by
+    acc.idmember;
+
+-- 총 입금
+select
+sum(ai.price) totalSaving,
+acc.idMember idMember
+from tblAccInfo ai
+    inner join tblAcc acc
+        on acc.seq = ai.seqAcc
+            where acc.idMember = 'abc001@naver.com'
+                and ai.seqDepositWithdrawalStatus = 1 --입급
+                    group by acc.idMember;
+-- 총 지출                    
+select
+sum(ai.price) totalExpenditure,
+acc.idMember idMember
+from tblAccInfo ai
+    inner join tblAcc acc
+        on acc.seq = ai.seqAcc
+            where acc.idMember = 'abc001@naver.com'
+                and ai.seqDepositWithdrawalStatus = 2 --출금
+                    group by acc.idMember;
+
+
+-- 이번달 총 지출 + 수입
+select
+    sum(case when ai.seqdepositwithdrawalstatus = 1 then ai.price else -ai.price end) as totalsaving,
+    acc.idmember as idmember
+from
+    tblaccinfo ai
+    inner join tblacc acc on acc.seq = ai.seqacc
+where
+    acc.idmember = 'abc001@naver.com'
+    and ai.seqdepositwithdrawalstatus in (1, 2) -- 입금 및 출금
+    and ai.accInfoDate 
+        between to_date(sysdate, 'YY/MM/DD') 
+            - interval '1' month and to_date(sysdate, 'YY/MM/DD')
+group by
+    acc.idmember;
+    
+select
+sum(ai.price) monthSaving,
+acc.idMember idMember
+from tblAccInfo ai
+    inner join tblAcc acc
+        on acc.seq = ai.seqAcc
+            where acc.idMember = 'abc001@naver.com'
+                and ai.seqDepositWithdrawalStatus = 1 -- 입금
+                    and ai.accInfoDate 
+                        between to_date(sysdate, 'YY/MM/DD') 
+                            - interval '1' month and to_date(sysdate, 'YY/MM/DD')
+                                group by acc.idMember;
+
+
+--고정 지출 찾기
+select * from tblFixedFluctuationPeriod; --0, 1, 3, 12
+--select 
+--ai.accInfoDate accInfoDate,
+--ai.price price,
+--ffp.period period
+--from tblAccInfo ai
+--    inner join tblFixedDepositWithdrawalCheck fdw
+--        on fdw.seq = ai.seqFixedFluctuationCheck
+--            inner join tblAcc acc
+--                on acc.seq = ai.seqAcc
+--                    inner join tblFixedFluctuationPeriod ffp
+--                        on ffp.seq = fdw.seqFixedFluctuationPeriod
+--                            where fdw.seqFixedFluctuationPeriod != 0
+--                                and acc.idMember = 'abc001@naver.com';
+
+
+select 
+    ai.accinfodate as accinfodate,
+    ai.price as price,
+    ffp.period as period
+from 
+    tblaccinfo ai
+    inner join tblfixeddepositwithdrawalcheck fdw on fdw.seq = ai.seqfixedfluctuationcheck
+    inner join tblacc acc on acc.seq = ai.seqacc
+    inner join tblfixedfluctuationperiod ffp on ffp.seq = fdw.seqfixedfluctuationperiod
+where 
+    fdw.seqfixedfluctuationperiod != 0
+    and acc.idmember = 'abc001@naver.com'
+    and to_date(ai.accinfodate, 'yy/mm/dd') + interval '1' month * ffp.period > current_date;
+
+
+select * from tblCompressionIntensity; --하, 중, 상
+--챌린지 정보 불러오기
+select 
+su.monthlyPaycheck monthlyPaycheck, --월급
+su.savingsGoals savingsGoals, --저축 목표 금액
+seqCompressionIntensity seqCompressionIntensity,
+sp.period period,
+me.joinDate joinDate,
+trunc(months_between(sysdate, me.joindate)) monthsSinceJoin
+from tblSurvey su
+    inner join tblMember me
+        on su.seq = me.seqSurvey
+            inner join tblSavingsPeriod sp
+                on sp.seq = su.seqSavingsPeriod
+                    where me.id = 'abc001@naver.com';
+
+
 --analysis
 select
 sum(ai.price) totalPrice,

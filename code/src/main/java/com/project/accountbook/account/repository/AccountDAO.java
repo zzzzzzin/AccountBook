@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.DecimalFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 
 import com.project.accountbook.account.model.AccountInfoDTO;
@@ -99,8 +102,6 @@ public class AccountDAO {
 		
 		return 0;
 	}
-	
-	
 	
 	
 	//가계부 분석 읽기
@@ -234,10 +235,347 @@ public class AccountDAO {
 		return null;
 	}		
 	
-	//가계부 분석 > 챌린지에 대한 정보 읽기(이번달 목표치, 현상황)
-	public int getChallenge(UserDTO dto) {
+	// 가계부 분석 > 이번달 고정 지출 찾기
+	public ArrayList<AccountInfoDTO> getFixedFluctuation(String id) {
+
+		try {
+
+			String sql = "select \r\n"
+					+ "    ai.accinfodate as accinfodate,\r\n"
+					+ "    ai.price as price,\r\n"
+					+ "    ffp.period as period\r\n"
+					+ "from \r\n"
+					+ "    tblaccinfo ai\r\n"
+					+ "    inner join tblfixeddepositwithdrawalcheck fdw on fdw.seq = ai.seqfixedfluctuationcheck\r\n"
+					+ "    inner join tblacc acc on acc.seq = ai.seqacc\r\n"
+					+ "    inner join tblfixedfluctuationperiod ffp on ffp.seq = fdw.seqfixedfluctuationperiod\r\n"
+					+ "where \r\n"
+					+ "    fdw.seqfixedfluctuationperiod != 0\r\n"
+					+ "    and acc.idmember = ?\r\n"
+					+ "    and to_date(ai.accinfodate, 'yy/mm/dd') + interval '1' month * ffp.period > current_date";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, id);
+
+			rs = pstat.executeQuery();
+
+			ArrayList<AccountInfoDTO> list = new ArrayList<AccountInfoDTO>();
+
+			while (rs.next()) {
+
+				AccountInfoDTO dto = new AccountInfoDTO();
+
+				dto.setAccInfoDate(rs.getString("accInfoDate"));
+				dto.setPrice(rs.getInt("price"));
+				dto.setFfpPeriod(rs.getInt("period"));
+				
+				list.add(dto);
+			}
+
+			return list;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+	
+	//가계부 분석 > 챌린지 정보 불러오기
+	public UserDTO getSavingsGoals(String id) {
+
+		try {
+
+			String sql = "select \r\n"
+					+ "su.monthlyPaycheck monthlyPaycheck, --월급\r\n"
+					+ "su.savingsGoals savingsGoals, --저축 목표 금액\r\n"
+					+ "seqCompressionIntensity seqCompressionIntensity,\r\n"
+					+ "sp.period period,\r\n"
+					+ "me.joinDate joinDate,\r\n"
+					+ "trunc(months_between(sysdate, me.joindate)) monthsSinceJoin\r\n"
+					+ "from tblSurvey su\r\n"
+					+ "    inner join tblMember me\r\n"
+					+ "        on su.seq = me.seqSurvey\r\n"
+					+ "            inner join tblSavingsPeriod sp\r\n"
+					+ "                on sp.seq = su.seqSavingsPeriod\r\n"
+					+ "                    where me.id = ?";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, id);
+
+			rs = pstat.executeQuery();
+
+			while (rs.next()) {
+
+				UserDTO dto = new UserDTO();
+				
+				dto.setMonthlyPaycheck(rs.getInt("monthlyPaycheck"));
+				dto.setSavingsGoals(rs.getInt("savingsGoals"));
+				dto.setSeqCompressionIntensity(rs.getString("seqCompressionIntensity"));
+				dto.setSpPeriod(rs.getInt("period"));
+				dto.setJoinDate(rs.getString("joinDate"));
+				dto.setMonthsSinceJoin(rs.getInt("monthsSinceJoin"));
+				
+				return dto;
+			}
+
+		} catch (Exception e) {
+			System.out.println("AccountDAO.getSavingsGoals");
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+	
+	//가계부 분석 > 이번달 사용 금액 불러오기
+	public int getMonthUsage (String id) {
+
+		try {
+
+			String sql = "select\r\n"
+					+ "sum(ai.price) monthUsage,\r\n"
+					+ "acc.idMember idMember\r\n"
+					+ "from tblAccInfo ai\r\n"
+					+ "    inner join tblAcc acc\r\n"
+					+ "        on acc.seq = ai.seqAcc\r\n"
+					+ "            where acc.idMember = ?\r\n"
+					+ "                and ai.accInfoDate \r\n"
+					+ "                    between to_date(sysdate, 'YY/MM/DD') \r\n"
+					+ "                        - interval '1' month and to_date(sysdate, 'YY/MM/DD')\r\n"
+					+ "                            and ai.seqDepositWithdrawalStatus = 2 --출금\r\n"
+					+ "                                group by acc.idMember";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, id);
+
+			rs = pstat.executeQuery();
+
+			while (rs.next()) {
+
+				return rs.getInt("monthUsage");
+			}
+
+		} catch (Exception e) {
+			System.out.println("AccountDAO.getMonthUsage");
+			e.printStackTrace();
+		}
+
+		return 0;
+	}
+	
+	//가계부 분석 > 이번달 입금 불러오기
+	public int getMonthSaving (String id) {
+		
+		try {
+			
+			String sql = "select\r\n"
+					+ "sum(ai.price) monthSaving,\r\n"
+					+ "acc.idMember idMember\r\n"
+					+ "from tblAccInfo ai\r\n"
+					+ "    inner join tblAcc acc\r\n"
+					+ "        on acc.seq = ai.seqAcc\r\n"
+					+ "            where acc.idMember = ?\r\n"
+					+ "                and ai.seqDepositWithdrawalStatus = 1 -- 입금\r\n"
+					+ "                    and ai.accInfoDate \r\n"
+					+ "                        between to_date(sysdate, 'YY/MM/DD') \r\n"
+					+ "                            - interval '1' month and to_date(sysdate, 'YY/MM/DD')\r\n"
+					+ "                                group by acc.idMember";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, id);
+			
+			rs = pstat.executeQuery();
+			
+			while (rs.next()) {
+				
+				return rs.getInt("monthSaving");
+			}
+			
+		} catch (Exception e) {
+			System.out.println("AccountDAO.getMonthSaving");
+			e.printStackTrace();
+		}
 		
 		return 0;
+	}
+	
+	//가계부 분석 > 총 저축 금액 불러오기
+	public int getTotalSaving(String id) {
+
+		try {
+
+			String sql = "select\r\n"
+					+ "    sum(case when ai.seqdepositwithdrawalstatus = 1 then ai.price else -ai.price end) as totalsaving,\r\n"
+					+ "    acc.idmember as idmember\r\n"
+					+ "from\r\n"
+					+ "    tblaccinfo ai\r\n"
+					+ "    inner join tblacc acc on acc.seq = ai.seqacc\r\n"
+					+ "where\r\n"
+					+ "    acc.idmember = ?\r\n"
+					+ "    and ai.seqdepositwithdrawalstatus in (1, 2) -- 입금 및 출금\r\n"
+					+ "group by\r\n"
+					+ "    acc.idmember";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, id);
+
+			rs = pstat.executeQuery();
+
+			while (rs.next()) {
+				
+				return rs.getInt("totalSaving");
+			}
+
+		} catch (Exception e) {
+			System.out.println("AccountDAO.getTotalSaving");
+			e.printStackTrace();
+		}
+
+		return 0;
+	}
+	
+	//가계부 분석 > 현재까지 총 지출 정보 불러오기
+	public int getTotalExpenditure(String id) {
+
+		try {
+
+			String sql = "select\r\n"
+					+ "sum(ai.price) totalExpenditure,\r\n"
+					+ "acc.idMember idMember\r\n"
+					+ "from tblAccInfo ai\r\n"
+					+ "    inner join tblAcc acc\r\n"
+					+ "        on acc.seq = ai.seqAcc\r\n"
+					+ "            where acc.idMember = ?\r\n"
+					+ "                and ai.seqDepositWithdrawalStatus = 2 --출금\r\n"
+					+ "                    group by acc.idMember";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, id);
+
+			rs = pstat.executeQuery();
+
+			while (rs.next()) {
+				
+				return rs.getInt("totalExpenditure");
+			}
+
+		} catch (Exception e) {
+			System.out.println("AccountDAO.getTotalSaving");
+			e.printStackTrace();
+		}
+
+		return 0;
+	}
+	
+	
+	//가계부 분석 > 챌린지에 대한 정보 읽기(이번달 목표치, 현상황)
+	public HashMap<String, String> getChallenge(String id) {
+		
+		//1000단위 콤마 찍기 위한 형식
+		DecimalFormat formatter = new DecimalFormat("#,###");
+		
+		//이번 달의 마지막 날짜 구하기
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+		int lastDayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+				
+		String accInfoDate = null;
+		int price = 0; //고정 지출 금액
+		int ffpPeriod = 0; //고정 지출 간격
+		int totalfixedFluctuation = 0; //고청 지출 총 합
+		
+		int savingsGoals = 0; //저축 목표 금액
+		int monthlyPaycheck = 0; //월급
+		String joinDate = null; //회원 가입일
+		int spPeriod = 0; //저축 목표 기간
+		int monthsSinceJoin = 0; //지난 저축 기간
+		
+		int monthUsage = getMonthUsage(id); //이번달 지출
+		int monthSaving = getMonthSaving(id); //이번달 입금
+		
+		int totalSaving = getTotalSaving(id); //총 입/출금 금액
+		int totalExpenditure = getTotalExpenditure(id); //총 지출
+		
+		
+		int goalAchievementPeriod = 0; //목표 달성까지 예상 기간
+		int avgMonthlyUsablePrice = 0; //달 평균 사용 가능 금액
+		int avgDailyUsablePrice = 0; //일 평균 사용 가능 금액
+		int avgMonthlySavingsPrice = 0; //목표 기간 안에 저축하기 위한 한 달 평균 저축 금액
+		
+		int avgMonthlySavings = 0; //한 달 평균 저축 금액
+		int avgMonthlySpending = 0; //한 달 평균 지출 금액
+		int remainingSavings = 0; //남은 저축 금액
+		
+		HashMap<String, String> map = new HashMap<>();
+
+		// 고정 지출
+		ArrayList<AccountInfoDTO> fixedFluctuationList = getFixedFluctuation(id);
+		
+		// 챌린지 정보
+		UserDTO userDTO = getSavingsGoals(id);
+		
+		if (fixedFluctuationList != null) {
+			
+			//고정 지출 담기
+			for (AccountInfoDTO dto : fixedFluctuationList) {
+				
+				accInfoDate = dto.getAccInfoDate();
+				price = dto.getPrice();
+				ffpPeriod = dto.getFfpPeriod();
+				
+				totalfixedFluctuation += price;
+				
+//				System.out.println(totalfixedFluctuation);
+
+			}
+			
+		}
+					
+		//챌린지 정보 불러오기
+		monthlyPaycheck = userDTO.getMonthlyPaycheck();
+		savingsGoals = userDTO.getSavingsGoals();
+//		userDTO.getSeqCompressionIntensity();
+		spPeriod = userDTO.getSpPeriod();
+//		joinDate = userDTO.getJoinDate();
+		monthsSinceJoin = userDTO.getMonthsSinceJoin();
+		
+		//남은 저축 금액
+		remainingSavings = savingsGoals - totalSaving;
+
+		//한 달 평균 지출 금액
+		avgMonthlySpending = totalExpenditure / monthsSinceJoin;
+		
+		//한 달 평균 저축 금액
+		avgMonthlySavings = totalSaving / monthsSinceJoin;
+				
+		//목표 달성까지 기간 계산
+		goalAchievementPeriod = remainingSavings / avgMonthlySavings;
+				
+		//목표 기간 안에 목표 금액을 저축하기 위해 매달 저축해야하는 평균
+		avgMonthlySavingsPrice = remainingSavings / (spPeriod - monthsSinceJoin);
+		
+		//달 평균 사용 가능 금액
+		avgMonthlyUsablePrice = (monthSaving - monthUsage - totalfixedFluctuation) - avgMonthlySavingsPrice;
+		
+		//일 편귱 사용 가능 금액
+		avgDailyUsablePrice = avgMonthlyUsablePrice / lastDayOfMonth;
+		
+		map.put("savingsGoals", formatter.format(savingsGoals));
+		map.put("totalSaving", formatter.format(totalSaving));
+		map.put("remainingSavings", formatter.format(remainingSavings));
+		map.put("avgMonthlySpending", formatter.format(avgMonthlySpending));
+		map.put("avgMonthlySavings", formatter.format(avgMonthlySavings));
+		map.put("goalAchievementPeriod", formatter.format(goalAchievementPeriod));
+		map.put("monthUsage", formatter.format(monthUsage));
+		
+		map.put("spPeriod", formatter.format(spPeriod));
+		map.put("monthsSinceJoin", formatter.format(monthsSinceJoin));
+		
+		map.put("avgMonthlySavingsPrice", formatter.format(avgMonthlySavingsPrice));
+		map.put("avgMonthlyUsablePrice", formatter.format(avgMonthlyUsablePrice));
+		map.put("avgDailyUsablePrice", formatter.format(avgDailyUsablePrice));
+		
+		return map;
 	}
 	
 	//가계부 분석 > 뉴스 불러오기(뉴스 테이블 정보 dto에 추가해야할 듯>추가 완료)
@@ -410,11 +748,12 @@ public class AccountDAO {
 		return null;
 	}
 
+	//카테고리 목록 불러오기
 	public ArrayList<AccountInfoDTO> getCategory() {
 		
 		try {
 			
-			String sql = "select * from tblAccCategory";
+			String sql = "select * from tblAccCategory order by seq asc";
 			
 			stat = conn.createStatement();
 			rs = stat.executeQuery(sql);
