@@ -1,5 +1,6 @@
-/* 박스 스타일 */
+@import url('//fonts.googleapis.com/earlyaccess/notosanskr.css');
 
+/* 박스 스타일 */
 .gray-blue-box {
   width:90%;
   height: 100%;
@@ -24,9 +25,22 @@
 
 /* 분석 css 시작 */
 body{
+	font-family: "Noto Sans KR", sans-serif;
   background-color: #FFFFFF;
+  font-size: 14px;
+  color: #141414;
 }
-
+#monthgoal {
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#currentsituation {
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 #periodcheck{
     display: flex;
     justify-content: center;
@@ -35,6 +49,43 @@ body{
 #periodcheck button{
     margin: 5px;
 }
+
+.spending-price-red {
+    font-weight: bold;
+    font-size: 16px;
+    color: #960005;
+}
+
+.usable-price-num {
+    font-weight: bold;
+    font-size: 14px;
+    color: #BEA6A1;
+}
+
+.anyalysis-period-num {
+    font-weight: bold;
+    font-size: 16px;
+    color: #FF846E;
+}
+
+.anyalysis-goals-price {
+    font-weight: bold;
+    font-size: 16px;
+    color: #CC8B3E;
+}
+
+.anyalysis-savings-price {
+    font-weight: bold;
+    font-size: 16px;
+    color: #84B652;
+}
+
+.anyalysis-remaining-price {
+    font-weight: bold;
+    font-size: 16px;
+    color: #FE85AA;
+}
+
 /* 파이차트 시작 */
 #chart01{
 	display: flex;

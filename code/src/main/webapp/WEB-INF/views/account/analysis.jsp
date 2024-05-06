@@ -87,8 +87,21 @@
 				</div>
 
 				<div id="secondrow">
-					<div id="monthgoal" class="black-border-box">이번달 목표 : 200만원</div>
-					<div id="currentsituation" class="black-border-box">이번달 사용 : 100만원</div>
+					<div id="monthgoal" class="black-border-box">
+						저축 목표 기간 <a class="anyalysis-period-num">${challengeInfoMap.spPeriod}개월</a><br>
+						저축 목표 금액 <a class ="anyalysis-goals-price" >${challengeInfoMap.savingsGoals}원</a><br>
+						현재 저축 금액 <a class ="anyalysis-savings-price" >${challengeInfoMap.totalSaving}원</a><br>
+						남은 저축 금액 <a class ="anyalysis-remaining-price" >${challengeInfoMap.remainingSavings}원</a>
+					</div>
+					<div id="currentsituation" class="black-border-box">
+						<div>저축 목표 기간 중 <a class="anyalysis-period-num">${challengeInfoMap.monthsSinceJoin}개월</a>이 지났습니다!</div><br>
+						<div>이번 달 지출금은 총 <a class="spending-price-red">${challengeInfoMap.monthUsage}원</a>,<br> 월 평균 지출금은 <a class="spending-price-red">${challengeInfoMap.avgMonthlySpending}원</a>입니다.</div><br>
+						<div>이 기세로는 목표 저축 금액까지 <a class="anyalysis-period-num">${challengeInfoMap.goalAchievementPeriod}개월</a>이 필요합니다!</div><br>
+						<div><a class="anyalysis-period-num">${challengeInfoMap.spPeriod - challengeInfoMap.monthsSinceJoin}개월</a> 안에 목표 금액을 달성하려면</div>
+						<div>매달 평균 <a class ="anyalysis-remaining-price" >${challengeInfoMap.avgMonthlySavingsPrice}원</a>을 저축해야합니다!</div>
+						<div>이번 달은 <a class ="usable-price-num">${challengeInfoMap.avgMonthlyUsablePrice}원</a>을 사용할 수 있으며,</div>
+						<div>일 평균 <a class ="usable-price-num">${challengeInfoMap.avgDailyUsablePrice}원</a>을 사용할 수 있습니다.</div>
+					</div>
 				</div>
 				<div id="chartLegend"></div>
 				<div id="thridrow">
@@ -138,6 +151,7 @@
 
 	// 미리 정의된 색상 팔레트
 	const colorPalette = [
+		'#F3FAFF',
 		'#36A2EB', '#FF6384', '#4BC0C0', '#FC9D3F', '#9966FF', '#FFCD56', '#C9CBCF', '#F9F871', '#A0F48B', '#A3459B',
 	    '#E17AA7', '#EEE8A9', '#265E58', '#F47558', '#D25F9C', '#9B61A3', '#00524A', '#655E96', '#3E567A', '#2F4858',
 	    '#DD6C41', '#A57A11', '#647E17', '#007A3E', '#007165', '#96525D', '#FFE3E9', '#BFA5A8', '#53D0B9', '#6FDEAA',

@@ -14,6 +14,7 @@ public class UserDTO {
 	private String phoneNumber;
 	private String ssn;
 	private String joinDate;
+	private int monthsSinceJoin;	
 	
 	private int monthlyPaycheck;
 	public int getMonthlyPaycheck() {
@@ -40,6 +41,16 @@ public class UserDTO {
 	public void setSeqSavingsPeriod(String seqSavingsPeriod) {
 		this.seqSavingsPeriod = seqSavingsPeriod;
 	}
+
+	public int getMonthsSinceJoin() {
+		return monthsSinceJoin;
+	}
+	public void setMonthsSinceJoin(int monthsSinceJoin) {
+		this.monthsSinceJoin = monthsSinceJoin;
+	}
+
+
+
 	private int savingsGoals;
 	private String seqCompressionIntensity;
 	private String seqSavingsPeriod;

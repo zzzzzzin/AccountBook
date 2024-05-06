@@ -41,10 +41,11 @@ public class Analysis extends HttpServlet {
 		
 		HashMap<String, String> challengeInfoMap = dao.getChallenge(id);
 		
-		req.setAttribute("map", map);
+//		req.setAttribute("map", map);
 		req.setAttribute("nList", nList);
 		req.setAttribute("bList", bList);
 		req.setAttribute("cList", cList);
+		req.setAttribute("challengeInfoMap", challengeInfoMap);
 	
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/account/analysis.jsp");

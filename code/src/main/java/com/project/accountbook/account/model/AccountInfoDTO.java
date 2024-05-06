@@ -23,6 +23,7 @@ public class AccountInfoDTO {
 	private String seqDepositWithdrawalStatus;
 	
 	private int totalPrice;
+	private int totalSaving;
 	
 	//가계부
 	private String idMember;
@@ -137,6 +138,14 @@ public class AccountInfoDTO {
 
 	public void setTotalPrice(int totalPrice) {
 		this.totalPrice = totalPrice;
+	}
+	
+	public int getTotalSaving() {
+		return totalSaving;
+	}
+
+	public void setTotalSaving(int totalSaving) {
+		this.totalSaving = totalSaving;
 	}
 
 	public String getIdMember() {
