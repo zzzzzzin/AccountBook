@@ -631,5 +631,66 @@ public class AccountDAO {
 		
 		return null;
 	}
+
+	public ArrayList<AccountInfoDTO> accEventContent(String id) {
+		ArrayList<AccountInfoDTO> list = new ArrayList<AccountInfoDTO>();
+		try {
+			
+			String sql = "select\r\n"
+					+ "    ai.seq as accinfonum,\r\n"
+					+ "    ai.content as aicontent,\r\n"
+					+ "    accinfodate,\r\n"
+					+ "    price,\r\n"
+					+ "    location,\r\n"
+					+ "    me.ID as memberID,\r\n"
+					+ "    acate.NAME as categoryName,\r\n"
+					+ "    seqfixedfluctuationcheck,\r\n"
+					+ "    dws.STATUS as spendstatus\r\n"
+					+ "from TBLACCINFO ai\r\n"
+					+ "    inner join TBLACC ac on ai.SEQACC = ac.SEQ\r\n"
+					+ "    inner join TBLMEMBER me on ac.IDMEMBER = me.ID\r\n"
+					+ "    inner join TBLACCCATEGORYLIST acl on ai.SEQ = acl.SEQACCINFO\r\n"
+					+ "    inner join TBLACCCATEGORY acate on acl.SEQACCCATEGORY = acate.SEQ\r\n"
+					+ "    inner join TBLDEPOSITWITHDRAWALSTATUS dws on ai.SEQDEPOSITWITHDRAWALSTATUS = dws.SEQ\r\n"
+					+ "    inner join TBLREASONCHANGECATEGORY rc on ai.SEQREASONCHANGECATEGORY = rc.SEQ\r\n"
+					+ "    inner join TBLREASONSCHANGELIST rcl on rc.SEQREASONSCHANGELIST = rcl.SEQ\r\n"
+					+ "    where me.ID = ?";
+			
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, id);
+			rs = pstat.executeQuery();
+			
+			
+			
+			while(rs.next()) {
+				AccountInfoDTO dto = new AccountInfoDTO();
+				dto.setContent(rs.getString("aicontent"));
+				dto.setAccInfoDate(rs.getString("accinfodate"));
+				dto.setPrice(rs.getInt("price"));
+				dto.setLocation(rs.getString("location"));
+				dto.setIdMember(rs.getString("memberID"));
+				dto.setAcName(rs.getString("categoryName"));
+				dto.setSeqFixedFluctuationCheck(rs.getString("seqfixedfluctuationcheck"));
+				dto.setSeqDepositWithdrawalStatus(rs.getString("spendstatus"));
+				list.add(dto);
+			}
+			System.out.println("run");
+			
+			return list;
+		} catch (Exception e) {
+			System.out.println("AccountDAO.accEventContent");
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+
+	
 	  
 }
+
+
+	
+	  
+
