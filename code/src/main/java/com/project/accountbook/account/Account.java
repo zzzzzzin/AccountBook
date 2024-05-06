@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import com.project.accountbook.account.model.AccountInfoDTO;
 import com.project.accountbook.account.repository.AccountDAO;
 
@@ -33,17 +36,30 @@ public class Account extends HttpServlet {
 		
 		ArrayList<AccountInfoDTO> calenderdata = dao.accEventContent(id);
 		
-		
-		 // Serialize data to JSON
-//        Gson gson = new Gson();
-//        String json = gson.toJson(calenderdata);
+		JSONArray arr = new JSONArray();
+		for (AccountInfoDTO dto : calenderdata) {
+			JSONObject obj = new JSONObject();
+			String start = "20"+dto.getAccInfoDate().replace("/", "-");
+			
+			obj.put("title", dto.getTitle());
+			obj.put("start", dto.getAccInfoDate());
+			obj.put("loc", dto.getLocation());
+			obj.put("content", dto.getContent());
+			obj.put("amountIndicator", dto.getSeqDepositWithdrawalStatus());
+			obj.put("amount", dto.getPrice());
+			obj.put("category", dto.getAcName());
+			obj.put("fixed", dto.getSeqFixedFluctuationCheck());
+			obj.put("fixedperiod", dto.getSeqFixedFluctuationPeriod());
+			
+			
+			arr.add(obj);
+		}
 
         // Set response content type to JSON and send the JSON as response
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
-//        resp.getWriter().write(json);
-//		
-//        req.setAttribute("eventsev", json);
+		
+        req.setAttribute("eventsev", arr);
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/account/calendar.jsp");
 		dispatcher.forward(req, resp);
@@ -119,4 +135,3 @@ public class Account extends HttpServlet {
 	}
 
 }
-

@@ -671,7 +671,6 @@
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
     <script>
     
-    /* console.log(${eventsev}); */
 
     function openEventModal() {
         var modal = new bootstrap.Modal(document.getElementById("eventProduceModal"));
@@ -715,7 +714,7 @@
         var categorySelector = document.getElementById('eventModalSelect'); 
         // 카테고리 선택 시작
         const categories = [
-        "없음","SNS수입", "건강", "경조사", "교육", "교통", "구독료", "금융수입", "급여", "기부금", "기타",
+        "미분류","SNS수입", "건강", "경조사", "교육", "교통", "구독료", "금융수입", "급여", "기부금", "기타",
         "더치페이", "로열티", "문화생활", "미용", "보험금", "부동산수입", "부업", "사업수입", "상속", "상여금",
         "생활용품", "세금", "쇼핑", "수수료", "숙박", "아르바이트", "앱테크", "여가", "여행", "용돈",
         "유흥", "육아", "음식", "이자", "자동차", "장학금", "저축", "주거", "카페", "통신"
@@ -942,7 +941,7 @@
       			   					loc: obj.loc,
       			   					content: obj.content,
       			   					amount: obj.amount,
-      			   					indicator: obj.amountindicator,
+      			   					indicator: (obj.amountindicator==='출금'?'-':'+'),
       			   					category: obj.category,
       			   					fixed: obj.fixed,
       			   					fixedPeriod: obj.fixedperiod
