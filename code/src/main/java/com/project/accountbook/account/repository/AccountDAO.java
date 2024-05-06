@@ -980,10 +980,14 @@ public class AccountDAO {
 					+ "    accinfodate,\r\n"
 					+ "    price,\r\n"
 					+ "    location,\r\n"
-					+ "    me.ID as memberID,\r\n"
-					+ "    acate.NAME as categoryName,\r\n"
+					+ "    me.ID as idMember,\r\n"
+					+ "    acate.NAME as acName,\r\n"
 					+ "    seqfixedfluctuationcheck,\r\n"
-					+ "    dws.STATUS as spendstatus\r\n"
+					+ "    PERIOD,\r\n"
+					+ "    ai.SEQDEPOSITWITHDRAWALSTATUS as spendstatus,\r\n"
+					+ "    rcl.CONTENT as paymentmethod,\r\n"
+					+ "    mc.ALIAS as name,\r\n"
+					+ "    mc.CARDNUMBER as cardnumber\r\n"
 					+ "from TBLACCINFO ai\r\n"
 					+ "    inner join TBLACC ac on ai.SEQACC = ac.SEQ\r\n"
 					+ "    inner join TBLMEMBER me on ac.IDMEMBER = me.ID\r\n"
@@ -992,6 +996,9 @@ public class AccountDAO {
 					+ "    inner join TBLDEPOSITWITHDRAWALSTATUS dws on ai.SEQDEPOSITWITHDRAWALSTATUS = dws.SEQ\r\n"
 					+ "    inner join TBLREASONCHANGECATEGORY rc on ai.SEQREASONCHANGECATEGORY = rc.SEQ\r\n"
 					+ "    inner join TBLREASONSCHANGELIST rcl on rc.SEQREASONSCHANGELIST = rcl.SEQ\r\n"
+					+ "    inner join TBLMYCARD mc on rc.SEQMYCARD = mc.SEQ\r\n"
+					+ "    inner join TBLFIXEDDEPOSITWITHDRAWALCHECK fdw on ai.SEQFIXEDFLUCTUATIONCHECK = fdw.SEQ\r\n"
+					+ "    inner join TBLFIXEDFLUCTUATIONPERIOD ffp on fdw.SEQFIXEDFLUCTUATIONPERIOD = ffp.SEQ\r\n"
 					+ "    where me.ID = ?";
 			
 			
@@ -1007,10 +1014,15 @@ public class AccountDAO {
 				dto.setAccInfoDate(rs.getString("accinfodate"));
 				dto.setPrice(rs.getInt("price"));
 				dto.setLocation(rs.getString("location"));
-				dto.setIdMember(rs.getString("memberID"));
-				dto.setAcName(rs.getString("categoryName"));
+				dto.setIdMember(rs.getString("idMember"));
+				dto.setAcName(rs.getString("acName"));
 				dto.setSeqFixedFluctuationCheck(rs.getString("seqfixedfluctuationcheck"));
+				dto.setFfpPeriod(rs.getInt("PERIOD"));
 				dto.setSeqDepositWithdrawalStatus(rs.getString("spendstatus"));
+				dto.setPaymentMethod(rs.getString("paymentmethod"));
+				dto.setAlias(rs.getString("name"));
+				dto.setCardNumber(rs.getString("cardnumber"));
+				
 				list.add(dto);
 			}
 			System.out.println("run");
@@ -1021,6 +1033,101 @@ public class AccountDAO {
 			e.printStackTrace();
 		}
 		return list;
+	}
+
+	public int addEvent(AccountInfoDTO dto) {
+		
+		try {
+			
+			System.out.println("insert start");
+			
+			String sql = "select * from tblAcc where idMember = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getIdMember());
+			rs = pstat.executeQuery();
+			
+			if(rs.next()) {
+				dto.setSeqAcc(rs.getString("seq"));
+			}
+			 if (rs != null) rs.close();
+
+		        // Prepare to insert into tblAccInfo
+		        sql = "INSERT INTO tblAccInfo(SEQ, CONTENT, ACCINFODATE, PRICE, LOCATION, SEQACC, SEQREASONCHANGECATEGORY, SEQFIXEDFLUCTUATIONCHECK, SEQDEPOSITWITHDRAWALSTATUS) VALUES ((SELECT NVL(MAX(seq), 0) + 1 FROM tblAccInfo), ?, ?, ?, ?, ?, ?, ?, ?)";
+		        pstat = conn.prepareStatement(sql);
+
+		        pstat.setString(1, dto.getContent());
+		        pstat.setString(2, dto.getAccInfoDate());
+		        pstat.setInt(3, dto.getPrice());
+		        pstat.setString(4, dto.getLocation());
+		        pstat.setInt(5, Integer.parseInt(dto.getSeqAcc()));
+		        pstat.setInt(6, 2);
+		        pstat.setInt(7, Integer.parseInt(dto.getFdwContent()));
+		        pstat.setInt(8, Integer.parseInt(dto.getSeqDepositWithdrawalStatus()));
+
+		        int indicate = pstat.executeUpdate();
+
+		        System.out.println("First insert result: " + indicate);
+
+		        // Prepare to insert into tblAccCategoryList
+		        sql = "INSERT INTO tblAccCategoryList(seq, seqAccCategory, seqAccInfo) VALUES ((SELECT NVL(MAX(seq), 0) + 1 FROM tblAccCategoryList), ?, (SELECT MAX(seq) FROM tblAccInfo))";
+		        pstat = conn.prepareStatement(sql);
+		        pstat.setString(1, dto.getSeqAccCategory());
+
+		        int indicate2 = pstat.executeUpdate();
+
+		        System.out.println("Second insert result: " + indicate2);
+
+		        return indicate; 
+			
+		} catch (Exception e) {
+			System.out.println("AccountDAO.addEvent");
+			e.printStackTrace();
+		}
+		
+		
+		
+		return 0;
+	}
+
+	public ArrayList<AccountInfoDTO> getmycards(String id) {
+		ArrayList<AccountInfoDTO> list = new ArrayList<AccountInfoDTO>();
+		try {
+			System.out.println("CARD START HERE");
+			System.out.println(id);
+			
+			
+			String sql = "select\r\n"
+					+ "    content as paymentmethod,\r\n"
+					+ "    CARDNUMBER as cardnumber,\r\n"
+					+ "    alias as name\r\n"
+					+ "from TBLREASONCHANGECATEGORY rcc\r\n"
+					+ "    left join TBLREASONSCHANGELIST rcl on rcc.SEQREASONSCHANGELIST = rcl.SEQ\r\n"
+					+ "    left join TBLMYCARD mc on rcc.SEQMYCARD = mc.SEQ\r\n"
+					+ "where IDMEMBER = ?";
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, id);
+			
+			rs = pstat.executeQuery();
+			
+			while(rs.next()) {
+				AccountInfoDTO dto = new AccountInfoDTO();
+				dto.setPaymentMethod(rs.getString("paymentmethod"));
+				dto.setAlias(rs.getString("name"));
+				dto.setCardNumber(rs.getString("cardnumber"));
+				list.add(dto);
+			}
+			System.out.println(list);
+			return list;
+			
+			
+		} catch (Exception e) {
+			System.out.println("AccountDAO.getmycards");
+			e.printStackTrace();
+		}
+		
+		
+		return null;
 	}
 
 

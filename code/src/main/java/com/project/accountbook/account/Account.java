@@ -33,8 +33,9 @@ public class Account extends HttpServlet {
 		String id = (String)session.getAttribute("id");
 		System.out.println(id);
 		AccountDAO dao = new AccountDAO();
-		
 		ArrayList<AccountInfoDTO> calenderdata = dao.accEventContent(id);
+		
+		ArrayList<AccountInfoDTO> cardlist = dao.getmycards(id);
 		
 		JSONArray arr = new JSONArray();
 		for (AccountInfoDTO dto : calenderdata) {
@@ -55,12 +56,17 @@ public class Account extends HttpServlet {
 			arr.add(obj);
 		}
 
-        // Set response content type to JSON and send the JSON as response
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
 		
         req.setAttribute("eventsev", arr);
-
+        ArrayList<AccountInfoDTO> cList = dao.getCategory();
+        req.setAttribute("cList", cList);
+        req.setAttribute("cardlist", cardlist);
+        
+        System.out.println(cardlist);
+        
+        
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/account/calendar.jsp");
 		dispatcher.forward(req, resp);
 
@@ -75,62 +81,60 @@ public class Account extends HttpServlet {
 		
 		HttpSession session = req.getSession();
 		String id = (String)session.getAttribute("id");
-		System.out.println(id);
+		
+		req.setCharacterEncoding("UTF-8");
+		String accInfoDate = (req.getParameter("start")).substring(0,10);
+		String location = req.getParameter("useLocation");
+		String content = req.getParameter("content");
+		String seqAccCategory = req.getParameter("category");
+		String seqReasonsChangeList = req.getParameter("paymentMethod");
+		String price = req.getParameter("amount");
+		String seqDepositWithdrawalStatus = req.getParameter("amountindicator");
+		String fdwContent = req.getParameter("isFixedExpense");
+		
+		
+		
+		
+		if ("false".equals(fdwContent)) {
+		    fdwContent = "0";
+		    System.out.println(fdwContent);
+		}
+		
+		System.out.println("fdw = " + fdwContent);
+		
+//		System.out.println("day" + accInfoDate);
+//		System.out.println("location"+location);
+//		System.out.println(content);
+//		System.out.println(seqAccCategory);
+//		System.out.println(seqAccCategory);
+//		System.out.println(seqReasonsChangeList);
+//		System.out.println(fdwContent);
+//		System.out.println(price);
+		
+		
+		
+		if(seqDepositWithdrawalStatus == "+") {
+			seqDepositWithdrawalStatus = "1";
+		}else {
+			seqDepositWithdrawalStatus="2";
+		}
+		System.out.println(seqDepositWithdrawalStatus);
+		System.out.println("sending");
+		AccountInfoDTO dto = new AccountInfoDTO();
 		AccountDAO dao = new AccountDAO();
 		
-		ArrayList<AccountInfoDTO> calenderdata = dao.accEventContent(id);
+		dto.setIdMember(id);
+		dto.setAccInfoDate(accInfoDate);
+		dto.setLocation(location);
+		dto.setContent(content);
+		dto.setSeqAccCategory(seqAccCategory);
+		dto.setSeqReasonsChangeList(seqReasonsChangeList);
+		dto.setPrice(Integer.parseInt(price));
+		dto.setSeqDepositWithdrawalStatus(seqDepositWithdrawalStatus);
+		dto.setFdwContent(fdwContent);
 		
-		
-		 // Serialize data to JSON
-//        Gson gson = new Gson();
-//        String json = gson.toJson(calenderdata);
 
-        // Set response content type to JSON and send the JSON as response
-        resp.setContentType("application/json");
-        resp.setCharacterEncoding("UTF-8");
-//        resp.getWriter().write(json);
-//		
-//        req.setAttribute("eventsev", json);
-
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/account/calendar.jsp");
-		dispatcher.forward(req, resp);
-
-		
-//		HttpSession session = req.getSession();
-//		String id = (String) session.getAttribute("id");
-//		 
-//		String content = req.getParameter("content");
-//		String accInfoDate = req.getParameter("accInfoDate");
-//		String price = req.getParameter("price");
-//		String location = req.getParameter("location");
-//		String seqAcc = req.getParameter("seqAcc");
-//		String seqReasonChangeCategory = req.getParameter("seqReasonChangeCategory");
-//		
-//		String seqReasonsChangeList = req.getParameter("seqReasonsChangeList");
-//		
-//		String seqFixedFluctuationCheck = req.getParameter("seqFixedFluctuationCheck");
-//		
-//		String seqDepositWithdrawalStatus = req.getParameter("seqDepositWithdrawalStatus");
-//		
-//		String productName = req.getParameter("productName"); //구매 위시 목록 내용
-//		
-//		AccountDAO dao = new AccountDAO();
-//		
-//		//고정 입출금 설정한 경우
-//		if (Integer.parseInt(seqFixedFluctuationCheck) != 0) {
-//
-//			String fdwContent = req.getParameter("fdwContent"); //고정 입출금 내용
-//			
-//		} 
-//		
-//		//카드인 경우
-//		if (Integer.parseInt(seqReasonsChangeList) == 2 || Integer.parseInt(seqReasonsChangeList) == 3) {
-//			
-//			String seqMyCard = req.getParameter("seqMyCard");
-//		}
-//		
-//		AccountInfoDTO AccountInfoDTO = new AccountInfoDTO();
-				
+		int indicate = dao.addEvent(dto);
 		
 	}
 
