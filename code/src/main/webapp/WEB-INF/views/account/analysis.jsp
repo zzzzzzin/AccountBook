@@ -59,9 +59,9 @@
 			<div id="fakecontent">
 			<form method="GET">
 				<div id="periodcheck">
-					<button name="period" value="day">일일</button>
-					<button name="period" value="week">주간</button>
-					<button name="period" value="month">월간</button>
+					<button name="period" value="day" class="dark-blue-btn">일일</button>
+					<button name="period" value="week" class="dark-blue-btn">주간</button>
+					<button name="period"  value="month" class="dark-blue-btn">월간</button>
 				</div>
 			</form>
 
@@ -81,7 +81,15 @@
 					</div>
 
 
-					<div id="customMsg">이번달 목표를 달성할거 같습니다!!!</div>
+					<div id="customMsg">
+						<div>
+							지난 달 가장 많이 소비한 카테고리는 <a>${categoryUsageMap.acName}</a>입니다.<br>
+							지날 달은 ${categoryUsageMap.acName}에서 ${categoryUsageMap.beforeAcUsage}원을 사용했고, <br>
+							이번 달은 ${categoryUsageMap.nowAcUsage}원을 사용했습니다.
+							
+						</div>
+					
+					</div>
 
 					<!-- Sales Chart End -->
 				</div>

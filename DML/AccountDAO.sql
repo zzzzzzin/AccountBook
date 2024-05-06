@@ -119,7 +119,134 @@ from tblSurvey su
                     where me.id = 'abc001@naver.com';
 
 
+
+
+
 --analysis
+--기간별 총 사용 금액
+SELECT 
+    COALESCE(sub1.totalPrice, 0) beforeAcUsage,
+    COALESCE(sub2.totalPrice, 0) nowAcUsage,
+    COALESCE(sub1.idMember, sub2.idMember) idMember
+FROM (
+    -- 2달 전부터 1달 전까지의 사용 금액
+    SELECT 
+        SUM(ai.price) AS totalPrice,
+        mc.idMember AS idMember
+    FROM 
+        tblAccInfo ai
+    INNER JOIN 
+        tblReasonChangeCategory rcc ON rcc.seq = ai.seqReasonChangeCategory
+    INNER JOIN 
+        tblMyCard mc ON mc.seq = rcc.seqMyCard
+    WHERE 
+        mc.idMember = 'abc001@naver.com'
+        AND ai.accInfoDate BETWEEN to_date(sysdate, 'YY/MM/DD') - interval '2' month AND to_date(sysdate, 'YY/MM/DD') - interval '1' month -- 2달 전부터 1달 전까지
+        AND ai.seqDepositWithdrawalStatus = 2 -- 입출금 상태
+    GROUP BY 
+        mc.idMember
+) sub1
+FULL OUTER JOIN (
+    -- 1달 전부터 현재까지의 사용 금액
+    SELECT 
+        SUM(ai.price) AS totalPrice,
+        mc.idMember AS idMember
+    FROM 
+        tblAccInfo ai
+    INNER JOIN 
+        tblReasonChangeCategory rcc ON rcc.seq = ai.seqReasonChangeCategory
+    INNER JOIN 
+        tblMyCard mc ON mc.seq = rcc.seqMyCard
+    WHERE 
+        mc.idMember = 'abc001@naver.com'
+        AND ai.accInfoDate BETWEEN to_date(sysdate, 'YY/MM/DD') - interval '1' month AND to_date(sysdate, 'YY/MM/DD') -- 1달 전부터 현재까지
+        AND ai.seqDepositWithdrawalStatus = 2 -- 입출금 상태
+    GROUP BY 
+        mc.idMember
+) sub2 ON sub1.idMember = sub2.idMember;
+
+
+-- 지난 기간 동안 가장 지출 많은 카테고리 비용
+SELECT 
+        SUM(ai.price) AS totalPrice,
+        ac.name AS acName,
+        mc.idMember AS idMember
+    FROM 
+        tblAccInfo ai
+    INNER JOIN 
+        tblAccCategoryList acl ON acl.seqAccInfo = ai.seq
+    INNER JOIN 
+        tblAccCategory ac ON ac.seq = acl.seqAccCategory
+    INNER JOIN 
+        tblReasonChangeCategory rcc ON rcc.seq = ai.seqReasonChangeCategory
+    INNER JOIN 
+        tblMyCard mc ON mc.seq = rcc.seqMyCard
+    WHERE 
+        mc.idMember = 'abc001@naver.com'
+        AND ai.accInfoDate BETWEEN to_date(sysdate, 'YY/MM/DD') - interval '2' month AND to_date(sysdate, 'YY/MM/DD') - interval '1' month -- 2달 전부터 1달 전까지
+        AND ai.seqDepositWithdrawalStatus = 2 -- 입출금 상태
+    GROUP BY 
+        ac.name, mc.idMember
+    ORDER BY 
+        totalPrice DESC
+    FETCH FIRST 1 ROW ONLY;
+    
+
+--2 기간 사이 가격 비교
+SELECT 
+    COALESCE(sub1.totalPrice, 0) beforeAcUsage,
+    COALESCE(sub2.totalPrice, 0) nowAcUsage,
+    COALESCE(sub1.acName, sub2.acName) acName,
+    COALESCE(sub1.idMember, sub2.idMember) idMember
+FROM (
+    -- 2달 전부터 1달 전까지의 사용 금액
+    SELECT 
+        SUM(ai.price) AS totalPrice,
+        ac.name AS acName,
+        mc.idMember AS idMember
+    FROM 
+        tblAccInfo ai
+    INNER JOIN 
+        tblAccCategoryList acl ON acl.seqAccInfo = ai.seq
+    INNER JOIN 
+        tblAccCategory ac ON ac.seq = acl.seqAccCategory
+    INNER JOIN 
+        tblReasonChangeCategory rcc ON rcc.seq = ai.seqReasonChangeCategory
+    INNER JOIN 
+        tblMyCard mc ON mc.seq = rcc.seqMyCard
+    WHERE 
+        mc.idMember = 'abc001@naver.com'
+        AND ai.accInfoDate BETWEEN to_date(sysdate, 'YY/MM/DD') - interval '2' month AND to_date(sysdate, 'YY/MM/DD') - interval '1' month -- 2달 전부터 1달 전까지
+        AND ai.seqDepositWithdrawalStatus = 2 -- 입출금 상태
+    GROUP BY 
+        ac.name, mc.idMember
+) sub1
+FULL OUTER JOIN (
+    -- 1달 전부터 현재까지의 사용 금액
+    SELECT 
+        SUM(ai.price) AS totalPrice,
+        ac.name AS acName,
+        mc.idMember AS idMember
+    FROM 
+        tblAccInfo ai
+    INNER JOIN 
+        tblAccCategoryList acl ON acl.seqAccInfo = ai.seq
+    INNER JOIN 
+        tblAccCategory ac ON ac.seq = acl.seqAccCategory
+    INNER JOIN 
+        tblReasonChangeCategory rcc ON rcc.seq = ai.seqReasonChangeCategory
+    INNER JOIN 
+        tblMyCard mc ON mc.seq = rcc.seqMyCard
+    WHERE 
+        mc.idMember = 'abc001@naver.com'
+        AND ai.accInfoDate BETWEEN to_date(sysdate, 'YY/MM/DD') - interval '1' month AND to_date(sysdate, 'YY/MM/DD') -- 1달 전부터 현재까지
+        AND ai.seqDepositWithdrawalStatus = 2 -- 입출금 상태
+    GROUP BY 
+        ac.name, mc.idMember
+) sub2 ON sub1.acName = sub2.acName AND sub1.idMember = sub2.idMember;
+
+
+
 select
 sum(ai.price) totalPrice,
 ac.name acName, --카테고리
@@ -154,7 +281,7 @@ from tblAccInfo ai
                         on rcc.seq = ai.seqReasonChangeCategory
                             inner join tblMyCard mc
                                 on mc.seq = rcc.seqMyCard
-                                    where mc.idMember = 'abc002@naver.com'
+                                    where mc.idMember = 'abc001@naver.com'
                                         and ai.accInfoDate 
                                             between to_date(sysdate, 'YY/MM/DD') - interval '2' month 
                                                 and to_date(sysdate, 'YY/MM/DD') - interval '1' month

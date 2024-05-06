@@ -22,6 +22,9 @@ public class AccountInfoDTO {
 	private String seqFixedFluctuationCheck;
 	private String seqDepositWithdrawalStatus;
 	
+	private int beforeAcUsage;
+	private int nowAcUsage;
+	
 	private int totalPrice;
 	private int totalSaving;
 	
@@ -67,6 +70,22 @@ public class AccountInfoDTO {
 	
 	//나의 카드
 	private String alias;
+	
+	public int getBeforeAcUsage() {
+		return beforeAcUsage;
+	}
+
+	public void setBeforeAcUsage(int beforeAcUsage) {
+		this.beforeAcUsage = beforeAcUsage;
+	}
+
+	public int getNowAcUsage() {
+		return nowAcUsage;
+	}
+
+	public void setNowAcUsage(int nowAcUsage) {
+		this.nowAcUsage = nowAcUsage;
+	}
 
 	public String getContent() {
 		return content;

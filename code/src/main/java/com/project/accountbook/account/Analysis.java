@@ -40,14 +40,15 @@ public class Analysis extends HttpServlet {
 		ArrayList<AccountInfoDTO> cList = dao.getCategory();	
 		
 		HashMap<String, String> challengeInfoMap = dao.getChallenge(id);
+		HashMap<String, String>categoryUsageMap = dao.getComparisonCategoryUsage(id);
 		
-//		req.setAttribute("map", map);
 		req.setAttribute("nList", nList);
 		req.setAttribute("bList", bList);
 		req.setAttribute("cList", cList);
+		
 		req.setAttribute("challengeInfoMap", challengeInfoMap);
+		req.setAttribute("categoryUsageMap", categoryUsageMap);
 	
-
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/account/analysis.jsp");
 		dispatcher.forward(req, resp);
 
