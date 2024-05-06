@@ -578,6 +578,197 @@ public class AccountDAO {
 		return map;
 	}
 	
+	public HashMap<String, Integer> getPeriodUsage (String id) {
+
+		try {
+
+			String sql = "SELECT \r\n"
+					+ "    COALESCE(sub1.totalPrice, 0) beforeMonthUsage,\r\n"
+					+ "    COALESCE(sub2.totalPrice, 0) nowMonthUsage,\r\n"
+					+ "    COALESCE(sub1.idMember, sub2.idMember) idMember\r\n"
+					+ "FROM (\r\n"
+					+ "    -- 2달 전부터 1달 전까지의 사용 금액\r\n"
+					+ "    SELECT \r\n"
+					+ "        SUM(ai.price) AS totalPrice,\r\n"
+					+ "        mc.idMember AS idMember\r\n"
+					+ "    FROM \r\n"
+					+ "        tblAccInfo ai\r\n"
+					+ "    INNER JOIN \r\n"
+					+ "        tblReasonChangeCategory rcc ON rcc.seq = ai.seqReasonChangeCategory\r\n"
+					+ "    INNER JOIN \r\n"
+					+ "        tblMyCard mc ON mc.seq = rcc.seqMyCard\r\n"
+					+ "    WHERE \r\n"
+					+ "        mc.idMember = ?\r\n"
+					+ "        AND ai.accInfoDate BETWEEN to_date(sysdate, 'YY/MM/DD') - interval '2' month AND to_date(sysdate, 'YY/MM/DD') - interval '1' month -- 2달 전부터 1달 전까지\r\n"
+					+ "        AND ai.seqDepositWithdrawalStatus = 2 -- 입출금 상태\r\n"
+					+ "    GROUP BY \r\n"
+					+ "        mc.idMember\r\n"
+					+ ") sub1\r\n"
+					+ "FULL OUTER JOIN (\r\n"
+					+ "    -- 1달 전부터 현재까지의 사용 금액\r\n"
+					+ "    SELECT \r\n"
+					+ "        SUM(ai.price) AS totalPrice,\r\n"
+					+ "        mc.idMember AS idMember\r\n"
+					+ "    FROM \r\n"
+					+ "        tblAccInfo ai\r\n"
+					+ "    INNER JOIN \r\n"
+					+ "        tblReasonChangeCategory rcc ON rcc.seq = ai.seqReasonChangeCategory\r\n"
+					+ "    INNER JOIN \r\n"
+					+ "        tblMyCard mc ON mc.seq = rcc.seqMyCard\r\n"
+					+ "    WHERE \r\n"
+					+ "        mc.idMember = ?\r\n"
+					+ "        AND ai.accInfoDate BETWEEN to_date(sysdate, 'YY/MM/DD') - interval '1' month AND to_date(sysdate, 'YY/MM/DD') -- 1달 전부터 현재까지\r\n"
+					+ "        AND ai.seqDepositWithdrawalStatus = 2 -- 입출금 상태\r\n"
+					+ "    GROUP BY \r\n"
+					+ "        mc.idMember\r\n"
+					+ ") sub2 ON sub1.idMember = sub2.idMember";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, id);
+			pstat.setString(2, id);
+
+			rs = pstat.executeQuery();
+
+			HashMap<String, Integer> map = new HashMap<>();
+			
+			while (rs.next()) {
+				
+				map.put("nowMonthUsage", rs.getInt("nowMonthUsage"));
+				map.put("beforeMonthUsage", rs.getInt("beforeMonthUsage"));
+				
+			}
+
+			return map; 
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+	
+	public AccountInfoDTO getMaxUsageCategory(String id) {
+
+		try {
+
+			String sql = "WITH max_category AS (\r\n"
+					+ "    SELECT \r\n"
+					+ "        ac.name AS acName,\r\n"
+					+ "        SUM(ai.price) AS totalPrice\r\n"
+					+ "    FROM \r\n"
+					+ "        tblAccInfo ai\r\n"
+					+ "    INNER JOIN \r\n"
+					+ "        tblAccCategoryList acl ON acl.seqAccInfo = ai.seq\r\n"
+					+ "    INNER JOIN \r\n"
+					+ "        tblAccCategory ac ON ac.seq = acl.seqAccCategory\r\n"
+					+ "    INNER JOIN \r\n"
+					+ "        tblReasonChangeCategory rcc ON rcc.seq = ai.seqReasonChangeCategory\r\n"
+					+ "    INNER JOIN \r\n"
+					+ "        tblMyCard mc ON mc.seq = rcc.seqMyCard\r\n"
+					+ "    WHERE \r\n"
+					+ "        mc.idMember = ?\r\n"
+					+ "        AND ai.accInfoDate BETWEEN to_date(sysdate, 'YY/MM/DD') - interval '2' month AND to_date(sysdate, 'YY/MM/DD') - interval '1' month -- 2달 전부터 1달 전까지\r\n"
+					+ "        AND ai.seqDepositWithdrawalStatus = 2 -- 입출금 상태\r\n"
+					+ "    GROUP BY \r\n"
+					+ "        ac.name\r\n"
+					+ "    ORDER BY \r\n"
+					+ "        totalPrice DESC\r\n"
+					+ "    FETCH FIRST 1 ROW ONLY\r\n"
+					+ ")\r\n"
+					+ "SELECT \r\n"
+					+ "    max_category.acName acName,\r\n"
+					+ "    MAX(totalPrice) AS beforeAcUsage,\r\n"
+					+ "    SUM(CASE WHEN ai.accInfoDate BETWEEN to_date(sysdate, 'YY/MM/DD') - interval '1' month AND to_date(sysdate, 'YY/MM/DD') THEN ai.price ELSE 0 END) AS nowAcUsage\r\n"
+					+ "FROM \r\n"
+					+ "    tblAccInfo ai\r\n"
+					+ "INNER JOIN \r\n"
+					+ "    tblAccCategoryList acl ON acl.seqAccInfo = ai.seq\r\n"
+					+ "INNER JOIN \r\n"
+					+ "    tblAccCategory ac ON ac.seq = acl.seqAccCategory\r\n"
+					+ "INNER JOIN \r\n"
+					+ "    tblReasonChangeCategory rcc ON rcc.seq = ai.seqReasonChangeCategory\r\n"
+					+ "INNER JOIN \r\n"
+					+ "    tblMyCard mc ON mc.seq = rcc.seqMyCard\r\n"
+					+ "INNER JOIN \r\n"
+					+ "    max_category ON max_category.acName = ac.name\r\n"
+					+ "WHERE \r\n"
+					+ "    mc.idMember = ?\r\n"
+					+ "    AND ai.seqDepositWithdrawalStatus = 2 -- 입출금 상태\r\n"
+					+ "GROUP BY \r\n"
+					+ "    max_category.acName";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, id);
+			pstat.setString(2, id);
+
+			rs = pstat.executeQuery();
+
+			AccountInfoDTO dto = new AccountInfoDTO();
+			
+			while (rs.next()) {
+				
+				dto.setBeforeAcUsage(rs.getInt("beforeAcUsage"));
+				dto.setNowAcUsage(rs.getInt("nowAcUsage"));
+				dto.setAcName(rs.getString("acName"));
+				
+			}
+
+			return dto; 
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+	
+	// 가계부 분석 > 카테고리별 지출 비교
+	public HashMap<String, String> getComparisonCategoryUsage(String id) {
+		
+		DecimalFormat formatter = new DecimalFormat("#,###");
+		
+		HashMap<String, String> map = new HashMap<>();
+			
+		String acName = null;
+		
+		int nowAcUsage = 0;
+		int beforeAcUsage = 0;
+		
+		int nowMonthUsage = 0; // 이번달 지출
+		int beforeMonthUsage = 0; // 지난달 지출
+		
+		int now = 0;
+		int before = 0;
+		
+		AccountInfoDTO dto = getMaxUsageCategory(id);
+		HashMap<String, Integer> usageMap = getPeriodUsage(id);
+		
+		beforeAcUsage = dto.getBeforeAcUsage();
+		nowAcUsage = dto.getNowAcUsage();
+		acName = dto.getAcName();
+		
+		beforeMonthUsage = usageMap.get("beforeMonthUsage");
+		nowMonthUsage = usageMap.get("nowMonthUsage");
+		
+		before = beforeAcUsage / beforeMonthUsage;
+		now = nowAcUsage / nowMonthUsage;
+		
+		map.put("acName", acName);
+		
+		map.put("now", String.valueOf(formatter.format(now)));
+		map.put("before", String.valueOf(formatter.format(before)));
+		
+		map.put("beforeMonthUsage", String.valueOf(formatter.format(beforeMonthUsage)));
+		map.put("nowMonthUsage", String.valueOf(formatter.format(nowMonthUsage)));
+		
+		map.put("beforeAcUsage", String.valueOf(formatter.format(beforeAcUsage)));
+		map.put("nowAcUsage", String.valueOf(formatter.format(nowAcUsage)));
+		
+		map.put("gap", String.valueOf(formatter.format(before - now)));
+
+		return map;
+	}
+	
 	//가계부 분석 > 뉴스 불러오기(뉴스 테이블 정보 dto에 추가해야할 듯>추가 완료)
 	public int getNews(AccountInfoDTO dto) {
 		

@@ -25,6 +25,10 @@ font-family: "Noto Sans KR", sans-serif;
   border-color: rgb(0 0 0 / 0%);
 }
 
+.gray-blue-box:hover {
+	background-color: #C8DCEF;
+}
+
 .black-border-box {
     padding: 20px;
     background: #f9f9f9;
@@ -49,6 +53,11 @@ font-family: "Noto Sans KR", sans-serif;
     user-select: none;
     vertical-align: middle;
     color:#fff;
+}
+
+.dark-blue-btn:hover {
+	background-color: #1a252f;
+    border: 1px solid #1a252f;	
 }
 .long-btn {
 	height: 58px;
