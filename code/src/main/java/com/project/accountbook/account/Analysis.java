@@ -37,10 +37,10 @@ public class Analysis extends HttpServlet {
 		AccountDAO dao = new AccountDAO();
 		ArrayList<AccountInfoDTO> nList = dao.nowAnalysis(id, map);
 		ArrayList<AccountInfoDTO> bList = dao.beforeAnalysis(id, map);
-		ArrayList<AccountInfoDTO> cList = dao.getCategory();		
+		ArrayList<AccountInfoDTO> cList = dao.getCategory();	
 		
+		HashMap<String, String> challengeInfoMap = dao.getChallenge(id);
 		
-				
 		req.setAttribute("map", map);
 		req.setAttribute("nList", nList);
 		req.setAttribute("bList", bList);

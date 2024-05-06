@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -239,16 +241,18 @@ public class AccountDAO {
 		try {
 
 			String sql = "select \r\n"
-					+ "ai.accInfoDate accInfoDate,\r\n"
-					+ "ai.price price,\r\n"
-					+ "fdw.seqFixedFluctuationPeriod seqFixedFluctuationPeriod\r\n"
-					+ "from tblAccInfo ai\r\n"
-					+ "    inner join tblFixedDepositWithdrawalCheck fdw\r\n"
-					+ "        on fdw.seq = ai.seqFixedFluctuationCheck\r\n"
-					+ "            inner join tblAcc acc\r\n"
-					+ "                on acc.seq = ai.seqAcc\r\n"
-					+ "                    where fdw.seqFixedFluctuationPeriod != 0\r\n"
-					+ "                        and acc.idMember = ?";
+					+ "    ai.accinfodate as accinfodate,\r\n"
+					+ "    ai.price as price,\r\n"
+					+ "    ffp.period as period\r\n"
+					+ "from \r\n"
+					+ "    tblaccinfo ai\r\n"
+					+ "    inner join tblfixeddepositwithdrawalcheck fdw on fdw.seq = ai.seqfixedfluctuationcheck\r\n"
+					+ "    inner join tblacc acc on acc.seq = ai.seqacc\r\n"
+					+ "    inner join tblfixedfluctuationperiod ffp on ffp.seq = fdw.seqfixedfluctuationperiod\r\n"
+					+ "where \r\n"
+					+ "    fdw.seqfixedfluctuationperiod != 0\r\n"
+					+ "    and acc.idmember = ?\r\n"
+					+ "    and to_date(ai.accinfodate, 'yy/mm/dd') + interval '1' month * ffp.period > current_date";
 
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, id);
@@ -263,7 +267,7 @@ public class AccountDAO {
 
 				dto.setAccInfoDate(rs.getString("accInfoDate"));
 				dto.setPrice(rs.getInt("price"));
-				dto.setSeqFixedFluctuationPeriod(rs.getString("seqFixedFluctuationPeriod"));
+				dto.setFfpPeriod(rs.getInt("period"));
 				
 				list.add(dto);
 			}
@@ -286,12 +290,14 @@ public class AccountDAO {
 					+ "su.monthlyPaycheck monthlyPaycheck, --월급\r\n"
 					+ "su.savingsGoals savingsGoals, --저축 목표 금액\r\n"
 					+ "seqCompressionIntensity seqCompressionIntensity,\r\n"
-					+ "seqSavingsPeriod seqSavingsPeriod,\r\n"
+					+ "sp.period period,\r\n"
 					+ "me.joinDate joinDate\r\n"
 					+ "from tblSurvey su\r\n"
 					+ "    inner join tblMember me\r\n"
 					+ "        on su.seq = me.seqSurvey\r\n"
-					+ "            where me.id = ?";
+					+ "            inner join tblSavingsPeriod sp\r\n"
+					+ "                on sp.seq = su.seqSavingsPeriod\r\n"
+					+ "                    where me.id = ?";
 
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, id);
@@ -305,7 +311,7 @@ public class AccountDAO {
 				dto.setMonthlyPaycheck(rs.getInt("monthlyPaycheck"));
 				dto.setSavingsGoals(rs.getInt("savingsGoals"));
 				dto.setSeqCompressionIntensity(rs.getString("seqCompressionIntensity"));
-				dto.setSeqSavingsPeriod(rs.getString("seqSavingsPeriod"));
+				dto.setSpPeriod(rs.getInt("period"));
 				dto.setJoinDate(rs.getString("joinDate"));
 								
 				return dto;
@@ -369,41 +375,61 @@ public class AccountDAO {
 	
 	
 	//가계부 분석 > 챌린지에 대한 정보 읽기(이번달 목표치, 현상황)
-	public int getChallenge(String id) {
+	public HashMap<String, String> getChallenge(String id) {
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy/MM/dd");
 		
 		String accInfoDate = null;
-		int price = 0;
-		String seqFixedFluctuationPeriod = null;
+		int price = 0; //고정 지출 금액
+		int ffpPeriod = 0; //고정 지출 간격
+		int totalfixedFluctuation = 0; //고청 지출 총 합
 		
-		//고정 지출
-		ArrayList<AccountInfoDTO> fixedFluctuationList = getFixedFluctuation(id);
+		int savingsGoals = 0; //저축 목표 금액
+		int monthlyPaycheck = 0; //월급
+		String joinDate = null; //회원 가입일
+		
+		HashMap<String, String> map = new HashMap<>();
 
-		for (AccountInfoDTO dto : fixedFluctuationList) {
+		// 고정 지출
+		ArrayList<AccountInfoDTO> fixedFluctuationList = getFixedFluctuation(id);
+		
+		// 챌린지 정보
+		UserDTO userDTO = getsavingsGoals(id);
+
+		// 이번달 사용 금액
+		AccountInfoDTO accountInfoDTO = getMonthUsage(id);
+
+		
+		if (fixedFluctuationList != null) {
 			
-			accInfoDate = dto.getAccInfoDate();
-			price = dto.getPrice();
-			seqFixedFluctuationPeriod = dto.getSeqFixedFluctuationPeriod();
+			//고정 지출 담기
+			for (AccountInfoDTO dto : fixedFluctuationList) {
+				
+				accInfoDate = dto.getAccInfoDate();
+				price = dto.getPrice();
+				ffpPeriod = dto.getFfpPeriod();
+				
+				totalfixedFluctuation += price;
+				
+//				System.out.println(totalfixedFluctuation);
+
+			}
 			
 		}
-		
-		
-		//챌린지 정보
-		UserDTO userDTO = getsavingsGoals(id);
-				
+
+		//챌린지 정보 불러오기
 		userDTO.getMonthlyPaycheck();
 		userDTO.getSavingsGoals();
 		userDTO.getSeqCompressionIntensity();
 		userDTO.getSeqSavingsPeriod();
 		userDTO.getJoinDate();
-		
-		
-		//이번달 사용 금액
-		AccountInfoDTO accountInfoDTO = getMonthUsage(id);
-		
+
+		//이번달 사용 금액 불러오기
 		accountInfoDTO.getTotalPrice();
 		
+		map.put("accInfoDate", accInfoDate);
 		
-		return 0;
+		return map;
 	}
 	
 	//가계부 분석 > 뉴스 불러오기(뉴스 테이블 정보 dto에 추가해야할 듯>추가 완료)

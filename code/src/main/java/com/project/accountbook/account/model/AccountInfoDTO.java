@@ -35,6 +35,9 @@ public class AccountInfoDTO {
 	private String fdwContent;
 	private String seqFixedFluctuationPeriod;
 	
+	//고정 입출금 기간
+	private int ffpPeriod;
+	
 	//가계부 카테고리 목록
 	private String seqAccCategory;
 	private String seqAccInfo;
@@ -168,6 +171,14 @@ public class AccountInfoDTO {
 		this.seqFixedFluctuationPeriod = seqFixedFluctuationPeriod;
 	}
 
+	public int getFfpPeriod() {
+		return ffpPeriod;
+	}
+
+	public void setFfpPeriod(int ffpPeriod) {
+		this.ffpPeriod = ffpPeriod;
+	}
+
 	public String getSeqAccCategory() {
 		return seqAccCategory;
 	}
@@ -279,11 +290,14 @@ public class AccountInfoDTO {
 				+ seqReasonChangeCategory + ", seqFixedFluctuationCheck=" + seqFixedFluctuationCheck
 				+ ", seqDepositWithdrawalStatus=" + seqDepositWithdrawalStatus + ", totalPrice=" + totalPrice
 				+ ", idMember=" + idMember + ", productName=" + productName + ", fdwContent=" + fdwContent
-				+ ", seqFixedFluctuationPeriod=" + seqFixedFluctuationPeriod + ", seqAccCategory=" + seqAccCategory
-				+ ", seqAccInfo=" + seqAccInfo + ", acName=" + acName + ", seqnews=" + seqnews + ", title=" + title
-				+ ", link=" + link + ", newsDate=" + newsDate + ", media=" + media + ", seqReasonsChangeList="
-				+ seqReasonsChangeList + ", seqMyCard=" + seqMyCard + ", cfName=" + cfName + ", fileLink=" + fileLink
-				+ ", alias=" + alias + "]";
+				+ ", seqFixedFluctuationPeriod=" + seqFixedFluctuationPeriod + ", ffpPeriod=" + ffpPeriod
+				+ ", seqAccCategory=" + seqAccCategory + ", seqAccInfo=" + seqAccInfo + ", acName=" + acName
+				+ ", seqnews=" + seqnews + ", title=" + title + ", link=" + link + ", newsDate=" + newsDate + ", media="
+				+ media + ", seqReasonsChangeList=" + seqReasonsChangeList + ", seqMyCard=" + seqMyCard + ", cfName="
+				+ cfName + ", fileLink=" + fileLink + ", alias=" + alias + "]";
 	}
+	
+	
+
 	
 }

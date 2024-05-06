@@ -43,6 +43,7 @@ public class UserDTO {
 	private int savingsGoals;
 	private String seqCompressionIntensity;
 	private String seqSavingsPeriod;
+	private int spPeriod;
 	
 	
 	public String getSsn() {
@@ -149,6 +150,14 @@ public class UserDTO {
 		this.joinDate = joinDate;
 	}
 	
+	
+	
+	public int getSpPeriod() {
+		return spPeriod;
+	}
+	public void setSpPeriod(int spPeriod) {
+		this.spPeriod = spPeriod;
+	}
 	@Override
 	public String toString() {
 		return "UserDTO [id=" + id + ", pw=" + pw + ", name=" + name + ", nickname=" + nickname + ", phoneNumber="
