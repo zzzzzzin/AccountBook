@@ -123,6 +123,53 @@ from tblSurvey su
 
 
 --analysis
+WITH max_category AS (
+    SELECT 
+        ac.name AS acName,
+        SUM(ai.price) AS totalPrice
+    FROM 
+        tblAccInfo ai
+    INNER JOIN 
+        tblAccCategoryList acl ON acl.seqAccInfo = ai.seq
+    INNER JOIN 
+        tblAccCategory ac ON ac.seq = acl.seqAccCategory
+    INNER JOIN 
+        tblReasonChangeCategory rcc ON rcc.seq = ai.seqReasonChangeCategory
+    INNER JOIN 
+        tblMyCard mc ON mc.seq = rcc.seqMyCard
+    WHERE 
+        mc.idMember = 'abc001@naver.com'
+        AND ai.accInfoDate BETWEEN to_date(sysdate, 'YY/MM/DD') - interval '2' month AND to_date(sysdate, 'YY/MM/DD') - interval '1' month -- 2달 전부터 1달 전까지
+        AND ai.seqDepositWithdrawalStatus = 2 -- 입출금 상태
+    GROUP BY 
+        ac.name
+    ORDER BY 
+        totalPrice DESC
+    FETCH FIRST 1 ROW ONLY
+)
+SELECT 
+    max_category.acName acName,
+    MAX(totalPrice) AS beforeAcUsage,
+    SUM(CASE WHEN ai.accInfoDate BETWEEN to_date(sysdate, 'YY/MM/DD') - interval '1' month AND to_date(sysdate, 'YY/MM/DD') THEN ai.price ELSE 0 END) AS nowAcUsage
+FROM 
+    tblAccInfo ai
+INNER JOIN 
+    tblAccCategoryList acl ON acl.seqAccInfo = ai.seq
+INNER JOIN 
+    tblAccCategory ac ON ac.seq = acl.seqAccCategory
+INNER JOIN 
+    tblReasonChangeCategory rcc ON rcc.seq = ai.seqReasonChangeCategory
+INNER JOIN 
+    tblMyCard mc ON mc.seq = rcc.seqMyCard
+INNER JOIN 
+    max_category ON max_category.acName = ac.name
+WHERE 
+    mc.idMember = 'abc001@naver.com'
+    AND ai.seqDepositWithdrawalStatus = 2 -- 입출금 상태
+GROUP BY 
+    max_category.acName;
+
+
 --기간별 총 사용 금액
 SELECT 
     COALESCE(sub1.totalPrice, 0) beforeAcUsage,
@@ -190,7 +237,9 @@ SELECT
     ORDER BY 
         totalPrice DESC
     FETCH FIRST 1 ROW ONLY;
-    
+ 
+ 
+   
 
 --2 기간 사이 가격 비교
 SELECT 
