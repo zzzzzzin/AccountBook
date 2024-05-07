@@ -317,7 +317,7 @@ from tblAccInfo ai
                                                 - interval '1' month and to_date(sysdate, 'YY/MM/DD')
                                                     and ai.seqDepositWithdrawalStatus = 2 --입출금 상태
                                                         group by ac.name, mc.idMember;
-                                                     
+                                                        
 --지난 달                                                     
 select
 sum(ai.price) totalPrice,
