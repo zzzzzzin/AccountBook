@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.project.accountbook.board.post.model.AttendanceDTO;
 import com.project.accountbook.board.post.model.FreeDTO;
@@ -102,6 +103,95 @@ public class BoardDAO {
 				return dto;		
 			}
 			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
+	public ArrayList<PostDTO> list (HashMap<String, String> map, String seq){
+		
+		try {
+			
+			String where = "";
+	
+			
+			if(map.get("search").equals("y") && map.get("column").equals("total")) {
+				
+				where = String.format("WHERE ca_seq = %s AND po_content LIKE '%%%s%%' and po_title like '%%%s%%'", seq, map.get("word"), map.get("word"));
+				
+			} else if (map.get("search").equals("y") && map.get("column").equals("title")) {
+				
+				where = String.format("WHERE ca_seq = %s AND po_title like '%%%s%%'", seq, map.get("word"));
+				
+			} else if (map.get("search").equals("y") && map.get("column").equals("content")) {
+							
+				where = String.format("WHERE ca_seq = %s AND po_content LIKE '%%%s%%'", seq, map.get("word"));
+				
+			} else {
+				
+				where = String.format("where ca_seq = %s", seq);
+			}
+			
+			String sql = "select \r\n"
+					+ "    po_seq as seq,\r\n"
+					+ "    me_nickname as me_nickname,\r\n"
+					+ "    ad_nickname as ad_nickname,\r\n"
+					+ "    ca_seq as seqboard,\r\n"
+					+ "    po_seqUser as seqUser,\r\n"
+					+ "    po_title as title,\r\n"
+					+ "    po_content as content,\r\n"
+					+ "    po_writedate as writedate,\r\n"
+					+ "    po_editdate as editdate,\r\n"
+					+ "    po_viewcount as viewcount,\r\n"
+					+ "    po_likecount as likecount,\r\n"
+					+ "    po_dislikecount as dislikecount,\r\n"
+					+ "    po_reportcount as reportcount,\r\n"
+					+ "    po_secretcheck as secretcheck,\r\n"
+					+ "    po_blindcheck as blindcheck,\r\n"
+					+ "    us_seq as seqpost,\r\n"
+					+ "    af_filename as filename,\r\n"
+					+ "    af_filelink as filelink\r\n"
+					+ "from vwboard\r\n"
+					+ where
+					+ " ORDER BY seq DESC";
+			
+			stat = conn.createStatement();
+			rs = stat.executeQuery(sql);
+			
+			ArrayList<PostDTO> list = new ArrayList<PostDTO>();
+			
+			
+			while (rs.next()) {				
+				PostDTO dto = new PostDTO();
+				
+				dto.setSeq(rs.getString("seq"));
+				dto.setSeqBoard(rs.getString("seqboard"));
+				dto.setSeqUser(rs.getString("sequser"));
+				dto.setTitle(rs.getString("title"));
+				dto.setContent(rs.getString("content"));
+				dto.setWriteDate(rs.getString("writedate"));
+				dto.setEditDate(rs.getString("editdate"));
+				dto.setViewCount(rs.getInt("viewcount"));
+				dto.setLikeCount(rs.getInt("likecount"));
+				dto.setDislikeCount(rs.getInt("dislikecount"));
+				dto.setReportCount(rs.getInt("reportcount"));
+				dto.setSecretCheck(rs.getInt("secretcheck"));
+				dto.setBlindCheck(rs.getInt("blindcheck"));
+				dto.setad_nickName(rs.getString("ad_nickname"));
+				dto.setme_nickName(rs.getString("me_nickname"));
+				
+				dto.setSeqPost(rs.getString("seqpost"));
+				dto.setFileName(rs.getString("filename"));
+				dto.setFileLink(rs.getString("filelink"));
+				
+				list.add(dto);
+								
+			}	
+			
+			return list;
 			
 		} catch (Exception e) {
 			e.printStackTrace();
