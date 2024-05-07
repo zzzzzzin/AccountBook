@@ -185,51 +185,6 @@ public class MemberInfoDAO {
 
 		return null;
 	}
-
-	public UserDTO getPw(UserDTO dto) {
-
-		try {
-
-			String sql = "select pw from tblMember where id = ?";
-
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, dto.getId());
-
-			rs = pstat.executeQuery();
-
-			if (rs.next()) {
-
-				UserDTO result = new UserDTO();
-
-				result.setPw(rs.getString("pw"));
-
-				return result;
-
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	
-	public void editPw(String editPw, UserDTO dto) {
-		try {
-
-			String sql = "update tblMember set pw = ? where id = ?";
-
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, editPw);
-			pstat.setString(2, dto.getId());
-
-			pstat.executeUpdate();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
 	
 	public void resetPw(String id, String pw) {
 		try {
@@ -251,5 +206,41 @@ public class MemberInfoDAO {
 		}
 		
 	}
+
+	public String getPw(String id) {
+		
+		try {
+			
+			String sql = "select pw from tblMember where id =?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, id);
+			pstat.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	public void editPw(String id, String pw) {
+		
+		try {
+			String sql = "update tblMember set pw = ? where id = ? ";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, pw);
+			pstat.setString(2, id);
+
+			pstat.executeUpdate();
+					
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+	
 
 }

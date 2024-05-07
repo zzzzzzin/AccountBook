@@ -19,6 +19,7 @@ public class EditPw extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/member/edit-pw.jsp");
 		dispatcher.forward(req, resp);
 
@@ -30,10 +31,16 @@ public class EditPw extends HttpServlet {
 	    HttpSession session = req.getSession();
 	    String id = (String) session.getAttribute("id"); // 세션에서 아이디 가져오기
 
+	    String nowPw = req.getParameter("nowPw");
 	    String editPw = req.getParameter("editPw");
-	    String checkPw = req.getParameter("editPw");
+	    String checkPw = req.getParameter("checkPw");
 	    
 	    MemberInfoDAO dao = new MemberInfoDAO();
+	    String realPw = dao.getPw(id);
+	    
+	    if (nowPw.equals(realPw) && editPw.equals(checkPw) /*&& result == true*/) {
+	    	dao.editPw(id ,editPw);
+	    }
 
 	    // 페이지 이동
 	    RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/member/info.jsp");
