@@ -40,8 +40,8 @@ public class CommentDAO {
             while (rs.next()) {
                 CommentDTO comment = new CommentDTO();
                 comment.setSeq(rs.getString("seq"));
-                comment.setSeqPost(rs.getString("seqPost"));
-                comment.setSeqUser(rs.getString("seqUser"));
+                comment.setSeqPost(rs.getInt("seqPost"));
+                comment.setSeqUser(rs.getInt("seqUser"));
                 comment.setContent(rs.getString("content"));
                 comment.setWriteDate(rs.getString("writeDate"));
                 comment.setLikeCount(rs.getInt("likeCount"));
@@ -65,8 +65,8 @@ public class CommentDAO {
                          "VALUES (?, ?, ?, SYSDATE, 0, 0, 0)";
             
             pstat = conn.prepareStatement(sql);
-            pstat.setString(1, comment.getSeqPost());
-            pstat.setString(2, comment.getSeqUser());
+            pstat.setInt(1, comment.getSeqPost());
+            pstat.setInt(2, comment.getSeqUser());
             pstat.setString(3, comment.getContent());
             
             return pstat.executeUpdate();
@@ -94,8 +94,8 @@ public class CommentDAO {
             while (rs.next()) {
                 CommentDTO replyComment = new CommentDTO();
                 replyComment.setSeq(rs.getString("seq"));
-                replyComment.setSeqComments(rs.getString("seqComments"));
-                replyComment.setSeqUser(rs.getString("seqUser"));
+                replyComment.setSeqComments(rs.getInt("seqComments"));
+                replyComment.setSeqUser(rs.getInt("seqUser"));
                 replyComment.setContent(rs.getString("content"));
                 replyComment.setWriteDate(rs.getString("writeDate"));
                 replyComment.setLikeCount(rs.getInt("likeCount"));
@@ -110,22 +110,21 @@ public class CommentDAO {
         }
         return replyComments;
     }
+    //답글 작성
     public int addReplyComment(CommentDTO replyComment) {
         try {
-            String sql = "INSERT INTO tblReplyComments (seqComments, seqUser, content, writeDate, likeCount, dislikeCount, reportCount) " +
-                         "VALUES (?, ?, ?, SYSDATE, 0, 0, 0)";
+            String sql = "INSERT INTO tblReplyComments (seq, seqComments, seqUser, content, writeDate, likeCount, dislikeCount, reportCount) " +
+                         "VALUES (seqReplyComments.nextval, ?, ?, ?, SYSDATE, 0, 0, 0)";
 
             pstat = conn.prepareStatement(sql);
-            pstat.setString(1, replyComment.getSeqComments());
-            pstat.setString(2, replyComment.getSeqUser());
+            pstat.setInt(1, replyComment.getSeqComments());
+            pstat.setInt(2, replyComment.getSeqUser());
             pstat.setString(3, replyComment.getContent());
 
             return pstat.executeUpdate();
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return 0;
     }
 }
