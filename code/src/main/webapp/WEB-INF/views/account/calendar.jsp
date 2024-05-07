@@ -617,9 +617,10 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary"
-                        data-bs-dismiss="modal" id="btnAddEventCancel">취소</button>
-                    <button type="button" class="btn btn-primary" id="btnEventProduce">완료
-                        </button>
+							data-bs-dismiss="modal">취소</button>
+					<button type="button" class="btn btn-primary" id="deleteEventBtn">삭제</button>
+					<button type="button" class="btn btn-primary" id="editEventBtn">수정</button>
+					<button type="button" class="btn btn-primary" id="produceEventBtn">생성</button>
                 </div>
             </div>
         </div>
@@ -669,9 +670,15 @@
     <!-- Template Javascript -->
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
     <script>
-    var addRequest = null;
+    var delRequest = null;
+	var addRequest = null;
+	var editRequest = null;
    	var categories = [];
     var colors = {};
+    
+    var editbutton = document.getElementById('editEventBtn');
+    var delbutton = document.getElementById('deleteEventBtn');
+    var procbutton = document.getElementById('produceEventBtn');
     <c:forEach items="${cList}" var = "dto">
 	categories.push('${dto.acName}');
 	</c:forEach>
@@ -679,8 +686,8 @@
    
    
    var cardlist = [];
-   <c:forEach items="${cardlist}" var = "dto">
-	cardlist.push('${dto.paymentMethod}, ${dto.paymentMethod} ${dto.alias}:${dto.cardNumber}');
+   	<c:forEach items="${cardlist}" var = "dto">
+		cardlist.push('${dto.paymentMethod}, ${dto.paymentMethod} ${dto.alias}:${dto.cardNumber}');
 	</c:forEach>
 	
 	// 미리 정의된 색상 팔레트
@@ -847,7 +854,11 @@
         var amountindicator = document.getElementsByClassName('modalincreasedecrease')[0].value;
         var amount = document.getElementById('eventModalIoc').value;
         var isFixedExpense = document.getElementById('fixedexpense').checked;
-        /* var isFixedperiod = document.getElementById('fixedexpense').checked; */
+        
+        console.log('here')
+        editbutton.style.display='none';
+        delbutton.style.display='none';
+        /* var isFixedperiod = document.getElementById('fixedexpense').checked;  */
         
         // Validate the inputs
         if (!content || !start || !category || !amount) {
@@ -925,6 +936,22 @@
     		    info.jsEvent.preventDefault();
                 var container = document.getElementById("eventProduceModal");//
                 var modal = new bootstrap.Modal(container);
+                
+                var content = info.event.extendedProps.content;
+                
+                var start = info.event.start.toISOString().slice(0, 16);
+                var category = info.event.extendedProps.category;
+                var useLocation = info.event.extendedProps.useLocation;
+                var paymentMethod = info.event.extendedProps.paymentMethod;
+                var amountindicator = info.event.extendedProps.amountindicator;
+                var amount = info.event.extendedProps.amount;
+                var isFixedExpense = info.event.extendedProps.isFixedExpense;
+                var seq = info.event.extendedProps.seq;
+                var seqacc = info.event.extendedProps.seqacc;
+                var seqrcc = info.event.extendedProps.seqrcc;
+                
+                
+                console.log(seq);
                 $('#eventModalcontent').val(info.event.extendedProps.content); 
                 $('#eventModalStart').val(info.event.start.toISOString().slice(0, 16)); 
                 $('.modalselectcategory').val(info.event.extendedProps.category);
@@ -934,18 +961,53 @@
                 $('#eventModalIoc').val(info.event.extendedProps.amount);
                 $('#fixedexpense').prop('checked', info.event.extendedProps.isFixedExpense);
                 
+                
+                
+                procbutton.style.display = 'none';
+                editbutton.style.display = 'inline-block';
+                delbutton.style.display = 'inline-block';
                 console.log(info.event.extendedProps.paymentMethod)
             modal.show();
 
     			$('#deleteEventBtn').on('click', function() {
+    			    console.log('delhere')
     				if(window.confirm('일정을 삭제하시겠습니까?'))
     				info.event.remove();
     				modal.hide();
     			});
-    			$("#btnEventProduce").on('click', function(event) {
-    				var start = $('#eventModalStart').val();
-    				var end = $('#eventModalEnd').val();
-    			});
+    			$("#editEventBtn").off().on('click', function(info) {
+    			    if(confirm('항목을 수정하시겠습니까?')){
+    					// 중복 실행 방지
+    					if (editRequest !== null) {
+    						editRequest.abort();
+    					}
+						
+    			        editRequest = $.ajax({
+    			            type:'post',
+    			            url: '/account/account/calendaredit.do',
+    			            data: {
+    			                start: start ,
+    			                    useLocation: useLocation,
+    		                        content: content,
+    		                        amount: amount,
+    		                        amountindicator: amountindicator,
+    		                        paymentMethod : paymentMethod,
+    		                        category: categories.indexOf(category),
+    		                        fixed: isFixedExpense,
+    		                        seq: seq,
+    		                        seqacc: seqacc,
+    		                        seqrcc: seqrcc
+    			            },
+    			                dataType: 'json',
+    			                success: function(response) {
+    			                    console.log('Edit successful', response);
+    			                    modal.hide();
+
+    			                },
+    			            
+    			        })
+    			    }
+    			    });
     		},
     		
     		eventMouseEnter: function (info) {
@@ -984,6 +1046,8 @@
         
             
             var modal = new bootstrap.Modal(document.getElementById('eventProduceModal'));
+            editbutton.style.display='none';
+            delbutton.style.display='none';
             modal.show();
           },
           select: function(info) {
@@ -1023,10 +1087,13 @@
       			   					content: obj.content,
       			   					amount: obj.amount,
       			   					amountindicator: (obj.amountindicator==='출금'?'+':'-'),
-      			   					paymentMethod : (obj.paymentMethod+obj.aliasname+':'+obj.cardnumber),
+      			   					paymentMethod : (obj.paymentMethod+'\xa0'+obj.aliasname+':'+obj.cardnumber),
       			   					category: obj.category,
       			   					fixed: obj.fixed,
-      			   					fixedPeriod: obj.fixedperiod
+      			   					fixedPeriod: obj.fixedperiod,
+      			   					seq: obj.seq,
+      			   					seqacc: obj.seqacc,
+      			   					seqrcc: obj.seqrcc
          						}
          					})
          				})

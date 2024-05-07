@@ -120,7 +120,8 @@ public class AccountInfoDTO {
 		this.seqDepositWithdrawalStatus = seqDepositWithdrawalStatus;
 	}
 	public String getDepositWithdrawalStatus() {
-		return DepositWithdrawalStatus;
+		return this.DepositWithdrawalStatus;
+		//return    DepositWithdrawalStatus;
 	}
 	public void setDepositWithdrawalStatus(String depositWithdrawalStatus) {
 		DepositWithdrawalStatus = depositWithdrawalStatus;

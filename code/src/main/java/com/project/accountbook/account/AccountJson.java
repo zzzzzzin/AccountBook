@@ -40,7 +40,9 @@ public class AccountJson extends HttpServlet {
 		for (AccountInfoDTO dto : calenderdata) {
 			JSONObject obj = new JSONObject();
 			String start = "20"+dto.getAccInfoDate().replace("/", "-");
-			
+			obj.put("seq", dto.getSeqAccInfo());
+			obj.put("seqacc",dto.getSeqAcc());
+			obj.put("seqrcc",dto.getSeqReasonChangeCategory());
 			obj.put("content", dto.getContent());
 			obj.put("start", dto.getAccInfoDate());
 			obj.put("amount", dto.getPrice());

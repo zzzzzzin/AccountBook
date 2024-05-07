@@ -548,7 +548,7 @@ width: 100px !;
 .material-icons {
   vertical-align: middle;
 }
-.btn {
+/* .btn {
   display: inline-block;
   padding: 0 30px;
   font-size: 15px;
@@ -574,7 +574,7 @@ width: 100px !;
   -ms-transition: all 0.3s;
   -o-transition: all 0.3s;
   transition: all 0.3s;
-}
+} */
 .btn-dark {
   background: #555;
   color: #fff;
@@ -735,7 +735,7 @@ section.notice {
   display: none;
 }
 
-.btn {
+/* .btn {
   display: inline-block;
   padding: 0 30px;
   font-size: 15px;
@@ -762,7 +762,7 @@ section.notice {
   -o-transition: all 0.3s;
   transition: all 0.3s;
 }
-
+ */
 .btn-dark {
   background: #555;
   color: #fff;
