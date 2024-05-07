@@ -23,24 +23,18 @@ public class Discussion extends HttpServlet {
 	CommentDAO cdao = new CommentDAO();
 	BoardDAO bdao = new BoardDAO();
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    	
-    	HttpSession session = req.getSession();
-    	
-    	String seq = req.getParameter("seq");
-
-        PostDTO post = bdao.readPost(seq);
-        //List<CommentDTO> comments = cdao.getCommentsByPostSeq(seq);
-
-        //req.setAttribute("comments", comments);
-        //req.setAttribute("replyDAO", cdao);
-        //req.setAttribute("seq", seq);
-        req.setAttribute("post", post);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/discussion.jsp");
-        dispatcher.forward(req, resp);
-        List<CommentDTO> comments = cdao.getCommentsByPostSeq(seq);
-        req.setAttribute("comments", comments);
-        
-    }
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	    HttpSession session = req.getSession();
+	    String seq = req.getParameter("seq");
+	    
+	    PostDTO post = bdao.readPost(seq);
+	    List<CommentDTO> comments = cdao.getCommentsByPostSeq(seq);
+	    
+	    req.setAttribute("post", post);
+	    req.setAttribute("comments", comments);
+	    
+	    RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/discussion.jsp");
+	    dispatcher.forward(req, resp);
+	}
 }

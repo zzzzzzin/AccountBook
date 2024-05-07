@@ -150,12 +150,19 @@
               </div>     
             </div>
                         <!-- 댓글 시작 -->
- <div class="comments">
+<div class="comments">
     <c:forEach var="comment" items="${comments}">
         <div class="comment-box">
             <div class="post-header" id="commentlevel1head">
                 <div class="post-info" id="commentlevel1info">
-                    <img class="user-image" src="${comment.profileImage}" alt="사용자 이미지">
+                    <c:choose>
+                        <c:when test="${not empty comment.profileImage}">
+                            <img class="user-image" src="${comment.profileImage}" alt="사용자 이미지">
+                        </c:when>
+                        <c:otherwise>
+                            <img class="user-image" src="/profile-images/default-user-image.jpg" alt="기본 사용자 이미지">
+                        </c:otherwise>
+                    </c:choose>
                     <div class="post-info">
                         <span>작성자: ${comment.nickname}</span>
                         <span>등록일: ${comment.writeDate}</span>
@@ -198,12 +205,18 @@
               </div>
               <!-- 대댓글 끝 -->
             </div>
-            <!-- 댓글 쓰기 시작 -->
-            <div class="comment-form">
-              <textarea placeholder="댓글을 입력하세요."></textarea>
-              <button type="submit">댓글 등록</button>
-            </div>
-            <!-- 댓글 쓰기 끝 -->
+            
+<!-- 댓글 쓰기 시작 -->
+<div class="comment-form">
+    <form action="/board/addcomment.do" method="post">
+        <input type="hidden" name="seqPost" value="${post.seq}">
+        <input type="hidden" name="seqUser" value="${sessionScope.seqUser}">
+        <textarea name="content" placeholder="댓글을 입력하세요."></textarea>
+        <button type="submit">댓글 등록</button>
+    </form>
+</div>
+<!-- 댓글 쓰기 끝 -->
+           
           </div>
           <!-- 게시판 게시물 끝 -->
         </div>

@@ -19,11 +19,13 @@ public class CommentDAO {
     public CommentDAO() {
         this.conn = DBUtil.open("125.241.245.222", "webproject", "java1234");
     }
+    
+    //댓글 조회
     public List<CommentDTO> getCommentsByPostSeq(String postSeq) {
         List<CommentDTO> comments = new ArrayList<>();
         
         try {
-            String sql = "SELECT tc.*, tu.nickname, tp.seqProfileimg " +
+            String sql = "SELECT tc.*, tm.nickname, tp.fileLink AS profileImage " +
                          "FROM tblComments tc " +
                          "JOIN tblUser tu ON tc.seqUser = tu.seq " +
                          "JOIN tblMember tm ON tu.idMember = tm.id " +
@@ -46,7 +48,7 @@ public class CommentDAO {
                 comment.setDislikeCount(rs.getInt("dislikeCount"));
                 comment.setReportCount(rs.getInt("reportCount"));
                 comment.setNickname(rs.getString("nickname"));
-                comment.setProfileImage(rs.getString("seqProfileimg"));
+                comment.setProfileImage(rs.getString("profileImage"));
                 
                 comments.add(comment);
             }
@@ -56,5 +58,23 @@ public class CommentDAO {
         
         return comments;
     }
-
+    //댓글 작성
+    public int addComment(CommentDTO comment) {
+        try {
+            String sql = "INSERT INTO tblComments (seqPost, seqUser, content, writeDate, likeCount, dislikeCount, reportCount) " +
+                         "VALUES (?, ?, ?, SYSDATE, 0, 0, 0)";
+            
+            pstat = conn.prepareStatement(sql);
+            pstat.setString(1, comment.getSeqPost());
+            pstat.setString(2, comment.getSeqUser());
+            pstat.setString(3, comment.getContent());
+            
+            return pstat.executeUpdate();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return 0;
+    }
 }
