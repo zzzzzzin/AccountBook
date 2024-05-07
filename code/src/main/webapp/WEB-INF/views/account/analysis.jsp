@@ -284,7 +284,7 @@
 
 				<div id="secondrow">
 					<div id="monthgoal">이번달 목표 : 200만원</div>
-					<div id="currentsituation">이번달 사용 : 100만원</div>
+					<div id="currentsituation">이번 달 ${totalThisMonth}원</div>
 				</div>
 				<div id="chartLegend"></div>
 				<div id="thridrow">
@@ -375,7 +375,7 @@
         data: {
             labels: beforeAcNameArray,
             datasets: [{
-            	label: 'My First Dataset',
+            	label: '총 금액',
                 data: beforeTotalPriceArray,
                 backgroundColor: beforeBackgroundColorArray,
                 hoverOffset: 4
@@ -396,7 +396,7 @@
         data: {
             labels: nowAcNameArray,
             datasets: [{
-                label: 'My Second Dataset',
+                label: '총 금액',
                 data: nowTotalPriceArray,
                 backgroundColor: nowBackgroundColorArray,
                 hoverOffset: 4

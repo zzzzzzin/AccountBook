@@ -38,19 +38,18 @@ public class Analysis extends HttpServlet {
 		ArrayList<AccountInfoDTO> nList = dao.nowAnalysis(id, map);
 		ArrayList<AccountInfoDTO> bList = dao.beforeAnalysis(id, map);
 		ArrayList<AccountInfoDTO> cList = dao.getCategory();
-		ArrayList<AccountInfoDTO> tList = new ArrayList<>();
 		
-		for (AccountInfoDTO list : cList) {
-			list.getAcName();
+		int totalThisMonth = 0;
+		
+		for(AccountInfoDTO dto : nList) {
+			totalThisMonth += dto.getTotalPrice();
 		}
 		
-		
-		
 				
-		req.setAttribute("map", map);
 		req.setAttribute("nList", nList);
 		req.setAttribute("bList", bList);
 		req.setAttribute("cList", cList);
+		req.setAttribute("totalThisMonth", totalThisMonth);
 	
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/account/analysis.jsp");
