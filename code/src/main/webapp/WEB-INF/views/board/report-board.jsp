@@ -111,8 +111,7 @@
 					        <td>게시물이 없습니다.</td>
 					    </tr>
 					</c:if>
-	                
-					<c:forEach var="report" items="${reportList}">
+	                <c:forEach items="${reportList}" var="report">
 			                <tr>
 			                    <td>${report.seq}</td>
 						        <td>
@@ -121,28 +120,25 @@
 						                    관리자에 의해 블라인드 처리 되었습니다.
 						                </c:when>
 						                <c:otherwise>
-						                    ${report.title}
+						                	<a href="/account/board/discussion.do?seq=${report.seq}">${report.title}</a>					                    
 						                </c:otherwise>
 						            </c:choose>
 						        </td>
-						        <td>${report.nickname}</td>
-						        <td>${report.date}</td>
+						        <td>${report.me_nickName != null ? report.me_nickName : report.ad_nickName}</td>
+						        <td>${report.writeDate}</td>
 						        <td>${report.viewCount}</td>
 						        <td>${report.likeCount}</td>
-						        <%-- <td>${report.reportCount}</td> --%>
-						        <%-- <td>${report.secretCheck}</td> --%>
 						        <td id="secret">
 						            <c:choose>
 						                <c:when test="${report.secretCheck eq '1'}">
 						                	<div class="fas fa-lock lock-icon"></div>
-						                    <!-- <div class="material-symbols-outlined">lock</div>	 -->
 						                </c:when>
 						                <c:otherwise>
 						                    <div class="fas fa-unlock unlock-icon"></div>
 						                </c:otherwise>
 						            </c:choose>
 						        </td>
-						        <%-- <td>${report.blindCheck}</td> --%>
+						      
 			                </tr>
 	                </c:forEach>
 	                </tbody>

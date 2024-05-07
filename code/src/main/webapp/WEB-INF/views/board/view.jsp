@@ -152,20 +152,21 @@
 					    </tr>
 					</c:if>
                 
-					<c:forEach var="report" items="${reportList}">
-			                <tr>
-						    	<td>
-						            <c:choose>
-						                <c:when test="${report.blindCheck eq '1'}">
-						                    관리자에 의해 블라인드 처리 되었습니다.
-						                </c:when>
-						                <c:otherwise>
-						                    ${report.title}
-						                </c:otherwise>
-						            </c:choose>
-					        	</td>
-					        <td>추천수 ${report.likeCount}</td>
-			                </tr>
+			        <c:forEach var="report" items="${reportList}">
+                		<tr>
+				    		<td>
+					            <c:choose>
+					                <c:when test="${report.blindCheck eq '1'}">
+					                    관리자에 의해 블라인드 처리 되었습니다.
+					                </c:when>
+					                <c:otherwise>
+					                	<a href="/account/board/discussion.do?seq=${report.seq}">${report.title}</a>
+					                    
+					                </c:otherwise>
+					            </c:choose>
+				        	</td>
+				        	<td>추천수 ${report.likeCount}</td>
+	                	</tr>
 	                </c:forEach>
 		          </tbody>
 		        </table>
@@ -182,19 +183,20 @@
 					</c:if>
                 
 					<c:forEach var="attendance" items="${attendanceList}">
-			                <tr>
-						    	<td>
-						            <c:choose>
-						                <c:when test="${attendance.blindCheck eq '1'}">
-						                    관리자에 의해 블라인드 처리 되었습니다.
-						                </c:when>
-						                <c:otherwise>
-						                    ${attendance.title}
-						                </c:otherwise>
-						            </c:choose>
-					        	</td>
-					        <td>추천수 ${attendance.likeCount}</td>
-			                </tr>
+		                <tr>
+				    		<td>
+					            <c:choose>
+					                <c:when test="${attendance.blindCheck eq '1'}">
+					                    관리자에 의해 블라인드 처리 되었습니다.
+					                </c:when>
+					                <c:otherwise>
+					                	<a href="/account/board/discussion.do?seq=${attendance.seq}">${attendance.title}</a>
+					                    
+					                </c:otherwise>
+					            </c:choose>
+				        	</td>
+				        	<td>추천수 ${attendance.likeCount}</td>
+	                	</tr>
 	                </c:forEach>
 		          </tbody>
 		        </table>
