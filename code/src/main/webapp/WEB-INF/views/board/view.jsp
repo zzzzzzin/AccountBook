@@ -101,7 +101,7 @@
 						                    관리자에 의해 블라인드 처리 되었습니다.
 						                </c:when>
 						                <c:otherwise>
-						                    ${notice.title}
+						                    <a href="/account/board/discussion.do?seq=${notice.seq}">${notice.title}</a>
 						                </c:otherwise>
 						            </c:choose>
 					        	</td>
@@ -130,7 +130,8 @@
 						                    관리자에 의해 블라인드 처리 되었습니다.
 						                </c:when>
 						                <c:otherwise>
-						                    ${free.title}
+						                	<a href="/account/board/discussion.do?seq=${free.seq}">${free.title}</a>
+						                    
 						                </c:otherwise>
 						            </c:choose>
 					        	</td>
