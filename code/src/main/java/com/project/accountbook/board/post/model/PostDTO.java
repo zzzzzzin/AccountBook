@@ -22,7 +22,16 @@ public class PostDTO {
 	private int reportCount;
 	private int secretCheck;
 	private int blindCheck;
+	private String seqCategory;
 	
+	public String getSeqCategory() {
+		return seqCategory;
+	}
+
+	public void setSeqCategory(String seqCategory) {
+		this.seqCategory = seqCategory;
+	}
+
 	//첨부파일
 	private String seqPost;
 	private String fileName;

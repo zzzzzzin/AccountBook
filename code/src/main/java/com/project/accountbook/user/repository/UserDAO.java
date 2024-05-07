@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Properties;
 
@@ -15,6 +16,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import com.project.accountbook.board.post.model.PostDTO;
 import com.project.accountbook.user.model.UserDTO;
 import com.project.accountbook.util.DBUtil;
 
@@ -404,5 +406,59 @@ public class UserDAO {
 			return null;
 			
 		};
+		
+public ArrayList<PostDTO> getMyPosts(String id) {
+			
+			System.out.println("id: " +id);
+			
+		    ArrayList<PostDTO> plist = new ArrayList<>();
+		    
+		    try {
+		        String sql = "select \r\n"
+		        		+ "p.title, \r\n"
+		        		+ "m.nickname, \r\n"
+		        		+ "p.writeDate, \r\n"
+		        		+ "p.viewCount, \r\n"
+		        		+ "p.likeCount,\r\n"
+		        		+ "b.seqCategory,\r\n"
+		        		+ "p.seq\r\n"
+		        		+ "from tblPost p inner join tblUser u\r\n"
+		        		+ "    on p.seqUser = u.seq\r\n"
+		        		+ "        inner join tblMember m\r\n"
+		        		+ "            on u.idMember = m.id\r\n"
+		        		+ "                inner join tblBoard b\r\n"
+		        		+ "                    on p.seqBoard = b.seq\r\n"
+		        		+ "                        where m.id = ?";
+		        
+		        pstat = conn.prepareStatement(sql);
+		        pstat.setString(1, id);
+		        
+		        rs = pstat.executeQuery();
+		        
+		        while (rs.next()) {
+		        	
+		            PostDTO dto = new PostDTO();
+		            
+		            dto.setTitle(rs.getString("title"));
+		            dto.setme_nickName(rs.getString("nickname"));
+		            dto.setWriteDate(rs.getString("writeDate"));
+		            dto.setViewCount(rs.getInt("viewCount"));
+		            dto.setLikeCount(rs.getInt("likeCount"));
+		            dto.setSeq(rs.getString("seq"));
+		            dto.setSeqCategory(rs.getString("seqCategory"));
+		            
+		            plist.add(dto);
+
+		        }
+		        
+		        System.out.println(plist);
+		        
+		        return plist;
+		        
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    }
+		    return null;
+		}
 
 }
