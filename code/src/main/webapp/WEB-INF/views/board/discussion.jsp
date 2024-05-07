@@ -116,7 +116,22 @@
           <div class="container" id="postpagecontent">
             <div class="post-box">
               <h2>
-			    	게시판
+              
+			  	<c:choose>
+			  		
+			  		<c:when test="${post.seqBoard == 1}">
+			  			<div>공지사항</div>
+			  		</c:when>
+			  		<c:when test="${post.seqBoard == 2}">
+			  			<div>자유게시판</div>
+			  		</c:when>
+			  		<c:when test="${post.seqBoard == 3}">
+			  			<div>건의게시판</div>
+			  		</c:when>
+			  		<c:when test="${post.seqBoard == 4}">
+			  			<div>출석게시판</div>
+			  		</c:when>
+			  	</c:choose>
 			  </h2>
               <div class="post-header" id="maincontent">
                 <img class="user-image" src="user-image.jpg" alt="사용자 이미지">
@@ -206,18 +221,7 @@
     <!-- Template Javascript -->
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
     <script>
-
-    document.addEventListener('DOMContentLoaded', function() {
-    const sidebarToggler = document.getElementById('sidebar-toggler');
-    const sidebar = document.querySelector('.sidebar');
-    const content = document.querySelector('.content');
-
-        sidebarToggler.addEventListener('click', function() {
-        sidebar.classList.toggle('hidden');
-        content.classList.toggle('expanded');
-        });
-    });
-
+c
     </script>
 </body>
 
