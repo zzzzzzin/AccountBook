@@ -45,6 +45,29 @@
       .find {
         text-align: center;
       }
+      
+      .find-pw-sucess, .find-pw-fail {
+        background-color: #d9d9d9;
+        margin: auto;
+        text-align: center;
+        width: 300px;
+        padding: 5px;
+      }
+
+    .find-pw-fail {
+      visibility: hidden;
+    }
+    .find-pw-close {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .find-pw-close-btn {
+      align-items: end;
+      border: none;
+      width: 50px;
+      height: 30px;
+    }
 </style>
 </head>
 <body>
@@ -58,17 +81,17 @@
             <div class="card col-lg-4 mx-auto">
               <div class="card-body px-5 py-5">
                 <h3 class="card-title text-left mb-3">비밀번호 찾기</h3>
-                <form>
-                  <div class="form-group">
-                    <label>아이디(이메일)</label>
-                    <input type="text" class="form-control p_input">
-                  </div>
-                  <div class="form-group">
-                    <label>이름</label>
-                    <input type="text" class="form-control p_input">
-                  </div>
-                  <div class="text-center">
-                    <button type="submit" class="btn btn-primary btn-block enter-btn">비밀번호 찾기</button>
+                <form method="POST">
+	                  <div class="form-group">
+	                    <label>아이디(이메일)</label>
+	                    <input type="text" class="form-control p_input" name="id">
+	                  </div>
+	                  <div class="form-group">
+	                    <label>이름</label>
+	                    <input type="text" class="form-control p_input" name="name">
+	                  </div>
+	                  <div class="text-center">
+	                    <button type="submit" class="btn btn-primary btn-block enter-btn">비밀번호 찾기</button>
                   </div>
                 </form>
               </div>
@@ -93,10 +116,59 @@
     <script src="/account/asset/js/settings.js"></script>
     <script src="/account/asset/js/todolist.js"></script>
     <!-- endinject -->
+    
+    <!-- 모달 -->
+	<div class="modal fade" id="find-pw-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">비밀번호 찾기</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <div class="find-pw-success">이메일로 비밀번호 재설정 링크를 전송했습니다.</div>
+	        <div class="find-pw-fail">이메일 전송을 실패했습니다.</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 	
 	<script>
-		
-	</script>
+	$(document).ready(function() {
+	    // 서블릿에서 설정한 결과 값을 가져옴
+	    var result = ${result};
+
+	    // 모달을 보여주는 함수
+	    function showModal() {
+	        if (result === 1) {
+	            $('#find-pw-modal .find-pw-success').show();
+	        } else if (result === 0) {
+	            $('#find-pw-modal .find-pw-fail').show();
+	        }
+	        $('#find-pw-modal').modal('show'); // 모달 보이기
+	    }
+
+	    // 결과에 따라 모달을 보여줌
+	    showModal();
+
+	    // 닫기 버튼 클릭 시 모달 닫기 및 페이지 이동 또는 새로고침
+	    $('#find-pw-modal .close, #find-pw-modal .btn-secondary').click(function() {
+	        $('#find-pw-modal').modal('hide'); // 모달 닫기
+	        
+	        if (result === 1) {
+	            location.href = '/account/user/login.do'; // 로그인 페이지로 이동
+	        } else if (result === 0) {
+	            location.reload(); // 페이지 새로고침
+	        }
+	    });
+	});
+</script>
+
 </body>
 </html>
 

@@ -2,7 +2,36 @@ package com.project.accountbook.board.comment.model;
 
 //tblComments(전체), tblReplyComments(seqComments)
 public class CommentDTO {
-	
+    private int replyCount;
+    private String nickname;
+    public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+	public String getProfileImage() {
+		return profileImage;
+	}
+
+	public void setProfileImage(String profileImage) {
+		this.profileImage = profileImage;
+	}
+
+	public int getReplyCount() {
+		return replyCount;
+	}
+
+	public void setReplyCount(int replyCount) {
+		this.replyCount = replyCount;
+	}
+
+
+
+
+	private String profileImage;
 	//댓글
 	private String seqPost;
 	private String seqUser;
@@ -14,7 +43,16 @@ public class CommentDTO {
 	
 	//대댓글
 	private String seqComments;
+	
+    public String getSeq() {
+		return seq;
+	}
 
+	public void setSeq(String seq) {
+		this.seq = seq;
+	}
+
+	private String seq;
 	
 	public String getSeqPost() {
 		return seqPost;

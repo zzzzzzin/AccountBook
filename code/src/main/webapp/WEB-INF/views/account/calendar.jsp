@@ -20,6 +20,7 @@
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Libraries Stylesheet -->
 </head>
@@ -206,7 +207,6 @@
       
       .content4 {
         margin-left: 300px;
-        background-color: red;
       }
       
       #navheader nav a {
@@ -263,14 +263,226 @@
     margin: 0 5px; 
 }
 .selectSize{
-    width: 100px !;
+    width: 100px ;
 }
+
+   .abovestat{
+        display: flex;
+        align-items: center;
+    }
+
+    .abovestat div{
+        margin-left: 10px;
+        margin-bottom: 10px;
+    }
+
+    #spendstat{
+        margin-top: 10px;
+    }
+
+    #aboverow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+    width: 100%; 
+    }
     
+    .right-icon{
+        width: auto;
+        height: 100%;
+    }
+
+
+
+#spendstat :nth-child(2){
+    color: rgb(244, 0, 0);
+}
+
+#incomestat :nth-child(2){
+    color: rgb(0, 76, 216);
+}
+
+#bottomrow{
+    display: flex;
+    flex-direction: row;
+    align-items: center; 
+    justify-content: flex-start; 
+    width: 100%; 
+}
+
+.right-icon i {
+    font-size: 24px;  
+    width: 30px;      
+    height: 30px; 
+    margin: 10px;    
+}
+
+#wishlist {
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin: 10px;
+    border: 1px solid black;
+    width: 40%;
+    
+}
+
+#wishlist h3 {
+    color: #333;
+}
+
+#wishlist form {
+    margin-bottom: 10px;
+}
+
+#wishlist input[type="text"] {
+    padding: 8px;
+    margin-right: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 70%;
+}
+
+#newitembutton{
+    width: 30%;
+}
+
+#wishlist button {
+    padding: 8px 16px;
+    background-color: #009CFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#wishlist button:hover {
+    background-color: #007dca;
+}
+
+#wishListItems li {
+    list-style: none;
+    margin-top: 8px;
+    background: white;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#bottomrow{
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    padding: 20px;
+}
+
+#wishlist{
+    width: 50%;
+}
+
+#wishlistrow1{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+#wishlistrow1 h3{
+    margin-right: 10px;
+}
+
+#addWishItemtitle{
+    display: flex;
+    justify-content: center;
+}
+
+#transcontent {
+    border: 1px solid #ccc;
+    width: 100%;
+    display: flex;
+    margin: 10px 0;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+    
+}
+#thismonthstat {
+    flex-grow: 1; 
+    font-weight: bold;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border: 1px solid black;
+    width: 40%;
+}
+
+.transin {
+    flex: 1;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.frontback{
+    margin: 10px;
+}
+
+#listdelbutton :hover{
+    cursor: pointer;
+}
+
+#wishlistrow2{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.categorylist{
+    border: 1px solid black;
+    width: 50%;
+    height: 30px;
+    margin: 5px;
+}
+
+#categorymodalbody{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.categorylistselector{
+    display: flex;
+    border: 1px solid #CCC;
+    background-color: #F3f6f9;
+    width: auto;
+    margin: 5px;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.categorylistselector:hover{
+    cursor: pointer;
+    box-shadow: 0 4px 4px rgba(0,0,0,0.1);
+}
+
+#searchbar{
+    display: none;
+}
+#totalbody{
+	background-color: #FFFFFF 
+}    
+    
+
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
+
 </style>
 
-<body>
+<body id="totalbody">
     <div class="container-xxl position-relative bg-white d-flex p-0">
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -298,15 +510,45 @@
             <!-- Navbar End -->
         <!-- Content End -->
         <div id="fakecontent">
+            <div id="aboverow">
+                <div><input type="text" id="searchbar"></div>
+                <div class="right-icon" id="searchicon"><i class="fa-solid fa-magnifying-glass"></i></div> 
+                <div class="right-icon" id="categoryselector"><i class="fa-solid fa-list-check"></i></div> 
+            </div>
             <div id='calendar'></div>
-
+            <div id="bottomrow">
+                <div id="thismonthstat">
+                    <div class="abovestat" id="spendstat">
+                        <div>이번달 지출:</div>
+                        <div>$30000</div>
+                    </div>
+                    <div class="abovestat" id="incomestat">
+                        <div>이번달 수입:</div>
+                        <div>$20000</div>
+                    </div>
+                </div>
+                <div id="wishlist">
+                    <div id="wishlistrow1">
+                        <h3>Wish List</h3>
+                        <div id="addWishItemtitle">
+                            <button id="addrightnow">Add Item</button>
+                        </div>
+                    </div>
+                    <div id="wishlistrow2">
+                        <input type="text" id="newItemInput" placeholder="Type and press enter" style="display: none;">
+                        <button id="newItemButton" style="display: none">추가하기</button>
+                    </div>
+                    <div id="wishListItems">
+                        
+                    </div>
+                </div>
+            </div>
         <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
         </div>
         
     </div>
-    
-    <div class="modal fade" id="eventProduceModal" tabindex="-1"
+
+   <div class="modal fade" id="eventProduceModal" tabindex="-1"
     aria-labelledby="eventProduceModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modalBackground">
@@ -330,15 +572,15 @@
                         </div>
                         <div class="mb-3">
                             <label for="eventModalTitle" class="col-form-label">내용</label> <textarea
-                                type="text" class="form-control" id="eventModalTitle"></textarea>
+                                type="text" class="form-control" id="eventModalcontent"></textarea>
                         </div>
                         <div class="mb-3">
                             <label for="eventModalTitle" class="col-form-label">사용처</label> <input
-                                type="text" class="form-control" id="eventModalTitle">
+                                type="text" class="form-control" id="eventModaluseloc">
                         </div>
                         <div class="mb-3">
                             <label for="eventModalSelect" class="col-form-label">카테고리</label>
-                            <select class="form-select" aria-label="Default select example"
+                            <select class="form-select modalselectcategory" aria-label="Default select example"
                                 id="eventModalSelect">
                                 <option selected>카테고리</option>
                                 <option value="1">개인일정</option>
@@ -348,7 +590,7 @@
 
                         <div class="mb-3">
                             <label for="eventModalSelect" class="col-form-label">지불 방식</label>
-                            <select class="form-select" aria-label="Default select example"
+                            <select class="form-select modalmethodofpayment" aria-label="Default select example"
                                 id="eventModalSelect">
                                 <option selected>지불 방식</option>
                                 <option value="1">카드</option>
@@ -358,7 +600,7 @@
                         <div class="mb-3" id="onerow">
                             <div for="eventModalEnd" class="col-form-label" id="onrowlabel">금액</div>
                             <div id="onerowinput">
-                                <select class="form-select selectSize" aria-label="Default select example"
+                                <select class="form-select selectSize modalincreasedecrease" aria-label="Default select example"
                                     id="eventModalSelect">
                                     <option selected>+/-</option>
                                     <option value="+">+</option>
@@ -373,6 +615,31 @@
                                 class="form-control" placeholder="datetime-local input">
                         </div>
                     </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal" id="btnAddEventCancel">취소</button>
+                    <button type="button" class="btn btn-primary" id="btnEventProduce">완료
+                        </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="categorymodal" tabindex="-1"
+    aria-labelledby="eventProduceModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modalBackground">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="eventProduceModalLabel">카테고리 선택</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="categorymodalbody">
+
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary"
@@ -403,29 +670,105 @@
     <!-- Template Javascript -->
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
     <script>
-
-    document.addEventListener('DOMContentLoaded', function() {
-    const sidebarToggler = document.getElementById('sidebar-toggler');
-    const sidebar = document.querySelector('.sidebar');
-    const content = document.querySelector('.content');
-
-        sidebarToggler.addEventListener('click', function() {
-        sidebar.classList.toggle('hidden');
-        content.classList.toggle('expanded');
-        });
-    });
     
-    
+
+    function openEventModal() {
+        var modal = new bootstrap.Modal(document.getElementById("eventProduceModal"));
+        // Clear previous data in the modal or set defaults
+        document.getElementById('eventModalStartDate').value = new Date().toISOString().slice(0, 16); // Set to current date and time
+        document.getElementById('eventModalContent').value = '';
+        document.getElementById('eventModalUsage').value = ''; // Corrected for unique ID
+        document.getElementById('eventModalCategory').selectedIndex = 0; // Resets the category dropdown, corrected ID
+        document.getElementById('eventModalPaymentMethod').selectedIndex = 0; // Resets the payment method dropdown, corrected ID
+        modal.show();
+    }
+    //모달 소환시 입력 무 (시작)
+    function clearModalInputs() {
+        document.getElementById('eventModalcontent').value = '';
+        document.getElementById('eventModalStart').value = '';
+        if (document.getElementsByClassName('modalselectcategory').length > 0) {
+            document.getElementsByClassName('modalselectcategory')[0].selectedIndex = 0;
+        }
+        if (document.getElementsByClassName('modalmethodofpayment').length > 0) {
+            document.getElementsByClassName('modalmethodofpayment')[0].selectedIndex = 0;
+        }
+        if (document.getElementsByClassName('modalincreasedecrease').length > 0) {
+            document.getElementsByClassName('modalincreasedecrease')[0].selectedIndex = 0;
+        }
+        document.getElementById('eventModaluseloc').value = '';
+        document.getElementById('eventModalIoc').value = '';
+        document.getElementById('fixedexpense').checked = false; 
+    }
+    //모달 소환시 입력 무 (끝)
+
+
+            
     document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
         var checkbox = document.getElementById('fixedexpense');
         var fixedDateDiv = document.getElementById('fixeddate');
         var eventProduceModal = document.getElementById('eventProduceModal');
+        var addwishlistnow = document.getElementById('addrightnow');
+        var categoryselector = document.getElementById('categoryselector')
+        var categorymodalbody = document.getElementById('categorymodalbody')
+        var categorySelector = document.getElementById('eventModalSelect'); 
+        // 카테고리 선택 시작
+        const categories = [
+        "미분류","SNS수입", "건강", "경조사", "교육", "교통", "구독료", "금융수입", "급여", "기부금", "기타",
+        "더치페이", "로열티", "문화생활", "미용", "보험금", "부동산수입", "부업", "사업수입", "상속", "상여금",
+        "생활용품", "세금", "쇼핑", "수수료", "숙박", "아르바이트", "앱테크", "여가", "여행", "용돈",
+        "유흥", "육아", "음식", "이자", "자동차", "장학금", "저축", "주거", "카페", "통신"
+    ];
 
-    // Reset the checkbox and hide elements when the modal is about to be shown
+    function populateCategorySelector() {
+            categorySelector.innerHTML = ''; // Clear existing options
+            categories.forEach(function(category) {
+                var option = document.createElement('option');
+                option.value = category;
+                option.textContent = category;
+                categorySelector.appendChild(option);
+            });
+        }
+
+        populateCategorySelector();
+
+        console.log(categories)
+        categoryselector.addEventListener('click', function() {
+            var modal = new bootstrap.Modal(document.getElementById("categorymodal"));
+
+            if (categorymodalbody.children.length <= 0) {
+                categories.forEach(category => {
+                    var cate = document.createElement('div');
+                    console.log(category)
+                    cate.className = 'categorylistselector';
+                    cate.innerHTML = '<div>' + category + '</div>';
+                    categorymodalbody.appendChild(cate);
+                });
+            }
+
+
+            modal.show();
+        })
+        //카테고리 선택 끝
+        // 검색 기능
+        var searchicon = document.getElementById('searchicon');
+        var searchbar = document.getElementById('searchbar');
+        searchicon.onclick = function() {
+            if (searchbar.style.display === 'none') {
+                searchbar.style.display = 'block';
+                searchbar.focus();
+            } else {
+                searchbar.style.display = 'none';
+            }
+        };
+        //검색 기능 끝
+        
+
+    // 고정 지출 시작
     eventProduceModal.addEventListener('show.bs.modal', function () {
         checkbox.checked = false; // Uncheck the checkbox
         fixedDateDiv.style.display = 'none'; // Hide the date input
+
     });
 
         checkbox.addEventListener('change', function() {
@@ -435,20 +778,83 @@
                 fixedDateDiv.style.display = 'none'; // Hide the fixed date input
             }
         });
+    //고정 지출 끝
+
+    //항목 추가 시작
+    document.getElementById('btnEventProduce').addEventListener('click', function() {
+        var title = document.getElementById('eventModalcontent').value;
+        var start = document.getElementById('eventModalStart').value;
+        var category = document.getElementsByClassName('modalselectcategory')[0].value;
+        var useLocation = document.getElementById('eventModaluseloc').value;
+        var paymentMethod = document.getElementsByClassName('modalmethodofpayment')[0].value;
+        var amountindicator = document.getElementsByClassName('modalincreasedecrease')[0].value;
+        var amount = document.getElementById('eventModalIoc').value;
+        var isFixedExpense = document.getElementById('fixedexpense').checked;
+        
+        // Validate the inputs
+        if (!title || !start || !category || !amount) {
+            alert('모든 필수 필드를 입력해주세요.'); // Alert if any required field is missing
+            return;
+        }
+        console.log(title, start, category, useLocation, paymentMethod,amountindicator, amount, isFixedExpense);
+
+        // Create a new event object
+        var event = {
+            title: title,
+            start: start,
+            allDay: true,
+            color: category === '1' ? '#ff0000' : '#0000ff', 
+            extendedProps: {
+                useLocation: useLocation,
+                category: category,
+                paymentMethod: paymentMethod,
+                amount: amount,
+                amountindicator: amountindicator,
+                isFixedExpense: isFixedExpense
+            }
+        };
+
+        // Add the event to the calendar
+        calendar.addEvent(event);
+
+        // Optionally clear the modal inputs
+        document.getElementById('eventModalcontent').value = '';
+        document.getElementById('eventModalStart').value = '';
+        Array.from(document.querySelectorAll('#eventProduceModal select')).forEach(select => select.selectedIndex = 0);
+        document.getElementById('eventModaluseloc').value = '';
+        document.getElementById('eventModalIoc').value = '';
+        document.getElementById('fixedexpense').checked = false;
+
+        // Hide the modal, assuming using Bootstrap's modal
+        $('#eventProduceModal').modal('hide');
+
+        // Log or handle the data as needed, e.g., send it to a server
+        console.log('Event data:', event);
+        // Here you can also make an AJAX call to send the data to the server
+    });
+
+    //항목 추가 끝
+
+        
 
      var calendar = new FullCalendar.Calendar(calendarEl, {
+            timeZone:'UTC',
             editable: true,
     		eventClick: function(info) {
+                console.log('workd');
     		    info.jsEvent.preventDefault();
-    			var container = document.getElementById("editEventModal");
-    			var modal = new bootstrap.Modal(container);
-    			$('#editEventModalTitle').val(info.event.title);
-    			$('#editEventModalStart').val(moment(info.event.start).format('YYYY-MM-DDTHH:mm'));
-    			$('#editEventModalEnd').val(moment(info.event.end).format('YYYY-MM-DDTHH:mm'));
-    			$('#editEventModalColor').val(info.event.backgroundColor);
-    			$('#editEventModalLoc').val(info.event.extendedProps.loc);
-    			$('#editEventModalContent').val(info.event.extendedProps.content);
-            	modal.show();
+                var container = document.getElementById("eventProduceModal");//
+                var modal = new bootstrap.Modal(container);
+                $('#eventModalcontent').val(info.event.title); 
+                $('#eventModalStart').val(info.event.start.toISOString().slice(0, 16)); 
+                $('.modalselectcategory').val(info.event.extendedProps.category);
+                $('#eventModaluseloc').val(info.event.extendedProps.useLocation);
+                $('.modalmethodofpayment').val(info.event.extendedProps.paymentMethod);
+                $('.modalincreasedecrease').val(info.event.extendedProps.amountindicator);
+                $('#eventModalIoc').val(info.event.extendedProps.amount);
+                $('#fixedexpense').prop('checked', info.event.extendedProps.isFixedExpense);
+                
+            modal.show();
 
     			$('#deleteEventBtn').on('click', function() {
     				if(window.confirm('일정을 삭제하시겠습니까?'))
@@ -463,6 +869,7 @@
     		},
     		
     		eventMouseEnter: function (info) {
+                console.log('in')
     			var popover = new bootstrap.Popover(info.el, {
     				title: $('<div />', {
     					text: info.event.title
@@ -471,25 +878,32 @@
     					'font-weight': 'bold',
     					'font-size': '20px'
     				}),
-    			content: $('<div />', {
-    				class: 'popoverInfoEvent'
-            		}).append('<strong>카테고리:</strong> ' + '<br>')
-            .append('<strong>시간:</strong> ' + getDisplayEventDate(info.event) + '<br>')
-            .append('<strong>내용:</strong> ' + info.event.extendedProps.content),
-    			trigger: 'hover',
-    			delay: { show: 400, hide: 300 },
-    			placement: 'top',
-    			html: true,
-    			container: 'body'
+                    content: $('<div />', {
+                class: 'popoverInfoEvent'
+            }).append('<strong>내용:</strong> ' + info.event.extendedProps.category + '<br>')
+            .append('<strong>금액:</strong> '+info.event.extendedProps.amountindicator + info.event.extendedProps.amount + '<br>')
+            ,
+            trigger: 'hover',
+            delay: { show: 400, hide: 300 },
+            placement: 'top',
+            html: true,
+            container: 'body'
     			});
     			setTimeout(function () {
     			popover.dispose();
     			}, 1500); 
     		},
     		dateClick: function(info) {
-            var container = document.getElementById("eventProduceModal");//
-            var modal = new bootstrap.Modal(container);
+                console.log('dateclick',info.dateStr);
+            clearModalInputs(); // Clear all modal inputs first
+            var dateValue = new Date(info.dateStr);
+            var localDate = new Date(dateValue.getTime() - dateValue.getTimezoneOffset() * 60000);
+            var dateISOString = localDate.toISOString().slice(0, 16);
+        
+        document.getElementById('eventModalStart').value = dateISOString;
+        
             
+            var modal = new bootstrap.Modal(document.getElementById('eventProduceModal'));
             modal.show();
           },
           select: function(info) {
@@ -506,50 +920,157 @@
         //   businessHours: true, // display business hours
           editable: true,
           selectable: true,
-          /* events: [
-       		   $.ajax({
-       			type: 'get',
-       			url: '/plan/listevent.do',
-       			dataType: 'json',
-       			success: function(result){
-       				result.forEach(obj =>{
-       					calendar.addEvent({
-       						title: obj.title,
-       						start: obj.start,
-       						end: obj.end,
-       						color: obj.colSeq,
-       						extendedProps: {
-    			   				loc: obj.loc,
-    			   				content: obj.content
-       						}
-       					})
-       				})
-      			},
-       			error: function(a,b,c){
-       				console.log(a,b,c);
-       			}
-       		  }) 
-       	  ] */
+          /* events:[
+            {
+              title: 'event 1',
+              start: '2024-05-01',
+            }
+          ], */
+          events: [
+        	  $.ajax({
+         			type: 'get',
+         			url: '/account/account/calendarjson.do',
+         			dataType: 'json',
+         			success: function(result){
+         				result.forEach(obj =>{
+         					calendar.addEvent({
+         						title: obj.category ,
+         						allDay: true,
+         						start: obj.start,
+         						extendedProps: {
+      			   					loc: obj.loc,
+      			   					content: obj.content,
+      			   					amount: obj.amount,
+      			   					indicator: (obj.amountindicator==='출금'?'-':'+'),
+      			   					category: obj.category,
+      			   					fixed: obj.fixed,
+      			   					fixedPeriod: obj.fixedperiod
+         						}
+         					})
+         				})
+        			},
+         			error: function(a,b,c){
+         				console.log(a,b,c);
+         			}
+         		 }) 
+          ]
         });
         calendar.render();
-        
-        var sidebar = document.querySelector('.sidebar');
-        var sidebarToggler = document.getElementById('sidebar-toggler');
-
-        sidebarToggler.addEventListener('click', function() {
-            sidebar.classList.toggle('active');
-            // Assuming the transition duration is 300ms, adjust accordingly
-            sidebar.addEventListener('transitionend', function() {
-                calendar.updateSize();
-            });
-        });
-    });
+      });
 
     document.addEventListener('DOMContentLoaded', function() {
+        const addForm = document.getElementById('addWishItemForm');
+        const wishList = document.getElementById('wishListItems');
+        const wishInput = document.getElementById('wishInput');
+
+        const wishlistcheckbox = document.getElementById('addcheckbox');
+        console.log(wishlistcheckbox);
+        
+        wishlistcheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                console.log('Checkbox is checked');
+                openEventModal();
+            }
+        });
        
+    })
+
+    //위시리스트
+    document.addEventListener('DOMContentLoaded', function() {
+        const addButton = document.getElementById('addrightnow');
+        const newItemInput = document.getElementById('newItemInput');
+        const wishList = document.getElementById('wishListItems');
+        const newItemButton = document.getElementById('newItemButton');
+        const cbcbbox = document.getElementById('addcheckbox');
+
+        // Toggle input field visibility and focus when the button is clicked
+        addButton.onclick = function() {
+            if (newItemInput.style.display === 'none') {
+                newItemInput.style.display = 'block';
+                newItemButton.style.display = 'block';
+                newItemInput.focus();
+            } else {
+                newItemInput.style.display = 'none';
+                newItemButton.style.display = 'none';
+            }
+        };
+
+        // Function to add a new transaction item to the wish list
+        function addNewTransContent(itemText) {
+            const transContent = document.createElement('div');
+            transContent.id = 'transcontent';
+        
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.className = 'frontback';
+            checkbox.id = 'addcheckbox';
+
+            const transDesc = document.createElement('div');
+            transDesc.className = 'transin';
+            transDesc.id = 'transdate';
+            transDesc.textContent = itemText;
+
+            const deleteBtn = document.createElement('div');
+            deleteBtn.className = 'frontback';
+            deleteBtn.id = 'listdelbutton';
+            deleteBtn.innerHTML = '<div id="listdelbutton" class="frontback"><i class="fa-solid fa-xmark"></i></div>';
+            deleteBtn.onclick = function() {
+                wishList.removeChild(transContent);
+            };
+
+            transContent.appendChild(checkbox);
+            transContent.appendChild(transDesc);
+            transContent.appendChild(deleteBtn);
+
+            wishList.appendChild(transContent);
+        }
+
+        newItemInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                const text = newItemInput.value.trim();
+                if (text) {
+                    addNewTransContent(text);
+                    newItemInput.value = ''; 
+                    newItemInput.style.display = 'none'; 
+                    newItemButton.style.display = 'none';  
+                }
+            }
+        });
+        newItemButton.addEventListener('click', function() {
+            const text = newItemInput.value.trim();
+            if (text) {
+                addNewTransContent(text);
+                newItemInput.value = ''; 
+                newItemInput.style.display = 'none'; 
+                newItemButton.style.display = 'none';  
+            }
+        });
+
+
+        // Event delegation for dynamically added checkboxes
+        wishList.addEventListener('change', function(event) {
+            // Check if the event target is a checkbox with the class 'frontback'
+            if (event.target.type === 'checkbox' && event.target.classList.contains('frontback')) {
+                // Check if the checkbox is checked
+                if (event.target.checked) {
+                    console.log('Checkbox is checked');
+                    var container = document.getElementById("eventProduceModal");//
+                    var modal = new bootstrap.Modal(container);
+                    let content = document.getElementById('transdate').innerHTML;
+                        clearModalInputs();
+                        $('#eventModalcontent').val(content); 
+                        console.log(content);
+                    modal.show();
+                    event.target.checked=false;
+                }
+            }
+        });
 
         
     });
+
+
 
     </script>
 </body>

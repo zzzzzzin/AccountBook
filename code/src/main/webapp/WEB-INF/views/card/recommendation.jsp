@@ -28,7 +28,8 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
 	rel="stylesheet">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script type="module" src="chart.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.js"
 	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
 	crossorigin="anonymous">
@@ -129,11 +130,52 @@
 	background-color: #f9f9f9;
 }
 
-<%@include file ="/WEB-INF/views/inc/asset.jsp"%>.flipster-container {
+#categorymodalbody{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.categorylistselector{
+    display: flex;
+    border: 1px solid #CCC;
+    background-color: #F3f6f9;
+    width: auto;
+    margin: 5px;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#categoryselector{
+	margin: 5px;	
+}
+
+.categorylistselector:hover{
+    cursor: pointer;
+    box-shadow: 0 4px 4px rgba(0,0,0,0.1);
+}
+.flipster-container {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 }
+
+ #aboverow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+    width: 100%; 
+    }
+    
+ .right-icon{
+        width: auto;
+        height: 100%;
+    }
+
+<%@include file ="/WEB-INF/views/inc/asset.jsp"%>
+
+
 </style>
 
 <body>
@@ -167,6 +209,9 @@
 			<!-- Content End -->
 			<!-- fakecontent 안에서 작성 -->
 			<div id="fakecontent_card">
+			<div id="aboverow">
+                <div class="right-icon" id="categoryselector" onclick="openCategoryModal()"><i class="fa-solid fa-list-check"></i></div> 
+            </div>
 				<div class="flipster-container">
 					<div class="flipster">
 						<ul class="flip-items">
@@ -193,16 +238,37 @@
 				</div>
 			</div>
 		</div>
-		<button class="modal-button" onclick="openModal()">카테고리 선택</button>
 	</div>
-	</div>
+	
 
 	<!-- fakecontent 끝 -->
 	<!-- Back to Top -->
-	<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i
-		class="bi bi-arrow-up"></i></a>
 
 
+<div class="modal fade" id="categorymodal" tabindex="-1"
+    aria-labelledby="eventProduceModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modalBackground">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="eventProduceModalLabel">카테고리 선택</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="categorymodalbody">
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">취소</button>
+                    <button type="button" class="btn btn-primary" id="btnEventProduce">완료
+                        </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 	<!-- JavaScript Libraries -->
 
@@ -210,27 +276,51 @@
 	<script
 		src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
 	<script>
-    
-    function openModal() {
-        // 모달 열기 함수 구현
-        console.log("모달 열기");
-        
-        window.location.href = '/account/card/recommendation-list.do';
-    }
-        
-
     document.addEventListener('DOMContentLoaded', function() {
-    const sidebarToggler = document.getElementById('sidebar-toggler');
-    const sidebar = document.querySelector('.sidebar');
-    const content = document.querySelector('.content');
+    	console.log("recommendation.jsp - DOMContentLoaded");
+        var categoryselector = document.getElementById('categoryselector');
+        var categorymodalbody = document.getElementById('categorymodalbody');
 
-        sidebarToggler.addEventListener('click', function() {
-        sidebar.classList.toggle('hidden');
-        content.classList.toggle('expanded');
-        });
+        const categories = [
+            "모든가맹점", "교통", "주유", "통신", "마트/편의점", "쇼핑", "푸드", "카페/디저트", "뷰티/피트니스",
+            "무실적", "공과금/렌탈", "병원/약국", "애완동물", "교육/육아", "자동차/하이패스",
+            "레저/스포츠", "영화/문화", "간편결제", "항공마일리지", "공항라운지/PP", "프리미엄",
+            "여행/숙박", "해외", "비즈니스"
+        ];
+
+        console.log("Categories:", categories); // 디버깅: 카테고리 배열 출력
     });
-    
-    
+
+    function openCategoryModal() {
+    	console.log("recommendation.jsp - openCategoryModal");
+        var modal = new bootstrap.Modal(document.getElementById("categorymodal"));
+
+        var categorymodalbody = document.getElementById('categorymodalbody');
+        categorymodalbody.innerHTML = ''; // 모달 내용 초기화
+
+        const categories = [
+            "모든가맹점", "교통", "주유", "통신", "마트/편의점", "쇼핑", "푸드", "카페/디저트", "뷰티/피트니스",
+            "무실적", "공과금/렌탈", "병원/약국", "애완동물", "교육/육아", "자동차/하이패스",
+            "레저/스포츠", "영화/문화", "간편결제", "항공마일리지", "공항라운지/PP", "프리미엄",
+            "여행/숙박", "해외", "비즈니스"
+        ];
+
+        categories.forEach(category => {
+            var cate = document.createElement('div');
+            cate.className = 'categorylistselector';
+            cate.innerHTML = '<div onclick="openModal(\'' + category + '\')">' + category + '</div>';
+            categorymodalbody.appendChild(cate);
+        });
+
+        console.log("Open Category Modal"); // 디버깅: 모달 열기
+        modal.show();
+    }
+
+    function openModal(category) {
+        console.log("Selected Category:", category); // 선택한 카테고리 값 출력
+        window.location.href = '/account/card/recommendation-list.do?category=' + encodeURIComponent(category);
+    }
+
     /* jshint browser: true, jquery: true, devel: true */
     /* global window, jQuery */
     
@@ -309,8 +399,9 @@
                 loop: false,
                 // [true|false|number]
                 // Loop around when the start or end is reached
-                // If number, this is the number of items that will be shown when the beginning or end is reached
-    
+                // If number, this
+                
+                
                 autoplay: false,
                 // [false|milliseconds]
                 // If a positive number, Flipster will automatically advance to next item after that number of milliseconds

@@ -34,6 +34,12 @@ body {
 	background-color: #D9D9D9;
 	border: none;
 }
+
+.find-info-btn {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+}
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 </style>
 </head>
@@ -68,18 +74,17 @@ body {
 									<button type="submit"
 										class="btn btn-primaryz btn-block enter-btn">로그인</button>
 								</div>
-								<div class="d-flex">
-									<button class="btn btn-google col">
-										<i class="mdi mdi-google-plus"></i> Google plus
-									</button>
-								</div>
+<!-- 								<div class="d-flex"> -->
+<!-- 									<button class="btn btn-google col"> -->
+<!-- 										<i class="mdi mdi-google-plus"></i> Google plus -->
+<!-- 									</button> -->
+<!-- 								</div> -->
 								<p class="sign-up">
 									<a href="/account/user/register.do">Sign Up</a>
 								</p>
-								<div class="find">
+								<div class="find-info-btn">
 									<a href="/account/user/find-id.do" class="forgot-id">아이디 찾기</a>
-									<a href="/account/user/find-pw.do" class="forgot-pw">비밀번호
-										찾기</a>
+									<a href="/account/user/find-pw.do" class="forgot-pw">비밀번호 찾기</a>
 								</div>
 							</form>
 						</div>

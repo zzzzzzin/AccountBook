@@ -37,6 +37,7 @@ public class Analysis extends HttpServlet {
 		AccountDAO dao = new AccountDAO();
 		ArrayList<AccountInfoDTO> nList = dao.nowAnalysis(id, map);
 		ArrayList<AccountInfoDTO> bList = dao.beforeAnalysis(id, map);
+<<<<<<< HEAD
 		ArrayList<AccountInfoDTO> cList = dao.getCategory();
 		
 		int totalThisMonth = 0;
@@ -50,8 +51,20 @@ public class Analysis extends HttpServlet {
 		req.setAttribute("bList", bList);
 		req.setAttribute("cList", cList);
 		req.setAttribute("totalThisMonth", totalThisMonth);
+=======
+		ArrayList<AccountInfoDTO> cList = dao.getCategory();	
+		
+		HashMap<String, String> challengeInfoMap = dao.getChallenge(id);
+		HashMap<String, String>categoryUsageMap = dao.getComparisonCategoryUsage(id);
+		
+		req.setAttribute("nList", nList);
+		req.setAttribute("bList", bList);
+		req.setAttribute("cList", cList);
+		
+		req.setAttribute("challengeInfoMap", challengeInfoMap);
+		req.setAttribute("categoryUsageMap", categoryUsageMap);
+>>>>>>> 759c337dc2e731d08541c20c8c455c5d7c5a8c1a
 	
-
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/account/analysis.jsp");
 		dispatcher.forward(req, resp);
 

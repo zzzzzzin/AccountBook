@@ -64,19 +64,22 @@
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
 
-			<c:if test="${not empty list}">
-    			<img src="/account/asset/images/${list[0].fileLink}" id="cardDetailImgPlace">
-			</c:if>
-			<form id="selectDateForm" method="GET">
-			<div class="date-range-myCardTotal">
-				<input type="hidden" name="seqMyCard" value="${map.seqMyCard}">
-				<label for="start-date-myCardTotal">시작일 </label> 
-					<input type="text" name = "startDate" id="start-date" class="date-input-myCardTotal" value="${map.startDate}"> 
-				<label for="end-date">종료일 </label> 
-					<input type="text" name = "endDate" id="end-date" class="date-input-myCardTotal" value="${map.endDate}">
-				<input type="submit" value="확인"/>
+<div class="content-total-style">
+	<div class="card-use-detail-box">
+		<form id="selectDateForm" method="GET">
+			<div class="date-range-total-box">
+			<div class="date-range-box">
+				<label for="start-date-myCardTotal">시작일 <input type="text" name = "startDate" id="start-date" class="date-input-myCardTotal" value="${map.startDate}"> </label> 
+				<label for="end-date">종료일 <input type="text" name = "endDate" id="end-date" class="date-input-myCardTotal" value="${map.endDate}"></label> 
+			</div>
+				<input type="submit" value="확인" class="dark-blue-btn long-btn"/>
 			</div>
 		</form>
+		
+		<c:if test="${not empty list}">
+    			<img src="/account/asset/images/${list[0].fileLink}" id="cardDetailImgPlace">
+		</c:if>
+	</div>
 			<table class="transaction-table">
 				<thead>
 					<tr>
@@ -105,6 +108,7 @@
 				</thead>
 				<tbody id="transaction-list"></tbody>
 			</table>
+		</div>
 
 
 			<!-- fakecontent 끝 -->

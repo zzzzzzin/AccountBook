@@ -24,18 +24,6 @@
     <!-- Libraries Stylesheet -->
 </head>
 <style>
-
-   body {
-        font-family: 'Noto Sans KR', sans-serif;
-        background-color: #f5f5f5;
-        margin: 0;
-        padding: 20px;
-    }
-    
-    #cardImgPlace {
-    	margin: 0;
-    	width: 150px;
-    }
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
@@ -70,34 +58,35 @@
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
 
+		<div class="content-total-style">
 		<form id="selectDateForm" method="GET">
-			<div class="date-range-myCardTotal">
-				<label for="start-date-myCardTotal">시작일 </label> 
-					<input type="text" name = "startDate" id="start-date" class="date-input-myCardTotal" value="${map.startDate}"> 
-				<label for="end-date">종료일 </label> 
-					<input type="text" name = "endDate" id="end-date" class="date-input-myCardTotal" value="${map.endDate}">
-				<input type="submit" value="확인"/>
+			<div class="date-range-total-box">
+			<div class="date-range-box">
+				<label for="start-date-myCardTotal">시작일 <input type="text" name = "startDate" id="start-date" class="date-input-myCardTotal" value="${map.startDate}"> </label> 
+				<label for="end-date">종료일 <input type="text" name = "endDate" id="end-date" class="date-input-myCardTotal" value="${map.endDate}"></label> 
+			</div>
+				<input type="submit" value="확인" class="dark-blue-btn long-btn"/>
 			</div>
 		</form>
 		
-		<div class="card-list-myCardTotal">
+		<div class="card-use-list">
 				<c:forEach items="${list}" var="dto">
-						<button type="submit" class="card-item-myCardTotal" id="useCardDetail" onclick="location.href='/account/account/card-use-detail.do?seqMyCard=${dto.seqMyCard}&startDate=${map.startDate}&endDate=${map.endDate}';">
-<!-- 							<div class="card-image-myCardTotal"></div> -->
+						<button type="submit" class="gray-blue-box card-use-item" onclick="location.href='/account/account/card-use-detail.do?seqMyCard=${dto.seqMyCard}&startDate=${map.startDate}&endDate=${map.endDate}';">
 							<img src="/account/asset/images/${dto.fileLink}" id="cardImgPlace" >
-							<div class="card-details-myCardTotal">
-								<div class="card-name-myCardTotal">
+							<div class="card-use-info-box">
+								<div class="card-use-name">
 									<c:if test="${dto.alias != null}">
 										${dto.alias}
 									</c:if>
 									<c:if test="${dto.alias == null}">
 										${dto.cfName}
 									</c:if>
-								</div>
-								<div class="card-usage-myCardTotal">${dto.totalPrice}</div>
+								</div> <br>
+								<div class="card-use-price">총 ${dto.totalPrice}원</div>
 							</div>
 						</button>
 					</c:forEach>
+		</div>
 		</div>
 
 		<!-- fakecontent 끝 -->
@@ -129,16 +118,6 @@
             dateFormat: "yy-mm-dd"
         });
     });
-
-        
-//      // card-item-myCardTotal를 클릭하면 CardUseageInfo 함수 실행
-//         $(document).on("click", ".card-item-myCardTotal", function() {
-//             CardUseageInfo();
-//         });
-    
-//     function CardUseageInfo() {
-//     	window.location.href = '/account/account/card-use-detail.do';  	
-//     }
 
     </script>
 </body>

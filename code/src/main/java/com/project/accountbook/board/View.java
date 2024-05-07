@@ -33,6 +33,7 @@ public class View extends HttpServlet {
 			if (i == 1) {
 				postDto.setSeqBoard("1");
 				ArrayList<NoticeDTO> noticeList = dao.selectNoticeDTOs(postDto);
+				
 				req.setAttribute("noticeList", noticeList); // noticeList 객체를 요청 객체에 추가
 			}
 			
@@ -40,6 +41,7 @@ public class View extends HttpServlet {
 			if (i == 2) {
 				postDto.setSeqBoard("2");
 				ArrayList<FreeDTO> freeList = dao.selectFreeDTOs(postDto);
+				
 				req.setAttribute("freeList", freeList); // freeList 객체를 요청 객체에 추가
 			}
 			
@@ -47,6 +49,7 @@ public class View extends HttpServlet {
 			if (i == 3) {
 				postDto.setSeqBoard("3");
 				ArrayList<ReportDTO> reportList = dao.selectReportDTOs(postDto);
+				
 				req.setAttribute("reportList", reportList); // reportList 객체를 요청 객체에 추가
 			}
 			
@@ -54,6 +57,7 @@ public class View extends HttpServlet {
 			if (i == 4) {
 				postDto.setSeqBoard("4");
 				ArrayList<AttendanceDTO> attendanceList = dao.selectAttendanceDTOs(postDto);
+				
 				req.setAttribute("attendanceList", attendanceList); // attendanceList 객체를 요청 객체에 추가
 			}
 		}

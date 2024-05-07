@@ -111,6 +111,8 @@ insert into tblSavingsPeriod (seq, period) values (79, 79);
 insert into tblSavingsPeriod (seq, period) values (80, 80);
 
 --API tblAPI
+insert into tblAPI (seq, name, key) values (1, '카카오', '91bcd7b2be9455e375ffd22202e60b3a');
+commit;
 
 -- 입출금 상태 tblDepositWithdrawalStatus
 insert into tblDepositWithdrawalStatus (seq, status) values (1, '입금');
@@ -143,6 +145,7 @@ insert into tblCardCategory (seq, name) values (23, '해외');
 insert into tblCardCategory (seq, name) values (24, '비즈니스');
 
 --가계부 카테고리  tblAccCategory
+INSERT INTO tblAccCategory (seq, name ) VALUES (0, '미분류');
 INSERT INTO tblAccCategory (seq, name ) VALUES (1, 'SNS수입');
 INSERT INTO tblAccCategory (seq, name ) VALUES (2, '건강');
 INSERT INTO tblAccCategory (seq, name ) VALUES (3, '경조사');

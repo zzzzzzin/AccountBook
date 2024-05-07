@@ -13,6 +13,8 @@ public class UserDTO {
 	private String nickname;
 	private String phoneNumber;
 	private String ssn;
+	private String joinDate;
+	private int monthsSinceJoin;	
 	
 	private int monthlyPaycheck;
 	public int getMonthlyPaycheck() {
@@ -39,9 +41,20 @@ public class UserDTO {
 	public void setSeqSavingsPeriod(String seqSavingsPeriod) {
 		this.seqSavingsPeriod = seqSavingsPeriod;
 	}
+
+	public int getMonthsSinceJoin() {
+		return monthsSinceJoin;
+	}
+	public void setMonthsSinceJoin(int monthsSinceJoin) {
+		this.monthsSinceJoin = monthsSinceJoin;
+	}
+
+
+
 	private int savingsGoals;
 	private String seqCompressionIntensity;
 	private String seqSavingsPeriod;
+	private int spPeriod;
 	
 	
 	public String getSsn() {
@@ -139,11 +152,31 @@ public class UserDTO {
 	public void setSeqPriv(String seqPriv) {
 	this.seqPriv = seqPriv;
 	}
+	
+	
+	public String getJoinDate() {
+		return joinDate;
+	}
+	public void setJoinDate(String joinDate) {
+		this.joinDate = joinDate;
+	}
+	
+	
+	
+	public int getSpPeriod() {
+		return spPeriod;
+	}
+	public void setSpPeriod(int spPeriod) {
+		this.spPeriod = spPeriod;
+	}
 	@Override
 	public String toString() {
-	return "UserDTO [id=" + id + ", pw=" + pw + ", name=" + name + ", nickname=" + nickname + ", phoneNumber="
-	+ phoneNumber + ", ssn=" + ssn + ", gender=" + gender + ", reportCount=" + reportCount + ", seqSurvey="
-	+ seqSurvey + ", seqProfileimg=" + seqProfileimg + ", fileName=" + fileName + ", fileLink=" + fileLink
-	+ ", seqPriv=" + seqPriv + ", monthlyPaycheck=" + monthlyPaycheck + ", savingsGoals" + savingsGoals + ", seqCompressionIntensity" + seqCompressionIntensity + ", seqSavingsPeriod" + seqSavingsPeriod + "]";
+		return "UserDTO [id=" + id + ", pw=" + pw + ", name=" + name + ", nickname=" + nickname + ", phoneNumber="
+				+ phoneNumber + ", ssn=" + ssn + ", joinDate=" + joinDate + ", monthlyPaycheck=" + monthlyPaycheck
+				+ ", savingsGoals=" + savingsGoals + ", seqCompressionIntensity=" + seqCompressionIntensity
+				+ ", seqSavingsPeriod=" + seqSavingsPeriod + ", gender=" + gender + ", reportCount=" + reportCount
+				+ ", seqSurvey=" + seqSurvey + ", seqProfileimg=" + seqProfileimg + ", idMember=" + idMember
+				+ ", fileName=" + fileName + ", fileLink=" + fileLink + ", seqPriv=" + seqPriv + "]";
 	}
+	
 	}

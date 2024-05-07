@@ -13,14 +13,58 @@ public class CardDTO {
 	
 	//카드 혜택 목록
 	private int lcbseqCardCategory;
-	private int SeqCardInformation;
+	private int seqCardInformation;
+	private String category;
 	
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public int getSeqCardInformation() {
+		return seqCardInformation;
+	}
+
+	public void setSeqCardInformation(int seqCardInformation) {
+		this.seqCardInformation = seqCardInformation;
+	}
+
 	//카드 혜택 카테고리
 	private String ccName;
 	
 	//카드/가계부 카테고리 연결
 	private int caaSeqCardCategory;
 	private int seqAccCategory;
+	
+	//카드 할인율
+	private String discountRate;
+	private int seq;
+	private String name;
+	public int getSeq() {
+	    return seq;
+	}
+
+	public void setSeq(int seq) {
+	    this.seq = seq;
+	}
+
+	public String getName() {
+	    return name;
+	}
+
+	public void setName(String name) {
+	    this.name = name;
+	}
+	public String getDiscountRate() {
+	    return discountRate;
+	}
+
+	public void setDiscountRate(String discountRate) {
+	    this.discountRate = discountRate;
+	}
 	
 	
 	public String getCiName() {
@@ -87,13 +131,6 @@ public class CardDTO {
 		this.lcbseqCardCategory = lcbseqCardCategory;
 	}
 	
-	public int getSeqCardInformation() {
-		return SeqCardInformation;
-	}
-	
-	public void setSeqCardInformation(int seqCardInformation) {
-		SeqCardInformation = seqCardInformation;
-	}
 	
 	public String getCcName() {
 		return ccName;
