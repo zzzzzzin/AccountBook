@@ -77,4 +77,37 @@ public class CommentDAO {
         
         return 0;
     }
+ // 답글 조회
+    public List<CommentDTO> getReplyCommentsByCommentSeq(String commentSeq) {
+        List<CommentDTO> replyComments = new ArrayList<>();
+        try {
+            String sql = "SELECT trc.*, tm.nickname, tp.fileLink AS profileImage " +
+                         "FROM tblReplyComments trc " +
+                         "JOIN tblUser tu ON trc.seqUser = tu.seq " +
+                         "JOIN tblMember tm ON tu.idMember = tm.id " +
+                         "LEFT JOIN tblProfileimg tp ON tm.seqProfileimg = tp.seq " +
+                         "WHERE trc.seqComments = ?";
+            pstat = conn.prepareStatement(sql);
+            pstat.setString(1, commentSeq);
+            rs = pstat.executeQuery();
+
+            while (rs.next()) {
+                CommentDTO replyComment = new CommentDTO();
+                replyComment.setSeq(rs.getString("seq"));
+                replyComment.setSeqComments(rs.getString("seqComments"));
+                replyComment.setSeqUser(rs.getString("seqUser"));
+                replyComment.setContent(rs.getString("content"));
+                replyComment.setWriteDate(rs.getString("writeDate"));
+                replyComment.setLikeCount(rs.getInt("likeCount"));
+                replyComment.setDislikeCount(rs.getInt("dislikeCount"));
+                replyComment.setReportCount(rs.getInt("reportCount"));
+                replyComment.setNickname(rs.getString("nickname"));
+                replyComment.setProfileImage(rs.getString("profileImage"));
+                replyComments.add(replyComment);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return replyComments;
+    }
 }

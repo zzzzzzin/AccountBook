@@ -1,6 +1,7 @@
 package com.project.accountbook.board.comment;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.project.accountbook.board.comment.model.CommentDTO;
 import com.project.accountbook.board.comment.repository.CommentDAO;
 
-@WebServlet("/board/addcomment.do")
+@WebServlet("/board/addComment.do")
 public class addComment extends HttpServlet {
     
     @Override
