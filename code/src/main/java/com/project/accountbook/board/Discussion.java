@@ -39,5 +39,8 @@ public class Discussion extends HttpServlet {
         req.setAttribute("post", post);
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/discussion.jsp");
         dispatcher.forward(req, resp);
+        List<CommentDTO> comments = cdao.getCommentsByPostSeq(seq);
+        req.setAttribute("comments", comments);
+        
     }
 }

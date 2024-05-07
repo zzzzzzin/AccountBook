@@ -149,81 +149,84 @@
                 <span><i class="material-icons">report</i> 신고</span>
               </div>     
             </div>
-            <!-- 댓글 시작 -->
-			<!-- 댓글 목록 출력 -->
-			<div class="comments">
-                <c:forEach var="comment" items="${comments}">
-                    <div class="comment-box">
-                        <div class="post-header" id="commentlevel1head">
-                            <div class="post-info" id="commentlevel1info">
-                                <img class="user-image" src="${comment.profileImage}" alt="사용자 이미지">
-                                <div class="post-info">
-                                    <span>작성자: ${comment.nickname}</span>
-                                    <span>등록일: ${comment.writeDate}</span>
-                                </div>
-                            </div>
-                            <div class="post-actions-comment">
-                                <span><i class="material-icons">thumb_up</i> ${comment.likeCount}</span>
-                                <span><i class="material-icons">thumb_down</i> ${comment.dislikeCount}</span>
-                                <span><i class="material-icons">report</i> 신고</span>
-                                <span>답글 (${comment.replyCount})</span>
-                            </div>
-                        </div>
-                        <div class="post-content">
-                            <div id="commentcontent">${comment.content}</div>
-                        </div>
-                        
-                        
-                        <!-- 대댓글 -->
-                        <c:if test="${comment.replyCount > 0}">
-                            <div class="replies">
-                                <c:forEach var="reply" items="${replyDAO.getRepliesByCommentSeq(comment.seq)}">
-                                    <div class="comment-box comment-reply">
-                                        <div class="post-header" id="commentlevel1head">
-                                            <div class="post-info" id="commentlevel1info">
-                                                <i class="material-icons" id="subcommentarrow">subdirectory_arrow_right</i>
-                                                <img class="user-image" src="${reply.profileImage}" alt="사용자 이미지">
-                                                <div class="post-info">
-                                                    <span>작성자: ${reply.nickname}</span>
-                                                    <span>등록일: ${reply.writeDate}</span>
-                                                </div>
-                                            </div>
-                                            <div class="post-actions-comment">
-                                                <span><i class="material-icons">thumb_up</i> ${reply.likeCount}</span>
-                                                <span><i class="material-icons">thumb_down</i> ${reply.dislikeCount}</span>
-                                                <span><i class="material-icons">report</i> 신고</span>
-                                            </div>
-                                        </div>
-                                        <div class="post-content">
-                                            <div id="commentcontent">${reply.content}</div>
-                                        </div>
-                                    </div>
-                                </c:forEach>
-                            </div>
-                        </c:if>
+                        <!-- 댓글 시작 -->
+ <div class="comments">
+    <c:forEach var="comment" items="${comments}">
+        <div class="comment-box">
+            <div class="post-header" id="commentlevel1head">
+                <div class="post-info" id="commentlevel1info">
+                    <img class="user-image" src="${comment.profileImage}" alt="사용자 이미지">
+                    <div class="post-info">
+                        <span>작성자: ${comment.nickname}</span>
+                        <span>등록일: ${comment.writeDate}</span>
                     </div>
-                </c:forEach>
+                </div>
+                <div class="post-actions-comment">
+                    <span><i class="material-icons">thumb_up</i> ${comment.likeCount}</span>
+                    <span><i class="material-icons">thumb_down</i> ${comment.dislikeCount}</span>
+                    <span><i class="material-icons">report</i> 신고</span>
+                    <span>답글</span>
+                </div>
+            </div>
+            <div class="post-content">
+                <div id="commentcontent">${comment.content}</div>
+            </div>
+        </div>
+    </c:forEach>
+</div>
+              <!-- 대댓글 시작 -->
+              <div class="comment-box comment-reply">
+                <div class="post-header" id="commentlevel1head">
+                  <div class="post-info" id="commentlevel1info">
+                   <i class="material-icons" id="subcommentarrow">subdirectory_arrow_right</i>
+                    <img class="user-image" src="user-image.jpg" alt="사용자 이미지">
+                    <div class="post-info">
+                      <span>작성자: 회원 아이디</span>
+                      <span>등록일: 2024.04.25.(수)</span>
+                    </div>
+                  </div>
+                  <div class="post-actions-comment" >
+                    <span><i class="material-icons">thumb_up</i> 5</span>
+                    <span><i class="material-icons">thumb_down</i> 1</span>
+                    <span><i class="material-icons">report</i> 신고</span>
+                    <span>답글</span>
+                  </div>
+                </div>
+                <div class="post-content">
+                  <div id="commentcontent">댓글 내용</div>
+                </div>
+              </div>
+              <!-- 대댓글 끝 -->
+            </div>
+            <!-- 댓글 쓰기 시작 -->
+            <div class="comment-form">
+              <textarea placeholder="댓글을 입력하세요."></textarea>
+              <button type="submit">댓글 등록</button>
             </div>
             <!-- 댓글 쓰기 끝 -->
           </div>
           <!-- 게시판 게시물 끝 -->
         </div>
-        
         <!-- fakecontent 끝 -->
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
         
     	</div>
     </div>
-
     <!-- JavaScript Libraries -->
    
     <!-- Template Javascript -->
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
     <script>
-c
+    document.addEventListener('DOMContentLoaded', function() {
+    const sidebarToggler = document.getElementById('sidebar-toggler');
+    const sidebar = document.querySelector('.sidebar');
+    const content = document.querySelector('.content');
+        sidebarToggler.addEventListener('click', function() {
+        sidebar.classList.toggle('hidden');
+        content.classList.toggle('expanded');
+        });
+    });
     </script>
 </body>
-
 </html>
-
