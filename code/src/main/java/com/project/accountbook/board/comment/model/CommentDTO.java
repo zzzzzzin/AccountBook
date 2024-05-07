@@ -47,8 +47,8 @@ public class CommentDTO {
 
 	private String profileImage;
 	//댓글
-	private String seqPost;
-	private String seqUser;
+	private int seqPost;
+	private int seqUser;
 	private String content;
 	private String writeDate;
 	private int likeCount;
@@ -56,7 +56,7 @@ public class CommentDTO {
 	private int reportCount;
 	
 	//대댓글
-	private String seqComments;
+	private int seqComments;
 	
     public String getSeq() {
 		return seq;
@@ -68,19 +68,19 @@ public class CommentDTO {
 
 	private String seq;
 	
-	public String getSeqPost() {
+	public int getSeqPost() {
 		return seqPost;
 	}
 
-	public void setSeqPost(String seqPost) {
+	public void setSeqPost(int seqPost) {
 		this.seqPost = seqPost;
 	}
 
-	public String getSeqUser() {
+	public int getSeqUser() {
 		return seqUser;
 	}
 
-	public void setSeqUser(String seqUser) {
+	public void setSeqUser(int seqUser) {
 		this.seqUser = seqUser;
 	}
 
@@ -124,11 +124,11 @@ public class CommentDTO {
 		this.reportCount = reportCount;
 	}
 
-	public String getSeqComments() {
+	public int getSeqComments() {
 		return seqComments;
 	}
 
-	public void setSeqComments(String seqComments) {
+	public void setSeqComments(int seqComments) {
 		this.seqComments = seqComments;
 	}
 

@@ -179,14 +179,14 @@
                 <div id="commentcontent">${comment.content}</div>
             </div>
             
-            <!-- 답글 작성 폼 -->
+<!-- 답글 작성 폼 -->
             <div class="comment-form reply-form" style="display: none;">
-                <form action="/board/comment/addReplyComment.do" method="post">
+                <form onsubmit="return false;">
                     <input type="hidden" name="seqComments" value="${comment.seq}">
                     <input type="hidden" name="seqUser" value="${sessionScope.seqUser}">
                     <input type="hidden" name="seqPost" value="${post.seq}">
                     <textarea name="content" placeholder="답글을 입력하세요."></textarea>
-                    <button type="submit">답글 등록</button>
+                    <button type="button" onclick="addReplyComment(this)">답글 등록</button>
                 </form>
             </div>
         </div>
@@ -223,7 +223,7 @@
               <!-- 대댓글 끝 -->
               </c:forEach>
 </div>
-            
+<input type="hidden" name="seqUser" value="${not empty sessionScope.seqUser ? sessionScope.seqUser : ''}">
 <!-- 댓글 쓰기 시작 -->
 <div class="comment-form">
     <form action="/board/addComment.do" method="post">
@@ -260,6 +260,8 @@
         });
     });
     
+    
+    
     document.addEventListener('DOMContentLoaded', function() {
         const replyToggles = document.querySelectorAll('.reply-toggle');
         
@@ -270,6 +272,31 @@
             });
         });
     });
+    function addReplyComment(btn) {
+    	var form = btn.closest('form');
+    	var seqComments = form.querySelector('input[name="seqComments"]').value;
+    	var seqUser = form.querySelector('input[name="seqUser"]').value;
+    	var seqPost = form.querySelector('input[name="seqPost"]').value;
+    	var content = form.querySelector('textarea[name="content"]').value;
+
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // 답글 작성 성공 시 처리할 내용
+                    alert('답글이 등록되었습니다.');
+                    location.reload(); // 페이지 새로고침
+                } else {
+                    // 답글 작성 실패 시 처리할 내용
+                    alert('답글 등록에 실패했습니다.');
+                }
+            }
+        };
+
+        xhr.open('POST', '${pageContext.request.contextPath}/board/addReplyComment.do', true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.send('seqComments=' + seqComments + '&seqUser=' + seqUser + '&seqPost=' + seqPost + '&content=' + encodeURIComponent(content));
+    }
     </script>
 </body>
 </html>

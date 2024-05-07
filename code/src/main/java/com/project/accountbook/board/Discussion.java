@@ -27,7 +27,8 @@ public class Discussion extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	    HttpSession session = req.getSession();
 	    String seq = req.getParameter("seq");
-	    
+	    Integer seqUser = (Integer) session.getAttribute("seqUser");
+
 	    PostDTO post = bdao.readPost(seq);
 	    List<CommentDTO> comments = cdao.getCommentsByPostSeq(seq);
 	    for (CommentDTO comment : comments) {
@@ -36,6 +37,7 @@ public class Discussion extends HttpServlet {
 	    }
 	    req.setAttribute("post", post);
 	    req.setAttribute("comments", comments);
+	    req.setAttribute("seqUser", seqUser);
 	    
 	    RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/discussion.jsp");
 	    dispatcher.forward(req, resp);
