@@ -172,11 +172,22 @@
                     <span><i class="material-icons">thumb_up</i> ${comment.likeCount}</span>
                     <span><i class="material-icons">thumb_down</i> ${comment.dislikeCount}</span>
                     <span><i class="material-icons">report</i> 신고</span>
-                    <span>답글</span>
+                    <span class="reply-toggle">답글</span>
                 </div>
             </div>
             <div class="post-content">
                 <div id="commentcontent">${comment.content}</div>
+            </div>
+            
+            <!-- 답글 작성 폼 -->
+            <div class="comment-form reply-form" style="display: none;">
+                <form action="/board/comment/addReplyComment.do" method="post">
+                    <input type="hidden" name="seqComments" value="${comment.seq}">
+                    <input type="hidden" name="seqUser" value="${sessionScope.seqUser}">
+                    <input type="hidden" name="seqPost" value="${post.seq}">
+                    <textarea name="content" placeholder="답글을 입력하세요."></textarea>
+                    <button type="submit">답글 등록</button>
+                </form>
             </div>
         </div>
               <!-- 대댓글 시작 -->
@@ -202,7 +213,6 @@
                         <span><i class="material-icons">thumb_up</i> ${replyComment.likeCount}</span>
                         <span><i class="material-icons">thumb_down</i> ${replyComment.dislikeCount}</span>
                         <span><i class="material-icons">report</i> 신고</span>
-                        <span>답글</span>
                     </div>
                 </div>
                 <div class="post-content">
@@ -210,10 +220,9 @@
                 </div>
             </div>
         </c:forEach>
-    </c:forEach>
-</div>
               <!-- 대댓글 끝 -->
-            </div>
+              </c:forEach>
+</div>
             
 <!-- 댓글 쓰기 시작 -->
 <div class="comment-form">
@@ -224,6 +233,7 @@
         <button type="submit">댓글 등록</button>
     </form>
 </div>
+
 <!-- 댓글 쓰기 끝 -->
            
           </div>
@@ -247,6 +257,17 @@
         sidebarToggler.addEventListener('click', function() {
         sidebar.classList.toggle('hidden');
         content.classList.toggle('expanded');
+        });
+    });
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        const replyToggles = document.querySelectorAll('.reply-toggle');
+        
+        replyToggles.forEach(function(toggle) {
+            toggle.addEventListener('click', function() {
+                const replyForm = this.parentNode.parentNode.nextElementSibling.nextElementSibling;
+                replyForm.style.display = replyForm.style.display === 'none' ? 'block' : 'none';
+            });
         });
     });
     </script>
