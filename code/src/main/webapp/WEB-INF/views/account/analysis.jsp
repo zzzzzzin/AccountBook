@@ -95,6 +95,10 @@
 				</div>
 
 				<div id="secondrow">
+<<<<<<< HEAD
+					<div id="monthgoal">이번달 목표 : 200만원</div>
+					<div id="currentsituation">이번 달 ${totalThisMonth}원</div>
+=======
 					<div id="monthgoal" class="black-border-box">
 						저축 목표 기간 <a class="anyalysis-period-num">${challengeInfoMap.spPeriod}개월</a><br>
 						저축 목표 금액 <a class ="anyalysis-goals-price" >${challengeInfoMap.savingsGoals}원</a><br>
@@ -110,6 +114,7 @@
 						<div>이번 달은 <a class ="usable-price-num">${challengeInfoMap.avgMonthlyUsablePrice}원</a>을 사용할 수 있으며,</div>
 						<div>일 평균 <a class ="usable-price-num">${challengeInfoMap.avgDailyUsablePrice}원</a>을 사용할 수 있습니다.</div>
 					</div>
+>>>>>>> 759c337dc2e731d08541c20c8c455c5d7c5a8c1a
 				</div>
 				<div id="chartLegend"></div>
 				<div id="thridrow">
@@ -195,6 +200,49 @@
 	console.log(beforeBackgroundColorArray);
 	console.log(nowBackgroundColorArray);
 	
+<<<<<<< HEAD
+    var ctx = document.getElementById('piepie').getContext('2d');
+    var chart1 = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: beforeAcNameArray,
+            datasets: [{
+            	label: '총 금액',
+                data: beforeTotalPriceArray,
+                backgroundColor: beforeBackgroundColorArray,
+                hoverOffset: 4
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    });
+
+    var ctx1 = document.getElementById('piepie2').getContext('2d');
+    var chart2 = new Chart(ctx1, {
+        type: 'pie',
+        data: {
+            labels: nowAcNameArray,
+            datasets: [{
+                label: '총 금액',
+                data: nowTotalPriceArray,
+                backgroundColor: nowBackgroundColorArray,
+                hoverOffset: 4
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    });
+=======
 	var ctx = document.getElementById('piepie').getContext('2d');
 	var chart1 = null;
 	if (beforeAcNameArray.length > 0) {
@@ -256,6 +304,7 @@
 	    // 두 차트 중 하나라도 데이터가 있는 경우에만 레전드 생성
 	    createSharedCustomLegend([chart1, chart2]);
 	}
+>>>>>>> 759c337dc2e731d08541c20c8c455c5d7c5a8c1a
 
     
     function createSharedCustomLegend(charts) {
