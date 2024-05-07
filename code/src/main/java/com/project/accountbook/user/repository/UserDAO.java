@@ -420,7 +420,6 @@ public ArrayList<PostDTO> getMyPosts(String id) {
 		        		+ "p.writeDate, \r\n"
 		        		+ "p.viewCount, \r\n"
 		        		+ "p.likeCount,\r\n"
-		        		+ "b.seqCategory,\r\n"
 		        		+ "p.seq\r\n"
 		        		+ "from tblPost p inner join tblUser u\r\n"
 		        		+ "    on p.seqUser = u.seq\r\n"
@@ -445,7 +444,6 @@ public ArrayList<PostDTO> getMyPosts(String id) {
 		            dto.setViewCount(rs.getInt("viewCount"));
 		            dto.setLikeCount(rs.getInt("likeCount"));
 		            dto.setSeq(rs.getString("seq"));
-		            dto.setSeqCategory(rs.getString("seqCategory"));
 		            
 		            plist.add(dto);
 

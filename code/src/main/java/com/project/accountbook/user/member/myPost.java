@@ -28,7 +28,7 @@ public class myPost extends HttpServlet{
 
         req.setCharacterEncoding("UTF-8");
         req.setAttribute("plist", plist);
-
+        
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/member/my-post.jsp");
         dispatcher.forward(req, resp);
 
