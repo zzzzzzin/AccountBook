@@ -1,17 +1,34 @@
 package com.project.accountbook.account.repository;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.DecimalFormat;
-import java.time.format.DateTimeFormatter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 import com.project.accountbook.account.model.AccountInfoDTO;
 import com.project.accountbook.user.model.UserDTO;
+import com.project.accountbook.user.repository.UserDAO;
 import com.project.accountbook.util.DBUtil;
 
 public class AccountDAO {
@@ -471,111 +488,121 @@ public class AccountDAO {
 	//가계부 분석 > 챌린지에 대한 정보 읽기(이번달 목표치, 현상황)
 	public HashMap<String, String> getChallenge(String id) {
 		
-		//1000단위 콤마 찍기 위한 형식
-		DecimalFormat formatter = new DecimalFormat("#,###");
-		
-		//이번 달의 마지막 날짜 구하기
-		Calendar calendar = Calendar.getInstance();
-		calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
-		int lastDayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
-				
-		String accInfoDate = null;
-		int price = 0; //고정 지출 금액
-		int ffpPeriod = 0; //고정 지출 간격
-		int totalfixedFluctuation = 0; //고청 지출 총 합
-		
-		int savingsGoals = 0; //저축 목표 금액
-		int monthlyPaycheck = 0; //월급
-		String joinDate = null; //회원 가입일
-		int spPeriod = 0; //저축 목표 기간
-		int monthsSinceJoin = 0; //지난 저축 기간
-		
-		int monthUsage = getMonthUsage(id); //이번달 지출
-		int monthSaving = getMonthSaving(id); //이번달 입금
-		
-		int totalSaving = getTotalSaving(id); //총 입/출금 금액
-		int totalExpenditure = getTotalExpenditure(id); //총 지출
-		
-		
-		int goalAchievementPeriod = 0; //목표 달성까지 예상 기간
-		int avgMonthlyUsablePrice = 0; //달 평균 사용 가능 금액
-		int avgDailyUsablePrice = 0; //일 평균 사용 가능 금액
-		int avgMonthlySavingsPrice = 0; //목표 기간 안에 저축하기 위한 한 달 평균 저축 금액
-		
-		int avgMonthlySavings = 0; //한 달 평균 저축 금액
-		int avgMonthlySpending = 0; //한 달 평균 지출 금액
-		int remainingSavings = 0; //남은 저축 금액
-		
-		HashMap<String, String> map = new HashMap<>();
-
-		// 고정 지출
-		ArrayList<AccountInfoDTO> fixedFluctuationList = getFixedFluctuation(id);
-		
-		// 챌린지 정보
-		UserDTO userDTO = getSavingsGoals(id);
-		
-		if (fixedFluctuationList != null) {
+		try {
+			//1000단위 콤마 찍기 위한 형식
+			DecimalFormat formatter = new DecimalFormat("#,###");
 			
-			//고정 지출 담기
-			for (AccountInfoDTO dto : fixedFluctuationList) {
-				
-				accInfoDate = dto.getAccInfoDate();
-				price = dto.getPrice();
-				ffpPeriod = dto.getFfpPeriod();
-				
-				totalfixedFluctuation += price;
-				
-//				System.out.println(totalfixedFluctuation);
-
-			}
-			
-		}
+			//이번 달의 마지막 날짜 구하기
+			Calendar calendar = Calendar.getInstance();
+			calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+			int lastDayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 					
-		//챌린지 정보 불러오기
-		monthlyPaycheck = userDTO.getMonthlyPaycheck();
-		savingsGoals = userDTO.getSavingsGoals();
-//		userDTO.getSeqCompressionIntensity();
-		spPeriod = userDTO.getSpPeriod();
-//		joinDate = userDTO.getJoinDate();
-		monthsSinceJoin = userDTO.getMonthsSinceJoin();
-		
-		//남은 저축 금액
-		remainingSavings = savingsGoals - totalSaving;
+			String accInfoDate = null;
+			int price = 0; //고정 지출 금액
+			int ffpPeriod = 0; //고정 지출 간격
+			int totalfixedFluctuation = 0; //고청 지출 총 합
+			
+			int savingsGoals = 0; //저축 목표 금액
+			int monthlyPaycheck = 0; //월급
+			String joinDate = null; //회원 가입일
+			int spPeriod = 0; //저축 목표 기간
+			int monthsSinceJoin = 0; //지난 저축 기간
+			
+			int monthUsage = getMonthUsage(id); //이번달 지출
+			int monthSaving = getMonthSaving(id); //이번달 입금
+			
+			int totalSaving = getTotalSaving(id); //총 입/출금 금액
+			int totalExpenditure = getTotalExpenditure(id); //총 지출
+			
+			
+			int goalAchievementPeriod = 0; //목표 달성까지 예상 기간
+			int avgMonthlyUsablePrice = 0; //달 평균 사용 가능 금액
+			int avgDailyUsablePrice = 0; //일 평균 사용 가능 금액
+			int avgMonthlySavingsPrice = 0; //목표 기간 안에 저축하기 위한 한 달 평균 저축 금액
+			
+			int avgMonthlySavings = 0; //한 달 평균 저축 금액
+			int avgMonthlySpending = 0; //한 달 평균 지출 금액
+			int remainingSavings = 0; //남은 저축 금액
+			
+			HashMap<String, String> map = new HashMap<>();
 
-		//한 달 평균 지출 금액
-		avgMonthlySpending = totalExpenditure / monthsSinceJoin;
-		
-		//한 달 평균 저축 금액
-		avgMonthlySavings = totalSaving / monthsSinceJoin;
+			// 고정 지출
+			ArrayList<AccountInfoDTO> fixedFluctuationList = getFixedFluctuation(id);
+			
+			// 챌린지 정보
+			UserDTO userDTO = getSavingsGoals(id);
+			
+			if (fixedFluctuationList != null) {
 				
-		//목표 달성까지 기간 계산
-		goalAchievementPeriod = remainingSavings / avgMonthlySavings;
+				//고정 지출 담기
+				for (AccountInfoDTO dto : fixedFluctuationList) {
+					
+					accInfoDate = dto.getAccInfoDate();
+					price = dto.getPrice();
+					ffpPeriod = dto.getFfpPeriod();
+					
+					totalfixedFluctuation += price;
+					
+//					System.out.println(totalfixedFluctuation);
+
+				}
 				
-		//목표 기간 안에 목표 금액을 저축하기 위해 매달 저축해야하는 평균
-		avgMonthlySavingsPrice = remainingSavings / (spPeriod - monthsSinceJoin);
+			}
+						
+			//챌린지 정보 불러오기
+			monthlyPaycheck = userDTO.getMonthlyPaycheck();
+			savingsGoals = userDTO.getSavingsGoals();
+//			userDTO.getSeqCompressionIntensity();
+			spPeriod = userDTO.getSpPeriod();
+//			joinDate = userDTO.getJoinDate();
+			monthsSinceJoin = userDTO.getMonthsSinceJoin();
+			
+			//남은 저축 금액
+			remainingSavings = savingsGoals - totalSaving;
+
+			//한 달 평균 지출 금액
+			avgMonthlySpending = totalExpenditure / monthsSinceJoin;
+			
+			//한 달 평균 저축 금액
+			avgMonthlySavings = totalSaving / monthsSinceJoin;
+					
+			//목표 달성까지 기간 계산
+			goalAchievementPeriod = remainingSavings / avgMonthlySavings;
+					
+			//목표 기간 안에 목표 금액을 저축하기 위해 매달 저축해야하는 평균
+			avgMonthlySavingsPrice = remainingSavings / (spPeriod - monthsSinceJoin);
+			
+			//달 평균 사용 가능 금액
+			avgMonthlyUsablePrice = (monthSaving - monthUsage - totalfixedFluctuation) - avgMonthlySavingsPrice;
+			
+			//일 편귱 사용 가능 금액
+			avgDailyUsablePrice = avgMonthlyUsablePrice / lastDayOfMonth;
+			
+			map.put("savingsGoals", formatter.format(savingsGoals));
+			map.put("totalSaving", formatter.format(totalSaving));
+			map.put("remainingSavings", formatter.format(remainingSavings));
+			map.put("avgMonthlySpending", formatter.format(avgMonthlySpending));
+			map.put("avgMonthlySavings", formatter.format(avgMonthlySavings));
+			map.put("goalAchievementPeriod", formatter.format(goalAchievementPeriod));
+			map.put("monthUsage", formatter.format(monthUsage));
+			
+			map.put("spPeriod", formatter.format(spPeriod));
+			map.put("monthsSinceJoin", formatter.format(monthsSinceJoin));
+			
+			map.put("avgMonthlySavings", formatter.format(avgMonthlySavings));
+			map.put("avgMonthlySavingsPrice", formatter.format(avgMonthlySavingsPrice));
+			map.put("avgMonthlyUsablePrice", formatter.format(avgMonthlyUsablePrice));
+			map.put("avgDailyUsablePrice", formatter.format(avgDailyUsablePrice));
+			
+			return map;
+			
+		} catch (Exception e) {
+			System.out.println("AccountDAO.getChallenge");
+			e.printStackTrace();
+		}
 		
-		//달 평균 사용 가능 금액
-		avgMonthlyUsablePrice = (monthSaving - monthUsage - totalfixedFluctuation) - avgMonthlySavingsPrice;
-		
-		//일 편귱 사용 가능 금액
-		avgDailyUsablePrice = avgMonthlyUsablePrice / lastDayOfMonth;
-		
-		map.put("savingsGoals", formatter.format(savingsGoals));
-		map.put("totalSaving", formatter.format(totalSaving));
-		map.put("remainingSavings", formatter.format(remainingSavings));
-		map.put("avgMonthlySpending", formatter.format(avgMonthlySpending));
-		map.put("avgMonthlySavings", formatter.format(avgMonthlySavings));
-		map.put("goalAchievementPeriod", formatter.format(goalAchievementPeriod));
-		map.put("monthUsage", formatter.format(monthUsage));
-		
-		map.put("spPeriod", formatter.format(spPeriod));
-		map.put("monthsSinceJoin", formatter.format(monthsSinceJoin));
-		
-		map.put("avgMonthlySavingsPrice", formatter.format(avgMonthlySavingsPrice));
-		map.put("avgMonthlyUsablePrice", formatter.format(avgMonthlyUsablePrice));
-		map.put("avgDailyUsablePrice", formatter.format(avgDailyUsablePrice));
-		
-		return map;
+		return null;
+
 	}
 	
 	public HashMap<String, Integer> getPeriodUsage (String id) {
@@ -769,12 +796,146 @@ public class AccountDAO {
 		return map;
 	}
 	
-	//가계부 분석 > 뉴스 불러오기(뉴스 테이블 정보 dto에 추가해야할 듯>추가 완료)
-	public int getNews(AccountInfoDTO dto) {
+	//뉴스 검색 시작
+	//가계부 분석 > 뉴스 불러오기
+//	public AccountInfoDTO getNews(String category) {
+//		
+//		return null;
+//	}
+	
+	public ArrayList search(String category) {
+		UserDAO dao = new UserDAO();
+		HashMap<String, String> apiInfoMap = dao.getAPIKey("2");
+
+		// 돌려주기 위한 리스트
+		ArrayList<AccountInfoDTO> newsList = new ArrayList();
+
+		String clientId = apiInfoMap.get("name"); // 애플리케이션 클라이언트 아이디
+		String clientSecret = apiInfoMap.get("key");
+		; // 애플리케이션 클라이언트 시크릿
+
+		String word = "경제";
 		
-		return 0;
+		try {
+			category = URLEncoder.encode(category, "UTF-8");
+			word = URLEncoder.encode(word, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			throw new RuntimeException("검색어 인코딩 실패", e);
+		}
+
+		String apiURL = "https://openapi.naver.com/v1/search/news?query=" + category + "+" + word + "&display=5&sort=date"; // JSON 결과
+		// String apiURL = "https://openapi.naver.com/v1/search/blog.xml?query="+ text;
+		// // XML 결과
+
+		Map<String, String> requestHeaders = new HashMap<>();
+		requestHeaders.put("X-Naver-Client-Id", clientId);
+		requestHeaders.put("X-Naver-Client-Secret", clientSecret);
+		String responseBody = get(apiURL, requestHeaders);
+
+//		System.out.println(responseBody);
+
+		// 파싱
+		JSONParser parser = new JSONParser();
+
+		try {
+			JSONObject root = (JSONObject) parser.parse(responseBody);
+
+//			System.out.println(root.get("total"));
+
+			JSONArray list = (JSONArray) root.get("items");
+
+			for (int i = 0; i < list.size(); i++) {
+
+				// JSON Object == 뉴스 1개 > dto 1개에 담기
+
+				AccountInfoDTO dto = new AccountInfoDTO();
+				
+				// get도 object 타입이라 toString로 받는다.
+				dto.setTitle(((JSONObject) list.get(i)).get("title").toString());
+				dto.setLink(((JSONObject)list.get(i)).get("link").toString());
+				
+				// 날짜 형식 변환
+	            String pubDateStr = ((JSONObject) list.get(i)).get("pubDate").toString();
+	            SimpleDateFormat inputFormat = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss Z", Locale.ENGLISH);
+	            Date pubDate = inputFormat.parse(pubDateStr);
+	            SimpleDateFormat outputFormat = new SimpleDateFormat("yy/MM/dd", Locale.ENGLISH);
+	            String formattedDate = outputFormat.format(pubDate);
+	            dto.setPubDate(formattedDate);	            
+	            
+//				dto.setPubDate(((JSONObject)list.get(i)).get("pubDate").toString());
+				dto.setDescription(((JSONObject)list.get(i)).get("description").toString());
+
+				newsList.add(dto);
+			}
+
+			return newsList;
+
+		}
+			
+      catch (Exception e) {
+		System.out.println("AccountDAO.search");
+		e.printStackTrace();
+	}
+		return null;
 	}
 	
+	
+	private static String get(String apiUrl, Map<String, String> requestHeaders){
+        HttpURLConnection con = connect(apiUrl);
+        try {
+            con.setRequestMethod("GET");
+            for(Map.Entry<String, String> header :requestHeaders.entrySet()) {
+                con.setRequestProperty(header.getKey(), header.getValue());
+            }
+
+
+            int responseCode = con.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) { // 정상 호출
+                return readBody(con.getInputStream());
+            } else { // 오류 발생
+                return readBody(con.getErrorStream());
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("API 요청과 응답 실패", e);
+        } finally {
+            con.disconnect();
+        }
+    }
+
+
+    private static HttpURLConnection connect(String apiUrl){
+        try {
+            URL url = new URL(apiUrl);
+            return (HttpURLConnection)url.openConnection();
+        } catch (MalformedURLException e) {
+            throw new RuntimeException("API URL이 잘못되었습니다. : " + apiUrl, e);
+        } catch (IOException e) {
+            throw new RuntimeException("연결이 실패했습니다. : " + apiUrl, e);
+        }
+    }
+
+
+    private static String readBody(InputStream body){
+        InputStreamReader streamReader = new InputStreamReader(body);
+
+
+        try (BufferedReader lineReader = new BufferedReader(streamReader)) {
+            StringBuilder responseBody = new StringBuilder();
+
+
+            String line;
+            while ((line = lineReader.readLine()) != null) {
+                responseBody.append(line);
+            }
+
+
+            return responseBody.toString();
+        } catch (IOException e) {
+            throw new RuntimeException("API 응답을 읽는 데 실패했습니다.", e);
+        }
+    }
+	//뉴스 검색 끝
+    
 	
 	//비용 수익 읽기(카테고리, 그래프 모양, 기간을 map으로 받아서 사용?)
 	public int costRevenue(AccountInfoDTO dto) {
