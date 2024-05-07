@@ -1298,36 +1298,67 @@ public class AccountDAO {
 		try {
 			
 			
-			String sql = "UPDATE TBLACCINFO SET CONTENT = ?, ACCINFODATE = ?, PRICE = ?, LOCATION = ?, SEQACC = ?, SEQREASONCHANGECATEGORY = ?, SEQFIXEDFLUCTUATIONCHECK = ?, SEQDEPOSITWITHDRAWALSTATUS = ?  WHERE SEQ = ? ";
-			
-			
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, dto.getContent());//string
-			pstat.setString(2, dto.getAccInfoDate());//string
-			pstat.setInt(3, dto.getPrice());//int
-			pstat.setString(4, dto.getLocation());//string
-			pstat.setInt(5, Integer.parseInt(dto.getSeqAcc()));//int
-			pstat.setInt(6, Integer.parseInt(dto.getSeqReasonChangeCategory()));//int
-			pstat.setInt(7, Integer.parseInt(dto.getFdwContent()));//int
-			pstat.setInt(8, Integer.parseInt(dto.getSeqDepositWithdrawalStatus()));//int
-			pstat.setInt(9, Integer.parseInt(dto.getSeqAccInfo()));//int
-			int indicate = pstat.executeUpdate();
-			
-			sql = "UPDATE TBLACCCATEGORYLIST SET SEQACCCATEGORY = ?, SEQACCINFO = ? WHERE SEQ = ?";
-			
-			pstat = conn.prepareStatement(sql);
-			pstat.setInt(1, Integer.parseInt(dto.getSeqAccCategory()));
-			pstat.setInt(2, Integer.parseInt(dto.getSeqAccInfo()));
-			pstat.setInt(3, Integer.parseInt(dto.getSeqAccInfo()));
-			
-			
-			return indicate;
+			String sql = "UPDATE TBLACCINFO SET CONTENT = ?, ACCINFODATE = ?, PRICE = ?, LOCATION = ?, SEQACC = ?, SEQREASONCHANGECATEGORY = ?, SEQFIXEDFLUCTUATIONCHECK = ?, SEQDEPOSITWITHDRAWALSTATUS = ?  WHERE SEQ = ?";
+	        pstat = conn.prepareStatement(sql);
+	        pstat.setString(1, dto.getContent());
+	        pstat.setString(2, dto.getAccInfoDate());
+	        pstat.setInt(3, dto.getPrice());
+	        pstat.setString(4, dto.getLocation());
+	        pstat.setInt(5, Integer.parseInt(dto.getSeqAcc()));
+	        pstat.setInt(6, Integer.parseInt(dto.getSeqReasonChangeCategory()));
+	        pstat.setInt(7, Integer.parseInt(dto.getFdwContent()));
+	        pstat.setInt(8, Integer.parseInt(dto.getSeqDepositWithdrawalStatus()));
+	        pstat.setInt(9, Integer.parseInt(dto.getSeqAccInfo()));
+	        int firstUpdateResult = pstat.executeUpdate();
+
+	        // Second update statement
+	        sql = "UPDATE TBLACCCATEGORYLIST SET SEQACCCATEGORY = ?, SEQACCINFO = ? WHERE SEQ = ?";
+	        pstat = conn.prepareStatement(sql);
+	        pstat.setInt(1, Integer.parseInt(dto.getSeqAccCategory()));
+	        pstat.setInt(2, Integer.parseInt(dto.getSeqAccInfo()));
+	        pstat.setInt(3, Integer.parseInt(dto.getSeqAccInfo()));
+	        int secondUpdateResult = pstat.executeUpdate();
+
+
+	        System.out.println("First Update Result: " + firstUpdateResult + ", Second Update Result: " + secondUpdateResult);
+	        return firstUpdateResult;
 
 		} catch (Exception e) {
 			System.out.println("AccountDAO.updateAcc");
 			e.printStackTrace();
 		}
 		
+		
+		return 0;
+	}
+
+	public int delAcc(AccountInfoDTO dto) {
+		
+		try {
+			String sql = "DELETE FROM TBLACCCATEGORYLIST WHERE SEQACCINFO = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setInt(1, Integer.parseInt(dto.getSeqAccInfo()));
+			int firstdelResult = pstat.executeUpdate();
+			
+			sql = "DELETE FROM TBLACCINFO WHERE SEQ = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setInt(1, Integer.parseInt(dto.getSeqAccInfo()));
+			
+			int seconddelResult = pstat.executeUpdate();
+			
+			System.out.println("first: "+firstdelResult);
+			System.out.println("second: "+seconddelResult);
+			
+			
+			return seconddelResult;
+			
+			
+		} catch (Exception e) {
+			System.out.println("AccountDAO.delAcc");
+			e.printStackTrace();
+		}
 		
 		return 0;
 	}
