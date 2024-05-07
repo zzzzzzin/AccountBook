@@ -18,12 +18,9 @@ public class PersonalizedRecommendation extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String memberId = (String) req.getSession().getAttribute("id");
-
         CardDAO dao = new CardDAO();
         List<CardDTO> recommendedCards = dao.getPersonalizedRecommendation(memberId);
-
         req.setAttribute("recommendedCards", recommendedCards);
-
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/card/personalized-recommendation.jsp");
         dispatcher.forward(req, resp);
     }

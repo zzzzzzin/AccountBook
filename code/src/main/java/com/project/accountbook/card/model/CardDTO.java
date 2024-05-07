@@ -14,15 +14,8 @@ public class CardDTO {
 	//카드 혜택 목록
 	private int lcbseqCardCategory;
 	private int seqCardInformation;
-	private String category;
-	
-	public String getCategory() {
-		return category;
-	}
 
-	public void setCategory(String category) {
-		this.category = category;
-	}
+	
 
 	public int getSeqCardInformation() {
 		return seqCardInformation;
@@ -40,9 +33,21 @@ public class CardDTO {
 	private int seqAccCategory;
 	
 	//카드 할인율
-	private String discountRate;
+	private int discountRate;
 	private int seq;
 	private String name;
+	
+	
+    private String category;
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+    
 	public int getSeq() {
 	    return seq;
 	}
@@ -58,11 +63,11 @@ public class CardDTO {
 	public void setName(String name) {
 	    this.name = name;
 	}
-	public String getDiscountRate() {
+	public int getDiscountRate() {
 	    return discountRate;
 	}
 
-	public void setDiscountRate(String discountRate) {
+	public void setDiscountRate(int discountRate) {
 	    this.discountRate = discountRate;
 	}
 	
