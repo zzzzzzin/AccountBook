@@ -107,7 +107,7 @@
 	// 현재 URL
 	var currentUrl = window.location.pathname;
 	
-	if (currentUrl.endsWith("login.do") || currentUrl.endsWith("register.do") || currentUrl.endsWith("find-id.do") || currentUrl.endsWith("find-pw.do") || currentUrl.endsWith("reset-pw.do")) {
+	if (currentUrl.endsWith("login.do") || currentUrl.endsWith("/register.do") || currentUrl.endsWith("find-id.do") || currentUrl.endsWith("find-pw.do") || currentUrl.endsWith("reset-pw.do")) {
 		// 나머지 메뉴 요소를 숨김 처리
 		document.querySelectorAll("nav ul li").forEach(function(item) {
 			item.style.display = "none";

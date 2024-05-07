@@ -173,7 +173,7 @@ GROUP BY
 
 select * from tblReasonsChangeList;
 select * from tblReasonChangeCategory;
-
+select * from tblAccInfo;
 WITH max_category AS (
     SELECT 
         ac.name AS acName,
