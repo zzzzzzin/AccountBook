@@ -123,10 +123,10 @@
 						    </tr>
 						</c:if>
 	                
-					<c:forEach var="notice" items="${noticeList}" varStatus="loop">
+					<c:forEach var="notice" items="${noticeList}">
 			                <tr>
-			                    <td>${loop.index + 1}</td>
-						        <td>${notice.title}</td>
+			                    <td>${notice.seq}</td>
+						        <td><a href="/account/board/discussion.do?seq=${notice.seq}">${notice.title}</a></td>
 						        <td>${notice.me_nickName != null ? notice.me_nickName : notice.ad_nickName}</td>
 						        <td>${notice.writeDate}</td>
 						        <td>${notice.viewCount}</td>

@@ -115,26 +115,43 @@
           <!-- 게시판 게시물 시작 -->
           <div class="container" id="postpagecontent">
             <div class="post-box">
-              <h2>게시판 게시판 </h2>
+              <h2>
+              
+			  	<c:choose>
+			  		
+			  		<c:when test="${post.seqBoard == 1}">
+			  			<div>공지사항</div>
+			  		</c:when>
+			  		<c:when test="${post.seqBoard == 2}">
+			  			<div>자유게시판</div>
+			  		</c:when>
+			  		<c:when test="${post.seqBoard == 3}">
+			  			<div>건의게시판</div>
+			  		</c:when>
+			  		<c:when test="${post.seqBoard == 4}">
+			  			<div>출석게시판</div>
+			  		</c:when>
+			  	</c:choose>
+			  </h2>
               <div class="post-header" id="maincontent">
                 <img class="user-image" src="user-image.jpg" alt="사용자 이미지">
                 <div class="post-info">
-                  <span>작성자: 회원 아이디</span>
-                  <span>등록일: 2024.04.25.(수)</span>
+                  <span>작성자: ${post.me_nickName != null ? post.me_nickName : post.ad_nickName}</span>
+                  <span>등록일: ${post.writeDate}</span>
                 </div>
               </div>
               <div class="post-content" id="postmaincontent">
-                <p>작성글 작성글 작성글 작성글작성글작성글 작성글 작성글작성글작성글 작성글 작성글 작성글 작성글작성글작성글 작성글 작성글작성글작성글 작성글 작성글 작성글 작성글작성글작성글 작성글 작성글작성글작성글 작성글 작성글 작성글 작성글작성글작성글 작성글 작성글작성글작성글 작성글 작성글 작성글 작성글작성글작성글 작성글 작성글작성글작성글 작성글작성글 작성글 작성글작성글작성글 작성글 작성글작성글작성글 작성글작성글 작성글 작성글작성글작성글 작성글 작성글작성글작성글 작성글작성글 작성글 작성글작성글작성글 작성글 작성글작성글작성글 작성글작성글 작성글 작성글작성글작성글 작성글 작성글작성글작성글 작성글작성글 작성글 작성글작성글작성글 작성글 작성글작성글작성글 작성글작성글 작성글 작성글작성글작성글 작성글 작성글작성글작성글 작성글작성글 작성글 작성글작성글작성글 작성글 작성글작성글작성글 작성글 작성글 작성글 작성글작성글작성글 작성글 작성글작성글작성글 작성글작성글 작성글 작성글작성글작성글 작성글 작성글작성글작성글 작성글 작성글 작성글 작성글작성글작성글 작성글 작성글작성글작성글 작성글 작성글 작성글 작성글작성글작성글 작성글 작성글작성글작성글 작성글 </p>
+                <span>${post.content}</span>
               </div>
               <div class="post-actions" id="postmaincontentreaction">
-                <span><i class="material-icons">thumb_up</i> 100</span>
-                <span><i class="material-icons">thumb_down</i> 10</span>
+                <span><i class="material-icons">thumb_up</i> ${post.likeCount}</span>
+                <span><i class="material-icons">thumb_down</i> ${post.dislikeCount}</span>
                 <span><i class="material-icons">report</i> 신고</span>
-              </div>
+              </div>     
             </div>
             <!-- 댓글 시작 -->
- <!-- 댓글 목록 출력 -->
- <div class="comments">
+			<!-- 댓글 목록 출력 -->
+			<div class="comments">
                 <c:forEach var="comment" items="${comments}">
                     <div class="comment-box">
                         <div class="post-header" id="commentlevel1head">
@@ -191,6 +208,7 @@
           </div>
           <!-- 게시판 게시물 끝 -->
         </div>
+        
         <!-- fakecontent 끝 -->
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
@@ -203,18 +221,7 @@
     <!-- Template Javascript -->
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
     <script>
-
-    document.addEventListener('DOMContentLoaded', function() {
-    const sidebarToggler = document.getElementById('sidebar-toggler');
-    const sidebar = document.querySelector('.sidebar');
-    const content = document.querySelector('.content');
-
-        sidebarToggler.addEventListener('click', function() {
-        sidebar.classList.toggle('hidden');
-        content.classList.toggle('expanded');
-        });
-    });
-
+c
     </script>
 </body>
 

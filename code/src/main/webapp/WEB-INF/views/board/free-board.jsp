@@ -109,16 +109,16 @@
 					    </tr>
 					</c:if>
 	                
-					<c:forEach items="${freeList}" var="free" varStatus="loop">
+					<c:forEach items="${freeList}" var="free">
 			                <tr>
-			                    <td>${loop.index + 1}</td>
+			                    <td>${free.seq}</td>
 						        <td>
 						            <c:choose>
 						                <c:when test="${free.blindCheck eq '1'}">
 						                    관리자에 의해 블라인드 처리 되었습니다.
 						                </c:when>
 						                <c:otherwise>
-						                    ${free.title}
+						                	<a href="/account/board/discussion.do?seq=${free.seq}">${free.title}</a>					                    
 						                </c:otherwise>
 						            </c:choose>
 						        </td>
