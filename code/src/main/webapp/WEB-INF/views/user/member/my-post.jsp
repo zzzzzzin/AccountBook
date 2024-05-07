@@ -79,20 +79,7 @@
 									<c:forEach items="${plist}" var="dto">
 										<tr>
 											<th>
-												<c:if test="${dto.seqCategory == 1}" >
-													<a href="/account/board/noticeBoard.do?seq="${dto.seq}"></a>
-												</c:if>
-												<c:if test="${dto.seqCategory == 2}" >
-													<a href="/account/board/freeBoard.do?seq="${dto.seq}"></a>
-												</c:if>
-												<c:if test="${dto.seqCategory == 3}" >
-													<a href="/account/board/reportBoard.do?seq="${dto.seq}"></a>
-												</c:if>
-												<c:if test="${dto.seqCategory == 4}" >
-													<a href="/account/board/attendanceBoard.do?seq="${dto.seq}"></a>
-												</c:if>
-												
-												${dto.title}
+												<a href="/account/board/discussion.do?seq=${dto.seq}">${dto.title}</a>
 											</th>
 											<td>${dto.me_nickName}</td>
 											<td>${dto.writeDate}</td>
