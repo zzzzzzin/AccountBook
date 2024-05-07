@@ -123,17 +123,14 @@
 						    </tr>
 						</c:if>
 	                
-					<c:forEach var="notice" items="${noticeList}">
+					<c:forEach var="notice" items="${noticeList}" varStatus="loop">
 			                <tr>
-			                    <td>${notice.seq}</td>
+			                    <td>${loop.index + 1}</td>
 						        <td>${notice.title}</td>
-						        <td>${notice.nickname}</td>
-						        <td>${notice.date}</td>
+						        <td>${notice.me_nickName != null ? notice.me_nickName : notice.ad_nickName}</td>
+						        <td>${notice.writeDate}</td>
 						        <td>${notice.viewCount}</td>
 						        <td>${notice.likeCount}</td>
-						        <%-- <td>${notice.reportCount}</td> --%>
-						        <%-- <td>${notice.secretCheck}</td> --%>
-						        <%-- <td>${notice.blindCheck}</td> --%>
 			                </tr>
 	                </c:forEach>
 	                </tbody>

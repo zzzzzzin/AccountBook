@@ -28,16 +28,6 @@ left join tblMemberPriv mp on mp.seqPriv = pri.seq
         left join tblMember me on me.id = mp.idmember
             left join tblAdmin ad on ad.id = ap.idAdmin;
 
-select * from tblsurvey s
-inner join tblMember m on s.seq = m.seqSurvey;
-
-select * from vwuser;
-
-select * from tblMember m 
-inner join tblMemberPriv mp on m.id = mp.idMember;
-
-set pw = '0000', name = '탈퇴', email = '탈퇴', pic = DEFAULT, intro = NULL, ing = 4 WHERE id = ?";
-
 
 --개인정보
 --vwMemberInfo 
@@ -64,7 +54,7 @@ as select su.seq as su_seq,
           me.name as me_name,
           me.nickname as me_nickname,
           me.phoneNumber as me_phoneNumber,
-          me.nss as me_nss,
+          me.ssn as me_ssn,
           me.gender as me_gender,
           me.reportCount as me_reportCount
 from tblMember me
@@ -76,7 +66,7 @@ left outer join tblSavingsPeriod sp on sp.seq = su.seqSavingsPeriod
 --게시물
 --vwBoard
 --tblPost, tblAttachedFile, tblBoard, tblCategory, tblMemberPriv, tblAdminPriv, tblAdmin, tblMember, tblUser, tblProfileimg, tblReplyComments, tblComments
-create or replace view vwPost
+create or replace view vwBoard
 as select
     po.seq as po_seq,
     po.seqUser as po_seqUser,
@@ -100,7 +90,7 @@ as select
     me.name as me_name,
     me.nickname as me_nickname,
     me.phoneNumber as me_phoneNumber,
-    me.nss as me_nss,
+    me.ssn as me_ssn,
     me.gender as me_gender,
     me.reportCount as me_reportCount,
     me.seqSurvey as me_seqSurvey,
@@ -146,17 +136,13 @@ inner join tblUser us on po.seqUser = us.seq
                                     inner join tblCategory ca on ca.seq = bo.seqCategory
                                         left join tblProfileimg img on img.seq = me.seqProfileimg;
 
-select * from vwPost;
-select * from tbladmin;
-select * from tblPost;
-select * from tbluser;
-select * from tblComments;
 --내가 쓴 글
 --vwMyPost
 --tblMember, tblUser, tblPost
-create or replace view vwPost
+create or replace view vwMyPost
 as select po.seq as po_seq,
           po.seqBoard as po_seqBoard,
+          po.seqUser as po_seqUser,
           po.title,
           po.content,
           po.writeDate,
@@ -174,7 +160,7 @@ as select po.seq as po_seq,
           me.name as me_name,
           me.nickname as me_nickname,
           me.phoneNumber as me_phoneNumber,
-          me.nss as me_nss,
+          me.ssn as me_ssn,
           me.gender as me_gender,
           me.reportCount as me_reportCount,
           me.seqSurvey as me_seqSurvey,
@@ -182,10 +168,6 @@ as select po.seq as po_seq,
 from tblPost po 
 inner join tblUser us on us.seq = po.seqUser
     inner join tblMember me on me.id = us.idMember;
-
-
-
-
 
 
 --내가 쓴 댓글
@@ -199,7 +181,7 @@ me.pw me_pw,
 me.name me_name,
 me.nickname me_nickname,
 me.phoneNumber me_phoneNumber,
-me.nss me_nss,
+me.ssn me_ssn,
 me.gender me_gender,
 me.reportCount me_reportCount,
 me.seqSurvey me_seqSurvey,
@@ -242,10 +224,7 @@ from tblMember me
                         on co.seqUser = us.seq
                             left outer join tblReplyComments rc
                                 on rc.seqUser = us.seq;  
-select * from vwMyComment;
-select * from tblComments; --4
-select * from tblReplyComments; --3
-select * from tblUser; --6~9
+
 
 --카드 정보
 --vwCardInfo
@@ -307,7 +286,7 @@ me.pw me_pw,
 me.name me_name,
 me.nickname me_nickname,
 me.phoneNumber me_phoneNumber,
-me.nss me_nss,
+me.ssn me_ssn,
 me.gender me_gender,
 me.reportCount me_reportCount,
 me.seqSurvey me_seqSurvey,
@@ -330,7 +309,7 @@ me.pw me_pw,
 me.name me_name,
 me.nickname me_nickname,
 me.phoneNumber me_phoneNumber,
-me.nss me_nss,
+me.ssn me_ssn,
 me.gender me_gender,
 me.reportCount me_reportCount,
 me.seqSurvey me_seqSurvey,
@@ -412,71 +391,3 @@ from tblAcc acc
                 on ai.seqFixedFluctuationCheck= fdw.seq
                     inner join tblFixedFluctuationPeriod ffp
                     on fdw.seqFixedFluctuationPeriod = ffp.seq);
-
-
---사용자 금융 정보
---vwMemberFinance
---tblMemberFinance, tblProperty, tblDebt
-create or replace view vwMemberFinance as (
-select 
-    mf.seq as mf_seq,
-    mf.idMember as mf_idMember,
-    mf.seqProperty as mf_seqProperty, -- pro.seq
-    pro.cash as pro_cash,
-    mf.seqDebt as mf_seqDebt, -- de.seq
-    de.cash as de_cash
-from tblMemberFinance mf
-    inner join tblProperty pro
-    on mf.seqProperty = pro.seq
-        inner join tblDebt de
-        on mf.seqDebt = de.seq);
-
---대시보드 정보
---vwAccContent
---tblNews, tblNewsCategoryList, vwAcc, vwSurvey, vwAccountBookCategory, vwMemberFinance
-create or replace view vwAccContent as (
-select 
-    vwaccountbookcategory.ac_seq,
-    vwaccountbookcategory.ac_name,
-    vwaccountbookcategory.ke_content,
-    vwaccountbookcategory.caa_seq,
-    vwaccountbookcategory.caa_seqcardcategory,
-    vwAccountBookCategory.acl_seq,
-    vwaccountbookcategory.acl_seqaccinfo,
-    vwAcc.acc_seq,
-    vwacc.acc_idmember,
-    vwacc.ai_seq,
-    vwacc.ai_content,
-    vwacc.ai_accinfodate,
-    vwacc.ai_price,
-    vwacc.ai_location,
-    vwacc.rcc_seq,
-    vwacc.rcl_seq,
-    vwAcc.rcl_content,
-    vwAcc.mc_seq,
-    vwacc.mc_cardnumber,
-    vwacc.mc_alias,
-    vwacc.mc_validity,
-    vwacc.fdw_seq,
-    vwacc.fdw_content,
-    vwacc.ffp_seq,
-    vwacc.ffp_period,
-    vwsurvey.su_seq,
-    vwsurvey.su_monthlypaycheck,
-    vwsurvey.su_savingsgoals,
-    vwsurvey.ci_seq,
-    vwsurvey.ci_intensity,
-    vwsurvey.sp_seq,
-    vwsurvey.sp_period,
-    vwSurvey.me_pw,
-    vwSurvey.me_name,
-    vwsurvey.me_phonenumber,
-    vwSurvey.me_nss,
-    vwsurvey.me_reportcount
-from vwAccountBookCategory 
-    inner join vwAcc
-    on vwAccountBookCategory.acl_seqAccInfo = vwAcc.ai_seq
-        inner join tblMember me
-        on vwacc.acc_idmember = me.id
-            inner join vwSurvey
-            on me.seqSurvey = vwSurvey.su_seq);
