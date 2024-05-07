@@ -171,8 +171,8 @@ WHERE
 GROUP BY 
     max_category.acName;
 
-
-
+select * from tblReasonsChangeList;
+select * from tblReasonChangeCategory;
 
 WITH max_category AS (
     SELECT 

@@ -142,14 +142,13 @@
 				
 				<div id="thridrow">
 					<div>
-						<h4><a class="max-spending-category-brown">${acName}</a> 관련 뉴스</h4>
+						<h5><a class="max-spending-category-subtitle-brown">"${acName}"</a> 관련 최근 경제 뉴스</h5>
 					</div>
-					<div id="newscontent" class="black-border-box full-box">
+					<div id="news-content" class="black-border-box full-box">
 						<c:forEach items="${newsList}" var="dto">
 							<div>
-								<a target="_blank" href="${dto.link}">${dto.title}</a>
-								${dto.pubDate}<br>
-								${dto.description}
+								<div><a id="news-title" target="_blank" href="${dto.link}">${dto.title}</a> ${dto.pubDate}<br></div>
+								<div>${dto.description}</div>
 							</div>
 						</c:forEach>
 					</div>

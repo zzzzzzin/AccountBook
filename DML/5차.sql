@@ -52,29 +52,29 @@ insert into tblReasonChangeCategory (seq, seqReasonsChangeList, seqMyCard)
     values (1, 1, null);   
 --신용 or 체크
 insert into tblReasonChangeCategory (seq, seqReasonsChangeList, seqMyCard) 
-    values (2, 2, 1);
+    values (2, 3, 1);
 insert into tblReasonChangeCategory (seq, seqReasonsChangeList, seqMyCard) 
-    values (3, 1, 2);
+    values (3, 3, 2);
 insert into tblReasonChangeCategory (seq, seqReasonsChangeList, seqMyCard) 
-    values (4, 2, 3);
+    values (4, 3, 3);
 insert into tblReasonChangeCategory (seq, seqReasonsChangeList, seqMyCard) 
-    values (5, 2, 4);
+    values (5, 3, 4);
 insert into tblReasonChangeCategory (seq, seqReasonsChangeList, seqMyCard) 
-    values (6, 2, 5);
+    values (6, 3, 5);
 insert into tblReasonChangeCategory (seq, seqReasonsChangeList, seqMyCard) 
     values (7, 2, 6);
 insert into tblReasonChangeCategory (seq, seqReasonsChangeList, seqMyCard) 
     values (8, 2, 7);
 insert into tblReasonChangeCategory (seq, seqReasonsChangeList, seqMyCard) 
-    values (9, 1, 8);
+    values (9, 2, 8);
 insert into tblReasonChangeCategory (seq, seqReasonsChangeList, seqMyCard) 
-    values (10, 1, 9);
+    values (10, 2, 9);
 insert into tblReasonChangeCategory (seq, seqReasonsChangeList, seqMyCard) 
-    values (11, 1, 10);
+    values (11, 2, 10);
 --현금
 insert into tblReasonChangeCategory (seq, seqReasonsChangeList, seqMyCard) 
     values (12, 4, null);
-    
+
 commit;
 
 
