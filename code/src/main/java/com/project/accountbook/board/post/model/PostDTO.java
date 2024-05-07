@@ -23,6 +23,14 @@ public class PostDTO {
 	private int secretCheck;
 	private int blindCheck;
 	
+	//첨부파일
+	private String seqPost;
+	private String fileName;
+	private String fileLink;
+	
+	private String me_nickName;
+	private String ad_nickName;
+	
 	public PostDTO(
 			String seq, 
 			String seqBoard, 
@@ -63,13 +71,7 @@ public class PostDTO {
 		
 	}
 	
-	//첨부파일
-	private String seqPost;
-	private String fileName;
-	private String fileLink;
 	
-	private String me_nickName;
-	private String ad_nickName;
 	
 	
 	public String getme_nickName() {

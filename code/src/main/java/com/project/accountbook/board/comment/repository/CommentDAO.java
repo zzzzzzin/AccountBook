@@ -21,6 +21,7 @@ public class CommentDAO {
     }
 
     public List<CommentDTO> getCommentsByPostSeq(String seqPost) {
+    	
         List<CommentDTO> comments = new ArrayList<>();
 
         String query = "SELECT c.seq, c.seqPost, c.seqUser, c.content, c.writeDate, c.likeCount, c.dislikeCount, c.reportCount, " +

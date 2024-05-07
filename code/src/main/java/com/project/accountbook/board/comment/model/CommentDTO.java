@@ -2,8 +2,10 @@ package com.project.accountbook.board.comment.model;
 
 //tblComments(전체), tblReplyComments(seqComments)
 public class CommentDTO {
+	
     private int replyCount;
     private String nickname;
+    
     public String getNickname() {
 		return nickname;
 	}
