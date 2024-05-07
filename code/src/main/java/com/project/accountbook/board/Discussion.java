@@ -30,11 +30,16 @@ public class Discussion extends HttpServlet {
 	    
 	    PostDTO post = bdao.readPost(seq);
 	    List<CommentDTO> comments = cdao.getCommentsByPostSeq(seq);
-	    
+	    for (CommentDTO comment : comments) {
+	        List<CommentDTO> replyComments = cdao.getReplyCommentsByCommentSeq(comment.getSeq());
+	        comment.setReplyComments(replyComments);
+	    }
 	    req.setAttribute("post", post);
 	    req.setAttribute("comments", comments);
 	    
 	    RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/discussion.jsp");
 	    dispatcher.forward(req, resp);
 	}
+	
+	
 }

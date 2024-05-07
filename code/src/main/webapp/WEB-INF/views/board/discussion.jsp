@@ -179,36 +179,45 @@
                 <div id="commentcontent">${comment.content}</div>
             </div>
         </div>
-    </c:forEach>
-</div>
               <!-- 대댓글 시작 -->
-              <div class="comment-box comment-reply">
+              <c:forEach var="replyComment" items="${comment.replyComments}">
+            <div class="comment-box comment-reply">
                 <div class="post-header" id="commentlevel1head">
-                  <div class="post-info" id="commentlevel1info">
-                   <i class="material-icons" id="subcommentarrow">subdirectory_arrow_right</i>
-                    <img class="user-image" src="user-image.jpg" alt="사용자 이미지">
-                    <div class="post-info">
-                      <span>작성자: 회원 아이디</span>
-                      <span>등록일: 2024.04.25.(수)</span>
+                    <div class="post-info" id="commentlevel1info">
+                        <i class="material-icons" id="subcommentarrow">subdirectory_arrow_right</i>
+                        <c:choose>
+                            <c:when test="${not empty replyComment.profileImage}">
+                                <img class="user-image" src="${replyComment.profileImage}" alt="사용자 이미지">
+                            </c:when>
+                            <c:otherwise>
+                                <img class="user-image" src="/profile-images/default-user-image.jpg" alt="기본 사용자 이미지">
+                            </c:otherwise>
+                        </c:choose>
+                        <div class="post-info">
+                            <span>작성자: ${replyComment.nickname}</span>
+                            <span>등록일: ${replyComment.writeDate}</span>
+                        </div>
                     </div>
-                  </div>
-                  <div class="post-actions-comment" >
-                    <span><i class="material-icons">thumb_up</i> 5</span>
-                    <span><i class="material-icons">thumb_down</i> 1</span>
-                    <span><i class="material-icons">report</i> 신고</span>
-                    <span>답글</span>
-                  </div>
+                    <div class="post-actions-comment">
+                        <span><i class="material-icons">thumb_up</i> ${replyComment.likeCount}</span>
+                        <span><i class="material-icons">thumb_down</i> ${replyComment.dislikeCount}</span>
+                        <span><i class="material-icons">report</i> 신고</span>
+                        <span>답글</span>
+                    </div>
                 </div>
                 <div class="post-content">
-                  <div id="commentcontent">댓글 내용</div>
+                    <div id="commentcontent">${replyComment.content}</div>
                 </div>
-              </div>
+            </div>
+        </c:forEach>
+    </c:forEach>
+</div>
               <!-- 대댓글 끝 -->
             </div>
             
 <!-- 댓글 쓰기 시작 -->
 <div class="comment-form">
-    <form action="/board/addcomment.do" method="post">
+    <form action="/board/addComment.do" method="post">
         <input type="hidden" name="seqPost" value="${post.seq}">
         <input type="hidden" name="seqUser" value="${sessionScope.seqUser}">
         <textarea name="content" placeholder="댓글을 입력하세요."></textarea>

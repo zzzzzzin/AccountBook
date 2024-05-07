@@ -1,5 +1,7 @@
 package com.project.accountbook.board.comment.model;
 
+import java.util.List;
+
 //tblComments(전체), tblReplyComments(seqComments)
 public class CommentDTO {
 	
@@ -29,7 +31,17 @@ public class CommentDTO {
 	public void setReplyCount(int replyCount) {
 		this.replyCount = replyCount;
 	}
+	private List<CommentDTO> replyComments;
 
+    // ... 기존 getter/setter 메서드 ...
+
+    public List<CommentDTO> getReplyComments() {
+        return replyComments;
+    }
+
+    public void setReplyComments(List<CommentDTO> replyComments) {
+        this.replyComments = replyComments;
+    }
 
 
 
