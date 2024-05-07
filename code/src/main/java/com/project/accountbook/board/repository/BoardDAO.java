@@ -45,44 +45,72 @@ public class BoardDAO {
 	}
 
 	// 조회(R)
-//------------------------------------------------------------------------------------------------ 공지 게시판
-	public ArrayList<NoticeDTO> selectNoticeDTOs(PostDTO pDto) {
-        ArrayList<NoticeDTO> list = new ArrayList<>();
-
-        try {
-//            Class.forName("oracle.jdbc.driver.OracleDriver");
-//            Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@192.168.10.47:1521:xe", "jspProject", "java1234");
-
-            if (pDto.getSeqBoard().equals("1")) {
-                String sql = "SELECT * FROM vwNotice ORDER BY seq DESC";
-                
-                stat = conn.createStatement();
-                rs = stat.executeQuery(sql);
-                
-                while (rs.next()) {
-                	NoticeDTO dto = new NoticeDTO();
-                    dto.setSeq(rs.getInt("seq"));
-                    dto.setNickname(rs.getString("nickname"));
-                    dto.setTitle(rs.getString("title"));
-                    dto.setDate((rs.getString("writedate").substring(0, Math.min(rs.getString("writedate").length(), 10))));
-                    dto.setViewCount(rs.getInt("viewcount"));
-                    dto.setLikeCount(rs.getInt("likecount"));
-                    dto.setReportCount(rs.getString("reportCount"));
-                    dto.setSecretCheck(rs.getString("secretCheck"));
-                    dto.setBlindCheck(rs.getString("blindCheck"));
-                    
-                    list.add(dto);
-                    
-                }
-                return list;
-            }
-
-//            conn.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } 
-        return null;
-    }
+	public ArrayList<PostDTO> list (String seq){
+		
+		try {
+			
+			String sql = "select\r\n"
+					+ "    me_nickname,\r\n"
+					+ "    ad_nickname,\r\n"
+					+ "    ca_seq as seqboard,\r\n"
+					+ "    po_seqUser as seqUser,\r\n"
+					+ "    po_title as title,\r\n"
+					+ "    po_content as content,\r\n"
+					+ "    po_writedate as writedate,\r\n"
+					+ "    po_editdate as editdate,\r\n"
+					+ "    po_viewcount as viewcount,\r\n"
+					+ "    po_likecount as likecount,\r\n"
+					+ "    po_dislikecount as dislikecount,\r\n"
+					+ "    po_reportcount as reportcount,\r\n"
+					+ "    po_secretcheck as secretcheck,\r\n"
+					+ "    po_blindcheck as blindcheck,\r\n"
+					+ "    us_seq as seqpost,\r\n"
+					+ "    af_filename as filename,\r\n"
+					+ "    af_filelink as filelink\r\n"
+					+ "from vwboard where ca_seq = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+			
+			rs = pstat.executeQuery();
+			
+			ArrayList<PostDTO> list = new ArrayList<PostDTO>();
+			
+			
+			while (rs.next()) {				
+				PostDTO dto = new PostDTO();
+				
+				dto.setSeqBoard(rs.getString("seqboard"));
+				dto.setSeqUser(rs.getString("sequser"));
+				dto.setTitle(rs.getString("title"));
+				dto.setContent(rs.getString("content"));
+				dto.setWriteDate(rs.getString("writedate"));
+				dto.setEditDate(rs.getString("editdate"));
+				dto.setViewCount(rs.getInt("viewcount"));
+				dto.setLikeCount(rs.getInt("likecount"));
+				dto.setDislikeCount(rs.getInt("dislikecount"));
+				dto.setReportCount(rs.getInt("reportcount"));
+				dto.setSecretCheck(rs.getInt("secretcheck"));
+				dto.setBlindCheck(rs.getInt("blindcheck"));
+				dto.setad_nickName(rs.getString("ad_nickname"));
+				dto.setme_nickName(rs.getString("me_nickname"));
+				
+				dto.setSeqPost(rs.getString("seqpost"));
+				dto.setFileName(rs.getString("filename"));
+				dto.setFileLink(rs.getString("filelink"));
+				
+				list.add(dto);
+								
+			}	
+			
+			return list;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 	
 
 //------------------------------------------------------------------------------------------------ 자유 게시판

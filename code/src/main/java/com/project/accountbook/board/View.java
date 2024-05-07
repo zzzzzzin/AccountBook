@@ -32,16 +32,14 @@ public class View extends HttpServlet {
 			// 게시판 번호가 1인 
 			if (i == 1) {
 				postDto.setSeqBoard("1");
-				ArrayList<NoticeDTO> noticeList = dao.selectNoticeDTOs(postDto);
-				
+				ArrayList<PostDTO> noticeList = dao.list("1");				
 				req.setAttribute("noticeList", noticeList); // noticeList 객체를 요청 객체에 추가
 			}
 			
 			// 게시판 번호가 2인 
 			if (i == 2) {
 				postDto.setSeqBoard("2");
-				ArrayList<FreeDTO> freeList = dao.selectFreeDTOs(postDto);
-				
+				ArrayList<PostDTO> freeList = dao.list("2");				
 				req.setAttribute("freeList", freeList); // freeList 객체를 요청 객체에 추가
 			}
 			

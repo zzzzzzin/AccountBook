@@ -109,9 +109,9 @@
 					    </tr>
 					</c:if>
 	                
-					<c:forEach var="free" items="${freeList}">
+					<c:forEach items="${freeList}" var="free" varStatus="loop">
 			                <tr>
-			                    <td>${free.seq}</td>
+			                    <td>${loop.index + 1}</td>
 						        <td>
 						            <c:choose>
 						                <c:when test="${free.blindCheck eq '1'}">
@@ -122,13 +122,11 @@
 						                </c:otherwise>
 						            </c:choose>
 						        </td>
-						        <td>${free.nickname}</td>
-						        <td>${free.date}</td>
+						        <td>${free.me_nickName != null ? free.me_nickName : free.ad_nickName}</td>
+						        <td>${free.writeDate}</td>
 						        <td>${free.viewCount}</td>
 						        <td>${free.likeCount}</td>
-						        <%-- <td>${free.reportCount}</td> --%>
-						        <%-- <td>${free.secretCheck}</td> --%>
-						        <%-- <td>${free.blindCheck}</td> --%>
+						      
 			                </tr>
 	                </c:forEach>
 	                </tbody>
