@@ -117,30 +117,34 @@
 					        <td colspan="6">게시물이 없습니다.</td>
 					    </tr>
 					</c:if>
-	                
-					<c:forEach var="attendance" items="${attendanceList}">
-			                <tr>
-			                    <td>${attendance.seq}</td>
-						        <td>
-						            <c:choose>
-						                <c:when test="${attendance.blindCheck eq '1'}">
-						                    블라인드 처리 되었습니다.
-						                </c:when>
-						                <c:otherwise>
-						                    ${attendance.title}
-						                </c:otherwise>
-						            </c:choose>
-						        </td>
-						        <td>${attendance.nickname}</td>
-						        <td>${attendance.date}</td>
-						        <td>${attendance.viewCount}</td>
-						        <td>${attendance.likeCount}</td>
-						        <%-- <td>${attendance.reportCount}</td>
-						        <td>${attendance.secretCheck}</td>
-						        <td>${attendance.blindCheck}</td> --%>
-			                </tr>
-	                </c:forEach>
-		                </tbody>
+
+						<c:forEach var="attendance" items="${attendanceList}">
+							<tr>
+								<td>${attendance.seq}</td>
+								<td><c:choose>
+										<c:when test="${attendance.blindCheck eq '1'}">
+				                    관리자에 의해 블라인드 처리 되었습니다.
+				                </c:when>
+										<c:otherwise>
+											<a href="/account/board/discussion.do?seq=${attendance.seq}">${attendance.title}</a>
+										</c:otherwise>
+									</c:choose></td>
+								<td>${attendance.me_nickName != null ? attendance.me_nickName : attendance.ad_nickName}</td>
+								<td>${attendance.writeDate}</td>
+								<td>${attendance.viewCount}</td>
+								<td>${attendance.likeCount}</td>
+								<%-- <td id="secret"><c:choose>
+										<c:when test="${attendance.secretCheck eq '1'}">
+											<div class="fas fa-lock lock-icon"></div>
+										</c:when>
+										<c:otherwise>
+											<div class="fas fa-unlock unlock-icon"></div>
+										</c:otherwise>
+									</c:choose></td> --%>
+	
+							</tr>
+						</c:forEach>
+					</tbody>
 	            </table>
 	            <div class="write-btn">
 	                <a href="/account/board/write.do" class="btn btn-dark">글작성</a>
