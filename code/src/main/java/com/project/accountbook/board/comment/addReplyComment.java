@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.project.accountbook.board.comment.model.CommentDTO;
 import com.project.accountbook.board.comment.repository.CommentDAO;
 
-@WebServlet("/board/comment/addReplyComment.do")
+@WebServlet("/board/addReplyComment.do")
 public class addReplyComment extends HttpServlet {
     private CommentDAO cdao = new CommentDAO();
 
@@ -26,7 +26,7 @@ public class addReplyComment extends HttpServlet {
         replyComment.setContent(content);
 
         int result = cdao.addReplyComment(replyComment);
-
+		resp.setCharacterEncoding("UTF-8");
         if (result > 0) {
             resp.sendRedirect("/board/discussion.do?seq=" + req.getParameter("seqPost"));
         } else {
