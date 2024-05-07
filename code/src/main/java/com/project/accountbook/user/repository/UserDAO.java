@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.HashMap;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -369,5 +370,39 @@ public class UserDAO {
 		    }
 		    return false;
 		}
+		
+		//API 키 값 불러오기
+		public HashMap<String, String> getAPIKey(String seq) {
+			
+			try {
+
+				String sql = "select \r\n"
+						+ "*\r\n"
+						+ "from tblAPI\r\n"
+						+ "where seq = ?";
+
+				pstat = conn.prepareStatement(sql);
+				pstat.setString(1, seq);
+
+				rs = pstat.executeQuery();
+
+				HashMap<String, String> map = new HashMap<String, String>();
+				
+				while (rs.next()) {
+					
+					map.put("name", rs.getString("name"));
+					map.put("key", rs.getString("key"));
+					
+				}
+
+				return map; 
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			return null;
+			
+		};
 
 }

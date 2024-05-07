@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.project.accountbook.account.model.AccountInfoDTO;
 import com.project.accountbook.user.member.model.MemberInfoDTO;
@@ -249,32 +250,6 @@ public class MemberInfoDAO {
 			e.printStackTrace();
 		}
 		
-	}
-
-	//카카오 key 값 불러오기
-	public String getKakaoKey() {
-
-		try {
-
-			String sql = "select\r\n"
-					+ "key\r\n"
-					+ "from tblAPI\r\n"
-					+ "where name = '카카오'";
-
-			stat =  conn.createStatement();
-			rs = stat.executeQuery(sql);
-
-			if (rs.next()) {
-
-				return rs.getString("key");
-
-			}
-
-		} catch (Exception e) {
-			System.out.println("MemberInfoDAO.getKakaoKey");
-			e.printStackTrace();
-		}
-		return null;
 	}
 
 }

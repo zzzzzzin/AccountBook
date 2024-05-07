@@ -60,7 +60,7 @@
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
 
-			<div class="container-friendinvite">
+			<div class="content-total-style">
 			<div class="text-container-friendinvite">
 					<!-- 글을 여기에 추가하세요 -->
 					<p>소비 패턴 분석을 통한 지출 관리 친구 BudgetBuddy를 <br> 친구에게 공유하세요!</p>

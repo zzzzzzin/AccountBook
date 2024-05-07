@@ -83,9 +83,28 @@
 
 					<div id="customMsg">
 						<div>
-							지난 달 가장 많이 소비한 카테고리는 <a>${categoryUsageMap.acName}</a>입니다.<br>
-							지날 달은 ${categoryUsageMap.acName}에서 ${categoryUsageMap.beforeAcUsage}원을 사용했고, <br>
-							이번 달은 ${categoryUsageMap.nowAcUsage}원을 사용했습니다.
+							<div>
+								지난 달 가장 많이 소비한 <br> 카테고리는 <a class="max-spending-category-brown">${categoryUsageMap.acName}</a>입니다.						
+							</div><br>
+							<div>							
+								지난 달은 <a class="spending-price-red">${categoryUsageMap.beforeAcUsage}원</a>을 사용했고, <br>
+								이번 달은 <a class="spending-price-red">${categoryUsageMap.nowAcUsage}원</a>을 사용했습니다. <br>
+							</div>
+							<div>
+								<c:if test="${categoryUsageMap.beforeAcUsage > categoryUsageMap.nowAcUsage}">
+    								지난 달보다 ${categoryUsageMap.acName}에서 지출이 줄었네요!<br>
+    								현재를 유지해보세요!
+								</c:if>
+
+								<c:if test="${categoryUsageMap.beforeAcUsage < categoryUsageMap.nowAcUsage}">
+									지난 달보다 ${categoryUsageMap.acName}에서 지출이 늘었네요.<br>
+									주의해주세요!
+								</c:if>
+								<c:if test="${categoryUsageMap.beforeAcUsage == categoryUsageMap.nowAcUsage}">
+									지난 달과 동일하게 사용했네요.<br>
+									${categoryUsageMap.acName}에서 지출을 줄여보세요!
+								</c:if>
+							</div>
 							
 						</div>
 					
@@ -104,16 +123,36 @@
 					<div id="currentsituation" class="black-border-box">
 						<div>저축 목표 기간 중 <a class="anyalysis-period-num">${challengeInfoMap.monthsSinceJoin}개월</a>이 지났습니다!</div><br>
 						<div>이번 달 지출금은 총 <a class="spending-price-red">${challengeInfoMap.monthUsage}원</a>,<br> 월 평균 지출금은 <a class="spending-price-red">${challengeInfoMap.avgMonthlySpending}원</a>입니다.</div><br>
-						<div>이 기세로는 목표 저축 금액까지 <a class="anyalysis-period-num">${challengeInfoMap.goalAchievementPeriod}개월</a>이 필요합니다!</div><br>
-						<div><a class="anyalysis-period-num">${challengeInfoMap.spPeriod - challengeInfoMap.monthsSinceJoin}개월</a> 안에 목표 금액을 달성하려면</div>
-						<div>매달 평균 <a class ="anyalysis-remaining-price" >${challengeInfoMap.avgMonthlySavingsPrice}원</a>을 저축해야합니다!</div>
-						<div>이번 달은 <a class ="usable-price-num">${challengeInfoMap.avgMonthlyUsablePrice}원</a>을 사용할 수 있으며,</div>
-						<div>일 평균 <a class ="usable-price-num">${challengeInfoMap.avgDailyUsablePrice}원</a>을 사용할 수 있습니다.</div>
+						<c:if test="${challengeInfoMap.goalAchievementPeriod <= 0}">
+							<div class ="anyalysis-goals-price" >목표 저축 금액까지 소요 예상 기간을 계산할 수 없습니다.</div><br>
+							<div><a class="anyalysis-period-num">${challengeInfoMap.spPeriod - challengeInfoMap.monthsSinceJoin}개월</a> 안에 목표 금액을 저축하려면</div>
+							<div>매달 평균 <a class ="anyalysis-remaining-price" >${challengeInfoMap.avgMonthlySavingsPrice}원</a>을 저축해야합니다!</div>
+						</c:if>
+						<c:if test="${challengeInfoMap.goalAchievementPeriod > 0}">
+							<div>이 기세로는 목표 저축 금액까지 <a class="anyalysis-period-num">${challengeInfoMap.goalAchievementPeriod}개월</a>이 필요합니다!</div><br>
+							<div><a class="anyalysis-period-num">${challengeInfoMap.spPeriod - challengeInfoMap.monthsSinceJoin}개월</a> 안에 목표 금액을 저축하려면</div>
+							<div>매달 평균 <a class ="anyalysis-remaining-price" >${challengeInfoMap.avgMonthlySavingsPrice}원</a>을 저축해야합니다!</div>
+							<div>이번 달은 <a class ="usable-price-num">${challengeInfoMap.avgMonthlyUsablePrice}원</a>을 사용할 수 있으며,</div>
+							<div>일 평균 <a class ="usable-price-num">${challengeInfoMap.avgDailyUsablePrice}원</a>을 사용할 수 있습니다.</div>
+						</c:if>
 					</div>
 				</div>
-				<div id="chartLegend"></div>
+				
+				<div id="chartLegend"></div><br>
+				
 				<div id="thridrow">
-					<div id="newscontent" class="black-border-box">뉴스 뉴스 뉴스 뉴스 뉴스 뉴스</div>
+					<div>
+						<h4><a class="max-spending-category-brown">${acName}</a> 관련 뉴스</h4>
+					</div>
+					<div id="newscontent" class="black-border-box full-box">
+						<c:forEach items="${newsList}" var="dto">
+							<div>
+								<a target="_blank" href="${dto.link}">${dto.title}</a>
+								${dto.pubDate}<br>
+								${dto.description}
+							</div>
+						</c:forEach>
+					</div>
 				</div>
 
 			</div>
@@ -134,7 +173,7 @@
     <!-- Template Javascript -->
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
     <script>
-    
+     
     document.addEventListener('DOMContentLoaded', function() {
     const sidebarToggler = document.getElementById('sidebar-toggler');
     const sidebar = document.querySelector('.sidebar');
@@ -284,8 +323,8 @@
     }
 
 
+	createSharedCustomLegend([chart1, chart2]);
 
-createSharedCustomLegend([chart1, chart2]);
 
     </script>
 </body>

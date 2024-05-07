@@ -48,16 +48,13 @@ public class AccountInfoDTO {
 	
 	//가계부 카테고리
 	private String acName;
-	
-	//(추가)
-	//뉴스 카테고리 목록
-	private String seqnews;
-	
+		
 	//뉴스
 	private String title;
 	private String link;
-	private String newsDate;
-	private String media;
+	private String pubDate;
+	private String description;
+//	private String media;
 		
 	
 	//변동 사유 카테고리
@@ -70,22 +67,6 @@ public class AccountInfoDTO {
 	
 	//나의 카드
 	private String alias;
-	
-	public int getBeforeAcUsage() {
-		return beforeAcUsage;
-	}
-
-	public void setBeforeAcUsage(int beforeAcUsage) {
-		this.beforeAcUsage = beforeAcUsage;
-	}
-
-	public int getNowAcUsage() {
-		return nowAcUsage;
-	}
-
-	public void setNowAcUsage(int nowAcUsage) {
-		this.nowAcUsage = nowAcUsage;
-	}
 
 	public String getContent() {
 		return content;
@@ -151,6 +132,22 @@ public class AccountInfoDTO {
 		this.seqDepositWithdrawalStatus = seqDepositWithdrawalStatus;
 	}
 
+	public int getBeforeAcUsage() {
+		return beforeAcUsage;
+	}
+
+	public void setBeforeAcUsage(int beforeAcUsage) {
+		this.beforeAcUsage = beforeAcUsage;
+	}
+
+	public int getNowAcUsage() {
+		return nowAcUsage;
+	}
+
+	public void setNowAcUsage(int nowAcUsage) {
+		this.nowAcUsage = nowAcUsage;
+	}
+
 	public int getTotalPrice() {
 		return totalPrice;
 	}
@@ -158,7 +155,7 @@ public class AccountInfoDTO {
 	public void setTotalPrice(int totalPrice) {
 		this.totalPrice = totalPrice;
 	}
-	
+
 	public int getTotalSaving() {
 		return totalSaving;
 	}
@@ -231,14 +228,6 @@ public class AccountInfoDTO {
 		this.acName = acName;
 	}
 
-	public String getSeqnews() {
-		return seqnews;
-	}
-
-	public void setSeqnews(String seqnews) {
-		this.seqnews = seqnews;
-	}
-
 	public String getTitle() {
 		return title;
 	}
@@ -255,20 +244,20 @@ public class AccountInfoDTO {
 		this.link = link;
 	}
 
-	public String getNewsDate() {
-		return newsDate;
+	public String getPubDate() {
+		return pubDate;
 	}
 
-	public void setNewsDate(String newsDate) {
-		this.newsDate = newsDate;
+	public void setPubDate(String pubDate) {
+		this.pubDate = pubDate;
 	}
 
-	public String getMedia() {
-		return media;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setMedia(String media) {
-		this.media = media;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getSeqReasonsChangeList() {
@@ -316,16 +305,15 @@ public class AccountInfoDTO {
 		return "AccountInfoDTO [content=" + content + ", accInfoDate=" + accInfoDate + ", price=" + price
 				+ ", location=" + location + ", seqAcc=" + seqAcc + ", seqReasonChangeCategory="
 				+ seqReasonChangeCategory + ", seqFixedFluctuationCheck=" + seqFixedFluctuationCheck
-				+ ", seqDepositWithdrawalStatus=" + seqDepositWithdrawalStatus + ", totalPrice=" + totalPrice
+				+ ", seqDepositWithdrawalStatus=" + seqDepositWithdrawalStatus + ", beforeAcUsage=" + beforeAcUsage
+				+ ", nowAcUsage=" + nowAcUsage + ", totalPrice=" + totalPrice + ", totalSaving=" + totalSaving
 				+ ", idMember=" + idMember + ", productName=" + productName + ", fdwContent=" + fdwContent
 				+ ", seqFixedFluctuationPeriod=" + seqFixedFluctuationPeriod + ", ffpPeriod=" + ffpPeriod
 				+ ", seqAccCategory=" + seqAccCategory + ", seqAccInfo=" + seqAccInfo + ", acName=" + acName
-				+ ", seqnews=" + seqnews + ", title=" + title + ", link=" + link + ", newsDate=" + newsDate + ", media="
-				+ media + ", seqReasonsChangeList=" + seqReasonsChangeList + ", seqMyCard=" + seqMyCard + ", cfName="
-				+ cfName + ", fileLink=" + fileLink + ", alias=" + alias + "]";
+				+ ", title=" + title + ", link=" + link + ", pubDate=" + pubDate + ", description=" + description
+				+ ", seqReasonsChangeList=" + seqReasonsChangeList + ", seqMyCard=" + seqMyCard + ", cfName=" + cfName
+				+ ", fileLink=" + fileLink + ", alias=" + alias + "]";
 	}
 	
-	
-
-	
+		
 }
