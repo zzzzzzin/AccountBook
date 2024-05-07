@@ -845,7 +845,7 @@
     //고정 지출 끝
 
     //항목 추가 시작
-    document.getElementById('btnEventProduce').addEventListener('click', function() {
+    document.getElementById('produceEventBtn').addEventListener('click', function() {
         var content = document.getElementById('eventModalcontent').value;
         var start = document.getElementById('eventModalStart').value;
         var category = document.getElementsByClassName('modalselectcategory')[0].value;
@@ -961,17 +961,35 @@
                 $('#eventModalIoc').val(info.event.extendedProps.amount);
                 $('#fixedexpense').prop('checked', info.event.extendedProps.isFixedExpense);
                 
-                
-                
                 procbutton.style.display = 'none';
                 editbutton.style.display = 'inline-block';
                 delbutton.style.display = 'inline-block';
                 console.log(info.event.extendedProps.paymentMethod)
             modal.show();
 
-    			$('#deleteEventBtn').on('click', function() {
-    			    console.log('delhere')
-    				if(window.confirm('일정을 삭제하시겠습니까?'))
+    			$('#deleteEventBtn').off().on('click', function() {
+    				if(window.confirm('일정을 삭제하시겠습니까?')){
+    					if(delRequest !== null){
+    						delRequest.abort();
+    					}
+    				}
+    				
+    				delRequest = $.ajax({
+    					type:'post',
+    					url:'/account/account/calendardelete.do',
+    					data:{
+    						seq: seq
+    					},
+    				dataType: 'json',
+	                    success: function (response) {
+	                        alert('Edit successful');
+	                        modal.hide();
+	                    },
+	                    error: function (xhr, status, error) {
+	                        alert('Error: ' + xhr.responseText);
+	                        modal.hide();
+	                    }
+    				})
     				info.event.remove();
     				modal.hide();
     			});
@@ -986,28 +1004,31 @@
     			            type:'post',
     			            url: '/account/account/calendaredit.do',
     			            data: {
-    			                start: start ,
-    			                    useLocation: useLocation,
-    		                        content: content,
-    		                        amount: amount,
-    		                        amountindicator: amountindicator,
-    		                        paymentMethod : paymentMethod,
-    		                        category: categories.indexOf(category),
-    		                        fixed: isFixedExpense,
-    		                        seq: seq,
-    		                        seqacc: seqacc,
-    		                        seqrcc: seqrcc
+    			            	start: document.getElementById('eventModalStart').value,
+    	                        useLocation: document.getElementById('eventModaluseloc').value,
+    	                        content: document.getElementById('eventModalcontent').value,
+    	                        amount: document.getElementById('eventModalIoc').value,
+    	                        amountindicator: document.getElementsByClassName('modalincreasedecrease')[0].value,
+    	                        paymentMethod: document.getElementsByClassName('modalmethodofpayment')[0].value,
+    	                        category: categories.indexOf(document.getElementsByClassName('modalselectcategory')[0].value),
+    	                        fixed: document.getElementById('fixedexpense').checked ? '1' : '0',
+    	                        seq: seq,
+    	                        seqacc: seqacc,
+    	                        seqrcc: seqrcc
     			            },
-    			                dataType: 'json',
-    			                success: function(response) {
-    			                    console.log('Edit successful', response);
-    			                    modal.hide();
-
-    			                },
+    			            dataType: 'json',
+    	                    success: function (response) {
+    	                        alert('Edit successful');
+    	                        modal.hide();
+    	                    },
+    	                    error: function (xhr, status, error) {
+    	                        alert('Error: ' + xhr.responseText);
+    	                        modal.hide();
+    	                    }
     			            
     			        })
     			    }
-    			    });
+    			});
     		},
     		
     		eventMouseEnter: function (info) {
@@ -1046,6 +1067,7 @@
         
             
             var modal = new bootstrap.Modal(document.getElementById('eventProduceModal'));
+            procbutton.style.display='inline-block';
             editbutton.style.display='none';
             delbutton.style.display='none';
             modal.show();

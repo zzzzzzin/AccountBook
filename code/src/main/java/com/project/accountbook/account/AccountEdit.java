@@ -1,6 +1,7 @@
 package com.project.accountbook.account;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -20,62 +21,59 @@ import com.project.accountbook.account.repository.AccountDAO;
 @WebServlet("/account/calendaredit.do")
 public class AccountEdit extends HttpServlet {
 
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		// 1. 데이터 가져오기()
-		// 2. DB 작업 > select
-		// 3. 결과 > 인증 티켓
-		HttpSession session = req.getSession();
-		String id = (String)session.getAttribute("id");
-		System.out.println(id);
-		req.setCharacterEncoding("UTF-8");
-		String accInfoDate = (req.getParameter("start")).substring(0,10);
-		String location = req.getParameter("useLocation");
-		String content = req.getParameter("content");
-		String seqAccCategory = req.getParameter("category");
-		String seqReasonsChangeList = req.getParameter("paymentMethod");
-		String price = req.getParameter("amount");
-		String seqDepositWithdrawalStatus = req.getParameter("amountindicator");
-		String fdwContent = req.getParameter("isFixedExpense");
-		String seq = req.getParameter("seq");
-		String seqacc = req.getParameter("seqacc");
-		String seqrcc = req.getParameter("seqrcc");
-		
-		if(fdwContent ==null) {
-			fdwContent ="0";
-		}
-		System.out.println("fdwcontent"+fdwContent);
-		if(seqDepositWithdrawalStatus == "+") {
-			seqDepositWithdrawalStatus = "1";
-		}else {
-			seqDepositWithdrawalStatus="2";
-		}
-		
-		System.out.println("seqacc: "+seq);
-		System.out.println("sending");
-		AccountDAO dao = new AccountDAO();
-		AccountInfoDTO dto = new AccountInfoDTO();
-		
-		
-		dto.setIdMember(id);
-		dto.setSeqAccInfo(seq);
-		dto.setAccInfoDate(accInfoDate);
-		dto.setLocation(location);
-		dto.setContent(content);
-		dto.setSeqAccCategory(seqAccCategory);
-		dto.setSeqReasonsChangeList(seqReasonsChangeList);
-		dto.setPrice(Integer.parseInt(price));
-		dto.setSeqDepositWithdrawalStatus(seqDepositWithdrawalStatus);
-		
-		dto.setFdwContent(fdwContent);
-		dto.setSeqAcc(seqacc);
-		dto.setSeqReasonChangeCategory(seqrcc);
-		System.out.println("test: "+dto.getSeqDepositWithdrawalStatus());
-		System.out.println("seqaccinfo: "+dto.getSeqAccInfo());
-		
-		int editresult = dao.updateAcc(dto);
-		
-	}
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+        PrintWriter out = resp.getWriter();
+        HttpSession session = req.getSession();
+        String id = (String) session.getAttribute("id");
 
+        try {
+            req.setCharacterEncoding("UTF-8");
+            String accInfoDate = req.getParameter("start").substring(0, 10);
+            String location = req.getParameter("useLocation");
+            String content = req.getParameter("content");
+            String category = req.getParameter("category");
+            String paymentMethod = req.getParameter("paymentMethod");
+            String amount = req.getParameter("amount");
+            String amountIndicator = req.getParameter("amountindicator");
+            String isFixedExpense = req.getParameter("fixed");
+            String seq = req.getParameter("seq");
+            String seqacc = req.getParameter("seqacc");
+            String seqrcc = req.getParameter("seqrcc");
+
+            AccountDAO dao = new AccountDAO();
+            AccountInfoDTO dto = new AccountInfoDTO();
+
+            // Set DTO properties from request
+            System.out.println("dto start");
+            dto.setIdMember(id);
+            dto.setSeqAccInfo(seq);
+            dto.setAccInfoDate(accInfoDate);
+            dto.setLocation(location);
+            dto.setContent(content);
+            dto.setSeqAccCategory(category);
+            dto.setSeqReasonsChangeList(paymentMethod);
+            dto.setPrice(Integer.parseInt(amount));
+            dto.setSeqDepositWithdrawalStatus(amountIndicator.equals("+") ? "1" : "2");
+            dto.setFdwContent(isFixedExpense);
+            dto.setSeqAcc(seqacc);
+            dto.setSeqReasonChangeCategory(seqrcc);
+            System.out.println("dto end");
+            
+
+            int editResult = dao.updateAcc(dto);
+
+            if (editResult > 0) {
+                out.println("{\"message\": \"Update successful\", \"status\": \"success\"}");
+            } else {
+                resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                out.println("{\"message\": \"Update failed\", \"status\": \"error\"}");
+            }
+        } catch (Exception e) {
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            out.println("{\"message\": \"" + e.getMessage() + "\", \"status\": \"error\"}");
+        } 
+    }
 }
