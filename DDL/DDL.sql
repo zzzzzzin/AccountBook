@@ -345,7 +345,7 @@ ALTER TABLE tblCardAndAcc
 -- 카드 혜택 목록
 CREATE TABLE tblListCardBenefits (
 	seq                NUMBER NOT NULL, -- 번호
-    content            VARCHAR2(2000) NOT NULL, -- 내용
+    content            number not null, -- 내용
 	seqCardCategory    NUMBER NOT NULL, -- 카드 카테고리 번호
 	seqCardInformation NUMBER NOT NULL  -- 카드 번호
 );
