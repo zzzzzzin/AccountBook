@@ -141,11 +141,11 @@
         <div class="flipster-container">
 <div class="flipster">
     <ul class="flip-items">
-        <c:forEach var="card" items="${recommendedCards}" varStatus="loop">
-            <li data-flip-title="${loop.index + 1}" data-flip-category="${loop.index + 1}" data-description="${loop.index + 1}&lt;br&gt;카드 이름 : ${card.ciName}&lt;br&gt;카드사 : ${card.cardCompany}&lt;br&gt;설명 : ${card.explanation}&lt;br&gt;연회비 : ${card.annualFee}원&lt;br&gt;해외 겸용 : ${card.overseasUse}&lt;br&gt;할인율 : ${card.discountRate}">
-                <img src="${card.fileLink}">
-            </li>
-        </c:forEach>
+<c:forEach var="card" items="${recommendedCards}" varStatus="loop">
+    <li data-flip-title="${loop.index + 1}" data-flip-category="${card.category}" data-description="${loop.index + 1}&lt;br&gt;카드 이름 : ${card.ciName}&lt;br&gt;카드사 : ${card.cardCompany}&lt;br&gt;설명 : ${card.explanation}&lt;br&gt;연회비 : ${card.annualFee}원&lt;br&gt;해외 겸용 : ${card.overseasUse}&lt;br&gt;할인율 : ${card.discountRate}%">
+        <img src="${card.fileLink}">
+    </li>
+</c:forEach>
     </ul>
 </div>
         <div class="description-box">

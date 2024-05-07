@@ -21,6 +21,7 @@ public class AccountInfoDTO {
 	private String seqReasonChangeCategory;
 	private String seqFixedFluctuationCheck;
 	private String seqDepositWithdrawalStatus;
+	private String DepositWithdrawalStatus;
 	
 	private int beforeAcUsage;
 	private int nowAcUsage;
@@ -67,6 +68,27 @@ public class AccountInfoDTO {
 	
 	//나의 카드
 	private String alias;
+<<<<<<< HEAD
+=======
+	private String paymentMethod;
+	private String cardNumber;
+	
+	public int getBeforeAcUsage() {
+		return beforeAcUsage;
+	}
+
+	public void setBeforeAcUsage(int beforeAcUsage) {
+		this.beforeAcUsage = beforeAcUsage;
+	}
+
+	public int getNowAcUsage() {
+		return nowAcUsage;
+	}
+
+	public void setNowAcUsage(int nowAcUsage) {
+		this.nowAcUsage = nowAcUsage;
+	}
+>>>>>>> e987f5bc1ecd93ae7d3d37fb0ae2459d5dba8bb4
 
 	public String getContent() {
 		return content;
@@ -298,6 +320,30 @@ public class AccountInfoDTO {
 
 	public void setAlias(String alias) {
 		this.alias = alias;
+	}
+
+	public String getDepositWithdrawalStatus() {
+		return DepositWithdrawalStatus;
+	}
+
+	public void setDepositWithdrawalStatus(String depositWithdrawalStatus) {
+		DepositWithdrawalStatus = depositWithdrawalStatus;
+	}
+	
+	public String getPaymentMethod() {
+		return paymentMethod;
+	}
+
+	public void setPaymentMethod(String paymentMethod) {
+		this.paymentMethod = paymentMethod;
+	}
+	
+	public String getCardNumber() {
+		return cardNumber;
+	}
+
+	public void setCardNumber(String cardNumber) {
+		this.cardNumber = cardNumber;
 	}
 
 	@Override

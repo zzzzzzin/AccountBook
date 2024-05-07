@@ -41,17 +41,18 @@ public class AccountJson extends HttpServlet {
 			JSONObject obj = new JSONObject();
 			String start = "20"+dto.getAccInfoDate().replace("/", "-");
 			
-			obj.put("title", dto.getTitle());
-			obj.put("start", dto.getAccInfoDate());
-			obj.put("loc", dto.getLocation());
 			obj.put("content", dto.getContent());
-			obj.put("amountIndicator", dto.getSeqDepositWithdrawalStatus());
+			obj.put("start", dto.getAccInfoDate());
 			obj.put("amount", dto.getPrice());
+			obj.put("loc", dto.getLocation());
+			obj.put("id", dto.getIdMember());
 			obj.put("category", dto.getAcName());
 			obj.put("fixed", dto.getSeqFixedFluctuationCheck());
-			obj.put("fixedperiod", dto.getSeqFixedFluctuationPeriod());
-			
-			
+			obj.put("period", dto.getFfpPeriod());
+			obj.put("amountIndicator", dto.getSeqDepositWithdrawalStatus());
+			obj.put("paymentMethod", dto.getPaymentMethod());
+			obj.put("aliasname", dto.getAlias());
+			obj.put("cardnumber", dto.getCardNumber());
 			arr.add(obj);
 		}
 

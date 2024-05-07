@@ -68,6 +68,38 @@ public class PostDTO {
 	private String fileName;
 	private String fileLink;
 	
+	private String me_nickName;
+	private String ad_nickName;
+	
+	
+	public String getme_nickName() {
+		return me_nickName;
+	}
+
+	public void setme_nickName(String me_nickName) {
+		this.me_nickName = me_nickName;
+	}
+
+	public String getad_nickName() {
+		return ad_nickName;
+	}
+
+	public void setad_nickName(String ad_nickName) {
+		this.ad_nickName = ad_nickName;
+	}
+
+	
+	
+	public String getSeq() {
+		return seq;
+	}
+
+	public void setSeq(String seq) {
+		this.seq = seq;
+	}
+
+	
+
 	public String getSeqBoard() {
 		return seqBoard;
 	}

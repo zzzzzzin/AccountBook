@@ -545,7 +545,6 @@
             </div>
         <!-- Back to Top -->
         </div>
-        
     </div>
 
    <div class="modal fade" id="eventProduceModal" tabindex="-1"
@@ -670,8 +669,46 @@
     <!-- Template Javascript -->
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
     <script>
-    
-
+    var addRequest = null;
+   	var categories = [];
+    var colors = {};
+    <c:forEach items="${cList}" var = "dto">
+	categories.push('${dto.acName}');
+	</c:forEach>
+   console.log(categories); 
+   
+   
+   var cardlist = [];
+   <c:forEach items="${cardlist}" var = "dto">
+	cardlist.push('${dto.paymentMethod}, ${dto.paymentMethod} ${dto.alias}:${dto.cardNumber}');
+	</c:forEach>
+	
+	// 미리 정의된 색상 팔레트
+	const colorPalette = [
+		'#36A2EB', '#FF6384', '#4BC0C0', '#FC9D3F', '#9966FF', '#FFCD56', '#C9CBCF', '#F9F871', '#A0F48B', '#A3459B',
+	    '#E17AA7', '#EEE8A9', '#265E58', '#F47558', '#D25F9C', '#9B61A3', '#00524A', '#655E96', '#3E567A', '#2F4858',
+	    '#DD6C41', '#A57A11', '#647E17', '#007A3E', '#007165', '#96525D', '#FFE3E9', '#BFA5A8', '#53D0B9', '#6FDEAA',
+	    '#97EA96', '#C6F381', '#F6746C', '#CA638D', '#896095', '#4D587F', '#C7B1E6', '#FAEAFF', '#65BAA9', '#FFCA57'
+	];
+	
+	// colors 객체에 각 카테고리에 고유한 색상 할당
+	categories.forEach((categoryName, index) => {
+	    colors[categoryName] = colorPalette[index % colorPalette.length];
+	});
+	/* console.log(colors.value('주거')); */
+	
+	function populatePaymentMethodSelect() {
+        paymentMethodSelect.innerHTML = ''; // Clear existing options
+        cardlist.forEach(function(card) {
+            var parts = card.split(',');
+            var option = document.createElement('option');
+            option.value = parts[0]; // Assuming the first part is the value
+            option.textContent = parts[1]; // Assuming the second part is the user-friendly name
+            paymentMethodSelect.appendChild(option);
+        });
+    }
+	
+	
     function openEventModal() {
         var modal = new bootstrap.Modal(document.getElementById("eventProduceModal"));
         // Clear previous data in the modal or set defaults
@@ -712,13 +749,32 @@
         var categoryselector = document.getElementById('categoryselector')
         var categorymodalbody = document.getElementById('categorymodalbody')
         var categorySelector = document.getElementById('eventModalSelect'); 
+        var paymentMethodSelect = document.querySelector('.modalmethodofpayment');
+        
+        
+        function populatePaymentMethodSelect() {
+            // Assuming we want to keep the existing options and append new ones, start after the default options
+            // Remove all dynamically added options first, assuming they have a class 'dynamic-option'
+            var existingOptions = paymentMethodSelect.querySelectorAll('.dynamic-option');
+            existingOptions.forEach(function(option) {
+                option.remove();
+            });
+
+            // Append new options from cardlist
+            cardlist.forEach(function(card) {
+                var parts = card.split(',');
+                var option = document.createElement('option');
+                option.classList.add('dynamic-option'); // Mark it as dynamically added for future updates
+                option.value = parts[0]; // Assuming the first part is the value
+                option.textContent = parts[1]; // Assuming the second part is the user-friendly name
+                paymentMethodSelect.appendChild(option);
+            });
+        }
+        
+        
+        
         // 카테고리 선택 시작
-        const categories = [
-        "미분류","SNS수입", "건강", "경조사", "교육", "교통", "구독료", "금융수입", "급여", "기부금", "기타",
-        "더치페이", "로열티", "문화생활", "미용", "보험금", "부동산수입", "부업", "사업수입", "상속", "상여금",
-        "생활용품", "세금", "쇼핑", "수수료", "숙박", "아르바이트", "앱테크", "여가", "여행", "용돈",
-        "유흥", "육아", "음식", "이자", "자동차", "장학금", "저축", "주거", "카페", "통신"
-    ];
+        
 
     function populateCategorySelector() {
             categorySelector.innerHTML = ''; // Clear existing options
@@ -768,6 +824,7 @@
     eventProduceModal.addEventListener('show.bs.modal', function () {
         checkbox.checked = false; // Uncheck the checkbox
         fixedDateDiv.style.display = 'none'; // Hide the date input
+        populatePaymentMethodSelect();
 
     });
 
@@ -782,7 +839,7 @@
 
     //항목 추가 시작
     document.getElementById('btnEventProduce').addEventListener('click', function() {
-        var title = document.getElementById('eventModalcontent').value;
+        var content = document.getElementById('eventModalcontent').value;
         var start = document.getElementById('eventModalStart').value;
         var category = document.getElementsByClassName('modalselectcategory')[0].value;
         var useLocation = document.getElementById('eventModaluseloc').value;
@@ -790,22 +847,24 @@
         var amountindicator = document.getElementsByClassName('modalincreasedecrease')[0].value;
         var amount = document.getElementById('eventModalIoc').value;
         var isFixedExpense = document.getElementById('fixedexpense').checked;
+        /* var isFixedperiod = document.getElementById('fixedexpense').checked; */
         
         // Validate the inputs
-        if (!title || !start || !category || !amount) {
+        if (!content || !start || !category || !amount) {
             alert('모든 필수 필드를 입력해주세요.'); // Alert if any required field is missing
             return;
         }
-        console.log(title, start, category, useLocation, paymentMethod,amountindicator, amount, isFixedExpense);
+        console.log(content, start, category, useLocation, paymentMethod,amountindicator, amount, isFixedExpense);
 
         // Create a new event object
         var event = {
-            title: title,
+            title: category,
             start: start,
             allDay: true,
-            color: category === '1' ? '#ff0000' : '#0000ff', 
+            color: colors[category], 
             extendedProps: {
                 useLocation: useLocation,
+                content: content,
                 category: category,
                 paymentMethod: paymentMethod,
                 amount: amount,
@@ -816,6 +875,27 @@
 
         // Add the event to the calendar
         calendar.addEvent(event);
+        
+        if (addRequest) {
+			addRequest.abort();
+		}
+        
+        addRequest = $.ajax({
+        	type: 'post',
+        	url: '/account/account/calendar.do',
+        	data:{
+        		start: start,
+        		useLocation: useLocation,
+        		content: content,
+        		category: categories.indexOf(category),
+        		paymentMethod: paymentMethod,
+        		amount: amount,
+        		amountindicator: amountindicator,
+        		isFixedExpense: isFixedExpense
+        		/* isFixedperiod: isFixedperiod */
+        	}
+        })
+        
 
         // Optionally clear the modal inputs
         document.getElementById('eventModalcontent').value = '';
@@ -845,7 +925,7 @@
     		    info.jsEvent.preventDefault();
                 var container = document.getElementById("eventProduceModal");//
                 var modal = new bootstrap.Modal(container);
-                $('#eventModalcontent').val(info.event.title); 
+                $('#eventModalcontent').val(info.event.extendedProps.content); 
                 $('#eventModalStart').val(info.event.start.toISOString().slice(0, 16)); 
                 $('.modalselectcategory').val(info.event.extendedProps.category);
                 $('#eventModaluseloc').val(info.event.extendedProps.useLocation);
@@ -854,6 +934,7 @@
                 $('#eventModalIoc').val(info.event.extendedProps.amount);
                 $('#fixedexpense').prop('checked', info.event.extendedProps.isFixedExpense);
                 
+                console.log(info.event.extendedProps.paymentMethod)
             modal.show();
 
     			$('#deleteEventBtn').on('click', function() {
@@ -864,7 +945,6 @@
     			$("#btnEventProduce").on('click', function(event) {
     				var start = $('#eventModalStart').val();
     				var end = $('#eventModalEnd').val();
-    				alert();
     			});
     		},
     		
@@ -937,11 +1017,13 @@
          						title: obj.category ,
          						allDay: true,
          						start: obj.start,
+         						color: colors[obj.category], 
          						extendedProps: {
-      			   					loc: obj.loc,
+      			   					useLocation: obj.loc,
       			   					content: obj.content,
       			   					amount: obj.amount,
-      			   					indicator: (obj.amountindicator==='출금'?'-':'+'),
+      			   					amountindicator: (obj.amountindicator==='출금'?'+':'-'),
+      			   					paymentMethod : (obj.paymentMethod+obj.aliasname+':'+obj.cardnumber),
       			   					category: obj.category,
       			   					fixed: obj.fixed,
       			   					fixedPeriod: obj.fixedperiod
