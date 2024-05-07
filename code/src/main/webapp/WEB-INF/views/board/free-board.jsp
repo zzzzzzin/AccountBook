@@ -72,16 +72,16 @@
 	    <div id="board-search">
 	      <div class="container">
 	        <div class="search-window">
-	          <form action="">
-	            <div class="search-wrap">
-	              <select>
-	                <option>제목+내용</option>
-	                <option>제목</option>
-	                <option>내용</option>
+	          <form id="formSearch" method="GET" action="/account/board/freeBoard.do">
+	            <div class="search-wrap">              
+	              <select name="column">
+	                <option value="total">제목+내용</option>
+	                <option value="title">제목</option>
+	                <option value="content">내용</option>
 	              </select>
 	              <label for="search" class="blind">게시판 검색</label>
-	              <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
-	              <button type="submit" class="btn btn-dark">검색</button>
+	              <input id="search" type="search" name="word" placeholder="검색어를 입력해주세요." value="">
+	              <button type="submit" class="btn btn-dark">검색</button>	              			
 	            </div>
 	          </form>
 	        </div>
@@ -105,6 +105,8 @@
 	                <tbody>
 	                <c:if test="${freeList.size() == 0}">
 					    <tr>
+					    	<td></td>
+					    	<td></td>
 					        <td>게시물이 없습니다.</td>
 					    </tr>
 					</c:if>
