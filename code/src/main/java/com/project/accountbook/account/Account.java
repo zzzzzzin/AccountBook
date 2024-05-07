@@ -31,7 +31,6 @@ public class Account extends HttpServlet {
 		
 		HttpSession session = req.getSession();
 		String id = (String)session.getAttribute("id");
-		System.out.println(id);
 		AccountDAO dao = new AccountDAO();
 		ArrayList<AccountInfoDTO> calenderdata = dao.accEventContent(id);
 		
@@ -92,15 +91,10 @@ public class Account extends HttpServlet {
 		String seqDepositWithdrawalStatus = req.getParameter("amountindicator");
 		String fdwContent = req.getParameter("isFixedExpense");
 		
-		
-		
-		
 		if ("false".equals(fdwContent)) {
 		    fdwContent = "0";
-		    System.out.println(fdwContent);
 		}
 		
-		System.out.println("fdw = " + fdwContent);
 		
 //		System.out.println("day" + accInfoDate);
 //		System.out.println("location"+location);
@@ -118,8 +112,6 @@ public class Account extends HttpServlet {
 		}else {
 			seqDepositWithdrawalStatus="2";
 		}
-		System.out.println(seqDepositWithdrawalStatus);
-		System.out.println("sending");
 		AccountInfoDTO dto = new AccountInfoDTO();
 		AccountDAO dao = new AccountDAO();
 		
@@ -132,7 +124,6 @@ public class Account extends HttpServlet {
 		dto.setPrice(Integer.parseInt(price));
 		dto.setSeqDepositWithdrawalStatus(seqDepositWithdrawalStatus);
 		dto.setFdwContent(fdwContent);
-		
 
 		int indicate = dao.addEvent(dto);
 		
