@@ -324,10 +324,13 @@ font-family: "Noto Sans KR", sans-serif;
     flex-direction: column;
 }
 
+#analysis-hr {
+	padding: 5px;
+}
+
 /* 뉴스 */
 #news-content {
 	display: flex;
-	gap:20px;
 	flex-direction: column;
 }
 .max-spending-category-subtitle-brown {

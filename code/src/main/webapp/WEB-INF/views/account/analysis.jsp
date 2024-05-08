@@ -145,10 +145,13 @@
 						<h5><a class="max-spending-category-subtitle-brown">"${acName}"</a> 관련 최근 경제 뉴스</h5>
 					</div>
 					<div id="news-content" class="black-border-box full-box">
-						<c:forEach items="${newsList}" var="dto">
+						<c:forEach items="${newsList}" var="dto" varStatus="loop">
 							<div>
 								<div><a id="news-title" target="_blank" href="${dto.link}">${dto.title}</a> ${dto.pubDate}<br></div>
 								<div>${dto.description}</div>
+							<c:if test="${!loop.last}">
+								<div id="analysis-hr"><hr></div>
+							</c:if>
 							</div>
 						</c:forEach>
 					</div>
