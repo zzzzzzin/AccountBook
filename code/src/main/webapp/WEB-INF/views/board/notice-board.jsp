@@ -86,15 +86,15 @@
 	    <div id="board-search">
 	      <div class="container">
 	        <div class="search-window">
-	          <form action="">
+	          <form id="formSearch" method="GET" action="/account/board/noticeBoard.do">
 	            <div class="search-wrap">
-	              <select>
-	                <option>제목+내용</option>
-	                <option>제목</option>
-	                <option>내용</option>
+	              <select name="column">
+	                <option value="total">제목+내용</option>
+	                <option value="title">제목</option>
+	                <option value="content">내용</option>
 	              </select>
 	              <label for="search" class="blind">게시판 검색</label>
-	              <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
+	              <input id="search" type="search" name="word" placeholder="검색어를 입력해주세요." value="">
 	              <button type="submit" class="btn btn-dark">검색</button>
 	            </div>
 	          </form>
@@ -119,13 +119,16 @@
 	                <tbody>
 		                <c:if test="${noticeList.size() == 0}">
 						    <tr>
+						    	<td></td>
+						    	<td></td>
 						        <td>게시물이 없습니다.</td>
 						    </tr>
 						</c:if>
 	                
-					<c:forEach var="notice" items="${noticeList}">
+					<c:forEach var="notice" items="${noticeList}" varStatus="status">
 			                <tr>
-			                    <td>${notice.seq}</td>
+			                    <%-- <td>${notice.seq}</td> --%>
+			                    <td>${status.count}</td>
 						        <td><a href="/account/board/discussion.do?seq=${notice.seq}">${notice.title}</a></td>
 						        <td>${notice.me_nickName != null ? notice.me_nickName : notice.ad_nickName}</td>
 						        <td>${notice.writeDate}</td>
