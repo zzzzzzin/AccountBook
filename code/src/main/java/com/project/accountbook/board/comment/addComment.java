@@ -17,7 +17,10 @@ public class addComment extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 댓글 작성에 필요한 데이터 받기
-        String seqPost = req.getParameter("seqPost");
+
+    	
+    	
+    	String seqPost = req.getParameter("seqPost");
         String seqUser = req.getParameter("seqUser");
         String content = req.getParameter("content");
         
@@ -25,6 +28,7 @@ public class addComment extends HttpServlet {
         CommentDTO comment = new CommentDTO();
 
         comment.setContent(content);
+        comment.setSeqPost(Integer.parseInt( seqPost));
         
         // CommentDAO를 사용하여 댓글 저장
         CommentDAO cdao = new CommentDAO();
