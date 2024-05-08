@@ -24,19 +24,20 @@ public class CommentDAO {
     public List<CommentDTO> getCommentsByPostSeq(String postSeq) {
         List<CommentDTO> comments = new ArrayList<>();
         try {
-            String sql = "SELECT c.seq, c.seqPost, c.seqUser, c.content, c.writeDate, c.likeCount, c.dislikeCount, c.reportCount, m.nickname, p.fileLink AS profileImage " +
-                         "FROM tblComments c " +
-                         "INNER JOIN tblUser u ON c.seqUser = u.seq " +
-                         "INNER JOIN tblMember m ON u.idMember = m.id " +
-                         "LEFT JOIN tblProfileimg p ON m.seqProfileimg = p.seq " +
-                         "WHERE c.seqPost = ? " +
-                         "ORDER BY c.seq";
+            String sql = "SELECT c.seq, c.seqPost, c.seqUser, c.content, c.writeDate, c.likeCount, c.dislikeCount, c.reportCount, m.nickname, p.fileLink AS profileImage, u.idMember " +
+                    "FROM tblComments c " +
+                    "INNER JOIN tblUser u ON c.seqUser = u.seq " +
+                    "INNER JOIN tblMember m ON u.idMember = m.id " +
+                    "LEFT JOIN tblProfileimg p ON m.seqProfileimg = p.seq " +
+                    "WHERE c.seqPost = ? " +
+                    "ORDER BY c.seq";
             pstat = conn.prepareStatement(sql);
             pstat.setString(1, postSeq);
             rs = pstat.executeQuery();
 
             while (rs.next()) {
                 CommentDTO comment = new CommentDTO();
+                comment.setIdMember(rs.getString("idMember"));
                 comment.setSeq(rs.getString("seq"));
                 comment.setSeqPost(rs.getInt("seqPost"));
                 comment.setSeqUser(rs.getInt("seqUser"));
@@ -122,6 +123,7 @@ public class CommentDAO {
         }
         return 0;
     }
+    
     
     //댓글 수정 
     public int updateComment(String commentSeq, String editedContent) {

@@ -168,12 +168,15 @@
                         <span>등록일: ${comment.writeDate}</span>
                     </div>
                 </div>
-                <div class="post-actions-comment">
-                    <span><i class="material-icons">thumb_up</i> ${comment.likeCount}</span>
-                    <span><i class="material-icons">thumb_down</i> ${comment.dislikeCount}</span>
-                    <span><i class="material-icons">report</i> 신고</span>
-                    <span class="reply-toggle">답글</span>
-                </div>
+<div class="post-actions-comment">
+    <span><i class="material-icons">thumb_up</i> ${comment.likeCount}</span>
+    <span><i class="material-icons">thumb_down</i> ${comment.dislikeCount}</span>
+    <span><i class="material-icons">report</i> 신고</span>
+    <span class="reply-toggle">답글</span>
+    <c:if test="${not empty sessionScope.seqUser && sessionScope.seqUser == comment.seqUser}">
+        <span class="edit-comment" data-comment-seq="${comment.seq}">수정</span>
+    </c:if>
+</div>
             </div>
             <div class="post-content">
                 <div id="commentcontent">${comment.content}</div>
@@ -209,11 +212,15 @@
                             <span>등록일: ${replyComment.writeDate}</span>
                         </div>
                     </div>
-                    <div class="post-actions-comment">
-                        <span><i class="material-icons">thumb_up</i> ${replyComment.likeCount}</span>
-                        <span><i class="material-icons">thumb_down</i> ${replyComment.dislikeCount}</span>
-                        <span><i class="material-icons">report</i> 신고</span>
-                    </div>
+<div class="post-actions-comment">
+    <span><i class="material-icons">thumb_up</i> ${comment.likeCount}</span>
+    <span><i class="material-icons">thumb_down</i> ${comment.dislikeCount}</span>
+    <span><i class="material-icons">report</i> 신고</span>
+    <span class="reply-toggle">답글</span>
+    <c:if test="${sessionScope.seqUser eq comment.seqUser}">
+        <span class="edit-comment" data-comment-seq="${comment.seq}">수정</span>
+    </c:if>
+</div>
                 </div>
                 <div class="post-content">
                     <div id="commentcontent">${replyComment.content}</div>
@@ -245,12 +252,80 @@
         
     	</div>
     </div>
+  
+  <!--  댓글 수정 폼  -->
+<div class="comment-edit-form" style="display: none;">
+    <form onsubmit="return false;">
+        <input type="hidden" name="commentSeq" value="${comment.seq}">
+        <textarea name="editedContent">${comment.content}</textarea>
+        <button type="button" onclick="updateComment(this)">저장</button>
+        <button type="button" onclick="cancelEdit(this)">취소</button>
+    </form>
+</div>
     <!-- JavaScript Libraries -->
    
     <!-- Template Javascript -->
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
    
 <script>
+
+
+//수정 버튼 
+function updateComment(btn) {
+    var form = $(btn).closest('form');
+    var commentSeq = form.find('input[name="commentSeq"]').val();
+    var editedContent = form.find('textarea[name="editedContent"]').val();
+
+    $.ajax({
+        url: '${pageContext.request.contextPath}/board/editComment.do',
+        type: 'POST',
+        data: {
+            commentSeq: commentSeq,
+            editedContent: editedContent
+        },
+        success: function(response) {
+            if (response === 'Success') {
+                alert('댓글이 수정되었습니다.');
+                location.reload();
+            } else {
+                alert('댓글 수정에 실패했습니다.');
+            }
+        },
+        error: function() {
+            alert('댓글 수정에 실패했습니다.');
+        }
+    });
+}
+
+function cancelEdit(btn) {
+    var commentBox = $(btn).closest('.comment-box');
+    commentBox.find('.comment-edit-form').remove();
+    commentBox.find('.post-content').show();
+}
+
+
+$(document).on('click', '.edit-comment', function() {
+	var commentBox = $(this).closest('.comment-box');
+    var commentSeq = $(this).data('comment-seq');
+    var commentContent = commentBox.find('.post-content').text().trim();
+    
+    var editForm = '<div class="comment-edit-form">' +
+                   '<form onsubmit="return false;">' +
+                   '<input type="hidden" name="commentSeq" value="' + commentSeq + '">' +
+                   '<textarea name="editedContent">' + commentContent + '</textarea>' +
+                   '<button type="button" onclick="updateComment(this)">저장</button>' +
+                   '<button type="button" onclick="cancelEdit(this)">취소</button>' +
+                   '</form>' +
+                   '</div>';
+                   commentBox.find('.post-content').hide().after(editForm);
+});
+
+
+
+
+
+
+
 
 document.addEventListener('DOMContentLoaded', function() {
     $('#commentForm').submit(function(event) {
