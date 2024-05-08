@@ -60,11 +60,12 @@ public class CommentDAO {
     public int addComment(CommentDTO commentDto) {
         try {
             String sql = "INSERT INTO tblComments (seq, seqPost, seqUser, content, writeDate, likeCount, dislikeCount, reportCount) " +
-                         "VALUES (seqcomments.nextVal, ?, ?, ?, SYSDATE, 0, 0, 0, )";
+                         "VALUES ((SELECT NVL(MAX(seq), 0) + 1 FROM tblcomments), ?, ?, ?, SYSDATE, 0, 0, 0 )";
             pstat = conn.prepareStatement(sql);
             pstat.setInt(1, commentDto.getSeqPost());
             pstat.setInt(2, commentDto.getSeqUser());
             pstat.setString(3, commentDto.getContent());
+            
             return pstat.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

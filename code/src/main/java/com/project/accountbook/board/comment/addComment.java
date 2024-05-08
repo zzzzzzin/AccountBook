@@ -19,27 +19,27 @@ public class addComment extends HttpServlet {
         // 댓글 작성에 필요한 데이터 받기
 
     	
-    	
-    	String seqPost = req.getParameter("seqPost");
-        String seqUser = req.getParameter("seqUser");
-        String content = req.getParameter("content");
+    	req.setCharacterEncoding("UTF-8");
+    	String seqPost = req.getParameter("paramSeq");
+        String seqUser = req.getParameter("user");
+        String content = req.getParameter("comment");
         
         // CommentDTO 객체 생성 및 데이터 설정
-        CommentDTO comment = new CommentDTO();
-
-        comment.setContent(content);
-        comment.setSeqPost(Integer.parseInt( seqPost));
+        CommentDTO dto = new CommentDTO();
+        CommentDAO dao = new CommentDAO();
+        System.out.println("comment start");
+        System.out.println(seqPost);
+        System.out.println(seqUser);
+        System.out.println(content);
+        System.out.println("comment start");
+        dto.setContent(content);
+        dto.setSeqPost(Integer.parseInt( seqPost));
+        dto.setSeqUser(Integer.parseInt(seqUser));
         
+        int response = dao.addComment(dto); 
+        
+        System.out.println("response: "+response);
         // CommentDAO를 사용하여 댓글 저장
-        CommentDAO cdao = new CommentDAO();
-        int result = cdao.addComment(comment);
         
-        // 댓글 작성 결과에 따른 처리
-        if (result == 1) {
-            resp.sendRedirect("/board/discussion.do?seq=" + seqPost);
-        } else {
-            // 댓글 작성 실패 시 에러 페이지로 이동하거나 적절한 처리 수행
-            resp.sendRedirect("/board/error.do");
-        }
     }
 }
