@@ -67,10 +67,10 @@
 	<div class="container-scroller">
 		<div class="container-fluid page-body-wrapper full-page-wrapper">
 			<div class="row w-100 m-0">
-				<div
-					class="content-wrapper full-page-wrapper d-flex align-items-center colorD9">
+<!-- 				<div class="content-wrapper full-page-wrapper d-flex align-items-center colorD9"> -->
+				<div id="user-info-card-box">
 					<div class="card col-lg-4 mx-auto colorAAA">
-						<div class="card-body px-5 py-5 marginfix colorAAA">
+						<div class="card-body px-5 py-5 marginfix">
 							<h3 class="card-title text-left mb-3">Register</h3>
 							<form method="post" action="/account/user/register.do">
 								<label>Username</label>
