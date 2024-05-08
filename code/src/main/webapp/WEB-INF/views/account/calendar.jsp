@@ -1143,6 +1143,10 @@
         const addForm = document.getElementById('addWishItemForm');
         const wishList = document.getElementById('wishListItems');
         const wishInput = document.getElementById('wishInput');
+        
+        eventProduceModal.addEventListener('hidden.bs.modal', function () {
+            window.location.reload();
+        });
 
         const wishlistcheckbox = document.getElementById('addcheckbox');
         console.log(wishlistcheckbox);
