@@ -138,5 +138,18 @@ public class CommentDAO {
         }
         return 0;
     }
+    //댓글 삭제 
+    public int deleteComment(String commentSeq) {
+        try {
+            String sql = "DELETE FROM tblComments WHERE seq = ?";
+            pstat = conn.prepareStatement(sql);
+            pstat.setString(1, commentSeq);
+            return pstat.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    
     
 }
