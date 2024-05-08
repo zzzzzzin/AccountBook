@@ -19,6 +19,8 @@ public class AddComment extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+
         int seqPost = Integer.parseInt(req.getParameter("seqPost"));
         int seqUser = Integer.parseInt(req.getParameter("seqUser"));
         String content = req.getParameter("content");
@@ -30,6 +32,8 @@ public class AddComment extends HttpServlet {
 
         int result = cdao.addComment(commentDto);
 
-        resp.getWriter().print(result);
+        resp.setContentType("text/plain");
+        resp.setCharacterEncoding("UTF-8");
+        resp.getWriter().write(String.valueOf(result));
     }
 }
