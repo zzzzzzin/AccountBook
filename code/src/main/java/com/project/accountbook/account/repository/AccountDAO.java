@@ -1131,9 +1131,17 @@ public class AccountDAO {
 		return null;
 	}
 
-	public ArrayList<AccountInfoDTO> accEventContent(String id) {
+	public ArrayList<AccountInfoDTO> accEventContent(String id, HashMap<String, String> map) {
 		ArrayList<AccountInfoDTO> list = new ArrayList<AccountInfoDTO>();
 		try {
+			
+			//검색
+			String where = "";
+			
+			if (map.get("search").equals("y")) {
+
+				where = String.format(" and ai.content like '%%%s%%'\r\n or location like '%%%s%%'", map.get("word"), map.get("word"));
+			}
 			
 			String sql = "select  ai.seq as accinfonum,\r\n"
 					+ "					    ai.content as aicontent,\r\n"
@@ -1163,14 +1171,13 @@ public class AccountDAO {
 					+ "					    inner join TBLMYCARD mc on rc.SEQMYCARD = mc.SEQ\r\n"
 					+ "					    inner join TBLFIXEDDEPOSITWITHDRAWALCHECK fdw on ai.SEQFIXEDFLUCTUATIONCHECK = fdw.SEQ\r\n"
 					+ "					    inner join TBLFIXEDFLUCTUATIONPERIOD ffp on fdw.SEQFIXEDFLUCTUATIONPERIOD = ffp.SEQ\r\n"
-					+ "					    where me.ID = ?"
-					+ "						order by accinfodate desc";
+					+ "					    where me.ID = ?" + where
+					+ "					    order by accinfodate desc";
 			
 			
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, id);
-			rs = pstat.executeQuery();
-			
+			rs = pstat.executeQuery();			
 			
 			
 			while(rs.next()) {

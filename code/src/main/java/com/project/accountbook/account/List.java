@@ -3,6 +3,7 @@ package com.project.accountbook.account;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -24,14 +25,30 @@ public class List extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		DecimalFormat formatter = new DecimalFormat("#,###");
+		
 		HttpSession session = req.getSession();
 		String id = (String)session.getAttribute("id");
 		
-		DecimalFormat formatter = new DecimalFormat("#,###");
+		String word = req.getParameter("word");
+		String search = "n"; //목록보기(n), 검색하기(y)
+		
+		if ((word == null) || (word.equals(""))) {
+			search = "n";
+		} else {
+			search = "y";
+		}
+		
+		HashMap<String, String> map = new HashMap<>();
+		
+		if (word == null) word = "";
+		
+		map.put("search", search);
+		map.put("word", word);
 		
 		AccountDAO dao = new AccountDAO();
 		
-		ArrayList<AccountInfoDTO> list = dao.accEventContent(id);
+		ArrayList<AccountInfoDTO> list = dao.accEventContent(id,map);
 		
 		JSONArray arr = new JSONArray();
 		for (AccountInfoDTO dto : list) {
@@ -57,6 +74,7 @@ public class List extends HttpServlet {
 	     resp.setCharacterEncoding("UTF-8");
 		
 		req.setAttribute("list", arr);
+		req.setAttribute("map", map);
 //		System.out.println(arr.size());
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/account/list.jsp");

@@ -88,20 +88,52 @@ font-family: "Noto Sans KR", sans-serif;
     margin: 10px;    
 }
 
-#searchbar{
-    display: none;
-}
+/* #searchbar{ */
+/*     display: none; */
+/* } */
 
 /* 가계부 목록 */
 #transamount, #transtype  { color: red; } 
 #transamountplus { color: #84B652; }
 #transamountminus { color: #960005; }
 
-.transin { 
-	font-weight: bold;
+.transin {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
 	font-size: 16px; 
-	}  
+    /* border-right: 1px solid #eee; */
+}
 
+.transsub {
+	display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.transmiddle{
+  display: flex;
+  flex-direction: column;
+  width: 65%;
+  align-items: baseline;
+  justify-content: center;
+  gap: 20px;
+}
+
+
+#transwhere{
+}
+#transcategory{
+  font-weight: bold;
+  font-size: 20px;
+}
+
+#accountSearchForm {
+	display: flex;
+	align-items: center;
+}
 /* 카드 사용 시작 */
     #cardImgPlace {
     	margin: 0;
@@ -110,7 +142,7 @@ font-family: "Noto Sans KR", sans-serif;
 .card-use-list {
 	display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 16px;
     margin-top: 20px;
     align-items: center;
 }

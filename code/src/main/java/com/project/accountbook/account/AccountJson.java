@@ -3,6 +3,7 @@ package com.project.accountbook.account;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -28,11 +29,26 @@ public class AccountJson extends HttpServlet {
 		
 		HttpSession session = req.getSession();
 		String id = (String)session.getAttribute("id");
-		System.out.println(id);
+		
+		String word = req.getParameter("word");
+		String search = "n"; //목록보기(n), 검색하기(y)
+		
+		if ((word == null) || (word.equals(""))) {
+			search = "n";
+		} else {
+			search = "y";
+		}
+		
+		HashMap<String, String> map = new HashMap<>();
+		
+		if (word == null) word = "";
+		
+		map.put("search", search);
+		map.put("word", word);		
+		
 		AccountDAO dao = new AccountDAO();
 		
-		ArrayList<AccountInfoDTO> calenderdata = dao.accEventContent(id);
-		
+		ArrayList<AccountInfoDTO> calenderdata = dao.accEventContent(id, map);
 		
 		 // Serialize data to JSON
         
