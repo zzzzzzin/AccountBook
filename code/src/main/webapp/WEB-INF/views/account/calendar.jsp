@@ -1154,6 +1154,24 @@
     })
 
     //위시리스트
+    $(document).ready(function() {
+    // AJAX request to fetch data as soon as the page loads
+    $.ajax({
+        url: '/account/account/wishlist.do', // Replace with your actual URL
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            $.each(data, addNewTransContent(itemText) {
+                addToWishlist(item);
+            });
+        },
+        error: function(xhr, status, error) {
+            console.error('Error fetching data:', error);
+        }
+    });
+    
+    
+    
     document.addEventListener('DOMContentLoaded', function() {
         const addButton = document.getElementById('addrightnow');
         const newItemInput = document.getElementById('newItemInput');

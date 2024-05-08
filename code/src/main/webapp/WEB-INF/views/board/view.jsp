@@ -93,7 +93,7 @@
 					    </tr>
 					</c:if>
                 
-					<c:forEach var="notice" items="${noticeList}" begin="1" end="5">
+					<c:forEach var="notice" items="${noticeList}">
 			                <tr>
 						        <td>
 						            <c:choose>
@@ -110,7 +110,7 @@
 	                </c:forEach>
 		          </tbody>
 		        </table>
-		        <a href="/account/board/noticeBoard.do" class="more-link"><i class="material-icons">chevron_right</i></a>
+		        <a href="/account/board/noticeBoard.do?=" class="more-link"><i class="material-icons">chevron_right</i></a>
 		      </div>
 		      <div class="board-block">
 		        <h3>자유게시판</h3>
@@ -122,7 +122,7 @@
 					    </tr>
 					</c:if>
 	               
-					<c:forEach var="free" items="${freeList}" begin="1" end="5">
+					<c:forEach var="free" items="${freeList}">
 			                <tr>
 						    	<td>
 						            <c:choose>
@@ -130,7 +130,8 @@
 						                    관리자에 의해 블라인드 처리 되었습니다.
 						                </c:when>
 						                <c:otherwise>
-						                	<a href="/account/board/discussion.do?seq=${free.seq}">${free.title}</a>					                    
+						                	<a href="/account/board/discussion.do?seq=${free.seq}">${free.title}</a>
+						                    
 						                </c:otherwise>
 						            </c:choose>
 					        	</td>
@@ -151,7 +152,7 @@
 					    </tr>
 					</c:if>
                 
-			        <c:forEach var="report" items="${reportList}" begin="1" end="5">
+			        <c:forEach var="report" items="${reportList}">
                 		<tr>
 				    		<td>
 					            <c:choose>
@@ -181,7 +182,7 @@
 					    </tr>
 					</c:if>
                 
-					<c:forEach var="attendance" items="${attendanceList}" begin="1" end="5">
+					<c:forEach var="attendance" items="${attendanceList}">
 		                <tr>
 				    		<td>
 					            <c:choose>

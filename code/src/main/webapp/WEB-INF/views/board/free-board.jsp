@@ -15,7 +15,7 @@
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Icon Font Stylesheet -->
@@ -128,7 +128,7 @@
 						        <td>${free.writeDate}</td>
 						        <td>${free.viewCount}</td>
 						        <td>${free.likeCount}</td>
-						        						      
+						      
 			                </tr>
 	                </c:forEach>
 	                </tbody>
@@ -153,15 +153,18 @@
     <!-- Template Javascript -->
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
     <script>
-	console.log('${freelist}');
 
-    <c:if test="${map.search == 'y'}">
-	//검색중 상태 유지
-	$('input[name=word]').val('${map.word}');
-	$('select[name=column]').val('${map.column}');
-	</c:if>
+    document.addEventListener('DOMContentLoaded', function() {
+    const sidebarToggler = document.getElementById('sidebar-toggler');
+    const sidebar = document.querySelector('.sidebar');
+    const content = document.querySelector('.content');
 
-	
+        sidebarToggler.addEventListener('click', function() {
+        sidebar.classList.toggle('hidden');
+        content.classList.toggle('expanded');
+        });
+    });
+
     </script>
 </body>
 
