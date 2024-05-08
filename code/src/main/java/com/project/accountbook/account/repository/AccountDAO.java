@@ -1371,6 +1371,35 @@ public class AccountDAO {
 		return 0;
 	}
 
+	public ArrayList<AccountInfoDTO> mywishlist(String id) {
+		ArrayList<AccountInfoDTO> list = new ArrayList<AccountInfoDTO>();
+		try {
+			String sql = "select PRODUCTNAME as pname from TBLPURCHASEWISHLIST where SEQACC = (select seq from TBLACC where IDMEMBER=?)order by SEQ asc";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, id);
+			
+			rs = pstat.executeQuery();
+			
+			while(rs.next()) {
+				AccountInfoDTO dto = new AccountInfoDTO();
+				dto.setProductName(rs.getString("pname"));
+				list.add(dto);
+			}
+			return list;
+			
+			
+			
+		} catch (Exception e) {
+			System.out.println("AccountDAO.mywishlist");
+			e.printStackTrace();
+		}
+		
+		
+		
+		return null;
+	}
+
 
 	
 	  
