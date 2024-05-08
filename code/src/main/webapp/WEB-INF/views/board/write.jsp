@@ -65,29 +65,43 @@
 		   <form method="POST" action="/account/board/write.do" enctype="multipart/form-data">
 		     <div class="form-group">
 		       <label for="category">게시판 카테고리</label>
-		       <select id="category" name="category">
-		         <option value="notice">공지사항</option>
-		         <option value="report">신고 게시판</option>
-		         <option value="free">자유 게시판</option>
-		         <option value="suggestion">건의 사항 게시판</option>
-		         <option value="attendance">출석 게시판</option>
+		       <select id="seqBoard" name="seqBoard">
+		         <option value="1">공지사항</option> <!-- 관리자만 작성 가능 -->
+		         <option value="2">자유 게시판</option>
+		         <option value="3">건의 사항 게시판</option> <!-- 비밀글은 여기서만 가능 -->
+		         <option value="4">출석 게시판</option>
 		       </select>
 		     </div>
 		     <div class="form-group">
-		       <label for="title">제목을 입력해 주세요.</label>
+		       <label for="title">제목</label>
 		       <input type="text" id="title" name="title" placeholder="제목을 입력해 주세요.">
 		     </div>
 		     <div class="form-group">
-		       <label for="content">내용을 입력해 주세요.</label>
+		       <label for="content">내용</label>
 		       <textarea id="content" name="content" placeholder="내용을 입력해 주세요."></textarea>
 		     </div>
 		     <div class="file-attach">
 		       <label for="file-input">파일 첨부<i class="material-icons">attach_file</i></label>
 		       <input type="file" id="file-input" style="display:none;">
+		       <input type="file" id="pic" name="pic" style="display:none;">
 		     </div>
+		     <div>
+				<th>비밀글</th>
+				<td>
+				    <label style="user-select: none;">
+				        <td>
+						    <label style="user-select: none;"><!-- 체크를 눌러야 글이 올라간다? -->
+						        <!-- <input id="checkboxx" type="checkbox" name="secretCheck" value="0" onchange="updateCheckboxValue(this)"> -->
+						    	<input type="checkbox" name="secretCheck" value="0" onchange="this.value = this.checked ? '1' : '0'">
+						    </label>
+						</td>
+				    </label>
+				</td>
+			</div>
 		     <div class="button-group">
+		     
 		       <button type="submit">등록</button>
-		       <button type="button">취소</button>
+		       <button type="button" onclick="javascript:history.back();">취소</button>
 		     </div>
 		   </form>
   		</div>  
@@ -104,18 +118,20 @@
     <!-- Template Javascript -->
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
     <script>
+    var now = document.getElementById('checkboxx').value;
+    console.log(now);
 
-    document.addEventListener('DOMContentLoaded', function() {
-    const sidebarToggler = document.getElementById('sidebar-toggler');
-    const sidebar = document.querySelector('.sidebar');
-    const content = document.querySelector('.content');
-
-        sidebarToggler.addEventListener('click', function() {
-        sidebar.classList.toggle('hidden');
-        content.classList.toggle('expanded');
-        });
-    });
-
+    function updateCheckboxValue(checkbox) {
+        if (checkbox.checked) {
+            checkbox.value = '1';
+            console.log('checked');
+            console.log(checkbox.value)
+        } else {
+            checkbox.value = '0';
+            console.log('not checked');
+            console.log(checkbox.value);
+        }
+    }
     </script>
 </body>
 

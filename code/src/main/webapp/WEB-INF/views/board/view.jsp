@@ -92,8 +92,8 @@
 					        <td>게시물이 없습니다.</td>
 					    </tr>
 					</c:if>
-                
-					<c:forEach var="notice" items="${noticeList}">
+
+					<c:forEach var="notice" items="${noticeList}" begin="0" end="4">
 			                <tr>
 						        <td>
 						            <c:choose>
@@ -121,8 +121,8 @@
 					        <td>게시물이 없습니다.</td>
 					    </tr>
 					</c:if>
-	               
-					<c:forEach var="free" items="${freeList}">
+
+					<c:forEach var="free" items="${freeList}" begin="0" end="4">
 			                <tr>
 						    	<td>
 						            <c:choose>
@@ -151,8 +151,8 @@
 					        <td>게시물이 없습니다.</td>
 					    </tr>
 					</c:if>
-                
-			        <c:forEach var="report" items="${reportList}">
+
+			        <c:forEach var="report" items="${reportList}" begin="0" end="4">
                 		<tr>
 				    		<td>
 					            <c:choose>
@@ -181,8 +181,8 @@
 					        <td>게시물이 없습니다.</td>
 					    </tr>
 					</c:if>
-                
-					<c:forEach var="attendance" items="${attendanceList}">
+
+					<c:forEach var="attendance" items="${attendanceList}" begin="0" end="4">
 		                <tr>
 				    		<td>
 					            <c:choose>

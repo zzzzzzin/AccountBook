@@ -10,11 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.project.accountbook.board.post.model.AttendanceDTO;
-import com.project.accountbook.board.post.model.FreeDTO;
-import com.project.accountbook.board.post.model.NoticeDTO;
 import com.project.accountbook.board.post.model.PostDTO;
-import com.project.accountbook.board.post.model.ReportDTO;
 import com.project.accountbook.board.repository.BoardDAO;
 
 @WebServlet("/board/view.do")
@@ -31,31 +27,29 @@ public class View extends HttpServlet {
 			
 			// 게시판 번호가 1인 
 			if (i == 1) {
-				postDto.setSeqBoard("1");
-				ArrayList<PostDTO> noticeList = dao.list("1");				
+
+				ArrayList<PostDTO> noticeList = dao.viewlist("1");	
 				req.setAttribute("noticeList", noticeList); // noticeList 객체를 요청 객체에 추가
 			}
 			
 			// 게시판 번호가 2인 
 			if (i == 2) {
-				postDto.setSeqBoard("2");
-				ArrayList<PostDTO> freeList = dao.list("2");				
+
+				ArrayList<PostDTO> freeList = dao.list("2");
 				req.setAttribute("freeList", freeList); // freeList 객체를 요청 객체에 추가
 			}
 			
 			// 게시판 번호가 3인 
 			if (i == 3) {
-				postDto.setSeqBoard("3");
-				ArrayList<PostDTO> reportList = dao.list("3");
-				
+
+				ArrayList<PostDTO> reportList = dao.viewlist("3");			
 				req.setAttribute("reportList", reportList); // reportList 객체를 요청 객체에 추가
 			}
 			
 			// 게시판 번호가 4인 
 			if (i == 4) {
-				postDto.setSeqBoard("4");
-				ArrayList<PostDTO> attendanceList = dao.list("4");
 				
+				ArrayList<PostDTO> attendanceList = dao.viewlist("4");
 				req.setAttribute("attendanceList", attendanceList); // attendanceList 객체를 요청 객체에 추가
 			}
 		}
