@@ -1151,26 +1151,9 @@
             }
         });
        
-    })
+    });
 
     //위시리스트
-    $(document).ready(function() {
-    // AJAX request to fetch data as soon as the page loads
-    $.ajax({
-        url: '/account/account/wishlist.do', // Replace with your actual URL
-        type: 'GET',
-        dataType: 'json',
-        success: function(data) {
-            $.each(data, addNewTransContent(itemText) {
-                addToWishlist(item);
-            });
-        },
-        error: function(xhr, status, error) {
-            console.error('Error fetching data:', error);
-        }
-    });
-    
-    
     
     document.addEventListener('DOMContentLoaded', function() {
         const addButton = document.getElementById('addrightnow');
@@ -1230,6 +1213,7 @@
                     newItemInput.value = ''; 
                     newItemInput.style.display = 'none'; 
                     newItemButton.style.display = 'none';  
+                    sendwishlist(text);
                 }
             }
         });
@@ -1240,9 +1224,31 @@
                 newItemInput.value = ''; 
                 newItemInput.style.display = 'none'; 
                 newItemButton.style.display = 'none';  
+                sendwishlist(text);
             }
         });
-
+        $(document).ready(function() {
+            // AJAX request to fetch data as soon as the page loads
+            $.ajax({
+                url: '/account/account/wishlist.do', // Replace with your actual URL
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    $.each(data, function(index, item) {
+                        // Access the 'productName' property of each item
+                        if (item.productName) { // Ensure that productName exists
+                            console.log(item.productName);
+                            addNewTransContent(item.productName); // Add each product name to the wishlist
+                            
+                        }
+                    });
+                    console.log('done?');
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching data:', error);
+                }
+            });
+            });
 
         // Event delegation for dynamically added checkboxes
         wishList.addEventListener('change', function(event) {
@@ -1262,7 +1268,22 @@
                 }
             }
         });
-
+	
+       	function sendwishlist(text){
+       	 $.ajax({
+             url: '/account/account/wishlist.do', // Replace with your actual URL
+             type: 'post',
+             data: {
+                 item: text
+             },
+             success: function(response) {
+                 console.log('sent');
+             },
+             error: function(xhr, status, error) {
+                 console.error('Error fetching data:', error);
+             }
+         });
+       	}
         
     });
 
