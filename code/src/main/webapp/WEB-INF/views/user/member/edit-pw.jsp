@@ -147,7 +147,7 @@
         <!-- fakecontent 안에서 작성 -->
 		<div id="fakecontent">
 			<div class="myPage">
-				<form action="/account/user/member/edit-pw.do">
+				<form action="/account/user/member/edit-pw.do" method="POST">
 					<div class="delContainer">
 						<div class="delContent">
 							<div class="now-pw">
@@ -169,7 +169,7 @@
 								</div>
 							</div>
 						</div>
-						<button type="submit" class="edit-pw-btn">수정 완료</button>
+						<button type="submit" class="edit-pw-btn" onclick="window.location.reload();">수정 완료</button>
 					</div>
 				</form>
 			</div>

@@ -217,6 +217,13 @@ public class MemberInfoDAO {
 			pstat.setString(1, id);
 			pstat.executeUpdate();
 			
+			rs = pstat.executeQuery();
+			
+			if (rs.next()) {
+				System.out.println(rs.getString("pw"));
+	            return rs.getString("pw");
+	        }
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -234,6 +241,8 @@ public class MemberInfoDAO {
 			pstat.setString(2, id);
 
 			pstat.executeUpdate();
+			
+			System.out.println(pw);
 					
 		} catch (Exception e) {
 			e.printStackTrace();
