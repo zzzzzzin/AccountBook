@@ -991,6 +991,7 @@
 	                    success: function (response) {
 	                        alert('Edit successful');
 	                        modal.hide();
+	                        
 	                    },
 	                    error: function (xhr, status, error) {
 	                        alert('Error: ' + xhr.responseText);
@@ -1027,6 +1028,8 @@
     	                    success: function (response) {
     	                        alert('Edit successful');
     	                        modal.hide();
+    	                        calendar.refetchEvents();
+    	                       
     	                    },
     	                    error: function (xhr, status, error) {
     	                        alert('Error: ' + xhr.responseText);
@@ -1140,6 +1143,10 @@
         const addForm = document.getElementById('addWishItemForm');
         const wishList = document.getElementById('wishListItems');
         const wishInput = document.getElementById('wishInput');
+        
+        eventProduceModal.addEventListener('hidden.bs.modal', function () {
+            window.location.reload();
+        });
 
         const wishlistcheckbox = document.getElementById('addcheckbox');
         console.log(wishlistcheckbox);

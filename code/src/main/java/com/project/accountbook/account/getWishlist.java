@@ -76,7 +76,9 @@ public class getWishlist extends HttpServlet {
 		
 		System.out.println(wishitem);
 		
-//		int indicate = dao.addEvent(dto);
+		int indicate = dao.addlist(dto);
+		
+		System.out.println(indicate);
 		
 		
 	}
