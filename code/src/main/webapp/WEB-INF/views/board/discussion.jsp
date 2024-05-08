@@ -144,8 +144,8 @@
                 <span>${post.content}</span>
               </div>
               <div class="post-actions" id="postmaincontentreaction">
-                <span><i class="material-icons" id="temp">thumb_up</i><span id="post-like">${post.likeCount}</span></span>
-                <span><i class="material-icons">thumb_down</i><span id="post-dislike">${post.dislikeCount}</span></span>
+                <span><i class="material-icons">thumb_up</i> ${post.likeCount}</span>
+                <span><i class="material-icons">thumb_down</i> ${post.dislikeCount}</span>
                 <span><i class="material-icons">report</i> 신고</span>
               </div>     
             </div>
@@ -340,98 +340,10 @@ function addReplyComment(btn) {
         }
     };
 
-
     xhr.open('POST', '${pageContext.request.contextPath}/board/add-comment.do', true);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.send('seqPost=' + seqPost + '&seqUser=' + seqUser + '&content=' + encodeURIComponent(content));
 }
-
- 
-    
-    //게시글 추천수
-	$(".post-actions span:nth-child(1)").click(function() {
-		postlike(${post.seqBoard});
-	});
-    
-	$(".post-actions span:nth-child(2)").click(function() {
-		postdislike(${post.seqBoard});
-	});
-
-
-   	function postlike(seqBoard) {
-   	  let url;
-   	  switch (seqBoard) {
-   	    case 1:
-   	      url = "/account/noticeBoard.do";
-   	      break;
-   	    case 2:
-   	      url = "/account/board/freeBoard.do";
-   	      break;
-   	    case 3:
-   	      url = "/account/reportBoard.do";
-   	      break;
-   	    case 4:
-   	      url = "/account/board/attendanceBoard.do";
-   	      break;
-   	  }
-
-  	  $.ajax({
-  	    type: 'POST',
-  	    url: url,
-  	    data: {
-			seq: ${post.seq},
-			type: 'like'
-  	    },  	  	
-  	    success: function() {
-  	    	console.log("like완료");
-  	    	var temp = document.getElementById('post-like').innerHTML;
-  	    	var numericTemp = Number(temp) + 1;
-  	    	document.getElementById('post-like').innerHTML = numericTemp;
-  	    },
-  	    error: function(xhr, status, error) {
-  	      console.error("AJAX 요청 실패:", error);
-  	    }
-  	  });
-   	}
-   	
-   	
-   	function postdislike(seqBoard) {
-     	  let url;
-     	  switch (seqBoard) {
-     	    case 1:
-     	      url = "/account/noticeBoard.do";
-     	      break;
-     	    case 2:
-     	      url = "/account/board/freeBoard.do";
-     	      break;
-     	    case 3:
-     	      url = "/account/reportBoard.do";
-     	      break;
-     	    case 4:
-     	      url = "/account/board/attendanceBoard.do";
-     	      break;
-     	  }
-
-    	  $.ajax({
-    	    type: 'POST',
-    	    url: url,
-    	    data: {
-  			seq: ${post.seq},
-  			type: 'dislike'
-    	    },  	  	
-    	    success: function() {
-    	    	console.log("Dislike완료");
-    	    	var temp = document.getElementById('post-dislike').innerHTML;
-    	    	var numericTemp = Number(temp) + 1;
-    	    	document.getElementById('post-dislike').innerHTML = numericTemp;
-    	    },
-    	    error: function(xhr, status, error) {
-    	      console.error("AJAX 요청 실패:", error);
-    	    }
-    	  });
-     	}
-   	
-    
-    </script>
+</script>
 </body>
 </html>
