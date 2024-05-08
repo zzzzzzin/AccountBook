@@ -192,7 +192,6 @@ public class BoardDAO {
 					+ where
 					+ " ORDER BY seq DESC";
 			
-			System.out.println(sql);
 			stat = conn.createStatement();
 			rs = stat.executeQuery(sql);
 			
@@ -306,27 +305,112 @@ public class BoardDAO {
 	}
 	
 
-	//글쓰기
-	public int write(PostDTO dto) {
+	public void like(String seq) {
+
 		try {
 
-			String sql = "insert into tblPost values ((SELECT NVL(MAX(seq), 0) + 1 FROM tblPost), ?, ?, ?, ?, ?, null, 0, 0, 0, 0, ?, ?)";
+			String sql = "update tblpost set likecount = likecount + 1 where seq = ?";
 
 			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, dto.getSeqBoard());
-			pstat.setString(2, dto.getSeqUser());
-			pstat.setString(3, dto.getTitle());
-			pstat.setString(4, dto.getContent());
-			pstat.setString(5, dto.getWriteDate());
-			pstat.setInt(6, dto.getSecretCheck());
-			pstat.setInt(7, dto.getBlindCheck());
+			pstat.setString(1, seq);
 
 			pstat.executeUpdate();
 
 		} catch (Exception e) {
-			System.out.println("BoardDAO.write");
+			System.out.println("BoardDAO.like");
 			e.printStackTrace();
 		}
-		return 0;
+		
 	}
+
+	public void dislike(String seq) {
+
+		try {
+
+			String sql = "update tblpost set dislikecount = dislikecount + 1 where seq = ?";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+
+			pstat.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("BoardDAO.like");
+			e.printStackTrace();
+		}
+		
+	}
+
+	public ArrayList<PostDTO> viewlist(String seq) {
+		try {
+			
+			String sql = "select\r\n"
+					+ "    po_seq as seq,\r\n"
+					+ "    me_nickname as me_nickname,\r\n"
+					+ "    ad_nickname as ad_nickname,\r\n"
+					+ "    ca_seq as seqboard,\r\n"
+					+ "    po_seqUser as seqUser,\r\n"
+					+ "    po_title as title,\r\n"
+					+ "    po_content as content,\r\n"
+					+ "    po_writedate as writedate,\r\n"
+					+ "    po_editdate as editdate,\r\n"
+					+ "    po_viewcount as viewcount,\r\n"
+					+ "    po_likecount as likecount,\r\n"
+					+ "    po_dislikecount as dislikecount,\r\n"
+					+ "    po_reportcount as reportcount,\r\n"
+					+ "    po_secretcheck as secretcheck,\r\n"
+					+ "    po_blindcheck as blindcheck,\r\n"
+					+ "    us_seq as seqpost,\r\n"
+					+ "    af_filename as filename,\r\n"
+					+ "    af_filelink as filelink\r\n"
+					+ "from vwboard where ca_seq = ?\r\n"
+					+ "order by seq asc";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+			
+			rs = pstat.executeQuery();
+			
+			ArrayList<PostDTO> list = new ArrayList<PostDTO>();
+			
+			
+			while (rs.next()) {				
+				PostDTO dto = new PostDTO();
+				
+				dto.setSeq(rs.getString("seq"));
+				dto.setSeqBoard(rs.getString("seqboard"));
+				dto.setSeqUser(rs.getString("sequser"));
+				dto.setTitle(rs.getString("title"));
+				dto.setContent(rs.getString("content"));
+				dto.setWriteDate(rs.getString("writedate"));
+				dto.setEditDate(rs.getString("editdate"));
+				dto.setViewCount(rs.getInt("viewcount"));
+				dto.setLikeCount(rs.getInt("likecount"));
+				dto.setDislikeCount(rs.getInt("dislikecount"));
+				dto.setReportCount(rs.getInt("reportcount"));
+				dto.setSecretCheck(rs.getInt("secretcheck"));
+				dto.setBlindCheck(rs.getInt("blindcheck"));
+				dto.setad_nickName(rs.getString("ad_nickname"));
+				dto.setme_nickName(rs.getString("me_nickname"));
+				
+				dto.setSeqPost(rs.getString("seqpost"));
+				dto.setFileName(rs.getString("filename"));
+				dto.setFileLink(rs.getString("filelink"));
+				
+				list.add(dto);
+								
+			}	
+			
+			return list;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	
+
+	
 }// BoardDAO
