@@ -32,12 +32,14 @@ public class EditInfo extends HttpServlet {
 
 		HttpSession session = req.getSession();
 	    String id = (String) session.getAttribute("id"); 
+
+	    req.setCharacterEncoding("UTF-8");
 	    
 	    String name = req.getParameter("name");
 	    String nickname = req.getParameter("nickname");
 	    String phonenumber = req.getParameter("phonenumber");
 	    String ssn = req.getParameter("ssn");
-	    
+
 	   
 	    HashMap<String, String> map = new HashMap<>();
 	    MemberInfoDAO dao = new MemberInfoDAO();
@@ -76,7 +78,7 @@ public class EditInfo extends HttpServlet {
 	    dao = new MemberInfoDAO();
 	    dao.updateUserInfo(id, map);
 	    
-	    req.setCharacterEncoding("UTF-8");
+	    resp.setCharacterEncoding("UTF-8");
 	    
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/member/info.jsp");
 		dispatcher.forward(req, resp);
