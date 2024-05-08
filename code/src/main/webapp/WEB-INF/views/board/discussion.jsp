@@ -176,6 +176,9 @@
     <c:if test="${not empty sessionScope.seqUser && sessionScope.seqUser == comment.seqUser}">
         <span class="edit-comment" data-comment-seq="${comment.seq}">수정</span>
     </c:if>
+    <c:if test="${not empty sessionScope.seqUser && (sessionScope.seqUser == comment.seqUser || sessionScope.seqPriv == 3)}">
+    <span class="delete-comment" data-comment-seq="${comment.seq}">삭제</span>
+</c:if>
 </div>
             </div>
             <div class="post-content">
@@ -268,8 +271,31 @@
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
    
 <script>
-
-
+//삭제 버튼 
+$(document).on('click', '.delete-comment', function() {
+    var commentSeq = $(this).data('comment-seq');
+    
+    if (confirm('정말로 댓글을 삭제하시겠습니까?')) {
+        $.ajax({
+            url: '${pageContext.request.contextPath}/board/deleteComment.do',
+            type: 'POST',
+            data: {
+                commentSeq: commentSeq
+            },
+            success: function(response) {
+                if (response === 'Success') {
+                    alert('댓글이 삭제되었습니다.');
+                    location.reload();
+                } else {
+                    alert('댓글 삭제에 실패했습니다.');
+                }
+            },
+            error: function() {
+                alert('댓글 삭제에 실패했습니다.');
+            }
+        });
+    }
+});
 //수정 버튼 
 function updateComment(btn) {
     var form = $(btn).closest('form');
