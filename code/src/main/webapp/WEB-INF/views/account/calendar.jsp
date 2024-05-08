@@ -991,6 +991,7 @@
 	                    success: function (response) {
 	                        alert('Edit successful');
 	                        modal.hide();
+	                        
 	                    },
 	                    error: function (xhr, status, error) {
 	                        alert('Error: ' + xhr.responseText);
@@ -1027,6 +1028,8 @@
     	                    success: function (response) {
     	                        alert('Edit successful');
     	                        modal.hide();
+    	                        calendar.refetchEvents();
+    	                       
     	                    },
     	                    error: function (xhr, status, error) {
     	                        alert('Error: ' + xhr.responseText);

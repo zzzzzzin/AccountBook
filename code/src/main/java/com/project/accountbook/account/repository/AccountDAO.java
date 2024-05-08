@@ -1227,7 +1227,6 @@ public class AccountDAO {
 			}
 			 if (rs != null) rs.close();
 
-		        // Prepare to insert into tblAccInfo
 		        sql = "INSERT INTO tblAccInfo(SEQ, CONTENT, ACCINFODATE, PRICE, LOCATION, SEQACC, SEQREASONCHANGECATEGORY, SEQFIXEDFLUCTUATIONCHECK, SEQDEPOSITWITHDRAWALSTATUS) VALUES ((SELECT NVL(MAX(seq), 0) + 1 FROM tblAccInfo), ?, ?, ?, ?, ?, ?, ?, ?)";
 		        pstat = conn.prepareStatement(sql);
 
@@ -1320,11 +1319,12 @@ public class AccountDAO {
 	        int firstUpdateResult = pstat.executeUpdate();
 
 	        // Second update statement
-	        sql = "UPDATE TBLACCCATEGORYLIST SET SEQACCCATEGORY = ?, SEQACCINFO = ? WHERE SEQ = ?";
+	        
+	        
+	        sql = "UPDATE TBLACCCATEGORYLIST SET SEQACCCATEGORY = ? where SEQACCINFO = ?";
 	        pstat = conn.prepareStatement(sql);
 	        pstat.setInt(1, Integer.parseInt(dto.getSeqAccCategory()));
 	        pstat.setInt(2, Integer.parseInt(dto.getSeqAccInfo()));
-	        pstat.setInt(3, Integer.parseInt(dto.getSeqAccInfo()));
 	        int secondUpdateResult = pstat.executeUpdate();
 
 
@@ -1398,6 +1398,31 @@ public class AccountDAO {
 		
 		
 		return null;
+	}
+
+	public int addlist(AccountInfoDTO dto) {
+		
+		try {
+			
+			String sql = "insert into TBLPURCHASEWISHLIST(seq, PRODUCTNAME, SEQACC) values ((SELECT NVL(MAX(seq), 0) + 1 FROM TBLPURCHASEWISHLIST),?,(select seq from TBLACC where IDMEMBER=?))";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getProductName());
+			pstat.setString(2, dto.getIdMember());
+			
+			int firstUpdateResult = pstat.executeUpdate();
+			
+			System.out.println(firstUpdateResult);
+			
+			return firstUpdateResult;
+			
+			
+		} catch (Exception e) {
+			System.out.println("AccountDAO.addlist");
+			e.printStackTrace();
+		}
+		
+		return 0;
 	}
 
 
