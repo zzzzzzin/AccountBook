@@ -120,7 +120,7 @@ public class BoardDAO {
 			
 			if(map.get("search").equals("y") && map.get("column").equals("total")) {
 				
-				where = String.format("WHERE ca_seq = %s AND po_content LIKE '%%%s%%' and po_title like '%%%s%%'", seq, map.get("word"), map.get("word"));
+				where = String.format("WHERE ca_seq = %s AND po_content LIKE '%%%s%%' or po_title like '%%%s%%'", seq, map.get("word"), map.get("word"));
 				
 			} else if (map.get("search").equals("y") && map.get("column").equals("title")) {
 				
@@ -158,6 +158,7 @@ public class BoardDAO {
 					+ where
 					+ " ORDER BY seq DESC";
 			
+			System.out.println(sql);
 			stat = conn.createStatement();
 			rs = stat.executeQuery(sql);
 			

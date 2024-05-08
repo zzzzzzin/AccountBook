@@ -111,9 +111,9 @@
 					    </tr>
 					</c:if>
 	                
-					<c:forEach items="${freeList}" var="free">
+					<c:forEach items="${freeList}" var="free" varStatus="status">
 			                <tr>
-			                    <td>${free.seq}</td>
+			                    <td>${status.count}</td>
 						        <td>
 						            <c:choose>
 						                <c:when test="${free.blindCheck eq '1'}">

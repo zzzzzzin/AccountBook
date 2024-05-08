@@ -110,7 +110,7 @@
 	                </c:forEach>
 		          </tbody>
 		        </table>
-		        <a href="/account/board/noticeBoard.do" class="more-link"><i class="material-icons">chevron_right</i></a>
+		        <a href="/account/board/noticeBoard.do?=" class="more-link"><i class="material-icons">chevron_right</i></a>
 		      </div>
 		      <div class="board-block">
 		        <h3>자유게시판</h3>
