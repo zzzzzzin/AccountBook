@@ -36,9 +36,14 @@ public class Login extends HttpServlet {
 	    UserDTO result = dao.login(dto);
 
 	    if (result != null && result.getId() != null) {
-	        HttpSession session = req.getSession();
-	        session.setAttribute("id", result.getId());
-	        session.setAttribute("seqPriv", result.getSeqPriv());
+	    	HttpSession session = req.getSession();
+            session.setAttribute("id", result.getId());
+            session.setAttribute("seqPriv", result.getSeqPriv());
+            
+            // seqUser 값을 가져와서 세션에 저장하는 코드 추가
+            UserDAO userDAO = new UserDAO();
+            int seqUser = userDAO.getSeqUserByMemberId(result.getId());
+            session.setAttribute("seqUser", seqUser);
 
 	        if (autoLogin != null && autoLogin.equals("on")) {
 	            Cookie cookie = new Cookie("autoLogin", result.getId());

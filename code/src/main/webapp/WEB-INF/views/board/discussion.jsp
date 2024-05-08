@@ -229,7 +229,7 @@
     <form onsubmit="return addComment()">
         <input type="hidden" name="seqPost" value="${param.seq}">
         <input type="hidden" name="seqUser" value="${sessionScope.seqUser}">
-        <textarea name="content" placeholder="댓글을 입력하세요."></textarea>
+        <textarea name="content" id="commentContent" placeholder="댓글을 입력하세요." required></textarea>
         <button type="submit">댓글 등록</button>
     </form>
 </div>
@@ -251,6 +251,18 @@
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
    
     <script>
+    
+    function addCommentEventListener() {
+        var form = document.querySelector('.comment-form form');
+        if (form) {
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                addComment();
+            });
+        }
+    }
+    
+    
     document.addEventListener('DOMContentLoaded', function() {
         var form = document.querySelector('.comment-form form');
         if (form) {
@@ -265,16 +277,26 @@
         var form = document.querySelector('.comment-form form');
         var seqPost = form.seqPost.value;
         var seqUser = form.seqUser.value;
-        var content = form.content.value;
+        var content = form.content.value.trim();
+ 
+        if (seqUser === '') {
+            alert("로그인이 필요합니다.");
+            return false;
+        }
+
+        if (content === '') {
+            alert("댓글 내용을 입력해주세요.");
+            form.content.focus();
+            return false;
+        }
+        
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 if (xhr.status === 200) {
-                    // 댓글 작성 성공 시 처리할 내용
                     alert('댓글이 등록되었습니다.');
-                    location.reload(); // 페이지 새로고침
+                    location.reload();
                 } else {
-                    // 댓글 작성 실패 시 처리할 내용
                     alert('댓글 등록에 실패했습니다.');
                 }
             }
@@ -283,7 +305,9 @@
         xhr.open('POST', '${pageContext.request.contextPath}/board/add-comment.do', true);
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xhr.send('seqPost=' + seqPost + '&seqUser=' + seqUser + '&content=' + encodeURIComponent(content));
-    }
+
+        return false;
+        }
     
     document.addEventListener('DOMContentLoaded', function() {
         const sidebarToggler = document.getElementById('sidebar-toggler');

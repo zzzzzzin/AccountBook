@@ -459,4 +459,19 @@ public ArrayList<PostDTO> getMyPosts(String id) {
 		    return null;
 		}
 
+public int getSeqUserByMemberId(String memberId) {
+    try {
+        String sql = "SELECT seqUser FROM tblUser WHERE idMember = ?";
+        pstat = conn.prepareStatement(sql);
+        pstat.setString(1, memberId);
+        rs = pstat.executeQuery();
+
+        if (rs.next()) {
+            return rs.getInt("seqUser");
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return 0;
+}
 }
