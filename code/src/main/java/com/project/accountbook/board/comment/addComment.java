@@ -2,23 +2,24 @@ package com.project.accountbook.board.comment;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.project.accountbook.board.comment.model.CommentDTO;
 import com.project.accountbook.board.comment.repository.CommentDAO;
 
-@WebServlet("/board/addComment.do")
-public class addComment extends HttpServlet {
+@WebServlet("/board/add-comment.do")
+public class AddComment extends HttpServlet {
     
+    private CommentDAO cdao = new CommentDAO();
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // 댓글 작성에 필요한 데이터 받기
-
-    	
     	req.setCharacterEncoding("UTF-8");
     	String seqPost = req.getParameter("paramSeq");
         String seqUser = req.getParameter("user");
@@ -40,6 +41,5 @@ public class addComment extends HttpServlet {
         
         System.out.println("response: "+response);
         // CommentDAO를 사용하여 댓글 저장
-        
     }
 }
