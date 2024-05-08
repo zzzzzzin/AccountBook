@@ -138,5 +138,10 @@ public class CommentDTO {
 				+ writeDate + ", likeCount=" + likeCount + ", dislikeCount=" + dislikeCount + ", reportCount="
 				+ reportCount + ", seqComments=" + seqComments + "]";
 	}
+
+	public void setIdMember(String string) {
+		// TODO Auto-generated method stub
+		
+	}
 		
 }

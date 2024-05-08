@@ -16,15 +16,40 @@ import com.project.accountbook.board.repository.BoardDAO;
 @WebServlet("/board/attendanceBoard.do")
 public class AttendanceBoard extends HttpServlet {
 
+	BoardDAO dao = new BoardDAO();
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		BoardDAO dao = new BoardDAO();
+		
 		ArrayList<PostDTO> attendanceList = dao.list("4");
 
 		req.setAttribute("attendanceList", attendanceList);//
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/attendance-board.jsp");
 		dispatcher.forward(req, resp);
 
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		String seq = req.getParameter("seq"); //Post seq
+		String type = req.getParameter("type"); //Like, Dislike 구분
+
+		
+		if(type.equals("like")) {
+			
+			dao.like(seq);
+			
+		} else if (type.equals("dislike")) {
+			
+			dao.dislike(seq);
+		}
+
+		
+		//RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/discussion.jsp");
+		//dispatcher.forward(req, resp);		
+	
+	
 	}
 }

@@ -226,10 +226,10 @@
 <input type="hidden" name="seqUser" value="${not empty sessionScope.seqUser ? sessionScope.seqUser : ''}">
 <!-- 댓글 쓰기 시작 -->
 <div class="comment-form">
-    <form onsubmit="return addComment()">
+    <form id="commentForm">
         <input type="hidden" name="seqPost" value="${param.seq}">
         <input type="hidden" name="seqUser" value="${sessionScope.seqUser}">
-        <textarea name="content" placeholder="댓글을 입력하세요."></textarea>
+        <textarea name="commentContent" id="commentContent" placeholder="댓글을 입력하세요." required></textarea>
         <button type="submit">댓글 등록</button>
     </form>
 </div>
@@ -250,87 +250,187 @@
     <!-- Template Javascript -->
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
    
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var form = document.querySelector('.comment-form form');
-        if (form) {
-            form.addEventListener('submit', function(event) {
-                event.preventDefault();
-                addComment();
-            });
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    $('#commentForm').submit(function(event) {
+        event.preventDefault(); // Prevent the default form submission
+		
+        var paramseq = ${param.seq};
+        var user = ${sessionScope.seqUser};
+
+        $.ajax({
+            url: '/account/board/addComment.do', // Use the form's action attribute or default
+            type: 'POST',
+            data: {
+                paramSeq: paramseq,
+                user: user,
+                comment: document.getElementById('commentContent').value
+            },
+            success: function(response) {
+                alert('댓글이 등록되었습니다.');
+                $('#commentContent').val(''); // Clear the textarea after successful submission
+            },
+            error: function() {
+                alert('댓글 등록에 실패했습니다.');
+            }
+        });
+    });
+       /* replyToggles.forEach(function(toggle) {
+        toggle.addEventListener('click', function() {
+    const replyToggles = document.querySelectorAll('.reply-toggle');
+            const replyForm = this.parentNode.parentNode.nextElementSibling.nextElementSibling;
+            replyForm.style.display = replyForm.style.display === 'none' ? 'block' : 'none';
+        });
+    }); */
+});
+
+function addComment() {
+    var form = $('.comment-form form');
+    var seqPost = form.find('[name="seqPost"]').val();
+    var seqUser = form.find('[name="seqUser"]').val();
+    var content = form.find('textarea[name="commentContent"]').val();
+
+    if (seqUser === '') {
+        alert("로그인이 필요합니다.");
+        return;
+    }
+
+    // Perform AJAX request with jQuery
+    $.ajax({
+        url: '/account/board/add-comment.do',
+        type: 'POST',
+        data: {
+            seqPost: seqPost,
+            seqUser: seqUser,
+            content: content
+        },
+        success: function() {
+            alert('댓글이 등록되었습니다.');
+            // Clear the form instead of reloading the page
+            form.find('textarea[name="commentContent"]').val('');
+        },
+        error: function() {
+            alert('댓글 등록에 실패했습니다.');
         }
     });
-    
-    function addComment() {
-        var form = document.querySelector('.comment-form form');
-        var seqPost = form.seqPost.value;
-        var seqUser = form.seqUser.value;
-        var content = form.content.value;
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    // 댓글 작성 성공 시 처리할 내용
+}
+
+
+function addReplyComment(btn) {
+    var form = btn.closest('form');
+    var seqComments = form.querySelector('input[name="seqComments"]').value;
+    var seqUser = form.querySelector('input[name="seqUser"]').value;
+    var seqPost = form.querySelector('input[name="seqPost"]').value;
+    var content = form.querySelector('textarea[name="content"]').value;
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                if (xhr.responseText === "Success") {
                     alert('댓글이 등록되었습니다.');
                     location.reload(); // 페이지 새로고침
                 } else {
-                    // 댓글 작성 실패 시 처리할 내용
                     alert('댓글 등록에 실패했습니다.');
                 }
+            } else {
+                alert('댓글 등록에 실패했습니다.');
             }
-        };
+        }
+    };
 
-        xhr.open('POST', '${pageContext.request.contextPath}/board/add-comment.do', true);
-        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        xhr.send('seqPost=' + seqPost + '&seqUser=' + seqUser + '&content=' + encodeURIComponent(content));
-    }
+    xhr.open('POST', '${pageContext.request.contextPath}/board/add-comment.do', true);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.send('seqPost=' + seqPost + '&seqUser=' + seqUser + '&content=' + encodeURIComponent(content));
+}
+
+ 
     
-    document.addEventListener('DOMContentLoaded', function() {
-        const sidebarToggler = document.getElementById('sidebar-toggler');
-        const sidebar = document.querySelector('.sidebar');
-        const content = document.querySelector('.content');
-        sidebarToggler.addEventListener('click', function() {
-            sidebar.classList.toggle('hidden');
-            content.classList.toggle('expanded');
-        });
-    });
+    //게시글 추천수
+	$(".post-actions span:nth-child(1)").click(function() {
+		postlike(${post.seqBoard});
+	});
     
-    document.addEventListener('DOMContentLoaded', function() {
-        const replyToggles = document.querySelectorAll('.reply-toggle');
+	$(".post-actions span:nth-child(2)").click(function() {
+		postdislike(${post.seqBoard});
+	});
 
-        replyToggles.forEach(function(toggle) {
-            toggle.addEventListener('click', function() {
-                const replyForm = this.parentNode.parentNode.nextElementSibling.nextElementSibling;
-                replyForm.style.display = replyForm.style.display === 'none' ? 'block' : 'none';
-            });
-        });
-    });
+
+   	function postlike(seqBoard) {
+   	  let url;
+   	  switch (seqBoard) {
+   	    case 1:
+   	      url = "/account/board/noticeBoard.do";
+   	      break;
+   	    case 2:
+   	      url = "/account/board/freeBoard.do";
+   	      break;
+   	    case 3:
+   	      url = "/account/board/reportBoard.do";
+   	      break;
+   	    case 4:
+   	      url = "/account/board/attendanceBoard.do";
+   	      break;
+   	  }
+
+  	  $.ajax({
+  	    type: 'POST',
+  	    url: url,
+  	    data: {
+			seq: ${post.seq},
+			type: 'like'
+  	    },  	  	
+  	    success: function() {
+  	    	console.log("like완료");
+  	    	var temp = document.getElementById('post-like').innerHTML;
+  	    	var numericTemp = Number(temp) + 1;
+  	    	document.getElementById('post-like').innerHTML = numericTemp;
+  	    },
+  	    error: function(xhr, status, error) {
+  	      console.error("AJAX 요청 실패:", error);
+  	    }
+  	  });
+   	}
+   	
+   	
+   	function postdislike(seqBoard) {
+     	  let url;
+     	  switch (seqBoard) {
+     	    case 1:
+     	      url = "/account/board/noticeBoard.do";
+     	      break;
+     	    case 2:
+     	      url = "/account/board/freeBoard.do";
+     	      break;
+     	    case 3:
+     	      url = "/account/board/reportBoard.do";
+     	      break;
+     	    case 4:
+     	      url = "/account/board/attendanceBoard.do";
+     	      break;
+     	  }
+
+    	  $.ajax({
+    	    type: 'POST',
+    	    url: url,
+    	    data: {
+  			seq: ${post.seq},
+  			type: 'dislike'
+    	    },  	  	
+    	    success: function() {
+    	    	console.log("Dislike완료");
+    	    	var temp = document.getElementById('post-dislike').innerHTML;
+    	    	var numericTemp = Number(temp) + 1;
+    	    	document.getElementById('post-dislike').innerHTML = numericTemp;
+    	    },
+    	    error: function(xhr, status, error) {
+    	      console.error("AJAX 요청 실패:", error);
+    	    }
+    	  });
+     	}
+   	
     
-    function addReplyComment(btn) {
-        var form = btn.closest('form');
-        var seqComments = form.querySelector('input[name="seqComments"]').value;
-        var seqUser = form.querySelector('input[name="seqUser"]').value;
-        var seqPost = form.querySelector('input[name="seqPost"]').value;
-        var content = form.querySelector('textarea[name="content"]').value;
-
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    // 답글 작성 성공 시 처리할 내용
-                    alert('답글이 등록되었습니다.');
-                    location.reload(); // 페이지 새로고침
-                } else {
-                    // 답글 작성 실패 시 처리할 내용
-                    alert('답글 등록에 실패했습니다.');
-                }
-            }
-        };
-
-        xhr.open('POST', '${pageContext.request.contextPath}/board/add-comment.do', true);
-        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        xhr.send('seqPost=' + seqPost + '&seqUser=' + seqUser + '&content=' + encodeURIComponent(content));
-    }
     </script>
 </body>
 </html>
