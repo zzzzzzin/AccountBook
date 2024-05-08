@@ -23,8 +23,6 @@ public class addComment extends HttpServlet {
         
         // CommentDTO 객체 생성 및 데이터 설정
         CommentDTO comment = new CommentDTO();
-        comment.setSeqPost(seqPost);
-        comment.setSeqUser(seqUser);
         comment.setContent(content);
         
         // CommentDAO를 사용하여 댓글 저장

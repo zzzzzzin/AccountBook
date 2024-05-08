@@ -37,10 +37,10 @@ public class EditPw extends HttpServlet {
 	    MemberInfoDAO dao = new MemberInfoDAO();
 	    String realPw = dao.getPw(id);
 	    
-	    if (realPw != null && nowPw.equals(realPw) && editPw.equals(checkPw) ) {
+	    if (realPw != null && realPw.equals(nowPw) && editPw.equals(checkPw) ) {
 	    	dao.editPw(id ,editPw);
 	    }
-
+	    
 	    RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/member/info.jsp");
 	    dispatcher.forward(req, resp);
 	}

@@ -140,6 +140,7 @@
   justify-content: center;
   text-align: center;
   border: none;
+  width: 100%;
 }
 
 #submit-button{
@@ -196,29 +197,29 @@
               <div class="user-profile-mypage-img">
                   개인 프로필 이미지
               </div>
-              <div id="userinfo">
+              <form action="/account/user/member/edit-info.do" method="POST" id="userinfo">
                 <div class="userinfo-content">
                     <div class="userinfo left">이름</div>
-                    <div class="userinfo right"><input class="editcontrol" type="text" value="홍길동"></div>
+                    <div class="userinfo right"><input class="editcontrol" type="text" name="name"></div>
                 </div>
                 <div class="userinfo-content">
                     <div class="userinfo left">닉네임</div>
-                    <div class="userinfo right"><input class="editcontrol" type="text" value="hong"></div>
+                    <div class="userinfo right"><input class="editcontrol" type="text" name="nickname" ></div>
                 </div>
                 <div class="userinfo-content">
                     <div class="userinfo left">전화번호</div>
-                    <div class="userinfo right"><input class="editcontrol" type="text" value="010-1234-5678"></div>
+                    <div class="userinfo right"><input class="editcontrol" type="text" name="phonenumber" ></div>
                 </div>
                 <div class="userinfo-content">
                     <div class="userinfo left">주민등록번호</div>
                     <div class="userinfo right" id="ssn">
-                      <input class="editcontrol" type="text" value="123456-1234567">
+                      <input class="editcontrol" type="text" name="ssn">
                     </div>
                 </div>
                 <div class="userinfo-content">
-                    <button type="submit" id="submit-button">수정</button>
+                    <button type="submit" id="submit-button" >수정</button>
               </div>
-              </div>
+              </form>
       </div>
     </div>
   </div>
@@ -233,20 +234,7 @@
    
     <!-- Template Javascript -->
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
-    <script>
-
-    document.addEventListener('DOMContentLoaded', function() {
-    const sidebarToggler = document.getElementById('sidebar-toggler');
-    const sidebar = document.querySelector('.sidebar');
-    const content = document.querySelector('.content');
-
-        sidebarToggler.addEventListener('click', function() {
-        sidebar.classList.toggle('hidden');
-        content.classList.toggle('expanded');
-        });
-    });
-
-    </script>
+    
 </body>
 
 </html>

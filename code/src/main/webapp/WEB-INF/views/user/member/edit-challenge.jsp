@@ -62,8 +62,12 @@
         justify-content: center;
         align-items: center;
     }
+    
+    .period {
+    
+    }
 
-    .sallary-real, .settingPeriod {
+    .sallary-real, .settingPeriod, .period {
         background-color: #d9d9d9;
         width: 80%;
         height: 100%;
@@ -88,10 +92,6 @@
     .saveSurveySetting {
         display: flex;
         justify-content: center;
-    }
-
-    #start-date, #end-date {
-        text-align: center;
     }
 
     .saveBtn {
@@ -137,46 +137,33 @@
             <!-- Navbar End -->
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
-        
-        	<div class="myPage">
-        <form action="">
-            <div class="container-surveysetting">
-                <div class="content-surveysetting">
-                    <div class="contents-surveysetting">
-                        <div class="sallary-title">월급</div>
-                        <input type="text" class="sallary-real" value="20,000,000원"></input>
-                    </div>
-                    <div class="contents-surveysetting">
-                        <div class="sallary-title">저축 목표 금액</div>
-                        <input type="text" class="sallary-real" value="10,000,000원"></input>
-                    </div>
-                    <div class="contents-surveysetting">
-                        <div class="sallary-title">현재 부채 금액</div>
-                        <input type="text" class="sallary-real" value="없음"></input>
-                    </div>
-                    <div class="contents-surveysetting">
-                        <div class="sallary-title">저축 목표 기간 설정</div>
-                        <div class="settingPeriod">
-                            <div class="startDate">
-                                <label for="start-date">시작일</label>
-                                <input type="text" id="start-date" name="start-date" value="2024/01/01">
-                            </div>
-                            <div class="endDate">
-                                <label for="end-date">종료일</label>
-                                <input type="text" id="end-date" name="end-date" value="2025/12/31">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="saveSurveySetting">
-                    <button type="submit" class="saveBtn">저장하기</button>
-                </div>
-            </div>
-        </form>
-    </div>
-      
 
-        <!-- fakecontent 끝 -->
+			<div class="myPage">
+				<form method="POST" action="/account/user/member/edit-challenge.do">
+					<div class="container-surveysetting">
+						<div class="content-surveysetting">
+							<div class="contents-surveysetting">
+								<div class="sallary-title">월급</div>
+								<input type="text" class="sallary-real" name="sallary"></input>
+							</div>
+							<div class="contents-surveysetting">
+								<div class="sallary-title">저축 목표 금액</div>
+								<input type="text" class="sallary-real" name="goal"></input>
+							</div>
+							<div class="contents-surveysetting">
+								<div class="sallary-title">저축 목표 기간 설정</div>
+									<input type="text" class="period" name="period"></input>
+							</div>
+							<div class="saveSurveySetting">
+								<button type="submit" class="saveBtn">저장하기</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+
+
+			<!-- fakecontent 끝 -->
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
         

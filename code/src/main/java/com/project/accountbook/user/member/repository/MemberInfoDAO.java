@@ -3,11 +3,11 @@ package com.project.accountbook.user.member.repository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.project.accountbook.account.model.AccountInfoDTO;
 import com.project.accountbook.user.member.model.MemberInfoDTO;
 import com.project.accountbook.user.model.UserDTO;
 import com.project.accountbook.util.DBUtil;
@@ -220,7 +220,6 @@ public class MemberInfoDAO {
 			rs = pstat.executeQuery();
 			
 			if (rs.next()) {
-				System.out.println(rs.getString("pw"));
 	            return rs.getString("pw");
 	        }
 			
@@ -234,7 +233,8 @@ public class MemberInfoDAO {
 	public void editPw(String id, String pw) {
 		
 		try {
-			String sql = "update tblMember set pw = ? where id = ? ";
+			
+			String sql = "update tblMember set pw = ? where id = ?";
 			
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, pw);
@@ -242,13 +242,212 @@ public class MemberInfoDAO {
 
 			pstat.executeUpdate();
 			
-			System.out.println(pw);
-					
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 	}
+	
+	public String getPhoneNumber(String id) {
+
+		try {
+			
+			String sql = "select phonenumber from tblMember where id = ?";
+			
+			pstat = conn.prepareStatement(sql);
+	        pstat.setString(1, id);
+	        
+	        rs = pstat.executeQuery();
+	        
+	        if (rs.next()) {
+	        	return rs.getString("phonenumber");
+	        }
+			
+		} catch (Exception e) {
+			System.out.println("MemberInfoDAO.getPhoneNumber");
+			e.printStackTrace();
+		} finally {
+	        try {
+	            if (rs != null) {
+	                rs.close();
+	            }
+	            if (pstat != null) {
+	                pstat.close();
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+		
+		return null;
+	}
+	
+
+	public void updateUserInfo(String id, HashMap<String, String> map) {
+
+		try {
+			
+			String sql = "update tblMember set name = ?, nickname = ?, phonenumber = ?, ssn = ? where id = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			
+			pstat.setString(1, map.get("name"));
+			pstat.setString(2, map.get("nickname"));
+			pstat.setString(3, map.get("phonenumber"));
+			pstat.setString(4, map.get("ssn"));
+			pstat.setString(5, id);
+			
+			pstat.executeUpdate();
+			
+			System.out.println("update");
+			
+		} catch (Exception e) {
+			System.out.println("MemberInfoDAO.updateUserInfo");
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+
+	public UserDTO getChallenge(String id) {
+
+		try {
+			
+			String sql = "select s.monthlyPaycheck, s.savingsGoals, sp.period\r\n"
+					+ "from tblMember m\r\n"
+					+ "    inner join tblSurvey s\r\n"
+					+ "        on m.seqSurvey = s.seq\r\n"
+					+ "            inner join tblSavingsPeriod sp\r\n"
+					+ "                on sp.seq = s.seqSavingsPeriod\r\n"
+					+ "                    where id = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, id);
+
+			pstat.executeUpdate();
+
+			if (rs.next()) {
+
+				UserDTO dto = new UserDTO();
+
+				dto.setMonthlyPaycheck(rs.getInt("monthlyPaycheck"));
+				dto.setSavingsGoals(rs.getInt("savingsGoals"));
+				dto.setSpPeriod(rs.getInt("period"));
+
+				return dto;
+
+			}
+			
+		} catch (Exception e) {
+			System.out.println("MemberInfoDAO.getChallenge");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+
+	public String getSeqSurvey(String id) {
+
+		try {
+			
+			String sql = "select seqSurvey from tblMember where id = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, id);
+			pstat.executeUpdate();
+			
+			rs = pstat.executeQuery();
+			
+			if (rs.next()) {
+	            return rs.getString("seqSurvey");
+	        }
+			
+		} catch (Exception e) {
+			System.out.println("MemberInfoDAO.getSeqSurvey");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	public String getSeqSavingPeriod(String seqSurvey) {
+
+		try {
+			
+			String sql = "select seqSavingsPeriod from tblSurvey where seq = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seqSurvey);
+			pstat.executeUpdate();
+			
+			rs = pstat.executeQuery();
+			
+			if (rs.next()) {
+	            return rs.getString("seqSavingsPeriod");
+	        }
+			
+		} catch (Exception e) {
+			System.out.println("MemberInfoDAO.getSeqSurvey");
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public void editChallenge(String seqSurvey, String seqSavingsPeriod, String sallary, String goal, String period) {
+
+		try {
+			
+			String sql = "update tblSurvey set monthlyPaycheck = ?, savingsGoals = ? where seq = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, sallary);
+			pstat.setString(2, goal);
+			pstat.setString(3, seqSurvey);
+			pstat.executeUpdate();
+			
+			sql = "update tblSavingsPeriod set period = ? where seq = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, period);
+			pstat.setString(2, seqSavingsPeriod);
+			pstat.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("MemberInfoDAO.editChallenge");
+			e.printStackTrace();
+		}
+		
+	}
+
+	public boolean isPhoneNumberUnique(String phoneNumber, String id) {
+		try {
+	        String sql = "SELECT COUNT(*) AS count FROM tblMember WHERE phonenumber = ? AND id != ?";
+	        
+	        pstat = conn.prepareStatement(sql);
+	        pstat.setString(1, phoneNumber);
+	        pstat.setString(2, id);
+	        rs = pstat.executeQuery();
+	        
+	        if (rs.next()) {
+	            int count = rs.getInt("count");
+	            return count == 0;
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    // 오류가 발생하거나 결과가 없는 경우에는 일단 중복이 아니라고 간주
+		System.out.println("번호 중복값 존재");
+	    return true;
+	}
+
+	
+
+
+	
+
+	
 
 	
 
