@@ -59,15 +59,14 @@ public class CommentDAO {
         return comments;
     }
     //댓글 작성
-    public int addComment(CommentDTO comment) {
+    public int addComment(CommentDTO commentDto) {
         try {
-            String sql = "INSERT INTO tblComments (seqPost, seqUser, content, writeDate, likeCount, dislikeCount, reportCount) " +
-                         "VALUES (?, ?, ?, SYSDATE, 0, 0, 0)";
+            String sql = "INSERT INTO tblComments (seqPost, seqUser, content, writeDate, likeCount, dislikeCount, reportCount) VALUES (?, ?, ?, SYSDATE, 0, 0, 0)";
             
             pstat = conn.prepareStatement(sql);
-            pstat.setInt(1, comment.getSeqPost());
-            pstat.setInt(2, comment.getSeqUser());
-            pstat.setString(3, comment.getContent());
+            pstat.setInt(1, commentDto.getSeqPost());
+            pstat.setInt(2, commentDto.getSeqUser());
+            pstat.setString(3, commentDto.getContent());
             
             return pstat.executeUpdate();
             
