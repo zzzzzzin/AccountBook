@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.SizeSequence;
 
 import com.project.accountbook.board.post.model.NoticeDTO;
 import com.project.accountbook.board.post.model.PostDTO;
@@ -18,6 +19,8 @@ import com.project.accountbook.board.repository.BoardDAO;
 @WebServlet("/board/noticeBoard.do")
 public class NoticeBoard extends HttpServlet {
 
+	BoardDAO dao = new BoardDAO();
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -40,7 +43,7 @@ public class NoticeBoard extends HttpServlet {
 		map.put("column", column);
 		map.put("word", word);
 		
-		BoardDAO dao = new BoardDAO();
+		
 		
 		ArrayList<PostDTO> noticeList = dao.list(map, "1");
 		//ArrayList<PostDTO> noticeList = dao.list("1");
@@ -51,6 +54,29 @@ public class NoticeBoard extends HttpServlet {
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/notice-board.jsp");
 		dispatcher.forward(req, resp);
 
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		String seq = req.getParameter("seq"); //Post seq
+		String type = req.getParameter("type"); //Like, Dislike 구분
+
+		
+		if(type.equals("like")) {
+			
+			dao.like(seq);
+			
+		} else if (type.equals("dislike")) {
+			
+			dao.dislike(seq);
+		}
+
+		
+		//RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/discussion.jsp");
+		//dispatcher.forward(req, resp);		
+	
+	
 	}
 	
 }
