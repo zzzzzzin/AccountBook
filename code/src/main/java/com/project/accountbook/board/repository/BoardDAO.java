@@ -28,22 +28,56 @@ public class BoardDAO {
 	public BoardDAO() {
 		this.conn = DBUtil.open("125.241.245.222", "webproject", "java1234");
 	}
-
+	
+	public String readSession(String id) {
+		try {
+			String sql ="select seq from tblUser where idMember = ?";
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, id);
+			rs = pstat.executeQuery();
+			
+			if(rs.next()) {
+				String seq = rs.getString("seq");
+	            return seq;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	// 삽입(C)
-	public int insert(PostDTO dto) {
+	// 글쓰기
+	public int boardWrite(PostDTO dto) {
 
 		try {
-
-			String sql = "";
-
+			
+			
+			String sql = "INSERT INTO tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck) "
+					+ "VALUES ((SELECT NVL(MAX(seq), 0) + 1 FROM tblPost), ?, ?, ?, ?, SYSDATE, null, 0, 0, 0, 0, ?, 0)";
+			
 			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getSeqBoard());
+			pstat.setString(2, dto.getSeqUser());
+			pstat.setString(3, dto.getTitle());
+			pstat.setString(4, dto.getContent());
+			pstat.setInt(5, dto.getSecretCheck());
+			
+			System.out.println("conn: " + conn.isClosed());
+			
+			return pstat.executeUpdate(); // 실행 결과 반환
 
 		} catch (Exception e) {
 
+			e.printStackTrace();
 		}
 
 		return 0;
 	}
+
+
+
 
 	// 조회(R)
 	public PostDTO readPost(String seq) {
