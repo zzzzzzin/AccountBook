@@ -1163,7 +1163,8 @@ public class AccountDAO {
 					+ "					    inner join TBLMYCARD mc on rc.SEQMYCARD = mc.SEQ\r\n"
 					+ "					    inner join TBLFIXEDDEPOSITWITHDRAWALCHECK fdw on ai.SEQFIXEDFLUCTUATIONCHECK = fdw.SEQ\r\n"
 					+ "					    inner join TBLFIXEDFLUCTUATIONPERIOD ffp on fdw.SEQFIXEDFLUCTUATIONPERIOD = ffp.SEQ\r\n"
-					+ "					    where me.ID = ?";
+					+ "					    where me.ID = ?"
+					+ "						order by accinfodate desc";
 			
 			
 			pstat = conn.prepareStatement(sql);
@@ -1192,7 +1193,7 @@ public class AccountDAO {
 				
 				list.add(dto);
 			}
-			System.out.println("run");
+//			System.out.println("run");
 			
 			return list;
 		} catch (Exception e) {

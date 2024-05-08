@@ -3,7 +3,7 @@ select * from tblMember;
 select * from tblMemberPriv;
 
 
-
+select * from tblAccInfo;
 
 
 -- 가계부 분석
