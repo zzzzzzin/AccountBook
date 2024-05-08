@@ -511,10 +511,16 @@
         <!-- Content End -->
         <div id="fakecontent">
             <div id="aboverow">
-                <div><input type="text" id="searchbar"></div>
+      		<form method = "GET" id="accountSearchForm" action="/account/account/list.do">
                 <div class="right-icon" id="searchicon"><i class="fa-solid fa-magnifying-glass"></i></div> 
+                <div id="searchbar" >
+                	<input type="text" name="word" value="${map.word}" placeholder="내용 or 사용처">
+                	<input type="submit" value="검색">
+                </div>
+            </form>    
                 <div class="right-icon" id="categoryselector"><i class="fa-solid fa-list-check"></i></div> 
             </div>
+            
             <div id='calendar'></div>
             <div id="bottomrow">
                 <div id="thismonthstat">
@@ -813,18 +819,19 @@
             modal.show();
         })
         //카테고리 선택 끝
-        // 검색 기능
-        var searchicon = document.getElementById('searchicon');
-        var searchbar = document.getElementById('searchbar');
-        searchicon.onclick = function() {
-            if (searchbar.style.display === 'none') {
-                searchbar.style.display = 'block';
-                searchbar.focus();
-            } else {
-                searchbar.style.display = 'none';
-            }
-        };
-        //검색 기능 끝
+	 	// 검색 기능
+	    var searchicon = document.getElementById('searchicon');
+	    var searchbar = document.getElementById('searchbar');
+	   
+	    searchicon.onclick = function() {
+	        if (searchbar.style.display === 'none') {
+	            searchbar.style.display = 'block';
+	            searchbar.focus();
+	        } else {
+	            searchbar.style.display = 'none';
+	        }
+	    };
+	    //검색 기능 끝
         
 
     // 고정 지출 시작
