@@ -76,6 +76,8 @@ public class EditInfo extends HttpServlet {
 	    dao = new MemberInfoDAO();
 	    dao.updateUserInfo(id, map);
 	    
+	    req.setCharacterEncoding("UTF-8");
+	    
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/member/info.jsp");
 		dispatcher.forward(req, resp);
 
