@@ -23,20 +23,18 @@ public class CommentDAO {
     //댓글 조회
     public List<CommentDTO> getCommentsByPostSeq(String postSeq) {
         List<CommentDTO> comments = new ArrayList<>();
-        
         try {
-            String sql = "SELECT tc.*, tm.nickname, tp.fileLink AS profileImage " +
-                         "FROM tblComments tc " +
-                         "JOIN tblUser tu ON tc.seqUser = tu.seq " +
-                         "JOIN tblMember tm ON tu.idMember = tm.id " +
-                         "LEFT JOIN tblProfileimg tp ON tm.seqProfileimg = tp.seq " +
-                         "WHERE tc.seqPost = ?";
-            
+            String sql = "SELECT c.seq, c.seqPost, c.seqUser, c.content, c.writeDate, c.likeCount, c.dislikeCount, c.reportCount, m.nickname, p.fileLink AS profileImage " +
+                         "FROM tblComments c " +
+                         "INNER JOIN tblUser u ON c.seqUser = u.seq " +
+                         "INNER JOIN tblMember m ON u.idMember = m.id " +
+                         "LEFT JOIN tblProfileimg p ON m.seqProfileimg = p.seq " +
+                         "WHERE c.seqPost = ? " +
+                         "ORDER BY c.seq";
             pstat = conn.prepareStatement(sql);
             pstat.setString(1, postSeq);
-            
             rs = pstat.executeQuery();
-            
+
             while (rs.next()) {
                 CommentDTO comment = new CommentDTO();
                 comment.setSeq(rs.getString("seq"));
@@ -49,21 +47,20 @@ public class CommentDAO {
                 comment.setReportCount(rs.getInt("reportCount"));
                 comment.setNickname(rs.getString("nickname"));
                 comment.setProfileImage(rs.getString("profileImage"));
-                
                 comments.add(comment);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
         return comments;
     }
+    //(seqcomments.nextVal
+    
     //댓글 작성
     public int addComment(CommentDTO commentDto) {
         try {
             String sql = "INSERT INTO tblComments (seq, seqPost, seqUser, content, writeDate, likeCount, dislikeCount, reportCount) " +
-                    "VALUES (seqcomments.nextVal, ?, ?, ?, SYSDATE, 0, 0, 0)";
-            
+                         "VALUES (seqcomments.nextVal, ?, ?, ?, SYSDATE, 0, 0, 0, )";
             pstat = conn.prepareStatement(sql);
             pstat.setInt(1, commentDto.getSeqPost());
             pstat.setInt(2, commentDto.getSeqUser());
