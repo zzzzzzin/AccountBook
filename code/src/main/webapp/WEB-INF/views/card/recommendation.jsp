@@ -226,8 +226,7 @@
                     <div>연회비 : ${dto.annualFee}원</div>
                     <div>해외 겸용 : ${dto.overseasUse}</div>
                 ">
-									<img
-									src="http://brokensquare.com/Code/jquery-flipster/demo/img/text${loop.index + 1}.gif">
+									<img src="/account/asset/images/${dto.fileLink}">
 								</li>
 							</c:forEach>
 						</ul>
