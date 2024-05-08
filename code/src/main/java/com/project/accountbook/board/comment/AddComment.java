@@ -1,4 +1,4 @@
-package com.project.accountbook.board;
+package com.project.accountbook.board.comment;
 
 import java.io.IOException;
 
