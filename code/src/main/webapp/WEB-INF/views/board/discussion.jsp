@@ -270,9 +270,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    const replyToggles = document.querySelectorAll('.reply-toggle');
     replyToggles.forEach(function(toggle) {
         toggle.addEventListener('click', function() {
+    const replyToggles = document.querySelectorAll('.reply-toggle');
             const replyForm = this.parentNode.parentNode.nextElementSibling.nextElementSibling;
             replyForm.style.display = replyForm.style.display === 'none' ? 'block' : 'none';
         });
