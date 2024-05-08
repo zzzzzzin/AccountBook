@@ -122,4 +122,19 @@ public class CommentDAO {
         }
         return 0;
     }
+    
+    //댓글 수정 
+    public int updateComment(String commentSeq, String editedContent) {
+        try {
+            String sql = "UPDATE tblComments SET content = ? WHERE seq = ?";
+            pstat = conn.prepareStatement(sql);
+            pstat.setString(1, editedContent);
+            pstat.setString(2, commentSeq);
+            return pstat.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    
 }
