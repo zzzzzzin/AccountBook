@@ -70,7 +70,6 @@
 					<li><a href="/account/account/list.do">목록</a></li>
 					<li><a href="/account/account/analysis.do">분석</a></li>
 				</ul></li>
-			<li><a href="/account/account/cost-revenue.do"><i class="fas fa-tachometer-alt"></i> 비용 수익</a></li>
 			<li><a href="/account/account/card-use.do"><i class="fas fa-user"></i> 카드 사용</a>
 		</ul>
 	</nav>
