@@ -1,5 +1,7 @@
 package com.project.accountbook.board.comment.model;
 
+import java.util.List;
+
 //tblComments(전체), tblReplyComments(seqComments)
 public class CommentDTO {
 	
@@ -29,14 +31,24 @@ public class CommentDTO {
 	public void setReplyCount(int replyCount) {
 		this.replyCount = replyCount;
 	}
+	private List<CommentDTO> replyComments;
 
+    // ... 기존 getter/setter 메서드 ...
+
+    public List<CommentDTO> getReplyComments() {
+        return replyComments;
+    }
+
+    public void setReplyComments(List<CommentDTO> replyComments) {
+        this.replyComments = replyComments;
+    }
 
 
 
 	private String profileImage;
 	//댓글
-	private String seqPost;
-	private String seqUser;
+	private int seqPost;
+	private int seqUser;
 	private String content;
 	private String writeDate;
 	private int likeCount;
@@ -44,7 +56,7 @@ public class CommentDTO {
 	private int reportCount;
 	
 	//대댓글
-	private String seqComments;
+	private int seqComments;
 	
     public String getSeq() {
 		return seq;
@@ -56,19 +68,19 @@ public class CommentDTO {
 
 	private String seq;
 	
-	public String getSeqPost() {
+	public int getSeqPost() {
 		return seqPost;
 	}
 
-	public void setSeqPost(String seqPost) {
+	public void setSeqPost(int seqPost) {
 		this.seqPost = seqPost;
 	}
 
-	public String getSeqUser() {
+	public int getSeqUser() {
 		return seqUser;
 	}
 
-	public void setSeqUser(String seqUser) {
+	public void setSeqUser(int seqUser) {
 		this.seqUser = seqUser;
 	}
 
@@ -112,11 +124,11 @@ public class CommentDTO {
 		this.reportCount = reportCount;
 	}
 
-	public String getSeqComments() {
+	public int getSeqComments() {
 		return seqComments;
 	}
 
-	public void setSeqComments(String seqComments) {
+	public void setSeqComments(int seqComments) {
 		this.seqComments = seqComments;
 	}
 

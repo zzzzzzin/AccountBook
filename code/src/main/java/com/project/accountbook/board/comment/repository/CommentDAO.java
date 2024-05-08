@@ -19,83 +19,112 @@ public class CommentDAO {
     public CommentDAO() {
         this.conn = DBUtil.open("125.241.245.222", "webproject", "java1234");
     }
-
-    public List<CommentDTO> getCommentsByPostSeq(String seqPost) {
-    	
+    
+    //댓글 조회
+    public List<CommentDTO> getCommentsByPostSeq(String postSeq) {
         List<CommentDTO> comments = new ArrayList<>();
-
-        String query = "SELECT c.seq, c.seqPost, c.seqUser, c.content, c.writeDate, c.likeCount, c.dislikeCount, c.reportCount, " +
-                "(SELECT COUNT(*) FROM tblReplyComments WHERE seqComments = c.seq) AS replyCount, " +
-                "m.nickname, p.fileLink AS profileImage " +
-                "FROM tblComments c " +
-                "JOIN tblUser u ON c.seqUser = u.idMember " +
-                "JOIN tblMember m ON u.idMember = m.id " +
-                "LEFT JOIN tblProfileimg p ON m.seqProfileimg = p.seq " +
-                "WHERE c.seqPost = ? " +
-                "ORDER BY c.writeDate";
-
-        try (PreparedStatement pstmt = conn.prepareStatement(query)) {
-            pstmt.setString(1, seqPost);
-
-            try (ResultSet rs = pstmt.executeQuery()) {
-                while (rs.next()) {
-                    CommentDTO comment = new CommentDTO();
-                    comment.setSeq(rs.getString("seq"));
-                    comment.setSeqPost(rs.getString("seqPost"));
-                    comment.setSeqUser(rs.getString("seqUser"));
-                    comment.setContent(rs.getString("content"));
-                    comment.setWriteDate(rs.getString("writeDate"));
-                    comment.setLikeCount(rs.getInt("likeCount"));
-                    comment.setDislikeCount(rs.getInt("dislikeCount"));
-                    comment.setReportCount(rs.getInt("reportCount"));
-                    comment.setReplyCount(rs.getInt("replyCount"));
-                    comment.setNickname(rs.getString("nickname"));
-                    comment.setProfileImage(rs.getString("profileImage"));
-                    comments.add(comment);
-                }
+        
+        try {
+            String sql = "SELECT tc.*, tm.nickname, tp.fileLink AS profileImage " +
+                         "FROM tblComments tc " +
+                         "JOIN tblUser tu ON tc.seqUser = tu.seq " +
+                         "JOIN tblMember tm ON tu.idMember = tm.id " +
+                         "LEFT JOIN tblProfileimg tp ON tm.seqProfileimg = tp.seq " +
+                         "WHERE tc.seqPost = ?";
+            
+            pstat = conn.prepareStatement(sql);
+            pstat.setString(1, postSeq);
+            
+            rs = pstat.executeQuery();
+            
+            while (rs.next()) {
+                CommentDTO comment = new CommentDTO();
+                comment.setSeq(rs.getString("seq"));
+                comment.setSeqPost(rs.getInt("seqPost"));
+                comment.setSeqUser(rs.getInt("seqUser"));
+                comment.setContent(rs.getString("content"));
+                comment.setWriteDate(rs.getString("writeDate"));
+                comment.setLikeCount(rs.getInt("likeCount"));
+                comment.setDislikeCount(rs.getInt("dislikeCount"));
+                comment.setReportCount(rs.getInt("reportCount"));
+                comment.setNickname(rs.getString("nickname"));
+                comment.setProfileImage(rs.getString("profileImage"));
+                
+                comments.add(comment);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        
         return comments;
     }
+    //댓글 작성
+    public int addComment(CommentDTO comment) {
+        try {
+            String sql = "INSERT INTO tblComments (seqPost, seqUser, content, writeDate, likeCount, dislikeCount, reportCount) " +
+                         "VALUES (?, ?, ?, SYSDATE, 0, 0, 0)";
+            
+            pstat = conn.prepareStatement(sql);
+            pstat.setInt(1, comment.getSeqPost());
+            pstat.setInt(2, comment.getSeqUser());
+            pstat.setString(3, comment.getContent());
+            
+            return pstat.executeUpdate();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return 0;
+    }
+ // 답글 조회
+    public List<CommentDTO> getReplyCommentsByCommentSeq(String commentSeq) {
+        List<CommentDTO> replyComments = new ArrayList<>();
+        try {
+            String sql = "SELECT trc.*, tm.nickname, tp.fileLink AS profileImage " +
+                         "FROM tblReplyComments trc " +
+                         "JOIN tblUser tu ON trc.seqUser = tu.seq " +
+                         "JOIN tblMember tm ON tu.idMember = tm.id " +
+                         "LEFT JOIN tblProfileimg tp ON tm.seqProfileimg = tp.seq " +
+                         "WHERE trc.seqComments = ?";
+            pstat = conn.prepareStatement(sql);
+            pstat.setString(1, commentSeq);
+            rs = pstat.executeQuery();
 
-    public List<CommentDTO> getRepliesByCommentSeq(String seqComments) {
-        List<CommentDTO> replies = new ArrayList<>();
-
-        String query = "SELECT r.seq, r.seqComments, r.seqUser, r.content, r.writeDate, r.likeCount, r.dislikeCount, r.reportCount, " +
-                "m.nickname, p.fileLink AS profileImage " +
-                "FROM tblReplyComments r " +
-                "JOIN tblUser u ON r.seqUser = u.idMember " +
-                "JOIN tblMember m ON u.idMember = m.id " +
-                "LEFT JOIN tblProfileimg p ON m.seqProfileimg = p.seq " +
-                "WHERE r.seqComments = ? " +
-                "ORDER BY r.writeDate";
-
-        try (PreparedStatement pstmt = conn.prepareStatement(query)) {
-            pstmt.setString(1, seqComments);
-
-            try (ResultSet rs = pstmt.executeQuery()) {
-                while (rs.next()) {
-                    CommentDTO reply = new CommentDTO();
-                    reply.setSeq(rs.getString("seq"));
-                    reply.setSeqComments(rs.getString("seqComments"));
-                    reply.setSeqUser(rs.getString("seqUser"));
-                    reply.setContent(rs.getString("content"));
-                    reply.setWriteDate(rs.getString("writeDate"));
-                    reply.setLikeCount(rs.getInt("likeCount"));
-                    reply.setDislikeCount(rs.getInt("dislikeCount"));
-                    reply.setReportCount(rs.getInt("reportCount"));
-                    reply.setNickname(rs.getString("nickname"));
-                    reply.setProfileImage(rs.getString("profileImage"));
-                    replies.add(reply);
-                }
+            while (rs.next()) {
+                CommentDTO replyComment = new CommentDTO();
+                replyComment.setSeq(rs.getString("seq"));
+                replyComment.setSeqComments(rs.getInt("seqComments"));
+                replyComment.setSeqUser(rs.getInt("seqUser"));
+                replyComment.setContent(rs.getString("content"));
+                replyComment.setWriteDate(rs.getString("writeDate"));
+                replyComment.setLikeCount(rs.getInt("likeCount"));
+                replyComment.setDislikeCount(rs.getInt("dislikeCount"));
+                replyComment.setReportCount(rs.getInt("reportCount"));
+                replyComment.setNickname(rs.getString("nickname"));
+                replyComment.setProfileImage(rs.getString("profileImage"));
+                replyComments.add(replyComment);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return replyComments;
+    }
+    //답글 작성
+    public int addReplyComment(CommentDTO replyComment) {
+        try {
+            String sql = "INSERT INTO tblReplyComments (seq, seqComments, seqUser, content, writeDate, likeCount, dislikeCount, reportCount) " +
+                         "VALUES (seqReplyComments.nextval, ?, ?, ?, SYSDATE, 0, 0, 0)";
 
-        return replies;
+            pstat = conn.prepareStatement(sql);
+            pstat.setInt(1, replyComment.getSeqComments());
+            pstat.setInt(2, replyComment.getSeqUser());
+            pstat.setString(3, replyComment.getContent());
+
+            return pstat.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 }

@@ -149,81 +149,154 @@
                 <span><i class="material-icons">report</i> 신고</span>
               </div>     
             </div>
-            <!-- 댓글 시작 -->
-			<!-- 댓글 목록 출력 -->
-			<div class="comments">
-                <c:forEach var="comment" items="${comments}">
-                    <div class="comment-box">
-                        <div class="post-header" id="commentlevel1head">
-                            <div class="post-info" id="commentlevel1info">
-                                <img class="user-image" src="${comment.profileImage}" alt="사용자 이미지">
-                                <div class="post-info">
-                                    <span>작성자: ${comment.nickname}</span>
-                                    <span>등록일: ${comment.writeDate}</span>
-                                </div>
-                            </div>
-                            <div class="post-actions-comment">
-                                <span><i class="material-icons">thumb_up</i> ${comment.likeCount}</span>
-                                <span><i class="material-icons">thumb_down</i> ${comment.dislikeCount}</span>
-                                <span><i class="material-icons">report</i> 신고</span>
-                                <span>답글 (${comment.replyCount})</span>
-                            </div>
-                        </div>
-                        <div class="post-content">
-                            <div id="commentcontent">${comment.content}</div>
-                        </div>
-                        
-                        
-                        <!-- 대댓글 -->
-                        <c:if test="${comment.replyCount > 0}">
-                            <div class="replies">
-                                <c:forEach var="reply" items="${replyDAO.getRepliesByCommentSeq(comment.seq)}">
-                                    <div class="comment-box comment-reply">
-                                        <div class="post-header" id="commentlevel1head">
-                                            <div class="post-info" id="commentlevel1info">
-                                                <i class="material-icons" id="subcommentarrow">subdirectory_arrow_right</i>
-                                                <img class="user-image" src="${reply.profileImage}" alt="사용자 이미지">
-                                                <div class="post-info">
-                                                    <span>작성자: ${reply.nickname}</span>
-                                                    <span>등록일: ${reply.writeDate}</span>
-                                                </div>
-                                            </div>
-                                            <div class="post-actions-comment">
-                                                <span><i class="material-icons">thumb_up</i> ${reply.likeCount}</span>
-                                                <span><i class="material-icons">thumb_down</i> ${reply.dislikeCount}</span>
-                                                <span><i class="material-icons">report</i> 신고</span>
-                                            </div>
-                                        </div>
-                                        <div class="post-content">
-                                            <div id="commentcontent">${reply.content}</div>
-                                        </div>
-                                    </div>
-                                </c:forEach>
-                            </div>
-                        </c:if>
+                        <!-- 댓글 시작 -->
+<div class="comments">
+    <c:forEach var="comment" items="${comments}">
+        <div class="comment-box">
+            <div class="post-header" id="commentlevel1head">
+                <div class="post-info" id="commentlevel1info">
+                    <c:choose>
+                        <c:when test="${not empty comment.profileImage}">
+                            <img class="user-image" src="${comment.profileImage}" alt="사용자 이미지">
+                        </c:when>
+                        <c:otherwise>
+                            <img class="user-image" src="/profile-images/default-user-image.jpg" alt="기본 사용자 이미지">
+                        </c:otherwise>
+                    </c:choose>
+                    <div class="post-info">
+                        <span>작성자: ${comment.nickname}</span>
+                        <span>등록일: ${comment.writeDate}</span>
                     </div>
-                </c:forEach>
+                </div>
+                <div class="post-actions-comment">
+                    <span><i class="material-icons">thumb_up</i> ${comment.likeCount}</span>
+                    <span><i class="material-icons">thumb_down</i> ${comment.dislikeCount}</span>
+                    <span><i class="material-icons">report</i> 신고</span>
+                    <span class="reply-toggle">답글</span>
+                </div>
             </div>
-            <!-- 댓글 쓰기 끝 -->
+            <div class="post-content">
+                <div id="commentcontent">${comment.content}</div>
+            </div>
+            
+<!-- 답글 작성 폼 -->
+            <div class="comment-form reply-form" style="display: none;">
+                <form onsubmit="return false;">
+                    <input type="hidden" name="seqComments" value="${comment.seq}">
+                    <input type="hidden" name="seqUser" value="${sessionScope.seqUser}">
+                    <input type="hidden" name="seqPost" value="${post.seq}">
+                    <textarea name="content" placeholder="답글을 입력하세요."></textarea>
+                    <button type="button" onclick="addReplyComment(this)">답글 등록</button>
+                </form>
+            </div>
+        </div>
+              <!-- 대댓글 시작 -->
+              <c:forEach var="replyComment" items="${comment.replyComments}">
+            <div class="comment-box comment-reply">
+                <div class="post-header" id="commentlevel1head">
+                    <div class="post-info" id="commentlevel1info">
+                        <i class="material-icons" id="subcommentarrow">subdirectory_arrow_right</i>
+                        <c:choose>
+                            <c:when test="${not empty replyComment.profileImage}">
+                                <img class="user-image" src="${replyComment.profileImage}" alt="사용자 이미지">
+                            </c:when>
+                            <c:otherwise>
+                                <img class="user-image" src="/profile-images/default-user-image.jpg" alt="기본 사용자 이미지">
+                            </c:otherwise>
+                        </c:choose>
+                        <div class="post-info">
+                            <span>작성자: ${replyComment.nickname}</span>
+                            <span>등록일: ${replyComment.writeDate}</span>
+                        </div>
+                    </div>
+                    <div class="post-actions-comment">
+                        <span><i class="material-icons">thumb_up</i> ${replyComment.likeCount}</span>
+                        <span><i class="material-icons">thumb_down</i> ${replyComment.dislikeCount}</span>
+                        <span><i class="material-icons">report</i> 신고</span>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <div id="commentcontent">${replyComment.content}</div>
+                </div>
+            </div>
+        </c:forEach>
+              <!-- 대댓글 끝 -->
+              </c:forEach>
+</div>
+<input type="hidden" name="seqUser" value="${not empty sessionScope.seqUser ? sessionScope.seqUser : ''}">
+<!-- 댓글 쓰기 시작 -->
+<div class="comment-form">
+    <form action="/board/addComment.do" method="post">
+        <input type="hidden" name="seqPost" value="${post.seq}">
+        <input type="hidden" name="seqUser" value="${sessionScope.seqUser}">
+        <textarea name="content" placeholder="댓글을 입력하세요."></textarea>
+        <button type="submit">댓글 등록</button>
+    </form>
+</div>
+
+<!-- 댓글 쓰기 끝 -->
+           
           </div>
           <!-- 게시판 게시물 끝 -->
         </div>
-        
         <!-- fakecontent 끝 -->
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
         
     	</div>
     </div>
-
     <!-- JavaScript Libraries -->
    
     <!-- Template Javascript -->
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
     <script>
-c
+    document.addEventListener('DOMContentLoaded', function() {
+    const sidebarToggler = document.getElementById('sidebar-toggler');
+    const sidebar = document.querySelector('.sidebar');
+    const content = document.querySelector('.content');
+        sidebarToggler.addEventListener('click', function() {
+        sidebar.classList.toggle('hidden');
+        content.classList.toggle('expanded');
+        });
+    });
+    
+    
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        const replyToggles = document.querySelectorAll('.reply-toggle');
+        
+        replyToggles.forEach(function(toggle) {
+            toggle.addEventListener('click', function() {
+                const replyForm = this.parentNode.parentNode.nextElementSibling.nextElementSibling;
+                replyForm.style.display = replyForm.style.display === 'none' ? 'block' : 'none';
+            });
+        });
+    });
+    function addReplyComment(btn) {
+    	var form = btn.closest('form');
+    	var seqComments = form.querySelector('input[name="seqComments"]').value;
+    	var seqUser = form.querySelector('input[name="seqUser"]').value;
+    	var seqPost = form.querySelector('input[name="seqPost"]').value;
+    	var content = form.querySelector('textarea[name="content"]').value;
+
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // 답글 작성 성공 시 처리할 내용
+                    alert('답글이 등록되었습니다.');
+                    location.reload(); // 페이지 새로고침
+                } else {
+                    // 답글 작성 실패 시 처리할 내용
+                    alert('답글 등록에 실패했습니다.');
+                }
+            }
+        };
+
+        xhr.open('POST', '${pageContext.request.contextPath}/board/addReplyComment.do', true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.send('seqComments=' + seqComments + '&seqUser=' + seqUser + '&seqPost=' + seqPost + '&content=' + encodeURIComponent(content));
+    }
     </script>
 </body>
-
 </html>
-

@@ -1135,32 +1135,35 @@ public class AccountDAO {
 		ArrayList<AccountInfoDTO> list = new ArrayList<AccountInfoDTO>();
 		try {
 			
-			String sql = "select\r\n"
-					+ "    ai.seq as accinfonum,\r\n"
-					+ "    ai.content as aicontent,\r\n"
-					+ "    accinfodate,\r\n"
-					+ "    price,\r\n"
-					+ "    location,\r\n"
-					+ "    me.ID as idMember,\r\n"
-					+ "    acate.NAME as acName,\r\n"
-					+ "    seqfixedfluctuationcheck,\r\n"
-					+ "    PERIOD,\r\n"
-					+ "    ai.SEQDEPOSITWITHDRAWALSTATUS as spendstatus,\r\n"
-					+ "    rcl.CONTENT as paymentmethod,\r\n"
-					+ "    mc.ALIAS as name,\r\n"
-					+ "    mc.CARDNUMBER as cardnumber\r\n"
-					+ "from TBLACCINFO ai\r\n"
-					+ "    inner join TBLACC ac on ai.SEQACC = ac.SEQ\r\n"
-					+ "    inner join TBLMEMBER me on ac.IDMEMBER = me.ID\r\n"
-					+ "    inner join TBLACCCATEGORYLIST acl on ai.SEQ = acl.SEQACCINFO\r\n"
-					+ "    inner join TBLACCCATEGORY acate on acl.SEQACCCATEGORY = acate.SEQ\r\n"
-					+ "    inner join TBLDEPOSITWITHDRAWALSTATUS dws on ai.SEQDEPOSITWITHDRAWALSTATUS = dws.SEQ\r\n"
-					+ "    inner join TBLREASONCHANGECATEGORY rc on ai.SEQREASONCHANGECATEGORY = rc.SEQ\r\n"
-					+ "    inner join TBLREASONSCHANGELIST rcl on rc.SEQREASONSCHANGELIST = rcl.SEQ\r\n"
-					+ "    inner join TBLMYCARD mc on rc.SEQMYCARD = mc.SEQ\r\n"
-					+ "    inner join TBLFIXEDDEPOSITWITHDRAWALCHECK fdw on ai.SEQFIXEDFLUCTUATIONCHECK = fdw.SEQ\r\n"
-					+ "    inner join TBLFIXEDFLUCTUATIONPERIOD ffp on fdw.SEQFIXEDFLUCTUATIONPERIOD = ffp.SEQ\r\n"
-					+ "    where me.ID = ?";
+			String sql = "select  ai.seq as accinfonum,\r\n"
+					+ "					    ai.content as aicontent,\r\n"
+					+ "					    ai.SEQACC as seqacc,\r\n"
+					+ "                     ai.SEQREASONCHANGECATEGORY as seqrcc,\r\n"
+					+ "                     ai.SEQFIXEDFLUCTUATIONCHECK as seqffc,\r\n"
+					+ "					    acl.SEQACCCATEGORY,\r\n"
+					+ "					    accinfodate,\r\n"
+					+ "					    price,\r\n"
+					+ "					    location,\r\n"
+					+ "					    me.ID as idMember,\r\n"
+					+ "					    acate.NAME as acName,\r\n"
+					+ "					    seqfixedfluctuationcheck,\r\n"
+					+ "					    PERIOD,\r\n"
+					+ "					    ai.SEQDEPOSITWITHDRAWALSTATUS as spendstatus,\r\n"
+					+ "					    rcl.CONTENT as paymentmethod,\r\n"
+					+ "					    mc.ALIAS as name,\r\n"
+					+ "					    mc.CARDNUMBER as cardnumber\r\n"
+					+ "					from TBLACCINFO ai\r\n"
+					+ "					    inner join TBLACC ac on ai.SEQACC = ac.SEQ\r\n"
+					+ "					    inner join TBLMEMBER me on ac.IDMEMBER = me.ID\r\n"
+					+ "					    inner join TBLACCCATEGORYLIST acl on ai.SEQ = acl.SEQACCINFO\r\n"
+					+ "					    inner join TBLACCCATEGORY acate on acl.SEQACCCATEGORY = acate.SEQ\r\n"
+					+ "					    inner join TBLDEPOSITWITHDRAWALSTATUS dws on ai.SEQDEPOSITWITHDRAWALSTATUS = dws.SEQ\r\n"
+					+ "					    inner join TBLREASONCHANGECATEGORY rc on ai.SEQREASONCHANGECATEGORY = rc.SEQ\r\n"
+					+ "					    inner join TBLREASONSCHANGELIST rcl on rc.SEQREASONSCHANGELIST = rcl.SEQ\r\n"
+					+ "					    inner join TBLMYCARD mc on rc.SEQMYCARD = mc.SEQ\r\n"
+					+ "					    inner join TBLFIXEDDEPOSITWITHDRAWALCHECK fdw on ai.SEQFIXEDFLUCTUATIONCHECK = fdw.SEQ\r\n"
+					+ "					    inner join TBLFIXEDFLUCTUATIONPERIOD ffp on fdw.SEQFIXEDFLUCTUATIONPERIOD = ffp.SEQ\r\n"
+					+ "					    where me.ID = ?";
 			
 			
 			pstat = conn.prepareStatement(sql);
@@ -1171,6 +1174,9 @@ public class AccountDAO {
 			
 			while(rs.next()) {
 				AccountInfoDTO dto = new AccountInfoDTO();
+				dto.setSeqAccInfo(rs.getString("accinfonum"));
+				dto.setSeqAcc(rs.getString("seqacc")); //추가
+				dto.setSeqReasonChangeCategory(rs.getString("seqrcc")); //추가
 				dto.setContent(rs.getString("aicontent"));
 				dto.setAccInfoDate(rs.getString("accinfodate"));
 				dto.setPrice(rs.getInt("price"));
@@ -1254,10 +1260,6 @@ public class AccountDAO {
 	public ArrayList<AccountInfoDTO> getmycards(String id) {
 		ArrayList<AccountInfoDTO> list = new ArrayList<AccountInfoDTO>();
 		try {
-			System.out.println("CARD START HERE");
-			System.out.println(id);
-			
-			
 			String sql = "select\r\n"
 					+ "    content as paymentmethod,\r\n"
 					+ "    CARDNUMBER as cardnumber,\r\n"
@@ -1278,7 +1280,6 @@ public class AccountDAO {
 				dto.setCardNumber(rs.getString("cardnumber"));
 				list.add(dto);
 			}
-			System.out.println(list);
 			return list;
 			
 			
@@ -1289,6 +1290,77 @@ public class AccountDAO {
 		
 		
 		return null;
+	}
+
+
+	public int updateAcc(AccountInfoDTO dto) {
+		
+		try {
+			
+			
+			String sql = "UPDATE TBLACCINFO SET CONTENT = ?, ACCINFODATE = ?, PRICE = ?, LOCATION = ?, SEQACC = ?, SEQREASONCHANGECATEGORY = ?, SEQFIXEDFLUCTUATIONCHECK = ?, SEQDEPOSITWITHDRAWALSTATUS = ?  WHERE SEQ = ?";
+	        pstat = conn.prepareStatement(sql);
+	        pstat.setString(1, dto.getContent());
+	        pstat.setString(2, dto.getAccInfoDate());
+	        pstat.setInt(3, dto.getPrice());
+	        pstat.setString(4, dto.getLocation());
+	        pstat.setInt(5, Integer.parseInt(dto.getSeqAcc()));
+	        pstat.setInt(6, Integer.parseInt(dto.getSeqReasonChangeCategory()));
+	        pstat.setInt(7, Integer.parseInt(dto.getFdwContent()));
+	        pstat.setInt(8, Integer.parseInt(dto.getSeqDepositWithdrawalStatus()));
+	        pstat.setInt(9, Integer.parseInt(dto.getSeqAccInfo()));
+	        int firstUpdateResult = pstat.executeUpdate();
+
+	        // Second update statement
+	        sql = "UPDATE TBLACCCATEGORYLIST SET SEQACCCATEGORY = ?, SEQACCINFO = ? WHERE SEQ = ?";
+	        pstat = conn.prepareStatement(sql);
+	        pstat.setInt(1, Integer.parseInt(dto.getSeqAccCategory()));
+	        pstat.setInt(2, Integer.parseInt(dto.getSeqAccInfo()));
+	        pstat.setInt(3, Integer.parseInt(dto.getSeqAccInfo()));
+	        int secondUpdateResult = pstat.executeUpdate();
+
+
+	        System.out.println("First Update Result: " + firstUpdateResult + ", Second Update Result: " + secondUpdateResult);
+	        return firstUpdateResult;
+
+		} catch (Exception e) {
+			System.out.println("AccountDAO.updateAcc");
+			e.printStackTrace();
+		}
+		
+		
+		return 0;
+	}
+
+	public int delAcc(AccountInfoDTO dto) {
+		
+		try {
+			String sql = "DELETE FROM TBLACCCATEGORYLIST WHERE SEQACCINFO = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setInt(1, Integer.parseInt(dto.getSeqAccInfo()));
+			int firstdelResult = pstat.executeUpdate();
+			
+			sql = "DELETE FROM TBLACCINFO WHERE SEQ = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setInt(1, Integer.parseInt(dto.getSeqAccInfo()));
+			
+			int seconddelResult = pstat.executeUpdate();
+			
+			System.out.println("first: "+firstdelResult);
+			System.out.println("second: "+seconddelResult);
+			
+			
+			return seconddelResult;
+			
+			
+		} catch (Exception e) {
+			System.out.println("AccountDAO.delAcc");
+			e.printStackTrace();
+		}
+		
+		return 0;
 	}
 
 
