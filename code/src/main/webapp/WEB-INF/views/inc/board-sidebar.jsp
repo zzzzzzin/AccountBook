@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<%-- <%@include file="/WEB-INF/views/inc/asset.jsp"%> --%>
+<%@include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <style>
 	#assignment_board {
@@ -16,7 +16,7 @@
 </head>
 
 <div class="sidebar">
-            <div class="logo">이미지</div>
+            <div id="buddy-budget-logo"><a href="/account/index.do"><span data-attr="Budget">Budget</span><span data-attr="Buddy">Buddy</span></a></div>
             <nav>
               <ul>
                 <li><a href="/account/board/view.do"><i class="fas fa-home"></i> 게시판 홈</a></li>

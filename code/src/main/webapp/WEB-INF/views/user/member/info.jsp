@@ -23,12 +23,12 @@
 
     <!-- Libraries Stylesheet -->
 </head>
-<link rel="stylesheet" href="../../../css/combine.css">
+<!-- <link rel="stylesheet" href="../../../css/combine.css"> -->
 <style>
-   #fakecontent{
-    display: flex;
-    justify-content: center;
-   }
+/*    #fakecontent{ */
+/*     display: flex; */
+/*     justify-content: center; */
+/*    } */
 
    .myPage-mypage {
   width: 100%;
