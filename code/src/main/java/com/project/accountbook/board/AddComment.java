@@ -20,53 +20,26 @@ public class AddComment extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("UTF-8");
-        int seqPost = Integer.parseInt(req.getParameter("seqPost"));
-        int seqUser = 0;
-        int seqComments = 0; // 새로 추가
-
-        // 세션에서 seqUser 값 가져오기
-        HttpSession session = req.getSession();
-        if (session.getAttribute("seqUser") != null) {
-            seqUser = (int) session.getAttribute("seqUser");
-        }
-
-        String content = req.getParameter("content");
-
-        // seqUser 값이 유효한지 확인
-        if (seqUser == 0) {
-            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            resp.getWriter().write("Invalid seqUser");
-            return;
-        }
-
-        // content 값이 비어있는지 확인
-        if (content == null || content.trim().isEmpty()) {
-            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            resp.getWriter().write("Empty comment content");
-            return;
-        }
-
-        // seqComments 값이 있는 경우 (답글 작성일 때)
-        String seqCommentsStr = req.getParameter("seqComments");
-        if (seqCommentsStr != null && !seqCommentsStr.isEmpty()) {
-            seqComments = Integer.parseInt(seqCommentsStr);
-        }
-
-        CommentDTO commentDto = new CommentDTO();
-        commentDto.setSeqPost(seqPost);
-        commentDto.setSeqUser(seqUser);
-        commentDto.setContent(content);
-
-        int result = cdao.addComment(commentDto);
-
-        resp.setContentType("text/plain");
-        resp.setCharacterEncoding("UTF-8");
-        if (result > 0) {
-            resp.getWriter().write("Success");
-        } else {
-            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            resp.getWriter().write("Failed to add comment");
-        }
+    	req.setCharacterEncoding("UTF-8");
+    	String seqPost = req.getParameter("paramSeq");
+        String seqUser = req.getParameter("user");
+        String content = req.getParameter("comment");
+        
+        // CommentDTO 객체 생성 및 데이터 설정
+        CommentDTO dto = new CommentDTO();
+        CommentDAO dao = new CommentDAO();
+        System.out.println("comment start");
+        System.out.println(seqPost);
+        System.out.println(seqUser);
+        System.out.println(content);
+        System.out.println("comment start");
+        dto.setContent(content);
+        dto.setSeqPost(Integer.parseInt( seqPost));
+        dto.setSeqUser(Integer.parseInt(seqUser));
+        
+        int response = dao.addComment(dto); 
+        
+        System.out.println("response: "+response);
+        // CommentDAO를 사용하여 댓글 저장
     }
 }

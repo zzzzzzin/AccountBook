@@ -335,7 +335,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var user = ${sessionScope.seqUser};
 
         $.ajax({
-            url: '/account/board/addComment.do', // Use the form's action attribute or default
+            url: '/account/board/add-comment.do', // Use the form's action attribute or default
             type: 'POST',
             data: {
                 paramSeq: paramseq,
