@@ -123,14 +123,14 @@
 
 /* 덮어쓰기 */
 .dropdown-item.active, .dropdown-item:active {
-    color: #FF6556 !important;
+    color: #FC8E57 !important;
     text-decoration: none;
     background-color: #EDFDF2 !important;
 }
 
 .sidebar .navbar .dropdown-item:hover {
 	background-color: #C4DED3 !important;
-	color: #FF6E8C;
+	color: #FC8E57;
 }
 /*** Navbar ***/
 .sidebar .navbar .navbar-nav .nav-link {
@@ -144,9 +144,9 @@
 
 .sidebar .navbar .navbar-nav .nav-link:hover,
 .sidebar .navbar .navbar-nav .nav-link.active {
-    color: #FF6E8C;
+    color: #FC8E57;
     background: #D9EDDF;
-    border-color: #FF6E8C;
+    border-color: #FC8E57;
 }
 
 .sidebar .navbar .navbar-nav .nav-link i {

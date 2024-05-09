@@ -9,26 +9,7 @@
 @import url('https://fonts.googleapis.com/css?family=Rubik:700&display=swap');
 
 
-/* * { */
-/*   box-sizing: border-box; */
-/*   &::before, &::after { */
-/*     box-sizing: border-box; */
-/*   } */
-/* } */
-
-/* body { */
-/*   font-family: 'Rubik', sans-serif; */
-/*   font-size: 1rem; */
-/*   line-height: 1.5; */
-/*   display: flex; */
-/*   align-items: center; */
-/*   justify-content: center; */
-/*   margin: 0; */
-/*   min-height: 100vh; */
-/*   background: #fff; */
-/* } */
-
-.header-content {
+/* .header-content {
   position: relative;
   display: inline-block;
   cursor: pointer;
@@ -40,7 +21,7 @@
   font-family: inherit;
   background-color: rgb(0 0 0 / 0%);
   
-  &.learn-more {
+  &.header-content-item {
     font-weight: 600;
     color: #382b22;
     text-transform: uppercase;
@@ -82,7 +63,7 @@
       }
     }
   }
-}
+} */
 
 
   .header-content {
@@ -92,47 +73,66 @@
 	margin-left: 100px;
 	margin: 0 20px;
     border:none;
-    
+        
     box-sizing: border-box;
-  &::before, &::after {
-    box-sizing: border-box;
+	  &::before, &::after {
+	    box-sizing: border-box;
+	  }
   }
+  
+  .header-content:hover,
+  .header-content.active {
+   	transform: translate(0, 0.25em);
+  	color: #EFFDF6;
+  	font-weight: bold;
+  	font-weight: 600;
   }
-  
-/*   #navheader nav a { */
-/*     color: #333; */
-/*     text-decoration: none; */
-/*     font-weight: bold; */
-/*   } */
-  
-/*   #navheader nav a:hover { */
-/*     color: #000; */
-/*   } */
-  
+ 
+ .header-content:hover::before {
+ }
+ .header-content.active::before {
+ }
 
+  
 </style>
 </head>
 
 <header id="navheader">
 	<nav>
-            <button id="view-header-btn" class="header-content" onclick="board()">게시판</button>
-            <button id="calendar-header-btn" class="header-content" onclick="dashBoard()">대시보드</button>
-            <button id="recommendation-header-btn" class="header-content" onclick="cardRecommendation()">카드추천</button>
-            <button id="member/info-header-btn" class="header-content" onclick="myPage()">마이페이지</button>
-
-			<c:if test="${empty id}">
-<!-- 				<li class="header-content"><a href="/account/user/login.do">로그인</a></li> -->
-				<button id="login-header-btn" class="header-content" onclick="login()">로그인</button>
-			</c:if>
-
-			<c:if test="${not empty id}">
-<!-- 				<li class="content1"><a href="/account/user/logout.do">로그아웃</a></li> -->
-				<button id="logout-header-btn" class="header-content" onclick="logout()">로그아웃</button>
-			</c:if>
-
+            <div id="view-header-btn" class="">
+           	 	<a href="/account/board/view.do" class="header-content ">게시판</a>
+           	 	<a href="/account/account/calendar.do" class="header-content ">대시보드</a>
+           	 	<a href="/account/card/recommendation.do" class="header-content ">카드추천</a>
+           	 	<a href="/account/user/member/info.do" class="header-content ">마이페이지</a>
+           	 	
+				<c:if test="${empty id}">
+	           	 	<a href="/account/user/login.do" class="header-content ">로그인</a>
+				</c:if>
+				<c:if test="${not empty id}">
+	           	 	<a href="/account/user/logout.do" class="header-content ">로그아웃</a>
+				</c:if>
+            </div>
 	</nav>
 </header>
 <script>
+
+	document.addEventListener('DOMContentLoaded', function() {
+	    const currentPath = window.location.pathname;
+	
+	 	// dropdown-item 요소의 href와 동일한 경우에 active 클래스 추가
+	    const headerContents = document.querySelectorAll('.header-content');
+	
+	    headerContents.forEach(function(item) {
+	        const href = item.getAttribute('href');
+	
+	        if (currentPath === href) {
+// 	            item.classList.add('header-content-item');
+	            item.classList.add('active');
+	        }
+	    });
+	
+
+	});
 
 
 		// 현재 URL
@@ -159,36 +159,7 @@
 		    if (buddyBudgetLogo) {
 		        buddyBudgetLogo.remove();
 		    }
-		}
-		
-// 		if (currentUrl.endsWith("/board/view.do")) {
-// 		    document.querySelectorAll(".header-content").forEach(function(item) {
-// 		        item.style.display = "none";
-// 		    });
-		
-		function logout() {
-		    window.location.href = "/account/user/logout.do";
-		}
-		
-		function login() {
-		    window.location.href = "/account/user/login.do";
-		}
-		function board() {
-		    window.location.href = "/account/board/view.do";
-		}
-		
-		function dashBoard() {
-		    window.location.href = "/account/account/calendar.do";
-		}
-		
-		function cardRecommendation() {
-		    window.location.href = "/account/card/recommendation.do";
-		}
-		
-		function myPage() {
-		    window.location.href = "/account/user/member/info.do";
-		}
-		
+		}	
 		
 </script>
 

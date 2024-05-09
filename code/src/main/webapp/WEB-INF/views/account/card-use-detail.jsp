@@ -20,7 +20,8 @@
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   
     <!-- Libraries Stylesheet -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
@@ -65,17 +66,26 @@
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
 
-<div class="content-total-style">
+	<div class="content-total-style">
+			<div class="content-header">
+					<div class="content-title-style"><h3>카드 사용</h3></div>
+					
+					<form id="selectDateForm" method="GET">
+						<div class="date-range-total-box">
+							<div class="date-range-box">
+								<div class="date-select-input-label">
+									<label for="start-date-myCardTotal">시작일</label> <input type="text" name = "startDate" id="start-date" class="date-input-myCardTotal input-style-form" value="${map.startDate}">
+								</div>
+								<div class="date-select-input-label">
+									<label for="end-date">종료일</label><input type="text" name = "endDate" id="end-date" class="date-input-myCardTotal input-style-form" value="${map.endDate}">
+								</div>
+							</div>
+								<input type="submit" value="확인" class="purple-btn long-btn"/>
+							</div>
+					</form>
+				</div>
+
 	<div class="card-use-detail-box">
-		<form id="selectDateForm" method="GET">
-			<div class="date-range-total-box">
-			<div class="date-range-box">
-				<label for="start-date-myCardTotal">시작일 <input type="text" name = "startDate" id="start-date" class="date-input-myCardTotal" value="${map.startDate}"> </label> 
-				<label for="end-date">종료일 <input type="text" name = "endDate" id="end-date" class="date-input-myCardTotal" value="${map.endDate}"></label> 
-			</div>
-				<input type="submit" value="확인" class="dark-blue-btn long-btn"/>
-			</div>
-		</form>
 		
 		<c:if test="${not empty list}">
     			<img src="/account/asset/images/${list[0].fileLink}" id="cardDetailImgPlace">
@@ -113,9 +123,6 @@
 
 
 			<!-- fakecontent 끝 -->
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-        
     </div>
     </div>
 
@@ -143,45 +150,6 @@
             dateFormat: "yy-mm-dd"
         });
 
-//         // 검색 버튼 클릭 이벤트 처리
-//         $("#search-btn").click(function() {
-//             var startDate = $("#start-date").val();
-//             var endDate = $("#end-date").val();
-
-//             // 서버에서 데이터 가져오기 (AJAX 요청)
-//             $.ajax({
-//                 url: "/get-transactions",
-//                 method: "POST",
-//                 data: {
-//                     startDate: startDate,
-//                     endDate: endDate
-//                 },
-//                 success: function(response) {
-//                     // 가져온 데이터를 날짜 순으로 정렬
-//                     var transactions = response.sort(function(a, b) {
-//                         return new Date(b.date) - new Date(a.date);
-//                     });
-
-//                     // 데이터를 테이블에 표시
-//                     var transactionList = $("#transaction-list");
-//                     transactionList.empty();
-
-//                     transactions.forEach(function(transaction) {
-//                         var row = "<tr>" +
-//                             "<td>" + transaction.date + "</td>" +
-//                             "<td>" + transaction.amount + "</td>" +
-//                             "<td>" + transaction.category + "</td>" +
-//                             "<td>" + transaction.payee + "</td>" +
-//                             "<td>" + (transaction.isIncome ? "입금" : "지출") + "</td>" +
-//                             "</tr>";
-//                         transactionList.append(row);
-//                     });
-//                 },
-//                 error: function() {
-//                     alert("데이터를 가져오는데 실패했습니다.");
-//                 }
-//             });
-//         });
     });
 
     </script>

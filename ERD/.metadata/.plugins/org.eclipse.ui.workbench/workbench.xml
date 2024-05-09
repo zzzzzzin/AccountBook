@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="5" version="2.0">
+<<<<<<< HEAD
+<workbench progressCount="14" version="2.0">
+=======
+<workbench progressCount="15" version="2.0">
+>>>>>>> 26e0c5bc32585ba2cb12e24c4b41f3ee7016b00f
 <workbenchAdvisor/>
-<window height="1039" minimized="true" width="974" x="-7" y="0">
+<window height="1039" maximized="true" minimized="true" width="974" x="-7" y="0">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
 <itemSize x="160"/>
@@ -35,15 +39,14 @@
 </editor>
 </editors>
 <views>
-<view id="org.eclipse.ui.views.ResourceNavigator" partName="네비게이터">
-<viewState LINK_NAVIGATOR_TO_EDITOR="0" sorter="1">
-<filters>
-<filter element=".*" isEnabled="false"/>
-</filters>
-</viewState>
-</view>
 <view id="com.tomato.exerd.ui.views.thumbnail" partName="썸네일">
 <viewState/>
+</view>
+<view id="org.eclipse.ui.views.ResourceNavigator" partName="네비게이터">
+<viewState LINK_NAVIGATOR_TO_EDITOR="0" sorter="1">
+<filters>&#x0A;<filter element=".*" isEnabled="false"/>
+</filters>
+</viewState>
 </view>
 <view id="com.tomato.exerd.validate.ui.ValidateView" partName="검토"/>
 <view id="com.tomato.exerd.modelview3.ModelView3" partName="모델">
@@ -96,11 +99,17 @@
 <layout>
 <mainWindow>
 <info folder="true" part="leftFolder">
+<<<<<<< HEAD
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.ui.views.ResourceNavigator" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+=======
 <folder activePageID="org.eclipse.ui.views.ResourceNavigator" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ResourceNavigator" label="네비게이터"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
 </presentation>
+>>>>>>> 26e0c5bc32585ba2cb12e24c4b41f3ee7016b00f
 </folder>
 </info>
 <info folder="true" part="stickyFolderRight" ratio="0.75" ratioLeft="750" ratioRight="250" relationship="2" relative="leftFolder">
@@ -110,6 +119,20 @@
 <page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
 </folder>
 </info>
+<<<<<<< HEAD
+<info part="org.eclipse.ui.editorss" ratio="0.17935872" ratioLeft="179" ratioRight="819" relationship="2" relative="leftFolder"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@5f4170" ratio="0.7789988" ratioLeft="638" ratioRight="181" relationship="2" relative="org.eclipse.ui.editorss">
+<folder appearance="2" expanded="2">
+<page content="com.tomato.exerd.ui.views.thumbnail" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+</folder>
+</info>
+<info folder="true" part="rightFolder" ratio="0.24960506" ratioLeft="158" ratioRight="475" relationship="4" relative="org.eclipse.ui.internal.ViewStack@5f4170">
+<folder appearance="2" expanded="2">
+<page content="com.tomato.exerd.modelview3.ModelView3" label="LabelNotFound"/>
+<page content="org.eclipse.ui.views.ContentOutline" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+=======
 <info part="org.eclipse.ui.editorss" ratio="0.18" ratioLeft="180" ratioRight="820" relationship="2" relative="leftFolder"/>
 <info folder="true" part="org.eclipse.ui.internal.ViewStack@44120" ratio="0.77926826" ratioLeft="639" ratioRight="181" relationship="2" relative="org.eclipse.ui.editorss">
 <folder activePageID="com.tomato.exerd.ui.views.thumbnail" appearance="2" expanded="2">
@@ -127,6 +150,7 @@
 <part id="0"/>
 <part id="1"/>
 </presentation>
+>>>>>>> 26e0c5bc32585ba2cb12e24c4b41f3ee7016b00f
 </folder>
 </info>
 <info folder="true" part="bottomFolder" ratio="0.6996904" ratioLeft="452" ratioRight="194" relationship="4" relative="org.eclipse.ui.editorss">
@@ -142,12 +166,19 @@
 </presentation>
 </folder>
 </info>
+<<<<<<< HEAD
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@1a5328c" ratio="0.2985782" ratioLeft="189" ratioRight="444" relationship="4" relative="leftFolder">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.gef.ui.palette_view" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+=======
 <info folder="true" part="org.eclipse.ui.internal.ViewStack@13b9c57" ratio="0.2987616" ratioLeft="193" ratioRight="453" relationship="4" relative="leftFolder">
 <folder activePageID="org.eclipse.gef.ui.palette_view" appearance="2" expanded="2">
 <page content="org.eclipse.gef.ui.palette_view" label="Palette"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
 </presentation>
+>>>>>>> 26e0c5bc32585ba2cb12e24c4b41f3ee7016b00f
 </folder>
 </info>
 </mainWindow>
