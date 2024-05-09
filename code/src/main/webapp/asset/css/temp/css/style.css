@@ -130,12 +130,12 @@
 
 .sidebar .navbar .dropdown-item:hover {
 	background-color: #C4DED3 !important;
-	color: #F3EED9;
+	color: #FF6E8C;
 }
 /*** Navbar ***/
 .sidebar .navbar .navbar-nav .nav-link {
     padding: 7px 20px;
-    color: var(--dark);
+    color: #191C24;
     font-weight: 500;
     border-left: 3px solid #ffefca00;
     border-radius: 0 30px 30px 0;

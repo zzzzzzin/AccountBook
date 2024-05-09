@@ -14,7 +14,8 @@
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!--     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" >
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Icon Font Stylesheet -->
@@ -58,10 +59,10 @@
 			<!-- Content End -->
 			<div id="fakecontent">
 			<form method="GET">
-				<div id="periodcheck">
-					<button name="period" value="day" class="dark-blue-btn">일일</button>
-					<button name="period" value="week" class="dark-blue-btn">주간</button>
-					<button name="period"  value="month" class="dark-blue-btn">월간</button>
+				<div id="periodcheck" class="btn-group-style">
+					<button name="period" value="day" class="purple-btn button">일일</button>
+					<button name="period" value="week" class="purple-btn button">주간</button>
+					<button name="period"  value="month" class="purple-btn button">월간</button>
 				</div>
 			</form>
 
@@ -169,15 +170,25 @@
     <!-- Template Javascript -->
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
     <script>
-     
+    
     document.addEventListener('DOMContentLoaded', function() {
-    const sidebarToggler = document.getElementById('sidebar-toggler');
-    const sidebar = document.querySelector('.sidebar');
-    const content = document.querySelector('.content');
+        // 현재 URL에서 'period' 매개변수 값 가져오기
+        const urlParams = new URLSearchParams(window.location.search);
+        let periodParam = urlParams.get('period');
 
-        sidebarToggler.addEventListener('click', function() {
-        sidebar.classList.toggle('hidden');
-        content.classList.toggle('expanded');
+        // 선택된 값이 없을 때 기본값으로 "month" 설정
+        if (!periodParam) {
+            periodParam = "month";
+        }
+
+        // 버튼 요소 가져오기
+        const buttonElements = document.querySelectorAll('.purple-btn.button');
+
+        // 'period' 매개변수 값에 따라 해당 버튼에 'active' 클래스 추가
+        buttonElements.forEach(function(button) {
+            if (button.value === periodParam) {
+                button.classList.add('active');
+            }
         });
     });
     

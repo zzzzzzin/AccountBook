@@ -8,6 +8,7 @@
 
 <style>
 </style>
+
 </head>
 
 <div class="sidebar">
@@ -19,7 +20,7 @@
 	<nav class="navbar">
 		<div class="navbar-nav w-100">
 			<div class="nav-item dropdown">
-				<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-piggy-bank"></i>가계부</a>
+				<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-piggy-bank"></i> 가계부</a>
 				<div class="dropdown-menu bg-transparent border-0">
 					<a href="/account/account/calendar.do" class="dropdown-item"><i class="fa-solid fa-calendar-days"></i> 달력</a> 
 					<a href="/account/account/list.do" class="dropdown-item"><i class="fa-solid fa-bars"></i> 목록</a> 
@@ -33,25 +34,39 @@
 
 <script>
 
+	document.addEventListener('DOMContentLoaded', function() {
+	    const currentPath = window.location.pathname;
+	
+	 	// dropdown-item 요소의 href와 동일한 경우에 active 클래스 추가
+	    const dropdownItems = document.querySelectorAll('.dropdown-item');
 
-// 	document.addEventListener("DOMContentLoaded", function() {
-// 		var navLinks = document.querySelectorAll(".navbar .nav-link");
+	    dropdownItems.forEach(function(item) {
+	        const href = item.getAttribute('href');
+	
+	        if (currentPath === href) {
+	            item.classList.add('active');
+	            const parentDropdown = item.closest('.dropdown');
+	            const dropdownToggle = parentDropdown.querySelector('.dropdown-toggle');
+	            if (dropdownToggle) {
+	                dropdownToggle.classList.add('active');
+	            }
+	        }
+	    });
+	
+	    // nav-item nav-link 요소의 href와 동일한 경우에 active 클래스 추가
+	    const navLinks = document.querySelectorAll('.nav-item.nav-link');
+	
+	    navLinks.forEach(function(link) {
+	        const href = link.getAttribute('href');
+	
+	        if (currentPath === href) {
+	            link.classList.add('active');
+	        }
+	    });
+	});
 
-// 		navLinks.forEach(function(link) {
-// 			link.addEventListener("click", function(event) {
-// 				// 기본 동작 방지
-// 				event.preventDefault();
 
-// 				// 모든 링크에서 "active" 클래스 제거
-// 				navLinks.forEach(function(link) {
-// 					link.classList.remove("active");
-// 				});
 
-// 				// 클릭된 링크에 "active" 클래스 추가
-// 				this.classList.add("active");
-// 			});
-// 		});
-// 	});
 </script>
 
 </html>
