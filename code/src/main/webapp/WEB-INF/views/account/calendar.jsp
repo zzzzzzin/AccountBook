@@ -34,59 +34,10 @@
     #periodcheck button{
         margin: 5px;
     }
-
-    #chart01{
-
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-    }
-
-    #pieblock{
-        display: flex;
-    }
-
-    #piepie{
-        float: left;
-    }
-    #piepie2{
-        float: left;
-    }
-    #customMsg{
-        margin: 50px;
-        width: 100px;
-        height: 100px;
-        background-color: aqua;
-        flex: 0 0 auto; /* Does not grow, does not shrink, auto basis */
-        margin-left: 10%; /* Pushes it to the right */
-        width: 100px;
-        height: 100px;
-        text-align: center;
-        align-items: center;
-        justify-content: center;
-        display: flex;
-    }
-
     
     #fakecontent{
     }
 
-    #firstrow{
-        display: flex;
-        justify-content: center;
-        align-items: center; 
-    }
-
-    #secondrow{
-        display: flex;
-        justify-content: center;
-        margin-top: 50px;
-    }
-
-    #thridrow{
-        display: flex;
-        justify-content: center;
-    }
     #monthgoal{
         width: 300px;
         height: 100px;
@@ -104,129 +55,7 @@
         justify-content: center;
         display: flex;
     }
-
-    #newscontent{
-        width: 500px;
-        height: 100px;
-        margin-top: 100px;
-        border: 1px solid black;
-        align-items: center;
-        justify-content: center;
-        display: flex;
-        
     }
-
-    .sidebar {
-            width: 200px;
-            background-color: #333;
-            color: #fff;
-            height: 100vh;
-    }
-          
-          .logo {
-            padding: 20px;
-            font-size: 20px;
-            font-weight: bold;
-            border-bottom: 1px solid #444;
-          }
-          
-          nav ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-          }
-          
-          nav li {
-            padding: 15px 20px;
-            border-bottom: 1px solid #444;
-          }
-          
-          nav li:last-child {
-            border-bottom: none;
-          }
-          
-          nav a {
-            color: #fff;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-          }
-          
-          nav a i {
-            margin-right: 10px;
-          }
-
-
-    /* nav header css */
-    #navheader {
-        
-    }
-
-    #navheader {
-        background-color: #f1f1f1;
-        padding: 20px;
-      }
-      
-      #navheader nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-      
-      #navheader .logo {
-        width: 100px;
-        height: 50px;
-        background-color: #ddd;
-        margin-right: 20px;
-      }
-      
-      #navheader nav ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        width: 100%;
-        justify-content: center;
-      }
-      
-      #navheader nav li {
-        margin: 0 20px;
-      }
-      
-      .content1 {
-        margin-left: 100px;
-      }
-      
-      .content2 {
-        margin-left: 300px;
-      }
-
-      .content3 {
-        margin-left: 300px;
-      }
-      
-      .content4 {
-        margin-left: 300px;
-      }
-      
-      #navheader nav a {
-        color: #333;
-        text-decoration: none;
-        font-weight: bold;
-      }
-      
-      #navheader nav a:hover {
-        color: #000;
-      }
-
-      #chartLegend{
-        display: flex;
-        justify-content: center;  
-        align-items: center;      
-        width: 100%;              
-        flex-wrap: wrap;  
-        margin-top: 50px;
-      }
       /* ---calendar css start */
       #onerow {
         display: flex;
@@ -469,9 +298,6 @@
     box-shadow: 0 4px 4px rgba(0,0,0,0.1);
 }
 
-#searchbar{
-    display: none;
-}
 #totalbody{
 	background-color: #FFFFFF 
 }    
@@ -661,13 +487,6 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/chart/chart.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js"></script><script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
     <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.11.0/main.min.css' rel='stylesheet' />

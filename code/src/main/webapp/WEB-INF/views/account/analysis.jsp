@@ -14,7 +14,8 @@
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!--     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" >
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Icon Font Stylesheet -->
@@ -58,10 +59,10 @@
 			<!-- Content End -->
 			<div id="fakecontent">
 			<form method="GET">
-				<div id="periodcheck">
-					<button name="period" value="day" class="dark-blue-btn">일일</button>
-					<button name="period" value="week" class="dark-blue-btn">주간</button>
-					<button name="period"  value="month" class="dark-blue-btn">월간</button>
+				<div id="periodcheck" class="btn-group-style">
+					<button name="period" value="day" class="purple-btn button">일일</button>
+					<button name="period" value="week" class="purple-btn button">주간</button>
+					<button name="period"  value="month" class="purple-btn button">월간</button>
 				</div>
 			</form>
 
@@ -145,10 +146,13 @@
 						<h5><a class="max-spending-category-subtitle-brown">"${acName}"</a> 관련 최근 경제 뉴스</h5>
 					</div>
 					<div id="news-content" class="black-border-box full-box">
-						<c:forEach items="${newsList}" var="dto">
+						<c:forEach items="${newsList}" var="dto" varStatus="loop">
 							<div>
 								<div><a id="news-title" target="_blank" href="${dto.link}">${dto.title}</a> ${dto.pubDate}<br></div>
 								<div>${dto.description}</div>
+							<c:if test="${!loop.last}">
+								<div id="analysis-hr"><hr></div>
+							</c:if>
 							</div>
 						</c:forEach>
 					</div>
@@ -160,27 +164,31 @@
 		<!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/chart/chart.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js"></script><script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
    
     <!-- Template Javascript -->
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
     <script>
-     
+    
     document.addEventListener('DOMContentLoaded', function() {
-    const sidebarToggler = document.getElementById('sidebar-toggler');
-    const sidebar = document.querySelector('.sidebar');
-    const content = document.querySelector('.content');
+        // 현재 URL에서 'period' 매개변수 값 가져오기
+        const urlParams = new URLSearchParams(window.location.search);
+        let periodParam = urlParams.get('period');
 
-        sidebarToggler.addEventListener('click', function() {
-        sidebar.classList.toggle('hidden');
-        content.classList.toggle('expanded');
+        // 선택된 값이 없을 때 기본값으로 "month" 설정
+        if (!periodParam) {
+            periodParam = "month";
+        }
+
+        // 버튼 요소 가져오기
+        const buttonElements = document.querySelectorAll('.purple-btn.button');
+
+        // 'period' 매개변수 값에 따라 해당 버튼에 'active' 클래스 추가
+        buttonElements.forEach(function(button) {
+            if (button.value === periodParam) {
+                button.classList.add('active');
+            }
         });
     });
     
