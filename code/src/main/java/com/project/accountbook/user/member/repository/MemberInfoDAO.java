@@ -3,8 +3,10 @@ package com.project.accountbook.user.member.repository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import com.project.accountbook.account.model.AccountInfoDTO;
@@ -185,51 +187,6 @@ public class MemberInfoDAO {
 
 		return null;
 	}
-
-	public UserDTO getPw(UserDTO dto) {
-
-		try {
-
-			String sql = "select pw from tblMember where id = ?";
-
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, dto.getId());
-
-			rs = pstat.executeQuery();
-
-			if (rs.next()) {
-
-				UserDTO result = new UserDTO();
-
-				result.setPw(rs.getString("pw"));
-
-				return result;
-
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	
-	public void editPw(String editPw, UserDTO dto) {
-		try {
-
-			String sql = "update tblMember set pw = ? where id = ?";
-
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, editPw);
-			pstat.setString(2, dto.getId());
-
-			pstat.executeUpdate();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
 	
 	public void resetPw(String id, String pw) {
 		try {
@@ -251,5 +208,284 @@ public class MemberInfoDAO {
 		}
 		
 	}
+
+	public String getPw(String id) {
+		
+		try {
+			
+			String sql = "select pw from tblMember where id =?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, id);
+			pstat.executeUpdate();
+			
+			rs = pstat.executeQuery();
+			
+			if (rs.next()) {
+	            return rs.getString("pw");
+	        }
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	public void editPw(String id, String pw) {
+		
+		try {
+			
+			String sql = "update tblMember set pw = ? where id = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, pw);
+			pstat.setString(2, id);
+
+			pstat.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public String getPhoneNumber(String id) {
+
+		try {
+			
+			String sql = "select phonenumber from tblMember where id = ?";
+			
+			pstat = conn.prepareStatement(sql);
+	        pstat.setString(1, id);
+	        
+	        rs = pstat.executeQuery();
+	        
+	        if (rs.next()) {
+	        	return rs.getString("phonenumber");
+	        }
+			
+		} catch (Exception e) {
+			System.out.println("MemberInfoDAO.getPhoneNumber");
+			e.printStackTrace();
+		} finally {
+	        try {
+	            if (rs != null) {
+	                rs.close();
+	            }
+	            if (pstat != null) {
+	                pstat.close();
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+		
+		return null;
+	}
+	
+
+	public void updateUserInfo(String id, HashMap<String, String> map) {
+
+		try {
+			
+			String sql = "update tblMember set name = ?, nickname = ?, phonenumber = ?, ssn = ? where id = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			
+			pstat.setString(1, map.get("name"));
+			pstat.setString(2, map.get("nickname"));
+			pstat.setString(3, map.get("phonenumber"));
+			pstat.setString(4, map.get("ssn"));
+			pstat.setString(5, id);
+			
+			pstat.executeUpdate();
+			
+			System.out.println("update");
+			
+		} catch (Exception e) {
+			System.out.println("MemberInfoDAO.updateUserInfo");
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+
+	
+	public boolean isPhoneNumberUnique(String phoneNumber, String id) {
+		try {
+	        String sql = "SELECT COUNT(*) AS count FROM tblMember WHERE phonenumber = ? AND id != ?";
+	        
+	        pstat = conn.prepareStatement(sql);
+	        pstat.setString(1, phoneNumber);
+	        pstat.setString(2, id);
+	        rs = pstat.executeQuery();
+	        
+	        if (rs.next()) {
+	            int count = rs.getInt("count");
+	            return count == 0;
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    // 오류가 발생하거나 결과가 없는 경우에는 일단 중복이 아니라고 간주
+		System.out.println("번호 중복값 존재");
+	    return true;
+	}
+
+	public ArrayList<MemberInfoDTO> getChallengeInfo(String id) {
+		
+		ArrayList<MemberInfoDTO> list = new ArrayList<>();
+		
+		try {
+			
+			String sql = "select s.monthlyPaycheck as m, s.savingsGoals as s, sp.period as p\r\n"
+					+ "from tblMember m\r\n"
+					+ "    inner join tblSurvey s\r\n"
+					+ "        on m.seqSurvey = s.seq\r\n"
+					+ "            inner join tblSavingsPeriod sp\r\n"
+					+ "                on sp.seq = s.seqSavingsPeriod\r\n"
+					+ "                    where id = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, id);
+			rs = pstat.executeQuery();
+			
+			while(rs.next()) {
+				
+				MemberInfoDTO dto = new MemberInfoDTO();
+				
+				dto.setMonthlyPaycheck(rs.getInt("m"));
+				dto.setSavingsGoals(rs.getInt("s"));
+				dto.setSavingPeriod(rs.getInt("p"));
+				
+				list.add(dto);
+			}
+			return list;
+				
+		} catch (Exception e) {
+			System.out.println("MemberInfoDAO.getChallengeInfo");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	public MemberInfoDTO editSallary(String id, String sallary) {
+
+		try {
+			
+			String sql = "UPDATE tblSurvey SET monthlyPaycheck = ? WHERE seq = (SELECT seqSurvey FROM tblMember where id = ?)";
+			
+			
+			pstat = conn.prepareStatement(sql);
+			
+			pstat.setString(1, sallary);
+			pstat.setString(2, id);
+			
+			pstat.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("MemberInfoDAO.editSallary");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	public MemberInfoDTO editGoal(String id, String goal) {
+
+		try {
+			
+			String sql = "UPDATE tblSurvey SET savingsGoals = ? WHERE seq = (SELECT seqSurvey FROM tblMember where id = ?)";
+			
+			
+			pstat = conn.prepareStatement(sql);
+			
+			pstat.setString(1, goal);
+			pstat.setString(2, id);
+			
+			pstat.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("MemberInfoDAO.editSallary");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	public MemberInfoDTO editPeriod(String id, String period) {
+
+		try {
+			
+			String sql = "UPDATE tblSavingsPeriod set period = ?"
+					+ "where seq = (SELECT s.seqSavingsPeriod"
+					+ "            from tblSurvey s inner join tblMember m"
+					+ "                on s.seq = m.seqSurvey"
+					+ "                    where m.id= ?)";
+			
+			System.out.println(period);
+			pstat = conn.prepareStatement(sql);
+			
+			pstat.setString(1, period);
+			pstat.setString(2, id);
+			
+			pstat.executeUpdate();
+			System.out.println("저축 목표 기간 수정 성공");
+			
+		} catch (Exception e) {
+			System.out.println("MemberInfoDAO.editSallary");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	public ArrayList<MemberInfoDTO> getMyCards(String id) {
+
+		ArrayList<MemberInfoDTO> list = new ArrayList<>();
+		
+		try {
+			String sql = "select ci.name as name, ci.cardCompany as cardCompany , mc.alias as alias"
+					+ ", mc.cardNumber as cardNumber , mc.validity as validity, ci.fileLink as fileLink\r\n"
+					+ "from tblMyCard mc inner join tblMember m\r\n"
+					+ "    on mc.idMember = m.id\r\n"
+					+ "        inner join tblCardInformation ci\r\n"
+					+ "            on mc.seqCardInformation = ci.seq\r\n"
+					+ "where m.id = ?";
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, id);
+			
+			rs = pstat.executeQuery();
+			
+			while(rs.next()) {
+				MemberInfoDTO dto = new MemberInfoDTO();
+				
+				dto.setName(rs.getString("name"));
+				dto.setCardCompany(rs.getString("cardCompany"));
+				dto.setAlias(rs.getString("alias"));
+				dto.setCardNumber(rs.getString("cardNumber"));
+				dto.setValidity(rs.getString("validity"));
+				dto.setFileLink(rs.getString("fileLink"));
+				
+				list.add(dto);
+			}
+			System.out.println(Arrays.toString(list.toArray()));
+			return list;
+			
+			
+		} catch (Exception e) {
+			System.out.println("MemberInfoDAO.getMyCards");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	
+
+	
 
 }

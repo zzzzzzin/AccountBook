@@ -119,7 +119,7 @@
               	${post.title}
 			  </h2>
               <div class="post-header" id="maincontent">
-                <img class="user-image" src="user-image.jpg" alt="사용자 이미지">
+                <img class="user-image" src="/account/asset/images/${comment.profileImage}" >
                 <div class="post-info">
 	                <c:choose>			  		
 				  		<c:when test="${post.seqBoard == 1}">
@@ -143,16 +143,16 @@
                 <span>${post.content}</span>
               </div>
               <div class="post-actions" id="postmaincontentreaction">
-              	<span><i class="material-icons" id="temp">thumb_up</i><span id="post-like">${post.likeCount}</span></span>
+              	<span><i class="material-icons">thumb_up</i><span id="post-like">${post.likeCount}</span></span>
                 <span><i class="material-icons">thumb_down</i><span id="post-dislike">${post.dislikeCount}</span></span>
-                <span><i class="material-icons">report</i> 신고</span>
+                <span><i class="material-icons">report</i><span id="post-report">${post.reportCount}</span></span>
                  <!-- 로그인한 사용자와 게시글 작성자가 일치하는 경우에만 수정 버튼 표시 -->
-    <c:if test="${not empty sessionScope.seqUser && sessionScope.seqUser == post.seqUser}">
-      <span><a href="/account/board/edit.do?seq=${post.seq}">수정</a></span>
-    </c:if>
-     <c:if test="${not empty sessionScope.seqUser && (sessionScope.seqUser == post.seqUser || sessionScope.seqPriv == 3)}">
-        <span class="delete-post" data-post-seq="${post.seq}">삭제</span>
-    </c:if>
+			    <c:if test="${not empty sessionScope.seqUser && sessionScope.seqUser == post.seqUser}">
+			      <span><a href="/account/board/edit.do?seq=${post.seq}">수정</a></span>
+			    </c:if>
+			    <c:if test="${not empty sessionScope.seqUser && (sessionScope.seqUser == post.seqUser || sessionScope.seqPriv == 3)}">
+			       <span class="delete-post" data-post-seq="${post.seq}">삭제</span>
+			    </c:if>          
               </div>     
             </div>
                         <!-- 댓글 시작 -->
@@ -163,10 +163,10 @@
                 <div class="post-info" id="commentlevel1info">
                     <c:choose>
                         <c:when test="${not empty comment.profileImage}">
-                            <img class="user-image" src="${comment.profileImage}" alt="사용자 이미지">
+                            <img class="user-image" src="/account/asset/images/${comment.profileImage}" alt="사용자 이미지">
                         </c:when>
                         <c:otherwise>
-                            <img class="user-image" src="/profile-images/default-user-image.jpg" alt="기본 사용자 이미지">
+                            <img class="user-image" src="/account/asset/images/${comment.profileImage}" alt="기본 사용자 이미지">
                         </c:otherwise>
                     </c:choose>
                     <div class="post-info">
@@ -209,10 +209,10 @@
                         <i class="material-icons" id="subcommentarrow">subdirectory_arrow_right</i>
                         <c:choose>
                             <c:when test="${not empty replyComment.profileImage}">
-                                <img class="user-image" src="${replyComment.profileImage}" alt="사용자 이미지">
+                                <img class="user-image" src="/account/asset/images/${comment.profileImage}" alt="사용자 이미지">
                             </c:when>
                             <c:otherwise>
-                                <img class="user-image" src="/profile-images/default-user-image.jpg" alt="기본 사용자 이미지">
+                                <img class="user-image" src="/account/asset/images/${comment.profileImage}" alt="기본 사용자 이미지">
                             </c:otherwise>
                         </c:choose>
                         <div class="post-info">
@@ -644,16 +644,101 @@ function addReplyComment(btn) {
 
 
 
- 
-	//게시글 추천수
-	$(".post-actions span:nth-child(1)").click(function() {
-		postlike(${post.seqBoard});
-	});
+
+	//게시글 추천, 비추천
+	function getpostCookie(cookieName) {
+		 let cookies = document.cookie;
+		    let cookieArray = cookies.split("; ");
+
+		    for (let i = 0; i < cookieArray.length; i++) {
+		        let cookie = cookieArray[i];
+		        let [name, value] = cookie.split("=");
+
+		        if (name.trim() === cookieName) {
+		            return decodeURIComponent(value);
+		        }
+		    }
+
+		    return null;
+	}
 	
-	$(".post-actions span:nth-child(2)").click(function() {
-		postdislike(${post.seqBoard});
-	});
+	var postSeq = getpostCookie("postSeq"+${post.seq});
+	var temp = ${post.seq}+"";
 	
+	//console.log(typeof postSeq);
+	//console.log(typeof temp);
+	
+ 	if(temp !== postSeq){
+ 		//console.log('제발 되게해줘');
+ 		$(".post-actions span:nth-child(1)").click(function() {
+ 			postlike(${post.seqBoard});
+ 		});
+ 		
+ 		$(".post-actions span:nth-child(2)").click(function() {
+ 			postdislike(${post.seqBoard});
+ 		});
+ 	}
+	
+	//게시글 신고
+	function getreportCookie(cookieName) {
+		 let cookies = document.cookie;
+		    let cookieArray = cookies.split("; ");
+
+		    for (let i = 0; i < cookieArray.length; i++) {
+		        let cookie = cookieArray[i];
+		        let [name, value] = cookie.split("=");
+
+		        if (name.trim() === cookieName) {
+		            return decodeURIComponent(value);
+		        }
+		    }
+
+		    return null;
+	}
+
+	var repoertSeq = getreportCookie("report"+${post.seq});
+	console.log(repoertSeq);
+	
+	if(temp !== repoertSeq){
+		$(".post-actions span:nth-child(3)").click(function() {
+			postreport(${post.seqBoard});
+		});
+	}
+	
+	function postreport(seqBoard) {
+		  let url;
+		  switch (seqBoard) {
+		    case 1:
+		      url = "/account/board/noticeBoard.do";
+		      break;
+		    case 2:
+		      url = "/account/board/freeBoard.do";
+		      break;
+		    case 3:
+		      url = "/account/board/reportBoard.do";
+		      break;
+		    case 4:
+		      url = "/account/board/attendanceBoard.do";
+		      break;
+		  }
+		  $.ajax({
+		    type: 'POST',
+		    url: url,
+		    data: {
+			seq: ${post.seq},
+			report: 'report'
+		    },  	  	
+		    success: function() {
+		    	var temp = document.getElementById('post-report').innerHTML;
+		    	var numericTemp = Number(temp) + 1;
+		    	document.getElementById('post-report').innerHTML = numericTemp;
+		    },
+		    error: function(xhr, status, error) {
+		      console.error("AJAX 요청 실패:", error);
+		    }
+		  });
+		}
+
 	
 	function postlike(seqBoard) {
 	  let url;
@@ -679,7 +764,7 @@ function addReplyComment(btn) {
 		type: 'like'
 	    },  	  	
 	    success: function() {
-	    	console.log("like완료");
+	    	//console.log(${cookie});
 	    	var temp = document.getElementById('post-like').innerHTML;
 	    	var numericTemp = Number(temp) + 1;
 	    	document.getElementById('post-like').innerHTML = numericTemp;
@@ -715,7 +800,7 @@ function addReplyComment(btn) {
 			type: 'dislike'
 	    },  	  	
 	    success: function() {
-	    	console.log("Dislike완료");
+	    	//console.log(cookie);
 	    	var temp = document.getElementById('post-dislike').innerHTML;
 	    	var numericTemp = Number(temp) + 1;
 	    	document.getElementById('post-dislike').innerHTML = numericTemp;
@@ -725,7 +810,11 @@ function addReplyComment(btn) {
 	    }
 	  });
  	}
-   	
+	
+	//포스트 추천, 비추천, 신고 끝
+	
+	
+	
     
     </script>
 </body>

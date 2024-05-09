@@ -7,9 +7,11 @@ import java.util.HashMap;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.project.accountbook.board.post.model.FreeDTO;
 import com.project.accountbook.board.post.model.PostDTO;
@@ -22,6 +24,7 @@ public class Freeboard extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
 		
 		String column = req.getParameter("column");
 		String word = req.getParameter("word");
@@ -73,15 +76,39 @@ public class Freeboard extends HttpServlet {
 		String seq = req.getParameter("seq"); //Post seq
 		String type = req.getParameter("type"); //Like, Dislike 구분
 
+		Cookie postcookie;
+		Cookie[] cookies = req.getCookies(); // 모든 쿠키 가져오기
+		boolean check = false;
+
+		if (cookies!= null) {
+		    for (Cookie c : cookies) {
+		        String name = c.getName(); // 쿠키 이름 가져오기
+		        String value = c.getValue(); //쿠기 내용 가져오기
+		        if (name.equals("postSeq"+seq) && value.equals(seq)) {
+		            check = true;
+		        } 	        
+		    }
+	    }
 		
-		if(type.equals("like")) {
-			
-			dao.like(seq);
-			
-		} else if (type.equals("dislike")) {
-			
-			dao.dislike(seq);
-		}
+		if(check == false) {
+			if(type.equals("like")) {	
+				dao.like(seq);
+				postcookie = new Cookie("postSeq"+seq, seq);
+				//postcookie.setMaxAge(60 * 60 * 24);
+				postcookie.setMaxAge(60 * 60);
+				postcookie.setPath("/");
+				resp.addCookie(postcookie);
+				
+				
+			} else if (type.equals("dislike")) {
+				dao.dislike(seq);
+				postcookie = new Cookie("postSeq"+seq, seq);
+				//postcookie.setMaxAge(60 * 60 * 24);
+				postcookie.setMaxAge(60 * 60);
+				postcookie.setPath("/");
+				resp.addCookie(postcookie);
+			}
+		} 
 	
 	}
 }

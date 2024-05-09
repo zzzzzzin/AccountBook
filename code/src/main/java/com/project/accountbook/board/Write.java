@@ -51,12 +51,10 @@ public class Write extends HttpServlet {
 					"UTF-8",
 					new DefaultFileRenamePolicy()
 				);
-			System.out.println(req.getRealPath("/asset/images"));
 			
 			HttpSession session = req.getSession();
 			String id = (String)session.getAttribute("id"); // 세션 으로 user id 가져오기
 			req.setCharacterEncoding("UTF-8");
-			System.out.println(1);
 			
 			
 			//2. multi.getParameter("title")
@@ -76,14 +74,6 @@ public class Write extends HttpServlet {
 			}
 			String pic = multi.getFilesystemName("pic");
 			
-			System.out.println(seqBoard + "seqBoard");
-			System.out.println(seqUser + "seqUser");
-			System.out.println(title + "title");
-			System.out.println(content + "content");
-			System.out.println(secretCheck + "secretCheck");
-			System.out.println(pic + "pic");
-			
-			
 			//3. PostDTO dto = new PostDTO(); > setXXX()
 			
 			BoardDAO dao = new BoardDAO();
@@ -93,17 +83,13 @@ public class Write extends HttpServlet {
 			dto.setTitle(title);
 			dto.setContent(content);
 			dto.setSecretCheck(secretCheck);
-//			System.out.println(3);
-			
+		
 			//4. DAO dao = new DAO(); > dao.add(dto);
-			System.out.println(dto);
 			int result = dao.boardWrite(dto);
-			
-			System.out.println("result: " + result);
+
 			
 			if (result == 1) {
 				resp.sendRedirect("/account/board/view.do");
-//				System.out.println(4);
 			} else {
 				resp.setCharacterEncoding("UTF-8");
 				
@@ -111,7 +97,6 @@ public class Write extends HttpServlet {
 				writer.print(OutputUtil.redirect("실패했습니다."));
 				writer.close();
 			}
-//			System.out.println(5);
 			
 			//5. result > location.href = "";
 			

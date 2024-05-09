@@ -66,7 +66,9 @@
 		     <div class="form-group">
 		       <label for="category">게시판 카테고리</label>
 		       <select id="seqBoard" name="seqBoard">
+		       	<c:if test="${not empty sessionScope.seqUser && (sessionScope.seqUser == comment.seqUser || sessionScope.seqPriv == 3)}">
 		         <option value="1">공지사항</option> <!-- 관리자만 작성 가능 -->
+		         </c:if>
 		         <option value="2">자유 게시판</option>
 		         <option value="3">건의 사항 게시판</option> <!-- 비밀글은 여기서만 가능 -->
 		         <option value="4">출석 게시판</option>

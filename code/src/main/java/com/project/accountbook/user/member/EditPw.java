@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.project.accountbook.user.member.repository.MemberInfoDAO;
-import com.project.accountbook.user.model.UserDTO;
 
 @WebServlet("/user/member/edit-pw.do")
 public class EditPw extends HttpServlet {
@@ -19,6 +18,7 @@ public class EditPw extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/member/edit-pw.jsp");
 		dispatcher.forward(req, resp);
 
@@ -28,14 +28,19 @@ public class EditPw extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 	    HttpSession session = req.getSession();
-	    String id = (String) session.getAttribute("id"); // 세션에서 아이디 가져오기
+	    String id = (String) session.getAttribute("id"); 
 
+	    String nowPw = req.getParameter("nowPw");
 	    String editPw = req.getParameter("editPw");
-	    String checkPw = req.getParameter("editPw");
+	    String checkPw = req.getParameter("checkPw");
 	    
 	    MemberInfoDAO dao = new MemberInfoDAO();
-
-	    // 페이지 이동
+	    String realPw = dao.getPw(id);
+	    
+	    if (realPw != null && realPw.equals(nowPw) && editPw.equals(checkPw) ) {
+	    	dao.editPw(id ,editPw);
+	    }
+	    
 	    RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/member/info.jsp");
 	    dispatcher.forward(req, resp);
 	}

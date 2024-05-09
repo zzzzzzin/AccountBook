@@ -2,6 +2,7 @@ package com.project.accountbook.user.member;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,27 +12,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.project.accountbook.board.post.model.PostDTO;
 import com.project.accountbook.user.repository.UserDAO;
 
-@WebServlet("/user/member/my-post.do")
-public class myPost extends HttpServlet{
+@WebServlet("/user/member/my-comment.do")
+public class myComment extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         HttpSession session = req.getSession();
-        String id = (String)session.getAttribute("id");
+        String id = (String) session.getAttribute("id");
 
         UserDAO dao = new UserDAO();
-        ArrayList<PostDTO> plist = dao.getMyPosts(id);
+        ArrayList<HashMap<String, String>> commentsList = dao.getMyComments(id);
 
         req.setCharacterEncoding("UTF-8");
-        req.setAttribute("plist", plist);
-        
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/member/my-post.jsp");
+
+        req.setAttribute("commentsList", commentsList);
+
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/member/my-comment.jsp");
         dispatcher.forward(req, resp);
 
     }
+
+	
 
 }
