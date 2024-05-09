@@ -191,7 +191,7 @@
         <input type="hidden" name="seqUser" value="${sessionScope.seqUser}">
         <input type="hidden" name="seqPost" value="${post.seq}">
         <textarea name="content" placeholder="답글을 입력하세요."></textarea>
-        <button type="button" onclick="addReplyComment(this, ${comment.seq})">답글 등록</button>
+        <button type="button" onclick="addReplyComment(this)">답글 등록</button>
     </form>
 </div>
             </div>
