@@ -62,12 +62,11 @@
 /* Additional styling for specific needs */
 
 
-#transdate {
+.transdate {
     font-weight: bold; /* Applying bold font style */
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f0f0f0; 
     padding: 5px 10px; 
     margin: 10px 10px; 
     border-radius: 10px; 
@@ -83,7 +82,201 @@
   padding: 10px;
   width: 20%;
 }
-   
+   #transamountplus {
+    color: #6dd900;
+}
+
+#transamountminus {
+    color: #ff0008;
+}
+
+#nextrow {
+	display: flex;
+	justify-content: space-between;
+    width: 100%;
+}
+#leftcol{
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+	margin-right: 10px;
+}
+
+#rightcol{
+	width: 50%;
+	margin-left: 10px;
+	
+}
+
+
+#wishlist {
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin: 10px;
+    border: 1px solid black;
+    width: 100%;
+    
+}
+
+#wishlist h3 {
+    color: #333;
+}
+
+#wishlist form {
+    margin-bottom: 10px;
+}
+
+
+#wishlist input[type="text"] {
+    padding: 8px;
+    margin-right: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 70%;
+}
+
+#newitembutton{
+    width: 30%;
+}
+
+#wishlist button {
+    padding: 8px 16px;
+    background-color: #009CFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#wishlist button:hover {
+    background-color: #007dca;
+}
+
+#wishListItems li {
+    list-style: none;
+    margin-top: 8px;
+    background: white;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+
+#bottomrow{
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    padding: 20px;
+}
+
+
+#wishlistrow1{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+#wishlistrow1 h3{
+    margin-right: 10px;
+}
+
+#addWishItemtitle{
+    display: flex;
+    justify-content: center;
+}
+
+#listdelbutton :hover{
+    cursor: pointer;
+}
+
+#wishlistrow2{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+#wishlistContent {
+    border: 1px solid #ccc;
+    width: 100%;
+    display: flex;
+    margin: 10px 0;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    justify-content: space-between;
+    align-items: center;
+}
+.wishlistItem {
+    flex: 1;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.frontback{
+    margin: 10px;
+}
+
+#thismonthstat {
+    flex-grow: 1; 
+    font-weight: bold;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border: 1px solid black;
+    width: 100%;
+    margin:10px;
+}
+
+  .abovestat{
+        display: flex;
+        align-items: center;
+    }
+
+    .abovestat div{
+    	margin: 10px;
+    }
+
+#aboverow{
+	display: flex;
+	justify-content: space-between !important;
+}
+
+#aboverowrightside{
+	display: flex;
+	flex-direction: row;
+}
+
+.three h1 {
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.5em;
+  padding-bottom: 15px;
+  position: relative;
+}
+.three h1:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 5px;
+  width: 55px;
+  background-color: #111;
+}
+.three h1:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 2px;
+  height: 1px;
+  width: 95%;
+  max-width: 255px;
+  background-color: #333;
+}
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
@@ -120,16 +313,48 @@
       
       	<div id="fakecontent">
       		<div id="aboverow">
-      		<form method = "GET" id="accountSearchForm">
-                <div class="right-icon" id="searchicon"><i class="fa-solid fa-magnifying-glass"></i></div> 
-                <div id="searchbar" >
-                	<input type="text" name="word" value="${map.word}" placeholder="내용 or 사용처">
-                	<input type="submit" value="검색">
-                </div>
-            </form>    
-                <div class="right-icon" id="categoryselector"><i class="fa-solid fa-list-check"></i></div> 
+      		<div id="pagetitle" class="three"><h1>목록</h1></div>
+      		<div id="aboverowrightside">
+	      		<form method = "GET" id="accountSearchForm">
+	                <div class="right-icon" id="searchicon"><i class="fa-solid fa-magnifying-glass"></i></div> 
+	                <div id="searchbar" >
+	                	<input type="text" name="word" value="${map.word}" placeholder="내용 or 사용처">
+	                	<input type="submit" value="검색">
+	                </div>
+	            </form>    
+	                <div class="right-icon" id="categoryselector"><i class="fa-solid fa-list-check"></i></div> 
+	            </div>
             </div>
-          
+          	<div id="nextrow">
+          		<div id="leftcol"></div>
+          		<div id="rightcol">
+          		<div id="thismonthstat">
+                    <div class="abovestat" id="spendstat">
+                        <div>이번달 지출:</div>
+                        <div>$30000</div>
+                    </div>
+                    <div class="abovestat" id="incomestat">
+                        <div>이번달 수입:</div>
+                        <div>$20000</div>
+                    </div>
+                </div>
+					<div id="wishlist">
+                    <div id="wishlistrow1">
+                        <h3>Wish List</h3>
+                        <div id="addWishItemtitle">
+                            <button id="addrightnow">Add Item</button>
+                        </div>
+                    </div>
+                    <div id="wishlistrow2">
+                        <input type="text" id="newItemInput" placeholder="Type and press enter" style="display: none;">
+                        <button id="newItemButton" style="display: none">추가하기</button>
+                    </div>
+                    <div id="wishListItems">
+                        
+                    </div>
+                </div>
+				</div>
+          	</div>
           
         </div>
 
@@ -148,6 +373,39 @@
 		//검색 중 상태 유지
 		$('input[name=word]').val('${map.word}');
 	</c:if>
+	var categories = [];
+    var colors = {};
+    
+    <c:forEach items="${cList}" var = "dto">
+	categories.push('${dto.acName}');
+	</c:forEach>
+	console.log(categories);
+   
+
+	
+	// 미리 정의된 색상 팔레트
+	const colorPalette = [
+		'#36A2EB', '#FF6384', '#4BC0C0', '#FC9D3F', '#9966FF', '#FFCD56', '#C9CBCF', '#F9F871', '#A0F48B', '#A3459B',
+	    '#E17AA7', '#EEE8A9', '#265E58', '#F47558', '#D25F9C', '#9B61A3', '#00524A', '#655E96', '#3E567A', '#2F4858',
+	    '#DD6C41', '#A57A11', '#647E17', '#007A3E', '#007165', '#96525D', '#FFE3E9', '#BFA5A8', '#53D0B9', '#6FDEAA',
+	    '#97EA96', '#C6F381', '#F6746C', '#CA638D', '#896095', '#4D587F', '#C7B1E6', '#FAEAFF', '#65BAA9', '#FFCA57'
+	];
+	
+	// colors 객체에 각 카테고리에 고유한 색상 할당
+	categories.forEach((categoryName, index) => {
+	    colors[categoryName] = colorPalette[index % colorPalette.length];
+	});
+	
+	function updateTransDateColor(category) {
+	    var transDate = document.getElementById('transdate');
+	    var color = colors[category] || "#f0f0f0"; // Default color if category is undefined
+	    if (transDate) {
+            var color = colors[category] || "#f0f0f0"; // Default color if category is undefined
+            transDate.style.backgroundColor = color;
+        } else {
+            console.log('transdate element not found');
+        }
+	}
 	
 
     function addTransaction(date, category, where, amount, amountIndicator, content) {
@@ -156,10 +414,12 @@
         transContent.id = 'transcontent';
 
         const transDate = document.createElement('div');
-        transDate.className = 'transin';
-        transDate.id = 'transdate';
+        transDate.className = 'transin transdate';
         transDate.textContent = date;
-
+        // Set the background color based on the category
+        transDate.style.backgroundColor = colors[category] || "#f0f0f0"; 
+        updateTransDateColor(category);
+        
         const transMiddle = document.createElement('div');
         transMiddle.className = 'transmiddle';
 
@@ -216,7 +476,7 @@
         transContent.appendChild(transMiddle);
         transContent.appendChild(transRightBox);
 
-        document.getElementById('fakecontent').appendChild(transContent);
+        document.getElementById('leftcol').appendChild(transContent);
     }
 
     
@@ -256,6 +516,175 @@
         }
     };
     //검색 기능 끝
+    
+     document.addEventListener('DOMContentLoaded', function() {
+        const addButton = document.getElementById('addrightnow');
+        const newItemInput = document.getElementById('newItemInput');
+        const wishList = document.getElementById('wishListItems');
+        const newItemButton = document.getElementById('newItemButton');
+        const cbcbbox = document.getElementById('addcheckbox');
+        const delitembtn = document.getElementById('listdelbutton');
+        
+
+        // Toggle input field visibility and focus when the button is clicked
+        addButton.onclick = function() {
+            if (newItemInput.style.display === 'none') {
+                newItemInput.style.display = 'block';
+                newItemButton.style.display = 'block';
+                newItemInput.focus();
+            } else {
+                newItemInput.style.display = 'none';
+                newItemButton.style.display = 'none';
+            }
+        };
+
+        // Function to add a new transaction item to the wish list
+        function addNewTransContent(itemText) {
+            const transContent = document.createElement('div');
+            transContent.id = 'wishlistContent';
+        
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.className = 'frontback';
+            checkbox.id = 'addcheckbox';
+
+            const transDesc = document.createElement('div');
+            transDesc.className = 'wish';
+            transDesc.id = 'wishlistItem';
+            transDesc.textContent = itemText;
+
+            const deleteBtn = document.createElement('div');
+            deleteBtn.className = 'frontback';
+            deleteBtn.id = 'listdelbutton';
+            deleteBtn.innerHTML = '<div id="listdelbutton" class="frontback"><i class="fa-solid fa-xmark"></i></div>';
+            deleteBtn.onclick = function() {
+                wishList.removeChild(transContent);
+                
+                let contentOfTransDate = transDesc.textContent;
+                console.log('Deleting item with transdate content:', contentOfTransDate);
+                
+                delwishlist(contentOfTransDate);
+            };
+
+            transContent.appendChild(checkbox);
+            transContent.appendChild(transDesc);
+            transContent.appendChild(deleteBtn);
+
+            wishList.appendChild(transContent);
+        }
+        
+         
+
+        newItemInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                const text = newItemInput.value.trim();
+                if (text) {
+                    addNewTransContent(text);
+                    newItemInput.value = ''; 
+                    newItemInput.style.display = 'none'; 
+                    newItemButton.style.display = 'none';  
+                    sendwishlist(text);
+                }
+            }
+        });
+        newItemButton.addEventListener('click', function() {
+            const text = newItemInput.value.trim();
+            if (text) {
+                addNewTransContent(text);
+                newItemInput.value = ''; 
+                newItemInput.style.display = 'none'; 
+                newItemButton.style.display = 'none';  
+                sendwishlist(text);
+            }
+        });
+         
+        
+        $(document).ready(function() {
+            // AJAX request to fetch data as soon as the page loads
+            $.ajax({
+                url: '/account/account/wishlist.do', // Replace with your actual URL
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    $.each(data, function(index, item) {
+                        // Access the 'productName' property of each item
+                        if (item.productName) { // Ensure that productName exists
+                            console.log(item.productName);
+                            addNewTransContent(item.productName); // Add each product name to the wishlist
+                            
+                        }
+                    });
+                    console.log('done?');
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching data:', error);
+                }
+            });
+            });
+
+     
+            
+            
+        wishList.addEventListener('change', function(event) {
+            // Check if the event target is a checkbox with the class 'frontback'
+            if (event.target.type === 'checkbox' && event.target.classList.contains('frontback')) {
+                // Check if the checkbox is checked
+                if (event.target.checked) {
+                    console.log('Checkbox is checked');
+                    var container = document.getElementById("eventProduceModal");//
+                    var modal = new bootstrap.Modal(container);
+                    let content = document.getElementById('transdate').innerHTML;
+                        clearModalInputs();
+                        $('#eventModalcontent').val(content); 
+                        console.log(content);
+                    modal.show();
+                    event.target.checked=false;
+                }
+            }
+        });
+	
+       	function sendwishlist(text){
+       	 $.ajax({
+             url: '/account/account/wishlist.do', // Replace with your actual URL
+             type: 'post',
+             data: {
+                 item: text
+             },
+             success: function(response) {
+                 console.log('sent');
+             },
+             error: function(xhr, status, error) {
+                 console.error('Error fetching data:', error);
+             }
+         });
+       	}
+        
+       	function delwishlist(text){
+             if(window.confirm('삭제하시겠습니까?')){
+ 				if(delRequest !== null){
+ 					delRequest.abort();
+ 					console.log('abort');
+ 				}
+ 			}
+             console.log(text);
+ 			delRequest = $.ajax({
+ 				url:'/account/account/delwishlist.do',
+ 				type:'post',
+ 				data:{
+ 					content: text
+ 				},
+                 success: function (response) {
+                     alert('Edit successful');
+                     
+                 },
+                 error: function (xhr, status, error) {
+                     alert('Error: ' + xhr.responseText);
+                 }
+ 			})
+         }; 
+       	
+    });
 
     </script>
 </body>

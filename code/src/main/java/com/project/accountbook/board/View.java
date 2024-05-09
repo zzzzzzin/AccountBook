@@ -29,6 +29,8 @@ public class View extends HttpServlet {
 		ArrayList<PostDTO> reportList = dao.viewlist("3");					
 		ArrayList<PostDTO> attendanceList = dao.viewlist("4");
 		
+		
+		
 		req.setAttribute("noticeList", noticeList); // noticeList 객체를 요청 객체에 추가
 		req.setAttribute("freeList", freeList); // freeList 객체를 요청 객체에 추가
 		req.setAttribute("reportList", reportList); // reportList 객체를 요청 객체에 추가

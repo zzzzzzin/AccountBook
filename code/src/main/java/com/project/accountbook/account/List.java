@@ -72,6 +72,8 @@ public class List extends HttpServlet {
 		
 		 resp.setContentType("application/json");
 	     resp.setCharacterEncoding("UTF-8");
+	     ArrayList<AccountInfoDTO> cList = dao.getCategory();
+	        req.setAttribute("cList", cList);
 		
 		req.setAttribute("list", arr);
 		req.setAttribute("map", map);

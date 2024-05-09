@@ -36,19 +36,19 @@ public class CommentDAO {
             rs = pstat.executeQuery();
 
             while (rs.next()) {
-                CommentDTO comment = new CommentDTO();
-                comment.setIdMember(rs.getString("idMember"));
-                comment.setSeq(rs.getString("seq"));
-                comment.setSeqPost(rs.getInt("seqPost"));
-                comment.setSeqUser(rs.getInt("seqUser"));
-                comment.setContent(rs.getString("content"));
-                comment.setWriteDate(rs.getString("writeDate"));
-                comment.setLikeCount(rs.getInt("likeCount"));
-                comment.setDislikeCount(rs.getInt("dislikeCount"));
-                comment.setReportCount(rs.getInt("reportCount"));
-                comment.setNickname(rs.getString("nickname"));
-                comment.setProfileImage(rs.getString("profileImage"));
-                comments.add(comment);
+                CommentDTO dto = new CommentDTO();
+                dto.setIdMember(rs.getString("idMember"));
+                dto.setSeq(rs.getString("seq"));
+                dto.setSeqPost(rs.getInt("seqPost"));
+                dto.setSeqUser(rs.getInt("seqUser"));
+                dto.setContent(rs.getString("content"));
+                dto.setWriteDate(rs.getString("writeDate"));
+                dto.setLikeCount(rs.getInt("likeCount"));
+                dto.setDislikeCount(rs.getInt("dislikeCount"));
+                dto.setReportCount(rs.getInt("reportCount"));
+                dto.setNickname(rs.getString("nickname"));
+                dto.setProfileImage(rs.getString("profileImage"));
+                comments.add(dto);
             }
         } catch (Exception e) {
             e.printStackTrace();

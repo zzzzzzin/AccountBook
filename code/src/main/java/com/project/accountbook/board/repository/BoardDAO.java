@@ -79,11 +79,23 @@ public class BoardDAO {
 
 
 	// 조회(R)
-	public PostDTO readPost(String seq) {
+	public PostDTO readPost(String seq, String id) {
 	
 		try {
+			PostDTO dto = new PostDTO();
 			
-			String sql = "select\r\n"
+			String sql = "select FILELINK as profileImg from TBLPROFILEIMG where seq = (select SEQPROFILEIMG from tblmember where id = ?)";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, id);
+			
+			rs = pstat.executeQuery();
+			
+			if(rs.next()) {
+				dto.setProfileImg(rs.getString("profileImg"));
+			}
+			
+			sql = "select\r\n"
 					+ "    po_seq as seq,\r\n"
 					+ "    me_nickname as me_nickname,\r\n"
 					+ "    ad_nickname as ad_nickname,\r\n"
@@ -109,10 +121,7 @@ public class BoardDAO {
 			
 			rs = pstat.executeQuery();
 			
-			while (rs.next()) {		
-				
-				PostDTO dto = new PostDTO();
-				
+			if(rs.next()) {
 				dto.setSeq(rs.getString("seq"));
 				dto.setSeqBoard(rs.getString("seqboard"));
 				dto.setSeqUser(rs.getString("sequser"));
@@ -133,10 +142,9 @@ public class BoardDAO {
 				dto.setFileName(rs.getString("filename"));
 				dto.setFileLink(rs.getString("filelink"));
 					
-				return dto;		
 			}
 			
-			
+			return dto;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -437,7 +445,8 @@ public class BoardDAO {
 				list.add(dto);
 				
 			}	
-
+			
+			
 			
 			return list;
 			
