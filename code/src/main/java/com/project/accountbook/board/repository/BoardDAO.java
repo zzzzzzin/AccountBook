@@ -4,14 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.project.accountbook.board.post.model.AttendanceDTO;
-import com.project.accountbook.board.post.model.FreeDTO;
-import com.project.accountbook.board.post.model.NoticeDTO;
 import com.project.accountbook.board.post.model.PostDTO;
-import com.project.accountbook.board.post.model.ReportDTO;
 import com.project.accountbook.util.DBUtil;
 
 public class BoardDAO {
@@ -192,14 +189,17 @@ public class BoardDAO {
 					+ where
 					+ " ORDER BY seq DESC";
 			
-			System.out.println(sql);
 			stat = conn.createStatement();
 			rs = stat.executeQuery(sql);
 			
 			ArrayList<PostDTO> list = new ArrayList<PostDTO>();
 			
+			//오늘 날짜 (2024-05-09)
+			LocalDate today = LocalDate.now();
 			
-			while (rs.next()) {				
+			
+			while (rs.next()) {		
+				
 				PostDTO dto = new PostDTO();
 				
 				dto.setSeq(rs.getString("seq"));
@@ -207,7 +207,16 @@ public class BoardDAO {
 				dto.setSeqUser(rs.getString("sequser"));
 				dto.setTitle(rs.getString("title"));
 				dto.setContent(rs.getString("content"));
-				dto.setWriteDate(rs.getString("writedate"));
+
+				
+				if((rs.getString("writedate").substring(0, 10)).equals(today)){
+					dto.setWriteDate(rs.getString("writedate").substring(11, 16));
+				} else {
+					dto.setWriteDate(rs.getString("writedate").substring(0, 10));
+				}
+				//dto.setWriteDate(rs.getString("writedate"));
+				
+				
 				dto.setEditDate(rs.getString("editdate"));
 				dto.setViewCount(rs.getInt("viewcount"));
 				dto.setLikeCount(rs.getInt("likecount"));

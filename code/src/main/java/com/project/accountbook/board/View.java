@@ -35,7 +35,7 @@ public class View extends HttpServlet {
 			// 게시판 번호가 2인 
 			if (i == 2) {
 
-				ArrayList<PostDTO> freeList = dao.list("2");
+				ArrayList<PostDTO> freeList = dao.viewlist("2");
 				req.setAttribute("freeList", freeList); // freeList 객체를 요청 객체에 추가
 			}
 			

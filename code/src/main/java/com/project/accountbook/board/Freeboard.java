@@ -41,13 +41,20 @@ public class Freeboard extends HttpServlet {
 		map.put("column", column);
 		map.put("word", word);
 		
-		
-		
-		
 		BoardDAO dao = new BoardDAO();
 		
 		ArrayList<PostDTO> freeList = dao.list(map, "2");
-		//ArrayList<PostDTO> freeList = dao.list("2");
+		
+		for (PostDTO list : freeList) {
+			
+            String title = list.getTitle();        
+            
+            if(search != null && search.equals("y") && (column.equals("title") || column.equals("total"))) {
+    			title = title.replace(word, "<span style='color: tomato; font-weight: bold;'>" + word + "</span>");
+    			list.setTitle(title);
+    		}
+            
+        }
 		
 		req.setAttribute("freeList", freeList); // freeList 객체를 요청 객체에 추가
 		req.setAttribute("map", map);
