@@ -1,6 +1,7 @@
 package com.project.accountbook.account;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -28,18 +29,60 @@ public class getWishlist extends HttpServlet {
 //		if (Auth.check(req, resp)) {
 //			return;
 //		}
+		HttpSession session = req.getSession();
+		String id = (String)session.getAttribute("id");
 		
+		AccountDAO dao = new AccountDAO();
+		
+		
+		ArrayList<AccountInfoDTO> wishlist = dao.mywishlist(id);
+		
+		 // Serialize data to JSON
         
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/account/calendar.jsp");
-		dispatcher.forward(req, resp);
+        JSONArray arr = new JSONArray();
+		for (AccountInfoDTO dto : wishlist) {
+			JSONObject obj = new JSONObject();
+			obj.put("productName",dto.getProductName());
+			arr.add(obj);
+		}
+
+        // Set response content type to JSON and send the JSON as response
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+			
+		
+		PrintWriter writer = resp.getWriter();
+
+		writer.print(arr);
+		writer.close();
 
 	}
-
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		HttpSession session = req.getSession();
+		String id = (String)session.getAttribute("id");
+		
+		req.setCharacterEncoding("UTF-8");
+		String wishitem = req.getParameter("item");
+		
+		
+		AccountInfoDTO dto = new AccountInfoDTO();
+		AccountDAO dao = new AccountDAO();
+		
+		dto.setIdMember(id);
+		dto.setProductName(wishitem);
+		
+		System.out.println(wishitem);
+		
+		int indicate = dao.addlist(dto);
+		
+		System.out.println(indicate);
 		
 		
 	}
+
+
 
 }

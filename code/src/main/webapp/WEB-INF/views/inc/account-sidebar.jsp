@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <%@include file="/WEB-INF/views/inc/asset.jsp"%>
+
 <style>
 </style>
 </head>
@@ -18,14 +19,14 @@
 	<nav class="navbar">
 		<div class="navbar-nav w-100">
 			<div class="nav-item dropdown">
-				<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i> 가계부</a>
+				<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-piggy-bank"></i>가계부</a>
 				<div class="dropdown-menu bg-transparent border-0">
-					<a href="/account/account/calendar.do" class="dropdown-item">달력</a> 
-					<a href="/account/account/list.do" class="dropdown-item">목록</a> 
-					<a href="/account/account/analysis.do" class="dropdown-item">분석</a>
+					<a href="/account/account/calendar.do" class="dropdown-item"><i class="fa-solid fa-calendar-days"></i> 달력</a> 
+					<a href="/account/account/list.do" class="dropdown-item"><i class="fa-solid fa-bars"></i> 목록</a> 
+					<a href="/account/account/analysis.do" class="dropdown-item"><i class="fa-solid fa-chart-pie"></i> 분석</a>
 				</div>
 			</div>
-			<a href="/account/account/card-use.do" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i> 카드 사용</a>
+			<a href="/account/account/card-use.do" class="nav-item nav-link"><i class="fa-solid fa-credit-card"></i> 카드 사용</a>
 		</div>
 	</nav>
 </div>

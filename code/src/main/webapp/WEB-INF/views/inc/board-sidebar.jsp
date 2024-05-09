@@ -22,12 +22,12 @@
 		<div class="navbar-nav w-100">
 			<a href="/account/board/view.do" class="nav-item nav-link"><i class="fas fa-home"></i> 게시판 홈</a>
 			<div class="nav-item dropdown">
-				<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i> 게시판 카테고리</a>
+				<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-map-pin"></i> 게시판 카테고리</a>
 				<div class="dropdown-menu bg-transparent border-0">
-					<a href="/account/board/noticeBoard.do" class="dropdown-item"> <span class="material-symbols-outlined" id="assignment_board">assignment</span> 공지게시판</a> 
-					<a href="/account/board/freeBoard.do" class="dropdown-item"><span class="material-symbols-outlined" id="assignment_board">assignment</span> 자유게시판</a> 
-					<a href="//account/board/attendanceBoard.do" class="dropdown-item"><span class="material-symbols-outlined" id="assignment_board">assignment</span> 출석게시판</a>
-					<a href="/account/board/reportBoard.do" class="dropdown-item"><span class="material-symbols-outlined" id="assignment_board">assignment</span> 건의게시판</a>
+					<a href="/account/board/noticeBoard.do" class="dropdown-item"><i class="fas fa-clipboard"></i> 공지게시판</a> 
+					<a href="/account/board/freeBoard.do" class="dropdown-item"><i class="fas fa-clipboard"></i> 자유게시판</a> 
+					<a href="//account/board/attendanceBoard.do" class="dropdown-item"><i class="fas fa-clipboard"></i> 출석게시판</a>
+					<a href="/account/board/reportBoard.do" class="dropdown-item"><i class="fas fa-clipboard"></i> 건의게시판</a>
 				</div>
 			</div>
 		</div>

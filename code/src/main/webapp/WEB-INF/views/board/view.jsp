@@ -66,18 +66,18 @@
 		    <div id="board-search">
 		      <div class="container">
 		        <div class="search-window">
-		          <form action="">
-		            <div class="search-wrap">
-		              <select>
-		                <option>제목+내용</option>
-		                <option>제목</option>
-		                <option>내용</option>
+		          <form id="formSearch" method="GET" action="/account/board/view.do">
+		            <div class="search-wrap">              
+		              <select name="column">
+		                <option value="total">제목+내용</option>
+		                <option value="title">제목</option>
+		                <option value="content">내용</option>
 		              </select>
 		              <label for="search" class="blind">게시판 검색</label>
-		              <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
-		              <button type="submit" class="btn btn-dark">검색</button>
+		              <input id="search" type="search" name="word" placeholder="검색어를 입력해주세요." value="">
+		              <button type="submit" class="btn btn-dark">검색</button>	              			
 		            </div>
-		          </form>
+	          	  </form>
 		        </div>
 		      </div>
 		    </div>
@@ -219,16 +219,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
 
-    document.addEventListener('DOMContentLoaded', function() {
-    const sidebarToggler = document.getElementById('sidebar-toggler');
-    const sidebar = document.querySelector('.sidebar');
-    const content = document.querySelector('.content');
-
-        sidebarToggler.addEventListener('click', function() {
-        sidebar.classList.toggle('hidden');
-        content.classList.toggle('expanded');
-        });
-    });
 
     </script>
 </body>

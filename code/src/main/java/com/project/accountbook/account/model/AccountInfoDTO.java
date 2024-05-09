@@ -22,6 +22,7 @@ public class AccountInfoDTO {
 	private String seqFixedFluctuationCheck;
 	private String seqDepositWithdrawalStatus;
 	private String DepositWithdrawalStatus;
+	private String seqAccCategoryList;
 	
 	private int beforeAcUsage;
 	private int nowAcUsage;
@@ -278,6 +279,12 @@ public class AccountInfoDTO {
 				+ ", pubDate=" + pubDate + ", description=" + description + ", seqReasonsChangeList="
 				+ seqReasonsChangeList + ", seqMyCard=" + seqMyCard + ", cfName=" + cfName + ", fileLink=" + fileLink
 				+ ", alias=" + alias + ", paymentMethod=" + paymentMethod + ", cardNumber=" + cardNumber + "]";
+	}
+	public String getSeqAccCategoryList() {
+		return seqAccCategoryList;
+	}
+	public void setSeqAccCategoryList(String seqAccCategoryList) {
+		this.seqAccCategoryList = seqAccCategoryList;
 	}
 
 		

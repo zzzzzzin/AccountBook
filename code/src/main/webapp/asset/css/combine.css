@@ -11,6 +11,10 @@ font-family: "Noto Sans KR", sans-serif;
 	width: 100%;
 }
 
+/* .sidebar-icon-style { */
+/* 	width: 20px; */
+/* } */
+
 /* 박스 스타일 */
 .gray-blue-box {
   width:100%;
@@ -920,11 +924,12 @@ section.notice {
 
 .post-info {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .post-info span {
-  margin-bottom: 5px;
+ /* margin-bottom: 5px; */
+  margin: 10px;
 }
 
 .post-content {

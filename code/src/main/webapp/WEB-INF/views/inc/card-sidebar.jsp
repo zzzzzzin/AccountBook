@@ -11,12 +11,14 @@
 </head>
 
 <div class="sidebar">
-	<div class="buddy-budget-logo-style"><a href="/account/index.do"><span data-attr="Budget">Budget</span><span data-attr="Buddy">Buddy</span></a></div>
+	<div class="buddy-budget-logo-style">
+		<a href="/account/index.do"><span data-attr="Budget">Budget</span><span data-attr="Buddy">Buddy</span></a>
+	</div>
 	
 	<nav class="navbar">
 		<div class="navbar-nav w-100">
-			<a href="/account/card/recommendation.do" class="nav-item nav-link">카테고리별 추천</a>
-			<a href="/account/card/personalized-recommendation.do" class="nav-item nav-link">맞춤 추천</a>
+			<a href="/account/card/recommendation.do" class="nav-item nav-link"><i class="fa-solid fa-ranking-star"></i> 카테고리별 추천</a>
+			<a href="/account/card/personalized-recommendation.do" class="nav-item nav-link"><i class="fa-solid fa-medal"></i> 맞춤 추천</a>
 		</div>
 	</nav>
 

@@ -38,128 +38,77 @@
 </script>
 </head>
 <style>
-.flipster--loop { .flipster__item--past { transform:translateX(-100%);
-	
-}
+.flipster--loop {
+  
+        .flipster__item { 
+          position: absolute;
+        }
+        
+      /*  .flipster__item--past { transform: translateX(-100%); }
+        .flipster__item--future { transform: translateX(100%); }*/
+        
+        .flipster__item--past-2 { transform: translateX(-100%); }
+        .flipster__item--future-2 { transform: translateX(100%); }
+        
+        .flipster__item--past-1 { transform: translateX(-50%); }
+        .flipster__item--future-1 { transform: translateX(50%); }
+      }
+      
+      .flipster--infinite-carousel {
+      
+          .flipster__container,
+          .flipster__item {
+              transition: all 350ms ease-in-out;
+              transition-timing-function: cubic-bezier(.56,.12,.12,.98);
+          }
+      
+          .flipster__item__content { transition: inherit; }
+      
+          .flipster__item {
+              position: absolute;
+              opacity: 0;
+              perspective: 800px;
+          }
+      
+          .flipster__item--past-2,
+          .flipster__item--future-2 {
+              opacity: 0.6;
+              transition-delay: 90ms;
+          }
+      
+          .flipster__item--past-1,
+          .flipster__item--future-1 {
+              opacity: 0.8;
+              transition-delay: 60ms;
+          }
+      
+          .flipster__item--current {
+              opacity: 1;
+              transition-delay: 0;
+          }
+      
+          .flipster__item--past .flipster__item__content,
+          .flipster__item--future .flipster__item__content { transform: scale(0.4); }
+      
+          .flipster__item--past-2 .flipster__item__content { transform: translateX(-75%) rotateY(45deg) scale(0.6); }
+          .flipster__item--future-2 .flipster__item__content { transform: translateX(75%) rotateY(-45deg) scale(0.6); }
+      
+          .flipster__item--past-1 .flipster__item__content { transform: translateX(-50%) rotateY(45deg) scale(0.8); }
+          .flipster__item--future-1 .flipster__item__content { transform: translateX(50%) rotateY(-45deg) scale(0.8); }
+      
+          .flipster__item--current .flipster__item__content { transform: translateX(0) rotateY(0deg) scale(1); }
+      }
+      .flipster-container {
+        position: relative;
+    }
 
-.flipster__item--future {
-	transform: translateX(100%);
-}
-
-.flipster__item--past-2 {
-	transform: translateX(-100%);
-}
-
-.flipster__item--future-2 {
-	transform: translateX(100%);
-}
-
-.flipster__item--past-1 {
-	transform: translateX(-50%);
-}
-
-.flipster__item--future-1 {
-	transform: translateX(50%);
-}
-
-}
-.flipster--infinite-carousel { .flipster__container , .flipster__item {
-	transition:all350msease-in-out;
-	transition-timing-function: cubic-bezier(.56, .12, .12, .98);
-}
-
-.flipster__item__content {
-	transition: inherit;
-}
-
-.flipster__item {
-	position: absolute;
-	opacity: 0;
-	perspective: 800px;
-}
-
-.flipster__item--past-2, .flipster__item--future-2 {
-	opacity: 0.6;
-	transition-delay: 90ms;
-}
-
-.flipster__item--past-1, .flipster__item--future-1 {
-	opacity: 0.8;
-	transition-delay: 60ms;
-}
-
-.flipster__item--current {
-	opacity: 1;
-	transition-delay: 0;
-}
-
-.flipster__item--past .flipster__item__content, .flipster__item--future .flipster__item__content
-	{
-	transform: scale(0.4);
-}
-
-.flipster__item--past-2 .flipster__item__content {
-	transform: translateX(-75%) rotateY(45deg) scale(0.6);
-}
-
-.flipster__item--future-2 .flipster__item__content {
-	transform: translateX(75%) rotateY(-45deg) scale(0.6);
-}
-
-.flipster__item--past-1 .flipster__item__content {
-	transform: translateX(-50%) rotateY(45deg) scale(0.8);
-}
-
-.flipster__item--future-1 .flipster__item__content {
-	transform: translateX(50%) rotateY(-45deg) scale(0.8);
-}
-
-.flipster__item--current .flipster__item__content {
-	transform: translateX(0) rotateY(0deg) scale(1);
-}
-
-}
-.flipster-container {
-	position: relative;
-}
-
-.description-box {
-	margin-top: 20px;
-	padding: 10px;
-	border: 1px solid #ccc;
-	background-color: #f9f9f9;
-}
-
-#categorymodalbody{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-
-.categorylistselector{
-    display: flex;
-    border: 1px solid #CCC;
-    background-color: #F3f6f9;
-    width: auto;
-    margin: 5px;
-    justify-content: center;
-    padding: 5px;
-    border-radius: 5px;
-}
-
-#categoryselector{
-	margin: 5px;	
-}
-
-.categorylistselector:hover{
-    cursor: pointer;
-    box-shadow: 0 4px 4px rgba(0,0,0,0.1);
-}
-.flipster-container {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-}
-
+    .description-box {
+        left: 0;
+        right: 0;
+        padding: 10px;
+        border: 1px solid #ccc;
+        background-color: #f9f9f9;
+    }
  #aboverow {
     display: flex;
     flex-direction: row;
@@ -171,6 +120,11 @@
  .right-icon{
         width: auto;
         height: 100%;
+    }
+    
+    .flipster img{
+    	width: 300px;
+    	height: 300px;
     }
 
 <%@include file ="/WEB-INF/views/inc/asset.jsp"%>
@@ -226,8 +180,7 @@
                     <div>연회비 : ${dto.annualFee}원</div>
                     <div>해외 겸용 : ${dto.overseasUse}</div>
                 ">
-									<img
-									src="http://brokensquare.com/Code/jquery-flipster/demo/img/text${loop.index + 1}.gif">
+									<img src="/account/asset/images/${dto.fileLink}">
 								</li>
 							</c:forEach>
 						</ul>
@@ -276,7 +229,9 @@
 	<script
 		src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script>
+	
     document.addEventListener('DOMContentLoaded', function() {
     	console.log("recommendation.jsp - DOMContentLoaded");
         var categoryselector = document.getElementById('categoryselector');

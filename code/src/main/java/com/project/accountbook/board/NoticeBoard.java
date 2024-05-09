@@ -48,6 +48,17 @@ public class NoticeBoard extends HttpServlet {
 		ArrayList<PostDTO> noticeList = dao.list(map, "1");
 		//ArrayList<PostDTO> noticeList = dao.list("1");
 		
+		for (PostDTO list : noticeList) {
+			
+            String title = list.getTitle();        
+            
+            if(search != null && search.equals("y") && (column.equals("title") || column.equals("total"))) {
+    			title = title.replace(word, "<span style='color: tomato; font-weight: bold;'>" + word + "</span>");
+    			list.setTitle(title);
+    		}
+            
+        }
+		
 		req.setAttribute("noticeList", noticeList); // noticeList 객체를 요청 객체에 추가
 		req.setAttribute("map", map);
 		

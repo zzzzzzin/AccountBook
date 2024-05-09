@@ -17,6 +17,8 @@ import com.project.accountbook.board.repository.BoardDAO;
 
 @WebServlet("/board/freeBoard.do")
 public class Freeboard extends HttpServlet {
+	
+	BoardDAO dao = new BoardDAO();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -43,11 +45,19 @@ public class Freeboard extends HttpServlet {
 		
 		
 		
-		
-		BoardDAO dao = new BoardDAO();
-		
 		ArrayList<PostDTO> freeList = dao.list(map, "2");
-		//ArrayList<PostDTO> freeList = dao.list("2");
+
+		
+		for (PostDTO list : freeList) {
+			
+            String title = list.getTitle();        
+            
+            if(search != null && search.equals("y") && (column.equals("title") || column.equals("total"))) {
+    			title = title.replace(word, "<span style='color: tomato; font-weight: bold;'>" + word + "</span>");
+    			list.setTitle(title);
+    		}
+            
+        }
 		
 		req.setAttribute("freeList", freeList); // freeList 객체를 요청 객체에 추가
 		req.setAttribute("map", map);
@@ -55,5 +65,23 @@ public class Freeboard extends HttpServlet {
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/free-board.jsp");
 		dispatcher.forward(req, resp);
 
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		String seq = req.getParameter("seq"); //Post seq
+		String type = req.getParameter("type"); //Like, Dislike 구분
+
+		
+		if(type.equals("like")) {
+			
+			dao.like(seq);
+			
+		} else if (type.equals("dislike")) {
+			
+			dao.dislike(seq);
+		}
+	
 	}
 }

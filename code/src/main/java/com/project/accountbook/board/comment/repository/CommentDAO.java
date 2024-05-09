@@ -24,19 +24,20 @@ public class CommentDAO {
     public List<CommentDTO> getCommentsByPostSeq(String postSeq) {
         List<CommentDTO> comments = new ArrayList<>();
         try {
-            String sql = "SELECT c.seq, c.seqPost, c.seqUser, c.content, c.writeDate, c.likeCount, c.dislikeCount, c.reportCount, m.nickname, p.fileLink AS profileImage " +
-                         "FROM tblComments c " +
-                         "INNER JOIN tblUser u ON c.seqUser = u.seq " +
-                         "INNER JOIN tblMember m ON u.idMember = m.id " +
-                         "LEFT JOIN tblProfileimg p ON m.seqProfileimg = p.seq " +
-                         "WHERE c.seqPost = ? " +
-                         "ORDER BY c.seq";
+            String sql = "SELECT c.seq, c.seqPost, c.seqUser, c.content, c.writeDate, c.likeCount, c.dislikeCount, c.reportCount, m.nickname, p.fileLink AS profileImage, u.idMember " +
+                    "FROM tblComments c " +
+                    "INNER JOIN tblUser u ON c.seqUser = u.seq " +
+                    "INNER JOIN tblMember m ON u.idMember = m.id " +
+                    "LEFT JOIN tblProfileimg p ON m.seqProfileimg = p.seq " +
+                    "WHERE c.seqPost = ? " +
+                    "ORDER BY c.seq";
             pstat = conn.prepareStatement(sql);
             pstat.setString(1, postSeq);
             rs = pstat.executeQuery();
 
             while (rs.next()) {
                 CommentDTO comment = new CommentDTO();
+                comment.setIdMember(rs.getString("idMember"));
                 comment.setSeq(rs.getString("seq"));
                 comment.setSeqPost(rs.getInt("seqPost"));
                 comment.setSeqUser(rs.getInt("seqUser"));
@@ -122,4 +123,77 @@ public class CommentDAO {
         }
         return 0;
     }
+    
+    
+    //댓글 수정 
+    public int updateComment(String commentSeq, String editedContent) {
+        try {
+            String sql = "UPDATE tblComments SET content = ? WHERE seq = ?";
+            pstat = conn.prepareStatement(sql);
+            pstat.setString(1, editedContent);
+            pstat.setString(2, commentSeq);
+            return pstat.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    //댓글 삭제 
+    public int deleteComment(String commentSeq) {
+        try {
+            String sql = "DELETE FROM tblComments WHERE seq = ?";
+            pstat = conn.prepareStatement(sql);
+            pstat.setString(1, commentSeq);
+            return pstat.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    
+    //답글 수정
+    public int updateReplyComment(String replyCommentSeq, String editedContent) {
+        try {
+            String sql = "UPDATE tblReplyComments SET content = ? WHERE seq = ?";
+            pstat = conn.prepareStatement(sql);
+            pstat.setString(1, editedContent);
+            pstat.setString(2, replyCommentSeq);
+            return pstat.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    
+    //답글 작성자 확인
+ // 답글 작성자 확인
+    public boolean isReplyCommentAuthor(String replyCommentSeq, int seqUser) {
+        try {
+            String sql = "SELECT COUNT(*) FROM tblReplyComments WHERE seq = ? AND seqUser = ?";
+            pstat = conn.prepareStatement(sql);
+            pstat.setString(1, replyCommentSeq);
+            pstat.setInt(2, seqUser);
+            rs = pstat.executeQuery();
+            if (rs.next()) {
+                int count = rs.getInt(1);
+                return count > 0;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+ // 답글 삭제
+    public int deleteReplyComment(String replyCommentSeq) {
+        try {
+            String sql = "DELETE FROM tblReplyComments WHERE seq = ?";
+            pstat = conn.prepareStatement(sql);
+            pstat.setString(1, replyCommentSeq);
+            return pstat.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    
 }

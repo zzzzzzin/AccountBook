@@ -44,6 +44,11 @@ public class CommentDTO {
     }
 
 
+    private String idMember;
+
+    public String getIdMember() {
+        return idMember;
+    }
 
 	private String profileImage;
 	//댓글
