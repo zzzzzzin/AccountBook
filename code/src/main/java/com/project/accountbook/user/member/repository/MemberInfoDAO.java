@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.project.accountbook.account.model.AccountInfoDTO;
 import com.project.accountbook.user.member.model.MemberInfoDTO;
 import com.project.accountbook.user.model.UserDTO;
 import com.project.accountbook.util.DBUtil;
@@ -310,117 +311,7 @@ public class MemberInfoDAO {
 	
 	
 
-	public UserDTO getChallenge(String id) {
-
-		try {
-			
-			String sql = "select s.monthlyPaycheck, s.savingsGoals, sp.period\r\n"
-					+ "from tblMember m\r\n"
-					+ "    inner join tblSurvey s\r\n"
-					+ "        on m.seqSurvey = s.seq\r\n"
-					+ "            inner join tblSavingsPeriod sp\r\n"
-					+ "                on sp.seq = s.seqSavingsPeriod\r\n"
-					+ "                    where id = ?";
-			
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, id);
-
-			pstat.executeUpdate();
-
-			if (rs.next()) {
-
-				UserDTO dto = new UserDTO();
-
-				dto.setMonthlyPaycheck(rs.getInt("monthlyPaycheck"));
-				dto.setSavingsGoals(rs.getInt("savingsGoals"));
-				dto.setSpPeriod(rs.getInt("period"));
-
-				return dto;
-
-			}
-			
-		} catch (Exception e) {
-			System.out.println("MemberInfoDAO.getChallenge");
-			e.printStackTrace();
-		}
-		
-		return null;
-	}
-
-
-	public String getSeqSurvey(String id) {
-
-		try {
-			
-			String sql = "select seqSurvey from tblMember where id = ?";
-			
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, id);
-			pstat.executeUpdate();
-			
-			rs = pstat.executeQuery();
-			
-			if (rs.next()) {
-	            return rs.getString("seqSurvey");
-	        }
-			
-		} catch (Exception e) {
-			System.out.println("MemberInfoDAO.getSeqSurvey");
-			e.printStackTrace();
-		}
-		
-		return null;
-	}
-
-	public String getSeqSavingPeriod(String seqSurvey) {
-
-		try {
-			
-			String sql = "select seqSavingsPeriod from tblSurvey where seq = ?";
-			
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, seqSurvey);
-			pstat.executeUpdate();
-			
-			rs = pstat.executeQuery();
-			
-			if (rs.next()) {
-	            return rs.getString("seqSavingsPeriod");
-	        }
-			
-		} catch (Exception e) {
-			System.out.println("MemberInfoDAO.getSeqSurvey");
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	public void editChallenge(String seqSurvey, String seqSavingsPeriod, String sallary, String goal, String period) {
-
-		try {
-			
-			String sql = "update tblSurvey set monthlyPaycheck = ?, savingsGoals = ? where seq = ?";
-			
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, sallary);
-			pstat.setString(2, goal);
-			pstat.setString(3, seqSurvey);
-			pstat.executeUpdate();
-			
-			sql = "update tblSavingsPeriod set period = ? where seq = ?";
-			
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, period);
-			pstat.setString(2, seqSavingsPeriod);
-			pstat.executeUpdate();
-			
-		} catch (Exception e) {
-			System.out.println("MemberInfoDAO.editChallenge");
-			e.printStackTrace();
-		}
-		
-	}
-
+	
 	public boolean isPhoneNumberUnique(String phoneNumber, String id) {
 		try {
 	        String sql = "SELECT COUNT(*) AS count FROM tblMember WHERE phonenumber = ? AND id != ?";
@@ -440,6 +331,45 @@ public class MemberInfoDAO {
 	    // 오류가 발생하거나 결과가 없는 경우에는 일단 중복이 아니라고 간주
 		System.out.println("번호 중복값 존재");
 	    return true;
+	}
+
+	public ArrayList<MemberInfoDTO> getChallengeInfo(String id) {
+		
+		ArrayList<MemberInfoDTO> list = new ArrayList<>();
+		
+		try {
+			
+			String sql = "select s.monthlyPaycheck as m, s.savingsGoals as s, sp.period as p\r\n"
+					+ "from tblMember m\r\n"
+					+ "    inner join tblSurvey s\r\n"
+					+ "        on m.seqSurvey = s.seq\r\n"
+					+ "            inner join tblSavingsPeriod sp\r\n"
+					+ "                on sp.seq = s.seqSavingsPeriod\r\n"
+					+ "                    where id = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, id);
+			rs = pstat.executeQuery();
+			
+			while(rs.next()) {
+				
+				MemberInfoDTO dto = new MemberInfoDTO();
+				
+				dto.setMonthlyPaycheck(rs.getInt("m"));
+				dto.setSavingsGoals(rs.getInt("s"));
+				dto.setSavingPeriod(rs.getInt("p"));
+				
+				list.add(dto);
+			}
+			System.out.println("run");
+			return list;
+				
+		} catch (Exception e) {
+			System.out.println("MemberInfoDAO.getChallengeInfo");
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 
 	

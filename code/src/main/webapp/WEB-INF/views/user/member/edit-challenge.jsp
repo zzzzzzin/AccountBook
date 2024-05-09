@@ -144,18 +144,18 @@
 						<div class="content-surveysetting">
 							<div class="contents-surveysetting">
 								<div class="sallary-title">월급</div>
-								<input type="text" class="sallary-real" name="sallary"></input>
+								<input type="text" id="sallary" class="sallary-real" name="sallary" value="${clist[0].sallary}"></input>
 							</div>
 							<div class="contents-surveysetting">
 								<div class="sallary-title">저축 목표 금액</div>
-								<input type="text" class="sallary-real" name="goal"></input>
+								<input type="text" id="goal" class="sallary-real" name="goal" value="${clist[0].goal}"></input>
 							</div>
 							<div class="contents-surveysetting">
 								<div class="sallary-title">저축 목표 기간 설정</div>
-									<input type="text" class="period" name="period"></input>
+									<input type="text" id="period" class="period" name="period" value="${clist[0].period}"></input>
 							</div>
 							<div class="saveSurveySetting">
-								<button type="submit" class="saveBtn">저장하기</button>
+								<button type="submit" class="saveBtn" id="surveyBtn">저장하기</button>
 							</div>
 						</div>
 					</div>
@@ -178,28 +178,8 @@
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
     <script>
 
-    document.addEventListener('DOMContentLoaded', function() {
-    const sidebarToggler = document.getElementById('sidebar-toggler');
-    const sidebar = document.querySelector('.sidebar');
-    const content = document.querySelector('.content');
-
-        sidebarToggler.addEventListener('click', function() {
-        sidebar.classList.toggle('hidden');
-        content.classList.toggle('expanded');
-        });
-    });
     
-    $(document).ready(function () {
-        // jQuery datepicker 초기화
-        $("#start-date, #end-date").datepicker({
-            dateFormat: "yy-mm-dd"
-        });
-
-        // input 클릭 시 값 없애기
-        $('input[type="text"]').on('focus', function() {
-            $(this).val('');
-        });
-    });
+    
 
     </script>
 </body>
