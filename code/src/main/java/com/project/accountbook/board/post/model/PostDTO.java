@@ -12,6 +12,7 @@ public class PostDTO {
 	private String seq;
 	private String seqBoard;
 	private String seqUser;
+	private String profileImg;
 	private String title;
 	private String content;
 	private String writeDate;
@@ -166,6 +167,14 @@ public class PostDTO {
 				+ likeCount + ", dislikeCount=" + dislikeCount + ", reportCount=" + reportCount + ", secretCheck="
 				+ secretCheck + ", blindCheck=" + blindCheck + ", seqPost=" + seqPost + ", fileName=" + fileName
 				+ ", fileLink=" + fileLink + "]";
+	}
+
+	public String getProfileImg() {
+		return profileImg;
+	}
+
+	public void setProfileImg(String profileImg) {
+		this.profileImg = profileImg;
 	}
 	
 }

@@ -119,7 +119,7 @@
               	${post.title}
 			  </h2>
               <div class="post-header" id="maincontent">
-                <img class="user-image" src="/account/asset/images/${comment.profileImage}" >
+                <img class="user-image" src="/account/asset/images/${post.profileImg}" >
                 <div class="post-info">
 	                <c:choose>			  		
 				  		<c:when test="${post.seqBoard == 1}">

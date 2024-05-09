@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.project.accountbook.board.post.model.PostDTO;
 import com.project.accountbook.board.repository.BoardDAO;
@@ -21,8 +22,10 @@ public class Edit extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String seq = req.getParameter("seq");
+        HttpSession session = req.getSession();
+        String id = (String)session.getAttribute("id");
         
-        PostDTO post = boardDAO.readPost(seq);
+        PostDTO post = boardDAO.readPost(seq,id);
         
         req.setAttribute("post", post);
         

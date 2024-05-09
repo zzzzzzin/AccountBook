@@ -18,19 +18,26 @@ import com.project.accountbook.board.repository.BoardDAO;
 
 @WebServlet("/board/discussion.do")
 public class Discussion extends HttpServlet {
-	
-    CommentDTO commentDto = new CommentDTO();
+	CommentDTO cdto = new CommentDTO();
 	CommentDAO cdao = new CommentDAO();
 	BoardDAO bdao = new BoardDAO();
+    
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	    HttpSession session = req.getSession();
 	    String seq = req.getParameter("seq");
 	    Integer seqUser = (Integer) session.getAttribute("seqUser");
+	    
+	    String id = (String)session.getAttribute("id");
+	    
+	    
 
-	    PostDTO post = bdao.readPost(seq);
-
+	    System.out.println("seqUser : "+seqUser);
+	    
+	    PostDTO post = bdao.readPost(seq, id);
+	    
+	    System.out.println("filelink: "+post.getProfileImg());
 	    
 	    List<CommentDTO> comments = cdao.getCommentsByPostSeq(seq);
 	    
