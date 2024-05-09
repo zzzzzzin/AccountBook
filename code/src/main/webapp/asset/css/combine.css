@@ -674,7 +674,7 @@ textarea.input-style-form-lg {
 	margin-bottom: 20px;
 }
 
-.accordion {
+/* .accordion {
 	background-color: #eee0;
 	color: #444;
 	cursor: pointer;
@@ -690,7 +690,7 @@ textarea.input-style-form-lg {
 .active, .accordion:hover {
 	background-color: #ccc;
 }
-
+ */
 .panel {
 	padding: 0 18px;
 	background-color: white;
@@ -722,6 +722,7 @@ textarea.input-style-form-lg {
     justify-content: center;
     align-items: center;
     height: 98px;
+    font-family: 'WavvePADO-Regular';
 }
 .buddy-budget-logo-style a {
     text-decoration: none;
