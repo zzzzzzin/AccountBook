@@ -29,6 +29,11 @@
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
+    .card-image img {
+        width: 30px;
+        height: 30px;
+        object-fit: cover;
+    }
 </style>
 <script type="module" src="chart.min.js"></script>
 <body>
@@ -73,8 +78,8 @@
                 <c:forEach items="${list}" var="dto" varStatus="loop">
                     <div class="card">
                         <div class="card-image">
-                            <img src="${dto.fileLink}" alt="Card">
-                        </div>
+                                <img src="${pageContext.request.contextPath}/asset/images/${dto.fileLink}">
+                            </div>
                         <div class="card-details">
                             <div class="card-name" >${dto.ciName}</div>
                             <div class="card-company">${dto.cardCompany}</div>
