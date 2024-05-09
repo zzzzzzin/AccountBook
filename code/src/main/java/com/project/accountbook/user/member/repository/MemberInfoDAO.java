@@ -448,13 +448,13 @@ public class MemberInfoDAO {
 		ArrayList<MemberInfoDTO> list = new ArrayList<>();
 		
 		try {
-			String sql = "select ci.name, ci.cardCompany, mc.alias, mc.cardNumber, mc.validity " +
-		             "from tblMyCard mc inner join tblMember m " +
-		             "    on mc.idMember = m.id " +
-		             "        inner join tblCardInformation ci " +
-		             "            on mc.seqCardInformation = ci.seq " +
-		             "where m.id = ?";
-			
+			String sql = "select ci.name as name, ci.cardCompany as cardCompany , mc.alias as alias"
+					+ ", mc.cardNumber as cardNumber , mc.validity as validity, ci.fileLink as fileLink\r\n"
+					+ "from tblMyCard mc inner join tblMember m\r\n"
+					+ "    on mc.idMember = m.id\r\n"
+					+ "        inner join tblCardInformation ci\r\n"
+					+ "            on mc.seqCardInformation = ci.seq\r\n"
+					+ "where m.id = ?";
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, id);
 			
@@ -468,6 +468,7 @@ public class MemberInfoDAO {
 				dto.setAlias(rs.getString("alias"));
 				dto.setCardNumber(rs.getString("cardNumber"));
 				dto.setValidity(rs.getString("validity"));
+				dto.setFileLink(rs.getString("fileLink"));
 				
 				list.add(dto);
 			}
@@ -476,7 +477,7 @@ public class MemberInfoDAO {
 			
 			
 		} catch (Exception e) {
-			System.out.println("AccountDAO.getmycards");
+			System.out.println("MemberInfoDAO.getMyCards");
 			e.printStackTrace();
 		}
 		

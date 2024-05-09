@@ -16,7 +16,6 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import com.project.accountbook.board.comment.model.CommentDTO;
 import com.project.accountbook.board.post.model.PostDTO;
 import com.project.accountbook.user.model.UserDTO;
 import com.project.accountbook.util.DBUtil;

@@ -78,7 +78,7 @@
 				<c:forEach items="${clist}" var="dto">
 					<div class="myCard">
 						<div class="myCardImg">
-							<img src="../../../html/images/myPage-viewCards-card.png" alt="">
+							<img src="/account/asset/images/${dto.fileLink}" alt="">
 						</div>
 						<div class="myCard-detail">
 							<div class="myCardName">
