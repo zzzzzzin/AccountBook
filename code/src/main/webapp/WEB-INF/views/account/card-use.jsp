@@ -22,6 +22,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+	<!-- Libraries Stylesheet -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 </head>
 <style>
     
@@ -59,19 +62,37 @@
         <!-- fakecontent 안에서 작성 -->
 
 		<div class="content-total-style">
-		<form id="selectDateForm" method="GET">
-			<div class="date-range-total-box">
-			<div class="date-range-box">
-				<label for="start-date-myCardTotal">시작일 <input type="text" name = "startDate" id="start-date" class="date-input-myCardTotal" value="${map.startDate}"> </label> 
-				<label for="end-date">종료일 <input type="text" name = "endDate" id="end-date" class="date-input-myCardTotal" value="${map.endDate}"></label> 
-			</div>
-				<input type="submit" value="확인" class="purple-btn long-btn"/>
-			</div>
-		</form>
+			<div class="content-header">
+					<div class="content-title-style"><h3>카드 사용</h3></div>
+					
+					<form id="selectDateForm" method="GET">
+						<div class="date-range-total-box">
+						<div class="date-range-box">
+							<label for="start-date-myCardTotal">시작일 <input type="text" name = "startDate" id="start-date" class="date-input-myCardTotal" value="${map.startDate}"> </label> 
+							<label for="end-date">종료일 <input type="text" name = "endDate" id="end-date" class="date-input-myCardTotal" value="${map.endDate}"></label> 
+						</div>
+							<input type="submit" value="확인" class="purple-btn long-btn"/>
+						</div>
+					</form>
+				</div>
 		
 		<div class="card-use-list">
 				<c:forEach items="${list}" var="dto">
-						<button type="submit" class="gray-blue-box card-use-item" onclick="location.href='/account/account/card-use-detail.do?seqMyCard=${dto.seqMyCard}&startDate=${map.startDate}&endDate=${map.endDate}';">
+<%-- 						<button type="submit" class="gray-blue-box card-use-item" onclick="location.href='/account/account/card-use-detail.do?seqMyCard=${dto.seqMyCard}&startDate=${map.startDate}&endDate=${map.endDate}';"> --%>
+<%-- 							<img src="/account/asset/images/${dto.fileLink}" id="cardImgPlace" > --%>
+<!-- 							<div class="card-use-info-box" > -->
+<!-- 								<div class="card-use-name"> -->
+<%-- 									<c:if test="${dto.alias != null}"> --%>
+<%-- 										${dto.alias} --%>
+<%-- 									</c:if> --%>
+<%-- 									<c:if test="${dto.alias == null}"> --%>
+<%-- 										${dto.cfName} --%>
+<%-- 									</c:if> --%>
+<!-- 								</div> <br> -->
+<%-- 								<div class="card-use-price">총 ${dto.totalPrice}원</div> --%>
+<!-- 							</div> -->
+<!-- 						</button> -->
+						<div class="gray-blue-box card-use-item" onclick="location.href='/account/account/card-use-detail.do?seqMyCard=${dto.seqMyCard}&startDate=${map.startDate}&endDate=${map.endDate}';">
 							<img src="/account/asset/images/${dto.fileLink}" id="cardImgPlace" >
 							<div class="card-use-info-box" >
 								<div class="card-use-name">
@@ -84,7 +105,7 @@
 								</div> <br>
 								<div class="card-use-price">총 ${dto.totalPrice}원</div>
 							</div>
-						</button>
+						</div>
 					</c:forEach>
 		</div>
 		</div>
@@ -98,8 +119,8 @@
     <!-- JavaScript Libraries -->
    
     <!-- Template Javascript -->
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
 
     document.addEventListener('DOMContentLoaded', function() {
