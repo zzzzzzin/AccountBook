@@ -445,5 +445,23 @@ public class BoardDAO {
 		
 		return null;
 	}
+	//글 수정
+	public int updatePost(PostDTO post) {
+	    try {
+	        String sql = "UPDATE tblPost SET title = ?, content = ?, editDate = SYSDATE WHERE seq = ?";
+	        
+	        pstat = conn.prepareStatement(sql);
+	        pstat.setString(1, post.getTitle());
+	        pstat.setString(2, post.getContent());
+	        pstat.setString(3, post.getSeq());
+	        
+	        return pstat.executeUpdate();
+	        
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    
+	    return 0;
+	}
 
 }// BoardDAO
