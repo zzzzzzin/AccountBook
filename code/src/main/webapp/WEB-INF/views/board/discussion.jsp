@@ -184,18 +184,17 @@
             <div class="post-content">
                 <div id="commentcontent">${comment.content}</div>
             </div>
-            
 <!-- 답글 작성 폼 -->
-            <div class="comment-form reply-form" style="display: none;">
-                <form onsubmit="return false;">
-                    <input type="hidden" name="seqComments" value="${comment.seq}">
-                    <input type="hidden" name="seqUser" value="${sessionScope.seqUser}">
-                    <input type="hidden" name="seqPost" value="${post.seq}">
-                    <textarea name="content" placeholder="답글을 입력하세요."></textarea>
-                    <button type="button" onclick="addReplyComment(this)">답글 등록</button>
-                </form>
+<div class="comment-form reply-form" style="display: none;">
+    <form onsubmit="return false;">
+        <input type="hidden" name="seqComments" value="${comment.seq}">
+        <input type="hidden" name="seqUser" value="${sessionScope.seqUser}">
+        <input type="hidden" name="seqPost" value="${post.seq}">
+        <textarea name="content" placeholder="답글을 입력하세요."></textarea>
+        <button type="button" onclick="addReplyComment(this, ${comment.seq})">답글 등록</button>
+    </form>
+</div>
             </div>
-        </div>
               <!-- 대댓글 시작 -->
               <c:forEach var="replyComment" items="${comment.replyComments}">
             <div class="comment-box comment-reply">
@@ -274,6 +273,18 @@
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
    
 <script>
+// 답글 버튼
+$(document).on('click', '.reply-toggle', function() {
+    var commentBox = $(this).closest('.comment-box');
+    var replyForm = commentBox.find('.reply-form');
+    
+    // 다른 수정 폼과 답글 폼은 닫기
+    $('.comment-edit-form').remove();
+    $('.reply-form').not(replyForm).hide();
+    
+    replyForm.toggle();
+});
+
 //삭제 버튼 
 $(document).on('click', '.delete-comment', function() {
     var commentSeq = $(this).data('comment-seq');
@@ -332,11 +343,20 @@ function cancelEdit(btn) {
     commentBox.find('.post-content').show();
 }
 
-
+//수정 버튼
 $(document).on('click', '.edit-comment', function() {
-	var commentBox = $(this).closest('.comment-box');
+    var commentBox = $(this).closest('.comment-box');
     var commentSeq = $(this).data('comment-seq');
     var commentContent = commentBox.find('.post-content').text().trim();
+    
+    // 이미 수정 폼이 열려있는 경우 무시
+    if (commentBox.find('.comment-edit-form').length > 0) {
+        return;
+    }
+    
+    // 다른 수정 폼과 답글 폼은 닫기
+    $('.comment-edit-form').not(commentBox.find('.comment-edit-form')).remove();
+    $('.reply-form').not(commentBox.find('.reply-form')).hide();
     
     var editForm = '<div class="comment-edit-form">' +
                    '<form onsubmit="return false;">' +
@@ -346,9 +366,8 @@ $(document).on('click', '.edit-comment', function() {
                    '<button type="button" onclick="cancelEdit(this)">취소</button>' +
                    '</form>' +
                    '</div>';
-                   commentBox.find('.post-content').hide().after(editForm);
+    commentBox.find('.post-content').hide().after(editForm);
 });
-
 
 
 
@@ -380,13 +399,24 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-       /* replyToggles.forEach(function(toggle) {
+    
+    
+    
+    
+    
+        replyToggles.forEach(function(toggle) {
         toggle.addEventListener('click', function() {
     const replyToggles = document.querySelectorAll('.reply-toggle');
             const replyForm = this.parentNode.parentNode.nextElementSibling.nextElementSibling;
             replyForm.style.display = replyForm.style.display === 'none' ? 'block' : 'none';
         });
-    }); */
+    });
+    
+        
+        
+        
+        
+        
 });
 
 function addComment() {
