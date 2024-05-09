@@ -8,6 +8,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.servlet.http.Cookie;
+
 import com.project.accountbook.board.post.model.PostDTO;
 import com.project.accountbook.util.DBUtil;
 
@@ -196,7 +198,7 @@ public class BoardDAO {
 			ArrayList<PostDTO> list = new ArrayList<PostDTO>();
 			
 			//오늘 날짜 (2024-05-09)
-			LocalDate today = LocalDate.now();
+			String today = LocalDate.now().toString();
 			
 						
 			while (rs.next()) {		
@@ -475,5 +477,24 @@ public class BoardDAO {
 	    }
 	    return 0;
 	}
+
+	public void report(String seq) {
+		try {
+
+			String sql = "update tblpost set reportcount = reportcount + 1 where seq = ?";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+
+			pstat.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("BoardDAO.report");
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
 
 }// BoardDAO
