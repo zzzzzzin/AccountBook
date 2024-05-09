@@ -463,5 +463,17 @@ public class BoardDAO {
 	    
 	    return 0;
 	}
+	// 게시글 삭제 
+	public int deletePost(String seq) {
+	    try {
+	        String sql = "DELETE FROM tblPost WHERE seq = ?";
+	        pstat = conn.prepareStatement(sql);
+	        pstat.setString(1, seq);
+	        return pstat.executeUpdate();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return 0;
+	}
 
 }// BoardDAO
