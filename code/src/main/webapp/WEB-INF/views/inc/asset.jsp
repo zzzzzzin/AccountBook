@@ -13,9 +13,11 @@
 <link href="${pageContext.request.contextPath}/asset/css/temp/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 <link href="${pageContext.request.contextPath}/asset/css/temp/css/style.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/asset/css/combine.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="${pageContext.request.contextPath}/asset/css/temp/lib/chart/chart.min.js"></script>
 <script src="${pageContext.request.contextPath}/asset/css/temp/lib/easing/easing.min.js"></script>
@@ -36,3 +38,9 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="script.js"></script>
+
+<!-- JavaScript Libraries -->
+
+   
+    <!-- Template Javascript -->
+    <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>

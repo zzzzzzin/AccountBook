@@ -11,13 +11,12 @@
 </head>
 
 <div class="sidebar">
-<!--             <div class="logo">이미지</div> -->
 
-<div id="buddy-budget-logo"><a href="/account/index.do"><span data-attr="Budget">Budget</span><span data-attr="Buddy">Buddy</span></a></div>
+	<div class="buddy-budget-logo-style"><a href="/account/index.do"><span data-attr="Budget">Budget</span><span data-attr="Buddy">Buddy</span></a></div>
 
-          </div>
+</div>
 <script>
-		
+
 </script>
 
 </html>

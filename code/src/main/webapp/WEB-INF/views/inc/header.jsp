@@ -84,124 +84,6 @@
   }
 }
 
-#header-buddy-budget-logo {
-  	display: flex;
-/*     position: absolute; */
-/*     top: 50%; */
-/*     left: 50%; */
-    transform: translate(0%, 0%);
-    justify-content: center;
-    align-items: center;
-    height: 98px;
-}
-#header-buddy-budget-logo a {
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 30px;
-}
-#header-buddy-budget-logo a span {
-    padding: 15px;
-    transition: .5s;
-    position: relative;
-}
-#header-buddy-budget-logo a span:nth-child(1) {
-    color: #FC8E57;
-/*     background: #FFEFCA; */
-}
-#header-buddy-budget-logo a span:nth-child(2) {
-    color: #FFEFCA;
-/*     background: #FC8E57; */
-}
-#header-buddy-budget-logo a span:nth-child(1):before {
-    content: attr(data-attr);
-    position: absolute;
-    top: 0;
-    left: 0;
-    color: #FFEFCA;
-    background: #FC8E57;
-    padding: 15px;
-    transition: 0.5S;
-    transform-origin: top;
-    transform: rotateX(90deg) translateY(-50%);
-}
-#header-buddy-budget-logo a:hover span:nth-child(1):before {
-    transform: rotateX(0deg) translateY(0%);
-} 
-#header-buddy-budget-logo a span:nth-child(2):before {
-    content: attr(data-attr);
-    position: absolute;
-    top: 0;
-    left: 0;
-    color: #FC8E57;
-    background: #FFEFCA;
-    padding: 15px;
-    transition: 0.5S;
-    transform-origin: bottom;
-    transform: rotateX(90deg) translateY(50%);
-}
-#header-buddy-budget-logo a:hover span:nth-child(2):before {
-    transform: rotateX(0deg) translateY(0%);
-} 
-#header-buddy-budget-logo a  span:nth-child(1):after {
-  content: attr(data-attr);
-  padding: 15px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: #FFEFCA;
-  transform-origin: bottom;
-  transform: rotateX(0deg) translateY(0%);
-  transition: 0.5s;
-}
-#header-buddy-budget-logo a:hover span:nth-child(1):after {
-  transform: rotateX(90deg) translateY(50%);
-}
-#header-buddy-budget-logo a span:nth-child(2):after {
-    content: attr(data-attr);
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: #FC8E57;
-    padding: 15px;
-    transition: 0.5S;
-    transform-origin: top;
-    transform: rotateX(0deg) translateY(0%);
-}
-#header-buddy-budget-logo a:hover span:nth-child(2):after {
-    transform: rotateX(90deg) translateY(-50%);
-} 
-
-	#navheader {
-    background-color: #A6CCBA;
-    padding: 20px;
-    border-bottom-right-radius: 13px;
-    border-bottom-left-radius: 13px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
-    margin-bottom:10px;
-	display: flex;
-	justify-content: center; /* 가운데 정렬을 위해 추가 */
-    align-items: center; /* 세로 가운데 정렬을 위해 추가 */
-  }
-  
-  #navheader nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  #navheader nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    width: 100%;
-    justify-content: center;
-  }
-
-  #navheader nav li {
-    margin: 0 20px;
-    border:none;
-  }
 
   .header-content {
   	color: #333;
@@ -268,6 +150,7 @@
 		    // "header-buddy-budget-logo" 요소를 추가
 		    var buddyBudgetLogo = document.createElement("div");
 		    buddyBudgetLogo.id = "header-buddy-budget-logo";
+		    buddyBudgetLogo.classList.add("buddy-budget-logo-style");
 		    buddyBudgetLogo.innerHTML = '<a href="/account/index.do"><span data-attr="Budget">Budget</span><span data-attr="Buddy">Buddy</span></a>';
 		    document.querySelector("header#navheader").appendChild(buddyBudgetLogo);
 		} else {
@@ -306,33 +189,6 @@
 		    window.location.href = "/account/user/member/info.do";
 		}
 		
-// 		document.addEventListener('DOMContentLoaded', function() {
-// 		    // 각 버튼에 대한 이벤트 리스너 등록
-// 		    document.getElementById("view-header-btn").addEventListener("click", function() {
-// 		        window.location.href = "/account/board/view.do";
-// 		        this.classList.add("learn-more");
-// 		    });
-// 		    document.getElementById("calendar-header-btn").addEventListener("click", function() {
-// 		        window.location.href = "/account/account/calendar.do";
-// 		        this.classList.add("learn-more");
-// 		    });
-// 		    document.getElementById("recommendation-header-btn").addEventListener("click", function() {
-// 		        window.location.href = "/account/card/recommendation.do";
-// 		        this.classList.add("learn-more");
-// 		    });
-// 		    document.getElementById("member/info-header-btn").addEventListener("click", function() {
-// 		        window.location.href = "/account/user/member/info.do";
-// 		        this.classList.add("learn-more");
-// 		    });
-// 		    document.getElementById("login-header-btn").addEventListener("click", function() {
-// 		        window.location.href = "/account/user/login.do";
-// 		        this.classList.add("learn-more");
-// 		    });
-// // 		    document.getElementById("logout-header-btn").addEventListener("click", function() {
-// // 		        window.location.href = "/account/user/logout.do";
-// // // 		        this.classList.add("learn-more");
-// // 		    });
-// 		});
 		
 </script>
 

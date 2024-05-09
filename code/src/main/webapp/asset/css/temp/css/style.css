@@ -121,21 +121,32 @@
 }
 
 
+/* 덮어쓰기 */
+.dropdown-item.active, .dropdown-item:active {
+    color: #FF6556 !important;
+    text-decoration: none;
+    background-color: #EDFDF2 !important;
+}
+
+.sidebar .navbar .dropdown-item:hover {
+	background-color: #C4DED3 !important;
+	color: #F3EED9;
+}
 /*** Navbar ***/
 .sidebar .navbar .navbar-nav .nav-link {
     padding: 7px 20px;
     color: var(--dark);
     font-weight: 500;
-    border-left: 3px solid var(--light);
+    border-left: 3px solid #ffefca00;
     border-radius: 0 30px 30px 0;
     outline: none;
 }
 
 .sidebar .navbar .navbar-nav .nav-link:hover,
 .sidebar .navbar .navbar-nav .nav-link.active {
-    color: var(--primary);
-    background: #FFFFFF;
-    border-color: var(--primary);
+    color: #FF6E8C;
+    background: #D9EDDF;
+    border-color: #FF6E8C;
 }
 
 .sidebar .navbar .navbar-nav .nav-link i {
@@ -144,7 +155,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: #FFFFFF;
+    background: #E7F1E5;
     border-radius: 40px;
 }
 

@@ -298,9 +298,6 @@ font-family: "Noto Sans KR", sans-serif;
 	margin-left: -34px;
 }
 
-#fakecontent{
-}
-
 #firstrow{
     display: flex;
     justify-content: center; /* 가로 중앙 정렬 */
@@ -343,57 +340,63 @@ font-family: "Noto Sans KR", sans-serif;
 }
 /* 사이드바 시작*/
 .sidebar {
-        width: 300px;
-        background-color: #a6ccba;
-        color: #fff;
-        height: 100vh;
+	width: 300px;
+	height: 100vh;
+	background-color: #a6ccba;
+	position: fixed;
+	left: 0;
+	top: 0;
+	overflow-y: auto;
+	box-sizing: border-box;
+	padding-right: 10px;
 }
 
-      
-      nav ul {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-      }
-      
-      nav li {
-        padding: 15px 20px;
-        border-bottom: 1px solid #444;
-      }
-      
-      nav li:last-child {
-        border-bottom: none;
-      }
-      
-      nav a {
-        color: #fff;
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-      }
-      
-      nav a i {
-        margin-right: 10px;
-      }
-      
-    .sidebar.hidden {
-        width: 0;
-        overflow: hidden;
-        transition: width 0.5s ease;
-    }
+.sidebar-title {
+	font-size: 24px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
 
-    .content.expanded {
-        margin-left: 0;
-        transition: margin-left 0.5s ease;
-    }
-    
-    
-    
-    
+.accordion {
+	background-color: #eee0;
+	color: #444;
+	cursor: pointer;
+	padding: 18px;
+	width: 100%;
+	border: none;
+	text-align: left;
+	outline: none;
+	font-size: 15px;
+	transition: 0.4s;
+}
+
+.active, .accordion:hover {
+	background-color: #ccc;
+}
+
+.panel {
+	padding: 0 18px;
+	background-color: white;
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.2s ease-out;
+}
+
+.panel a {
+	display: block;
+	padding: 10px;
+	text-decoration: none;
+	color: #333;
+}
+
+.panel a:hover {
+	background-color: #ddd;
+}
+
 /* 사이드바 끝 */
 
 /* 네비게이션 바 시작 */
-#buddy-budget-logo {
+.buddy-budget-logo-style {
   	display: flex;
 /*     position: absolute; */
 /*     top: 50%; */
@@ -403,25 +406,25 @@ font-family: "Noto Sans KR", sans-serif;
     align-items: center;
     height: 98px;
 }
-#buddy-budget-logo a {
+.buddy-budget-logo-style a {
     text-decoration: none;
     text-transform: uppercase;
     font-size: 30px;
 }
-#buddy-budget-logo a span {
+.buddy-budget-logo-style a span {
     padding: 15px;
     transition: .5s;
     position: relative;
 }
-#buddy-budget-logo a span:nth-child(1) {
+.buddy-budget-logo-style a span:nth-child(1) {
     color: #FC8E57;
 /*     background: #FFEFCA; */
 }
-#buddy-budget-logo a span:nth-child(2) {
+.buddy-budget-logo-style a span:nth-child(2) {
     color: #FFEFCA;
 /*     background: #FC8E57; */
 }
-#buddy-budget-logo a span:nth-child(1):before {
+.buddy-budget-logo-style a span:nth-child(1):before {
     content: attr(data-attr);
     position: absolute;
     top: 0;
@@ -433,10 +436,10 @@ font-family: "Noto Sans KR", sans-serif;
     transform-origin: top;
     transform: rotateX(90deg) translateY(-50%);
 }
-#buddy-budget-logo a:hover span:nth-child(1):before {
+.buddy-budget-logo-style a:hover span:nth-child(1):before {
     transform: rotateX(0deg) translateY(0%);
 } 
-#buddy-budget-logo a span:nth-child(2):before {
+.buddy-budget-logo-style a span:nth-child(2):before {
     content: attr(data-attr);
     position: absolute;
     top: 0;
@@ -448,10 +451,10 @@ font-family: "Noto Sans KR", sans-serif;
     transform-origin: bottom;
     transform: rotateX(90deg) translateY(50%);
 }
-#buddy-budget-logo a:hover span:nth-child(2):before {
+.buddy-budget-logo-style a:hover span:nth-child(2):before {
     transform: rotateX(0deg) translateY(0%);
 } 
-#buddy-budget-logo a  span:nth-child(1):after {
+.buddy-budget-logo-style a  span:nth-child(1):after {
   content: attr(data-attr);
   padding: 15px;
   position: absolute;
@@ -462,10 +465,10 @@ font-family: "Noto Sans KR", sans-serif;
   transform: rotateX(0deg) translateY(0%);
   transition: 0.5s;
 }
-#buddy-budget-logo a:hover span:nth-child(1):after {
+.buddy-budget-logo-style a:hover span:nth-child(1):after {
   transform: rotateX(90deg) translateY(50%);
 }
-#buddy-budget-logo a span:nth-child(2):after {
+.buddy-budget-logo-style a span:nth-child(2):after {
     content: attr(data-attr);
     position: absolute;
     top: 0;
@@ -476,7 +479,7 @@ font-family: "Noto Sans KR", sans-serif;
     transform-origin: top;
     transform: rotateX(0deg) translateY(0%);
 }
-#buddy-budget-logo a:hover span:nth-child(2):after {
+.buddy-budget-logo-style a:hover span:nth-child(2):after {
     transform: rotateX(90deg) translateY(-50%);
 } 
 
@@ -497,93 +500,6 @@ font-family: "Noto Sans KR", sans-serif;
     justify-content: space-between;
     align-items: center;
   }
-  
-  #buddy-budget-logo {
-  	display: flex;
-/*     position: absolute; */
-/*     top: 50%; */
-/*     left: 50%; */
-    transform: translate(0%, 0%);
-    justify-content: center;
-    align-items: center;
-    height: 98px;
-}
-#buddy-budget-logo a {
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 30px;
-}
-#buddy-budget-logo a span {
-    padding: 15px;
-    transition: .5s;
-    position: relative;
-}
-#buddy-budget-logo a span:nth-child(1) {
-    color: #FC8E57;
-/*     background: #FFEFCA; */
-}
-#buddy-budget-logo a span:nth-child(2) {
-    color: #FFEFCA;
-/*     background: #FC8E57; */
-}
-#buddy-budget-logo a span:nth-child(1):before {
-    content: attr(data-attr);
-    position: absolute;
-    top: 0;
-    left: 0;
-    color: #FFEFCA;
-    background: #FC8E57;
-    padding: 15px;
-    transition: 0.5S;
-    transform-origin: top;
-    transform: rotateX(90deg) translateY(-50%);
-}
-#buddy-budget-logo a:hover span:nth-child(1):before {
-    transform: rotateX(0deg) translateY(0%);
-} 
-#buddy-budget-logo a span:nth-child(2):before {
-    content: attr(data-attr);
-    position: absolute;
-    top: 0;
-    left: 0;
-    color: #FC8E57;
-    background: #FFEFCA;
-    padding: 15px;
-    transition: 0.5S;
-    transform-origin: bottom;
-    transform: rotateX(90deg) translateY(50%);
-}
-#buddy-budget-logo a:hover span:nth-child(2):before {
-    transform: rotateX(0deg) translateY(0%);
-} 
-#buddy-budget-logo a  span:nth-child(1):after {
-  content: attr(data-attr);
-  padding: 15px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: #FFEFCA;
-  transform-origin: bottom;
-  transform: rotateX(0deg) translateY(0%);
-  transition: 0.5s;
-}
-#buddy-budget-logo a:hover span:nth-child(1):after {
-  transform: rotateX(90deg) translateY(50%);
-}
-#buddy-budget-logo a span:nth-child(2):after {
-    content: attr(data-attr);
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: #FC8E57;
-    padding: 15px;
-    transition: 0.5S;
-    transform-origin: top;
-    transform: rotateX(0deg) translateY(0%);
-}
-#buddy-budget-logo a:hover span:nth-child(2):after {
-    transform: rotateX(90deg) translateY(-50%);
-} 
 /* 네비게이션 바 끝 */
   
 
