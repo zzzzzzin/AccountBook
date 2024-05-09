@@ -119,7 +119,7 @@
               	${post.title}
 			  </h2>
               <div class="post-header" id="maincontent">
-                <img class="user-image" src="user-image.jpg" alt="사용자 이미지">
+                <img class="user-image" src="/account/asset/images/${comment.profileImage}" >
                 <div class="post-info">
 	                <c:choose>			  		
 				  		<c:when test="${post.seqBoard == 1}">
@@ -163,10 +163,10 @@
                 <div class="post-info" id="commentlevel1info">
                     <c:choose>
                         <c:when test="${not empty comment.profileImage}">
-                            <img class="user-image" src="${comment.profileImage}" alt="사용자 이미지">
+                            <img class="user-image" src="/account/asset/images/${comment.profileImage}" alt="사용자 이미지">
                         </c:when>
                         <c:otherwise>
-                            <img class="user-image" src="/profile-images/default-user-image.jpg" alt="기본 사용자 이미지">
+                            <img class="user-image" src="/account/asset/images/${comment.profileImage}" alt="기본 사용자 이미지">
                         </c:otherwise>
                     </c:choose>
                     <div class="post-info">
@@ -209,10 +209,10 @@
                         <i class="material-icons" id="subcommentarrow">subdirectory_arrow_right</i>
                         <c:choose>
                             <c:when test="${not empty replyComment.profileImage}">
-                                <img class="user-image" src="${replyComment.profileImage}" alt="사용자 이미지">
+                                <img class="user-image" src="/account/asset/images/${comment.profileImage}" alt="사용자 이미지">
                             </c:when>
                             <c:otherwise>
-                                <img class="user-image" src="/profile-images/default-user-image.jpg" alt="기본 사용자 이미지">
+                                <img class="user-image" src="/account/asset/images/${comment.profileImage}" alt="기본 사용자 이미지">
                             </c:otherwise>
                         </c:choose>
                         <div class="post-info">
