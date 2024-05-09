@@ -17,6 +17,8 @@ import com.project.accountbook.board.repository.BoardDAO;
 
 @WebServlet("/board/freeBoard.do")
 public class Freeboard extends HttpServlet {
+	
+	BoardDAO dao = new BoardDAO();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -41,9 +43,10 @@ public class Freeboard extends HttpServlet {
 		map.put("column", column);
 		map.put("word", word);
 		
-		BoardDAO dao = new BoardDAO();
+		
 		
 		ArrayList<PostDTO> freeList = dao.list(map, "2");
+
 		
 		for (PostDTO list : freeList) {
 			
@@ -62,5 +65,23 @@ public class Freeboard extends HttpServlet {
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/free-board.jsp");
 		dispatcher.forward(req, resp);
 
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		String seq = req.getParameter("seq"); //Post seq
+		String type = req.getParameter("type"); //Like, Dislike 구분
+
+		
+		if(type.equals("like")) {
+			
+			dao.like(seq);
+			
+		} else if (type.equals("dislike")) {
+			
+			dao.dislike(seq);
+		}
+	
 	}
 }

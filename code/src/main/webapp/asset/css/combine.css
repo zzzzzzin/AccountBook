@@ -908,11 +908,12 @@ section.notice {
 
 .post-info {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .post-info span {
-  margin-bottom: 5px;
+ /* margin-bottom: 5px; */
+  margin: 10px;
 }
 
 .post-content {

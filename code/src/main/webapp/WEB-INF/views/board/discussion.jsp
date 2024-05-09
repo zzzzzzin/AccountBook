@@ -116,26 +116,25 @@
           <div class="container" id="postpagecontent">
             <div class="post-box">
               <h2>
-              
-			  	<c:choose>
-			  		
-			  		<c:when test="${post.seqBoard == 1}">
-			  			<div>공지사항</div>
-			  		</c:when>
-			  		<c:when test="${post.seqBoard == 2}">
-			  			<div>자유게시판</div>
-			  		</c:when>
-			  		<c:when test="${post.seqBoard == 3}">
-			  			<div>건의게시판</div>
-			  		</c:when>
-			  		<c:when test="${post.seqBoard == 4}">
-			  			<div>출석게시판</div>
-			  		</c:when>
-			  	</c:choose>
+              	${post.title}
 			  </h2>
               <div class="post-header" id="maincontent">
                 <img class="user-image" src="user-image.jpg" alt="사용자 이미지">
                 <div class="post-info">
+	                <c:choose>			  		
+				  		<c:when test="${post.seqBoard == 1}">
+				  			<span>공지사항</span>
+				  		</c:when>
+				  		<c:when test="${post.seqBoard == 2}">
+				  			<span>자유게시판</span>
+				  		</c:when>
+				  		<c:when test="${post.seqBoard == 3}">
+				  			<span>건의게시판</span>
+				  		</c:when>
+				  		<c:when test="${post.seqBoard == 4}">
+				  			<span>출석게시판</span>
+				  		</c:when>
+				  	</c:choose>
                   <span>작성자: ${post.me_nickName != null ? post.me_nickName : post.ad_nickName}</span>
                   <span>등록일: ${post.writeDate}</span>
                 </div>
@@ -144,8 +143,8 @@
                 <span>${post.content}</span>
               </div>
               <div class="post-actions" id="postmaincontentreaction">
-                <span><i class="material-icons">thumb_up</i> ${post.likeCount}</span>
-                <span><i class="material-icons">thumb_down</i> ${post.dislikeCount}</span>
+              	<span><i class="material-icons" id="temp">thumb_up</i><span id="post-like">${post.likeCount}</span></span>
+                <span><i class="material-icons">thumb_down</i><span id="post-dislike">${post.dislikeCount}</span></span>
                 <span><i class="material-icons">report</i> 신고</span>
               </div>     
             </div>
@@ -613,89 +612,86 @@ function addReplyComment(btn) {
 
 
  
-    
-    //게시글 추천수
+	//게시글 추천수
 	$(".post-actions span:nth-child(1)").click(function() {
 		postlike(${post.seqBoard});
 	});
-    
+	
 	$(".post-actions span:nth-child(2)").click(function() {
 		postdislike(${post.seqBoard});
 	});
-
-
-   	function postlike(seqBoard) {
-   	  let url;
-   	  switch (seqBoard) {
-   	    case 1:
-   	      url = "/account/board/noticeBoard.do";
-   	      break;
-   	    case 2:
-   	      url = "/account/board/freeBoard.do";
-   	      break;
-   	    case 3:
-   	      url = "/account/board/reportBoard.do";
-   	      break;
-   	    case 4:
-   	      url = "/account/board/attendanceBoard.do";
-   	      break;
-   	  }
-
-  	  $.ajax({
-  	    type: 'POST',
-  	    url: url,
-  	    data: {
+	
+	
+	function postlike(seqBoard) {
+	  let url;
+	  switch (seqBoard) {
+	    case 1:
+	      url = "/account/board/noticeBoard.do";
+	      break;
+	    case 2:
+	      url = "/account/board/freeBoard.do";
+	      break;
+	    case 3:
+	      url = "/account/board/reportBoard.do";
+	      break;
+	    case 4:
+	      url = "/account/board/attendanceBoard.do";
+	      break;
+	  }
+	  $.ajax({
+	    type: 'POST',
+	    url: url,
+	    data: {
+		seq: ${post.seq},
+		type: 'like'
+	    },  	  	
+	    success: function() {
+	    	console.log("like완료");
+	    	var temp = document.getElementById('post-like').innerHTML;
+	    	var numericTemp = Number(temp) + 1;
+	    	document.getElementById('post-like').innerHTML = numericTemp;
+	    },
+	    error: function(xhr, status, error) {
+	      console.error("AJAX 요청 실패:", error);
+	    }
+	  });
+	}
+	
+	
+	function postdislike(seqBoard) {
+ 	  let url;
+ 	  switch (seqBoard) {
+ 	    case 1:
+ 	      url = "/account/board/noticeBoard.do";
+ 	      break;
+ 	    case 2:
+ 	      url = "/account/board/freeBoard.do";
+ 	      break;
+ 	    case 3:
+ 	      url = "/account/board/reportBoard.do";
+ 	      break;
+ 	    case 4:
+ 	      url = "/account/board/attendanceBoard.do";
+ 	      break;
+ 	  }
+	  $.ajax({
+	    type: 'POST',
+	    url: url,
+	    data: {
 			seq: ${post.seq},
-			type: 'like'
-  	    },  	  	
-  	    success: function() {
-  	    	console.log("like완료");
-  	    	var temp = document.getElementById('post-like').innerHTML;
-  	    	var numericTemp = Number(temp) + 1;
-  	    	document.getElementById('post-like').innerHTML = numericTemp;
-  	    },
-  	    error: function(xhr, status, error) {
-  	      console.error("AJAX 요청 실패:", error);
-  	    }
-  	  });
-   	}
-   	
-   	
-   	function postdislike(seqBoard) {
-     	  let url;
-     	  switch (seqBoard) {
-     	    case 1:
-     	      url = "/account/board/noticeBoard.do";
-     	      break;
-     	    case 2:
-     	      url = "/account/board/freeBoard.do";
-     	      break;
-     	    case 3:
-     	      url = "/account/board/reportBoard.do";
-     	      break;
-     	    case 4:
-     	      url = "/account/board/attendanceBoard.do";
-     	      break;
-     	  }
-
-    	  $.ajax({
-    	    type: 'POST',
-    	    url: url,
-    	    data: {
-  			seq: ${post.seq},
-  			type: 'dislike'
-    	    },  	  	
-    	    success: function() {
-    	    	console.log("Dislike완료");
-    	    	var temp = document.getElementById('post-dislike').innerHTML;
-    	    	var numericTemp = Number(temp) + 1;
-    	    	document.getElementById('post-dislike').innerHTML = numericTemp;
-    	    },
-    	    error: function(xhr, status, error) {
-    	      console.error("AJAX 요청 실패:", error);
-    	    }
-    	  });
-     	}
+			type: 'dislike'
+	    },  	  	
+	    success: function() {
+	    	console.log("Dislike완료");
+	    	var temp = document.getElementById('post-dislike').innerHTML;
+	    	var numericTemp = Number(temp) + 1;
+	    	document.getElementById('post-dislike').innerHTML = numericTemp;
+	    },
+	    error: function(xhr, status, error) {
+	      console.error("AJAX 요청 실패:", error);
+	    }
+	  });
+ 	}
    	
     
     </script>

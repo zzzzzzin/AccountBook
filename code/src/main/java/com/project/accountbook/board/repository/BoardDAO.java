@@ -100,7 +100,7 @@ public class BoardDAO {
 					+ "    us_seq as seqpost,\r\n"
 					+ "    af_filename as filename,\r\n"
 					+ "    af_filelink as filelink\r\n"
-					+ "from vwboard where po_seq = ?";
+					+ "from vwboard2 where po_seq = ?";
 			
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, seq);
@@ -185,19 +185,20 @@ public class BoardDAO {
 					+ "    us_seq as seqpost,\r\n"
 					+ "    af_filename as filename,\r\n"
 					+ "    af_filelink as filelink\r\n"
-					+ "from vwboard\r\n"
+					+ "from vwboard2\r\n"
 					+ where
 					+ " ORDER BY seq DESC";
 			
 			stat = conn.createStatement();
 			rs = stat.executeQuery(sql);
+
 			
 			ArrayList<PostDTO> list = new ArrayList<PostDTO>();
 			
 			//오늘 날짜 (2024-05-09)
 			LocalDate today = LocalDate.now();
 			
-			
+						
 			while (rs.next()) {		
 				
 				PostDTO dto = new PostDTO();
@@ -207,7 +208,6 @@ public class BoardDAO {
 				dto.setSeqUser(rs.getString("sequser"));
 				dto.setTitle(rs.getString("title"));
 				dto.setContent(rs.getString("content"));
-
 				
 				if((rs.getString("writedate").substring(0, 10)).equals(today)){
 					dto.setWriteDate(rs.getString("writedate").substring(11, 16));
@@ -215,8 +215,7 @@ public class BoardDAO {
 					dto.setWriteDate(rs.getString("writedate").substring(0, 10));
 				}
 				//dto.setWriteDate(rs.getString("writedate"));
-				
-				
+								
 				dto.setEditDate(rs.getString("editdate"));
 				dto.setViewCount(rs.getInt("viewcount"));
 				dto.setLikeCount(rs.getInt("likecount"));
@@ -267,7 +266,7 @@ public class BoardDAO {
 					+ "    us_seq as seqpost,\r\n"
 					+ "    af_filename as filename,\r\n"
 					+ "    af_filelink as filelink\r\n"
-					+ "from vwboard where ca_seq = ?\r\n"
+					+ "from vwboard2 where ca_seq = ?\r\n"
 					+ "order by seq desc";
 			
 			pstat = conn.prepareStatement(sql);
@@ -399,7 +398,7 @@ public class BoardDAO {
 					+ "    us_seq as seqpost,\r\n"
 					+ "    af_filename as filename,\r\n"
 					+ "    af_filelink as filelink\r\n"
-					+ "from vwboard where ca_seq = ?\r\n"
+					+ "from vwboard2 where ca_seq = ?\r\n"
 					+ "order by seq desc";
 			
 			pstat = conn.prepareStatement(sql);

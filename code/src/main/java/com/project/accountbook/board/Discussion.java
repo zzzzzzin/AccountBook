@@ -30,6 +30,7 @@ public class Discussion extends HttpServlet {
 	    Integer seqUser = (Integer) session.getAttribute("seqUser");
 
 	    PostDTO post = bdao.readPost(seq);
+
 	    
 	    List<CommentDTO> comments = cdao.getCommentsByPostSeq(seq);
 	    
