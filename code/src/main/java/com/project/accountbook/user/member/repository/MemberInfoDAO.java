@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import com.project.accountbook.account.model.AccountInfoDTO;
@@ -442,6 +443,47 @@ public class MemberInfoDAO {
 		return null;
 	}
 
+	public ArrayList<MemberInfoDTO> getMyCards(String id) {
+
+		ArrayList<MemberInfoDTO> list = new ArrayList<>();
+		
+		try {
+			String sql = "select ci.name, ci.cardCompany, mc.alias, mc.cardNumber, mc.validity " +
+		             "from tblMyCard mc inner join tblMember m " +
+		             "    on mc.idMember = m.id " +
+		             "        inner join tblCardInformation ci " +
+		             "            on mc.seqCardInformation = ci.seq " +
+		             "where m.id = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, id);
+			
+			rs = pstat.executeQuery();
+			
+			while(rs.next()) {
+				MemberInfoDTO dto = new MemberInfoDTO();
+				
+				dto.setName(rs.getString("name"));
+				dto.setCardCompany(rs.getString("cardCompany"));
+				dto.setAlias(rs.getString("alias"));
+				dto.setCardNumber(rs.getString("cardNumber"));
+				dto.setValidity(rs.getString("validity"));
+				
+				list.add(dto);
+			}
+			System.out.println(Arrays.toString(list.toArray()));
+			return list;
+			
+			
+		} catch (Exception e) {
+			System.out.println("AccountDAO.getmycards");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	
 
 	
 
