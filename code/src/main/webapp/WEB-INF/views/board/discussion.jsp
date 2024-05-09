@@ -146,6 +146,10 @@
               	<span><i class="material-icons" id="temp">thumb_up</i><span id="post-like">${post.likeCount}</span></span>
                 <span><i class="material-icons">thumb_down</i><span id="post-dislike">${post.dislikeCount}</span></span>
                 <span><i class="material-icons">report</i> 신고</span>
+                 <!-- 로그인한 사용자와 게시글 작성자가 일치하는 경우에만 수정 버튼 표시 -->
+    <c:if test="${not empty sessionScope.seqUser && sessionScope.seqUser == post.seqUser}">
+      <span><a href="/account/board/edit.do?seq=${post.seq}">수정</a></span>
+    </c:if>
               </div>     
             </div>
                         <!-- 댓글 시작 -->
