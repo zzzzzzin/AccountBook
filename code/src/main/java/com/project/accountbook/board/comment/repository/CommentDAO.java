@@ -151,5 +151,37 @@ public class CommentDAO {
         return 0;
     }
     
+    //답글 수정
+    public int updateReplyComment(String replyCommentSeq, String editedContent) {
+        try {
+            String sql = "UPDATE tblReplyComments SET content = ? WHERE seq = ?";
+            pstat = conn.prepareStatement(sql);
+            pstat.setString(1, editedContent);
+            pstat.setString(2, replyCommentSeq);
+            return pstat.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    
+    //답글 작성자 확인
+ // 답글 작성자 확인
+    public boolean isReplyCommentAuthor(String replyCommentSeq, int seqUser) {
+        try {
+            String sql = "SELECT COUNT(*) FROM tblReplyComments WHERE seq = ? AND seqUser = ?";
+            pstat = conn.prepareStatement(sql);
+            pstat.setString(1, replyCommentSeq);
+            pstat.setInt(2, seqUser);
+            rs = pstat.executeQuery();
+            if (rs.next()) {
+                int count = rs.getInt(1);
+                return count > 0;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
     
 }
