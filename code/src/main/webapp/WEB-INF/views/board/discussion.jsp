@@ -219,9 +219,9 @@
     <span><i class="material-icons">thumb_down</i> ${comment.dislikeCount}</span>
     <span><i class="material-icons">report</i> 신고</span>
     <span class="reply-toggle">답글</span>
-    <c:if test="${sessionScope.seqUser eq comment.seqUser}">
-        <span class="edit-comment" data-comment-seq="${comment.seq}">수정</span>
-    </c:if>
+    <c:if test="${sessionScope.seqUser eq replyComment.seqUser}">
+<span class="edit-reply-comment" data-reply-comment-seq="${replyComment.seq}">수정</span>
+</c:if>
 <c:if test="${not empty sessionScope.seqUser && (sessionScope.seqUser == comment.seqUser || sessionScope.seqPriv == 3)}">
     <span class="delete-comment" data-comment-seq="${comment.seq}">삭제</span>
 </c:if>
@@ -269,10 +269,110 @@
 </div>
     <!-- JavaScript Libraries -->
    
+
+
+<!-- 답글 수정 폼 -->
+<div class="reply-comment-edit-form" style="display: none;">
+<form onsubmit="return false;">
+    <input type="hidden" name="replyCommentSeq" value="${replyComment.seq}">
+    <textarea name="editedContent">${replyComment.content}</textarea>
+    <button type="button" onclick="updateReplyComment(this)">저장</button>
+    <button type="button" onclick="cancelReplyEdit(this)">취소</button>
+</form>
+</div>
+   
     <!-- Template Javascript -->
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
    
 <script>
+
+//답글 수정 버튼
+$(document).on('click', '.edit-reply-comment', function() {
+    var commentBox = $(this).closest('.comment-reply');
+    var replyCommentSeq = $(this).data('reply-comment-seq');
+    var replyCommentContent = commentBox.find('.post-content').text().trim();
+
+    // 이미 수정 폼이 열려있는 경우 무시
+    if (commentBox.find('.reply-comment-edit-form').length > 0) {
+        return;
+    }
+
+    // 다른 수정 폼은 닫기
+    $('.reply-comment-edit-form').remove();
+
+    var editForm = '<div class="reply-comment-edit-form">' +
+                   '<form onsubmit="return false;">' +
+                   '<input type="hidden" name="replyCommentSeq" value="' + replyCommentSeq + '">' +
+                   '<textarea name="editedContent">' + replyCommentContent + '</textarea>' +
+                   '<button type="button" onclick="updateReplyComment(this)">저장</button>' +
+                   '<button type="button" onclick="cancelReplyEdit(this)">취소</button>' +
+                   '</form>' +
+                   '</div>';
+    commentBox.find('.post-content').hide().after(editForm);
+});
+
+//답글 수정 버튼
+$(document).on('click', '.edit-reply-comment', function() {
+    var commentBox = $(this).closest('.comment-reply');
+    var replyCommentSeq = $(this).data('reply-comment-seq');
+    var replyCommentContent = commentBox.find('.post-content').text().trim();
+
+    // 이미 수정 폼이 열려있는 경우 무시
+    if (commentBox.find('.reply-comment-edit-form').length > 0) {
+        return;
+    }
+
+    // 다른 수정 폼은 닫기
+    $('.reply-comment-edit-form').remove();
+
+    var editForm = '<div class="reply-comment-edit-form">' +
+                   '<form onsubmit="return false;">' +
+                   '<input type="hidden" name="replyCommentSeq" value="' + replyCommentSeq + '">' +
+                   '<textarea name="editedContent">' + replyCommentContent + '</textarea>' +
+                   '<button type="button" onclick="updateReplyComment(this)">저장</button>' +
+                   '<button type="button" onclick="cancelReplyEdit(this)">취소</button>' +
+                   '</form>' +
+                   '</div>';
+    commentBox.find('.post-content').hide().after(editForm);
+});
+
+// 답글 수정 함수
+function updateReplyComment(btn) {
+    var form = $(btn).closest('form');
+    var replyCommentSeq = form.find('input[name="replyCommentSeq"]').val();
+    var editedContent = form.find('textarea[name="editedContent"]').val();
+
+    $.ajax({
+        url: '${pageContext.request.contextPath}/board/editReplyComment.do',
+        type: 'POST',
+        data: {
+            replyCommentSeq: replyCommentSeq,
+            editedContent: editedContent
+        },
+        success: function(response) {
+            if (response === 'Success') {
+                alert('답글이 수정되었습니다.');
+                location.reload();
+            } else if (response === 'Unauthorized') {
+                alert('답글 수정 권한이 없습니다.');
+            } else {
+                alert('답글 수정에 실패했습니다.');
+            }
+        },
+        error: function() {
+            alert('답글 수정에 실패했습니다.');
+        }
+    });
+}
+
+// 답글 수정 취소 함수
+function cancelReplyEdit(btn) {
+    var commentBox = $(btn).closest('.comment-reply');
+    commentBox.find('.reply-comment-edit-form').remove();
+    commentBox.find('.post-content').show();
+}
+
+
 // 답글 버튼
 $(document).on('click', '.reply-toggle', function() {
     var commentBox = $(this).closest('.comment-box');
@@ -368,8 +468,6 @@ $(document).on('click', '.edit-comment', function() {
                    '</div>';
     commentBox.find('.post-content').hide().after(editForm);
 });
-
-
 
 
 
