@@ -222,8 +222,8 @@
     <c:if test="${sessionScope.seqUser eq replyComment.seqUser}">
 <span class="edit-reply-comment" data-reply-comment-seq="${replyComment.seq}">수정</span>
 </c:if>
-<c:if test="${not empty sessionScope.seqUser && (sessionScope.seqUser == comment.seqUser || sessionScope.seqPriv == 3)}">
-    <span class="delete-comment" data-comment-seq="${comment.seq}">삭제</span>
+<c:if test="${not empty sessionScope.seqUser && (sessionScope.seqUser == replyComment.seqUser || sessionScope.seqPriv == 3)}">
+    <span class="delete-reply-comment" data-reply-comment-seq="${replyComment.seq}">삭제</span>
 </c:if>
 </div>
                 </div>
@@ -285,6 +285,34 @@
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
    
 <script>
+
+//답글 삭제 버튼
+$(document).on('click', '.delete-reply-comment', function() {
+    var replyCommentSeq = $(this).data('reply-comment-seq');
+    
+    if (confirm('정말로 답글을 삭제하시겠습니까?')) {
+        $.ajax({
+            url: '${pageContext.request.contextPath}/board/deleteReplyComment.do',
+            type: 'POST',
+            data: {
+                replyCommentSeq: replyCommentSeq
+            },
+            success: function(response) {
+                if (response === 'Success') {
+                    alert('답글이 삭제되었습니다.');
+                    location.reload();
+                } else if (response === 'Unauthorized') {
+                    alert('답글 삭제 권한이 없습니다.');
+                } else {
+                    alert('답글 삭제에 실패했습니다.');
+                }
+            },
+            error: function() {
+                alert('답글 삭제에 실패했습니다.');
+            }
+        });
+    }
+});
 
 //답글 수정 버튼
 $(document).on('click', '.edit-reply-comment', function() {
