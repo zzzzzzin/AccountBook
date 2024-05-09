@@ -119,6 +119,7 @@
     <script src="/account/asset/js/misc.js"></script>
     <script src="/account/asset/js/settings.js"></script>
     <script src="/account/asset/js/todolist.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- endinject -->
     
 	<script>

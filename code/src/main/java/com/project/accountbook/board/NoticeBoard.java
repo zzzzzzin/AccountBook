@@ -1,18 +1,18 @@
 package com.project.accountbook.board;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.SizeSequence;
 
-import com.project.accountbook.board.post.model.NoticeDTO;
 import com.project.accountbook.board.post.model.PostDTO;
 import com.project.accountbook.board.repository.BoardDAO;
 
@@ -22,7 +22,7 @@ public class NoticeBoard extends HttpServlet {
 	BoardDAO dao = new BoardDAO();
 	
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		
 		
 		String column = req.getParameter("column");
 		String word = req.getParameter("word");
@@ -72,22 +72,62 @@ public class NoticeBoard extends HttpServlet {
 		
 		String seq = req.getParameter("seq"); //Post seq
 		String type = req.getParameter("type"); //Like, Dislike 구분
-
+		String report = req.getParameter("report");//신고 
 		
-		if(type.equals("like")) {
-			
-			dao.like(seq);
-			
-		} else if (type.equals("dislike")) {
-			
-			dao.dislike(seq);
+		
+		Cookie postcookie;
+		Cookie[] cookies = req.getCookies(); // 모든 쿠키 가져오기
+		boolean postcheck = false;
+		boolean reportcheck = false;
+		
+		
+		
+
+		if (cookies!= null) {
+		    for (Cookie c : cookies) {
+		        String name = c.getName(); // 쿠키 이름 가져오기
+		        String value = c.getValue(); //쿠기 내용 가져오
+		        if (name.equals("postSeq"+seq) && value.equals(seq)) {
+		        	postcheck = true;
+		        } 	        
+		        if(name.equals("report"+seq) && value.equals(seq)) {
+		        	reportcheck = true;
+		        }
+		    }
+	    }
+		
+		if(postcheck == false) {
+			if(type.equals("like")) {	
+				dao.like(seq);
+				postcookie = new Cookie("postSeq"+seq, seq);
+				//postcookie.setMaxAge(60 * 60 * 24);
+				postcookie.setMaxAge(60 * 60);
+				postcookie.setPath("/");
+				resp.addCookie(postcookie);
+				
+			} else if (type.equals("dislike")) {
+				dao.dislike(seq);
+				postcookie = new Cookie("postSeq"+seq, seq);
+				//postcookie.setMaxAge(60 * 60 * 24);
+				postcookie.setMaxAge(60 * 60);
+				postcookie.setPath("/");
+				resp.addCookie(postcookie);
+			}
 		}
-
 		
+		if(reportcheck == false) {
+			dao.report(seq);
+			postcookie = new Cookie("report"+seq , seq);
+			postcookie.setMaxAge(60 * 60);
+			postcookie.setPath("/");
+			resp.addCookie(postcookie);	
+		}
+		
+	    
 		//RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/discussion.jsp");
 		//dispatcher.forward(req, resp);		
 	
 	
 	}
-	
 }
+	

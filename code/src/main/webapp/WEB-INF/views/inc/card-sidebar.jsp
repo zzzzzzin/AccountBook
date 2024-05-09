@@ -6,69 +6,55 @@
 <meta charset="UTF-8">
 <%@include file="/WEB-INF/views/inc/asset.jsp"%>
 <style>
-	.sidebar {
-        width: 300px;
-        background-color: #333;
-        color: #fff;
-        height: 100vh;
-}
 
-      .logo {
-        padding: 20px;
-        font-size: 20px;
-        font-weight: bold;
-        border-bottom: 1px solid #444;
-      }
-
-      nav ul {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-      }
-
-      nav li {
-        padding: 15px 20px;
-        border-bottom: 1px solid #444;
-      }
-
-      nav li:last-child {
-        border-bottom: none;
-      }
-
-      nav a {
-        color: #fff;
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-      }
-
-      nav a i {
-        margin-right: 10px;
-      }
-
-    .sidebar.hidden {
-        width: 0;
-        overflow: hidden;
-        transition: width 0.5s ease;
-    }
-
-    .content.expanded {
-        margin-left: 0;
-        transition: margin-left 0.5s ease;
-    }
 </style>
 </head>
 
 <div class="sidebar">
-	<div class="logo">이미지</div>
-	<nav>
-		<ul>
-			<li><a href="/account/card/recommendation.do"><i class="fas fa-home"></i>카테고리별 추천</a></li>
-			<li><a href="/account/card/personalized-recommendation.do"><i class="fas fa-home"></i>맞춤 추천</a></li>
-		</ul>
+	<div class="buddy-budget-logo-style">
+		<a href="/account/index.do"><span data-attr="Budget">Budget</span><span data-attr="Buddy">Buddy</span></a>
+	</div>
+	
+	<nav class="navbar">
+		<div class="navbar-nav w-100">
+			<a href="/account/card/recommendation.do" class="nav-item nav-link"><i class="fa-solid fa-ranking-star"></i> 카테고리별 추천</a>
+			<a href="/account/card/personalized-recommendation.do" class="nav-item nav-link"><i class="fa-solid fa-medal"></i> 맞춤 추천</a>
+		</div>
 	</nav>
+
 </div>
 <script>
+
+	document.addEventListener('DOMContentLoaded', function() {
+	    const currentPath = window.location.pathname;
+	
+	 	// dropdown-item 요소의 href와 동일한 경우에 active 클래스 추가
+	    const dropdownItems = document.querySelectorAll('.dropdown-item');
+	
+	    dropdownItems.forEach(function(item) {
+	        const href = item.getAttribute('href');
+	
+	        if (currentPath === href) {
+	            item.classList.add('active');
+	            const parentDropdown = item.closest('.dropdown');
+	            const dropdownToggle = parentDropdown.querySelector('.dropdown-toggle');
+	            if (dropdownToggle) {
+	                dropdownToggle.classList.add('active');
+	            }
+	        }
+	    });
+	
+	    // nav-item nav-link 요소의 href와 동일한 경우에 active 클래스 추가
+	    const navLinks = document.querySelectorAll('.nav-item.nav-link');
+	
+	    navLinks.forEach(function(link) {
+	        const href = link.getAttribute('href');
+	
+	        if (currentPath === href) {
+	            link.classList.add('active');
+	        }
+	    });
+	});
 		
 </script>
 
