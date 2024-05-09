@@ -452,32 +452,39 @@ function addComment() {
 
 
 function addReplyComment(btn) {
-    var form = btn.closest('form');
-    var seqComments = form.querySelector('input[name="seqComments"]').value;
-    var seqUser = form.querySelector('input[name="seqUser"]').value;
-    var seqPost = form.querySelector('input[name="seqPost"]').value;
-    var content = form.querySelector('textarea[name="content"]').value;
+    var form = $(btn).closest('form');
+    var seqComments = form.find('input[name="seqComments"]').val();
+    var seqUser = form.find('input[name="seqUser"]').val();
+    var content = form.find('textarea[name="content"]').val();
 
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
-                if (xhr.responseText === "Success") {
-                    alert('댓글이 등록되었습니다.');
-                    location.reload(); // 페이지 새로고침
-                } else {
-                    alert('댓글 등록에 실패했습니다.');
-                }
+    if (seqUser === '') {
+        alert("로그인이 필요합니다.");
+        return;
+    }
+
+    $.ajax({
+        url: '${pageContext.request.contextPath}/board/addReplyComment.do',
+        type: 'POST',
+        data: {
+            seqComments: seqComments,
+            seqUser: seqUser,
+            content: content
+        },
+        success: function(response) {
+            if (response === "Success") {
+                alert('답글이 등록되었습니다.');
+                location.reload();
             } else {
-                alert('댓글 등록에 실패했습니다.');
+                alert('답글 등록에 실패했습니다.');
             }
+        },
+        error: function() {
+            alert('답글 등록에 실패했습니다.');
         }
-    };
-
-    xhr.open('POST', '${pageContext.request.contextPath}/board/add-comment.do', true);
-    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    xhr.send('seqPost=' + seqPost + '&seqUser=' + seqUser + '&content=' + encodeURIComponent(content));
+    });
 }
+
+
 
  
     
