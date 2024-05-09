@@ -751,15 +751,50 @@
     });
 
     //항목 추가 끝
-
-        
+	var currentEventId = null;
+    
 
      var calendar = new FullCalendar.Calendar(calendarEl, {
             timeZone:'UTC',
             editable: true,
+            eventSources: [
+                $.ajax({
+         			type: 'get',
+         			url: '/account/account/calendarjson.do',
+         			dataType: 'json',
+         			success: function(result){
+         				result.forEach(obj =>{
+         					calendar.addEvent({
+         						title: obj.category ,
+         						allDay: true,
+         						start: obj.start,
+         						color: colors[obj.category], 
+         						extendedProps: {
+      			   					useLocation: obj.loc,
+      			   					content: obj.content,
+      			   					amount: obj.amount,
+      			   					amountindicator: (obj.amountindicator==='출금'?'+':'-'),
+      			   					paymentMethod : (obj.paymentMethod+'\xa0'+obj.aliasname+':'+obj.cardnumber),
+      			   					category: obj.category,
+      			   					fixed: obj.fixed,
+      			   					fixedPeriod: obj.fixedperiod,
+      			   					seq: obj.seq,
+      			   					seqacc: obj.seqacc,
+      			   					seqrcc: obj.seqrcc
+         						}
+         					})
+         				})
+        			},
+         			error: function(a,b,c){
+         				console.log(a,b,c);
+         			}
+         		 }) 
+          ],
     		eventClick: function(info) {
                 console.log('workd');
     		    info.jsEvent.preventDefault();
+    		    currentEventId = info.event.id;
+    		    var event = calendar.getEventById(currentEventId);
                 var container = document.getElementById("eventProduceModal");//
                 var modal = new bootstrap.Modal(container);
                 
@@ -793,9 +828,9 @@
                 console.log(info.event.extendedProps.paymentMethod)
             	modal.show();
                 
-                eventProduceModal.addEventListener('hidden.bs.modal', function () {
+                /* eventProduceModal.addEventListener('hidden.bs.modal', function () {
                     window.location.reload();
-                });
+                }); */
 
     			$('#deleteEventBtn').off().on('click', function() {
     				if(window.confirm('일정을 삭제하시겠습니까?')){
@@ -825,12 +860,13 @@
     				modal.hide();
     			});
     			$("#editEventBtn").off().on('click', function(info) {
+    			    
     			    if(confirm('항목을 수정하시겠습니까?')){
     					// 중복 실행 방지
     					if (editRequest !== null) {
     						editRequest.abort();
     					}
-						
+    					
     			        editRequest = $.ajax({
     			            type:'post',
     			            url: '/account/account/calendaredit.do',
@@ -851,12 +887,17 @@
     	                    success: function (response) {
     	                        alert('Edit successful');
     	                        modal.hide();
+    	                        if (response) {
+    	                            console.log(response);
+    	                            calendar.refetchEvents();
+    	                        }
     	                        calendar.refetchEvents();
     	                       
     	                    },
     	                    error: function (xhr, status, error) {
     	                        alert('Error: ' + xhr.responseText);
     	                        modal.hide();
+    	                        calendar.refetchEvents();
     	                    }
     			            
     			        })
@@ -925,7 +966,7 @@
               start: '2024-05-01',
             }
           ], */
-          events: [
+          /* events: [
         	  $.ajax({
          			type: 'get',
          			url: '/account/account/calendarjson.do',
@@ -957,7 +998,7 @@
          				console.log(a,b,c);
          			}
          		 }) 
-          ]
+          ] */
         });
         calendar.render();
       });
