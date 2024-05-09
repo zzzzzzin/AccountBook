@@ -176,7 +176,7 @@
     <c:if test="${not empty sessionScope.seqUser && sessionScope.seqUser == comment.seqUser}">
         <span class="edit-comment" data-comment-seq="${comment.seq}">수정</span>
     </c:if>
-    <c:if test="${not empty sessionScope.seqUser && (sessionScope.seqUser == comment.seqUser || sessionScope.seqPriv == 3)}">
+<c:if test="${not empty sessionScope.seqUser && (sessionScope.seqUser == comment.seqUser || sessionScope.seqPriv == 3)}">
     <span class="delete-comment" data-comment-seq="${comment.seq}">삭제</span>
 </c:if>
 </div>
@@ -223,6 +223,9 @@
     <c:if test="${sessionScope.seqUser eq comment.seqUser}">
         <span class="edit-comment" data-comment-seq="${comment.seq}">수정</span>
     </c:if>
+<c:if test="${not empty sessionScope.seqUser && (sessionScope.seqUser == comment.seqUser || sessionScope.seqPriv == 3)}">
+    <span class="delete-comment" data-comment-seq="${comment.seq}">삭제</span>
+</c:if>
 </div>
                 </div>
                 <div class="post-content">
