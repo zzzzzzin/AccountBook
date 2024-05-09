@@ -54,11 +54,14 @@ public class Login extends HttpServlet {
 	        resp.sendRedirect("/account/index.do");
 	    } else {
 	        result = dao.loginAdmin(dto);
-
 	        if (result != null && result.getId() != null) {
 	            HttpSession session = req.getSession();
 	            session.setAttribute("id", result.getId());
 	            session.setAttribute("seqPriv", result.getSeqPriv());
+
+	            // 관리자의 seqUser 값을 세션에 저장
+	            int seqUser = dao.getSeqUserByMemberId(result.getId());
+	            session.setAttribute("seqUser", seqUser);
 
 	            if (autoLogin != null && autoLogin.equals("on")) {
 	                Cookie cookie = new Cookie("autoLogin", result.getId());
