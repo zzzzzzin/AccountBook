@@ -65,14 +65,29 @@
 			<div class="content-header">
 					<div class="content-title-style"><h3>카드 사용</h3></div>
 					
+					
+					
+					
+<!-- 					<form id="selectDateForm" method="GET"> -->
+<!-- 						<div class="date-range-total-box"> -->
+<!-- 						<div class="date-range-box"> -->
+<%-- 							<label for="start-date-myCardTotal">시작일 <input type="text" name = "startDate" id="start-date" class="date-input-myCardTotal" value="${map.startDate}"> </label>  --%>
+<%-- 							<label for="end-date">종료일 <input type="text" name = "endDate" id="end-date" class="date-input-myCardTotal" value="${map.endDate}"></label>  --%>
+<!-- 						</div> -->
+<!-- 							<input type="submit" value="확인" class="dark-blue-btn long-btn"/> -->
+<!-- 						</div> -->
+<!-- 					</form> -->
+					
+					
+					
 					<form id="selectDateForm" method="GET">
 						<div class="date-range-total-box">
 							<div class="date-range-box">
 								<div class="date-select-input-label">
-									<label for="start-date-myCardTotal">시작일</label> <input type="text" name = "startDate" class="date-input-myCardTotal input-style-form" value="${map.startDate}">
+									<label for="start-date-myCardTotal">시작일</label> <input type="text" name = "startDate" id="start-date" class="date-input-myCardTotal input-style-form" value="${map.startDate}">
 								</div>
 								<div class="date-select-input-label">
-									<label for="end-date">종료일</label><input type="text" name = "endDate" class="date-input-myCardTotal input-style-form" value="${map.endDate}">
+									<label for="end-date">종료일</label><input type="text" name = "endDate" id="end-date" class="date-input-myCardTotal input-style-form" value="${map.endDate}">
 								</div>
 							</div>
 								<input type="submit" value="확인" class="purple-btn long-btn"/>
@@ -127,10 +142,18 @@
         });
     });
     
+//     $(document).ready(function() {
+//         $(".date-input-myCardTotal").datepicker({
+//             dateFormat: "yy-mm-dd"
+//         });
+//     });
+
     $(document).ready(function() {
-        $(".date-input-myCardTotal").datepicker({
+        // jQuery datepicker 초기화
+        $("#start-date, #end-date").datepicker({
             dateFormat: "yy-mm-dd"
         });
+
     });
 
     </script>
