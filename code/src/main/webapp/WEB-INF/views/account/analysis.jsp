@@ -26,6 +26,8 @@
     <!-- Libraries Stylesheet -->
 </head>
 <style>
+
+
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
@@ -60,10 +62,12 @@
 			<!-- Content End -->
 			<div class="content-total-style">
 				<div class="content-header">
-					<div class="content-title-style"><h3>가계부 분석</h3></div>
+					<div class="content-title-style">
+						<h3>가계부 분석</h3>
+					</div>
 					
 					<form method="GET">
-						<div id="periodcheck" class="btn-group-style analysis-period-box content-item">
+						<div id="periodcheck" class="btn-group-style date-period-box">
 							<button name="period" value="day" class="purple-btn button">일일</button>
 							<button name="period" value="week" class="purple-btn button">주간</button>
 							<button name="period"  value="month" class="purple-btn button">월간</button>
