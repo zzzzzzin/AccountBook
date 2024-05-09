@@ -177,10 +177,13 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
     <script>
-
+	    
+    	$(document).ready(function() {
+	        $('input').focus(function() {
+	            $(this).val('');
+	        });
+	    });
     
-    
-
     </script>
 </body>
 

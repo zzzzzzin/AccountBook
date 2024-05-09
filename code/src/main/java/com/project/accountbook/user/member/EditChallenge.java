@@ -41,8 +41,6 @@ public class EditChallenge extends HttpServlet {
 			arr.add(obj);
 		}
 		
-		System.out.println(arr);
-		
 		resp.setContentType("application/json");
 		resp.setCharacterEncoding("UTF-8");
 		req.setAttribute("clist", arr);
@@ -55,7 +53,28 @@ public class EditChallenge extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		HttpSession session = req.getSession();
+		String id = (String) session.getAttribute("id");
 		
+		MemberInfoDAO dao = new MemberInfoDAO();
+		MemberInfoDTO dto = new MemberInfoDTO();
+		
+		
+		String sallary = req.getParameter("sallary");
+		String goal = req.getParameter("goal");
+		String period = req.getParameter("period");
 
+		if (!sallary.isEmpty()) {
+			dto = dao.editSallary(id, sallary);
+		}
+		if (!goal.isEmpty()) {
+			dto = dao.editGoal(id, goal);
+		}
+		if (!period.isEmpty()) {
+			dto = dao.editPeriod(id, period);
+		}
+		
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/member/edit-challenge.jsp");
+	    dispatcher.forward(req, resp);
 	}
 }

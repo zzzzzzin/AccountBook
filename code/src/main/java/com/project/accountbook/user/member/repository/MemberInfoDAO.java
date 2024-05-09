@@ -361,7 +361,6 @@ public class MemberInfoDAO {
 				
 				list.add(dto);
 			}
-			System.out.println("run");
 			return list;
 				
 		} catch (Exception e) {
@@ -372,12 +371,77 @@ public class MemberInfoDAO {
 		return null;
 	}
 
-	
+	public MemberInfoDTO editSallary(String id, String sallary) {
 
+		try {
+			
+			String sql = "UPDATE tblSurvey SET monthlyPaycheck = ? WHERE seq = (SELECT seqSurvey FROM tblMember where id = ?)";
+			
+			
+			pstat = conn.prepareStatement(sql);
+			
+			pstat.setString(1, sallary);
+			pstat.setString(2, id);
+			
+			pstat.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("MemberInfoDAO.editSallary");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 
-	
+	public MemberInfoDTO editGoal(String id, String goal) {
 
-	
+		try {
+			
+			String sql = "UPDATE tblSurvey SET savingsGoals = ? WHERE seq = (SELECT seqSurvey FROM tblMember where id = ?)";
+			
+			
+			pstat = conn.prepareStatement(sql);
+			
+			pstat.setString(1, goal);
+			pstat.setString(2, id);
+			
+			pstat.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("MemberInfoDAO.editSallary");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	public MemberInfoDTO editPeriod(String id, String period) {
+
+		try {
+			
+			String sql = "UPDATE tblSavingsPeriod set period = ?"
+					+ "where seq = (SELECT s.seqSavingsPeriod"
+					+ "            from tblSurvey s inner join tblMember m"
+					+ "                on s.seq = m.seqSurvey"
+					+ "                    where m.id= ?)";
+			
+			System.out.println(period);
+			pstat = conn.prepareStatement(sql);
+			
+			pstat.setString(1, period);
+			pstat.setString(2, id);
+			
+			pstat.executeUpdate();
+			System.out.println("저축 목표 기간 수정 성공");
+			
+		} catch (Exception e) {
+			System.out.println("MemberInfoDAO.editSallary");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
 
 	
 
