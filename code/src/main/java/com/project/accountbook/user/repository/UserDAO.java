@@ -414,11 +414,14 @@ public class UserDAO {
 		ArrayList<PostDTO> plist = new ArrayList<>();
 
 		try {
-			String sql = "select \r\n" + "p.title, \r\n" + "m.nickname, \r\n" + "p.writeDate, \r\n"
-					+ "p.viewCount, \r\n" + "p.likeCount,\r\n" + "p.seq\r\n" + "from tblPost p inner join tblUser u\r\n"
-					+ "    on p.seqUser = u.seq\r\n" + "        inner join tblMember m\r\n"
-					+ "            on u.idMember = m.id\r\n" + "                inner join tblBoard b\r\n"
-					+ "                    on p.seqBoard = b.seq\r\n" + "                        where m.id = ?";
+			String sql = "select p.title, m.nickname, p.writeDate, p.viewCount, p.likeCount, p.seq\r\n"
+					+ " from tblUser u inner join tblPost p\r\n"
+					+ "    on u.seq = p.seqUser\r\n"
+					+ "        inner join tblComments c\r\n"
+					+ "            on u.seq = c.seqUser\r\n"
+					+ "                inner join tblMember m\r\n"
+					+ "                    on u.idMember = m.id\r\n"
+					+ "                        where id = ?";
 
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, id);
@@ -440,7 +443,7 @@ public class UserDAO {
 
 			}
 
-			System.out.println(plist);
+			//System.out.println(plist);
 
 			return plist;
 
