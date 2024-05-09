@@ -14,8 +14,17 @@ public class MemberInfoDTO {
 	//챌린지
 	private int monthlyPaycheck;
 	private int savingsGoals;
+	private int savingPeriod;
 	private String seqCompressionIntensity;
 	private String seqSavingsPeriod;
+
+	public int getSavingPeriod() {
+		return savingPeriod;
+	}
+
+	public void setSavingPeriod(int savingPeriod) {
+		this.savingPeriod = savingPeriod;
+	}
 
 	//나의 카드
 	private String cardNumber;
