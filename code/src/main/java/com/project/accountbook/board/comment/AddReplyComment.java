@@ -1,4 +1,4 @@
-package com.project.accountbook.board;
+package com.project.accountbook.board.comment;
 
 import java.io.IOException;
 
@@ -39,11 +39,10 @@ public class AddReplyComment extends HttpServlet {
 
             int result = cdao.addReplyComment(replyComment);
 
-            System.out.println("Result: " + result);
             if (result > 0) {
-                resp.setStatus(HttpServletResponse.SC_OK);
+                resp.getWriter().write("Success");
             } else {
-                resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                resp.getWriter().write("Fail");
             }
         } catch (Exception e) {
             e.printStackTrace();

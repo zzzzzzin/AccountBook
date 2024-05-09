@@ -511,10 +511,16 @@
         <!-- Content End -->
         <div id="fakecontent">
             <div id="aboverow">
-                <div><input type="text" id="searchbar"></div>
+      		<form method = "GET" id="accountSearchForm" action="/account/account/list.do">
                 <div class="right-icon" id="searchicon"><i class="fa-solid fa-magnifying-glass"></i></div> 
+                <div id="searchbar" >
+                	<input type="text" name="word" value="${map.word}" placeholder="내용 or 사용처">
+                	<input type="submit" value="검색">
+                </div>
+            </form>    
                 <div class="right-icon" id="categoryselector"><i class="fa-solid fa-list-check"></i></div> 
             </div>
+            
             <div id='calendar'></div>
             <div id="bottomrow">
                 <div id="thismonthstat">
@@ -813,18 +819,19 @@
             modal.show();
         })
         //카테고리 선택 끝
-        // 검색 기능
-        var searchicon = document.getElementById('searchicon');
-        var searchbar = document.getElementById('searchbar');
-        searchicon.onclick = function() {
-            if (searchbar.style.display === 'none') {
-                searchbar.style.display = 'block';
-                searchbar.focus();
-            } else {
-                searchbar.style.display = 'none';
-            }
-        };
-        //검색 기능 끝
+	 	// 검색 기능
+	    var searchicon = document.getElementById('searchicon');
+	    var searchbar = document.getElementById('searchbar');
+	   
+	    searchicon.onclick = function() {
+	        if (searchbar.style.display === 'none') {
+	            searchbar.style.display = 'block';
+	            searchbar.focus();
+	        } else {
+	            searchbar.style.display = 'none';
+	        }
+	    };
+	    //검색 기능 끝
         
 
     // 고정 지출 시작
@@ -965,7 +972,11 @@
                 editbutton.style.display = 'inline-block';
                 delbutton.style.display = 'inline-block';
                 console.log(info.event.extendedProps.paymentMethod)
-            modal.show();
+            	modal.show();
+                
+                eventProduceModal.addEventListener('hidden.bs.modal', function () {
+                    window.location.reload();
+                });
 
     			$('#deleteEventBtn').off().on('click', function() {
     				if(window.confirm('일정을 삭제하시겠습니까?')){
@@ -984,6 +995,7 @@
 	                    success: function (response) {
 	                        alert('Edit successful');
 	                        modal.hide();
+	                        
 	                    },
 	                    error: function (xhr, status, error) {
 	                        alert('Error: ' + xhr.responseText);
@@ -1020,6 +1032,8 @@
     	                    success: function (response) {
     	                        alert('Edit successful');
     	                        modal.hide();
+    	                        calendar.refetchEvents();
+    	                       
     	                    },
     	                    error: function (xhr, status, error) {
     	                        alert('Error: ' + xhr.responseText);
@@ -1128,11 +1142,19 @@
         });
         calendar.render();
       });
+    
+    let isEdit = false;
 
     document.addEventListener('DOMContentLoaded', function() {
         const addForm = document.getElementById('addWishItemForm');
         const wishList = document.getElementById('wishListItems');
         const wishInput = document.getElementById('wishInput');
+                
+        /* 
+        eventProduceModal.addEventListener('hidden.bs.modal', function () {
+            window.location.reload();
+        }); 
+        */
 
         const wishlistcheckbox = document.getElementById('addcheckbox');
         console.log(wishlistcheckbox);
@@ -1144,15 +1166,18 @@
             }
         });
        
-    })
+    });
 
     //위시리스트
+    
     document.addEventListener('DOMContentLoaded', function() {
         const addButton = document.getElementById('addrightnow');
         const newItemInput = document.getElementById('newItemInput');
         const wishList = document.getElementById('wishListItems');
         const newItemButton = document.getElementById('newItemButton');
         const cbcbbox = document.getElementById('addcheckbox');
+        const delitembtn = document.getElementById('listdelbutton');
+        
 
         // Toggle input field visibility and focus when the button is clicked
         addButton.onclick = function() {
@@ -1187,6 +1212,11 @@
             deleteBtn.innerHTML = '<div id="listdelbutton" class="frontback"><i class="fa-solid fa-xmark"></i></div>';
             deleteBtn.onclick = function() {
                 wishList.removeChild(transContent);
+                
+                let contentOfTransDate = transDesc.textContent;
+                console.log('Deleting item with transdate content:', contentOfTransDate);
+                
+                delwishlist(contentOfTransDate);
             };
 
             transContent.appendChild(checkbox);
@@ -1195,6 +1225,8 @@
 
             wishList.appendChild(transContent);
         }
+        
+         
 
         newItemInput.addEventListener('keypress', function(event) {
             if (event.key === 'Enter') {
@@ -1205,6 +1237,7 @@
                     newItemInput.value = ''; 
                     newItemInput.style.display = 'none'; 
                     newItemButton.style.display = 'none';  
+                    sendwishlist(text);
                 }
             }
         });
@@ -1215,11 +1248,37 @@
                 newItemInput.value = ''; 
                 newItemInput.style.display = 'none'; 
                 newItemButton.style.display = 'none';  
+                sendwishlist(text);
             }
         });
+         
+        
+        $(document).ready(function() {
+            // AJAX request to fetch data as soon as the page loads
+            $.ajax({
+                url: '/account/account/wishlist.do', // Replace with your actual URL
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    $.each(data, function(index, item) {
+                        // Access the 'productName' property of each item
+                        if (item.productName) { // Ensure that productName exists
+                            console.log(item.productName);
+                            addNewTransContent(item.productName); // Add each product name to the wishlist
+                            
+                        }
+                    });
+                    console.log('done?');
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching data:', error);
+                }
+            });
+            });
 
-
-        // Event delegation for dynamically added checkboxes
+     
+            
+            
         wishList.addEventListener('change', function(event) {
             // Check if the event target is a checkbox with the class 'frontback'
             if (event.target.type === 'checkbox' && event.target.classList.contains('frontback')) {
@@ -1237,8 +1296,47 @@
                 }
             }
         });
-
+	
+       	function sendwishlist(text){
+       	 $.ajax({
+             url: '/account/account/wishlist.do', // Replace with your actual URL
+             type: 'post',
+             data: {
+                 item: text
+             },
+             success: function(response) {
+                 console.log('sent');
+             },
+             error: function(xhr, status, error) {
+                 console.error('Error fetching data:', error);
+             }
+         });
+       	}
         
+       	function delwishlist(text){
+             if(window.confirm('삭제하시겠습니까?')){
+ 				if(delRequest !== null){
+ 					delRequest.abort();
+ 					console.log('abort');
+ 				}
+ 			}
+             console.log(text);
+ 			delRequest = $.ajax({
+ 				url:'/account/account/delwishlist.do',
+ 				type:'post',
+ 				data:{
+ 					content: text
+ 				},
+                 success: function (response) {
+                     alert('Edit successful');
+                     
+                 },
+                 error: function (xhr, status, error) {
+                     alert('Error: ' + xhr.responseText);
+                 }
+ 			})
+         }; 
+       	
     });
 
 

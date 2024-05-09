@@ -20,11 +20,12 @@
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Libraries Stylesheet -->
 </head>
 <style>
-	    #fakecontent {
+#fakecontent {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -36,8 +37,8 @@
 
 #transcontent {
     border: 1px solid #ccc; /* Lighter border color */
-    width: 80%;
-    height: 85px;
+    width: 100%;
+    height: 100px;
     display: flex;
     margin: 10px 0;
     background-color: #ffffff; /* White background for each transaction */
@@ -45,31 +46,20 @@
     border-radius: 8px; /* Rounded corners */
 }
 
-.transin {
-    padding: 10px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* border-right: 1px solid #eee; */
-}
+/* .transin { */
+/*     padding: 10px; */
+/*     text-align: center; */
+/*     display: flex; */
+/*     justify-content: center; */
+/*     align-items: center; */
+/*     /* border-right: 1px solid #eee; */ */
+/* } */
 
 .transin:last-child {
     border-right: none; /* Remove border for the last element */
 }
 
-/* #transdate, #transamount, #transcategory, #transwhere, #transtype {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
-
 /* Additional styling for specific needs */
-#transamount, #transtype  { color: red; } 
-#transamountplus { color: #4CAF50; }
-
-#transamount, #transamountplus { font-weight: bold; }  
 
 
 #transdate {
@@ -83,22 +73,6 @@
     border-radius: 10px; 
     box-shadow: inset 0 2px 4px rgba(0,0,0,0.1); 
     width: 20%;
-}
-.transmiddle{
-  display: flex;
-  flex-direction: column;
-  width: 65%;
-  align-items: baseline;
-  justify-content: center;
-}
-
-#transwhere{
-  font-weight: bold;
-  font-size: 20px;
-  padding: 0px;
-}
-#transcategory{
-  padding: 0px;
 }
 
 .transrightbox{
@@ -145,6 +119,16 @@
         <!-- fakecontent 안에서 작성 -->
       
       	<div id="fakecontent">
+      		<div id="aboverow">
+      		<form method = "GET" id="accountSearchForm">
+                <div class="right-icon" id="searchicon"><i class="fa-solid fa-magnifying-glass"></i></div> 
+                <div id="searchbar" >
+                	<input type="text" name="word" value="${map.word}" placeholder="내용 or 사용처">
+                	<input type="submit" value="검색">
+                </div>
+            </form>    
+                <div class="right-icon" id="categoryselector"><i class="fa-solid fa-list-check"></i></div> 
+            </div>
           
           
         </div>
@@ -161,8 +145,14 @@
     <!-- Template Javascript -->
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
     <script>
+    
+    <c:if test="${map.search == 'y'}">
+		//검색 중 상태 유지
+		$('input[name=word]').val('${map.word}');
+	</c:if>
+	
 
-    function addTransaction(date, category, where, amount) {
+    function addTransaction(date, category, where, amount, amountIndicator, content) {
         // Create main transaction container
         const transContent = document.createElement('div');
         transContent.id = 'transcontent';
@@ -175,28 +165,54 @@
         const transMiddle = document.createElement('div');
         transMiddle.className = 'transmiddle';
 
-        const transCategory = document.createElement('div');
-        transCategory.className = 'transin';
-        transCategory.id = 'transcategory';
-        transCategory.textContent = category;
+//         const transCategory = document.createElement('div');
+//         transCategory.className = 'transin';
+//         transCategory.id = 'transcategory';
+//         transCategory.textContent = category + '|' + where;
 
-        const transWhere = document.createElement('div');
-        transWhere.className = 'transin';
-        transWhere.id = 'transwhere';
-        transWhere.textContent = where;
+        const transSub = document.createElement('div');
+        transSub.className = 'transsub';
 
-        transMiddle.appendChild(transCategory);
-        transMiddle.appendChild(transWhere);
+		const transCategory = document.createElement('div');
+		transCategory.className = 'transin'; // 클래스 추가
+		transCategory.id = 'transcategory';
+		transCategory.textContent = category + 	' | '; // where는 따로 추가할 예정
+		
+		const transWhere = document.createElement('div');
+		transWhere.className = 'transin'; // 클래스 추가
+		transWhere.id = 'transwhere';
+		transWhere.textContent = where; // where 내용 추가
+
+        const transDetail = document.createElement('div');
+        transDetail.className = 'transin';
+        transDetail.id = 'transdetail';
+        transDetail.textContent = content;
+        
+//         const transWContent = document.createElement('div');
+//         transWhere.className = 'transin';
+//         transWhere.id = 'transcontent';
+//         transWhere.textContent = content;
+
+        transSub.appendChild(transCategory);
+        transSub.appendChild(transWhere);
+        
+        transMiddle.appendChild(transSub);
+        transMiddle.appendChild(transDetail);
 
         const transRightBox = document.createElement('div');
         transRightBox.className = 'transrightbox';
 
-        const transAmountPlus = document.createElement('div');
-        transAmountPlus.className = 'transin';
-        transAmountPlus.id = 'transamountplus';
-        transAmountPlus.textContent = amount;
+		const transAmount = document.createElement('div');
+		    transAmount.className = 'transin';
+		    
+		    if (amountIndicator === '+') { // 입금일 때
+		        transAmount.id += 'transamountplus';
+		    } else if (amountIndicator === '-') { // 출금일 때
+		        transAmount.id += 'transamountminus';
+		    }
+		    transAmount.textContent = amountIndicator + amount + '원';
 
-        transRightBox.appendChild(transAmountPlus);
+		transRightBox.appendChild(transAmount);
 
         transContent.appendChild(transDate);
         transContent.appendChild(transMiddle);
@@ -205,14 +221,43 @@
         document.getElementById('fakecontent').appendChild(transContent);
     }
 
-    const transactions = [
-        { date: '02/08', category: '월급', where: '쌍용건설', amount: '+10,000,000' },
-        { date: '03/08', category: '식비', where: '레스토랑', amount: '-200,000' }
-    ];
+    
+    var transactions = [];
+    let transactionItem = {};
+    
+    <c:forEach items="${list}" var="dto">
+    	transactionItem  = {
+	        date: '${dto.start}',
+	        category: '${dto.category}',
+	        where: '${dto.loc}',
+	        content: '${dto.content}',
+	        amount: '${dto.amount}',
+	        amountIndicator: '${dto.amountIndicator == '1' ? '+' : '-'}', /* 1이 입급, 2가 출금 */
+	    };
+	    	    
+	    transactions.push(transactionItem);
+	</c:forEach>
+
+	console.log(transactions);
 
     transactions.forEach(transaction => {
-        addTransaction(transaction.date, transaction.category, transaction.where, transaction.amount);
+        addTransaction(transaction.date, transaction.category, transaction.where, transaction.amount, transaction.amountIndicator, transaction.content);
     });
+    
+    
+ 	// 검색 기능
+    var searchicon = document.getElementById('searchicon');
+    var searchbar = document.getElementById('searchbar');
+   
+    searchicon.onclick = function() {
+        if (searchbar.style.display === 'none') {
+            searchbar.style.display = 'block';
+            searchbar.focus();
+        } else {
+            searchbar.style.display = 'none';
+        }
+    };
+    //검색 기능 끝
 
     </script>
 </body>

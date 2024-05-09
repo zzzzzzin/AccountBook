@@ -29,6 +29,12 @@ left join tblMemberPriv mp on mp.seqPriv = pri.seq
             left join tblAdmin ad on ad.id = ap.idAdmin;
 
 
+
+
+
+
+
+
 --개인정보
 --vwMemberInfo 
 --tblMember, tblProfileimg
@@ -135,6 +141,65 @@ inner join tblUser us on po.seqUser = us.seq
                                 inner join tblBoard bo on bo.seq = po.seqBoard
                                     inner join tblCategory ca on ca.seq = bo.seqCategory
                                         left join tblProfileimg img on img.seq = me.seqProfileimg;
+
+
+
+
+
+--vwboard2(vwboard에서 comment 부분 빠짐)
+create or replace view vwboard2
+as select
+    po.seq as po_seq,
+    po.seqUser as po_seqUser,
+    po.title as po_title,
+    po.content as po_content,
+    po.writeDate as po_writeDate,
+    po.editDate as po_editDate,
+    po.viewCount as po_viewCount,
+    po.likeCount as po_likeCount,
+    po.dislikeCount as po_dislikeCount,
+    po.reportCount as po_reportCount,
+    po.secretCheck as po_secretCheck,
+    po.blindCheck as po_blindCheck,
+    bo.seq as bo_seq,
+    bo.seqCategory as bo_seqCategory,
+    ca.seq as ca_seq,
+    ca.name as ca_name,
+    us.seq as us_seq,
+    me.id as me_id,
+    me.pw as me_pw,
+    me.name as me_name,
+    me.nickname as me_nickname,
+    me.phoneNumber as me_phoneNumber,
+    me.ssn as me_ssn,
+    me.gender as me_gender,
+    me.reportCount as me_reportCount,
+    me.seqSurvey as me_seqSurvey,
+    img.seq as img_seq,
+    img.fileName as img_fileName,
+    img.fileLink as img_fileLink,
+    mp.seq as me_seq,
+    mp.seqPriv as mp_seqPriv,
+    ad.id as ad_id,
+    ad.pw as ad_pw,
+    ad.nickname as ad_nickname,
+    ap.seq as ap_seq,
+    ap.seqPriv as ap_seqPriv,
+    af.seq as af_seq,
+    af.seqPost as af_seqPost,
+    af.fileName as af_fileName,
+    af.fileLink as af_fileLink
+from tblPost po
+inner join tblUser us on po.seqUser = us.seq
+    left join tblMember me on me.id = us.idMember
+        left join tblMemberPriv mp on mp.idMember = me.id
+            left join tblAdmin ad on ad.id = us.idAdmin
+                left join tblAdminPriv ap on ap.idAdmin = ad.id
+                    left join tblAttachedFile af on af.seqPost = po.seq
+                        inner join tblBoard bo on bo.seq = po.seqBoard
+                            inner join tblCategory ca on ca.seq = bo.seqCategory
+                                        left join tblProfileimg img on img.seq = me.seqProfileimg;
+
 
 --내가 쓴 글
 --vwMyPost

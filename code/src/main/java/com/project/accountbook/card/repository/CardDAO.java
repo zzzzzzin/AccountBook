@@ -85,7 +85,7 @@ public class CardDAO {
 	    List<CardDTO> recommendedCards = new ArrayList<>();
 
 	    try {
-	        String sql = "SELECT ci.seq AS seqCardInformation, ci.name AS ciName, ci.explanation, ci.annualFee, ci.overseasUse, ci.cardCompany, ci.fileLink, COALESCE(lcb.content, 0) AS discountRate, t.category_name, t.total_price, t.total_count " +
+	    	String sql = "SELECT ci.seq AS seqCardInformation, ci.name AS ciName, ci.explanation, ci.annualFee, ci.overseasUse, ci.cardCompany, ci.fileLink, COALESCE(TO_NUMBER(lcb.content), 0) AS discountRate, t.category_name, t.total_price, t.total_count " +
 	                "FROM (" +
 	                "  SELECT cc.name AS category_name, COALESCE(SUM(ai.price), 0) AS total_price, COUNT(ai.seq) AS total_count " +
 	                "  FROM tblMember m " +
@@ -100,9 +100,9 @@ public class CardDAO {
 	                ") t " +
 	                "LEFT JOIN tblListCardBenefits lcb ON lcb.seqCardCategory = (SELECT seq FROM tblCardCategory WHERE name = t.category_name) " +
 	                "LEFT JOIN tblCardInformation ci ON ci.seq = lcb.seqCardInformation " +
-	                "ORDER BY t.total_price DESC, t.total_count DESC, lcb.content DESC " +
+	                "ORDER BY t.total_price DESC, t.total_count DESC, COALESCE(TO_NUMBER(lcb.content), 0) DESC " +
 	                "FETCH FIRST 5 ROWS ONLY";
-
+	    	
 	        System.out.println("SQL: " + sql);
 	        System.out.println("Member ID: " + memberId);
 
@@ -135,7 +135,7 @@ public class CardDAO {
 	//카테고리 선택했을때 나올 카드
 	public ArrayList<CardDTO> categoryCard(String category) {
 	    try {
-	        String sql = "SELECT ci.name, ci.cardcompany, ci.filelink " +
+	        String sql = "SELECT ci.name, ci.cardcompany, ci.fileLink " +
 	                     "FROM tblcardinformation ci " +
 	                     "INNER JOIN tblListCardBenefits lcb ON lcb.seqcardinformation = ci.seq " +
 	                     "INNER JOIN tblCardCategory cc ON cc.seq = lcb.seqcardcategory " +
@@ -151,7 +151,7 @@ public class CardDAO {
 	            CardDTO dto = new CardDTO();
 	            dto.setCiName(rs.getString("name"));
 	            dto.setCardCompany(rs.getString("cardcompany"));
-	            dto.setFileLink(rs.getString("filelink"));
+	            dto.setFileLink(rs.getString("fileLink"));
 	            list.add(dto);
 	        }
 
@@ -167,4 +167,3 @@ public class CardDAO {
 	    return null;
 	}
 }
-	

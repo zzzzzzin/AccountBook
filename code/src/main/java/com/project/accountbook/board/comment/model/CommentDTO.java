@@ -44,6 +44,11 @@ public class CommentDTO {
     }
 
 
+    private String idMember;
+
+    public String getIdMember() {
+        return idMember;
+    }
 
 	private String profileImage;
 	//댓글
@@ -137,6 +142,11 @@ public class CommentDTO {
 		return "CommentDTO [seqPost=" + seqPost + ", seqUser=" + seqUser + ", content=" + content + ", writeDate="
 				+ writeDate + ", likeCount=" + likeCount + ", dislikeCount=" + dislikeCount + ", reportCount="
 				+ reportCount + ", seqComments=" + seqComments + "]";
+	}
+
+	public void setIdMember(String string) {
+		// TODO Auto-generated method stub
+		
 	}
 		
 }

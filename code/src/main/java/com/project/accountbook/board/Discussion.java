@@ -30,11 +30,17 @@ public class Discussion extends HttpServlet {
 	    Integer seqUser = (Integer) session.getAttribute("seqUser");
 
 	    PostDTO post = bdao.readPost(seq);
+
+	    
 	    List<CommentDTO> comments = cdao.getCommentsByPostSeq(seq);
+	    
 	    for (CommentDTO comment : comments) {
+	    	
 	        List<CommentDTO> replyComments = cdao.getReplyCommentsByCommentSeq(comment.getSeq());
 	        comment.setReplyComments(replyComments);
+	        
 	    }
+	    
 	    req.setAttribute("post", post);
 	    req.setAttribute("comments", comments);
 	    req.setAttribute("seqUser", seqUser);
@@ -43,5 +49,21 @@ public class Discussion extends HttpServlet {
 	    dispatcher.forward(req, resp);
 	}
 	
-	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
+		String action = req.getParameter("action");
+	    if (action != null && action.equals("updateComment")) {
+	        String commentSeq = req.getParameter("commentSeq");
+	        String editedContent = req.getParameter("editedContent");
+	        int result = cdao.updateComment(commentSeq, editedContent);
+	        if (result > 0) {
+	            // 댓글 수정 성공
+	            resp.getWriter().write("Success");
+	        } else {
+	            // 댓글 수정 실패
+	            resp.getWriter().write("Fail");
+	        }
+	    }
+	}
 }

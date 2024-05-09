@@ -108,7 +108,8 @@ public class UserDAO {
 		return 0;
 	}
 
-	// 회원 로그인 (관리자,일반회원)
+	
+	// 회원 로그인 (일반회원)
 	public UserDTO login(UserDTO dto) {
 		try {
 			String sql = "SELECT m.*, mp.seqPriv FROM tblMember m "
@@ -131,25 +132,27 @@ public class UserDAO {
 		}
 		return null;
 	}
-
+	// 관리자 로그인
 	public UserDTO loginAdmin(UserDTO dto) {
-		try {
-			String sql = "SELECT * FROM tblAdmin WHERE id = ? AND pw = ?";
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, dto.getId());
-			pstat.setString(2, dto.getPw());
-			rs = pstat.executeQuery();
+	    try {
+	        String sql = "SELECT a.*, ap.seqPriv FROM tblAdmin a " +
+	                     "INNER JOIN tblAdminPriv ap ON a.id = ap.idAdmin " +
+	                     "WHERE a.id = ? AND a.pw = ?";
+	        pstat = conn.prepareStatement(sql);
+	        pstat.setString(1, dto.getId());
+	        pstat.setString(2, dto.getPw());
+	        rs = pstat.executeQuery();
 
-			if (rs.next()) {
-				UserDTO result = new UserDTO();
-				result.setId(rs.getString("id"));
-				result.setSeqPriv("3");
-				return result;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
+	        if (rs.next()) {
+	            UserDTO result = new UserDTO();
+	            result.setId(rs.getString("id"));
+	            result.setSeqPriv(rs.getString("seqPriv"));
+	            return result;
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return null;
 	}
 
 	// 탈퇴
@@ -491,5 +494,22 @@ public class UserDAO {
 	
 
 	
+
+
+public int getSeqUserByMemberId(String memberId) {
+    try {
+        String sql = "SELECT seq FROM tblUser WHERE idMember = ?";
+        pstat = conn.prepareStatement(sql);
+        pstat.setString(1, memberId);
+        rs = pstat.executeQuery();
+
+        if (rs.next()) {
+            return rs.getInt("seq");
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return 0;
+}
 
 }

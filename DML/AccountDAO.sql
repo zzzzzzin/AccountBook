@@ -3,7 +3,42 @@ select * from tblMember;
 select * from tblMemberPriv;
 
 
+select * from tblAccInfo;
 
+--가계부 목록
+select  
+ai.seq as accinfonum,
+ai.content as aicontent,
+ai.SEQACC as seqacc,
+ai.SEQREASONCHANGECATEGORY as seqrcc,
+ai.SEQFIXEDFLUCTUATIONCHECK as seqffc,
+acl.SEQACCCATEGORY,
+accinfodate,
+price,
+location,
+me.ID as idMember,
+acate.NAME as acName,
+seqfixedfluctuationcheck,
+PERIOD,
+ai.SEQDEPOSITWITHDRAWALSTATUS as spendstatus,
+rcl.CONTENT as paymentmethod,
+mc.ALIAS as name,
+mc.CARDNUMBER as cardnumber
+from TBLACCINFO ai
+    inner join TBLACC ac on ai.SEQACC = ac.SEQ
+        inner join TBLMEMBER me on ac.IDMEMBER = me.ID
+            inner join TBLACCCATEGORYLIST acl on ai.SEQ = acl.SEQACCINFO
+                inner join TBLACCCATEGORY acate on acl.SEQACCCATEGORY = acate.SEQ
+                    inner join TBLDEPOSITWITHDRAWALSTATUS dws on ai.SEQDEPOSITWITHDRAWALSTATUS = dws.SEQ
+                        inner join TBLREASONCHANGECATEGORY rc on ai.SEQREASONCHANGECATEGORY = rc.SEQ
+                            inner join TBLREASONSCHANGELIST rcl on rc.SEQREASONSCHANGELIST = rcl.SEQ
+                                inner join TBLMYCARD mc on rc.SEQMYCARD = mc.SEQ
+                                    inner join TBLFIXEDDEPOSITWITHDRAWALCHECK fdw on ai.SEQFIXEDFLUCTUATIONCHECK = fdw.SEQ
+                                        inner join TBLFIXEDFLUCTUATIONPERIOD ffp on fdw.SEQFIXEDFLUCTUATIONPERIOD = ffp.SEQ
+                                            where me.ID = 'abc001@naver.com'
+                                                and ai.content like '%스타%'
+                                                or location like '%스타%'
+                                                    order by accinfodate desc;
 
 
 -- 가계부 분석

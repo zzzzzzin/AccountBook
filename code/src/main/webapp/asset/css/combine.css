@@ -67,6 +67,73 @@ font-family: "Noto Sans KR", sans-serif;
 	height: 58px;
 }
 
+/* 가계부 */
+#aboverow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+    width: 100%; 
+}
+    
+.right-icon{
+	width: auto;
+    height: 100%;
+}
+
+.right-icon i {
+    font-size: 24px;  
+    width: 30px;      
+    height: 30px; 
+    margin: 10px;    
+}
+
+/* #searchbar{ */
+/*     display: none; */
+/* } */
+
+/* 가계부 목록 */
+#transamount, #transtype  { color: red; } 
+#transamountplus { color: #84B652; }
+#transamountminus { color: #960005; }
+
+.transin {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+	font-size: 16px; 
+    /* border-right: 1px solid #eee; */
+}
+
+.transsub {
+	display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.transmiddle{
+  display: flex;
+  flex-direction: column;
+  width: 65%;
+  align-items: baseline;
+  justify-content: center;
+  gap: 20px;
+}
+
+
+#transwhere{
+}
+#transcategory{
+  font-weight: bold;
+  font-size: 20px;
+}
+
+#accountSearchForm {
+	display: flex;
+	align-items: center;
+}
 /* 카드 사용 시작 */
     #cardImgPlace {
     	margin: 0;
@@ -75,7 +142,7 @@ font-family: "Noto Sans KR", sans-serif;
 .card-use-list {
 	display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 16px;
     margin-top: 20px;
     align-items: center;
 }
@@ -257,10 +324,13 @@ font-family: "Noto Sans KR", sans-serif;
     flex-direction: column;
 }
 
+#analysis-hr {
+	padding: 5px;
+}
+
 /* 뉴스 */
 #news-content {
 	display: flex;
-	gap:20px;
 	flex-direction: column;
 }
 .max-spending-category-subtitle-brown {
@@ -548,33 +618,7 @@ width: 100px !;
 .material-icons {
   vertical-align: middle;
 }
-/* .btn {
-  display: inline-block;
-  padding: 0 30px;
-  font-size: 15px;
-  font-weight: 400;
-  background: transparent;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  -ms-touch-action: manipulation;
-  touch-action: manipulation;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  border: 1px solid transparent;
-  text-transform: uppercase;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  -ms-transition: all 0.3s;
-  -o-transition: all 0.3s;
-  transition: all 0.3s;
-} */
+
 .btn-dark {
   background: #555;
   color: #fff;
@@ -864,11 +908,12 @@ section.notice {
 
 .post-info {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .post-info span {
-  margin-bottom: 5px;
+ /* margin-bottom: 5px; */
+  margin: 10px;
 }
 
 .post-content {

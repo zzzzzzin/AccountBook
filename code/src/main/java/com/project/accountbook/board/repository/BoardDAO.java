@@ -4,14 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.project.accountbook.board.post.model.AttendanceDTO;
-import com.project.accountbook.board.post.model.FreeDTO;
-import com.project.accountbook.board.post.model.NoticeDTO;
 import com.project.accountbook.board.post.model.PostDTO;
-import com.project.accountbook.board.post.model.ReportDTO;
 import com.project.accountbook.util.DBUtil;
 
 public class BoardDAO {
@@ -28,22 +25,56 @@ public class BoardDAO {
 	public BoardDAO() {
 		this.conn = DBUtil.open("125.241.245.222", "webproject", "java1234");
 	}
-
+	
+	public String readSession(String id) {
+		try {
+			String sql ="select seq from tblUser where idMember = ?";
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, id);
+			rs = pstat.executeQuery();
+			
+			if(rs.next()) {
+				String seq = rs.getString("seq");
+	            return seq;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	// 삽입(C)
-	public int insert(PostDTO dto) {
+	// 글쓰기
+	public int boardWrite(PostDTO dto) {
 
 		try {
-
-			String sql = "";
-
+			
+			
+			String sql = "INSERT INTO tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck) "
+					+ "VALUES ((SELECT NVL(MAX(seq), 0) + 1 FROM tblPost), ?, ?, ?, ?, SYSDATE, null, 0, 0, 0, 0, ?, 0)";
+			
 			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getSeqBoard());
+			pstat.setString(2, dto.getSeqUser());
+			pstat.setString(3, dto.getTitle());
+			pstat.setString(4, dto.getContent());
+			pstat.setInt(5, dto.getSecretCheck());
+			
+			System.out.println("conn: " + conn.isClosed());
+			
+			return pstat.executeUpdate(); // 실행 결과 반환
 
 		} catch (Exception e) {
 
+			e.printStackTrace();
 		}
 
 		return 0;
 	}
+
+
+
 
 	// 조회(R)
 	public PostDTO readPost(String seq) {
@@ -69,7 +100,7 @@ public class BoardDAO {
 					+ "    us_seq as seqpost,\r\n"
 					+ "    af_filename as filename,\r\n"
 					+ "    af_filelink as filelink\r\n"
-					+ "from vwboard where po_seq = ?";
+					+ "from vwboard2 where po_seq = ?";
 			
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, seq);
@@ -120,7 +151,7 @@ public class BoardDAO {
 			
 			if(map.get("search").equals("y") && map.get("column").equals("total")) {
 				
-				where = String.format("WHERE ca_seq = %s AND po_content LIKE '%%%s%%' and po_title like '%%%s%%'", seq, map.get("word"), map.get("word"));
+				where = String.format("WHERE ca_seq = %s AND po_content LIKE '%%%s%%' or po_title like '%%%s%%'", seq, map.get("word"), map.get("word"));
 				
 			} else if (map.get("search").equals("y") && map.get("column").equals("title")) {
 				
@@ -154,17 +185,22 @@ public class BoardDAO {
 					+ "    us_seq as seqpost,\r\n"
 					+ "    af_filename as filename,\r\n"
 					+ "    af_filelink as filelink\r\n"
-					+ "from vwboard\r\n"
+					+ "from vwboard2\r\n"
 					+ where
 					+ " ORDER BY seq DESC";
 			
 			stat = conn.createStatement();
 			rs = stat.executeQuery(sql);
+
 			
 			ArrayList<PostDTO> list = new ArrayList<PostDTO>();
 			
+			//오늘 날짜 (2024-05-09)
+			LocalDate today = LocalDate.now();
 			
-			while (rs.next()) {				
+						
+			while (rs.next()) {		
+				
 				PostDTO dto = new PostDTO();
 				
 				dto.setSeq(rs.getString("seq"));
@@ -172,7 +208,14 @@ public class BoardDAO {
 				dto.setSeqUser(rs.getString("sequser"));
 				dto.setTitle(rs.getString("title"));
 				dto.setContent(rs.getString("content"));
-				dto.setWriteDate(rs.getString("writedate"));
+				
+				if((rs.getString("writedate").substring(0, 10)).equals(today)){
+					dto.setWriteDate(rs.getString("writedate").substring(11, 16));
+				} else {
+					dto.setWriteDate(rs.getString("writedate").substring(0, 10));
+				}
+				//dto.setWriteDate(rs.getString("writedate"));
+								
 				dto.setEditDate(rs.getString("editdate"));
 				dto.setViewCount(rs.getInt("viewcount"));
 				dto.setLikeCount(rs.getInt("likecount"));
@@ -223,7 +266,7 @@ public class BoardDAO {
 					+ "    us_seq as seqpost,\r\n"
 					+ "    af_filename as filename,\r\n"
 					+ "    af_filelink as filelink\r\n"
-					+ "from vwboard where ca_seq = ?\r\n"
+					+ "from vwboard2 where ca_seq = ?\r\n"
 					+ "order by seq desc";
 			
 			pstat = conn.prepareStatement(sql);
@@ -294,4 +337,143 @@ public class BoardDAO {
 		}
 		return 0;
 	}
+	
+	
+	public void like(String seq) {
+
+		try {
+
+			String sql = "update tblpost set likecount = likecount + 1 where seq = ?";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+
+			pstat.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("BoardDAO.like");
+			e.printStackTrace();
+		}
+		
+	}
+
+
+	public void dislike(String seq) {
+
+		try {
+
+			String sql = "update tblpost set dislikecount = dislikecount + 1 where seq = ?";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+
+			pstat.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("BoardDAO.like");
+			e.printStackTrace();
+		}
+		
+	}
+
+	public ArrayList<PostDTO> viewlist(String seq) {
+		try {
+			
+			String sql = "select\r\n"
+					+ "    po_seq as seq,\r\n"
+					+ "    me_nickname as me_nickname,\r\n"
+					+ "    ad_nickname as ad_nickname,\r\n"
+					+ "    ca_seq as seqboard,\r\n"
+					+ "    po_seqUser as seqUser,\r\n"
+					+ "    po_title as title,\r\n"
+					+ "    po_content as content,\r\n"
+					+ "    po_writedate as writedate,\r\n"
+					+ "    po_editdate as editdate,\r\n"
+					+ "    po_viewcount as viewcount,\r\n"
+					+ "    po_likecount as likecount,\r\n"
+					+ "    po_dislikecount as dislikecount,\r\n"
+					+ "    po_reportcount as reportcount,\r\n"
+					+ "    po_secretcheck as secretcheck,\r\n"
+					+ "    po_blindcheck as blindcheck,\r\n"
+					+ "    us_seq as seqpost,\r\n"
+					+ "    af_filename as filename,\r\n"
+					+ "    af_filelink as filelink\r\n"
+					+ "from vwboard2 where ca_seq = ?\r\n"
+					+ "order by seq desc";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+			
+			rs = pstat.executeQuery();
+			
+			ArrayList<PostDTO> list = new ArrayList<PostDTO>();
+			
+			
+			while (rs.next()) {				
+				PostDTO dto = new PostDTO();
+				
+				dto.setSeq(rs.getString("seq"));
+				dto.setSeqBoard(rs.getString("seqboard"));
+				dto.setSeqUser(rs.getString("sequser"));
+				dto.setTitle(rs.getString("title"));
+				dto.setContent(rs.getString("content"));
+				dto.setWriteDate(rs.getString("writedate"));
+				dto.setEditDate(rs.getString("editdate"));
+				dto.setViewCount(rs.getInt("viewcount"));
+				dto.setLikeCount(rs.getInt("likecount"));
+				dto.setDislikeCount(rs.getInt("dislikecount"));
+				dto.setReportCount(rs.getInt("reportcount"));
+				dto.setSecretCheck(rs.getInt("secretcheck"));
+				dto.setBlindCheck(rs.getInt("blindcheck"));
+				dto.setad_nickName(rs.getString("ad_nickname"));
+				dto.setme_nickName(rs.getString("me_nickname"));
+				
+				dto.setSeqPost(rs.getString("seqpost"));
+				dto.setFileName(rs.getString("filename"));
+				dto.setFileLink(rs.getString("filelink"));
+				
+				list.add(dto);
+				
+			}	
+
+			
+			return list;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	//글 수정
+	public int updatePost(PostDTO post) {
+	    try {
+	        String sql = "UPDATE tblPost SET title = ?, content = ?, editDate = SYSDATE WHERE seq = ?";
+	        
+	        pstat = conn.prepareStatement(sql);
+	        pstat.setString(1, post.getTitle());
+	        pstat.setString(2, post.getContent());
+	        pstat.setString(3, post.getSeq());
+	        
+	        return pstat.executeUpdate();
+	        
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    
+	    return 0;
+	}
+	// 게시글 삭제 
+	public int deletePost(String seq) {
+	    try {
+	        String sql = "DELETE FROM tblPost WHERE seq = ?";
+	        pstat = conn.prepareStatement(sql);
+	        pstat.setString(1, seq);
+	        return pstat.executeUpdate();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return 0;
+	}
+
 }// BoardDAO
