@@ -972,7 +972,11 @@
                 editbutton.style.display = 'inline-block';
                 delbutton.style.display = 'inline-block';
                 console.log(info.event.extendedProps.paymentMethod)
-            modal.show();
+            	modal.show();
+                
+                eventProduceModal.addEventListener('hidden.bs.modal', function () {
+                    window.location.reload();
+                });
 
     			$('#deleteEventBtn').off().on('click', function() {
     				if(window.confirm('일정을 삭제하시겠습니까?')){
@@ -1138,15 +1142,19 @@
         });
         calendar.render();
       });
+    
+    let isEdit = false;
 
     document.addEventListener('DOMContentLoaded', function() {
         const addForm = document.getElementById('addWishItemForm');
         const wishList = document.getElementById('wishListItems');
         const wishInput = document.getElementById('wishInput');
-        
+                
+        /* 
         eventProduceModal.addEventListener('hidden.bs.modal', function () {
             window.location.reload();
-        });
+        }); 
+        */
 
         const wishlistcheckbox = document.getElementById('addcheckbox');
         console.log(wishlistcheckbox);
@@ -1168,6 +1176,8 @@
         const wishList = document.getElementById('wishListItems');
         const newItemButton = document.getElementById('newItemButton');
         const cbcbbox = document.getElementById('addcheckbox');
+        const delitembtn = document.getElementById('listdelbutton');
+        
 
         // Toggle input field visibility and focus when the button is clicked
         addButton.onclick = function() {
@@ -1202,6 +1212,11 @@
             deleteBtn.innerHTML = '<div id="listdelbutton" class="frontback"><i class="fa-solid fa-xmark"></i></div>';
             deleteBtn.onclick = function() {
                 wishList.removeChild(transContent);
+                
+                let contentOfTransDate = transDesc.textContent;
+                console.log('Deleting item with transdate content:', contentOfTransDate);
+                
+                delwishlist(contentOfTransDate);
             };
 
             transContent.appendChild(checkbox);
@@ -1210,6 +1225,8 @@
 
             wishList.appendChild(transContent);
         }
+        
+         
 
         newItemInput.addEventListener('keypress', function(event) {
             if (event.key === 'Enter') {
@@ -1234,6 +1251,8 @@
                 sendwishlist(text);
             }
         });
+         
+        
         $(document).ready(function() {
             // AJAX request to fetch data as soon as the page loads
             $.ajax({
@@ -1257,7 +1276,9 @@
             });
             });
 
-        // Event delegation for dynamically added checkboxes
+     
+            
+            
         wishList.addEventListener('change', function(event) {
             // Check if the event target is a checkbox with the class 'frontback'
             if (event.target.type === 'checkbox' && event.target.classList.contains('frontback')) {
@@ -1292,6 +1313,30 @@
          });
        	}
         
+       	function delwishlist(text){
+             if(window.confirm('삭제하시겠습니까?')){
+ 				if(delRequest !== null){
+ 					delRequest.abort();
+ 					console.log('abort');
+ 				}
+ 			}
+             console.log(text);
+ 			delRequest = $.ajax({
+ 				url:'/account/account/delwishlist.do',
+ 				type:'post',
+ 				data:{
+ 					content: text
+ 				},
+                 success: function (response) {
+                     alert('Edit successful');
+                     
+                 },
+                 error: function (xhr, status, error) {
+                     alert('Error: ' + xhr.responseText);
+                 }
+ 			})
+         }; 
+       	
     });
 
 

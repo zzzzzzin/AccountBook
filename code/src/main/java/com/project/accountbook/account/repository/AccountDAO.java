@@ -1426,6 +1426,30 @@ public class AccountDAO {
 	}
 
 
+	public int delwishlist(AccountInfoDTO dto) {
+		
+		try {
+			
+			String sql = "delete from TBLPURCHASEWISHLIST where PRODUCTNAME = ? and SEQACC = (select seq from TBLACC where IDMEMBER=?)";
+			
+			pstat = conn.prepareStatement(sql);
+			
+			pstat.setString(1, dto.getProductName());
+			pstat.setString(2, dto.getIdMember());
+			
+			int indicate = pstat.executeUpdate();
+			
+			return indicate;
+			
+		} catch (Exception e) {
+			System.out.println("AccountDAO.delwishlist");
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+
+
 	
 	  
 }
