@@ -135,7 +135,7 @@ public class CardDAO {
 	//카테고리 선택했을때 나올 카드
 	public ArrayList<CardDTO> categoryCard(String category) {
 	    try {
-	        String sql = "SELECT ci.name, ci.cardcompany, ci.filelink " +
+	        String sql = "SELECT ci.name, ci.cardcompany, ci.fileLink " +
 	                     "FROM tblcardinformation ci " +
 	                     "INNER JOIN tblListCardBenefits lcb ON lcb.seqcardinformation = ci.seq " +
 	                     "INNER JOIN tblCardCategory cc ON cc.seq = lcb.seqcardcategory " +
@@ -151,7 +151,7 @@ public class CardDAO {
 	            CardDTO dto = new CardDTO();
 	            dto.setCiName(rs.getString("name"));
 	            dto.setCardCompany(rs.getString("cardcompany"));
-	            dto.setFileLink(rs.getString("filelink"));
+	            dto.setFileLink(rs.getString("fileLink"));
 	            list.add(dto);
 	        }
 
