@@ -65,7 +65,7 @@
 				<label for="start-date-myCardTotal">시작일 <input type="text" name = "startDate" id="start-date" class="date-input-myCardTotal" value="${map.startDate}"> </label> 
 				<label for="end-date">종료일 <input type="text" name = "endDate" id="end-date" class="date-input-myCardTotal" value="${map.endDate}"></label> 
 			</div>
-				<input type="submit" value="확인" class="dark-blue-btn long-btn"/>
+				<input type="submit" value="확인" class="purple-btn long-btn"/>
 			</div>
 		</form>
 		
@@ -73,7 +73,7 @@
 				<c:forEach items="${list}" var="dto">
 						<button type="submit" class="gray-blue-box card-use-item" onclick="location.href='/account/account/card-use-detail.do?seqMyCard=${dto.seqMyCard}&startDate=${map.startDate}&endDate=${map.endDate}';">
 							<img src="/account/asset/images/${dto.fileLink}" id="cardImgPlace" >
-							<div class="card-use-info-box">
+							<div class="card-use-info-box" >
 								<div class="card-use-name">
 									<c:if test="${dto.alias != null}">
 										${dto.alias}

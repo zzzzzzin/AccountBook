@@ -21,6 +21,7 @@
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Libraries Stylesheet -->
 </head>
@@ -57,14 +58,18 @@
 			<!-- 상당 메뉴 끝-->
 			<!-- Navbar End -->
 			<!-- Content End -->
-			<div id="fakecontent">
-			<form method="GET">
-				<div id="periodcheck" class="btn-group-style">
-					<button name="period" value="day" class="purple-btn button">일일</button>
-					<button name="period" value="week" class="purple-btn button">주간</button>
-					<button name="period"  value="month" class="purple-btn button">월간</button>
+			<div class="content-total-style">
+				<div class="content-header">
+					<div class="content-title-style content-item"><h3>가계부 분석</h3></div>
+					
+					<form method="GET">
+						<div id="periodcheck" class="btn-group-style analysis-period-box content-item">
+							<button name="period" value="day" class="purple-btn button">일일</button>
+							<button name="period" value="week" class="purple-btn button">주간</button>
+							<button name="period"  value="month" class="purple-btn button">월간</button>
+						</div>
+					</form>
 				</div>
-			</form>
 
 				<div id="firstrow">
 					<!-- Sales Chart Start -->
@@ -110,18 +115,20 @@
 						</div>
 					
 					</div>
+					
+					<div id="chartLegend"></div><br>
 
 					<!-- Sales Chart End -->
 				</div>
 
 				<div id="secondrow">
-					<div id="monthgoal" class="black-border-box">
+					<div id="monthgoal" class="box">
 						저축 목표 기간 <a class="anyalysis-period-num">${challengeInfoMap.spPeriod}개월</a><br>
 						저축 목표 금액 <a class ="anyalysis-goals-price" >${challengeInfoMap.savingsGoals}원</a><br>
 						현재 저축 금액 <a class ="anyalysis-savings-price" >${challengeInfoMap.totalSaving}원</a><br>
 						남은 저축 금액 <a class ="anyalysis-remaining-price" >${challengeInfoMap.remainingSavings}원</a>
 					</div>
-					<div id="currentsituation" class="black-border-box">
+					<div id="currentsituation" class="box">
 						<div>저축 목표 기간 중 <a class="anyalysis-period-num">${challengeInfoMap.monthsSinceJoin}개월</a>이 지났습니다!</div><br>
 						<div>이번 달 지출금은 총 <a class="spending-price-red">${challengeInfoMap.monthUsage}원</a>,<br> 월 평균 지출금은 <a class="spending-price-red">${challengeInfoMap.avgMonthlySpending}원</a>입니다.</div><br>
 						<c:if test="${challengeInfoMap.goalAchievementPeriod <= 0}">
@@ -139,13 +146,11 @@
 					</div>
 				</div>
 				
-				<div id="chartLegend"></div><br>
-				
 				<div id="thridrow">
 					<div>
 						<h5><a class="max-spending-category-subtitle-brown">"${acName}"</a> 관련 최근 경제 뉴스</h5>
 					</div>
-					<div id="news-content" class="black-border-box full-box">
+					<div id="news-content" class="box full-box">
 						<c:forEach items="${newsList}" var="dto" varStatus="loop">
 							<div>
 								<div><a id="news-title" target="_blank" href="${dto.link}">${dto.title}</a> ${dto.pubDate}<br></div>
