@@ -3,6 +3,7 @@ package com.project.accountbook.account;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -28,11 +29,26 @@ public class AccountJson extends HttpServlet {
 		
 		HttpSession session = req.getSession();
 		String id = (String)session.getAttribute("id");
-		System.out.println(id);
+		
+		String word = req.getParameter("word");
+		String search = "n"; //목록보기(n), 검색하기(y)
+		
+		if ((word == null) || (word.equals(""))) {
+			search = "n";
+		} else {
+			search = "y";
+		}
+		
+		HashMap<String, String> map = new HashMap<>();
+		
+		if (word == null) word = "";
+		
+		map.put("search", search);
+		map.put("word", word);		
+		
 		AccountDAO dao = new AccountDAO();
 		
-		ArrayList<AccountInfoDTO> calenderdata = dao.accEventContent(id);
-		
+		ArrayList<AccountInfoDTO> calenderdata = dao.accEventContent(id, map);
 		
 		 // Serialize data to JSON
         
@@ -40,18 +56,21 @@ public class AccountJson extends HttpServlet {
 		for (AccountInfoDTO dto : calenderdata) {
 			JSONObject obj = new JSONObject();
 			String start = "20"+dto.getAccInfoDate().replace("/", "-");
-			
-			obj.put("title", dto.getTitle());
-			obj.put("start", dto.getAccInfoDate());
-			obj.put("loc", dto.getLocation());
+			obj.put("seq", dto.getSeqAccInfo());
+			obj.put("seqacc",dto.getSeqAcc());
+			obj.put("seqrcc",dto.getSeqReasonChangeCategory());
 			obj.put("content", dto.getContent());
-			obj.put("amountIndicator", dto.getSeqDepositWithdrawalStatus());
+			obj.put("start", dto.getAccInfoDate());
 			obj.put("amount", dto.getPrice());
+			obj.put("loc", dto.getLocation());
+			obj.put("id", dto.getIdMember());
 			obj.put("category", dto.getAcName());
 			obj.put("fixed", dto.getSeqFixedFluctuationCheck());
-			obj.put("fixedperiod", dto.getSeqFixedFluctuationPeriod());
-			
-			
+			obj.put("period", dto.getFfpPeriod());
+			obj.put("amountIndicator", dto.getSeqDepositWithdrawalStatus());
+			obj.put("paymentMethod", dto.getPaymentMethod());
+			obj.put("aliasname", dto.getAlias());
+			obj.put("cardnumber", dto.getCardNumber());
 			arr.add(obj);
 		}
 

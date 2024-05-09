@@ -138,6 +138,7 @@
 	  </div>
 	</div>
 	
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 	<script>
 	$(document).ready(function() {
 	    // 서블릿에서 설정한 결과 값을 가져옴

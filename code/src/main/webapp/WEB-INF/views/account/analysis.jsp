@@ -14,16 +14,20 @@
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!--     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" >
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Libraries Stylesheet -->
 </head>
 <style>
+
+
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
@@ -56,14 +60,20 @@
 			<!-- 상당 메뉴 끝-->
 			<!-- Navbar End -->
 			<!-- Content End -->
-			<div id="fakecontent">
-			<form method="GET">
-				<div id="periodcheck">
-					<button name="period" value="day" class="dark-blue-btn">일일</button>
-					<button name="period" value="week" class="dark-blue-btn">주간</button>
-					<button name="period"  value="month" class="dark-blue-btn">월간</button>
+			<div class="content-total-style">
+				<div class="content-header">
+					<div class="content-title-style">
+						<h3>가계부 분석</h3>
+					</div>
+					
+					<form method="GET">
+						<div id="periodcheck" class="btn-group-style date-period-box">
+							<button name="period" value="day" class="purple-btn button">일일</button>
+							<button name="period" value="week" class="purple-btn button">주간</button>
+							<button name="period"  value="month" class="purple-btn button">월간</button>
+						</div>
+					</form>
 				</div>
-			</form>
 
 				<div id="firstrow">
 					<!-- Sales Chart Start -->
@@ -83,69 +93,111 @@
 
 					<div id="customMsg">
 						<div>
-							지난 달 가장 많이 소비한 카테고리는 <a>${categoryUsageMap.acName}</a>입니다.<br>
-							지날 달은 ${categoryUsageMap.acName}에서 ${categoryUsageMap.beforeAcUsage}원을 사용했고, <br>
-							이번 달은 ${categoryUsageMap.nowAcUsage}원을 사용했습니다.
+							<div>
+								지난 달 가장 많이 소비한 <br> 카테고리는 <a class="max-spending-category-brown">${categoryUsageMap.acName}</a>입니다.						
+							</div><br>
+							<div>							
+								지난 달은 <a class="spending-price-red">${categoryUsageMap.beforeAcUsage}원</a>을 사용했고, <br>
+								이번 달은 <a class="spending-price-red">${categoryUsageMap.nowAcUsage}원</a>을 사용했습니다. <br>
+							</div>
+							<div>
+								<c:if test="${categoryUsageMap.beforeAcUsage > categoryUsageMap.nowAcUsage}">
+    								지난 달보다 ${categoryUsageMap.acName}에서 지출이 줄었네요!<br>
+    								현재를 유지해보세요!
+								</c:if>
+
+								<c:if test="${categoryUsageMap.beforeAcUsage < categoryUsageMap.nowAcUsage}">
+									지난 달보다 ${categoryUsageMap.acName}에서 지출이 늘었네요.<br>
+									주의해주세요!
+								</c:if>
+								<c:if test="${categoryUsageMap.beforeAcUsage == categoryUsageMap.nowAcUsage}">
+									지난 달과 동일하게 사용했네요.<br>
+									${categoryUsageMap.acName}에서 지출을 줄여보세요!
+								</c:if>
+							</div>
 							
 						</div>
 					
 					</div>
+					
+					<div id="chartLegend"></div><br>
 
 					<!-- Sales Chart End -->
 				</div>
 
 				<div id="secondrow">
-					<div id="monthgoal" class="black-border-box">
+					<div id="monthgoal" class="box">
 						저축 목표 기간 <a class="anyalysis-period-num">${challengeInfoMap.spPeriod}개월</a><br>
 						저축 목표 금액 <a class ="anyalysis-goals-price" >${challengeInfoMap.savingsGoals}원</a><br>
 						현재 저축 금액 <a class ="anyalysis-savings-price" >${challengeInfoMap.totalSaving}원</a><br>
 						남은 저축 금액 <a class ="anyalysis-remaining-price" >${challengeInfoMap.remainingSavings}원</a>
 					</div>
-					<div id="currentsituation" class="black-border-box">
+					<div id="currentsituation" class="box">
 						<div>저축 목표 기간 중 <a class="anyalysis-period-num">${challengeInfoMap.monthsSinceJoin}개월</a>이 지났습니다!</div><br>
 						<div>이번 달 지출금은 총 <a class="spending-price-red">${challengeInfoMap.monthUsage}원</a>,<br> 월 평균 지출금은 <a class="spending-price-red">${challengeInfoMap.avgMonthlySpending}원</a>입니다.</div><br>
-						<div>이 기세로는 목표 저축 금액까지 <a class="anyalysis-period-num">${challengeInfoMap.goalAchievementPeriod}개월</a>이 필요합니다!</div><br>
-						<div><a class="anyalysis-period-num">${challengeInfoMap.spPeriod - challengeInfoMap.monthsSinceJoin}개월</a> 안에 목표 금액을 달성하려면</div>
-						<div>매달 평균 <a class ="anyalysis-remaining-price" >${challengeInfoMap.avgMonthlySavingsPrice}원</a>을 저축해야합니다!</div>
-						<div>이번 달은 <a class ="usable-price-num">${challengeInfoMap.avgMonthlyUsablePrice}원</a>을 사용할 수 있으며,</div>
-						<div>일 평균 <a class ="usable-price-num">${challengeInfoMap.avgDailyUsablePrice}원</a>을 사용할 수 있습니다.</div>
+						<c:if test="${challengeInfoMap.goalAchievementPeriod <= 0}">
+							<div class ="anyalysis-goals-price" >목표 저축 금액까지 소요 예상 기간을 계산할 수 없습니다.</div><br>
+							<div><a class="anyalysis-period-num">${challengeInfoMap.spPeriod - challengeInfoMap.monthsSinceJoin}개월</a> 안에 목표 금액을 저축하려면</div>
+							<div>매달 평균 <a class ="anyalysis-remaining-price" >${challengeInfoMap.avgMonthlySavingsPrice}원</a>을 저축해야합니다!</div>
+						</c:if>
+						<c:if test="${challengeInfoMap.goalAchievementPeriod > 0}">
+							<div>이 기세로는 목표 저축 금액까지 <a class="anyalysis-period-num">${challengeInfoMap.goalAchievementPeriod}개월</a>이 필요합니다!</div><br>
+							<div><a class="anyalysis-period-num">${challengeInfoMap.spPeriod - challengeInfoMap.monthsSinceJoin}개월</a> 안에 목표 금액을 저축하려면</div>
+							<div>매달 평균 <a class ="anyalysis-remaining-price" >${challengeInfoMap.avgMonthlySavingsPrice}원</a>을 저축해야합니다!</div>
+							<div>이번 달은 <a class ="usable-price-num">${challengeInfoMap.avgMonthlyUsablePrice}원</a>을 사용할 수 있으며,</div>
+							<div>일 평균 <a class ="usable-price-num">${challengeInfoMap.avgDailyUsablePrice}원</a>을 사용할 수 있습니다.</div>
+						</c:if>
 					</div>
 				</div>
-				<div id="chartLegend"></div>
+				
 				<div id="thridrow">
-					<div id="newscontent" class="black-border-box">뉴스 뉴스 뉴스 뉴스 뉴스 뉴스</div>
+					<div>
+						<h5><a class="max-spending-category-subtitle-brown">"${acName}"</a> 관련 최근 경제 뉴스</h5>
+					</div>
+					<div id="news-content" class="box full-box">
+						<c:forEach items="${newsList}" var="dto" varStatus="loop">
+							<div>
+								<div><a id="news-title" target="_blank" href="${dto.link}">${dto.title}</a> ${dto.pubDate}<br></div>
+								<div>${dto.description}</div>
+							<c:if test="${!loop.last}">
+								<div id="analysis-hr"><hr></div>
+							</c:if>
+							</div>
+						</c:forEach>
+					</div>
 				</div>
 
-				<!-- Back to Top -->
-				<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i
-					class="bi bi-arrow-up"></i></a>
 			</div>
 		</div>
 
 		<!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/chart/chart.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js"></script><script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
    
     <!-- Template Javascript -->
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
     <script>
     
     document.addEventListener('DOMContentLoaded', function() {
-    const sidebarToggler = document.getElementById('sidebar-toggler');
-    const sidebar = document.querySelector('.sidebar');
-    const content = document.querySelector('.content');
+        // 현재 URL에서 'period' 매개변수 값 가져오기
+        const urlParams = new URLSearchParams(window.location.search);
+        let periodParam = urlParams.get('period');
 
-        sidebarToggler.addEventListener('click', function() {
-        sidebar.classList.toggle('hidden');
-        content.classList.toggle('expanded');
+        // 선택된 값이 없을 때 기본값으로 "month" 설정
+        if (!periodParam) {
+            periodParam = "month";
+        }
+
+        // 버튼 요소 가져오기
+        const buttonElements = document.querySelectorAll('.purple-btn.button');
+
+        // 'period' 매개변수 값에 따라 해당 버튼에 'active' 클래스 추가
+        buttonElements.forEach(function(button) {
+            if (button.value === periodParam) {
+                button.classList.add('active');
+            }
         });
     });
     
@@ -287,8 +339,8 @@
     }
 
 
+	createSharedCustomLegend([chart1, chart2]);
 
-createSharedCustomLegend([chart1, chart2]);
 
     </script>
 </body>

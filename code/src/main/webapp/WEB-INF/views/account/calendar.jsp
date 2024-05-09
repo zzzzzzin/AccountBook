@@ -34,59 +34,10 @@
     #periodcheck button{
         margin: 5px;
     }
-
-    #chart01{
-
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-    }
-
-    #pieblock{
-        display: flex;
-    }
-
-    #piepie{
-        float: left;
-    }
-    #piepie2{
-        float: left;
-    }
-    #customMsg{
-        margin: 50px;
-        width: 100px;
-        height: 100px;
-        background-color: aqua;
-        flex: 0 0 auto; /* Does not grow, does not shrink, auto basis */
-        margin-left: 10%; /* Pushes it to the right */
-        width: 100px;
-        height: 100px;
-        text-align: center;
-        align-items: center;
-        justify-content: center;
-        display: flex;
-    }
-
     
     #fakecontent{
     }
 
-    #firstrow{
-        display: flex;
-        justify-content: center;
-        align-items: center; 
-    }
-
-    #secondrow{
-        display: flex;
-        justify-content: center;
-        margin-top: 50px;
-    }
-
-    #thridrow{
-        display: flex;
-        justify-content: center;
-    }
     #monthgoal{
         width: 300px;
         height: 100px;
@@ -104,129 +55,7 @@
         justify-content: center;
         display: flex;
     }
-
-    #newscontent{
-        width: 500px;
-        height: 100px;
-        margin-top: 100px;
-        border: 1px solid black;
-        align-items: center;
-        justify-content: center;
-        display: flex;
-        
     }
-
-    .sidebar {
-            width: 200px;
-            background-color: #333;
-            color: #fff;
-            height: 100vh;
-    }
-          
-          .logo {
-            padding: 20px;
-            font-size: 20px;
-            font-weight: bold;
-            border-bottom: 1px solid #444;
-          }
-          
-          nav ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-          }
-          
-          nav li {
-            padding: 15px 20px;
-            border-bottom: 1px solid #444;
-          }
-          
-          nav li:last-child {
-            border-bottom: none;
-          }
-          
-          nav a {
-            color: #fff;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-          }
-          
-          nav a i {
-            margin-right: 10px;
-          }
-
-
-    /* nav header css */
-    #navheader {
-        
-    }
-
-    #navheader {
-        background-color: #f1f1f1;
-        padding: 20px;
-      }
-      
-      #navheader nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-      
-      #navheader .logo {
-        width: 100px;
-        height: 50px;
-        background-color: #ddd;
-        margin-right: 20px;
-      }
-      
-      #navheader nav ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        width: 100%;
-        justify-content: center;
-      }
-      
-      #navheader nav li {
-        margin: 0 20px;
-      }
-      
-      .content1 {
-        margin-left: 100px;
-      }
-      
-      .content2 {
-        margin-left: 300px;
-      }
-
-      .content3 {
-        margin-left: 300px;
-      }
-      
-      .content4 {
-        margin-left: 300px;
-      }
-      
-      #navheader nav a {
-        color: #333;
-        text-decoration: none;
-        font-weight: bold;
-      }
-      
-      #navheader nav a:hover {
-        color: #000;
-      }
-
-      #chartLegend{
-        display: flex;
-        justify-content: center;  
-        align-items: center;      
-        width: 100%;              
-        flex-wrap: wrap;  
-        margin-top: 50px;
-      }
       /* ---calendar css start */
       #onerow {
         display: flex;
@@ -469,9 +298,6 @@
     box-shadow: 0 4px 4px rgba(0,0,0,0.1);
 }
 
-#searchbar{
-    display: none;
-}
 #totalbody{
 	background-color: #FFFFFF 
 }    
@@ -511,10 +337,16 @@
         <!-- Content End -->
         <div id="fakecontent">
             <div id="aboverow">
-                <div><input type="text" id="searchbar"></div>
+      		<form method = "GET" id="accountSearchForm" action="/account/account/list.do">
                 <div class="right-icon" id="searchicon"><i class="fa-solid fa-magnifying-glass"></i></div> 
+                <div id="searchbar" >
+                	<input type="text" name="word" value="${map.word}" placeholder="내용 or 사용처">
+                	<input type="submit" value="검색">
+                </div>
+            </form>    
                 <div class="right-icon" id="categoryselector"><i class="fa-solid fa-list-check"></i></div> 
             </div>
+            
             <div id='calendar'></div>
             <div id="bottomrow">
                 <div id="thismonthstat">
@@ -545,7 +377,6 @@
             </div>
         <!-- Back to Top -->
         </div>
-        
     </div>
 
    <div class="modal fade" id="eventProduceModal" tabindex="-1"
@@ -618,9 +449,10 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary"
-                        data-bs-dismiss="modal" id="btnAddEventCancel">취소</button>
-                    <button type="button" class="btn btn-primary" id="btnEventProduce">완료
-                        </button>
+							data-bs-dismiss="modal">취소</button>
+					<button type="button" class="btn btn-primary" id="deleteEventBtn">삭제</button>
+					<button type="button" class="btn btn-primary" id="editEventBtn">수정</button>
+					<button type="button" class="btn btn-primary" id="produceEventBtn">생성</button>
                 </div>
             </div>
         </div>
@@ -655,13 +487,6 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/chart/chart.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js"></script><script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
     <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.11.0/main.min.css' rel='stylesheet' />
@@ -670,8 +495,52 @@
     <!-- Template Javascript -->
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
     <script>
+    var delRequest = null;
+	var addRequest = null;
+	var editRequest = null;
+   	var categories = [];
+    var colors = {};
     
-
+    var editbutton = document.getElementById('editEventBtn');
+    var delbutton = document.getElementById('deleteEventBtn');
+    var procbutton = document.getElementById('produceEventBtn');
+    <c:forEach items="${cList}" var = "dto">
+	categories.push('${dto.acName}');
+	</c:forEach>
+   console.log(categories); 
+   
+   
+   var cardlist = [];
+   	<c:forEach items="${cardlist}" var = "dto">
+		cardlist.push('${dto.paymentMethod}, ${dto.paymentMethod} ${dto.alias}:${dto.cardNumber}');
+	</c:forEach>
+	
+	// 미리 정의된 색상 팔레트
+	const colorPalette = [
+		'#36A2EB', '#FF6384', '#4BC0C0', '#FC9D3F', '#9966FF', '#FFCD56', '#C9CBCF', '#F9F871', '#A0F48B', '#A3459B',
+	    '#E17AA7', '#EEE8A9', '#265E58', '#F47558', '#D25F9C', '#9B61A3', '#00524A', '#655E96', '#3E567A', '#2F4858',
+	    '#DD6C41', '#A57A11', '#647E17', '#007A3E', '#007165', '#96525D', '#FFE3E9', '#BFA5A8', '#53D0B9', '#6FDEAA',
+	    '#97EA96', '#C6F381', '#F6746C', '#CA638D', '#896095', '#4D587F', '#C7B1E6', '#FAEAFF', '#65BAA9', '#FFCA57'
+	];
+	
+	// colors 객체에 각 카테고리에 고유한 색상 할당
+	categories.forEach((categoryName, index) => {
+	    colors[categoryName] = colorPalette[index % colorPalette.length];
+	});
+	/* console.log(colors.value('주거')); */
+	
+	function populatePaymentMethodSelect() {
+        paymentMethodSelect.innerHTML = ''; // Clear existing options
+        cardlist.forEach(function(card) {
+            var parts = card.split(',');
+            var option = document.createElement('option');
+            option.value = parts[0]; // Assuming the first part is the value
+            option.textContent = parts[1]; // Assuming the second part is the user-friendly name
+            paymentMethodSelect.appendChild(option);
+        });
+    }
+	
+	
     function openEventModal() {
         var modal = new bootstrap.Modal(document.getElementById("eventProduceModal"));
         // Clear previous data in the modal or set defaults
@@ -712,13 +581,32 @@
         var categoryselector = document.getElementById('categoryselector')
         var categorymodalbody = document.getElementById('categorymodalbody')
         var categorySelector = document.getElementById('eventModalSelect'); 
+        var paymentMethodSelect = document.querySelector('.modalmethodofpayment');
+        
+        
+        function populatePaymentMethodSelect() {
+            // Assuming we want to keep the existing options and append new ones, start after the default options
+            // Remove all dynamically added options first, assuming they have a class 'dynamic-option'
+            var existingOptions = paymentMethodSelect.querySelectorAll('.dynamic-option');
+            existingOptions.forEach(function(option) {
+                option.remove();
+            });
+
+            // Append new options from cardlist
+            cardlist.forEach(function(card) {
+                var parts = card.split(',');
+                var option = document.createElement('option');
+                option.classList.add('dynamic-option'); // Mark it as dynamically added for future updates
+                option.value = parts[0]; // Assuming the first part is the value
+                option.textContent = parts[1]; // Assuming the second part is the user-friendly name
+                paymentMethodSelect.appendChild(option);
+            });
+        }
+        
+        
+        
         // 카테고리 선택 시작
-        const categories = [
-        "미분류","SNS수입", "건강", "경조사", "교육", "교통", "구독료", "금융수입", "급여", "기부금", "기타",
-        "더치페이", "로열티", "문화생활", "미용", "보험금", "부동산수입", "부업", "사업수입", "상속", "상여금",
-        "생활용품", "세금", "쇼핑", "수수료", "숙박", "아르바이트", "앱테크", "여가", "여행", "용돈",
-        "유흥", "육아", "음식", "이자", "자동차", "장학금", "저축", "주거", "카페", "통신"
-    ];
+        
 
     function populateCategorySelector() {
             categorySelector.innerHTML = ''; // Clear existing options
@@ -750,24 +638,26 @@
             modal.show();
         })
         //카테고리 선택 끝
-        // 검색 기능
-        var searchicon = document.getElementById('searchicon');
-        var searchbar = document.getElementById('searchbar');
-        searchicon.onclick = function() {
-            if (searchbar.style.display === 'none') {
-                searchbar.style.display = 'block';
-                searchbar.focus();
-            } else {
-                searchbar.style.display = 'none';
-            }
-        };
-        //검색 기능 끝
+	 	// 검색 기능
+	    var searchicon = document.getElementById('searchicon');
+	    var searchbar = document.getElementById('searchbar');
+	   
+	    searchicon.onclick = function() {
+	        if (searchbar.style.display === 'none') {
+	            searchbar.style.display = 'block';
+	            searchbar.focus();
+	        } else {
+	            searchbar.style.display = 'none';
+	        }
+	    };
+	    //검색 기능 끝
         
 
     // 고정 지출 시작
     eventProduceModal.addEventListener('show.bs.modal', function () {
         checkbox.checked = false; // Uncheck the checkbox
         fixedDateDiv.style.display = 'none'; // Hide the date input
+        populatePaymentMethodSelect();
 
     });
 
@@ -781,8 +671,8 @@
     //고정 지출 끝
 
     //항목 추가 시작
-    document.getElementById('btnEventProduce').addEventListener('click', function() {
-        var title = document.getElementById('eventModalcontent').value;
+    document.getElementById('produceEventBtn').addEventListener('click', function() {
+        var content = document.getElementById('eventModalcontent').value;
         var start = document.getElementById('eventModalStart').value;
         var category = document.getElementsByClassName('modalselectcategory')[0].value;
         var useLocation = document.getElementById('eventModaluseloc').value;
@@ -791,21 +681,27 @@
         var amount = document.getElementById('eventModalIoc').value;
         var isFixedExpense = document.getElementById('fixedexpense').checked;
         
+        console.log('here')
+        editbutton.style.display='none';
+        delbutton.style.display='none';
+        /* var isFixedperiod = document.getElementById('fixedexpense').checked;  */
+        
         // Validate the inputs
-        if (!title || !start || !category || !amount) {
+        if (!content || !start || !category || !amount) {
             alert('모든 필수 필드를 입력해주세요.'); // Alert if any required field is missing
             return;
         }
-        console.log(title, start, category, useLocation, paymentMethod,amountindicator, amount, isFixedExpense);
+        console.log(content, start, category, useLocation, paymentMethod,amountindicator, amount, isFixedExpense);
 
         // Create a new event object
         var event = {
-            title: title,
+            title: category,
             start: start,
             allDay: true,
-            color: category === '1' ? '#ff0000' : '#0000ff', 
+            color: colors[category], 
             extendedProps: {
                 useLocation: useLocation,
+                content: content,
                 category: category,
                 paymentMethod: paymentMethod,
                 amount: amount,
@@ -816,6 +712,27 @@
 
         // Add the event to the calendar
         calendar.addEvent(event);
+        
+        if (addRequest) {
+			addRequest.abort();
+		}
+        
+        addRequest = $.ajax({
+        	type: 'post',
+        	url: '/account/account/calendar.do',
+        	data:{
+        		start: start,
+        		useLocation: useLocation,
+        		content: content,
+        		category: categories.indexOf(category),
+        		paymentMethod: paymentMethod,
+        		amount: amount,
+        		amountindicator: amountindicator,
+        		isFixedExpense: isFixedExpense
+        		/* isFixedperiod: isFixedperiod */
+        	}
+        })
+        
 
         // Optionally clear the modal inputs
         document.getElementById('eventModalcontent').value = '';
@@ -834,18 +751,69 @@
     });
 
     //항목 추가 끝
-
-        
+	var currentEventId = null;
+    
 
      var calendar = new FullCalendar.Calendar(calendarEl, {
             timeZone:'UTC',
             editable: true,
+            eventSources: [
+                $.ajax({
+         			type: 'get',
+         			url: '/account/account/calendarjson.do',
+         			dataType: 'json',
+         			success: function(result){
+         				result.forEach(obj =>{
+         					calendar.addEvent({
+         						title: obj.category ,
+         						allDay: true,
+         						start: obj.start,
+         						color: colors[obj.category], 
+         						extendedProps: {
+      			   					useLocation: obj.loc,
+      			   					content: obj.content,
+      			   					amount: obj.amount,
+      			   					amountindicator: (obj.amountindicator==='출금'?'+':'-'),
+      			   					paymentMethod : (obj.paymentMethod+'\xa0'+obj.aliasname+':'+obj.cardnumber),
+      			   					category: obj.category,
+      			   					fixed: obj.fixed,
+      			   					fixedPeriod: obj.fixedperiod,
+      			   					seq: obj.seq,
+      			   					seqacc: obj.seqacc,
+      			   					seqrcc: obj.seqrcc
+         						}
+         					})
+         				})
+        			},
+         			error: function(a,b,c){
+         				console.log(a,b,c);
+         			}
+         		 }) 
+          ],
     		eventClick: function(info) {
                 console.log('workd');
     		    info.jsEvent.preventDefault();
+    		    currentEventId = info.event.id;
+    		    var event = calendar.getEventById(currentEventId);
                 var container = document.getElementById("eventProduceModal");//
                 var modal = new bootstrap.Modal(container);
-                $('#eventModalcontent').val(info.event.title); 
+                
+                var content = info.event.extendedProps.content;
+                
+                var start = info.event.start.toISOString().slice(0, 16);
+                var category = info.event.extendedProps.category;
+                var useLocation = info.event.extendedProps.useLocation;
+                var paymentMethod = info.event.extendedProps.paymentMethod;
+                var amountindicator = info.event.extendedProps.amountindicator;
+                var amount = info.event.extendedProps.amount;
+                var isFixedExpense = info.event.extendedProps.isFixedExpense;
+                var seq = info.event.extendedProps.seq;
+                var seqacc = info.event.extendedProps.seqacc;
+                var seqrcc = info.event.extendedProps.seqrcc;
+                
+                
+                console.log(seq);
+                $('#eventModalcontent').val(info.event.extendedProps.content); 
                 $('#eventModalStart').val(info.event.start.toISOString().slice(0, 16)); 
                 $('.modalselectcategory').val(info.event.extendedProps.category);
                 $('#eventModaluseloc').val(info.event.extendedProps.useLocation);
@@ -854,17 +822,86 @@
                 $('#eventModalIoc').val(info.event.extendedProps.amount);
                 $('#fixedexpense').prop('checked', info.event.extendedProps.isFixedExpense);
                 
-            modal.show();
+                procbutton.style.display = 'none';
+                editbutton.style.display = 'inline-block';
+                delbutton.style.display = 'inline-block';
+                console.log(info.event.extendedProps.paymentMethod)
+            	modal.show();
+                
+                /* eventProduceModal.addEventListener('hidden.bs.modal', function () {
+                    window.location.reload();
+                }); */
 
-    			$('#deleteEventBtn').on('click', function() {
-    				if(window.confirm('일정을 삭제하시겠습니까?'))
+    			$('#deleteEventBtn').off().on('click', function() {
+    				if(window.confirm('일정을 삭제하시겠습니까?')){
+    					if(delRequest !== null){
+    						delRequest.abort();
+    					}
+    				}
+    				
+    				delRequest = $.ajax({
+    					type:'post',
+    					url:'/account/account/calendardelete.do',
+    					data:{
+    						seq: seq
+    					},
+    				dataType: 'json',
+	                    success: function (response) {
+	                        alert('Edit successful');
+	                        modal.hide();
+	                        
+	                    },
+	                    error: function (xhr, status, error) {
+	                        alert('Error: ' + xhr.responseText);
+	                        modal.hide();
+	                    }
+    				})
     				info.event.remove();
     				modal.hide();
     			});
-    			$("#btnEventProduce").on('click', function(event) {
-    				var start = $('#eventModalStart').val();
-    				var end = $('#eventModalEnd').val();
-    				alert();
+    			$("#editEventBtn").off().on('click', function(info) {
+    			    
+    			    if(confirm('항목을 수정하시겠습니까?')){
+    					// 중복 실행 방지
+    					if (editRequest !== null) {
+    						editRequest.abort();
+    					}
+    					
+    			        editRequest = $.ajax({
+    			            type:'post',
+    			            url: '/account/account/calendaredit.do',
+    			            data: {
+    			            	start: document.getElementById('eventModalStart').value,
+    	                        useLocation: document.getElementById('eventModaluseloc').value,
+    	                        content: document.getElementById('eventModalcontent').value,
+    	                        amount: document.getElementById('eventModalIoc').value,
+    	                        amountindicator: document.getElementsByClassName('modalincreasedecrease')[0].value,
+    	                        paymentMethod: document.getElementsByClassName('modalmethodofpayment')[0].value,
+    	                        category: categories.indexOf(document.getElementsByClassName('modalselectcategory')[0].value),
+    	                        fixed: document.getElementById('fixedexpense').checked ? '1' : '0',
+    	                        seq: seq,
+    	                        seqacc: seqacc,
+    	                        seqrcc: seqrcc
+    			            },
+    			            dataType: 'json',
+    	                    success: function (response) {
+    	                        alert('Edit successful');
+    	                        modal.hide();
+    	                        if (response) {
+    	                            console.log(response);
+    	                            calendar.refetchEvents();
+    	                        }
+    	                        calendar.refetchEvents();
+    	                       
+    	                    },
+    	                    error: function (xhr, status, error) {
+    	                        alert('Error: ' + xhr.responseText);
+    	                        modal.hide();
+    	                        calendar.refetchEvents();
+    	                    }
+    			            
+    			        })
+    			    }
     			});
     		},
     		
@@ -904,6 +941,9 @@
         
             
             var modal = new bootstrap.Modal(document.getElementById('eventProduceModal'));
+            procbutton.style.display='inline-block';
+            editbutton.style.display='none';
+            delbutton.style.display='none';
             modal.show();
           },
           select: function(info) {
@@ -926,7 +966,7 @@
               start: '2024-05-01',
             }
           ], */
-          events: [
+          /* events: [
         	  $.ajax({
          			type: 'get',
          			url: '/account/account/calendarjson.do',
@@ -937,14 +977,19 @@
          						title: obj.category ,
          						allDay: true,
          						start: obj.start,
+         						color: colors[obj.category], 
          						extendedProps: {
-      			   					loc: obj.loc,
+      			   					useLocation: obj.loc,
       			   					content: obj.content,
       			   					amount: obj.amount,
-      			   					indicator: (obj.amountindicator==='출금'?'-':'+'),
+      			   					amountindicator: (obj.amountindicator==='출금'?'+':'-'),
+      			   					paymentMethod : (obj.paymentMethod+'\xa0'+obj.aliasname+':'+obj.cardnumber),
       			   					category: obj.category,
       			   					fixed: obj.fixed,
-      			   					fixedPeriod: obj.fixedperiod
+      			   					fixedPeriod: obj.fixedperiod,
+      			   					seq: obj.seq,
+      			   					seqacc: obj.seqacc,
+      			   					seqrcc: obj.seqrcc
          						}
          					})
          				})
@@ -953,15 +998,23 @@
          				console.log(a,b,c);
          			}
          		 }) 
-          ]
+          ] */
         });
         calendar.render();
       });
+    
+    let isEdit = false;
 
     document.addEventListener('DOMContentLoaded', function() {
         const addForm = document.getElementById('addWishItemForm');
         const wishList = document.getElementById('wishListItems');
         const wishInput = document.getElementById('wishInput');
+                
+        /* 
+        eventProduceModal.addEventListener('hidden.bs.modal', function () {
+            window.location.reload();
+        }); 
+        */
 
         const wishlistcheckbox = document.getElementById('addcheckbox');
         console.log(wishlistcheckbox);
@@ -973,15 +1026,18 @@
             }
         });
        
-    })
+    });
 
     //위시리스트
+    
     document.addEventListener('DOMContentLoaded', function() {
         const addButton = document.getElementById('addrightnow');
         const newItemInput = document.getElementById('newItemInput');
         const wishList = document.getElementById('wishListItems');
         const newItemButton = document.getElementById('newItemButton');
         const cbcbbox = document.getElementById('addcheckbox');
+        const delitembtn = document.getElementById('listdelbutton');
+        
 
         // Toggle input field visibility and focus when the button is clicked
         addButton.onclick = function() {
@@ -1016,6 +1072,11 @@
             deleteBtn.innerHTML = '<div id="listdelbutton" class="frontback"><i class="fa-solid fa-xmark"></i></div>';
             deleteBtn.onclick = function() {
                 wishList.removeChild(transContent);
+                
+                let contentOfTransDate = transDesc.textContent;
+                console.log('Deleting item with transdate content:', contentOfTransDate);
+                
+                delwishlist(contentOfTransDate);
             };
 
             transContent.appendChild(checkbox);
@@ -1024,6 +1085,8 @@
 
             wishList.appendChild(transContent);
         }
+        
+         
 
         newItemInput.addEventListener('keypress', function(event) {
             if (event.key === 'Enter') {
@@ -1034,6 +1097,7 @@
                     newItemInput.value = ''; 
                     newItemInput.style.display = 'none'; 
                     newItemButton.style.display = 'none';  
+                    sendwishlist(text);
                 }
             }
         });
@@ -1044,11 +1108,37 @@
                 newItemInput.value = ''; 
                 newItemInput.style.display = 'none'; 
                 newItemButton.style.display = 'none';  
+                sendwishlist(text);
             }
         });
+         
+        
+        $(document).ready(function() {
+            // AJAX request to fetch data as soon as the page loads
+            $.ajax({
+                url: '/account/account/wishlist.do', // Replace with your actual URL
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    $.each(data, function(index, item) {
+                        // Access the 'productName' property of each item
+                        if (item.productName) { // Ensure that productName exists
+                            console.log(item.productName);
+                            addNewTransContent(item.productName); // Add each product name to the wishlist
+                            
+                        }
+                    });
+                    console.log('done?');
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching data:', error);
+                }
+            });
+            });
 
-
-        // Event delegation for dynamically added checkboxes
+     
+            
+            
         wishList.addEventListener('change', function(event) {
             // Check if the event target is a checkbox with the class 'frontback'
             if (event.target.type === 'checkbox' && event.target.classList.contains('frontback')) {
@@ -1066,8 +1156,47 @@
                 }
             }
         });
-
+	
+       	function sendwishlist(text){
+       	 $.ajax({
+             url: '/account/account/wishlist.do', // Replace with your actual URL
+             type: 'post',
+             data: {
+                 item: text
+             },
+             success: function(response) {
+                 console.log('sent');
+             },
+             error: function(xhr, status, error) {
+                 console.error('Error fetching data:', error);
+             }
+         });
+       	}
         
+       	function delwishlist(text){
+             if(window.confirm('삭제하시겠습니까?')){
+ 				if(delRequest !== null){
+ 					delRequest.abort();
+ 					console.log('abort');
+ 				}
+ 			}
+             console.log(text);
+ 			delRequest = $.ajax({
+ 				url:'/account/account/delwishlist.do',
+ 				type:'post',
+ 				data:{
+ 					content: text
+ 				},
+                 success: function (response) {
+                     alert('Edit successful');
+                     
+                 },
+                 error: function (xhr, status, error) {
+                     alert('Error: ' + xhr.responseText);
+                 }
+ 			})
+         }; 
+       	
     });
 
 

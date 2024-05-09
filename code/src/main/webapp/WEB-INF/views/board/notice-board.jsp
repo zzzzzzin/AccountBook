@@ -86,15 +86,15 @@
 	    <div id="board-search">
 	      <div class="container">
 	        <div class="search-window">
-	          <form action="">
+	          <form id="formSearch" method="GET" action="/account/board/noticeBoard.do">
 	            <div class="search-wrap">
-	              <select>
-	                <option>제목+내용</option>
-	                <option>제목</option>
-	                <option>내용</option>
+	              <select name="column">
+	                <option value="total">제목+내용</option>
+	                <option value="title">제목</option>
+	                <option value="content">내용</option>
 	              </select>
 	              <label for="search" class="blind">게시판 검색</label>
-	              <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
+	              <input id="search" type="search" name="word" placeholder="검색어를 입력해주세요." value="">
 	              <button type="submit" class="btn btn-dark">검색</button>
 	            </div>
 	          </form>
@@ -119,21 +119,21 @@
 	                <tbody>
 		                <c:if test="${noticeList.size() == 0}">
 						    <tr>
+						    	<td></td>
+						    	<td></td>
 						        <td>게시물이 없습니다.</td>
 						    </tr>
 						</c:if>
 	                
-					<c:forEach var="notice" items="${noticeList}">
+					<c:forEach var="notice" items="${noticeList}" varStatus="status">
 			                <tr>
-			                    <td>${notice.seq}</td>
-						        <td>${notice.title}</td>
-						        <td>${notice.nickname}</td>
-						        <td>${notice.date}</td>
+			                    <%-- <td>${notice.seq}</td> --%>
+			                    <td>${status.count}</td>
+						        <td><a href="/account/board/discussion.do?seq=${notice.seq}">${notice.title}</a></td>
+						        <td>${notice.me_nickName != null ? notice.me_nickName : notice.ad_nickName}</td>
+						        <td>${notice.writeDate}</td>
 						        <td>${notice.viewCount}</td>
 						        <td>${notice.likeCount}</td>
-						        <%-- <td>${notice.reportCount}</td> --%>
-						        <%-- <td>${notice.secretCheck}</td> --%>
-						        <%-- <td>${notice.blindCheck}</td> --%>
 			                </tr>
 	                </c:forEach>
 	                </tbody>
@@ -155,19 +155,14 @@
    
     <!-- Template Javascript -->
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
 
-    document.addEventListener('DOMContentLoaded', function() {
-    	
-	    const sidebarToggler = document.getElementById('sidebar-toggler');
-	    const sidebar = document.querySelector('.sidebar');
-	    const content = document.querySelector('.content');
-
-        sidebarToggler.addEventListener('click', function() {
-        sidebar.classList.toggle('hidden');
-        content.classList.toggle('expanded');
-        });
-    });
+    <c:if test="${map.search == 'y'}">
+	//검색중 상태 유지
+	$('input[name=word]').val('${map.word}');
+	$('select[name=column]').val('${map.column}');
+	</c:if>
 
     </script>
 </body>

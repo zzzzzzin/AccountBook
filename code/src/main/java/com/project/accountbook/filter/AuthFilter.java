@@ -30,12 +30,20 @@ public class AuthFilter implements Filter {
 
 		if (session.getAttribute("id") == null) {
 
-			if (req.getRequestURI().contains("card") || req.getRequestURI().contains("board") || req.getRequestURI().contains("/account/account/") || req.getRequestURI().contains("/account/user/member/")) {
+			if (req.getRequestURI().contains("card") 
+					|| req.getRequestURI().endsWith("reportBoard.do")
+					|| req.getRequestURI().endsWith("attendanceBoard.do")
+					|| req.getRequestURI().contains("/account/account/")
+					|| req.getRequestURI().contains("/account/user/member/")) {
 
-				response.setCharacterEncoding("UTF-8");
-				PrintWriter writer = ((HttpServletResponse) response).getWriter();
-				writer.print(OutputUtil.redirect("로그인한 사용자만 이용할 수 있습니다."));
-				writer.close();
+//				response.setCharacterEncoding("UTF-8");
+//				PrintWriter writer = ((HttpServletResponse) response).getWriter();
+//				writer.print(OutputUtil.redirect("로그인한 사용자만 이용할 수 있습니다."));
+//				writer.close();
+				
+				HttpServletResponse httpResponse = (HttpServletResponse) response;
+		        httpResponse.sendRedirect("/account/user/login.do");
+		        return;
 
 			}
 		}

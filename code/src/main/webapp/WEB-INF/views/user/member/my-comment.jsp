@@ -59,51 +59,44 @@
             <!-- Navbar End -->
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
-        
-        	<div id="fakecontent">
-            <section class="notice">
-            <!-- board list area -->
-            <div id="board-list">
-                <div class="container">
-                    <table class="board-table">
-                        <thead>
-                        <tr>
-                            <th scope="col" class="th-title">제목</th>
-                            <th scope="col" class="th-comment">나의 댓글</th>
-                            <th scope="col" class="th-writer">작성자</th>
-                            <th scope="col" class="th-date">등록일</th>
-                            <th scope="col" class="th-view">조회수</th>
-                            <th scope="col" class="th-like">추천</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th>
-                              <a href="#!">거니더마마사지</a>
-                            </th>
-                            <td><a href="#!">실제 댓글 내용</a></td>
-                            <td>ㅇㅇ</td>
-                            <td>04:20</td>
-                            <td>2</td>
-                            <td>0</td>
-                        </tr>
-                        
-                        <tr>
-                            <th><a href="#!">ㅇㅇㅇ</a></th>
-                            <td><a href="#!">실제 댓글 내용</a></td>
-                            <td>ㅇㅇㅇ</td>
-                            <td>2024.04.11</td>
-                            <td>2222</td>
-                            <td>30</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    </div>
-                </div>
-              </section>
-        </div>      
 
-        <!-- fakecontent 끝 -->
+			<div id="fakecontent">
+				<section class="notice">
+					<!-- board list area -->
+					<div id="board-list">
+						<div class="container">
+							<table class="board-table">
+								<thead>
+									<tr>
+										<th scope="col" class="th-title">제목</th>
+										<th scope="col" class="th-comment">나의 댓글</th>
+										<th scope="col" class="th-writer">작성자</th>
+										<th scope="col" class="th-date">등록일</th>
+										<th scope="col" class="th-view">조회수</th>
+										<th scope="col" class="th-like">추천</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${commentsList}" var="comment">
+									<%-- <c:if test="${commen}"> --%>
+										<tr>
+											<th><a href="/account/board/discussion.do?seq=${comment.seq}">${comment.title}</a></th>
+											<td>${comment.content}</td>
+											<td>${comment.nickname}</td>
+											<td>${comment.writedate}</td>
+											<td>${comment.viewCount}</td>
+											<td>${comment.likeCount}</td>
+										</tr>
+									<%-- </c:if> --%>
+									</c:forEach>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</section>
+			</div>
+
+			<!-- fakecontent 끝 -->
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
         
@@ -114,6 +107,7 @@
    
     <!-- Template Javascript -->
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
 
     document.addEventListener('DOMContentLoaded', function() {

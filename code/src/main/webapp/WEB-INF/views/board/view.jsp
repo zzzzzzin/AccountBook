@@ -66,18 +66,18 @@
 		    <div id="board-search">
 		      <div class="container">
 		        <div class="search-window">
-		          <form action="">
-		            <div class="search-wrap">
-		              <select>
-		                <option>제목+내용</option>
-		                <option>제목</option>
-		                <option>내용</option>
+		          <form id="formSearch" method="GET" action="/account/board/view.do">
+		            <div class="search-wrap">              
+		              <select name="column">
+		                <option value="total">제목+내용</option>
+		                <option value="title">제목</option>
+		                <option value="content">내용</option>
 		              </select>
 		              <label for="search" class="blind">게시판 검색</label>
-		              <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
-		              <button type="submit" class="btn btn-dark">검색</button>
+		              <input id="search" type="search" name="word" placeholder="검색어를 입력해주세요." value="">
+		              <button type="submit" class="btn btn-dark">검색</button>	              			
 		            </div>
-		          </form>
+	          	  </form>
 		        </div>
 		      </div>
 		    </div>
@@ -92,8 +92,8 @@
 					        <td>게시물이 없습니다.</td>
 					    </tr>
 					</c:if>
-                
-					<c:forEach var="notice" items="${noticeList}">
+
+					<c:forEach var="notice" items="${noticeList}" begin="0" end="4">
 			                <tr>
 						        <td>
 						            <c:choose>
@@ -101,7 +101,7 @@
 						                    관리자에 의해 블라인드 처리 되었습니다.
 						                </c:when>
 						                <c:otherwise>
-						                    ${notice.title}
+						                    <a href="/account/board/discussion.do?seq=${notice.seq}">${notice.title}</a>
 						                </c:otherwise>
 						            </c:choose>
 					        	</td>
@@ -110,7 +110,7 @@
 	                </c:forEach>
 		          </tbody>
 		        </table>
-		        <a href="/account/board/noticeBoard.do" class="more-link"><i class="material-icons">chevron_right</i></a>
+		        <a href="/account/board/noticeBoard.do?=" class="more-link"><i class="material-icons">chevron_right</i></a>
 		      </div>
 		      <div class="board-block">
 		        <h3>자유게시판</h3>
@@ -121,8 +121,8 @@
 					        <td>게시물이 없습니다.</td>
 					    </tr>
 					</c:if>
-	               
-					<c:forEach var="free" items="${freeList}">
+
+					<c:forEach var="free" items="${freeList}" begin="0" end="4">
 			                <tr>
 						    	<td>
 						            <c:choose>
@@ -130,7 +130,8 @@
 						                    관리자에 의해 블라인드 처리 되었습니다.
 						                </c:when>
 						                <c:otherwise>
-						                    ${free.title}
+						                	<a href="/account/board/discussion.do?seq=${free.seq}">${free.title}</a>
+						                    
 						                </c:otherwise>
 						            </c:choose>
 					        	</td>
@@ -150,21 +151,22 @@
 					        <td>게시물이 없습니다.</td>
 					    </tr>
 					</c:if>
-                
-					<c:forEach var="report" items="${reportList}">
-			                <tr>
-						    	<td>
-						            <c:choose>
-						                <c:when test="${report.blindCheck eq '1'}">
-						                    관리자에 의해 블라인드 처리 되었습니다.
-						                </c:when>
-						                <c:otherwise>
-						                    ${report.title}
-						                </c:otherwise>
-						            </c:choose>
-					        	</td>
-					        <td>추천수 ${report.likeCount}</td>
-			                </tr>
+
+			        <c:forEach var="report" items="${reportList}" begin="0" end="4">
+                		<tr>
+				    		<td>
+					            <c:choose>
+					                <c:when test="${report.blindCheck eq '1'}">
+					                    관리자에 의해 블라인드 처리 되었습니다.
+					                </c:when>
+					                <c:otherwise>
+					                	<a href="/account/board/discussion.do?seq=${report.seq}">${report.title}</a>
+					                    
+					                </c:otherwise>
+					            </c:choose>
+				        	</td>
+				        	<td>추천수 ${report.likeCount}</td>
+	                	</tr>
 	                </c:forEach>
 		          </tbody>
 		        </table>
@@ -179,21 +181,22 @@
 					        <td>게시물이 없습니다.</td>
 					    </tr>
 					</c:if>
-                
-					<c:forEach var="attendance" items="${attendanceList}">
-			                <tr>
-						    	<td>
-						            <c:choose>
-						                <c:when test="${attendance.blindCheck eq '1'}">
-						                    관리자에 의해 블라인드 처리 되었습니다.
-						                </c:when>
-						                <c:otherwise>
-						                    ${attendance.title}
-						                </c:otherwise>
-						            </c:choose>
-					        	</td>
-					        <td>추천수 ${attendance.likeCount}</td>
-			                </tr>
+
+					<c:forEach var="attendance" items="${attendanceList}" begin="0" end="4">
+		                <tr>
+				    		<td>
+					            <c:choose>
+					                <c:when test="${attendance.blindCheck eq '1'}">
+					                    관리자에 의해 블라인드 처리 되었습니다.
+					                </c:when>
+					                <c:otherwise>
+					                	<a href="/account/board/discussion.do?seq=${attendance.seq}">${attendance.title}</a>
+					                    
+					                </c:otherwise>
+					            </c:choose>
+				        	</td>
+				        	<td>추천수 ${attendance.likeCount}</td>
+	                	</tr>
 	                </c:forEach>
 		          </tbody>
 		        </table>
@@ -203,8 +206,6 @@
 		  </div>
 
         <!-- fakecontent 끝 -->
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
         
     	</div>
     </div>
@@ -213,18 +214,9 @@
    
     <!-- Template Javascript -->
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
 
-    document.addEventListener('DOMContentLoaded', function() {
-    const sidebarToggler = document.getElementById('sidebar-toggler');
-    const sidebar = document.querySelector('.sidebar');
-    const content = document.querySelector('.content');
-
-        sidebarToggler.addEventListener('click', function() {
-        sidebar.classList.toggle('hidden');
-        content.classList.toggle('expanded');
-        });
-    });
 
     </script>
 </body>

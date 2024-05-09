@@ -3,6 +3,43 @@ select * from tblMember;
 select * from tblMemberPriv;
 
 
+select * from tblAccInfo;
+
+--가계부 목록
+select  
+ai.seq as accinfonum,
+ai.content as aicontent,
+ai.SEQACC as seqacc,
+ai.SEQREASONCHANGECATEGORY as seqrcc,
+ai.SEQFIXEDFLUCTUATIONCHECK as seqffc,
+acl.SEQACCCATEGORY,
+accinfodate,
+price,
+location,
+me.ID as idMember,
+acate.NAME as acName,
+seqfixedfluctuationcheck,
+PERIOD,
+ai.SEQDEPOSITWITHDRAWALSTATUS as spendstatus,
+rcl.CONTENT as paymentmethod,
+mc.ALIAS as name,
+mc.CARDNUMBER as cardnumber
+from TBLACCINFO ai
+    inner join TBLACC ac on ai.SEQACC = ac.SEQ
+        inner join TBLMEMBER me on ac.IDMEMBER = me.ID
+            inner join TBLACCCATEGORYLIST acl on ai.SEQ = acl.SEQACCINFO
+                inner join TBLACCCATEGORY acate on acl.SEQACCCATEGORY = acate.SEQ
+                    inner join TBLDEPOSITWITHDRAWALSTATUS dws on ai.SEQDEPOSITWITHDRAWALSTATUS = dws.SEQ
+                        inner join TBLREASONCHANGECATEGORY rc on ai.SEQREASONCHANGECATEGORY = rc.SEQ
+                            inner join TBLREASONSCHANGELIST rcl on rc.SEQREASONSCHANGELIST = rcl.SEQ
+                                inner join TBLMYCARD mc on rc.SEQMYCARD = mc.SEQ
+                                    inner join TBLFIXEDDEPOSITWITHDRAWALCHECK fdw on ai.SEQFIXEDFLUCTUATIONCHECK = fdw.SEQ
+                                        inner join TBLFIXEDFLUCTUATIONPERIOD ffp on fdw.SEQFIXEDFLUCTUATIONPERIOD = ffp.SEQ
+                                            where me.ID = 'abc001@naver.com'
+                                                and ai.content like '%스타%'
+                                                or location like '%스타%'
+                                                    order by accinfodate desc;
+
 
 -- 가계부 분석
 -- 입급 - 출금
@@ -169,6 +206,57 @@ WHERE
 GROUP BY 
     max_category.acName;
 
+select * from tblReasonsChangeList;
+select * from tblReasonChangeCategory;
+select * from tblAccInfo;
+WITH max_category AS (
+    SELECT 
+        ac.name AS acName,
+        SUM(ai.price) AS totalPrice
+    FROM 
+        tblAccInfo ai
+    INNER JOIN 
+        tblAccCategoryList acl ON acl.seqAccInfo = ai.seq
+    INNER JOIN 
+        tblAccCategory ac ON ac.seq = acl.seqAccCategory
+    INNER JOIN 
+        tblReasonChangeCategory rcc ON rcc.seq = ai.seqReasonChangeCategory
+    INNER JOIN 
+        tblMyCard mc ON mc.seq = rcc.seqMyCard
+    WHERE 
+        mc.idMember = 'abc001@naver.com'
+        AND ai.accInfoDate BETWEEN to_date(sysdate, 'YY/MM/DD') - interval '2' month AND to_date(sysdate, 'YY/MM/DD') - interval '1' month -- 2달 전부터 1달 전까지
+        AND ai.seqDepositWithdrawalStatus = 2 -- 입출금 상태
+    GROUP BY 
+        ac.name
+)
+SELECT 
+    max_category.acName acName,
+    MAX(totalPrice) AS beforeAcUsage,
+    SUM(CASE WHEN ai.accInfoDate BETWEEN to_date(sysdate, 'YY/MM/DD') - interval '1' month AND to_date(sysdate, 'YY/MM/DD') THEN ai.price ELSE 0 END) AS nowAcUsage
+FROM 
+    tblAccInfo ai
+INNER JOIN 
+    tblAccCategoryList acl ON acl.seqAccInfo = ai.seq
+INNER JOIN 
+    tblAccCategory ac ON ac.seq = acl.seqAccCategory
+INNER JOIN 
+    tblReasonChangeCategory rcc ON rcc.seq = ai.seqReasonChangeCategory
+INNER JOIN 
+    tblMyCard mc ON mc.seq = rcc.seqMyCard
+INNER JOIN 
+    max_category ON max_category.acName = ac.name
+WHERE 
+    mc.idMember = 'abc001@naver.com'
+    AND ai.seqDepositWithdrawalStatus = 2 -- 입출금 상태
+GROUP BY 
+    max_category.acName
+ORDER BY 
+        totalPrice DESC
+    FETCH FIRST 1 ROW ONLY;
+
+
+
 
 --기간별 총 사용 금액
 SELECT 
@@ -315,7 +403,7 @@ from tblAccInfo ai
                                                 - interval '1' month and to_date(sysdate, 'YY/MM/DD')
                                                     and ai.seqDepositWithdrawalStatus = 2 --입출금 상태
                                                         group by ac.name, mc.idMember;
-                                                     
+                                                        
 --지난 달                                                     
 select
 sum(ai.price) totalPrice,

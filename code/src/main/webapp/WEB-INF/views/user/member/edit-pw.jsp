@@ -85,7 +85,7 @@
         align-items: center;
     }
 
-    .now-pw-real, .edit-pw-input, .edit-pw-check-input {
+    .now-pw-real, .edit-pw-input, .check-pw-input {
         background-color: #ffffff;
         width: 300px;
         height: 100%;
@@ -147,7 +147,7 @@
         <!-- fakecontent 안에서 작성 -->
 		<div id="fakecontent">
 			<div class="myPage">
-				<form action="/account/user/member/edit-pw.do">
+				<form action="/account/user/member/edit-pw.do" method="POST">
 					<div class="delContainer">
 						<div class="delContent">
 							<div class="now-pw">
@@ -169,7 +169,7 @@
 								</div>
 							</div>
 						</div>
-						<button type="submit" class="edit-pw-btn">수정 완료</button>
+						<button type="submit" class="edit-pw-btn" onclick="window.location.reload();">수정 완료</button>
 					</div>
 				</form>
 			</div>
@@ -185,22 +185,7 @@
    
     <!-- Template Javascript -->
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
-    <script>
-
-    document.addEventListener('DOMContentLoaded', function() {
-    const sidebarToggler = document.getElementById('sidebar-toggler');
-    const sidebar = document.querySelector('.sidebar');
-    const content = document.querySelector('.content');
-
-        sidebarToggler.addEventListener('click', function() {
-        sidebar.classList.toggle('hidden');
-        content.classList.toggle('expanded');
-        });
-    });
     
-    
-
-    </script>
 </body>
 
 </html>

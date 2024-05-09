@@ -1,6 +1,7 @@
 package com.project.accountbook.user.member;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,8 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.project.accountbook.user.member.repository.MemberInfoDAO;
-import com.project.accountbook.user.model.UserDTO;
+import com.project.accountbook.user.repository.UserDAO;
 
 @WebServlet("/user/member/friend-invitation.do")
 public class FriendInvitation extends HttpServlet {
@@ -23,11 +23,11 @@ public class FriendInvitation extends HttpServlet {
 		HttpSession session = req.getSession();
 		String id = (String) session.getAttribute("id");
 
-		MemberInfoDAO dao = new MemberInfoDAO();
+		UserDAO dao = new UserDAO();
 
-		String key = dao.getKakaoKey();
+		HashMap<String, String> map = dao.getAPIKey("1");
 
-		req.setAttribute("key", key);
+		req.setAttribute("key", map.get("key"));
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/member/friend-invitation.jsp");
 		dispatcher.forward(req, resp);

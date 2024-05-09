@@ -72,16 +72,16 @@
 	    <div id="board-search">
 	      <div class="container">
 	        <div class="search-window">
-	          <form action="">
-	            <div class="search-wrap">
-	              <select>
-	                <option>제목+내용</option>
-	                <option>제목</option>
-	                <option>내용</option>
+	          <form id="formSearch" method="GET" action="/account/board/freeBoard.do">
+	            <div class="search-wrap">              
+	              <select name="column">
+	                <option value="total">제목+내용</option>
+	                <option value="title">제목</option>
+	                <option value="content">내용</option>
 	              </select>
 	              <label for="search" class="blind">게시판 검색</label>
-	              <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
-	              <button type="submit" class="btn btn-dark">검색</button>
+	              <input id="search" type="search" name="word" placeholder="검색어를 입력해주세요." value="">
+	              <button type="submit" class="btn btn-dark">검색</button>	              			
 	            </div>
 	          </form>
 	        </div>
@@ -105,30 +105,30 @@
 	                <tbody>
 	                <c:if test="${freeList.size() == 0}">
 					    <tr>
+					    	<td></td>
+					    	<td></td>
 					        <td>게시물이 없습니다.</td>
 					    </tr>
 					</c:if>
 	                
-					<c:forEach var="free" items="${freeList}">
+					<c:forEach items="${freeList}" var="free" varStatus="status">
 			                <tr>
-			                    <td>${free.seq}</td>
+			                    <td>${status.count}</td>
 						        <td>
 						            <c:choose>
 						                <c:when test="${free.blindCheck eq '1'}">
 						                    관리자에 의해 블라인드 처리 되었습니다.
 						                </c:when>
 						                <c:otherwise>
-						                    ${free.title}
+						                	<a href="/account/board/discussion.do?seq=${free.seq}">${free.title}</a>					                    
 						                </c:otherwise>
 						            </c:choose>
 						        </td>
-						        <td>${free.nickname}</td>
-						        <td>${free.date}</td>
+						        <td>${free.me_nickName != null ? free.me_nickName : free.ad_nickName}</td>
+						        <td>${free.writeDate}</td>
 						        <td>${free.viewCount}</td>
 						        <td>${free.likeCount}</td>
-						        <%-- <td>${free.reportCount}</td> --%>
-						        <%-- <td>${free.secretCheck}</td> --%>
-						        <%-- <td>${free.blindCheck}</td> --%>
+						      
 			                </tr>
 	                </c:forEach>
 	                </tbody>
@@ -152,18 +152,14 @@
    
     <!-- Template Javascript -->
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
 
-    document.addEventListener('DOMContentLoaded', function() {
-    const sidebarToggler = document.getElementById('sidebar-toggler');
-    const sidebar = document.querySelector('.sidebar');
-    const content = document.querySelector('.content');
-
-        sidebarToggler.addEventListener('click', function() {
-        sidebar.classList.toggle('hidden');
-        content.classList.toggle('expanded');
-        });
-    });
+    <c:if test="${map.search == 'y'}">
+	//검색중 상태 유지
+	$('input[name=word]').val('${map.word}');
+	$('select[name=column]').val('${map.column}');
+	</c:if>
 
     </script>
 </body>

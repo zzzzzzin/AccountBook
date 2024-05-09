@@ -85,25 +85,24 @@ public class CardDAO {
 	    List<CardDTO> recommendedCards = new ArrayList<>();
 
 	    try {
-	        String sql = "SELECT ci.seq AS seqCardInformation, ci.name AS ciName, ci.explanation, ci.annualFee, ci.overseasUse, ci.cardCompany, ci.fileLink, lcb.content AS discountRate " +
-	                     "FROM (" +
-	                     "    SELECT cc.name AS category_name, SUM(ai.price) AS total_price " +
-	                     "    FROM tblMember m " +
-	                     "    INNER JOIN tblAcc a ON a.idMember = m.id " +
-	                     "    INNER JOIN tblAccinfo ai ON ai.seqAcc = a.seq " +
-	                     "    INNER JOIN tblAccCategoryList acl ON acl.seqAccInfo = ai.seq " +
-	                     "    INNER JOIN tblAccCategory ac ON ac.seq = acl.seqAccCategory " +
-	                     "    INNER JOIN tblCardAndAcc caa ON caa.seqacccategory = ac.seq " +
-	                     "    INNER JOIN tblCardCategory cc ON cc.seq = caa.seqcardcategory " +
-	                     "    WHERE m.id = ? " +
-	                     "    GROUP BY cc.name " +
-	                     "    ORDER BY SUM(ai.price) DESC " +
-	                     ") t " +
-	                     "INNER JOIN tblCardCategory cc ON cc.name = t.category_name " +
-	                     "INNER JOIN tblListCardBenefits lcb ON lcb.seqcardcategory = cc.seq " +
-	                     "INNER JOIN tblCardInformation ci ON ci.seq = lcb.seqcardinformation " +
-	                     "ORDER BY lcb.content DESC";
-
+	    	String sql = "SELECT ci.seq AS seqCardInformation, ci.name AS ciName, ci.explanation, ci.annualFee, ci.overseasUse, ci.cardCompany, ci.fileLink, COALESCE(TO_NUMBER(lcb.content), 0) AS discountRate, t.category_name, t.total_price, t.total_count " +
+	                "FROM (" +
+	                "  SELECT cc.name AS category_name, COALESCE(SUM(ai.price), 0) AS total_price, COUNT(ai.seq) AS total_count " +
+	                "  FROM tblMember m " +
+	                "  LEFT JOIN tblAcc a ON a.idMember = m.id " +
+	                "  LEFT JOIN tblAccinfo ai ON ai.seqAcc = a.seq " +
+	                "  LEFT JOIN tblAccCategoryList acl ON acl.seqAccInfo = ai.seq " +
+	                "  LEFT JOIN tblAccCategory ac ON ac.seq = acl.seqAccCategory " +
+	                "  LEFT JOIN tblCardAndAcc caa ON caa.seqAccCategory = ac.seq " +
+	                "  RIGHT JOIN tblCardCategory cc ON cc.seq = caa.seqCardCategory " +
+	                "  WHERE m.id = ? " +
+	                "  GROUP BY cc.name " +
+	                ") t " +
+	                "LEFT JOIN tblListCardBenefits lcb ON lcb.seqCardCategory = (SELECT seq FROM tblCardCategory WHERE name = t.category_name) " +
+	                "LEFT JOIN tblCardInformation ci ON ci.seq = lcb.seqCardInformation " +
+	                "ORDER BY t.total_price DESC, t.total_count DESC, COALESCE(TO_NUMBER(lcb.content), 0) DESC " +
+	                "FETCH FIRST 5 ROWS ONLY";
+	    	
 	        System.out.println("SQL: " + sql);
 	        System.out.println("Member ID: " + memberId);
 
@@ -120,7 +119,8 @@ public class CardDAO {
 	            dto.setOverseasUse(rs.getString("overseasUse"));
 	            dto.setCardCompany(rs.getString("cardCompany"));
 	            dto.setFileLink(rs.getString("fileLink"));
-	            dto.setDiscountRate(rs.getString("discountRate"));
+	            dto.setDiscountRate(rs.getInt("discountRate"));
+	            dto.setCategory(rs.getString("category_name"));
 	            recommendedCards.add(dto);
 	            System.out.println("Recommended Card: " + dto.getCiName());
 	        }
@@ -135,7 +135,7 @@ public class CardDAO {
 	//카테고리 선택했을때 나올 카드
 	public ArrayList<CardDTO> categoryCard(String category) {
 	    try {
-	        String sql = "SELECT ci.name, ci.cardcompany, ci.filelink " +
+	        String sql = "SELECT ci.name, ci.cardcompany, ci.fileLink " +
 	                     "FROM tblcardinformation ci " +
 	                     "INNER JOIN tblListCardBenefits lcb ON lcb.seqcardinformation = ci.seq " +
 	                     "INNER JOIN tblCardCategory cc ON cc.seq = lcb.seqcardcategory " +
@@ -151,7 +151,7 @@ public class CardDAO {
 	            CardDTO dto = new CardDTO();
 	            dto.setCiName(rs.getString("name"));
 	            dto.setCardCompany(rs.getString("cardcompany"));
-	            dto.setFileLink(rs.getString("filelink"));
+	            dto.setFileLink(rs.getString("fileLink"));
 	            list.add(dto);
 	        }
 
@@ -167,4 +167,3 @@ public class CardDAO {
 	    return null;
 	}
 }
-	

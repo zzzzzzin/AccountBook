@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import com.project.accountbook.account.model.AccountInfoDTO;
 import com.project.accountbook.account.repository.AccountDAO;
+import com.project.accountbook.user.repository.UserDAO;
 
 @WebServlet("/account/analysis.do")
 public class Analysis extends HttpServlet {
@@ -35,19 +36,28 @@ public class Analysis extends HttpServlet {
 		}
 		
 		AccountDAO dao = new AccountDAO();
+		UserDAO userDao = new UserDAO();
+		
 		ArrayList<AccountInfoDTO> nList = dao.nowAnalysis(id, map);
 		ArrayList<AccountInfoDTO> bList = dao.beforeAnalysis(id, map);
 		ArrayList<AccountInfoDTO> cList = dao.getCategory();	
 		
 		HashMap<String, String> challengeInfoMap = dao.getChallenge(id);
-		HashMap<String, String>categoryUsageMap = dao.getComparisonCategoryUsage(id);
+		HashMap<String, String> categoryUsageMap = dao.getComparisonCategoryUsage(id);
+		
+//		HashMap<String, String> apiInfoMap = userDao.getAPIKey("2"); //뉴스 api id, key
+//		AccountInfoDTO dto = 
+		ArrayList<AccountInfoDTO> newsList =  dao.search(categoryUsageMap.get("acName"));
 		
 		req.setAttribute("nList", nList);
 		req.setAttribute("bList", bList);
 		req.setAttribute("cList", cList);
+		req.setAttribute("newsList", newsList);
 		
+		req.setAttribute("acName", categoryUsageMap.get("acName"));
 		req.setAttribute("challengeInfoMap", challengeInfoMap);
 		req.setAttribute("categoryUsageMap", categoryUsageMap);
+//		req.setAttribute("apiInfoMap", apiInfoMap);
 	
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/account/analysis.jsp");
 		dispatcher.forward(req, resp);

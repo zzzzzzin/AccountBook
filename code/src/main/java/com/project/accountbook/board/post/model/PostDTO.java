@@ -22,52 +22,52 @@ public class PostDTO {
 	private int reportCount;
 	private int secretCheck;
 	private int blindCheck;
+	private String seqCategory;
 	
-	public PostDTO(
-			String seq, 
-			String seqBoard, 
-			String seqUser, 
-			String title, 
-			String content, 
-			String writeDate,
-			String editDate, 
-			int viewCount, 
-			int likeCount, 
-			int dislikeCount, 
-			int reportCount, 
-			int secretCheck,
-			int blindCheck, 
-			String seqPost, 
-			String fileName, 
-			String fileLink) {
-		super();
-		this.seq = seq;
-		this.seqBoard = seqBoard;
-		this.seqUser = seqUser;
-		this.title = title;
-		this.content = content;
-		this.writeDate = writeDate;
-		this.editDate = editDate;
-		this.viewCount = viewCount;
-		this.likeCount = likeCount;
-		this.dislikeCount = dislikeCount;
-		this.reportCount = reportCount;
-		this.secretCheck = secretCheck;
-		this.blindCheck = blindCheck;
-		this.seqPost = seqPost;
-		this.fileName = fileName;
-		this.fileLink = fileLink;
+	public String getSeqCategory() {
+		return seqCategory;
 	}
-	
-	public PostDTO() {
-		
+
+	public void setSeqCategory(String seqCategory) {
+		this.seqCategory = seqCategory;
 	}
-	
+
 	//첨부파일
 	private String seqPost;
 	private String fileName;
 	private String fileLink;
 	
+	private String me_nickName;
+	private String ad_nickName;
+	
+	public String getme_nickName() {
+		return me_nickName;
+	}
+
+	public void setme_nickName(String me_nickName) {
+		this.me_nickName = me_nickName;
+	}
+
+	public String getad_nickName() {
+		return ad_nickName;
+	}
+
+	public void setad_nickName(String ad_nickName) {
+		this.ad_nickName = ad_nickName;
+	}
+
+	
+	
+	public String getSeq() {
+		return seq;
+	}
+
+	public void setSeq(String seq) {
+		this.seq = seq;
+	}
+
+	
+
 	public String getSeqBoard() {
 		return seqBoard;
 	}

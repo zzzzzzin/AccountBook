@@ -21,6 +21,8 @@ public class AccountInfoDTO {
 	private String seqReasonChangeCategory;
 	private String seqFixedFluctuationCheck;
 	private String seqDepositWithdrawalStatus;
+	private String DepositWithdrawalStatus;
+	private String seqAccCategoryList;
 	
 	private int beforeAcUsage;
 	private int nowAcUsage;
@@ -48,16 +50,13 @@ public class AccountInfoDTO {
 	
 	//가계부 카테고리
 	private String acName;
-	
-	//(추가)
-	//뉴스 카테고리 목록
-	private String seqnews;
-	
+		
 	//뉴스
 	private String title;
 	private String link;
-	private String newsDate;
-	private String media;
+	private String pubDate;
+	private String description;
+//	private String media;
 		
 	
 	//변동 사유 카테고리
@@ -70,262 +69,223 @@ public class AccountInfoDTO {
 	
 	//나의 카드
 	private String alias;
-	
-	public int getBeforeAcUsage() {
-		return beforeAcUsage;
-	}
 
-	public void setBeforeAcUsage(int beforeAcUsage) {
-		this.beforeAcUsage = beforeAcUsage;
-	}
-
-	public int getNowAcUsage() {
-		return nowAcUsage;
-	}
-
-	public void setNowAcUsage(int nowAcUsage) {
-		this.nowAcUsage = nowAcUsage;
-	}
-
+	private String paymentMethod;
+	private String cardNumber;
 	public String getContent() {
 		return content;
 	}
-
 	public void setContent(String content) {
 		this.content = content;
 	}
-
 	public String getAccInfoDate() {
 		return accInfoDate;
 	}
-
 	public void setAccInfoDate(String accInfoDate) {
 		this.accInfoDate = accInfoDate;
 	}
-
 	public int getPrice() {
 		return price;
 	}
-
 	public void setPrice(int price) {
 		this.price = price;
 	}
-
 	public String getLocation() {
 		return location;
 	}
-
 	public void setLocation(String location) {
 		this.location = location;
 	}
-
 	public String getSeqAcc() {
 		return seqAcc;
 	}
-
 	public void setSeqAcc(String seqAcc) {
 		this.seqAcc = seqAcc;
 	}
-
 	public String getSeqReasonChangeCategory() {
 		return seqReasonChangeCategory;
 	}
-
 	public void setSeqReasonChangeCategory(String seqReasonChangeCategory) {
 		this.seqReasonChangeCategory = seqReasonChangeCategory;
 	}
-
 	public String getSeqFixedFluctuationCheck() {
 		return seqFixedFluctuationCheck;
 	}
-
 	public void setSeqFixedFluctuationCheck(String seqFixedFluctuationCheck) {
 		this.seqFixedFluctuationCheck = seqFixedFluctuationCheck;
 	}
-
 	public String getSeqDepositWithdrawalStatus() {
 		return seqDepositWithdrawalStatus;
 	}
-
 	public void setSeqDepositWithdrawalStatus(String seqDepositWithdrawalStatus) {
 		this.seqDepositWithdrawalStatus = seqDepositWithdrawalStatus;
 	}
-
+	public String getDepositWithdrawalStatus() {
+		return this.DepositWithdrawalStatus;
+		//return    DepositWithdrawalStatus;
+	}
+	public void setDepositWithdrawalStatus(String depositWithdrawalStatus) {
+		DepositWithdrawalStatus = depositWithdrawalStatus;
+	}
+	public int getBeforeAcUsage() {
+		return beforeAcUsage;
+	}
+	public void setBeforeAcUsage(int beforeAcUsage) {
+		this.beforeAcUsage = beforeAcUsage;
+	}
+	public int getNowAcUsage() {
+		return nowAcUsage;
+	}
+	public void setNowAcUsage(int nowAcUsage) {
+		this.nowAcUsage = nowAcUsage;
+	}
 	public int getTotalPrice() {
 		return totalPrice;
 	}
-
 	public void setTotalPrice(int totalPrice) {
 		this.totalPrice = totalPrice;
 	}
-	
 	public int getTotalSaving() {
 		return totalSaving;
 	}
-
 	public void setTotalSaving(int totalSaving) {
 		this.totalSaving = totalSaving;
 	}
-
 	public String getIdMember() {
 		return idMember;
 	}
-
 	public void setIdMember(String idMember) {
 		this.idMember = idMember;
 	}
-
 	public String getProductName() {
 		return productName;
 	}
-
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-
 	public String getFdwContent() {
 		return fdwContent;
 	}
-
 	public void setFdwContent(String fdwContent) {
 		this.fdwContent = fdwContent;
 	}
-
 	public String getSeqFixedFluctuationPeriod() {
 		return seqFixedFluctuationPeriod;
 	}
-
 	public void setSeqFixedFluctuationPeriod(String seqFixedFluctuationPeriod) {
 		this.seqFixedFluctuationPeriod = seqFixedFluctuationPeriod;
 	}
-
 	public int getFfpPeriod() {
 		return ffpPeriod;
 	}
-
 	public void setFfpPeriod(int ffpPeriod) {
 		this.ffpPeriod = ffpPeriod;
 	}
-
 	public String getSeqAccCategory() {
 		return seqAccCategory;
 	}
-
 	public void setSeqAccCategory(String seqAccCategory) {
 		this.seqAccCategory = seqAccCategory;
 	}
-
 	public String getSeqAccInfo() {
 		return seqAccInfo;
 	}
-
 	public void setSeqAccInfo(String seqAccInfo) {
 		this.seqAccInfo = seqAccInfo;
 	}
-
 	public String getAcName() {
 		return acName;
 	}
-
 	public void setAcName(String acName) {
 		this.acName = acName;
 	}
-
-	public String getSeqnews() {
-		return seqnews;
-	}
-
-	public void setSeqnews(String seqnews) {
-		this.seqnews = seqnews;
-	}
-
 	public String getTitle() {
 		return title;
 	}
-
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
 	public String getLink() {
 		return link;
 	}
-
 	public void setLink(String link) {
 		this.link = link;
 	}
-
-	public String getNewsDate() {
-		return newsDate;
+	public String getPubDate() {
+		return pubDate;
 	}
-
-	public void setNewsDate(String newsDate) {
-		this.newsDate = newsDate;
+	public void setPubDate(String pubDate) {
+		this.pubDate = pubDate;
 	}
-
-	public String getMedia() {
-		return media;
+	public String getDescription() {
+		return description;
 	}
-
-	public void setMedia(String media) {
-		this.media = media;
+	public void setDescription(String description) {
+		this.description = description;
 	}
-
 	public String getSeqReasonsChangeList() {
 		return seqReasonsChangeList;
 	}
-
 	public void setSeqReasonsChangeList(String seqReasonsChangeList) {
 		this.seqReasonsChangeList = seqReasonsChangeList;
 	}
-
 	public String getSeqMyCard() {
 		return seqMyCard;
 	}
-
 	public void setSeqMyCard(String seqMyCard) {
 		this.seqMyCard = seqMyCard;
 	}
-
 	public String getCfName() {
 		return cfName;
 	}
-
 	public void setCfName(String cfName) {
 		this.cfName = cfName;
 	}
-
 	public String getFileLink() {
 		return fileLink;
 	}
-
 	public void setFileLink(String fileLink) {
 		this.fileLink = fileLink;
 	}
-
 	public String getAlias() {
 		return alias;
 	}
-
 	public void setAlias(String alias) {
 		this.alias = alias;
 	}
-
+	public String getPaymentMethod() {
+		return paymentMethod;
+	}
+	public void setPaymentMethod(String paymentMethod) {
+		this.paymentMethod = paymentMethod;
+	}
+	public String getCardNumber() {
+		return cardNumber;
+	}
+	public void setCardNumber(String cardNumber) {
+		this.cardNumber = cardNumber;
+	}
 	@Override
 	public String toString() {
 		return "AccountInfoDTO [content=" + content + ", accInfoDate=" + accInfoDate + ", price=" + price
 				+ ", location=" + location + ", seqAcc=" + seqAcc + ", seqReasonChangeCategory="
 				+ seqReasonChangeCategory + ", seqFixedFluctuationCheck=" + seqFixedFluctuationCheck
-				+ ", seqDepositWithdrawalStatus=" + seqDepositWithdrawalStatus + ", totalPrice=" + totalPrice
-				+ ", idMember=" + idMember + ", productName=" + productName + ", fdwContent=" + fdwContent
-				+ ", seqFixedFluctuationPeriod=" + seqFixedFluctuationPeriod + ", ffpPeriod=" + ffpPeriod
-				+ ", seqAccCategory=" + seqAccCategory + ", seqAccInfo=" + seqAccInfo + ", acName=" + acName
-				+ ", seqnews=" + seqnews + ", title=" + title + ", link=" + link + ", newsDate=" + newsDate + ", media="
-				+ media + ", seqReasonsChangeList=" + seqReasonsChangeList + ", seqMyCard=" + seqMyCard + ", cfName="
-				+ cfName + ", fileLink=" + fileLink + ", alias=" + alias + "]";
+				+ ", seqDepositWithdrawalStatus=" + seqDepositWithdrawalStatus + ", DepositWithdrawalStatus="
+				+ DepositWithdrawalStatus + ", beforeAcUsage=" + beforeAcUsage + ", nowAcUsage=" + nowAcUsage
+				+ ", totalPrice=" + totalPrice + ", totalSaving=" + totalSaving + ", idMember=" + idMember
+				+ ", productName=" + productName + ", fdwContent=" + fdwContent + ", seqFixedFluctuationPeriod="
+				+ seqFixedFluctuationPeriod + ", ffpPeriod=" + ffpPeriod + ", seqAccCategory=" + seqAccCategory
+				+ ", seqAccInfo=" + seqAccInfo + ", acName=" + acName + ", title=" + title + ", link=" + link
+				+ ", pubDate=" + pubDate + ", description=" + description + ", seqReasonsChangeList="
+				+ seqReasonsChangeList + ", seqMyCard=" + seqMyCard + ", cfName=" + cfName + ", fileLink=" + fileLink
+				+ ", alias=" + alias + ", paymentMethod=" + paymentMethod + ", cardNumber=" + cardNumber + "]";
 	}
-	
-	
+	public String getSeqAccCategoryList() {
+		return seqAccCategoryList;
+	}
+	public void setSeqAccCategoryList(String seqAccCategoryList) {
+		this.seqAccCategoryList = seqAccCategoryList;
+	}
 
-	
+		
 }

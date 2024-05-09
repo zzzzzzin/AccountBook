@@ -21,6 +21,7 @@
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <script src="https://code.jquery.com/jquery-3.4.1.js"   
     integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="   
@@ -104,7 +105,10 @@
     border: 1px solid #ccc;
     background-color: #f9f9f9;
 }
-    
+     .card-image img {
+    width: 100px;
+    height: 100px;
+}
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
 </style>
@@ -141,11 +145,13 @@
         <div class="flipster-container">
 <div class="flipster">
     <ul class="flip-items">
-        <c:forEach var="card" items="${recommendedCards}" varStatus="loop">
-            <li data-flip-title="${loop.index + 1}" data-flip-category="${loop.index + 1}" data-description="${loop.index + 1}&lt;br&gt;카드 이름 : ${card.ciName}&lt;br&gt;카드사 : ${card.cardCompany}&lt;br&gt;설명 : ${card.explanation}&lt;br&gt;연회비 : ${card.annualFee}원&lt;br&gt;해외 겸용 : ${card.overseasUse}&lt;br&gt;할인율 : ${card.discountRate}">
-                <img src="${card.fileLink}">
-            </li>
-        </c:forEach>
+<c:forEach var="card" items="${recommendedCards}" varStatus="loop">
+    <li data-flip-title="${loop.index + 1}" data-flip-category="${card.category}" data-description="${loop.index + 1}&lt;br&gt;카드 이름 : ${card.ciName}&lt;br&gt;카드사 : ${card.cardCompany}&lt;br&gt;설명 : ${card.explanation}&lt;br&gt;연회비 : ${card.annualFee}원&lt;br&gt;해외 겸용 : ${card.overseasUse}&lt;br&gt;할인율 : ${card.discountRate}%">
+        <div class="card-image">
+        <img src="/account/asset/images/${card.fileLink}">
+        </div>
+    </li>
+</c:forEach>
     </ul>
 </div>
         <div class="description-box">
@@ -164,6 +170,7 @@
    
     <!-- Template Javascript -->
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
     
     console.log("Recommended Cards: ${recommendedCards}");

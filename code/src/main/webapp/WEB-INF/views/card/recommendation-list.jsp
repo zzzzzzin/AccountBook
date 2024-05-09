@@ -20,6 +20,8 @@
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
 
     <link rel="stylesheet" href="/account/asset/css/combine.css">
 </head>
@@ -29,6 +31,11 @@
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
+    .card-image img {
+        width: 30px;
+        height: 30px;
+        object-fit: cover;
+    }
 </style>
 <script type="module" src="chart.min.js"></script>
 <body>
@@ -73,8 +80,8 @@
                 <c:forEach items="${list}" var="dto" varStatus="loop">
                     <div class="card">
                         <div class="card-image">
-                            <img src="${dto.fileLink}" alt="Card">
-                        </div>
+                                <img src="${pageContext.request.contextPath}/asset/images/${dto.fileLink}">
+                            </div>
                         <div class="card-details">
                             <div class="card-name" >${dto.ciName}</div>
                             <div class="card-company">${dto.cardCompany}</div>
@@ -95,6 +102,7 @@
    
     <!-- Template Javascript -->
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
     console.log("recommendation-list.jsp - Script");
     console.log("Selected Category in JSP: ${selectedCategory}");
