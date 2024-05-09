@@ -146,6 +146,13 @@
               	<span><i class="material-icons" id="temp">thumb_up</i><span id="post-like">${post.likeCount}</span></span>
                 <span><i class="material-icons">thumb_down</i><span id="post-dislike">${post.dislikeCount}</span></span>
                 <span><i class="material-icons">report</i> 신고</span>
+                 <!-- 로그인한 사용자와 게시글 작성자가 일치하는 경우에만 수정 버튼 표시 -->
+    <c:if test="${not empty sessionScope.seqUser && sessionScope.seqUser == post.seqUser}">
+      <span><a href="/account/board/edit.do?seq=${post.seq}">수정</a></span>
+    </c:if>
+     <c:if test="${not empty sessionScope.seqUser && (sessionScope.seqUser == post.seqUser || sessionScope.seqPriv == 3)}">
+        <span class="delete-post" data-post-seq="${post.seq}">삭제</span>
+    </c:if>
               </div>     
             </div>
                         <!-- 댓글 시작 -->
@@ -285,6 +292,31 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
    
 <script>
+//게시글 삭제
+$(document).on('click', '.delete-post', function() {
+    var postSeq = $(this).data('post-seq');
+    
+    if (confirm('정말로 게시글을 삭제하시겠습니까?')) {
+        $.ajax({
+            url: '${pageContext.request.contextPath}/board/delete.do',
+            type: 'POST',
+            data: {
+                seq: postSeq
+            },
+            success: function(response) {
+                if (response === 'Success') {
+                    alert('게시글이 삭제되었습니다.');
+                    location.href = '/account/board/view.do?seq=${post.seqBoard}';
+                } else {
+                    alert('게시글 삭제에 실패했습니다.');
+                }
+            },
+            error: function() {
+                alert('게시글 삭제에 실패했습니다.');
+            }
+        });
+    }
+});
 
 //답글 삭제 버튼
 $(document).on('click', '.delete-reply-comment', function() {

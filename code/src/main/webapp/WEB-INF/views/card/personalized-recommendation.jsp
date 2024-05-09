@@ -104,7 +104,10 @@
     border: 1px solid #ccc;
     background-color: #f9f9f9;
 }
-    
+     .card-image img {
+    width: 100px;
+    height: 100px;
+}
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
 </style>
@@ -143,7 +146,9 @@
     <ul class="flip-items">
 <c:forEach var="card" items="${recommendedCards}" varStatus="loop">
     <li data-flip-title="${loop.index + 1}" data-flip-category="${card.category}" data-description="${loop.index + 1}&lt;br&gt;카드 이름 : ${card.ciName}&lt;br&gt;카드사 : ${card.cardCompany}&lt;br&gt;설명 : ${card.explanation}&lt;br&gt;연회비 : ${card.annualFee}원&lt;br&gt;해외 겸용 : ${card.overseasUse}&lt;br&gt;할인율 : ${card.discountRate}%">
-        <img src="${card.fileLink}">
+        <div class="card-image">
+        <img src="/account/asset/images/${card.fileLink}">
+        </div>
     </li>
 </c:forEach>
     </ul>

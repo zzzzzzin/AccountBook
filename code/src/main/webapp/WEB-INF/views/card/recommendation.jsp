@@ -126,6 +126,22 @@
     	width: 300px;
     	height: 300px;
     }
+    #categorymodalbody{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.categorylistselector{
+    display: flex;
+    border: 1px solid #CCC;
+    background-color: #F3f6f9;
+    width: auto;
+    margin: 5px;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 5px;
+}
+
 
 <%@include file ="/WEB-INF/views/inc/asset.jsp"%>
 
