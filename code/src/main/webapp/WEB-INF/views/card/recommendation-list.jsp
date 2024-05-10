@@ -34,11 +34,10 @@ ${selectedCategory} 카드 추천
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
-    .card-image img {
-        width: 30px;
-        height: 30px;
-        object-fit: cover;
-    }
+.fakecontent .card-container .card .card-image img {
+  width: 100px !important;
+  height: 100px !important;
+}
 </style>
 <script type="module" src="chart.min.js"></script>
 <body>
