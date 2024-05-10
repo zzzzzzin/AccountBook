@@ -578,8 +578,8 @@ select {
 
 /* 가계부 목록 */
 #transamount, #transtype  { color: red; } 
-#transamountplus { color: #84B652; }
-#transamountminus { color: #960005; }
+#transamountplus { color: #1bbd00; }
+#transamountminus { color: #ff0009; }
 
 .transin {
     text-align: center;

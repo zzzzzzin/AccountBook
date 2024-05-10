@@ -12,6 +12,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.project.accountbook.board.post.model.PostDTO;
 import com.project.accountbook.board.repository.BoardDAO;
@@ -23,6 +24,17 @@ public class NoticeBoard extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		
+
+		HttpSession session = req.getSession();
+		session.setAttribute("read", "n");		
+		
+		
+		//쿠키 조회수
+		Cookie cookies = new Cookie("cookieread", "n");
+		cookies.setMaxAge(60 * 60);
+		cookies.setPath("/");
+		resp.addCookie(cookies);
+		//끝
 		
 		String column = req.getParameter("column");
 		String word = req.getParameter("word");
@@ -59,6 +71,7 @@ public class NoticeBoard extends HttpServlet {
             
         }
 		
+		
 		req.setAttribute("noticeList", noticeList); // noticeList 객체를 요청 객체에 추가
 		req.setAttribute("map", map);
 		
@@ -85,7 +98,7 @@ public class NoticeBoard extends HttpServlet {
 		if (cookies!= null) {
 		    for (Cookie c : cookies) {
 		        String name = c.getName(); // 쿠키 이름 가져오기
-		        String value = c.getValue(); //쿠기 내용 가져오
+		        String value = c.getValue(); //쿠기 내용 가져오기
 		        if (name.equals("postSeq"+seq) && value.equals(seq)) {
 		        	postcheck = true;
 		        } 	        

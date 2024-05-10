@@ -24,7 +24,16 @@ public class Freeboard extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		
+		HttpSession session = req.getSession();
+		session.setAttribute("read", "n");
+		
+		//쿠키 조회수
+		Cookie cookies = new Cookie("cookieread", "n");
+		cookies.setMaxAge(60 * 60);
+		cookies.setPath("/");
+		resp.addCookie(cookies);
+		//끝
 		
 		String column = req.getParameter("column");
 		String word = req.getParameter("word");
@@ -88,7 +97,7 @@ public class Freeboard extends HttpServlet {
 		if (cookies!= null) {
 		    for (Cookie c : cookies) {
 		        String name = c.getName(); // 쿠키 이름 가져오기
-		        String value = c.getValue(); //쿠기 내용 가져오
+		        String value = c.getValue(); //쿠기 내용 가져오기
 		        if (name.equals("postSeq"+seq) && value.equals(seq)) {
 		        	postcheck = true;
 		        } 	        
