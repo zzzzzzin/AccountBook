@@ -63,7 +63,7 @@
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
         <div class="content-total-style">
-        <div class="content-header">
+        	<div class="content-header">
 					<div class="content-title-style">
 						<h3>게시판 홈</h3>
 					</div>

@@ -65,7 +65,7 @@
 					<div class="content-title-style">
 						<h3>비밀번호 수정</h3>
 					</div>
-				</div>
+			</div>
 			<div class="mypage-box-container-style">
 				<form action="/account/user/member/edit-pw.do" method="POST">
 					<div class="user-info-container-style">
@@ -78,7 +78,7 @@
 							<div class="user-info-input-row-style">
 								<div class="form-group"><label>새 비밀번호(확인)</label><input type="text" class="input-style-form" name="checkPw"></div>
 						</div>
-						<button type="submit" class="button purple-btn info-submit-long-btn" onclick="window.location.reload();">수정 완료</button>
+						<button type="submit" class="button purple-btn info-submit-long-btn submit-btn-style" onclick="window.location.reload();">수정 완료</button>
 					</div>
 					</form>
 				</div>

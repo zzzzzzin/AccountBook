@@ -25,22 +25,6 @@
     <!-- Libraries Stylesheet -->
 </head>
 <style>
-
-   
-	#title{
-		text-align: center;
-		margin-top: 50px;
-		margin-bottom: 50px;
-	}
-	
-	#menuTable > td{
-		
-		text-align: center;
-	}
-    
-    .board-list td:last-child {
-    	text-align: center;
-	}
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
@@ -75,38 +59,39 @@
         <!-- Navbar End -->
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
+        <div class="content-total-style">
         <section class="noticeboard">
-        <div class="page-title">
-        	<div class="container">
-            	<h3>공지 게시판</h3>
-            </div>
-        </div>
-      
-	    <!-- board seach area -->
-	    <div id="board-search">
-	      <div class="container">
-	        <div class="search-window">
-	          <form id="formSearch" method="GET" action="/account/board/noticeBoard.do">
-	            <div class="search-wrap">
-	              <select name="column">
-	                <option value="total">제목+내용</option>
-	                <option value="title">제목</option>
-	                <option value="content">내용</option>
-	              </select>
-	              <label for="search" class="blind">게시판 검색</label>
-	              <input id="search" type="search" name="word" placeholder="검색어를 입력해주세요." value="">
-	              <button type="submit" class="btn btn-dark">검색</button>
-	            </div>
-	          </form>
-	        </div>
-	      </div>
-	    </div>
+        
+        <div class="content-header">
+					<div class="content-title-style">
+						<h3>공지 게시판</h3>
+					</div>
+<!-- 				    <div id="board-search"> -->
+				    <div class="board-search-container">
+<!-- 				        <div class="search-window"> -->
+				        <div>
+				          <form id="formSearch" method="GET" action="/account/board/noticeBoard.do">
+				            <div class="board-search-wrap">              
+				              <select name="column">
+				                <option value="total">제목+내용</option>
+				                <option value="title">제목</option>
+				                <option value="content">내용</option>
+				              </select>
+				              <label for="search" class="blind">게시판 검색</label>
+				              <input class="input-style-form board-search-input" id="search" type="search" name="word" placeholder="검색어를 입력해주세요." value="">
+				              <button type="submit" class="button purple-btn board-search-btn">검색</button>	              			
+				            </div>
+			          	  </form>
+				        </div>
+				    </div>
+				</div>
+				
     
 		    <!-- board list area -->
 		    <div id="board-list">
 	        	<div class="container">
-	           		<table class="board-table">
-	               	<thead>
+	           		<table class="table-style">
+					<tbody>
 		                <tr>
 		                    <th scope="col" class="th-num">번호</th>
 		                    <th scope="col" class="th-title">제목</th>
@@ -114,9 +99,7 @@
 		                    <th scope="col" class="th-date">등록일</th>
 		                    <th scope="col" class="th-view">조회수</th>
 		                    <th scope="col" class="th-like">추천</th>
-		                </tr>
-	                </thead>
-	                <tbody>
+		                    
 		                <c:if test="${noticeList.size() == 0}">
 						    <tr>
 						    	<td></td>
@@ -139,15 +122,14 @@
 	                </tbody>
 	            </table>
 	            <div class="write-btn">
-	                <a href="/account/board/write.do" class="btn btn-dark">글작성</a>
+	                <a href="/account/board/write.do" class="button purple-btn submit-btn-style">글작성</a>
 	            </div>
 	        </div>
 	    </div>
 		</section>
+		</div>
         <!-- fakecontent 끝 -->
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-        
+  
     	</div>
     </div>
 
