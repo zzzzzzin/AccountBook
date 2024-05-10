@@ -15,7 +15,7 @@
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Icon Font Stylesheet -->
@@ -26,7 +26,11 @@
 </head>
 <style>
 
-   
+   #pagebar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	}
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
@@ -127,12 +131,13 @@
 						        <td>${free.me_nickName != null ? free.me_nickName : free.ad_nickName}</td>
 						        <td>${free.writeDate}</td>
 						        <td>${free.viewCount}</td>
-						        <td>${free.likeCount}</td>
-						      
+						        <td>${free.likeCount}</td>				      
 			                </tr>
 	                </c:forEach>
 	                </tbody>
 	            </table>
+	            <!-- 페이지바 -->
+				<div id="pagebar">${pagebar}</div>
 	            <div class="write-btn">
 	                <a href="/account/board/write.do" class="btn btn-dark">글작성</a>
 	            </div>
