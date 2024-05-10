@@ -97,7 +97,7 @@
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
         
-        <header>
+    <header>
         <div class="banner">
             <!-- 배너 이미지를 여기에 추가하세요 -->
             <img src="/account/asset/images/banner.jpg" alt="배너 이미지">

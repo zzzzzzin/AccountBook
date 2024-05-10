@@ -117,7 +117,7 @@
                 <img class="user-image" src="/account/asset/images/${post.profileImg}" >
                 <div class="post-info-box">
                   <div>${post.me_nickName != null ? post.me_nickName : post.ad_nickName}</div> 
-                  <div>${post.writeDate}</div>
+                  <div>${post.writeDate}  <span>조회 ${post.viewCount}</span></div>
                 </div>
                 
 				<div class="user-post-management-btn-box">
@@ -136,7 +136,7 @@
               </div>
               
               <div class="post-actions" id="postmaincontentreaction">
-              	<span id="like_button"><i class="material-icons">thumb_up</i><span id="post-like">${post.likeCount}</span></span>
+              	<div><span id="like_button"><i class="material-icons">thumb_up</i><span id="post-like">${post.likeCount}</span></span></div>
                 <span id="dislike_button"><i class="material-icons">thumb_down</i><span id="post-dislike">${post.dislikeCount}</span></span>
                 <span id="report_button"><i class="material-icons">report</i><span id="post-report">${post.reportCount}</span></span>
               </div> 
@@ -159,23 +159,29 @@
                     <div class="post-info-box">
                     	<div>${comment.nickname}</div>
                     	<div>${comment.writeDate}</div>
+                    	<div>
+							<span class="reply-toggle">답글</span>
+								<c:if test="${not empty sessionScope.seqUser && sessionScope.seqUser == comment.seqUser}">
+									<span class="edit-comment" data-comment-seq="${comment.seq}">수정</span>
+								</c:if>
+								<c:if test="${not empty sessionScope.seqUser && (sessionScope.seqUser == comment.seqUser || sessionScope.seqPriv == 3)}">
+									<span class="delete-comment" data-comment-seq="${comment.seq}">삭제</span>
+								</c:if>
+						</div>
                     </div>
                 </div>
-		<div class="post-actions-comment">
-		    <span><i class="material-icons">thumb_up</i> ${comment.likeCount}</span>
-		    <span><i class="material-icons">thumb_down</i> ${comment.dislikeCount}</span>
-		    <span class="reply-toggle">답글</span>
-		    <c:if test="${not empty sessionScope.seqUser && sessionScope.seqUser == comment.seqUser}">
-		        <span class="edit-comment" data-comment-seq="${comment.seq}">수정</span>
-		    </c:if>
-		<c:if test="${not empty sessionScope.seqUser && (sessionScope.seqUser == comment.seqUser || sessionScope.seqPriv == 3)}">
-		    <span class="delete-comment" data-comment-seq="${comment.seq}">삭제</span>
-		</c:if>
-		</div>
+			<div class="post-actions-comment">
+				<div>
+				    <span><i class="material-icons">thumb_up</i> ${comment.likeCount}</span>
+				    <span><i class="material-icons">thumb_down</i> ${comment.dislikeCount}</span>
+				</div>
+			</div>
             </div>
             <div class="post-content">
                 <div id="commentcontent">${comment.content}</div>
             </div>
+            
+            
 			<!-- 답글 작성 폼 -->
 			<div class="comment-form reply-form" style="display: none;">
 			    <form onsubmit="return false;">
@@ -190,7 +196,7 @@
               <!-- 대댓글 시작 -->
               <c:forEach var="replyComment" items="${comment.replyComments}">
             <div class="comment-box comment-reply">
-                <div class="post-header" id="commentlevel1head">
+                <div class="board-user-info-box" id="commentlevel1head">
                     <div class="post-info" id="commentlevel1info">
                         <i class="material-icons" id="subcommentarrow">subdirectory_arrow_right</i>
                         <c:choose>
@@ -205,19 +211,23 @@
                         <div class="post-info-box">
                     	<div>${replyComment.nickname}</div>
                     	<div>${replyComment.writeDate}</div>
+                    	<div>
+							<span class="reply-toggle">답글</span>
+							<c:if test="${sessionScope.seqUser eq replyComment.seqUser}">
+								<span class="edit-reply-comment" data-reply-comment-seq="${replyComment.seq}">수정</span>
+							</c:if>
+							<c:if test="${not empty sessionScope.seqUser && (sessionScope.seqUser == replyComment.seqUser || sessionScope.seqPriv == 3)}">
+								<span class="delete-reply-comment" data-reply-comment-seq="${replyComment.seq}">삭제</span>
+							</c:if>
+						</div>
                     	</div>
     
                     </div>
 				<div class="post-actions-comment">
+				<div>
 				    <span><i class="material-icons">thumb_up</i> ${comment.likeCount}</span>
 				    <span><i class="material-icons">thumb_down</i> ${comment.dislikeCount}</span>
-				    <span class="reply-toggle">답글</span>
-				    <c:if test="${sessionScope.seqUser eq replyComment.seqUser}">
-				<span class="edit-reply-comment" data-reply-comment-seq="${replyComment.seq}">수정</span>
-				</c:if>
-				<c:if test="${not empty sessionScope.seqUser && (sessionScope.seqUser == replyComment.seqUser || sessionScope.seqPriv == 3)}">
-				    <span class="delete-reply-comment" data-reply-comment-seq="${replyComment.seq}">삭제</span>
-				</c:if>
+				</div>
 				</div>
                 </div>
                 <div class="post-content">
