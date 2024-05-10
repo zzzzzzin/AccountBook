@@ -4,9 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>
-카테고리별 추천 
-</title>
+<title>BudgetBuddy | 카테고리별 추천</title>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="" name="keywords">
@@ -127,7 +125,7 @@
     
     .flipster img{
     	width: 300px;
-    	height: 300px;
+    	height: auto;
     }
     #categorymodalbody{
     display: grid;
@@ -181,10 +179,15 @@
 			<!-- Navbar End -->
 			<!-- Content End -->
 			<!-- fakecontent 안에서 작성 -->
-			<div id="fakecontent_card">
-			<div id="aboverow">
-                <div class="right-icon" id="categoryselector" onclick="openCategoryModal()"><i class="fa-solid fa-list-check"></i></div> 
-            </div>
+			<div id="content-total-style">
+			<div class="content-header">
+					<div class="content-title-style">
+						<h3>카테고리별 추천</h3>
+					</div>
+				<div id="aboverow">
+	                <div class="right-icon" id="categoryselector" onclick="openCategoryModal()"><i class="fa-solid fa-list-check"></i></div> 
+	            </div>
+			</div>
 				<div class="flipster-container">
 					<div class="flipster">
 						<ul class="flip-items">
@@ -192,20 +195,20 @@
 								<li data-flip-title="${loop.index + 1}"
 									data-flip-category="${loop.index + 1}"
 									data-description="               
-                    <div>${loop.index + 1}</div>
-                    <div>카드 이름 : ${dto.ciName}</div>
-                    <div>카드사 : ${dto.cardCompany}</div>
-                    <div>설명 : ${dto.explanation}</div>
-                    <div>연회비 : ${dto.annualFee}원</div>
-                    <div>해외 겸용 : ${dto.overseasUse}</div>
-                ">
+<%-- 					                    <div>${loop.index + 1}</div> --%>
+					                    <div><span>카드 이름</span> ${dto.ciName}</div>
+					                    <div><span>카드사</span> ${dto.cardCompany}</div>
+					                    <div><span>설명</span> ${dto.explanation}</div>
+					                    <div><span>연회비</span> ${dto.annualFee}원</div>
+					                    <div><span>해외 겸용</span> ${dto.overseasUse}</div>
+					                ">
 									<img src="/account/asset/images/${dto.fileLink}">
 								</li>
 							</c:forEach>
 						</ul>
 					</div>
 				</div>
-				<div class="description-box">
+				<div class="box card-recommendation-box">
 					<p id="description"></p>
 				</div>
 			</div>
@@ -232,9 +235,9 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary"
+                    <button type="button" class="button gray-btn"
                         data-bs-dismiss="modal">취소</button>
-                    <button type="button" class="btn btn-primary" id="btnEventProduce">완료
+                    <button type="button" class="button purple-btn" id="btnEventProduce">완료
                         </button>
                 </div>
             </div>
