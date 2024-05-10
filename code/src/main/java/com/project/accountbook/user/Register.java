@@ -91,9 +91,7 @@ public class Register extends HttpServlet {
 
 	    if (result == 1) {
 	        resp.sendRedirect("/account/index.do");
-	    } else {
-	        resp.sendRedirect("/account/user/register.do");
-	    }
+	    } 
 	    
 	}
 
