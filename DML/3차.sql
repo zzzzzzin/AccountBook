@@ -38,6 +38,15 @@ insert into tblListCardBenefits (seq, seqCardCategory, content, seqCardInformati
 insert into tblListCardBenefits (seq, seqCardCategory, content, seqCardInformation) values (35, 15, '10', 18);
 insert into tblListCardBenefits (seq, seqCardCategory, content, seqCardInformation) values (36, 15, '5', 19);
 insert into tblListCardBenefits (seq, seqCardCategory, content, seqCardInformation) values (37, 15, '15', 20);
+insert into tblListCardBenefits (seq, seqCardCategory, content, seqCardInformation) values (38, 15, '15', 20);
+insert into tblListCardBenefits (seq, seqCardCategory, content, seqCardInformation) values (39, 15, '15', 20);
+insert into tblListCardBenefits (seq, seqCardCategory, content, seqCardInformation) values (40, 15, '15', 20);
+insert into tblListCardBenefits (seq, seqCardCategory, content, seqCardInformation) values (41, 15, '15', 20);
+insert into tblListCardBenefits (seq, seqCardCategory, content, seqCardInformation) values (42, 15, '15', 20);
+insert into tblListCardBenefits (seq, seqCardCategory, content, seqCardInformation) values (43, 15, '15', 20);
+insert into tblListCardBenefits (seq, seqCardCategory, content, seqCardInformation) values (44, 15, '15', 20);
+insert into tblListCardBenefits (seq, seqCardCategory, content, seqCardInformation) values (45, 15, '15', 20);
+insert into tblListCardBenefits (seq, seqCardCategory, content, seqCardInformation) values (46, 15, '15', 20);
 
 
 --회원 tblMember
