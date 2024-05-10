@@ -93,7 +93,7 @@
     
 		    <!-- board list area -->
 		    <div id="board-list">
-	        	<div class="container">
+	        	<div class="">
 	           		<table class="table-style">
 					<tbody>
 		                <tr>
