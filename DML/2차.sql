@@ -224,9 +224,9 @@ insert into tblCardInformation (seq, name, explanation, annualFee, overseasUse, 
 insert into tblCardInformation (seq, name, explanation, annualFee, overseasUse, cardCompany, fileLink, seqCardType) 
     values (21, 'MILEAGE PLATINUM', '여행 백화점 카페 편의점 라운지 다양한 혜택', 49000, '가능', '삼성카드', 'mileage.png', 2);
 insert into tblCardInformation (seq, name, explanation, annualFee, overseasUse, cardCompany, fileLink, seqCardType) 
-    values (22, 'KB국민 My WESH 카드', '음식점 10프로 할인!!', 15000, '가능', '삼성카드', 'wesh.png', 2);
+    values (22, 'KB국민 My WESH 카드', '음식점 10프로 할인!!', 15000, '가능', 'KB국민카드', 'wesh.png', 2);
 insert into tblCardInformation (seq, name, explanation, annualFee, overseasUse, cardCompany, fileLink, seqCardType) 
-    values (23, '신한카드 Deep Dream', '더해드림!!챙겨드림!', 8000, '가능', '삼성카드', 'dream.png', 2);
+    values (23, '신한카드 Deep Dream', '더해드림!!챙겨드림!', 8000, '가능', '신한카드', 'dream.png', 2);
 insert into tblCardInformation (seq, name, explanation, annualFee, overseasUse, cardCompany, fileLink, seqCardType) 
     values (24, '올바른 FLEX 카드', '스타벅스 FLEX 하도록! 50퍼 할인까지', 12000, '가능', '삼성카드', 'flex.png', 1);
 insert into tblCardInformation (seq, name, explanation, annualFee, overseasUse, cardCompany, fileLink, seqCardType) 
@@ -239,7 +239,25 @@ insert into tblCardInformation (seq, name, explanation, annualFee, overseasUse, 
     values (28, 'Easy all 티타늄카드', '내가 원하는 혜택을 Sun택!', 30000, '가능', 'KB국민카드', 'easyall.png', 2);
 insert into tblCardInformation (seq, name, explanation, annualFee, overseasUse, cardCompany, fileLink, seqCardType) 
     values (29, '삼성iD GLOBAL카드', '해외 그리고 일상생활 모든 부문에서 혜택을 찾아보자', 20000, '가능', '삼성카드', 'global.png', 2);
-
+    
+insert into tblCardInformation (seq, name, explanation, annualFee, overseasUse, cardCompany, fileLink, seqCardType) 
+    values (30, '신한카드 Mr.Life', 'Essential For Every Lifestyle', 15000, '가능', '신한카드', 'life.png', 2);
+insert into tblCardInformation (seq, name, explanation, annualFee, overseasUse, cardCompany, fileLink, seqCardType) 
+    values (31, 'BC 바로 클리어 플러스', '7% 할인 모음집 ! ', 5000, '가능', 'BC카드', 'baro.png', 2);
+insert into tblCardInformation (seq, name, explanation, annualFee, overseasUse, cardCompany, fileLink, seqCardType) 
+    values (32, '다담카드', '주유 교통 자동차 음식! 다담았다', 20000, '가능', 'KB국민카드', 'dadam.png', 2);
+insert into tblCardInformation (seq, name, explanation, annualFee, overseasUse, cardCompany, fileLink, seqCardType) 
+    values (33, '미플러스카드', '대중교통7% 이궈궈든', 25000, '가능', 'NH농협카드', 'meplus.png', 2);
+insert into tblCardInformation (seq, name, explanation, annualFee, overseasUse, cardCompany, fileLink, seqCardType) 
+    values (34, '신세계 BC 바로 클리어 플러스', '매일매일 신세카이 할인!', 5000, '가능', 'BC바로카드', 'barosin.png', 2);
+insert into tblCardInformation (seq, name, explanation, annualFee, overseasUse, cardCompany, fileLink, seqCardType) 
+    values (35, '1Q My Lunch', '시내마을광역지하공항 모두 ! 77777', 17000, '가능', '하나카드', 'lunch.png', 2);
+insert into tblCardInformation (seq, name, explanation, annualFee, overseasUse, cardCompany, fileLink, seqCardType) 
+    values (36, 'Da카드의 정석', '우리카드 근본 라인업', 10000, '가능', '우리카드', 'jungsuk.png', 2);
+insert into tblCardInformation (seq, name, explanation, annualFee, overseasUse, cardCompany, fileLink, seqCardType) 
+    values (37, 'Im CHEERFUL', '출퇴근시간 Cheer Up', 15000, '가능', '롯데카드', 'cheer.png', 2);
+insert into tblCardInformation (seq, name, explanation, annualFee, overseasUse, cardCompany, fileLink, seqCardType) 
+    values (38, 'NEW 씨티 클리어', '매일매일 씨티즌의 이동수단!', 20000, '가능', '씨티카드', 'global.png', 2);
 
 
 update tblCardInformation set fileLink = 'myPage-viewCards-card.png';
