@@ -62,28 +62,24 @@
 }
 </style>
 </head>
-<title>
-회원 가입
-</title>
-
 <body>
 	<%@include file="/WEB-INF/views/inc/header.jsp"%>
 	<div class="container-scroller">
 		<div class="container-fluid page-body-wrapper full-page-wrapper">
 			<div class="row w-100 m-0">
-<!-- 				<div class="content-wrapper full-page-wrapper d-flex align-items-center colorD9"> -->
-				<div id="user-info-card-box">
+				<div
+					class="content-wrapper full-page-wrapper d-flex align-items-center colorD9">
 					<div class="card col-lg-4 mx-auto colorAAA">
-						<div class="card-body px-5 py-5 marginfix">
+						<div class="card-body px-5 py-5 marginfix colorAAA">
 							<h3 class="card-title text-left mb-3">Register</h3>
 							<form method="post" action="/account/user/register.do">
 								<label>Username</label>
 								<div class="form-group " id="username">
 									<input type="text" name="id"
 										class="form-control p_input inputbox updatefix colorD9">
-									<button class="duplicateBtn">
-										<span id="duptext">중복 확인</span>
-									</button>
+<button type="button" class="duplicateBtn" data-field="id">
+    <span id="duptext">중복 확인</span>
+</button>
 								</div>
 								<label>비밀번호</label>
 								<div class="form-group" id="pwboxnow">
@@ -104,25 +100,25 @@
 								<div class="form-group" id="username">
 									<input type="text" name="nickname"
 										class="form-control p_input inputbox colorD9">
-									<button class="duplicateBtn">
-										<span id="duptext">중복 확인</span>
-									</button>
+<button type="button" class="duplicateBtn" data-field="nickname">
+    <span id="duptext">중복 확인</span>
+</button>
 								</div>
 								<label>전화번호</label>
 								<div class="form-group" id="username">
 									<input type="text" name="phoneNumber"
 										class="form-control p_input inputbox colorD9">
-									<button class="duplicateBtn">
-										<span id="duptext">중복 확인</span>
-									</button>
+<button type="button" class="duplicateBtn" data-field="phoneNumber">
+    <span id="duptext">중복 확인</span>
+</button>
 								</div>
 								<label>주민등록 번호</label>
 								<div class="form-group" id="username">
 									<input type="text" name="ssn"
 										class="form-control p_input inputbox colorD9">
-									<button class="duplicateBtn">
-										<span id="duptext">중복 확인</span>
-									</button>
+<button type="button" class="duplicateBtn" data-field="ssn">
+    <span id="duptext">중복 확인</span>
+</button>
 								</div>
 								<label>성별</label>
 								<div>
@@ -148,15 +144,6 @@
 									</div>
 									<label>월급</label>
 
-    
-          
-            
-    
-
-          
-          Expand Down
-    
-    
   
 									<div class="form-group" id="pwboxnow">
 										<input type="number" name="monthlyPaycheck"
@@ -202,7 +189,6 @@
 	<!-- container-scroller -->
 	<!-- plugins:js -->
 	<script src="/account/asset/js/vendor.bundle.base.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- endinject -->
 	<!-- Plugin js for this page -->
 	<!-- End plugin js for this page -->
@@ -214,6 +200,32 @@
 	<script src="/account/asset/js/todolist.js"></script>
 	<!-- endinject -->
 	<script>
+	
+	$(document).ready(function() {
+	    $(".duplicateBtn").click(function(e) {
+	        e.preventDefault();
+	        
+	        var field = $(this).data("field");
+	        var value = $(this).prev("input").val();
+	        
+	        $.ajax({
+	            url: "/account/user/checkDuplicate.do",
+	            method: "POST",
+	            data: {
+	                field: field,
+	                value: value
+	            },
+	            success: function(response) {
+	                if (response === "duplicate") {
+	                    alert(field + " 이미 존재하는 데이터 입니다.");
+	                } else {
+	                    alert(field + " 사용 가능한 데이터입니다.");
+	                }
+	            }
+	        });
+	    });
+	});
+	
     document.getElementById("challenge").addEventListener("change", function () {
         var survey = document.getElementById("survey");
         if (this.checked) {
