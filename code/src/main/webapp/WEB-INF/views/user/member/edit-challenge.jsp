@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>BudgetBuddy | 챌린지 관리</title>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
@@ -25,7 +26,7 @@
 </head>
 <style>
 
-   .container-surveysetting {
+/*    .container-surveysetting {
         /* border: 1px solid black; */
         width: 800px;
         height: 300px;
@@ -103,7 +104,7 @@
         background-color: #d9d9d9;
         border: 2px solid black;
         border-radius: 10px;
-    }
+    } */
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
@@ -139,36 +140,32 @@
             <!-- Navbar End -->
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
-
-			<div class="myPage">
-				<form method="POST" action="/account/user/member/edit-challenge.do">
-					<div class="container-surveysetting">
-						<div class="content-surveysetting">
-							<div class="contents-surveysetting">
-								<div class="sallary-title">월급</div>
-								<input type="text" id="sallary" class="sallary-real" name="sallary" value="${clist[0].sallary}"></input>
-							</div>
-							<div class="contents-surveysetting">
-								<div class="sallary-title">저축 목표 금액</div>
-								<input type="text" id="goal" class="sallary-real" name="goal" value="${clist[0].goal}"></input>
-							</div>
-							<div class="contents-surveysetting">
-								<div class="sallary-title">저축 목표 기간 설정</div>
-									<input type="text" id="period" class="period" name="period" value="${clist[0].period}"></input>
-							</div>
-							<div class="saveSurveySetting">
-								<button type="submit" class="saveBtn" id="surveyBtn">저장하기</button>
-							</div>
-						</div>
+			<div class="content-total-style">
+				<div class="content-header">
+					<div class="content-title-style">
+						<h3>챌린지 관리</h3>
 					</div>
-				</form>
+				</div>
+				<div class="mypage-box-container-style">
+					<form method="POST" action="/account/user/member/edit-challenge.do">
+						<div class="user-info-container-style">
+							 <div class="user-info-input-row-style">
+			                    <div class="form-group"><label>월급</label><input id="sallary" class="input-style-form" type="text" name="sallary" value="${clist[0].sallary}" placeholder="${clist[0].sallary}"></div>
+			               	</div>
+							 <div class="user-info-input-row-style">
+			                    <div class="form-group"><label>저축 목표 금액</label><input id="goal" class="input-style-form" type="text" name="goal" value="${clist[0].goal}" placeholder="${clist[0].goal}"></div>
+			               	</div>
+							 <div class="user-info-input-row-style">
+			                    <div class="form-group"><label>저축 목표 기간 설정</label><input id="period" class="input-style-form" type="text" name="period" value="${clist[0].period}" placeholder="${clist[0].period}"></div>
+			               	</div>
+			               	<button type="submit" class="button purple-btn info-submit-long-btn submit-btn-style" id="surveyBtn">수정하기</button>
+						</div>
+					</form>
+				</div>
 			</div>
 
 
 			<!-- fakecontent 끝 -->
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-        
     </div>
     </div>
 

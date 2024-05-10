@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-<title>BudgetBuddy | 개인정보 관리</title>
+<title>BudgetBuddy | 개인정보 조회</title>
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -24,21 +24,9 @@
 
     <!-- Libraries Stylesheet -->
 </head>
-<!-- <link rel="stylesheet" href="../../../css/combine.css"> -->
 <style>
-/*    #fakecontent{ */
-/*     display: flex; */
-/*     justify-content: center; */
-/*    } */
 
-   .myPage-mypage {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px;
-}
+/*   
 .user-profile-mypage {
   width: 600px;
   height: 100%;
@@ -66,71 +54,10 @@
             
         }
 
-
-
-.left{
-  width: 50%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 5px;
-  
-}
-.right{
-  width: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-#userinfo {
-  display: flex;
-  flex-direction: column;
-  width: 100%; 
-  max-width: 600px; 
-  margin: 0 auto; 
-  padding: 20px;
-  background: #f3f6f9; 
-  border-radius: 8px; 
-}
-
-.userinfo-content {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between; 
-  align-items: baseline;
-  margin-bottom: 10px; 
-  padding: 10px; 
-  border-bottom: 1px solid #ddd; 
-  
-}
-
-.userinfo.left {
-  flex: 1;
-  text-align: left;
-  font-weight: bold;
-  padding: 10px 20px; 
-  background-color: #e8e8e8; 
-  border-right: 2px solid #ccc; 
-  box-shadow: inset 0 0 5px rgba(0,0,0,0.1); 
-  margin-right: 10px; 
-}
-
-.userinfo.right {
-  flex: 1.5; 
-  text-align: right;
-  font-weight: normal;
-  padding: 10px 20px; 
-  color: #555;
-  background-color: #fff;
-  border-left: none;
-}
-
-/* Enhances the last item by removing the bottom border */
 .userinfo-content:last-child {
   border-bottom: none;
 }
-   
+    */
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
@@ -164,34 +91,33 @@
             <!-- Navbar End -->
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
-      <div id="fakecontent">
-        <div class="myPage-mypage ">
-          <div class="user-profile-mypage">
+      <div class="content-total-style">
+     	 <div class="content-header">
+					<div class="content-title-style">
+						<h3>개인정보 조회</h3>
+					</div>
+			</div>
+        <div class="mypage-box-container-style ">
+          <div class="user-info-container-style">
               <div class="user-profile-mypage-img">
-                  개인 프로필 이미지
+              		개인 프로필 이미지
+                  <img alt="" src="">
               </div>
-              <div id="userinfo">
-                <div class="userinfo-content">
-                    <div class="userinfo left">이름</div>
-                    <div class="userinfo right">${dto.name}</div>
-                </div>
-                <div class="userinfo-content">
-                    <div class="userinfo left">닉네임</div>
-                    <div class="userinfo right">${dto.nickname}</div>
-                </div>
-                <div class="userinfo-content">
-                    <div class="userinfo left">성별</div>
-                    <div class="userinfo right">${dto.gender}</div>
-                </div>
-                <div class="userinfo-content">
-                    <div class="userinfo left">전화번호</div>
-                    <div class="userinfo right">${dto.phoneNumber}</div>
-                </div>
-                <div class="userinfo-content">
-                    <div class="userinfo left">주민등록번호</div>
-                    <div class="userinfo right" id="ssn">${dto.ssn}</div>
-                </div>
-              </div>
+              <div class="user-info-input-row-style">
+					<div class="form-group"><label>이름</label><input type="text" class="input-style-form" value="${dto.name}" readonly></div>
+				</div>
+              <div class="user-info-input-row-style">
+					<div class="form-group"><label>닉네임</label><input type="text" class="input-style-form" value="${dto.nickname}" readonly></div>
+				</div>
+              <div class="user-info-input-row-style">
+					<div class="form-group"><label>성별</label><input type="text" class="input-style-form" value="${dto.gender}" readonly></div>
+				</div>
+              <div class="user-info-input-row-style">
+					<div class="form-group"><label>전화번호</label><input type="text" class="input-style-form" value="${dto.phoneNumber}" readonly></div>
+				</div>
+              <div class="user-info-input-row-style">
+					<div class="form-group"><label>주민등록번호</label><input type="text" class="input-style-form" id="ssn" value="${dto.ssn}" readonly></div>
+				</div>
       </div>
     </div>
         <!-- fakecontent 끝 -->
