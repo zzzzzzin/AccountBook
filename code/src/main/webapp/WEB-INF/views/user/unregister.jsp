@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>BudgetBuddy | 회원 탈퇴</title>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="" name="keywords">
@@ -30,7 +31,7 @@
 <!-- Libraries Stylesheet -->
 </head>
 <style>
-#fakecontent{
+/* #fakecontent{
     display: flex;
     justify-content: center;
    }
@@ -121,7 +122,7 @@
    .check-pw-btn:hover{
   box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
   border-radius: 5px;
-}
+} */
 <%@include file="/WEB-INF/views/inc/asset.jsp"%>
 </style>
 <title>
@@ -157,39 +158,29 @@
 			<!-- Navbar End -->
 			<!-- Content End -->
 			<!-- fakecontent 안에서 작성 -->
-<div id="fakecontent">
-			<div class="myPage">
-				<!-- ... -->
-				<!-- ... -->
-				<!-- ... -->
-<form method="POST" action="/account/user/unregister.do">
-    <div class="container-unregister">
-        <div class="content-unregister">
-            <div class="input-pw">
-                <div class="input-pw-title">현재 비밀번호</div>
-                <div class="input-pw-real">
-                    <input class="unregisterPw" type="password" name="currentPw" placeholder="비밀번호를 입력하세요.">
-                </div>
-            </div>
-            <div class="check-pw">
-                <div class="check-pw-titles">비밀번호 확인</div>
-                <div class="check-pw-input">
-                    <input class="unregisterPw" type="password" name="confirmPw" placeholder="비밀번호를 입력하세요.">
-                </div>
-            </div>
-        </div>
-        <div class="unregister">
-            <div>탈퇴하시겠습니까?</div>
-            <input type="checkbox" class="unregisterCheckBox" name="confirmUnregister">
-        </div>
-        <button type="submit" class="check-pw-btn">탈퇴하기</button>
-    </div>
-</form>
-<!-- ... -->
-				<!-- ... -->
-				<!-- ... -->
+<div id="content-total-style">
+			<div class="content-header">
+					<div class="content-title-style">
+						<h3>회원 탈퇴</h3>
+					</div>
+				</div>
+			<div class="mypage-box-container-style">
+				<form method="POST" action="/account/user/unregister.do">
+				    <div class="user-info-container-style">
+				   		<div class="user-info-input-row-style">
+			            	<div class="form-group"><label>비밀번호</label><input class="input-style-form" type="password" name="currentPw" placeholder="비밀번호를 입력하세요."></div>
+			            </div>
+				   		<div class="user-info-input-row-style">
+			            	<div class="form-group"><label>비밀번호 확인</label><input class="input-style-form" type="password" name="confirmPw" placeholder="비밀번호를 입력하세요."></div>
+			            </div>
+			            <div class="user-info-input-box">
+			            	<input type="checkbox" name="confirmUnregister"/> <label>탈퇴하시겠습니까?</label>
+						</div>
+						<button type="submit" class="button purple-btn info-submit-long-btn submit-btn-style">탈퇴하기</button>
+				    </div>
+				</form>
 			</div>
-</div>
+		</div>
 			<!-- fakecontent 끝 -->
 			<!-- Back to Top -->
 

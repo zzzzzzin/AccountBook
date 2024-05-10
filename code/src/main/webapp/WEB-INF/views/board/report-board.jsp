@@ -68,6 +68,7 @@
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
         <div>
+        <div class="content-total-style">
       	<section class="reportboard">
         <div class="content-header">
 					<div class="content-title-style">
@@ -75,7 +76,7 @@
 					</div>
 				    <div class="board-search-container">
 				        <div>
-				          <form id="formSearch" method="GET" action="/account/board/noticeBoard.do">
+				          <form id="formSearch" method="GET" action="/account/board/reportBoard.do">
 				            <div class="board-search-wrap">              
 				              <select name="column">
 				                <option value="total">제목+내용</option>
@@ -93,7 +94,7 @@
 	    
 	    <!-- board list area -->
 	    <div id="board-list">
-	        <div class="container">
+	        <div class="">
 	            <table class="table-style">
 	            <tbody>
 	                <tr>
@@ -145,7 +146,7 @@
 	            <!-- 페이지바 -->
 				<div id="pagebar">${pagebar}</div>
 	            <div class="write-btn">
-	                <a href="/account/board/write.do" class="button purple-btn submit-btn-style">글작성</a>
+	                <a href="/account/board/write.do" class="button purple-btn submit-btn-style bottom-btn-style">글작성</a>
 	            </div>
 	        </div>
 	        

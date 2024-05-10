@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <title>
-${selectedCategory} 카드 추천
+BudgetBuddy |${selectedCategory} 카드 추천
 </title>
 <head>
     <meta charset="utf-8">
@@ -34,11 +34,10 @@ ${selectedCategory} 카드 추천
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
-    .card-image img {
-        width: 30px;
-        height: 30px;
-        object-fit: cover;
-    }
+.fakecontent .card-container .card .card-image img {
+  width: 100px !important;
+  height: auto;
+}
 </style>
 <script type="module" src="chart.min.js"></script>
 <body>
@@ -83,7 +82,9 @@ ${selectedCategory} 카드 추천
                 <c:forEach items="${list}" var="dto" varStatus="loop">
                     <div class="card">
                         <div class="card-image">
+                        <div class="card-image-wrapper">
                                 <img src="${pageContext.request.contextPath}/asset/images/${dto.fileLink}">
+                            </div>
                             </div>
                         <div class="card-details">
                             <div class="card-name" >${dto.ciName}</div>

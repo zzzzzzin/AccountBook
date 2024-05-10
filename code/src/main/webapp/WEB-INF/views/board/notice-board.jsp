@@ -93,7 +93,7 @@
     
 		    <!-- board list area -->
 		    <div id="board-list">
-	        	<div class="container">
+	        	<div class="">
 	           		<table class="table-style">
 					<tbody>
 		                <tr>
@@ -131,7 +131,7 @@
 				<div id="pagebar">${pagebar}</div>
 				
 	            <div class="write-btn">
-	                <a href="/account/board/write.do" class="button purple-btn submit-btn-style">글작성</a>
+	                <a href="/account/board/write.do" class="button purple-btn submit-btn-style bottom-btn-style">글작성</a>
 	            </div>
 	        </div>
 	    </div>
