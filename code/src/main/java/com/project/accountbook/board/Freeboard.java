@@ -75,22 +75,29 @@ public class Freeboard extends HttpServlet {
 		
 		String seq = req.getParameter("seq"); //Post seq
 		String type = req.getParameter("type"); //Like, Dislike 구분
-
+		
+		
 		Cookie postcookie;
 		Cookie[] cookies = req.getCookies(); // 모든 쿠키 가져오기
-		boolean check = false;
+		boolean postcheck = false;
+		boolean reportcheck = false;
+		
+		
+		
 
 		if (cookies!= null) {
 		    for (Cookie c : cookies) {
 		        String name = c.getName(); // 쿠키 이름 가져오기
-		        String value = c.getValue(); //쿠기 내용 가져오기
+		        String value = c.getValue(); //쿠기 내용 가져오
 		        if (name.equals("postSeq"+seq) && value.equals(seq)) {
-		            check = true;
+		        	postcheck = true;
 		        } 	        
+		        if(name.equals("report"+seq) && value.equals(seq)) {
+		        	reportcheck = true;
+		        }
 		    }
 	    }
-		
-		if(check == false) {
+		if(postcheck == false) {
 			if(type.equals("like")) {	
 				dao.like(seq);
 				postcookie = new Cookie("postSeq"+seq, seq);
@@ -98,7 +105,6 @@ public class Freeboard extends HttpServlet {
 				postcookie.setMaxAge(60 * 60);
 				postcookie.setPath("/");
 				resp.addCookie(postcookie);
-				
 				
 			} else if (type.equals("dislike")) {
 				dao.dislike(seq);
@@ -108,7 +114,15 @@ public class Freeboard extends HttpServlet {
 				postcookie.setPath("/");
 				resp.addCookie(postcookie);
 			}
-		} 
+		}
+		
+		if(reportcheck == false) {
+			dao.report(seq);
+			postcookie = new Cookie("report"+seq , seq);
+			postcookie.setMaxAge(60 * 60);
+			postcookie.setPath("/");
+			resp.addCookie(postcookie);	
+		}
 	
 	}
 }
