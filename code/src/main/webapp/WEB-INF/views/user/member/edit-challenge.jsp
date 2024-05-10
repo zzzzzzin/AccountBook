@@ -67,13 +67,13 @@
 					<form method="POST" action="/account/user/member/edit-challenge.do">
 						<div class="user-info-container-style">
 							 <div class="user-info-input-row-style">
-			                    <div class="form-group"><label>월급</label><input id="sallary" class="input-style-form" type="text" name="sallary" value="${clist[0].sallary}" placeholder="${clist[0].sallary}"></div>
+			                    <div class="form-group"><label>월급</label><input id="sallary" class="input-style-form" type="text" name="sallary" value="${clist[0].sallary}"></div>
 			               	</div>
 							 <div class="user-info-input-row-style">
-			                    <div class="form-group"><label>저축 목표 금액</label><input id="goal" class="input-style-form" type="text" name="goal" value="${clist[0].goal}" placeholder="${clist[0].goal}"></div>
+			                    <div class="form-group"><label>저축 목표 금액</label><input id="goal" class="input-style-form" type="text" name="goal" value="${clist[0].goal}"></div>
 			               	</div>
 							 <div class="user-info-input-row-style">
-			                    <div class="form-group"><label>저축 목표 기간 설정</label><input id="period" class="input-style-form" type="text" name="period" value="${clist[0].period}" placeholder="${clist[0].period}"></div>
+			                    <div class="form-group"><label>저축 목표 기간 설정</label><input id="period" class="input-style-form" type="text" name="period" value="${clist[0].period}"></div>
 			               	</div>
 			               	<button type="submit" class="button purple-btn info-submit-long-btn submit-btn-style" id="surveyBtn">수정하기</button>
 						</div>
@@ -94,12 +94,12 @@
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-	    
+/* 	    
     	$(document).ready(function() {
 	        $('input').focus(function() {
 	            $(this).val('');
 	        });
-	    });
+	    }); */
     
     </script>
 </body>

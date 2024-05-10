@@ -23,43 +23,7 @@
 <!-- End layout styles -->
 <link rel="shortcut icon" href="/account/asset/images/favicon.png" />
 <style>
-/* #username {
-	display: flex;
-}
-.duplicateBtn {
-	margin-left: 10px;
-	height: 40px;
-	width: 15%;
-}
-.colorD9 {
-	background-color: #D9D9D9;
-}
-.inputbox {
-	height: 40px;
-}
-.dupnone {
-	width: 85%;
-}
-.colorAAA {
-	background-color: #AAAAAA;
-}
-.radsetcss {
-	margin-left: 30px;
-}
-.marginfix {
 
-	
-}
-.updatefix {
-	align-items: center;
-}
-#survey {
-
-	
-}
-#duptext {
-	font-size: 10px;
-} */
 </style>
 </head>
 <body>
