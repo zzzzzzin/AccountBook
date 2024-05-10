@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>게시판 홈</title>
+    <title>BudgetBuddy | 게시판 홈</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -62,25 +62,29 @@
             <!-- Navbar End -->
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
-        <div class="container-boardTotal">
-		    <div id="board-search">
-		      <div class="container">
-		        <div class="search-window">
-		          <form id="formSearch" method="GET" action="/account/board/view.do">
-		            <div class="search-wrap">              
-		              <select name="column">
-		                <option value="total">제목+내용</option>
-		                <option value="title">제목</option>
-		                <option value="content">내용</option>
-		              </select>
-		              <label for="search" class="blind">게시판 검색</label>
-		              <input id="search" type="search" name="word" placeholder="검색어를 입력해주세요." value="">
-		              <button type="submit" class="btn btn-dark">검색</button>	              			
-		            </div>
-	          	  </form>
-		        </div>
-		      </div>
-		    </div>
+        <div class="content-total-style">
+        	<div class="content-header">
+					<div class="content-title-style">
+						<h3>게시판 홈</h3>
+					</div>
+<!-- 				    <div id="board-search"> -->
+				    <div class="board-search-container">
+<!-- 				        <div class="search-window"> -->
+				        <div>
+				          <form id="formSearch" method="GET" action="/account/board/view.do">
+				            <div class="board-search-wrap">              
+				              <select name="column">
+				                <option value="total">제목+내용</option>
+				                <option value="title">제목</option>
+				                <option value="content">내용</option>
+				              </select>
+				              <label for="search" class="blind">게시판 검색</label><input class="input-style-form board-search-input" id="search" type="search" name="word" placeholder="검색어를 입력해주세요." value="">
+				              <button type="submit" class="button purple-btn board-search-btn">검색</button>	              			
+				            </div>
+			          	  </form>
+				        </div>
+				    </div>
+				</div>
    
 		    <div class="board-section">
 		      <div class="board-block">
@@ -110,7 +114,7 @@
 	                </c:forEach>
 		          </tbody>
 		        </table>
-		        <a href="/account/board/noticeBoard.do?=" class="more-link"><i class="material-icons">chevron_right</i></a>
+		        <a href="/account/board/noticeBoard.do?=" class="more-link"><i class="material-icons board-right-icon">chevron_right</i></a>
 		      </div>
 		      <div class="board-block">
 		        <h3>자유게시판</h3>
@@ -140,7 +144,7 @@
 	                </c:forEach>
 		          </tbody>
 		        </table>
-		        <a href="/account/board/freeBoard.do" class="more-link"><i class="material-icons">chevron_right</i></a>
+		        <a href="/account/board/freeBoard.do" class="more-link"><i class="material-icons board-right-icon">chevron_right</i></a>
 		      </div>
 		      <div class="board-block">
 		        <h3>건의게시판</h3>
@@ -170,7 +174,7 @@
 	                </c:forEach>
 		          </tbody>
 		        </table>
-		        <a href="/account/board/reportBoard.do" class="more-link"><i class="material-icons">chevron_right</i></a>
+		        <a href="/account/board/reportBoard.do" class="more-link"><i class="material-icons board-right-icon">chevron_right</i></a>
 		      </div>
 		      <div class="board-block">
 		        <h3>출석게시판</h3>
@@ -200,7 +204,7 @@
 	                </c:forEach>
 		          </tbody>
 		        </table>
-		        <a href="/account/board/attendanceBoard.do" class="more-link"><i class="material-icons">chevron_right</i></a>
+		        <a href="/account/board/attendanceBoard.do" class="more-link"><i class="material-icons board-right-icon">chevron_right</i></a>
 		      </div>
 		    </div>
 		  </div>
