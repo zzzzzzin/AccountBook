@@ -153,7 +153,7 @@ public class BoardDAO {
 	
 	
 	public ArrayList<PostDTO> list (HashMap<String, String> map, String seq){
-		
+
 		try {
 			
 			String where = "";
@@ -175,45 +175,65 @@ public class BoardDAO {
 				
 				where = String.format("where ca_seq = %s", seq);
 			}
+		
+//			String sql = "select \r\n"
+//					+ "    po_seq as seq,\r\n"
+//					+ "    me_nickname as me_nickname,\r\n"
+//					+ "    ad_nickname as ad_nickname,\r\n"
+//					+ "    ca_seq as seqboard,\r\n"
+//					+ "    po_seqUser as seqUser,\r\n"
+//					+ "    po_title as title,\r\n"
+//					+ "    po_content as content,\r\n"
+//					+ "    po_writedate as writedate,\r\n"
+//					+ "    po_editdate as editdate,\r\n"
+//					+ "    po_viewcount as viewcount,\r\n"
+//					+ "    po_likecount as likecount,\r\n"
+//					+ "    po_dislikecount as dislikecount,\r\n"
+//					+ "    po_reportcount as reportcount,\r\n"
+//					+ "    po_secretcheck as secretcheck,\r\n"
+//					+ "    po_blindcheck as blindcheck,\r\n"
+//					+ "    us_seq as seqpost,\r\n"
+//					+ "    af_filename as filename,\r\n"
+//					+ "    af_filelink as filelink\r\n"
+//					+ "from vwboard2\r\n"
+//					+ where
+//					+ " ORDER BY seq DESC";
 			
-			map.get("begin");
-			map.get("end");
-			System.out.println(map.get("begin"));
-			System.out.println(map.get("end"));
-			
-			String sql = "select \r\n"
-					+ "    po_seq as seq,\r\n"
-					+ "    me_nickname as me_nickname,\r\n"
-					+ "    ad_nickname as ad_nickname,\r\n"
-					+ "    ca_seq as seqboard,\r\n"
-					+ "    po_seqUser as seqUser,\r\n"
-					+ "    po_title as title,\r\n"
-					+ "    po_content as content,\r\n"
-					+ "    po_writedate as writedate,\r\n"
-					+ "    po_editdate as editdate,\r\n"
-					+ "    po_viewcount as viewcount,\r\n"
-					+ "    po_likecount as likecount,\r\n"
-					+ "    po_dislikecount as dislikecount,\r\n"
-					+ "    po_reportcount as reportcount,\r\n"
-					+ "    po_secretcheck as secretcheck,\r\n"
-					+ "    po_blindcheck as blindcheck,\r\n"
-					+ "    us_seq as seqpost,\r\n"
-					+ "    af_filename as filename,\r\n"
-					+ "    af_filelink as filelink\r\n"
+			String sql = "select * from (select\r\n"
+					+ "po_seq as seq,\r\n"
+					+ "me_nickname as me_nickname,\r\n"
+					+ "ad_nickname as ad_nickname,\r\n"
+					+ "ca_seq as seqboard,\r\n"
+					+ "po_seqUser as seqUser,\r\n"
+					+ "po_title as title,\r\n"
+					+ "po_content as content,\r\n"
+					+ "po_writedate as writedate,\r\n"
+					+ "po_editdate as editdate,\r\n"
+					+ "po_viewcount as viewcount,\r\n"
+					+ "po_likecount as likecount,\r\n"
+					+ "po_dislikecount as dislikecount,\r\n"
+					+ "po_reportcount as reportcount,\r\n"
+					+ "po_secretcheck as secretcheck,\r\n"
+					+ "po_blindcheck as blindcheck,\r\n"
+					+ "us_seq as seqpost,\r\n"
+					+ "af_filename as filename,\r\n"
+					+ "af_filelink as filelink,\r\n"
+					+ "rownum as rnum\r\n"
 					+ "from vwboard2\r\n"
 					+ where
-					+ " ORDER BY seq DESC";
+					+ "ORDER BY seq DESC) where rnum between ? and ?";
 			
-			stat = conn.createStatement();
-			rs = stat.executeQuery(sql);
-
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, map.get("begin"));
+			pstat.setString(2, map.get("end"));
+			
+			rs = pstat.executeQuery();
 			
 			ArrayList<PostDTO> list = new ArrayList<PostDTO>();
 			
 			//오늘 날짜 (2024-05-09)
 			String today = LocalDate.now().toString();
-			
-						
+									
 			while (rs.next()) {		
 				
 				PostDTO dto = new PostDTO();
@@ -246,9 +266,10 @@ public class BoardDAO {
 				dto.setFileLink(rs.getString("filelink"));
 				
 				list.add(dto);
+				
 								
 			}	
-			
+
 			return list;
 			
 		} catch (Exception e) {
@@ -461,6 +482,7 @@ public class BoardDAO {
 		
 		return null;
 	}
+	
 	//글 수정
 	public int updatePost(PostDTO post) {
 	    try {
@@ -524,8 +546,58 @@ public class BoardDAO {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
+
+	public int getTotalCount(HashMap<String, String> map, String seq) {
+		
+		try {
+
+			String where = "";
+			
+			if(map.get("search").equals("y")) {
+				
+				where = String.format("where %s like '%%%s%%'", map.get("column"), map.get("word"));
+			}
+			
+			String sql = "select count(*) as cnt from (select\r\n"
+					+ "po_seq as seq,\r\n"
+					+ "me_nickname as me_nickname,\r\n"
+					+ "ad_nickname as ad_nickname,\r\n"
+					+ "ca_seq as seqboard,\r\n"
+					+ "po_seqUser as seqUser,\r\n"
+					+ "po_title as title,\r\n"
+					+ "po_content as content,\r\n"
+					+ "po_writedate as writedate,\r\n"
+					+ "po_editdate as editdate,\r\n"
+					+ "po_viewcount as viewcount,\r\n"
+					+ "po_likecount as likecount,\r\n"
+					+ "po_dislikecount as dislikecount,\r\n"
+					+ "po_reportcount as reportcount,\r\n"
+					+ "po_secretcheck as secretcheck,\r\n"
+					+ "po_blindcheck as blindcheck,\r\n"
+					+ "us_seq as seqpost,\r\n"
+					+ "af_filename as filename,\r\n"
+					+ "af_filelink as filelink,\r\n"
+					+ "rownum as rnum\r\n"
+					+ "from vwboard2\r\n"
+					+ "WHERE ca_seq =  ?)"
+					+ where;
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+			
+			rs = pstat.executeQuery();
+			
+			if(rs.next()) {
+				return rs.getInt("cnt");
+			}
+
+
+		} catch (Exception e) {
+			System.out.println("BoardDAO.getTotalCount");
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
 
 }// BoardDAO
