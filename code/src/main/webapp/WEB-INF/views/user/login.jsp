@@ -49,12 +49,12 @@ body {
 	<div class="container-scroller">
 <!-- 		<div class="container-fluid page-body-wrapper full-page-wrapper"> -->
 		<div class="content-total-style">
-			<div class="user-info-box-container-style">
+			<div class="login-page-container user-info-box-container-style">
 <!-- 				<div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg"> -->
 				<div class="user-info-container-style">
 <!-- 					<div class="card col-lg-4 mx-auto"> -->
 					<div class="">
-						<div class="card-body px-5 py-5">
+						<div class="card-body">
 							<h3 class="card-title text-left mb-3">Login</h3>
 							<form method="POST" action="/account/user/login.do">
 								<div class="form-group">
@@ -73,14 +73,17 @@ body {
 										</label>
 									</div>
 								</div>
-									<button type="submit" class="button purple-btn info-submit-long-btn submit-btn-style">로그인</button>
+									<button type="submit" class="button purple-btn full-btn submit-btn-style">로그인</button>
 
-								<p class="sign-up">
-									<a href="/account/user/register.do">Sign Up</a>
-								</p>
-								<div class="find-info-btn">
-									<a href="/account/user/find-id.do" class="forgot-id">아이디 찾기</a>
-									<a href="/account/user/find-pw.do" class="forgot-pw">비밀번호 찾기</a>
+								<div class="login-bottom-btn-box">
+									<p class="sign-up">
+										<a href="/account/user/register.do">Sign Up</a>
+									</p>
+									<div class="find-info-btn">
+										<a href="/account/user/find-id.do" class="forgot-id">아이디 찾기</a>
+										<a href="/account/user/find-pw.do" class="forgot-pw">비밀번호 찾기</a>
+									</div>
+								
 								</div>
 							</form>
 						</div>
