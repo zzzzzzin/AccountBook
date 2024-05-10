@@ -113,7 +113,7 @@ public class Freeboard extends HttpServlet {
 		if (n == 1) {
 			sb.append(String.format(" <a href='#!'>[이전 %d페이지]</a> ", blockSize));
 		} else {
-			sb.append(String.format(" <a href='/account/board/reportBoard.do?page=%d&column=%s&word=%s'>[이전 %d페이지]</a> ", n - 1, column, word, blockSize));
+			sb.append(String.format(" <a href='/account/board/freeBoard.do?page=%d&column=%s&word=%s'>[이전 %d페이지]</a> ", n - 1, column, word, blockSize));
 		}
 
 		
@@ -122,7 +122,7 @@ public class Freeboard extends HttpServlet {
 			if(n == nowPage) {
 				sb.append(String.format(" <a href='#!' style='color: #FC8E57;'>%d</a> ", n));
 			} else {
-				sb.append(String.format(" <a href='/account/board/reportBoard.do?page=%d&column=%s&word=%s'>%d</a> ", n, column, word, n));
+				sb.append(String.format(" <a href='/account/board/freeBoard.do?page=%d&column=%s&word=%s'>%d</a> ", n, column, word, n));
 			}
 			
 			loop++;
@@ -133,7 +133,7 @@ public class Freeboard extends HttpServlet {
 		if (n >= totalPage) {
 			sb.append(String.format(" <a href='#!'>[다음 %d페이지]</a> ", blockSize));
 		} else {
-			sb.append(String.format(" <a href='/account/board/reportBoard.do?page=%d&column=%s&word=%s'>[다음 %d페이지]</a> ", n, column, word, blockSize));
+			sb.append(String.format(" <a href='/account/board/freeBoard.do?page=%d&column=%s&word=%s'>[다음 %d페이지]</a> ", n, column, word, blockSize));
 		}
 		
 		req.setAttribute("freeList", freeList); // freeList 객체를 요청 객체에 추가
