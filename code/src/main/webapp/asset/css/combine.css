@@ -1412,13 +1412,15 @@ width: 100px !;
 
 /* 메인게시판 시작 */
 .board-section {
-  display: flex;
-  flex-wrap: wrap;
+	display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: space-between;
 }
 .board-block {
   position: relative;
   width: calc(50% - 20px);
-  margin: 10px;
+/*   margin: 10px; */
   padding: 10px;
   border: 1px solid #ddd;
   box-sizing: border-box;
