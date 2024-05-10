@@ -84,7 +84,7 @@ public class NoticeBoard extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		String seq = req.getParameter("seq"); //Post seq
-		String type = req.getParameter("type"); //Like, Dislike 구분
+		String type = req.getParameter("type"); //Like, Dislike, Report 구분
 		
 		
 		Cookie postcookie;
@@ -107,6 +107,8 @@ public class NoticeBoard extends HttpServlet {
 		        }
 		    }
 	    }
+
+		
 		if(postcheck == false) {
 			if(type.equals("like")) {	
 				dao.like(seq);
@@ -133,12 +135,6 @@ public class NoticeBoard extends HttpServlet {
 			postcookie.setPath("/");
 			resp.addCookie(postcookie);	
 		}
-		
-	    
-		//RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/discussion.jsp");
-		//dispatcher.forward(req, resp);		
-	
-	
 	}
 }
 	
