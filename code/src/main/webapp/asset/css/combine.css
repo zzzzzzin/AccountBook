@@ -61,6 +61,7 @@ font-family: "Noto Sans KR", sans-serif;
 	letter-spacing: 0;
 	line-height: 1.5em;
 	position: relative;
+	min-width: 250px;
 	}
 
 /* 박스 스타일 */
@@ -181,6 +182,34 @@ background: #dfd6e8;
 }
 .purple-btn.active {
   background: #786CA7;
+  color: white;
+}
+
+.gray-btn {
+	background-color: #ADA9BB;
+    border: 1px solid #ADA9BB;
+    border-radius: 0.25em;
+    display: inline-block;
+    font-size: 1em;
+    font-weight: 400;
+    line-height: 1.5;
+    padding: 0.4em 0.65em;
+    text-align: center;
+    user-select: none;
+    vertical-align: middle;
+    color:#fff;
+}
+.gray-btn:hover {
+	background-color: #8b8992;
+    border: 1px solid #8b8992;
+}
+
+.gray-btn:visited {
+  background: #8b8992;
+  color: white;
+}
+.gray-btn.active {
+  background: #8b8992;
   color: white;
 }
 
@@ -764,6 +793,33 @@ select {
     margin-bottom: 20px;
   } */
 /* 댓글 끝*/
+
+#description > div > span {
+	color: #f0a69a;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+#description > div {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 10px;
+}
+
+.card-recommendation-box {
+	padding-bottom: 5px;
+	margin-bottom: 20px;
+}
+
+
+
+
+
+
+
+
+
+
 
 /* 가계부 */
 #aboverow {
