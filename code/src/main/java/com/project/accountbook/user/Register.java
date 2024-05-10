@@ -66,6 +66,27 @@ public class Register extends HttpServlet {
 	    }
 
 	    UserDAO dao = new UserDAO();
+	    
+	    // 중복 검사 수행
+	    if (dao.isIdDuplicate(id)) {
+	        req.setAttribute("error", "아이디가 이미 사용 중입니다.");
+	    } else if (dao.isNicknameDuplicate(nickname)) {
+	        req.setAttribute("error", "닉네임이 이미 사용 중입니다.");
+	    } else if (dao.isPhoneNumberDuplicate(phoneNumber)) {
+	        req.setAttribute("error", "전화번호가 이미 사용 중입니다.");
+	    } else if (dao.isSsnDuplicate(ssn)) {
+	        req.setAttribute("error", "주민등록번호가 이미 사용 중입니다.");
+	    } else {
+	        // 중복 검사 통과 후 회원 가입 처리
+	        int result = dao.register(dto);
+	        
+	        if (result == 1) {
+	            resp.sendRedirect("/account/index.do");
+	        } else {
+	            req.setAttribute("error", "회원 가입에 실패했습니다.");
+	        }
+	    }
+	    
 	    int result = dao.register(dto);
 
 	    if (result == 1) {
@@ -73,6 +94,7 @@ public class Register extends HttpServlet {
 	    } else {
 	        resp.sendRedirect("/account/user/register.do");
 	    }
+	    
 	}
 
 }

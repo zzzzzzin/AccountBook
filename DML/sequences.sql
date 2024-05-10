@@ -40,3 +40,5 @@ create sequence seqReplyComments;
 create sequence seqSavingsPeriod;
 create sequence seqSurvey;
 create sequence seqUser;
+
+commit;

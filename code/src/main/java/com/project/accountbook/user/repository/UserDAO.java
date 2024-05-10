@@ -249,67 +249,80 @@ public class UserDAO {
 	}
 
 	// 계정 생성
+	//계정 생성
 	public int register(UserDTO dto) {
-		try {
-			// tblSurvey 데이터 삽입
-			String sql = "INSERT INTO tblSurvey (seq, monthlyPaycheck, savingsGoals, seqCompressionIntensity, seqSavingsPeriod) "
-					+ "VALUES (seqSurvey.NEXTVAL, ?, ?, ?, ?)";
-			pstat = conn.prepareStatement(sql);
-			if (dto.getSeqCompressionIntensity() != null && dto.getSeqSavingsPeriod() != null) {
-				pstat.setInt(1, dto.getMonthlyPaycheck());
-				pstat.setInt(2, dto.getSavingsGoals());
-				pstat.setString(3, dto.getSeqCompressionIntensity());
-				pstat.setString(4, dto.getSeqSavingsPeriod());
-				System.out.println("tblSurvey 데이터 삽입 (사용자 입력 값)");
-			} else {
-				pstat.setInt(1, 0);
-				pstat.setInt(2, 0);
-				pstat.setString(3, "1");
-				pstat.setString(4, "1");
-				System.out.println("tblSurvey 데이터 삽입 (기본값)");
-			}
-			int surveyResult = pstat.executeUpdate();
-			System.out.println("tblSurvey 데이터 삽입 결과: " + surveyResult);
+	    try {
+	        // tblSurvey 데이터 삽입
+	        String sql = "INSERT INTO tblSurvey (seq, monthlyPaycheck, savingsGoals, seqCompressionIntensity, seqSavingsPeriod) " +
+	                     "VALUES (seqSurvey.NEXTVAL, ?, ?, ?, ?)";
+	        pstat = conn.prepareStatement(sql);
+	        if (dto.getSeqCompressionIntensity() != null && dto.getSeqSavingsPeriod() != null) {
+	            pstat.setInt(1, dto.getMonthlyPaycheck());
+	            pstat.setInt(2, dto.getSavingsGoals());
+	            pstat.setString(3, dto.getSeqCompressionIntensity());
+	            pstat.setString(4, dto.getSeqSavingsPeriod());
+	            System.out.println("tblSurvey 데이터 삽입 (사용자 입력 값)");
+	        } else {
+	            pstat.setInt(1, 0);
+	            pstat.setInt(2, 0);
+	            pstat.setString(3, "1");
+	            pstat.setString(4, "1");
+	            System.out.println("tblSurvey 데이터 삽입 (기본값)");
+	        }
+	        int surveyResult = pstat.executeUpdate();
+	        System.out.println("tblSurvey 데이터 삽입 결과: " + surveyResult);
 
-			// seq 값 가져오기
-			sql = "SELECT seqSurvey.CURRVAL FROM DUAL";
-			pstat = conn.prepareStatement(sql);
-			rs = pstat.executeQuery();
-			int seq = 0;
-			if (rs.next()) {
-				seq = rs.getInt(1);
-				System.out.println("seq 값: " + seq);
-			}
+	        // seq 값 가져오기
+	        sql = "SELECT seqSurvey.CURRVAL FROM DUAL";
+	        pstat = conn.prepareStatement(sql);
+	        rs = pstat.executeQuery();
+	        int seq = 0;
+	        if (rs.next()) {
+	            seq = rs.getInt(1);
+	            System.out.println("seq 값: " + seq);
+	        }
 
-			// tblMember 데이터 삽입
-			sql = "INSERT INTO tblMember (id, pw, name, nickname, phoneNumber, ssn, gender, reportCount, joinDate, seqSurvey, seqProfileimg) "
-					+ "VALUES (?, ?, ?, ?, ?, ?, ?, 0, SYSDATE, ?, 1)";
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, dto.getId());
-			pstat.setString(2, dto.getPw());
-			pstat.setString(3, dto.getName());
-			pstat.setString(4, dto.getNickname());
-			pstat.setString(5, dto.getPhoneNumber());
-			pstat.setString(6, dto.getSsn());
-			pstat.setString(7, dto.getGender());
-			pstat.setInt(8, seq);
-			int result = pstat.executeUpdate();
-			System.out.println("tblMember 데이터 삽입 결과: " + result);
+	        // tblMember 데이터 삽입
+	        sql = "INSERT INTO tblMember (id, pw, name, nickname, phoneNumber, ssn, gender, reportCount, joinDate, seqSurvey, seqProfileimg) " +
+	              "VALUES (?, ?, ?, ?, ?, ?, ?, 0, SYSDATE, ?, 1)";
+	        pstat = conn.prepareStatement(sql);
+	        pstat.setString(1, dto.getId());
+	        pstat.setString(2, dto.getPw());
+	        pstat.setString(3, dto.getName());
+	        pstat.setString(4, dto.getNickname());
+	        pstat.setString(5, dto.getPhoneNumber());
+	        pstat.setString(6, dto.getSsn());
+	        pstat.setString(7, dto.getGender());
+	        pstat.setInt(8, seq);
+	        int result = pstat.executeUpdate();
+	        System.out.println("tblMember 데이터 삽입 결과: " + result);
 
-			if (result == 1) {
-				// tblMemberPriv 데이터 삽입
-				sql = "INSERT INTO tblMemberPriv (seq, seqPriv, idMember) " + "VALUES (seqMemberPriv.NEXTVAL, 2, ?)";
-				pstat = conn.prepareStatement(sql);
-				pstat.setString(1, dto.getId());
-				int privResult = pstat.executeUpdate();
-				System.out.println("tblMemberPriv 데이터 삽입 결과: " + privResult);
-			}
+	        if (result == 1) {
+	            // tblMemberPriv 데이터 삽입
+	            sql = "INSERT INTO tblMemberPriv (seq, seqPriv, idMember) " +
+	                  "VALUES (seqMemberPriv.NEXTVAL, 2, ?)";
+	            
+	            
+	            pstat = conn.prepareStatement(sql);
+	            pstat.setString(1, dto.getId());
+	            int privResult = pstat.executeUpdate();
+	            System.out.println("tblMemberPriv 데이터 삽입 결과: " + privResult);
+	        
+	         // tblUser 데이터 삽입
+	            sql = "INSERT INTO tblUser (seq, idMember) " +
+	                    "VALUES (seqUser.NEXTVAL, ?)";
+	            pstat = conn.prepareStatement(sql);
+	            pstat.setString(1, dto.getId());
+	            int userResult = pstat.executeUpdate();
+	            System.out.println("tblUser 데이터 삽입 결과: " + userResult);
+	        }
+	        
 
-			return result;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return 0;
+	        return result;
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return 0;
 	}
 
 	public boolean isIdDuplicate(String id) {
