@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>BudgetBuddy | 카드 사용</title>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
@@ -63,21 +64,7 @@
 
 		<div class="content-total-style">
 			<div class="content-header">
-					<div class="content-title-style"><h3>카드 사용</h3></div>
-					
-					
-					
-					
-<!-- 					<form id="selectDateForm" method="GET"> -->
-<!-- 						<div class="date-range-total-box"> -->
-<!-- 						<div class="date-range-box"> -->
-<%-- 							<label for="start-date-myCardTotal">시작일 <input type="text" name = "startDate" id="start-date" class="date-input-myCardTotal" value="${map.startDate}"> </label>  --%>
-<%-- 							<label for="end-date">종료일 <input type="text" name = "endDate" id="end-date" class="date-input-myCardTotal" value="${map.endDate}"></label>  --%>
-<!-- 						</div> -->
-<!-- 							<input type="submit" value="확인" class="dark-blue-btn long-btn"/> -->
-<!-- 						</div> -->
-<!-- 					</form> -->
-					
+					<div class="content-title-style"><h3>카드 사용</h3></div>				
 					
 					
 					<form id="selectDateForm" method="GET">
@@ -97,7 +84,7 @@
 		
 		<div class="card-use-list">
 				<c:forEach items="${list}" var="dto">
-						<div class="box card-use-item" onclick="location.href='/account/account/card-use-detail.do?seqMyCard=${dto.seqMyCard}&startDate=${map.startDate}&endDate=${map.endDate}';">
+						<div class="link-box-style box card-use-item" onclick="location.href='/account/account/card-use-detail.do?seqMyCard=${dto.seqMyCard}&startDate=${map.startDate}&endDate=${map.endDate}';">
 							<img src="/account/asset/images/${dto.fileLink}" id="cardImgPlace" >
 							<div class="card-use-info-box" >
 								<div class="card-use-name">
