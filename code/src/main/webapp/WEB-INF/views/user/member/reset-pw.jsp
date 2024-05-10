@@ -70,6 +70,10 @@
     }
 </style>
 </head>
+<title>
+비밀번호 재설정
+</title>
+
 <body>
 
 	<%@include file="/WEB-INF/views/inc/header.jsp"%>

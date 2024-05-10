@@ -4,6 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>
+카테고리별 추천 
+</title>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="" name="keywords">
