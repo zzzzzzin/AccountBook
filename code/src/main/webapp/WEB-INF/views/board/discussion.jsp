@@ -703,7 +703,7 @@ function addReplyComment(btn) {
 	//console.log(reportSeq);
 	
 	if(temp !== reportSeq){
-		$("#report_button").click(function() {
+		$('#report_button').click(function() {
 			postreport(${post.seqBoard});
 			location.reload();
 		});
@@ -730,7 +730,7 @@ function addReplyComment(btn) {
 		    url: url,
 		    data: {
 			seq: ${post.seq},
-			report: 'report'
+			type: 'report'
 		    },  	  	
 		    success: function() {
 		    	var temp = document.getElementById('post-report').innerHTML;
