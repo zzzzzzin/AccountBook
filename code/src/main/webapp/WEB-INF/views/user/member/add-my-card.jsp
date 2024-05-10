@@ -24,11 +24,8 @@
     <link rel="stylesheet" href="/account/asset/css/combine.css">
 </head>
 <style>
+<%@ include file ="/WEB-INF/views/inc/asset.jsp"%>
 
-   
-    
-    <%@include file="/WEB-INF/views/inc/asset.jsp"%>
-      
 </style>
 <title>
 내 카드 추가
@@ -61,47 +58,43 @@
             <!-- Navbar End -->
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
-        
-        	<div class="container-addcard">
-    <h2>카드 이미지</h2>
-    <div class="form-group-addcard">
-      <label for="cardImage">카드 이미지</label>
-      <input type="file" id="cardImage" onchange="preview-addcardImage(event)">
-      <div class="preview-addcard" id="imagepreview-addcard">
-        <span>미리보기</span>
-      </div>
-    </div>
-    <div class="form-group-addcard">
-      <label for="cardName">카드명</label>
-      <input type="text" id="cardName">
-    </div>
-    <div class="form-group-addcard">
-      <label for="cardIssuer">카드사</label>
-      <input type="text" id="cardIssuer">
-    </div>
-    <div class="form-group-addcard">
-      <label for="cardNumber">카드번호</label>
-      <input type="text" id="cardNumber">
-    </div>
-    <div class="form-group-addcard">
-      <label for="cardName2">카드명</label>
-      <input type="text" id="cardName2">
-    </div>
-    <div class="form-group-addcard">
-      <label for="nickname">별칭</label>
-      <input type="text" id="nickname">
-    </div>
-    <div class="form-group-addcard">
-      <label for="expirationDate">유효기간</label>
-      <input type="text" id="expirationDate">
-    </div>
-    <div class="button-group-addcard">
-      <button type="button">취소</button>
-      <button type="submit">완료</button>
-    </div>
-  </div>      
 
-        <!-- fakecontent 끝 -->
+			<form method="POST" action="/account/user/member/add-my-card.do" class="container-addcard" id="myForm">
+				<div class="form-group-addcard">
+					<select id="cardSelect">
+						<c:forEach items="${list}" var="list">
+							<option value="${list.seq}" data-name="${list.ciName}" 
+								data-issuer="${list.cardCompany}" data-img="${list.fileLink}">${list.ciName}</option>
+						</c:forEach>
+					</select>
+					<div class="preview-addcard" id="imagepreview-addcard" >
+						<img id="cardImg">
+					</div>
+				</div>
+
+				<div class="form-group-addcard">
+					<label for="cardName">카드명</label> <input type="text" id="cardName" name="name">
+				</div>
+				<div class="form-group-addcard">
+					<label for="cardIssuer">카드사</label> <input type="text" id="cardIssuer" name="cardCompany">
+				</div>
+				<div class="form-group-addcard">
+					<label for="cardNumber">카드번호</label> <input type="text" id="cardNumber" name="cardNumber">
+				</div>
+				<div class="form-group-addcard">
+					<label for="nickname">별칭</label> <input type="text" id="nickname" name="alias">
+				</div>
+				<div class="form-group-addcard">
+					<label for="expirationDate">유효기간</label> 
+					<input type="text" id="expirationDate" name="validity" class="datepicker">
+				</div>
+				<div class="button-group-addcard">
+					<button type="button" onclick="location.href='/account/user/member/my-card.do'">취소</button>
+					<button id="sendout" type="button" onclick="location.href='/account/user/member/my-card.do'">완료</button>
+				</div>
+			</form>
+
+			<!-- fakecontent 끝 -->
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
         
@@ -135,6 +128,98 @@
         }
         reader.readAsDataURL(event.target.files[0]);
       }
+    
+ 	// #cardSelect의 변경 이벤트를 감지하여 updateCardInfo 함수 호출
+    document.getElementById("cardSelect").addEventListener("change", function() {
+        updateCardInfo();
+    });
+    
+    // 초기화 시 한번 호출하여 선택된 값에 따라 cardName, cardIssuer 설정
+    document.addEventListener("DOMContentLoaded", function() {
+        updateCardInfo();
+    });
+    
+    function updateCardInfo() {
+        var selectedOptions = document.querySelectorAll("#cardSelect option:checked");
+        
+        if (selectedOptions.length > 0) {
+            var selectedOption = selectedOptions[0]; // 첫 번째 선택된 옵션만 가져옴
+            document.getElementById("cardName").value = selectedOption.dataset.name || "";
+            document.getElementById("cardIssuer").value = selectedOption.dataset.issuer || "";
+            document.getElementById("cardImg").value = selectedOption.dataset.img || "";
+            document.getElementById("cardImg").src = "/account/asset/images/" + (selectedOption.dataset.img || "");
+        }
+    }
+      
+    document.addEventListener('DOMContentLoaded', function() {
+        const cardSelect = document.getElementById('cardSelect');
+        const selectedSeqInput = document.getElementById('selectedSeq');
+
+        // cardSelect 변경 이벤트를 감지하여 hidden input에 seq 값 설정
+        cardSelect.addEventListener('change', function() {
+            selectedSeqInput.value = this.value; // 선택된 옵션의 seq 값 설정
+        });
+    });
+    
+    var selectDate;
+    
+    $(document).ready(function() {
+        // Datepicker 초기화
+        $('.datepicker').datepicker({
+            dateFormat: 'yy-mm-dd', // 날짜 형식 지정
+            	onSelect: function(dateText, inst) {
+                    // Update variable with selected date value
+                    selectedDate = dateText;
+                }
+        });
+    });
+    
+    $(document).ready(function() {
+        // Declare selectedDate in the outer scope
+        var selectedDate = null;
+
+        // Initialize datepicker
+        $("#datepicker").datepicker({ 
+        dateFormat: "yy-mm-dd", 
+        onSelect: function(){
+            var selected = $(this).datepicker("getDate");
+            alert(selected);
+        }
+    });
+
+        // Click event for the submit button
+        $("#sendout").click(function() {
+            /* if (!selectedDate) {
+                alert("Please select a date first."); // Alert if no date is selected
+                return; // Stop the function if no date is selected
+            }
+ */
+            var formData = {
+                cardName: $("#cardName").val(),
+                cardIssuer: $("#cardIssuer").val(),
+                cardNumber: $("#cardNumber").val(),
+                nickname: $("#nickname").val(),
+                expirationDate: document.getElementById('expirationDate').value // Use the selectedDate in your formData
+            };
+
+            // Debugging log to check what is being sent
+            console.log("Sending Data: ", formData);
+
+            // AJAX request to send formData to the server
+            $.ajax({
+                type: "POST",
+                url: "/account/user/member/add-my-card.do",
+                data: formData,
+                success: function(response) {
+                    console.log("Server response: ", response);
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error occurred: ", error);
+                }
+            });
+        });
+    });
+
 
     </script>
 </body>
