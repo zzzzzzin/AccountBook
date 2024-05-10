@@ -632,19 +632,19 @@ function addReplyComment(btn) {
 
 	//게시글 추천, 비추천
 	function getpostCookie(cookieName) {
-		 let cookies = document.cookie;
-		    let cookieArray = cookies.split("; ");
+	 	let cookies = document.cookie;
+	    let cookieArray = cookies.split("; ");
 
-		    for (let i = 0; i < cookieArray.length; i++) {
-		        let cookie = cookieArray[i];
-		        let [name, value] = cookie.split("=");
+	    for (let i = 0; i < cookieArray.length; i++) {
+	        let cookie = cookieArray[i];
+	        let [name, value] = cookie.split("=");
 
-		        if (name.trim() === cookieName) {
-		            return decodeURIComponent(value);
-		        }
-		    }
+	        if (name.trim() === cookieName) {
+	            return decodeURIComponent(value);
+	        }
+	    }
 
-		    return null;
+	    return null;
 	}
 	
 	var postSeq = getpostCookie("postSeq"+${post.seq});
@@ -690,7 +690,7 @@ function addReplyComment(btn) {
 	//console.log(reportSeq);
 	
 	if(temp !== reportSeq){
-		$("#report_button").click(function() {
+		$('#report_button').click(function() {
 			postreport(${post.seqBoard});
 			location.reload();
 		});
@@ -717,7 +717,7 @@ function addReplyComment(btn) {
 		    url: url,
 		    data: {
 			seq: ${post.seq},
-			report: 'report'
+			type: 'report'
 		    },  	  	
 		    success: function() {
 		    	var temp = document.getElementById('post-report').innerHTML;
