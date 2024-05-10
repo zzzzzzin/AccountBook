@@ -228,8 +228,6 @@ public class BoardDAO {
 			pstat.setString(1, map.get("begin"));
 			pstat.setString(2, map.get("end"));
 			
-			System.out.println(sql);
-			
 			rs = pstat.executeQuery();
 			
 			ArrayList<PostDTO> list = new ArrayList<PostDTO>();
