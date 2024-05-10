@@ -37,8 +37,39 @@ public class CardDTO {
 	private int seq;
 	private String name;
 	
+	//카드정보
+	private String cardNumber;
+	private String alias;
+	private String enddate;
 	
-    private String category;
+
+	
+	
+    public String getAlias() {
+		return alias;
+	}
+
+	public void setAlias(String alias) {
+		this.alias = alias;
+	}
+
+	public String getEnddate() {
+		return enddate;
+	}
+
+	public void setEnddate(String enddate) {
+		this.enddate = enddate;
+	}
+
+	public String getCardNumber() {
+		return cardNumber;
+	}
+
+	public void setCardNumber(String cardNumber) {
+		this.cardNumber = cardNumber;
+	}
+
+	private String category;
 
     public String getCategory() {
         return category;
@@ -160,5 +191,18 @@ public class CardDTO {
 	public void setSeqAccCategory(int seqAccCategory) {
 		this.seqAccCategory = seqAccCategory;
 	}
+
+	@Override
+	public String toString() {
+		return "CardDTO [ciName=" + ciName + ", explanation=" + explanation + ", annualFee=" + annualFee
+				+ ", overseasUse=" + overseasUse + ", cardCompany=" + cardCompany + ", fileLink=" + fileLink
+				+ ", seqCardType=" + seqCardType + ", lcbseqCardCategory=" + lcbseqCardCategory
+				+ ", seqCardInformation=" + seqCardInformation + ", ccName=" + ccName + ", caaSeqCardCategory="
+				+ caaSeqCardCategory + ", seqAccCategory=" + seqAccCategory + ", discountRate=" + discountRate
+				+ ", seq=" + seq + ", name=" + name + ", category=" + category + "]";
+	}
+
+	
+	
 	
 }

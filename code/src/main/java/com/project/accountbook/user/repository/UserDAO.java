@@ -422,8 +422,6 @@ public class UserDAO {
 
 	public ArrayList<PostDTO> getMyPosts(String id) {
 
-		System.out.println("id: " + id);
-
 		ArrayList<PostDTO> plist = new ArrayList<>();
 
 		try {

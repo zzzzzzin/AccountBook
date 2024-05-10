@@ -5,9 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 import com.project.accountbook.card.model.CardDTO;
 import com.project.accountbook.util.DBUtil;
@@ -166,4 +165,54 @@ public class CardDAO {
 	    }
 	    return null;
 	}
+
+
+	public ArrayList<CardDTO> getAllCards() {
+
+		ArrayList<CardDTO> list = new ArrayList<>();
+
+		try {
+			
+			String sql = "select seq, name, cardCompany, fileLink\r\n"
+					+ "from tblCardInformation\r\n";
+			
+			pstat = conn.prepareStatement(sql);
+
+			rs = pstat.executeQuery();
+
+
+	        while (rs.next()) {
+	            CardDTO dto = new CardDTO();
+	        
+	            dto.setSeq(rs.getInt("seq"));
+	            dto.setCiName(rs.getString("name"));
+	            dto.setCardCompany(rs.getString("cardCompany"));
+	            dto.setFileLink(rs.getString("fileLink"));
+	            list.add(dto);
+	        }
+
+	        return list;
+			
+		} catch (Exception e) {
+			System.out.println("CardDAO.getAllCards");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

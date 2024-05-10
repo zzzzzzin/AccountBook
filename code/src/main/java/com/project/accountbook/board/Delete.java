@@ -18,6 +18,7 @@ public class Delete extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String seq = req.getParameter("seq");
+        System.out.println(seq);
 
         int result = bdao.deletePost(seq);
         if (result > 0) {
