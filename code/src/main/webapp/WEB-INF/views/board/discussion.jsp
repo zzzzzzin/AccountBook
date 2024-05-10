@@ -4,8 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>BudgetBuddy | 게시판</title>
     <meta charset="utf-8">
-    <title>게시판 홈</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -27,17 +27,8 @@
 </head>
 
 <style>
-#fakecontent{
-    display: flex;
-    justify-content: center;
-   }
 
-#postpagecontent{
-  margin: 20px;
-
-}
-
-#postmaincontent{
+/* #postmaincontent{
   margin: 20px;
 }
 #postmaincontentreaction{
@@ -55,19 +46,6 @@
   flex-direction: row;
 }
 
-.post-actions-comment{
-  positions: relative;
-
-}
-
-.post-actions-comment i.material-icons {
-        font-size: 16px;  
-    }
-    .post-actions-comment span {
-        position: relative;
-        font-size: 14px; 
-        top: -10px
-    }
 
     #commentcontent {
         margin: 10px !important;
@@ -76,7 +54,7 @@
 
    #subcommentarrow{
       margin-top: 7px;
-    }
+    } */
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
@@ -111,41 +89,42 @@
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
         
-        <div id="fakecontent">
-          <!-- 게시판 게시물 시작 -->
-          <div class="container" id="postpagecontent">
-            <div class="post-box">
-              <h2>
-              	${post.title}
-			  </h2>
-              <div class="post-header" id="maincontent">
-                <img class="user-image" src="/account/asset/images/${post.profileImg}" >
-                <div class="post-info">
-	                <c:choose>			  		
+        <div id="content-total-style">
+        
+        <div class="content-title-style">
+        
+        		<c:choose>			  		
 				  		<c:when test="${post.seqBoard == 1}">
-				  			<span>공지사항</span>
+				  			<h3>공지 게시판</h3>
 				  		</c:when>
 				  		<c:when test="${post.seqBoard == 2}">
-				  			<span>자유게시판</span>
+				  			<h3>자유 게시판</h3>
 				  		</c:when>
 				  		<c:when test="${post.seqBoard == 3}">
-				  			<span>건의게시판</span>
+				  			<h3>건의 게시판</h3>
 				  		</c:when>
 				  		<c:when test="${post.seqBoard == 4}">
-				  			<span>출석게시판</span>
+				  			<h3>출석 게시판</h3>
 				  		</c:when>
 				  	</c:choose>
-                  <span>작성자: ${post.me_nickName != null ? post.me_nickName : post.ad_nickName}</span>
-                  <span>등록일: ${post.writeDate}</span>
+
+					</div>
+				</div>
+        
+        
+        
+          <!-- 게시판 게시물 시작 -->
+          <div class="box post-discussion-box" id="postpagecontent">
+            <div class="">
+              <h4>${post.title} </h4>
+              <div class="post-header" id="maincontent">
+                <img class="user-image" src="/account/asset/images/${post.profileImg}" >
+                <div class="post-info-box">
+                  <div>${post.me_nickName != null ? post.me_nickName : post.ad_nickName}</div> 
+                  <div>${post.writeDate}</div>
                 </div>
-              </div>
-              <div class="post-content" id="postmaincontent">
-                <span>${post.content}</span>
-              </div>
-              <div class="post-actions" id="postmaincontentreaction">
-              	<span id="like_button"><i class="material-icons">thumb_up</i><span id="post-like">${post.likeCount}</span></span>
-                <span id="dislike_button"><i class="material-icons">thumb_down</i><span id="post-dislike">${post.dislikeCount}</span></span>
-                <span id="report_button"><i class="material-icons">report</i><span id="post-report">${post.reportCount}</span></span>
+                
+				<div class="user-post-management-btn-box">
                  <!-- 로그인한 사용자와 게시글 작성자가 일치하는 경우에만 수정 버튼 표시 -->
 			    <c:if test="${not empty sessionScope.seqUser && sessionScope.seqUser == post.seqUser}">
 			      <span><a href="/account/board/edit.do?seq=${post.seq}">수정</a></span>
@@ -153,13 +132,25 @@
 			    <c:if test="${not empty sessionScope.seqUser && (sessionScope.seqUser == post.seqUser || sessionScope.seqPriv == 3)}">
 			       <span class="delete-post" data-post-seq="${post.seq}">삭제</span>
 			    </c:if>          
-              </div>     
+              </div> 
+              </div>
+              
+              <div class="post-content" id="postmaincontent">
+                ${post.content}
+              </div>
+              
+              <div class="post-actions" id="postmaincontentreaction">
+              	<span id="like_button"><i class="material-icons">thumb_up</i><span id="post-like">${post.likeCount}</span></span>
+                <span id="dislike_button"><i class="material-icons">thumb_down</i><span id="post-dislike">${post.dislikeCount}</span></span>
+                <span id="report_button"><i class="material-icons">report</i><span id="post-report">${post.reportCount}</span></span>
+              </div> 
+                
             </div>
                         <!-- 댓글 시작 -->
-<div class="comments">
+	<div class="comments">
     <c:forEach var="comment" items="${comments}">
         <div class="comment-box">
-            <div class="post-header" id="commentlevel1head">
+            <div class="board-user-info-box" id="commentlevel1head">
                 <div class="post-info" id="commentlevel1info">
                     <c:choose>
                         <c:when test="${not empty comment.profileImage}">
@@ -169,9 +160,9 @@
                             <img class="user-image" src="/account/asset/images/${comment.profileImage}" alt="기본 사용자 이미지">
                         </c:otherwise>
                     </c:choose>
-                    <div class="post-info">
-                        <span>작성자: ${comment.nickname}</span>
-                        <span>등록일: ${comment.writeDate}</span>
+                    <div class="post-info-box">
+                    	<div>${comment.nickname}</div>
+                    	<div>${comment.writeDate}</div>
                     </div>
                 </div>
 <div class="post-actions-comment">
@@ -214,10 +205,12 @@
                                 <img class="user-image" src="/account/asset/images/${comment.profileImage}" alt="기본 사용자 이미지">
                             </c:otherwise>
                         </c:choose>
-                        <div class="post-info">
-                            <span>작성자: ${replyComment.nickname}</span>
-                            <span>등록일: ${replyComment.writeDate}</span>
-                        </div>
+                        
+                        <div class="post-info-box">
+                    	<div>${replyComment.nickname}</div>
+                    	<div>${replyComment.writeDate}</div>
+                    	</div>
+    
                     </div>
 <div class="post-actions-comment">
     <span><i class="material-icons">thumb_up</i> ${comment.likeCount}</span>
@@ -256,9 +249,7 @@
           <!-- 게시판 게시물 끝 -->
         </div>
         <!-- fakecontent 끝 -->
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-        
+
     	</div>
     </div>
   

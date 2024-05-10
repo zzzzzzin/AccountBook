@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>공지게시판</title>
+    <title>BudgetBuddy | 공지 게시판</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -66,9 +66,7 @@
 					<div class="content-title-style">
 						<h3>공지 게시판</h3>
 					</div>
-<!-- 				    <div id="board-search"> -->
 				    <div class="board-search-container">
-<!-- 				        <div class="search-window"> -->
 				        <div>
 				          <form id="formSearch" method="GET" action="/account/board/noticeBoard.do">
 				            <div class="board-search-wrap">              
