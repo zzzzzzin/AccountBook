@@ -247,7 +247,7 @@
         <!-- fakecontent 끝 -->
 
     	</div>
-    </div>
+
   
   <!--  댓글 수정 폼  -->
 <div class="comment-edit-form" style="display: none;">

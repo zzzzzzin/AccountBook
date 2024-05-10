@@ -9,6 +9,12 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'SBAggroB';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 /* 덮어쓰기 */
 a {
     color: #141414;	
@@ -55,6 +61,7 @@ font-family: "Noto Sans KR", sans-serif;
 	letter-spacing: 0;
 	line-height: 1.5em;
 	position: relative;
+	min-width: 250px;
 	}
 
 /* 박스 스타일 */
@@ -178,12 +185,40 @@ background: #dfd6e8;
   color: white;
 }
 
+.gray-btn {
+	background-color: #ADA9BB;
+    border: 1px solid #ADA9BB;
+    border-radius: 0.25em;
+    display: inline-block;
+    font-size: 1em;
+    font-weight: 400;
+    line-height: 1.5;
+    padding: 0.4em 0.65em;
+    text-align: center;
+    user-select: none;
+    vertical-align: middle;
+    color:#fff;
+}
+.gray-btn:hover {
+	background-color: #8b8992;
+    border: 1px solid #8b8992;
+}
+
+.gray-btn:visited {
+  background: #8b8992;
+  color: white;
+}
+.gray-btn.active {
+  background: #8b8992;
+  color: white;
+}
+
 .long-btn {
 	height: 80px;
 }
 
 .full-btn {
-	height: 100px;
+	width: 100%;
 }
 
 .submit-btn-style {
@@ -195,6 +230,12 @@ background: #dfd6e8;
 }
 .full-submit-btn-style {
    padding: 10px;
+}
+
+.login-bottom-btn-box {
+	display: flex;
+	flex-direction: column;
+	margin-top: 20px;
 }
 
 
@@ -262,7 +303,8 @@ background: #dfd6e8;
 }
 
 .input-style-form:disabled,.input-style-form:read-only {
-    background-color: #e9ecef;
+	height: 42px;
+    background-color: #fff;
     opacity: 1
 }
 
@@ -403,6 +445,9 @@ textarea.input-style-form-lg {
     box-shadow: 0 0 0 .25rem #ada0de26;
 }
 
+.user-info-input-box {
+	margin-bottom: 20px;
+}
 
 /* 테이블 스타일 */
 	@import 'https://fonts.googleapis.com/css?family=Open+Sans:600,700';
@@ -515,6 +560,22 @@ textarea.input-style-form-lg {
   .table-style td {
     padding: 1em !important;
   }
+}
+
+/* 로그인, 회원가입 등.. */
+.login-page-container {
+	margin: 80px 0 !important;
+}
+.user-info-input-page-container h3 {
+	font-family: 'SBAggroB';
+}
+
+.user-info-box-container-style a:hover {
+	color: #786CA7;
+}
+
+.check-duplicate-button {
+	width: 120px;
 }
 
 
@@ -732,6 +793,33 @@ select {
     margin-bottom: 20px;
   } */
 /* 댓글 끝*/
+
+#description > div > span {
+	color: #f0a69a;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+#description > div {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 10px;
+}
+
+.card-recommendation-box {
+	padding-bottom: 5px;
+	margin-bottom: 20px;
+}
+
+
+
+
+
+
+
+
+
+
 
 /* 가계부 */
 #aboverow {
@@ -1203,6 +1291,14 @@ width: 50px;
 .form-select, .form-control {
 margin: 0 5px; 
 }
+.form-control {
+	background-color: #fff;
+}
+
+.select-box-style select{
+	height: 42px;
+}
+
 .selectSize{
 width: 100px !;
 }
@@ -1218,11 +1314,6 @@ width: 100px !;
   height: 40px;
   width: 15%;
 }
-
-.colorD9{
-  background-color: #D9D9D9;
-}
-
 .inputbox{
   height: 40px;
   
@@ -1250,10 +1341,6 @@ width: 100px !;
 
 #survey{
   /* display: none;  */
-}
-
-#duptext{
-  font-size: 10px;
 }
 /* 회원가입 끝 */
 
