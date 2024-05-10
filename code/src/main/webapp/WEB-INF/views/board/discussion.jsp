@@ -177,7 +177,6 @@
 <div class="post-actions-comment">
     <span><i class="material-icons">thumb_up</i> ${comment.likeCount}</span>
     <span><i class="material-icons">thumb_down</i> ${comment.dislikeCount}</span>
-    <span><i class="material-icons">report</i> 신고</span>
     <span class="reply-toggle">답글</span>
     <c:if test="${not empty sessionScope.seqUser && sessionScope.seqUser == comment.seqUser}">
         <span class="edit-comment" data-comment-seq="${comment.seq}">수정</span>
@@ -223,7 +222,6 @@
 <div class="post-actions-comment">
     <span><i class="material-icons">thumb_up</i> ${comment.likeCount}</span>
     <span><i class="material-icons">thumb_down</i> ${comment.dislikeCount}</span>
-    <span><i class="material-icons">report</i> 신고</span>
     <span class="reply-toggle">답글</span>
     <c:if test="${sessionScope.seqUser eq replyComment.seqUser}">
 <span class="edit-reply-comment" data-reply-comment-seq="${replyComment.seq}">수정</span>
