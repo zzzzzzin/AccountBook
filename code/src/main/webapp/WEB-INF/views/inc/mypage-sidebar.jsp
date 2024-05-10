@@ -20,8 +20,8 @@
 					<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-user"></i> 개인정보 관리</a>
 					<div class="dropdown-menu bg-transparent border-0">
 						<a href="/account/user/member/info.do" class="dropdown-item"><i class="fas fa-eye"></i> 개인정보 조회</a> 
-						<a href="/account/user/member/edit-pw.do" class="dropdown-item"><i class="fas fa-lock"></i> 비밀번호 수정</a> 
 						<a href="/account/user/member/edit-info.do" class="dropdown-item"><i class="fas fa-id-card"></i> 개인정보 수정</a> 
+						<a href="/account/user/member/edit-pw.do" class="dropdown-item"><i class="fas fa-lock"></i> 비밀번호 수정</a> 
 						<a href="/account/user/member/edit-challenge.do" class="dropdown-item"><i class="fas fa-fire"></i> 챌린지 관리</a>
 						<a href="/account/user/member/my-card.do" class="dropdown-item"><i class="fas fa-credit-card"></i> 나의 카드 관리</a>
 					</div>

@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>BudgetBuddy | 개인정보 관리</title>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
@@ -20,25 +21,14 @@
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
    
 </head>
 <style>
+
 	
-	#fakecontent{
-		display: flex;
-		justify-content: center;
-	}
-	
-	.mypage{
-		width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px;
-	}
-	
-   .delContainer {
+/*    .delContainer {
         width: 600px;
         height: 300px;
         background-color: #F3f6f9;
@@ -47,22 +37,9 @@
         flex-direction: column;
         position: relative;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1); 
-    }
+    } */
 
-    .delContent {
-        width: 90%;
-        height: 70%;
-    }
 
-    .now-pw, .edit-pw, .edit-pw-check {
-        display: flex;
-        justify-content: space-around;
-        margin-bottom: 10px;
-        width: 70%;
-        height: 20%;
-        position: relative;
-    }
-    
     .editPw, .checkPw {
     	border: none;
     	text-align: center;
@@ -97,18 +74,6 @@
         justify-content: center;
         align-items: center;
     }
-
-    .edit-pw-btn {
-        width: 80%;
-        height: 30px;
-        position: absolute;
-        top: 80%;
-        left: 10%;
-        background-color: #d9d9d9;
-        border: 0;
-        border-radius: 5px;
-    }
-    
     
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
@@ -116,9 +81,6 @@
     
       
 </style>
-<title>
-비밀번호 변경
-</title>
 <body>
     <div class="container-xxl position-relative bg-white d-flex p-0">
         <!-- Spinner Start -->
@@ -147,40 +109,31 @@
             <!-- Navbar End -->
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
-		<div id="fakecontent">
-			<div class="myPage">
-				<form action="/account/user/member/edit-pw.do" method="POST">
-					<div class="delContainer">
-						<div class="delContent">
-							<div class="now-pw">
-								<div class="now-pw-title">현재 비밀번호</div>
-								<div class="now-pw-real">
-									<input type="text" class="editPw" name="nowPw">
-								</div>
-							</div>
-							<div class="edit-pw">
-								<div class="edit-pw-title">수정 비밀번호</div>
-								<div class="edit-pw-input">
-									<input type="text" class="editPw" name="editPw">
-								</div>
-							</div>
-							<div class="edit-pw-check">
-								<div class="edit-pw-check-title">수정 비밀번호 확인</div>
-								<div class="check-pw-input">
-									<input type="text" class="checkPw" name="checkPw">
-								</div>
-							</div>
-						</div>
-						<button type="submit" class="edit-pw-btn" onclick="window.location.reload();">수정 완료</button>
+		<div class="content-total-style">
+			<div class="content-header">
+					<div class="content-title-style">
+						<h3>비밀번호 수정</h3>
 					</div>
-				</form>
+				</div>
+			<div class="mypage-box-container-style">
+				<form action="/account/user/member/edit-pw.do" method="POST">
+					<div class="user-info-container-style info-box-short-height">
+							<div class="user-info-input-row-style">
+								<div class="form-group"><label>현재 비밀번호</label><input type="text" class="input-style-form" name="nowPw"></div>
+							</div>
+							<div class="user-info-input-row-style">
+								<div class="form-group"><label>새 비밀번호</label><input type="text" class="input-style-form" name="editPw"></div>
+							</div>
+							<div class="user-info-input-row-style">
+								<div class="form-group"><label>새 비밀번호(확인)</label><input type="text" class="input-style-form" name="checkPw"></div>
+						</div>
+						<button type="submit" class="button purple-btn info-submit-long-btn" onclick="window.location.reload();">수정 완료</button>
+					</div>
+					</form>
+				</div>
 			</div>
-</div>
+		</div>
 			<!-- fakecontent 끝 -->
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-        
-    </div>
     </div>
 
     <!-- JavaScript Libraries -->
