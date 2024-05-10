@@ -28,8 +28,12 @@
     <!-- Libraries Stylesheet -->
 </head>
 <style>
-
-   
+	
+   	#pagebar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	}
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
@@ -143,17 +147,20 @@
 	                </c:forEach>
 	                </tbody>
 	            </table>
+	            <!-- 페이지바 -->
+				<div id="pagebar">1, 2, 3, 4, 5, 6, 7, 8, 9</div>
 	            <div class="write-btn">
 	                <a href="/account/board/write.do" class="btn btn-dark">글작성</a>
 	            </div>
 	        </div>
+	        
 	    </div>
 		</section>
 
         <!-- fakecontent 끝 -->
         <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
         
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     	</div>
     </div>
 

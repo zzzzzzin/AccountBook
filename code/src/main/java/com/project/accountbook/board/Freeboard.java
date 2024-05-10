@@ -83,7 +83,7 @@ public class Freeboard extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		String seq = req.getParameter("seq"); //Post seq
-		String type = req.getParameter("type"); //Like, Dislike 구분
+		String type = req.getParameter("type"); //Like, Dislike, Report 구분
 		
 		
 		Cookie postcookie;
@@ -106,6 +106,8 @@ public class Freeboard extends HttpServlet {
 		        }
 		    }
 	    }
+
+		
 		if(postcheck == false) {
 			if(type.equals("like")) {	
 				dao.like(seq);
@@ -132,6 +134,5 @@ public class Freeboard extends HttpServlet {
 			postcookie.setPath("/");
 			resp.addCookie(postcookie);	
 		}
-	
 	}
 }
