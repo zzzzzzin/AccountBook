@@ -430,12 +430,11 @@ public class UserDAO {
 			String sql = "select p.title, m.nickname, p.writeDate, p.viewCount, p.likeCount, p.seq\r\n"
 					+ " from tblUser u inner join tblPost p\r\n"
 					+ "    on u.seq = p.seqUser\r\n"
-					+ "        inner join tblComments c\r\n"
-					+ "            on u.seq = c.seqUser\r\n"
-					+ "                inner join tblMember m\r\n"
-					+ "                    on u.idMember = m.id\r\n"
-					+ "                        where id = ?";
+					+ "       inner join tblMember m\r\n"
+					+ "           on u.idMember = m.id\r\n"
+					+ "              where id = ?"; 
 
+			
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, id);
 
