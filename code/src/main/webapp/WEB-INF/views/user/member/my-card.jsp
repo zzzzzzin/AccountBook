@@ -29,23 +29,19 @@
 
 <!-- Libraries Stylesheet -->
 </head>
+
 <style>
 <%@ include file="/WEB-INF/views/inc/asset.jsp" %>
-.fakecontent {
-	display: flex;
-	justify-content: center;
-}
-
-.myCard {
-	
-}
-
 </style>
+<<<<<<< Updated upstream
 <title>
 나의 카드
 </title>
+=======
+>>>>>>> Stashed changes
 
 <body>
+
 	<div class="container-xxl position-relative bg-white d-flex p-0">
 		<!-- Spinner Start -->
 		<div id="spinner"
@@ -123,6 +119,7 @@
 								<div>유효기간</div>
 								<div>${dto.validity}</div>
 							</div>
+							<button type="submit" class="gray-btn button submit-btn-style">삭제</button>
 						</div>
 					</div>
 					</c:forEach>
@@ -152,6 +149,8 @@
 		src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 	<script>
+	
+	
 
     document.addEventListener('DOMContentLoaded', function() {
     const sidebarToggler = document.getElementById('sidebar-toggler');
