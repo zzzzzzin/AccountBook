@@ -234,12 +234,6 @@
 
 
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="button gray-btn"
-                        data-bs-dismiss="modal">취소</button>
-                    <button type="button" class="button purple-btn" id="btnEventProduce">완료
-                        </button>
-                </div>
             </div>
         </div>
     </div>
