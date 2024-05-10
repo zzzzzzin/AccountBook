@@ -274,7 +274,8 @@ background: #dfd6e8;
 }
 
 .input-style-form:disabled,.input-style-form:read-only {
-    background-color: #e9ecef;
+	height: 42px;
+    background-color: #fff;
     opacity: 1
 }
 
@@ -415,6 +416,9 @@ textarea.input-style-form-lg {
     box-shadow: 0 0 0 .25rem #ada0de26;
 }
 
+.user-info-input-box {
+	margin-bottom: 20px;
+}
 
 /* 테이블 스타일 */
 	@import 'https://fonts.googleapis.com/css?family=Open+Sans:600,700';
@@ -533,12 +537,16 @@ textarea.input-style-form-lg {
 .login-page-container {
 	margin: 80px 0 !important;
 }
-.login-page-container h3 {
+.user-info-input-page-container h3 {
 	font-family: 'SBAggroB';
 }
 
 .user-info-box-container-style a:hover {
 	color: #786CA7;
+}
+
+.check-duplicate-button {
+	width: 120px;
 }
 
 
@@ -1227,6 +1235,14 @@ width: 50px;
 .form-select, .form-control {
 margin: 0 5px; 
 }
+.form-control {
+	background-color: #fff;
+}
+
+.select-box-style select{
+	height: 42px;
+}
+
 .selectSize{
 width: 100px !;
 }
@@ -1242,11 +1258,6 @@ width: 100px !;
   height: 40px;
   width: 15%;
 }
-
-.colorD9{
-  background-color: #D9D9D9;
-}
-
 .inputbox{
   height: 40px;
   
@@ -1274,10 +1285,6 @@ width: 100px !;
 
 #survey{
   /* display: none;  */
-}
-
-#duptext{
-  font-size: 10px;
 }
 /* 회원가입 끝 */
 

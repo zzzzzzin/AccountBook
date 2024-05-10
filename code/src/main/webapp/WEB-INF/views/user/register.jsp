@@ -23,7 +23,7 @@
 <!-- End layout styles -->
 <link rel="shortcut icon" href="/account/asset/images/favicon.png" />
 <style>
-#username {
+/* #username {
 	display: flex;
 }
 .duplicateBtn {
@@ -47,93 +47,92 @@
 	margin-left: 30px;
 }
 .marginfix {
-	/* padding-left: 7rem !important; */
+
 	
 }
 .updatefix {
 	align-items: center;
 }
 #survey {
-	/* display: none;  */
+
 	
 }
 #duptext {
 	font-size: 10px;
-}
+} */
 </style>
 </head>
 <body>
 	<%@include file="/WEB-INF/views/inc/header.jsp"%>
 	<div class="container-scroller">
-		<div class="container-fluid page-body-wrapper full-page-wrapper">
-			<div class="row w-100 m-0">
-				<div
-					class="content-wrapper full-page-wrapper d-flex align-items-center colorD9">
-					<div class="card col-lg-4 mx-auto colorAAA">
-						<div class="card-body px-5 py-5 marginfix colorAAA">
+		<div class="content-total-style">
+			<div class="user-info-box-container-style user-info-input-page-container">
+				<div class="user-info-container-style">
+					<div class="">
+						<div class="card-body">
 							<h3 class="card-title text-left mb-3">Register</h3>
 							<form method="post" action="/account/user/register.do">
-								<label>Username</label>
+								<label>ID(이메일)</label>
 								<div class="form-group " id="username">
 									<input type="text" name="id"
-										class="form-control p_input inputbox updatefix colorD9">
-<button type="button" class="duplicateBtn" data-field="id">
-    <span id="duptext">중복 확인</span>
-</button>
+										class="form-control input-style-form">
+								<button type="button" class="button purple-btn check-duplicate-button" data-field="id">
+								    <span id="duptext">중복 확인</span>
+								</button>
 								</div>
 								<label>비밀번호</label>
 								<div class="form-group" id="pwboxnow">
 									<input type="text" type="password" name="pw"
-										class="form-control p_input inputbox dupnone colorD9">
+										class="form-control input-style-form">
 								</div>
 								<label>비밀번호 재입력</label>
 								<div class="form-group" id="username">
 									<input  type="password" name="pwConfirm"
-										class="form-control p_input inputbox dupnone colorD9">
+										class="form-control input-style-form">
 								</div>
 								<label>이름</label>
 								<div class="form-group" id="username">
 									<input type="text" name="name"
-										class="form-control p_input inputbox dupnone colorD9">
+										class="form-control input-style-form">
 								</div>
 								<label>닉네임</label>
 								<div class="form-group" id="username">
 									<input type="text" name="nickname"
-										class="form-control p_input inputbox colorD9">
-<button type="button" class="duplicateBtn" data-field="nickname">
-    <span id="duptext">중복 확인</span>
-</button>
+										class="form-control input-style-form">
+								<button type="button" class="button purple-btn check-duplicate-button" data-field="nickname">
+								    <span id="duptext">중복 확인</span>
+								</button>
 								</div>
 								<label>전화번호</label>
 								<div class="form-group" id="username">
 									<input type="text" name="phoneNumber"
-										class="form-control p_input inputbox colorD9">
-<button type="button" class="duplicateBtn" data-field="phoneNumber">
-    <span id="duptext">중복 확인</span>
-</button>
+										class="form-control input-style-form">
+								<button type="button" class="button purple-btn check-duplicate-button"  data-field="phoneNumber">
+								    <span id="duptext">중복 확인</span>
+								</button>
 								</div>
 								<label>주민등록 번호</label>
 								<div class="form-group" id="username">
 									<input type="text" name="ssn"
-										class="form-control p_input inputbox colorD9">
-<button type="button" class="duplicateBtn" data-field="ssn">
-    <span id="duptext">중복 확인</span>
-</button>
+										class="form-control input-style-form">
+								<button type="button" class="button purple-btn check-duplicate-button" data-field="ssn">
+								    <span id="duptext">중복 확인</span>
+								</button>
 								</div>
 								<label>성별</label>
-								<div>
+								<div class="user-info-input-box">
 									<input type="radio" id="male" name="gender" value="남자" checked />
 									<label for="male">남자</label> <input class="radsetcss"
 										type="radio" id="female" name="gender" value="여자" /> <label
 										for="female">여자</label>
 								</div>
-								<div>
-									<input type="checkbox" name="challenge" id="challenge" /> <label>챌린지
+								<div class="user-info-input-box">
+									<input type="checkbox" name="challenge" id="challenge"/> <label>챌린지
 										설정하기 (선택)</label>
 								</div>
 								<div id="survey" style="display: none;">
 									<div>압박 강도</div>
-									<div>
+									<div class="user-info-input-box">
 										<input type="radio" id="high" name="seqCompressionIntensity"
 											value="3" checked /> <label for="high">상</label> <input
 											class="radsetcss" type="radio" id="medium"
@@ -147,17 +146,16 @@
   
 									<div class="form-group" id="pwboxnow">
 										<input type="number" name="monthlyPaycheck"
-											class="form-control p_input inputbox colorD9">
+											class="form-control input-style-form">
 									</div>
 									<label>저축 목표 금액</label>
 									<div class="form-group" id="pwboxnow">
 										<input type="number" name="savingsGoals"
-											class="form-control p_input inputbox colorD9">
+											class="form-control input-style-form">
 									</div>
 									<label>저축 목표 기간</label>
 									<div class="form-group" id="pwboxnow">
-										<select class="form-control inputbox colorD9"
-											name="seqSavingsPeriod">
+										<select class="form-control input-style-form select-box-style" name="seqSavingsPeriod">
 											<option value="" selected disabled>기간을 선택해주세요</option>
 											<option value="0">없음</option>
 											<option value="1">1 개월</option>
@@ -166,14 +164,14 @@
 										</select>
 									</div>
 								</div>
-								<div
+<!-- 								<div
 									class="form-group d-flex align-items-center justify-content-between">
 									<div class="form-check">
 									</div>
-								</div>
+								</div> -->
 								<div class="text-center">
 									<button type="submit"
-										class="btn btn-primary btn-block enter-btn inputbox">가입하기</button>
+										class="button purple-btn full-btn submit-btn-style">가입하기</button>
 								</div>
 								<div class="d-flex"></div>
 							</form>

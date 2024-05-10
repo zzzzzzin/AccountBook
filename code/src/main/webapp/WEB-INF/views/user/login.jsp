@@ -47,12 +47,9 @@ body {
 <body>
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
 	<div class="container-scroller">
-<!-- 		<div class="container-fluid page-body-wrapper full-page-wrapper"> -->
 		<div class="content-total-style">
-			<div class="login-page-container user-info-box-container-style">
-<!-- 				<div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg"> -->
+			<div class="user-info-input-page-container login-page-container user-info-box-container-style">
 				<div class="user-info-container-style">
-<!-- 					<div class="card col-lg-4 mx-auto"> -->
 					<div class="">
 						<div class="card-body">
 							<h3 class="card-title text-left mb-3">Login</h3>
