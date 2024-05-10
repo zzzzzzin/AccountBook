@@ -8,7 +8,7 @@
 <head>
 	<!-- <link rel="stylesheet" href="path/to/font-awesome/css/all.min.css"> -->
     <meta charset="utf-8">
-    <title>건의게시판</title>
+    <title>BudgetBuddy | 건의 게시판</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -67,38 +67,35 @@
             <!-- Navbar End -->
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
+        <div>
       	<section class="reportboard">
-        <div class="page-title">
-              <div class="container">
-                  <h3>건의 게시판</h3>
-              </div>
-          </div>
-      
-	    <!-- board seach area -->
-	    <div id="board-search">
-	      <div class="container">
-	        <div class="search-window">
-	          <form id="formSearch" method="GET" action="/account/board/freeBoard.do">
-                <div class="search-wrap">
-                  <select name="column">
-                    <option value="total">제목+내용</option>
-                    <option value="title">제목</option>
-                    <option value="content">내용</option>
-                  </select>
-                  <label for="search" class="blind">게시판 검색</label>
-                  <input id="search" type="search" name="word" placeholder="검색어를 입력해주세요." value="">
-                  <button type="submit" class="btn btn-dark">검색</button>
-                </div>
-              </form>
-	        </div>
-	      </div>
-	    </div>
+        <div class="content-header">
+					<div class="content-title-style">
+						<h3>건의 게시판</h3>
+					</div>
+				    <div class="board-search-container">
+				        <div>
+				          <form id="formSearch" method="GET" action="/account/board/noticeBoard.do">
+				            <div class="board-search-wrap">              
+				              <select name="column">
+				                <option value="total">제목+내용</option>
+				                <option value="title">제목</option>
+				                <option value="content">내용</option>
+				              </select>
+				              <label for="search" class="blind">게시판 검색</label>
+				              <input class="input-style-form board-search-input" id="search" type="search" name="word" placeholder="검색어를 입력해주세요." value="">
+				              <button type="submit" class="button purple-btn board-search-btn">검색</button>	              			
+				            </div>
+			          	  </form>
+				        </div>
+				    </div>
+				</div>
 	    
 	    <!-- board list area -->
 	    <div id="board-list">
 	        <div class="container">
-	            <table class="board-table">
-	                <thead>
+	            <table class="table-style">
+	            <tbody>
 	                <tr>
 	                    <th scope="col" class="th-num">번호</th>
 	                    <th scope="col" class="th-title">제목</th>
@@ -108,8 +105,6 @@
 	                    <th scope="col" class="th-like">추천</th>
 	                    <th scope="col" class="th-like">비밀글</th>
 	                </tr>
-	                </thead>
-	                <tbody>
 	                <c:if test="${reportList.size() == 0}">
 					    <tr>
 					        <td>게시물이 없습니다.</td>
@@ -150,17 +145,16 @@
 	            <!-- 페이지바 -->
 				<div id="pagebar">${pagebar}</div>
 	            <div class="write-btn">
-	                <a href="/account/board/write.do" class="btn btn-dark">글작성</a>
+	                <a href="/account/board/write.do" class="button purple-btn submit-btn-style">글작성</a>
 	            </div>
 	        </div>
 	        
 	    </div>
 		</section>
+		</div>
 
         <!-- fakecontent 끝 -->
-        <!-- Back to Top -->
-        
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
     	</div>
     </div>
 

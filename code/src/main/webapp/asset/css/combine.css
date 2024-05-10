@@ -180,10 +180,10 @@ background: #dfd6e8;
     border: 1px solid #786CA7;
 }
 
-.purple-btn:visited {
+/* .purple-btn:visited {
   background: #786CA7;
   color: white;
-}
+} */
 .purple-btn.active {
   background: #786CA7;
   color: white;
@@ -208,10 +208,10 @@ background: #dfd6e8;
     border: 1px solid #8b8992;
 }
 
-.gray-btn:visited {
+/* .gray-btn:visited {
   background: #8b8992;
   color: white;
-}
+} */
 .gray-btn.active {
   background: #8b8992;
   color: white;
@@ -240,10 +240,10 @@ background: #dfd6e8;
     cursor: pointer;
 }
 
-.light-purple-btn:visited {
+/* .light-purple-btn:visited {
   background: #d0cde6;
   color: white;
-}
+} */
 .light-purple-btn.active {
   background: #d0cde6;
   color: white;
@@ -740,16 +740,21 @@ select {
   display: flex;
   align-items: center;
   padding: 20px 0;
+  justify-content: space-between;
 }
 
-    #commentcontent {
-        margin: 10px !important;
-        padding: 0;
-    }
-    
+#commentcontent {
+   margin: 10px !important;
+   padding: 0;
+}
+
+.post-actions-comment div {
+	display: flex;
+}
 
 .post-actions-comment {
 	display: flex;
+    flex-direction: column;
 }
 
 .user-post-management-btn-box {
