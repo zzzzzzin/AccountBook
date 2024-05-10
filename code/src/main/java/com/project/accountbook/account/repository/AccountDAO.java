@@ -1320,7 +1320,6 @@ public class AccountDAO {
 
 	        // Second update statement
 	        
-	        
 	        sql = "UPDATE TBLACCCATEGORYLIST SET SEQACCCATEGORY = ? where SEQACCINFO = ?";
 	        pstat = conn.prepareStatement(sql);
 	        pstat.setInt(1, Integer.parseInt(dto.getSeqAccCategory()));
