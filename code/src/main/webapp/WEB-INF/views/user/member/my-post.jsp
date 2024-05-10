@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>BudgetBuddy | 게시판 이용 내역</title>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
@@ -30,9 +31,6 @@
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
 </style>
-<title>
-내가 쓴 글
-</title>
 <body>
     <div class="container-xxl position-relative bg-white d-flex p-0">
         <!-- Spinner Start -->
@@ -62,13 +60,18 @@
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
         
-        <div id="fakecontent">
+        <div class="content-total-style">
+        	<div class="content-header">
+					<div class="content-title-style">
+						<h3>내가 쓴 글</h3>
+					</div>
+			</div>
 				<section class="notice">
 					<!-- board list area -->
 					<div id="board-list">
 						<div class="container">
-							<table class="board-table">
-								<thead>
+							<table class="table-style">
+								<tbody>
 									<tr>
 										<th scope="col" class="th-title">제목</th>
 										<th scope="col" class="th-writer">작성자</th>
@@ -76,13 +79,9 @@
 										<th scope="col" class="th-view">조회수</th>
 										<th scope="col" class="th-like">추천</th>
 									</tr>
-								</thead>
-								<tbody>
 									<c:forEach items="${plist}" var="dto">
 										<tr>
-											<th>
-												<a href="/account/board/discussion.do?seq=${dto.seq}">${dto.title}</a>
-											</th>
+											<td><a href="/account/board/discussion.do?seq=${dto.seq}">${dto.title}</a></td>
 											<td>${dto.me_nickName}</td>
 											<td>${dto.writeDate}</td>
 											<td>${dto.viewCount}</td>
