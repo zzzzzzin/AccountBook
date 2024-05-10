@@ -19,6 +19,33 @@ public class CommentDAO {
     public CommentDAO() {
         this.conn = DBUtil.open("125.241.245.222", "webproject", "java1234");
     }
+    // 싫어요 기능 처리 메서드
+    public int updateCommentDislike(String commentSeq) {
+        try {
+            String sql = "UPDATE tblComments SET dislikeCount = dislikeCount + 1 WHERE seq = ?";
+            pstat = conn.prepareStatement(sql);
+            pstat.setString(1, commentSeq);
+            return pstat.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    
+    
+    //댓글 좋아요
+    
+    public int updateCommentLike(String commentSeq) {
+        try {
+            String sql = "UPDATE tblComments SET likeCount = likeCount + 1 WHERE seq = ?";
+            pstat = conn.prepareStatement(sql);
+            pstat.setString(1, commentSeq);
+            return pstat.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
     
     //댓글 조회
     public List<CommentDTO> getCommentsByPostSeq(String postSeq) {

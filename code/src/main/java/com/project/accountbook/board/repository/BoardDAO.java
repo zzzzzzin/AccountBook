@@ -176,6 +176,11 @@ public class BoardDAO {
 				where = String.format("where ca_seq = %s", seq);
 			}
 			
+			map.get("begin");
+			map.get("end");
+			System.out.println(map.get("begin"));
+			System.out.println(map.get("end"));
+			
 			String sql = "select \r\n"
 					+ "    po_seq as seq,\r\n"
 					+ "    me_nickname as me_nickname,\r\n"
