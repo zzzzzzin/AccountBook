@@ -502,6 +502,23 @@ public class BoardDAO {
 			e.printStackTrace();
 		}
 	}
+
+	public void updateReadcount(String seq) {
+		
+		try {
+
+			String sql = "update tblpost set viewcount = viewcount + 1 where seq = ?";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+
+			pstat.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("BoardDAO.updateReadcount");
+			e.printStackTrace();
+		}
+	}
 	
 	
 	
