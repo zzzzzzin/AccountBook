@@ -9,6 +9,11 @@
     font-style: normal;
 }
 
+/* 덮어쓰기 */
+/* a:hover { */
+/*     color: #007dcc !important; */
+/* } */
+
 
 body{
 font-family: "Noto Sans KR", sans-serif;
