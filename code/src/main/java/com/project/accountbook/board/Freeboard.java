@@ -26,7 +26,8 @@ public class Freeboard extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		HttpSession session = req.getSession();
-		session.setAttribute("read", "n");
+		session.setAttribute("read", "n");		
+		
 		
 		//쿠키 조회수
 		Cookie cookies = new Cookie("cookieread", "n");
@@ -35,6 +36,31 @@ public class Freeboard extends HttpServlet {
 		resp.addCookie(cookies);
 		//끝
 		
+		
+		//페이징
+		String page = req.getParameter("page");
+		
+		int nowPage = 0;	
+		int totalCount = 0;	
+		int pageSize = 10;	
+		int totalPage = 0;	
+		int begin = 0;		
+		int end = 0;		
+		int n = 0;			
+		int loop = 0;
+		int blockSize = 10;
+		
+		if(page == null || page.equals("")) {
+			nowPage = 1;
+		} else {
+			nowPage = Integer.parseInt(page);
+		}
+			
+		begin = ((nowPage - 1) * pageSize) + 1;
+		end = begin + pageSize - 1;
+		
+		
+		//검색
 		String column = req.getParameter("column");
 		String word = req.getParameter("word");
 		String search = "n"; //n : 목록보기, y : 검색하기
@@ -47,7 +73,6 @@ public class Freeboard extends HttpServlet {
 		
 		HashMap<String, String> map = new HashMap<>();
 		
-		
 		if(column == null) column = "";
 		if(word == null) word = "";	
 		
@@ -55,10 +80,11 @@ public class Freeboard extends HttpServlet {
 		map.put("column", column);
 		map.put("word", word);
 		
+		map.put("begin", begin + "");
+		map.put("end", end + "");
 		
 		
 		ArrayList<PostDTO> freeList = dao.list(map, "2");
-
 		
 		for (PostDTO list : freeList) {
 			
@@ -71,8 +97,51 @@ public class Freeboard extends HttpServlet {
             
         }
 		
+		totalCount = dao.getTotalCount(map, "2");
+		totalPage = (int)Math.ceil((double)totalCount / pageSize);
+		
+		
+		//페이지 바
+		StringBuilder sb = new StringBuilder();
+		
+		loop = 1;
+		n = ((nowPage - 1) / blockSize) * blockSize + 1;
+		
+		
+		
+		//이전 페이지
+		if (n == 1) {
+			sb.append(String.format(" <a href='#!'>[이전 %d페이지]</a> ", blockSize));
+		} else {
+			sb.append(String.format(" <a href='/account/board/reportBoard.do?page=%d&column=%s&word=%s'>[이전 %d페이지]</a> ", n - 1, column, word, blockSize));
+		}
+
+		
+		//페이지 리스트
+		while (!(loop > blockSize || n > totalPage)) {
+			if(n == nowPage) {
+				sb.append(String.format(" <a href='#!' style='color: #FC8E57;'>%d</a> ", n));
+			} else {
+				sb.append(String.format(" <a href='/account/board/reportBoard.do?page=%d&column=%s&word=%s'>%d</a> ", n, column, word, n));
+			}
+			
+			loop++;
+			n++;
+		}
+		
+		//다음 페이지
+		if (n >= totalPage) {
+			sb.append(String.format(" <a href='#!'>[다음 %d페이지]</a> ", blockSize));
+		} else {
+			sb.append(String.format(" <a href='/account/board/reportBoard.do?page=%d&column=%s&word=%s'>[다음 %d페이지]</a> ", n, column, word, blockSize));
+		}
+		
 		req.setAttribute("freeList", freeList); // freeList 객체를 요청 객체에 추가
 		req.setAttribute("map", map);
+		req.setAttribute("nowPage", nowPage);
+		req.setAttribute("totalCount", totalCount);
+		req.setAttribute("totalPage", totalPage);
+		req.setAttribute("pagebar", sb.toString());
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/free-board.jsp");
 		dispatcher.forward(req, resp);
@@ -112,8 +181,8 @@ public class Freeboard extends HttpServlet {
 			if(type.equals("like")) {	
 				dao.like(seq);
 				postcookie = new Cookie("postSeq"+seq, seq);
-				//postcookie.setMaxAge(60 * 60 * 24);
-				postcookie.setMaxAge(60 * 60);
+				//postcookie.setMaxAge(60 * 60 * 24); //하루
+				postcookie.setMaxAge(60 * 60); //1시간
 				postcookie.setPath("/");
 				resp.addCookie(postcookie);
 				
