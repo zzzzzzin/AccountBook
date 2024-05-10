@@ -219,6 +219,28 @@ insert into tblCardInformation (seq, name, explanation, annualFee, overseasUse, 
     values (9, '신한카드 Deep Dream', '속 깊은 디지털 라이프', 8000, '가능', '신한카드', '1111', 1);
 insert into tblCardInformation (seq, name, explanation, annualFee, overseasUse, cardCompany, fileLink, seqCardType) 
     values (10, '삼성카드 taptap O', '직접 선택하는 혜택, 탭탭 옵션형!', 10000, '가능', '삼성카드', '1111', 1);
+-- 11 ~ 20 날아감
+
+insert into tblCardInformation (seq, name, explanation, annualFee, overseasUse, cardCompany, fileLink, seqCardType) 
+    values (21, 'MILEAGE PLATINUM', '여행 백화점 카페 편의점 라운지 다양한 혜택', 49000, '가능', '삼성카드', 'mileage.png', 2);
+insert into tblCardInformation (seq, name, explanation, annualFee, overseasUse, cardCompany, fileLink, seqCardType) 
+    values (22, 'KB국민 My WESH 카드', '음식점 10프로 할인!!', 15000, '가능', '삼성카드', 'wesh.png', 2);
+insert into tblCardInformation (seq, name, explanation, annualFee, overseasUse, cardCompany, fileLink, seqCardType) 
+    values (23, '신한카드 Deep Dream', '더해드림!!챙겨드림!', 8000, '가능', '삼성카드', 'dream.png', 2);
+insert into tblCardInformation (seq, name, explanation, annualFee, overseasUse, cardCompany, fileLink, seqCardType) 
+    values (24, '올바른 FLEX 카드', '스타벅스 FLEX 하도록! 50퍼 할인까지', 12000, '가능', '삼성카드', 'flex.png', 1);
+insert into tblCardInformation (seq, name, explanation, annualFee, overseasUse, cardCompany, fileLink, seqCardType) 
+    values (25, '신한카드 Deep Oil', '차량 주유 음식 모두 다 한 카드로', 10000, '가능', '신한카드', 'deepoil.png', 2);
+insert into tblCardInformation (seq, name, explanation, annualFee, overseasUse, cardCompany, fileLink, seqCardType) 
+    values (26, 'IBK무민카드', '커피 쿠팡 편의점 접근성 넘치는 혜택', 10000, '가능', 'IBK기업카드', 'mumin.png', 2);
+insert into tblCardInformation (seq, name, explanation, annualFee, overseasUse, cardCompany, fileLink, seqCardType) 
+    values (27, '다담카드', '주유 교통 자동차 음식! 다담았다', 20000, '가능', 'KB국민카드', 'dadam.png', 2);
+insert into tblCardInformation (seq, name, explanation, annualFee, overseasUse, cardCompany, fileLink, seqCardType) 
+    values (28, 'Easy all 티타늄카드', '내가 원하는 혜택을 Sun택!', 30000, '가능', 'KB국민카드', 'easyall.png', 2);
+insert into tblCardInformation (seq, name, explanation, annualFee, overseasUse, cardCompany, fileLink, seqCardType) 
+    values (29, '삼성iD GLOBAL카드', '해외 그리고 일상생활 모든 부문에서 혜택을 찾아보자', 20000, '가능', '삼성카드', 'global.png', 2);
+
+
 
 update tblCardInformation set fileLink = 'myPage-viewCards-card.png';
 select * from tblAdmin;
