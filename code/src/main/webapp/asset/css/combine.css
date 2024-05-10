@@ -490,12 +490,6 @@ textarea.input-style-form-lg {
     padding: 30px 0;
 }
 
-/* 짧은 박스 */
-/* .info-box-short-height { */
-/*         height: 300px; */
-	
-/* } */
-
 /* 개인 정보 출력 input style */
 .user-info-input-row-style {
     display: flex;
@@ -505,9 +499,7 @@ textarea.input-style-form-lg {
     flex-direction: column;
     justify-content: center;
 }
-/*    .delContainer {
-    }
- */
+
 
 
 

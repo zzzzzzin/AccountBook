@@ -25,56 +25,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
    
 </head>
-<style>
-
-	
-/*    .delContainer {
-        width: 600px;
-        height: 300px;
-        background-color: #F3f6f9;
-        border-radius: 5px;
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1); 
-    } */
-
-
-    .editPw, .checkPw {
-    	border: none;
-    	text-align: center;
-    }
-    
-    .now-pw-title, .edit-pw-title, .edit-pw-check-title {
-        background-color: #e8e8e8 !important; 
-        text-align: left;
-  		font-weight: bold;
-  		box-shadow: inset 0 0 5px rgba(0,0,0,0.1); 
-  		margin-right: 10px; 
-        width: 200px;
-        height: 100%;
-        text-align: center;
-        position: absolute;
-        top: 100%;
-        left: 10%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .now-pw-real, .edit-pw-input, .check-pw-input {
-        background-color: #ffffff;
-        width: 300px;
-        height: 100%;
-        text-align: center;
-        position: absolute;
-        top: 100%;
-        left: 70%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    
+<style>    
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
     
@@ -117,7 +68,7 @@
 				</div>
 			<div class="mypage-box-container-style">
 				<form action="/account/user/member/edit-pw.do" method="POST">
-					<div class="user-info-container-style info-box-short-height">
+					<div class="user-info-container-style">
 							<div class="user-info-input-row-style">
 								<div class="form-group"><label>현재 비밀번호</label><input type="text" class="input-style-form" name="nowPw"></div>
 							</div>
