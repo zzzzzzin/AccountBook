@@ -25,93 +25,10 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 <style>
-
-/*    .container-surveysetting {
-        /* border: 1px solid black; */
-        width: 800px;
-        height: 300px;
-        background-color: #F1F4C7;
-        display: flex;
-        flex-direction: column;
-        position: relative;
-    }
-
-    .content-surveysetting {
-        width: 90%;
-        height: 70%;
-    }
-
-    .contents-surveysetting {
-        display: flex;
-        justify-content: space-around;
-        margin-bottom: 10px;
-        width: 70%;
-        height: 20%;
-        position: relative;
-    }
-
-    .sallary-title,
-    .check-pw-title {
-        background-color: #d9d9d9;
-        width: 200px;
-        height: 100%;
-        text-align: center;
-        position: absolute;
-        top: 70%;
-        left: 10%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    .period {
-    
-    }
-
-    .sallary-real, .settingPeriod, .period {
-        background-color: #d9d9d9;
-        width: 80%;
-        height: 100%;
-        text-align: center;
-        position: absolute;
-        top: 70%;
-        left: 70%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .settingPeriod {
-        display: flex;
-		padding: 30px
-    }
-    
-    .startDate {
-    	margin-right: 10px;
-    }
-
-    .saveSurveySetting {
-        display: flex;
-        justify-content: center;
-    }
-
-    .saveBtn {
-        width: 20%;
-        height: 30px;
-        position: absolute;
-        top: 85%;
-        left: 74%;
-        background-color: #d9d9d9;
-        border: 2px solid black;
-        border-radius: 10px;
-    } */
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
 </style>
-<title>
-챌린지 설정
-</title>
 <body>
     <div class="container-xxl position-relative bg-white d-flex p-0">
         <!-- Spinner Start -->
