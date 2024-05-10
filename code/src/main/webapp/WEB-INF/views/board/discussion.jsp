@@ -175,8 +175,8 @@
                     </div>
                 </div>
 <div class="post-actions-comment">
-    <span><i class="material-icons">thumb_up</i> ${comment.likeCount}</span>
-    <span><i class="material-icons">thumb_down</i> ${comment.dislikeCount}</span>
+    <span class="like-comment" data-comment-seq="${comment.seq}"><i class="material-icons">thumb_up</i> ${comment.likeCount}</span>
+    <span class="dislike-comment" data-comment-seq="${comment.seq}"><i class="material-icons">thumb_down</i> ${comment.dislikeCount}</span>
     <span class="reply-toggle">답글</span>
     <c:if test="${not empty sessionScope.seqUser && sessionScope.seqUser == comment.seqUser}">
         <span class="edit-comment" data-comment-seq="${comment.seq}">수정</span>
@@ -290,6 +290,104 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
    
 <script>
+
+
+$(document).on('click', '.like-comment', function() {
+    var commentSeq = $(this).data('comment-seq');
+    var cookieName = 'commentLike_' + commentSeq;
+    
+    if (getCookie(cookieName) === null) {
+        // 쿠키가 없으면 좋아요 처리
+        updateCommentLike(commentSeq, function(response) {
+            if (response === 'Success') {
+                setCookie(cookieName, 'true', 365);
+                location.reload(); // 페이지 리로드
+            }
+        });
+    }
+});
+
+$(document).on('click', '.dislike-comment', function() {
+    var commentSeq = $(this).data('comment-seq');
+    var cookieName = 'commentDislike_' + commentSeq;
+    
+    if (getCookie(cookieName) === null) {
+        // 쿠키가 없으면 싫어요 처리
+        updateCommentDislike(commentSeq, function(response) {
+            if (response === 'Success') {
+                setCookie(cookieName, 'true', 365);
+                location.reload(); // 페이지 리로드
+            }
+        });
+    }
+});
+
+function updateCommentLike(commentSeq, callback) {
+    $.ajax({
+        url: '${pageContext.request.contextPath}/board/updateCommentLike.do',
+        type: 'POST',
+        data: {
+            commentSeq: commentSeq,
+            action: 'updateCommentLike'
+        },
+        success: function(response) {
+            if (response === 'Success') {
+                var likeCountElement = $('.like-comment[data-comment-seq="' + commentSeq + '"]').find('span');
+                var currentLikeCount = parseInt(likeCountElement.text());
+                likeCountElement.text(currentLikeCount + 1);
+            }
+            callback(response);
+        },
+        error: function() {
+            // 좋아요 처리 실패
+        }
+    });
+}
+
+function updateCommentDislike(commentSeq, callback) {
+    $.ajax({
+        url: '${pageContext.request.contextPath}/board/updateCommentDislike.do',
+        type: 'POST',
+        data: {
+            commentSeq: commentSeq,
+            action: 'updateCommentDislike'
+        },
+        success: function(response) {
+            if (response === 'Success') {
+                var dislikeCountElement = $('.dislike-comment[data-comment-seq="' + commentSeq + '"]').find('span');
+                var currentDislikeCount = parseInt(dislikeCountElement.text());
+                dislikeCountElement.text(currentDislikeCount + 1);
+            }
+            callback(response);
+        },
+        error: function() {
+            // 싫어요 처리 실패
+        }
+    });
+}
+
+// 쿠키 관련 함수
+function setCookie(name, value, days) {
+    var expires = '';
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = '; expires=' + date.toUTCString();
+    }
+    document.cookie = name + '=' + (value || '') + expires + '; path=/';
+}
+
+function getCookie(name) {
+    var nameEQ = name + '=';
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
+
 //게시글 삭제
 $(document).on('click', '.delete-post', function() {
     var postSeq = $(this).data('post-seq');

@@ -17,7 +17,7 @@ import com.project.accountbook.board.comment.repository.CommentDAO;
 import com.project.accountbook.board.post.model.PostDTO;
 import com.project.accountbook.board.repository.BoardDAO;
 
-@WebServlet("/board/discussion.do")
+@WebServlet({"/board/discussion.do", "/board/updateCommentLike.do", "/board/updateCommentDislike.do"})
 public class Discussion extends HttpServlet {
 	
 	CommentDTO cdto = new CommentDTO();
@@ -83,18 +83,39 @@ public class Discussion extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setCharacterEncoding("UTF-8");
-		String action = req.getParameter("action");
-	    if (action != null && action.equals("updateComment")) {
-	        String commentSeq = req.getParameter("commentSeq");
-	        String editedContent = req.getParameter("editedContent");
-	        int result = cdao.updateComment(commentSeq, editedContent);
-	        if (result > 0) {
-	            // 댓글 수정 성공
-	            resp.getWriter().write("Success");
-	        } else {
-	            // 댓글 수정 실패
-	            resp.getWriter().write("Fail");
+	    req.setCharacterEncoding("UTF-8");
+	    String action = req.getParameter("action");
+
+	    if (action != null) {
+	        switch (action) {
+	            case "updateComment":
+	                String commentSeq = req.getParameter("commentSeq");
+	                String editedContent = req.getParameter("editedContent");
+	                int result = cdao.updateComment(commentSeq, editedContent);
+	                if (result > 0) {
+	                    resp.getWriter().write("Success");
+	                } else {
+	                    resp.getWriter().write("Fail");
+	                }
+	                break;
+	            case "updateCommentLike":
+	            	String likeCommentSeq = req.getParameter("commentSeq");
+	                int likeResult = cdao.updateCommentLike(likeCommentSeq);
+	                if (likeResult > 0) {
+	                    resp.getWriter().write("Success");
+	                } else {
+	                    resp.getWriter().write("Fail");
+	                }
+	                break;
+	            case "updateCommentDislike":
+	                String dislikeCommentSeq = req.getParameter("commentSeq");
+	                int dislikeResult = cdao.updateCommentDislike(dislikeCommentSeq);
+	                if (dislikeResult > 0) {
+	                    resp.getWriter().write("Success");
+	                } else {
+	                    resp.getWriter().write("Fail");
+	                }
+	                break;
 	        }
 	    }
 	}
