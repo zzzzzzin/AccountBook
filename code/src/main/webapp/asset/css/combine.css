@@ -186,6 +186,10 @@ background: #dfd6e8;
    padding: 10px;
 }
 
+.full-submit-btn-style {
+   padding: 10px;
+}
+
 .info-submit-long-btn {
    width: 80%;
 }   
@@ -387,6 +391,15 @@ textarea.input-style-form-lg {
     border-radius: 5px
 }
 
+/* 체크 박스 스타일 */
+.form-check-input:checked[type="checkbox"],
+.form-check-input:active,  
+.form-check-input:focus  {
+	border-color: #ADA0DE;
+    box-shadow: 0 0 0 .25rem #ada0de26;
+}
+
+
 /* 테이블 스타일 */
 	@import 'https://fonts.googleapis.com/css?family=Open+Sans:600,700';
 
@@ -506,6 +519,12 @@ textarea.input-style-form-lg {
 	display: flex;
 	justify-content: center;
     align-items: center;
+}
+.user-info-box-container-style {
+	display: flex;
+	justify-content: center;
+    align-items: center;
+    margin: 50px 0;
 }
 
 /* 정보 출력 박스 스타일 */
