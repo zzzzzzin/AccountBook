@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,26 +19,50 @@ import com.project.accountbook.board.repository.BoardDAO;
 
 @WebServlet("/board/discussion.do")
 public class Discussion extends HttpServlet {
+	
 	CommentDTO cdto = new CommentDTO();
 	CommentDAO cdao = new CommentDAO();
 	BoardDAO bdao = new BoardDAO();
     
-
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	    HttpSession session = req.getSession();
-	    String seq = req.getParameter("seq");
-	    Integer seqUser = (Integer) session.getAttribute("seqUser");
+	    
+		HttpSession session = req.getSession();
+		Cookie[] cookies = req.getCookies();
+		Cookie cookie;
+	    
+		String seq = req.getParameter("seq");
+	    
+		
+		//쿠키로 조회수 조절
+		if (cookies!= null) {
+		    for (Cookie c : cookies) {
+		        String name = c.getName(); // 쿠키 이름 가져오기
+		        String value = c.getValue(); //쿠기 내용 가져오기
+		        if(name.equals("cookieread") && value.equals("n")) {
+		        	//bdao.updateReadcount(seq);
+		        	cookie = new Cookie("cookieread", "y");
+		        	cookie.setMaxAge(60 * 60);
+		    		cookie.setPath("/");
+		    		resp.addCookie(cookie);
+		        }
+		    }
+	    }
+		
+		//세션으로 조회수 조절
+		if (session.getAttribute("read") != null
+				&& session.getAttribute("read").toString().equals("n")) {
+			//조회수 증가
+			bdao.updateReadcount(seq);
+			session.setAttribute("read", "y");
+		}
+		
+		
+		Integer seqUser = (Integer) session.getAttribute("seqUser");
 	    
 	    String id = (String)session.getAttribute("id");
-	    
-	    
-
-	    System.out.println("seqUser : "+seqUser);
-	    
-	    PostDTO post = bdao.readPost(seq, id);
-	    
-	    System.out.println("filelink: "+post.getProfileImg());
+	    	    
+	    PostDTO post = bdao.readPost(seq, id);	 
 	    
 	    List<CommentDTO> comments = cdao.getCommentsByPostSeq(seq);
 	    

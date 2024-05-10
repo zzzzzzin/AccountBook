@@ -134,10 +134,11 @@
 
 #bottomrow{
     display: flex;
-    flex-direction: row;
-    align-items: center; 
-    justify-content: flex-start; 
-    width: 100%; 
+    justify-content: center;
+    align-items: flex-end;
+    padding-left: 20px;
+    width: 30%;
+    flex-direction: column;
 }
 
 .right-icon i {
@@ -151,10 +152,12 @@
     padding: 20px;
     background: #f9f9f9;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin: 10px;
     border: 1px solid black;
-    width: 40%;
+    width: 100%;
+    margin: auto;
+    margin-top: 10px;
     
 }
 
@@ -204,11 +207,11 @@
     display: flex;
     justify-content: center;
     align-items: baseline;
-    padding: 20px;
+    padding-left: 20px;
 }
 
 #wishlist{
-    width: 50%;
+    width: 100%;
 }
 
 #wishlistrow1{
@@ -239,14 +242,14 @@
     
 }
 #thismonthstat {
-    flex-grow: 1; 
+    flex-grow: 1;
     font-weight: bold;
     padding: 20px;
     background: #f9f9f9;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     border: 1px solid black;
-    width: 40%;
+    width: 100%;
 }
 
 .transin {
@@ -301,6 +304,17 @@
 #totalbody{
 	background-color: #FFFFFF 
 }    
+
+#middlebottom {
+    display: flex;  /* Use flexbox for layout */
+    justify-content: space-between; /* Space between the main elements */
+    align-items: start; /* Align items at the start of the container */
+    padding: 20px; /* Padding around the content */
+    width: 100%;
+}
+#calendar{
+	width: 100%;
+}
     
 
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
@@ -346,17 +360,20 @@
             </form>    
                 <div class="right-icon" id="categoryselector"><i class="fa-solid fa-list-check"></i></div> 
             </div>
-            
+            <div id="middlebottom">
             <div id='calendar'></div>
             <div id="bottomrow">
                 <div id="thismonthstat">
+          			<div id="monthheader">
+          				<h1 style="display: flex;"><div id="monthindicate"></div>월</h1>
+          			</div>
                     <div class="abovestat" id="spendstat">
                         <div>이번달 지출:</div>
-                        <div>$30000</div>
+                        <div id="totalNegative">$0</div>
                     </div>
                     <div class="abovestat" id="incomestat">
                         <div>이번달 수입:</div>
-                        <div>$20000</div>
+                        <div id="totalPositive">$0</div>
                     </div>
                 </div>
                 <div id="wishlist">
@@ -376,6 +393,7 @@
                 </div>
             </div>
         <!-- Back to Top -->
+        </div>
         </div>
     </div>
 
@@ -528,6 +546,73 @@
 	    colors[categoryName] = colorPalette[index % colorPalette.length];
 	});
 	/* console.log(colors.value('주거')); */
+	 var transactions = [];
+    let transactionItem = {};
+	
+	<c:forEach items="${eventsev}" var="dto">
+    	transactionItem  = {
+	        date: '${dto.start}',
+	        category: '${dto.category}',
+	        where: '${dto.loc}',
+	        content: '${dto.content}',
+	        amount: '${dto.amount}',
+	        amountIndicator: '${dto.amountIndicator == '1' ? '+' : '-'}', /* 1이 입급, 2가 출금 */
+	    };
+	    	    
+	    transactions.push(transactionItem);
+	</c:forEach>
+	console.log(transactions);
+
+	
+	 function getCurrentMonthYear() {
+        const now = new Date();
+        const headerMonth = (now.getMonth() + 1).toString();
+        const currentMonth = (now.getMonth() + 1).toString().padStart(2, '0'); // getMonth returns month from 0 (January) to 11 (December)
+        const currentYear = now.getFullYear().toString();
+        return { currentMonth, currentYear,headerMonth };
+    }
+	
+	function calculateAndDisplayTotals(transactions) {
+        const { currentMonth, currentYear, headerMonth } = getCurrentMonthYear();
+        let totalPositive = 0;
+        let totalNegative = 0;
+        const lastTwoDigitsOfYear = currentYear.substring(2,4);
+        console.log("Current Month:", currentMonth);
+        console.log("Current Year (last two digits):", lastTwoDigitsOfYear);
+		console.log(headerMonth);
+        transactions.forEach(transaction => {
+            var transactionDate = transaction.date;
+            console.log(transactionDate);
+            var transactionMonth = transactionDate.substring(5,7);
+            var transactionYear = transactionDate.substring(2,4);
+            console.log(transactionMonth);
+            console.log(transactionYear);
+            // Only process transactions from the current month and year
+            if (transactionMonth === currentMonth && transactionYear === lastTwoDigitsOfYear) {
+                console.log('here')
+                let amount = parseFloat(transaction.amount.replace(/,/g, '')); // Convert string amount to number
+                if (transaction.amountIndicator === '+') {
+                    totalPositive += amount; // Sum positive amounts
+                } else if (transaction.amountIndicator === '-') {
+                    totalNegative += amount; // Sum negative amounts
+                }
+            }
+        });
+	
+        console.log(totalPositive);
+        console.log(totalNegative);
+        
+        let formattedPositive = (totalPositive > 0 ? '+'+totalPositive.toLocaleString() : totalPositive.toLocaleString());
+        let formattedNegative = (totalNegative < 0 ? totalNegative.toLocaleString() : '-'+totalNegative.toLocaleString());
+        document.getElementById('monthindicate').innerHTML = headerMonth;
+        document.getElementById('totalPositive').innerHTML = formattedPositive;
+        document.getElementById('totalNegative').innerHTML = formattedNegative;
+        // Update the DOM with the calculated totals
+    }
+
+    // Example usage:
+    calculateAndDisplayTotals(transactions);
+	
 	
 	function populatePaymentMethodSelect() {
         paymentMethodSelect.innerHTML = ''; // Clear existing options

@@ -26,7 +26,7 @@
 				<div class="dropdown-menu bg-transparent border-0">
 					<a href="/account/board/noticeBoard.do" class="dropdown-item"><i class="fas fa-clipboard"></i> 공지게시판</a> 
 					<a href="/account/board/freeBoard.do" class="dropdown-item"><i class="fas fa-clipboard"></i> 자유게시판</a> 
-					<a href="//account/board/attendanceBoard.do" class="dropdown-item"><i class="fas fa-clipboard"></i> 출석게시판</a>
+					<a href="/account/board/attendanceBoard.do" class="dropdown-item"><i class="fas fa-clipboard"></i> 출석게시판</a>
 					<a href="/account/board/reportBoard.do" class="dropdown-item"><i class="fas fa-clipboard"></i> 건의게시판</a>
 				</div>
 			</div>
