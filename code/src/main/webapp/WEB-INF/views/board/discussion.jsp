@@ -137,6 +137,7 @@
 				  	</c:choose>
                   <span>작성자: ${post.me_nickName != null ? post.me_nickName : post.ad_nickName}</span>
                   <span>등록일: ${post.writeDate}</span>
+                  <span>조회수: ${post.viewCount}</span>
                 </div>
               </div>
               <div class="post-content" id="postmaincontent">
