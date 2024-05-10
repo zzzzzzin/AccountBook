@@ -98,12 +98,12 @@
 #leftcol{
 	display: flex;
 	flex-direction: column;
-	width: 50%;
+	width: 60%;
 	margin-right: 10px;
 }
 
 #rightcol{
-	width: 50%;
+	width: 40%;
 	margin-left: 10px;
 	
 }
@@ -111,11 +111,11 @@
 
 #wishlist {
     padding: 20px;
-    background: #f9f9f9;
+    background: #ffffff;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+   	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); 
     margin: 10px;
-    border: 1px solid black;
+    border: 1px solid #ccc;
     width: 100%;
     
 }
@@ -143,7 +143,6 @@
 
 #wishlist button {
     padding: 8px 16px;
-    background-color: #009CFF;
     color: white;
     border: none;
     border-radius: 4px;
@@ -223,10 +222,10 @@
     flex-grow: 1; 
     font-weight: bold;
     padding: 20px;
-    background: #f9f9f9;
+    background: #ffffff;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    border: 1px solid black;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border: 1px solid #ccc;
     width: 100%;
     margin:10px;
 }
@@ -277,6 +276,8 @@
   max-width: 255px;
   background-color: #333;
 }
+
+
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
@@ -329,20 +330,23 @@
           		<div id="leftcol"></div>
           		<div id="rightcol">
           		<div id="thismonthstat">
+          			<div id="monthheader">
+          				<h1 style="display: flex;"><div id="monthindicate"></div>월</h1>
+          			</div>
                     <div class="abovestat" id="spendstat">
                         <div>이번달 지출:</div>
-                        <div>$30000</div>
+                        <div id="totalNegative">$0</div>
                     </div>
                     <div class="abovestat" id="incomestat">
                         <div>이번달 수입:</div>
-                        <div>$20000</div>
+                        <div id="totalPositive">$0</div>
                     </div>
                 </div>
 					<div id="wishlist">
                     <div id="wishlistrow1">
                         <h3>Wish List</h3>
                         <div id="addWishItemtitle">
-                            <button id="addrightnow">Add Item</button>
+                            <button id="addrightnow" class="purple-btn button">Add Item</button>
                         </div>
                     </div>
                     <div id="wishlistrow2">
@@ -501,6 +505,55 @@
     transactions.forEach(transaction => {
         addTransaction(transaction.date, transaction.category, transaction.where, transaction.amount, transaction.amountIndicator, transaction.content);
     });
+    
+    function getCurrentMonthYear() {
+        const now = new Date();
+        const headerMonth = (now.getMonth() + 1).toString();
+        const currentMonth = (now.getMonth() + 1).toString().padStart(2, '0'); // getMonth returns month from 0 (January) to 11 (December)
+        const currentYear = now.getFullYear().toString();
+        return { currentMonth, currentYear,headerMonth };
+    }
+    
+    function calculateAndDisplayTotals(transactions) {
+        const { currentMonth, currentYear, headerMonth } = getCurrentMonthYear();
+        let totalPositive = 0;
+        let totalNegative = 0;
+        const lastTwoDigitsOfYear = currentYear.substring(2,4);
+        console.log("Current Month:", currentMonth);
+        console.log("Current Year (last two digits):", lastTwoDigitsOfYear);
+		console.log(headerMonth);
+        transactions.forEach(transaction => {
+            var transactionDate = transaction.date;
+            console.log(transactionDate);
+            var transactionMonth = transactionDate.substring(3,5);
+            var transactionYear = transactionDate.substring(0,2);
+            
+            // Only process transactions from the current month and year
+            if (transactionMonth === currentMonth && transactionYear === lastTwoDigitsOfYear) {
+                console.log('here')
+                let amount = parseFloat(transaction.amount.replace(/,/g, '')); // Convert string amount to number
+                if (transaction.amountIndicator === '+') {
+                    totalPositive += amount; // Sum positive amounts
+                } else if (transaction.amountIndicator === '-') {
+                    totalNegative += amount; // Sum negative amounts
+                }
+            }
+        });
+	
+        console.log(totalPositive);
+        console.log(totalNegative);
+        
+        let formattedPositive = (totalPositive > 0 ? '+'+totalPositive.toLocaleString() : totalPositive.toLocaleString());
+        let formattedNegative = (totalNegative < 0 ? totalNegative.toLocaleString() : '-'+totalNegative.toLocaleString());
+        document.getElementById('monthindicate').innerHTML = headerMonth;
+        document.getElementById('totalPositive').innerHTML = formattedPositive;
+        document.getElementById('totalNegative').innerHTML = formattedNegative;
+        // Update the DOM with the calculated totals
+    }
+
+    // Example usage:
+    calculateAndDisplayTotals(transactions); // Assuming 'transactions' is your data array
+
     
     
  	// 검색 기능
