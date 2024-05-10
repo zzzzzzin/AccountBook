@@ -222,12 +222,13 @@ public class BoardDAO {
 					+ "rownum as rnum\r\n"
 					+ "from vwboard2\r\n"
 					+ where
-					+ "ORDER BY seq DESC) where rnum between ? and ?";
+					+ " ORDER BY seq DESC) where rnum between ? and ?";
 			
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, map.get("begin"));
 			pstat.setString(2, map.get("end"));
 			
+			System.out.println(sql);
 			
 			rs = pstat.executeQuery();
 			
