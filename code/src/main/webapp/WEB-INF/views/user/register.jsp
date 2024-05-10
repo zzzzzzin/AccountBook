@@ -62,6 +62,10 @@
 }
 </style>
 </head>
+<title>
+회원 가입
+</title>
+
 <body>
 	<%@include file="/WEB-INF/views/inc/header.jsp"%>
 	<div class="container-scroller">

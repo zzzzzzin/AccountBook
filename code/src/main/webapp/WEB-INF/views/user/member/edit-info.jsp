@@ -162,7 +162,9 @@
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
 </style>
-
+<title>
+개인정보 수정
+</title>
 <body>
     <div class="container-xxl position-relative bg-white d-flex p-0">
         <!-- Spinner Start -->
