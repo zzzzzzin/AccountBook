@@ -99,6 +99,7 @@ public class ReportBoard extends HttpServlet {
         }
 
 		totalCount = dao.getTotalCount(map, "3");
+		
 		totalPage = (int)Math.ceil((double)totalCount / pageSize);
 		
 		
@@ -166,7 +167,6 @@ public class ReportBoard extends HttpServlet {
 			
 			dao.dislike(seq);
 		}
-
 		
 		//RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/discussion.jsp");
 		//dispatcher.forward(req, resp);		

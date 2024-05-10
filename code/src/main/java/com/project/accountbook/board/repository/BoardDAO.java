@@ -156,6 +156,7 @@ public class BoardDAO {
 
 		try {
 			
+			
 			String where = "";
 	
 			
@@ -226,6 +227,7 @@ public class BoardDAO {
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, map.get("begin"));
 			pstat.setString(2, map.get("end"));
+			
 			
 			rs = pstat.executeQuery();
 			
@@ -550,12 +552,20 @@ public class BoardDAO {
 	public int getTotalCount(HashMap<String, String> map, String seq) {
 		
 		try {
-
-			String where = "";
 			
-			if(map.get("search").equals("y")) {
+			String where = "";
+			if(map.get("search").equals("y") && map.get("column").equals("total")) {
 				
-				where = String.format("where %s like '%%%s%%'", map.get("column"), map.get("word"));
+				where = String.format("WHERE content LIKE '%%%s%%' or title like '%%%s%%'", map.get("word"), map.get("word"));
+				
+			} else if (map.get("search").equals("y") && map.get("column").equals("title")) {
+				
+				where = String.format("WHERE title like '%%%s%%'", map.get("word"));
+				
+			} else if (map.get("search").equals("y") && map.get("column").equals("content")) {
+							
+				where = String.format("WHERE content LIKE '%%%s%%'", map.get("word"));
+				
 			}
 			
 			String sql = "select count(*) as cnt from (select\r\n"
@@ -576,12 +586,12 @@ public class BoardDAO {
 					+ "po_blindcheck as blindcheck,\r\n"
 					+ "us_seq as seqpost,\r\n"
 					+ "af_filename as filename,\r\n"
-					+ "af_filelink as filelink,\r\n"
-					+ "rownum as rnum\r\n"
+					+ "af_filelink as filelink\r\n"
 					+ "from vwboard2\r\n"
-					+ "WHERE ca_seq =  ?)"
+					+ "WHERE ca_seq =  ?) "
 					+ where;
 
+			
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, seq);
 			

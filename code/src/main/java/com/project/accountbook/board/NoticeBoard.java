@@ -86,6 +86,7 @@ public class NoticeBoard extends HttpServlet {
 		
 		ArrayList<PostDTO> noticeList = dao.list(map, "1");
 		//ArrayList<PostDTO> noticeList = dao.list("1");
+
 		for (PostDTO list : noticeList) {
 			
             String title = list.getTitle();        
@@ -96,7 +97,7 @@ public class NoticeBoard extends HttpServlet {
     		}
             
         }
-		
+	
 		totalCount = dao.getTotalCount(map, "1");
 		totalPage = (int)Math.ceil((double)totalCount / pageSize);
 		
@@ -135,6 +136,7 @@ public class NoticeBoard extends HttpServlet {
 		} else {
 			sb.append(String.format(" <a href='/account/board/reportBoard.do?page=%d&column=%s&word=%s'>[다음 %d페이지]</a> ", n, column, word, blockSize));
 		}
+
 		
 		req.setAttribute("noticeList", noticeList); // noticeList 객체를 요청 객체에 추가
 		req.setAttribute("map", map);		
