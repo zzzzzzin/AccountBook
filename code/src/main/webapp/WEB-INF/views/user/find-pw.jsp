@@ -70,6 +70,9 @@
     }
 </style>
 </head>
+<title>
+비밀번호 찾기
+</title>
 <body>
 
 	<%@include file="/WEB-INF/views/inc/header.jsp"%>

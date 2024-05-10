@@ -52,6 +52,9 @@ body {
 }
 </style>
 </head>
+<title>
+아이디 찾기
+</title>
 <body>
 	<%@include file="/WEB-INF/views/inc/header.jsp"%>
 

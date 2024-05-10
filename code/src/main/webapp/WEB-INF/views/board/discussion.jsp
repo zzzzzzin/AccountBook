@@ -143,9 +143,9 @@
                 <span>${post.content}</span>
               </div>
               <div class="post-actions" id="postmaincontentreaction">
-              	<span><i class="material-icons">thumb_up</i><span id="post-like">${post.likeCount}</span></span>
-                <span><i class="material-icons">thumb_down</i><span id="post-dislike">${post.dislikeCount}</span></span>
-                <span><i class="material-icons">report</i><span id="post-report">${post.reportCount}</span></span>
+              	<span id="like_button"><i class="material-icons">thumb_up</i><span id="post-like">${post.likeCount}</span></span>
+                <span id="dislike_button"><i class="material-icons">thumb_down</i><span id="post-dislike">${post.dislikeCount}</span></span>
+                <span id="report_button"><i class="material-icons">report</i><span id="post-report">${post.reportCount}</span></span>
                  <!-- 로그인한 사용자와 게시글 작성자가 일치하는 경우에만 수정 버튼 표시 -->
 			    <c:if test="${not empty sessionScope.seqUser && sessionScope.seqUser == post.seqUser}">
 			      <span><a href="/account/board/edit.do?seq=${post.seq}">수정</a></span>
@@ -669,13 +669,17 @@ function addReplyComment(btn) {
 	//console.log(typeof temp);
 	
  	if(temp !== postSeq){
- 		//console.log('제발 되게해줘');
- 		$(".post-actions span:nth-child(1)").click(function() {
+ 		
+ 		$('#like_button').click(function() {
  			postlike(${post.seqBoard});
+ 			location.reload();
+ 			//console.log('추천 버튼');
  		});
  		
- 		$(".post-actions span:nth-child(2)").click(function() {
+ 		$('#dislike_button').click(function() {
  			postdislike(${post.seqBoard});
+ 			location.reload();
+ 			//console.log('비추천 버튼');
  		});
  	}
 	
@@ -696,12 +700,14 @@ function addReplyComment(btn) {
 		    return null;
 	}
 
-	var repoertSeq = getreportCookie("report"+${post.seq});
-	console.log(repoertSeq);
+	var reportSeq = getreportCookie("report"+${post.seq});
+	//onsole.log(temp);
+	//console.log(reportSeq);
 	
-	if(temp !== repoertSeq){
-		$(".post-actions span:nth-child(3)").click(function() {
+	if(temp !== reportSeq){
+		$("#report_button").click(function() {
 			postreport(${post.seqBoard});
+			location.reload();
 		});
 	}
 	

@@ -72,7 +72,6 @@ public class NoticeBoard extends HttpServlet {
 		
 		String seq = req.getParameter("seq"); //Post seq
 		String type = req.getParameter("type"); //Like, Dislike 구분
-		String report = req.getParameter("report");//신고 
 		
 		
 		Cookie postcookie;
@@ -95,7 +94,6 @@ public class NoticeBoard extends HttpServlet {
 		        }
 		    }
 	    }
-		
 		if(postcheck == false) {
 			if(type.equals("like")) {	
 				dao.like(seq);

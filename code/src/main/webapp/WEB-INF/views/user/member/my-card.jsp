@@ -41,7 +41,9 @@
 }
 
 </style>
-
+<title>
+나의 카드
+</title>
 
 <body>
 	<div class="container-xxl position-relative bg-white d-flex p-0">

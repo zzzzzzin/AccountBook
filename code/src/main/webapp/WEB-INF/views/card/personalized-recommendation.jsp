@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -30,6 +31,9 @@
     <link rel="stylesheet" href="/account/asset/css/combine.css">
 </script>
 </head>
+<title>
+가계부 기반 카드 맞춤 추천
+</title>
 <style>
 
 .flipster--loop {

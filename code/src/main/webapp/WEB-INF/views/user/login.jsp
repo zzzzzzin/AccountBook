@@ -43,6 +43,9 @@ body {
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 </style>
 </head>
+<title>
+로그인
+</title>
 <body>
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
 	<div class="container-scroller">
