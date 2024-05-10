@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>BudgetBuddy | 게시판 이용 내역</title>
+<title>BudgetBuddy | 내가 쓴 글</title>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
@@ -69,7 +69,7 @@
 				<section class="notice">
 					<!-- board list area -->
 					<div id="board-list">
-						<div class="container">
+						<div class="">
 							<table class="table-style">
 								<tbody>
 									<tr>
