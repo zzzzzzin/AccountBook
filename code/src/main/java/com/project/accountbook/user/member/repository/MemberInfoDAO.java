@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 import com.project.accountbook.account.model.AccountInfoDTO;
+import com.project.accountbook.card.model.CardDTO;
 import com.project.accountbook.user.member.model.MemberInfoDTO;
 import com.project.accountbook.user.model.UserDTO;
 import com.project.accountbook.util.DBUtil;
@@ -472,7 +473,6 @@ public class MemberInfoDAO {
 				
 				list.add(dto);
 			}
-			System.out.println(Arrays.toString(list.toArray()));
 			return list;
 			
 			
@@ -484,7 +484,45 @@ public class MemberInfoDAO {
 		return null;
 	}
 
-	
+	public void addMyCard(String id, CardDTO dto ) {
+
+		try {
+			
+			String sql = "select seq from tblCardInformation where name = ? and cardcompany = ?";
+			
+			
+			pstat = conn.prepareStatement(sql);
+			
+			pstat.setString(1, dto.getCiName());
+			pstat.setString(2, dto.getCardCompany());
+			rs = pstat.executeQuery();
+			
+			if(rs.next()) {
+				dto.setSeq(rs.getInt("seq"));
+			}
+			
+			sql = "insert into tblMyCard \r\n"
+					+ "(seq, cardNumber, alias, validity, idMember, seqCardInformation)\r\n"
+					+ "values ((SELECT NVL(MAX(seq), 0) + 1 FROM tblMyCard), ?, ?, ?, ?, ?)";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getCardNumber());
+			pstat.setString(2, dto.getAlias());
+			pstat.setString(3, dto.getEnddate());
+			pstat.setString(4, id);
+			pstat.setInt(5, dto.getSeq());
+			
+			int indicate = pstat.executeUpdate();
+			
+			System.out.println("result: "+indicate);
+			
+		} catch (Exception e) {
+			System.out.println("MemberInfoDAO.addMycard");
+			e.printStackTrace();
+		}
+		
+	}
+
 
 	
 

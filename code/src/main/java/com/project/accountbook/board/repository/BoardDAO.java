@@ -222,12 +222,13 @@ public class BoardDAO {
 					+ "rownum as rnum\r\n"
 					+ "from vwboard2\r\n"
 					+ where
-					+ "ORDER BY seq DESC) where rnum between ? and ?";
+					+ " ORDER BY seq DESC) where rnum between ? and ?";
 			
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, map.get("begin"));
 			pstat.setString(2, map.get("end"));
 			
+			System.out.println(sql);
 			
 			rs = pstat.executeQuery();
 			
@@ -506,10 +507,40 @@ public class BoardDAO {
 	// 게시글 삭제 
 	public int deletePost(String seq) {
 	    try {
-	        String sql = "DELETE FROM tblPost WHERE seq = ?";
+	    	
+	    	System.out.println("del start?");
+	    	System.out.println(seq);
+	    	String sql = "DELETE FROM tblReplyComments WHERE SEQCOMMENTS IN (SELECT seq FROM tblComments WHERE seqPost = ?)";
+	    	pstat = conn.prepareStatement(sql);
+	    	pstat.setString(1, seq);
+	    	int indicate1 = pstat.executeUpdate();
+	    	System.out.println(indicate1);
+	    	
+	    	sql = "Delete from tblcomments where seqPost = ?";
+	    	pstat = conn.prepareStatement(sql);
+	    	pstat.setString(1, seq);
+	        
+	        int indicate2 = pstat.executeUpdate();
+	    	
+	    	sql = "Delete from tblAttachedFile where seqPost = ?";
+	    	pstat = conn.prepareStatement(sql);
+	    	pstat.setString(1, seq);
+	        
+	        int indicate3 = pstat.executeUpdate();
+	    	
+	    	
+	        sql = "DELETE FROM tblPost WHERE seq = ?";
 	        pstat = conn.prepareStatement(sql);
 	        pstat.setString(1, seq);
-	        return pstat.executeUpdate();
+	        
+	        int indicate4 = pstat.executeUpdate();
+	        System.out.println("del fin");
+	        System.out.println("indicate 1:"+indicate1+" indicate 2: "+indicate2+" indicate 3: "+indicate3+" indicate 4: "+indicate4);
+	        
+	        return indicate4;
+	        
+	        
+	        
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    }

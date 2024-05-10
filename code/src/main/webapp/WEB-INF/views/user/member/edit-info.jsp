@@ -219,9 +219,12 @@
     </div>
 </div>
     <!-- JavaScript Libraries -->
-   
+    <script>
+    
+    </script>
     <!-- Template Javascript -->
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
+    
 
 </body>
 

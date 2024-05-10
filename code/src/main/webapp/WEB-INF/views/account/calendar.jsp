@@ -502,6 +502,7 @@
     </div>
 </div>
 
+
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -658,6 +659,8 @@
 
             
     document.addEventListener('DOMContentLoaded', function() {
+        
+        
         var calendarEl = document.getElementById('calendar');
         var checkbox = document.getElementById('fixedexpense');
         var fixedDateDiv = document.getElementById('fixeddate');
@@ -838,8 +841,9 @@
     //항목 추가 끝
 	var currentEventId = null;
     
-
-     var calendar = new FullCalendar.Calendar(calendarEl, {
+	
+    
+     calendar = new FullCalendar.Calendar(calendarEl, {
             timeZone:'UTC',
             editable: true,
             eventSources: [
@@ -944,7 +948,8 @@
     				info.event.remove();
     				modal.hide();
     			});
-    			$("#editEventBtn").off().on('click', function(info) {
+    			$("#editEventBtn").off().on('click', function() {
+    			    
     			    
     			    if(confirm('항목을 수정하시겠습니까?')){
     					// 중복 실행 방지
@@ -974,9 +979,28 @@
     	                        modal.hide();
     	                        if (response) {
     	                            console.log(response);
-    	                            calendar.refetchEvents();
+    	                            //calendar.refetchEvents();
+    	                            info.event.remove();
+    	                            var event = {
+    	                                    title: document.getElementsByClassName('modalselectcategory')[0].value,
+    	                                    start: document.getElementById('eventModalStart').value,
+    	                                    allDay: true,
+    	                                    color: colors[document.getElementsByClassName('modalselectcategory')[0].value], 
+    	                                    extendedProps: {
+    	                                        useLocation: document.getElementById('eventModaluseloc').value,
+    	                                        content: document.getElementById('eventModalcontent').value,
+    	                                        category: document.getElementsByClassName('modalselectcategory')[0].value,
+    	                                        paymentMethod: document.getElementsByClassName('modalmethodofpayment')[0].value,
+    	                                        amount: document.getElementById('eventModalIoc').value,
+    	                                        amountindicator: document.getElementsByClassName('modalincreasedecrease')[0].value,
+    	                                        isFixedExpense: document.getElementById('fixedexpense').checked ? '1' : '0'
+    	                                    }
+    	                                };
+    	                            
+    	                            calendar.addEvent(event);
+    	                            
     	                        }
-    	                        calendar.refetchEvents();
+    	                        //calendar.refetchEvents();
     	                       
     	                    },
     	                    error: function (xhr, status, error) {
@@ -1022,7 +1046,7 @@
             var localDate = new Date(dateValue.getTime() - dateValue.getTimezoneOffset() * 60000);
             var dateISOString = localDate.toISOString().slice(0, 16);
         
-        document.getElementById('eventModalStart').value = dateISOString;
+        	document.getElementById('eventModalStart').value = dateISOString;
         
             
             var modal = new bootstrap.Modal(document.getElementById('eventProduceModal'));
@@ -1085,8 +1109,11 @@
          		 }) 
           ] */
         });
+     	//alert(222);
         calendar.render();
       });
+    
+    //setTimeout(()=>{alert();calendar.render();}, 3000);
     
     let isEdit = false;
 
@@ -1283,8 +1310,6 @@
          }; 
        	
     });
-
-
 
     </script>
 </body>

@@ -346,11 +346,11 @@
                     <div id="wishlistrow1">
                         <h3>Wish List</h3>
                         <div id="addWishItemtitle">
-                            <button id="addrightnow" class="purple-btn button">Add Item</button>
+                            <button id="addrightnow" class="purple-btn button">추가하기</button>
                         </div>
                     </div>
                     <div id="wishlistrow2">
-                        <input type="text" id="newItemInput" placeholder="Type and press enter" style="display: none;">
+                        <input type="text" id="newItemInput" placeholder="기입칸" style="display: none;">
                         <button id="newItemButton" style="display: none">추가하기</button>
                     </div>
                     <div id="wishListItems">

@@ -165,7 +165,7 @@
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
       <div id="fakecontent">
-        <div class="myPage-mypage">
+        <div class="myPage-mypage ">
           <div class="user-profile-mypage">
               <div class="user-profile-mypage-img">
                   개인 프로필 이미지
