@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>BudgetBuddy | 로그인</title>
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -43,27 +44,26 @@ body {
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 </style>
 </head>
-<title>
-로그인
-</title>
 <body>
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
 	<div class="container-scroller">
-		<div class="container-fluid page-body-wrapper full-page-wrapper">
-			<div class="row w-100 m-0">
-				<div
-					class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
-					<div class="card col-lg-4 mx-auto">
+<!-- 		<div class="container-fluid page-body-wrapper full-page-wrapper"> -->
+		<div class="content-total-style">
+			<div class="user-info-box-container-style">
+<!-- 				<div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg"> -->
+				<div class="user-info-container-style">
+<!-- 					<div class="card col-lg-4 mx-auto"> -->
+					<div class="">
 						<div class="card-body px-5 py-5">
 							<h3 class="card-title text-left mb-3">Login</h3>
 							<form method="POST" action="/account/user/login.do">
 								<div class="form-group">
 									<label>ID</label> <input type="text" name="id"
-										class="form-control p_input">
+										class="form-control input-style-form">
 								</div>
 								<div class="form-group">
 									<label>Password</label> <input type="password" name="pw"
-										class="form-control p_input">
+										class="form-control input-style-form">
 								</div>
 								<div
 									class="form-group d-flex align-items-center justify-content-between">
@@ -73,15 +73,8 @@ body {
 										</label>
 									</div>
 								</div>
-								<div class="text-center">
-									<button type="submit"
-										class="btn btn-primaryz btn-block enter-btn">로그인</button>
-								</div>
-<!-- 								<div class="d-flex"> -->
-<!-- 									<button class="btn btn-google col"> -->
-<!-- 										<i class="mdi mdi-google-plus"></i> Google plus -->
-<!-- 									</button> -->
-<!-- 								</div> -->
+									<button type="submit" class="button purple-btn info-submit-long-btn submit-btn-style">로그인</button>
+
 								<p class="sign-up">
 									<a href="/account/user/register.do">Sign Up</a>
 								</p>
