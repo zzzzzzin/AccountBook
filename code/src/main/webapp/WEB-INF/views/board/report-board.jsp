@@ -148,7 +148,7 @@
 	                </tbody>
 	            </table>
 	            <!-- 페이지바 -->
-				<div id="pagebar">1, 2, 3, 4, 5, 6, 7, 8, 9</div>
+				<div id="pagebar">${pagebar}</div>
 	            <div class="write-btn">
 	                <a href="/account/board/write.do" class="btn btn-dark">글작성</a>
 	            </div>
