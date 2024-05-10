@@ -22,24 +22,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <style>
 
-   #fakecontent{
-    display: flex;
-    justify-content: center;
-   }
 
-   .myPage-mypage {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  /* flex-direction: column; */
-  justify-content: center;
-  align-items: center;
-  margin: 20px;
-  border: none;
-}
 .user-profile-mypage {
   width:90%;
   height: 100%;
@@ -158,13 +146,11 @@
   box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
   border-radius: 5px;
 }
+
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
 </style>
-<title>
-개인정보 수정
-</title>
 <body>
     <div class="container-xxl position-relative bg-white d-flex p-0">
         <!-- Spinner Start -->
@@ -193,8 +179,8 @@
             <!-- Navbar End -->
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
-        <div id="fakecontent">
-        <div class="myPage-mypage">
+        <div class="content-total-style">
+        <div class="mypage-box-container-style">
           <div class="user-profile-mypage">
               <div class="user-profile-mypage-img">
                   개인 프로필 이미지
