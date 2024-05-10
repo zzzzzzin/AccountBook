@@ -284,8 +284,8 @@
         ];
 
         categories.forEach(category => {
-            var cate = document.createElement('div');
-            cate.className = 'categorylistselector';
+            var cate = document.createElement('button');
+            cate.className = 'categorylistselector light-purple-btn button';
             cate.innerHTML = '<div onclick="openModal(\'' + category + '\')">' + category + '</div>';
             categorymodalbody.appendChild(cate);
         });
