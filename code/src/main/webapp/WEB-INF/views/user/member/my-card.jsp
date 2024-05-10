@@ -33,12 +33,10 @@
 <style>
 <%@ include file="/WEB-INF/views/inc/asset.jsp" %>
 </style>
-<<<<<<< Updated upstream
 <title>
 나의 카드
 </title>
-=======
->>>>>>> Stashed changes
+
 
 <body>
 
@@ -97,7 +95,6 @@
 						</div>
 					</div>
 					<div class="moreMyCard">
-						<!-- 카드 번호, 카드사, 카드명, 별칭, 유효기간 -->
 						<div class="myCardMoreNum">
 							<div>카드 번호</div>
 							<div>${dto.cardNumber}</div>
@@ -119,7 +116,7 @@
 								<div>유효기간</div>
 								<div>${dto.validity}</div>
 							</div>
-							<button type="submit" class="gray-btn button submit-btn-style">삭제</button>
+							<button type="submit" data-seq="${dto.seqMyCard}" class="gray-btn button submit-btn-style" id="delBtn">삭제</button>
 						</div>
 					</div>
 					</c:forEach>
@@ -193,6 +190,33 @@
             window.location.href = '새로운파일.jsp';
         });
     });
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        const delButtons = document.querySelectorAll('.delBtn');
+        
+        delButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const seq = button.dataset.seq;
+                
+                deleteCard(seq);
+            });
+        });
+    });
+
+    function deleteCard(seq) {
+        $.ajax({
+            type: "POST",
+            url: "/account/user/member/my-card.do",
+            data: { seq: seq },
+            success: function(response) {
+                console.log("카드 삭제 요청이 성공했습니다.");
+                location.reload();
+            },
+            error: function(xhr, status, error) {
+                console.error("카드 삭제 요청 중 오류가 발생했습니다.");
+            }
+        });
+    }
 
     </script>
 </body>

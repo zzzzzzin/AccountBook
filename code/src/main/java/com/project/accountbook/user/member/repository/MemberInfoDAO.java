@@ -450,7 +450,7 @@ public class MemberInfoDAO {
 		
 		try {
 			String sql = "select ci.name as name, ci.cardCompany as cardCompany , mc.alias as alias"
-					+ ", mc.cardNumber as cardNumber , mc.validity as validity, ci.fileLink as fileLink\r\n"
+					+ ", mc.cardNumber as cardNumber , mc.validity as validity, ci.fileLink as fileLink, mc.seq as seq\r\n"
 					+ "from tblMyCard mc inner join tblMember m\r\n"
 					+ "    on mc.idMember = m.id\r\n"
 					+ "        inner join tblCardInformation ci\r\n"
@@ -470,6 +470,7 @@ public class MemberInfoDAO {
 				dto.setCardNumber(rs.getString("cardNumber"));
 				dto.setValidity(rs.getString("validity"));
 				dto.setFileLink(rs.getString("fileLink"));
+				dto.setSeqMyCard(rs.getInt("seq"));
 				
 				list.add(dto);
 			}
@@ -518,6 +519,26 @@ public class MemberInfoDAO {
 			
 		} catch (Exception e) {
 			System.out.println("MemberInfoDAO.addMycard");
+			e.printStackTrace();
+		}
+		
+	}
+
+	public void delMyCard(int seq) {
+
+		try {
+			
+			String sql = "delete from tblMyCard where seq = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			
+			pstat.setInt(1, seq);
+			pstat.executeUpdate();
+			
+			System.out.println("삭제 성공");
+			
+		} catch (Exception e) {
+			System.out.println("MemberInfoDAO.delMyCard");
 			e.printStackTrace();
 		}
 		
