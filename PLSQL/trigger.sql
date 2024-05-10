@@ -10,31 +10,6 @@ END;
 
 
 
-CREATE OR REPLACE TRIGGER trgUpdateMemberPriv
-AFTER UPDATE ON tblPost
-FOR EACH ROW
-DECLARE
-    v_total_report_count NUMBER;
-    v_member_seq NUMBER;
-BEGIN
-    SELECT idMember INTO v_member_seq FROM tblUser WHERE seq = :NEW.seqUser;
-    
-    SELECT SUM(p.reportCount) + SUM(c.reportCount) + SUM(r.reportCount)
-    INTO v_total_report_count
-    FROM tblPost p
-    JOIN tblUser u ON p.seqUser = u.seq
-    LEFT JOIN tblComments c ON p.seq = c.seqPost AND c.seqUser = u.seq
-    LEFT JOIN tblReplyComments r ON c.seq = r.seqComments AND r.seqUser = u.seq
-    WHERE u.idMember = v_member_seq;
-    
-    IF v_total_report_count > 30 THEN
-        UPDATE tblMemberPriv
-        SET seqPriv = 4
-        WHERE idMember = v_member_seq;
-    END IF;
-END;
-/
-
 CREATE OR REPLACE TRIGGER trgReplaceBannedWords
 BEFORE INSERT OR UPDATE ON tblPost
 FOR EACH ROW
@@ -48,6 +23,24 @@ BEGIN
             :NEW.title := REPLACE(:NEW.title, v_banned_word, '@@');
         END IF;
     END LOOP;
+END;
+/
+
+CREATE OR REPLACE TRIGGER trg_update_member_priv
+AFTER UPDATE OF reportCount ON tblMember
+FOR EACH ROW
+WHEN (NEW.reportCount >= 30)
+DECLARE
+  v_count NUMBER;
+BEGIN
+  SELECT COUNT(*) INTO v_count FROM tblMemberPriv WHERE idMember = :NEW.id;
+  
+  IF v_count > 0 THEN
+    UPDATE tblMemberPriv SET seqPriv = 4 WHERE idMember = :NEW.id;
+  ELSE
+    INSERT INTO tblMemberPriv (seq, idMember, seqPriv)
+    VALUES (seqMemberPriv.NEXTVAL, :NEW.id, 4);
+  END IF;
 END;
 /
 
