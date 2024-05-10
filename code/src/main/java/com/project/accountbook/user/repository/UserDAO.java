@@ -432,8 +432,9 @@ public class UserDAO {
 					+ "    on u.seq = p.seqUser\r\n"
 					+ "       inner join tblMember m\r\n"
 					+ "           on u.idMember = m.id\r\n"
-					+ "              where id = ?";
+					+ "              where id = ?"; 
 
+			
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, id);
 
