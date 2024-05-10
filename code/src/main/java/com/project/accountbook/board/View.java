@@ -11,6 +11,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.project.accountbook.board.post.model.PostDTO;
 import com.project.accountbook.board.repository.BoardDAO;
@@ -20,7 +21,16 @@ public class View extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
- 
+
+		HttpSession session = req.getSession();
+		session.setAttribute("read", "n");
+		
+		//쿠키 조회수
+		Cookie cookies = new Cookie("cookieread", "n");
+		cookies.setMaxAge(60 * 60);
+		cookies.setPath("/");
+		resp.addCookie(cookies);
+		//끝
 		
 		BoardDAO dao = new BoardDAO();
 		
