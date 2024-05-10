@@ -32,7 +32,7 @@
 </script>
 </head>
 <title>
-가계부 기반 카드 맞춤 추천
+BudgetBuddy | 가계부 기반 카드 맞춤 추천
 </title>
 <style>
 
@@ -100,16 +100,14 @@
     position: relative;
 }
 
-.description-box {
-    position: absolute;
-    bottom: -80px;
-    left: 0;
-    right: 0;
-    padding: 10px;
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
-}
-     .card-image img {
+    .description-box {
+        left: 0;
+        right: 0;
+        padding: 10px;
+        border: 1px solid #ccc;
+        background-color: #f9f9f9;
+    }
+    img {
     width: 100px;
     height: 100px;
 }
@@ -150,15 +148,22 @@
 <div class="flipster">
     <ul class="flip-items">
 <c:forEach var="card" items="${recommendedCards}" varStatus="loop">
-    <li data-flip-title="${loop.index + 1}" data-flip-category="${card.category}" data-description="${loop.index + 1}&lt;br&gt;카드 이름 : ${card.ciName}&lt;br&gt;카드사 : ${card.cardCompany}&lt;br&gt;설명 : ${card.explanation}&lt;br&gt;연회비 : ${card.annualFee}원&lt;br&gt;해외 겸용 : ${card.overseasUse}&lt;br&gt;할인율 : ${card.discountRate}%">
-        <div class="card-image">
+    <li data-flip-title="${loop.index + 1}"
+     data-flip-category="${card.category}" 
+     data-description="
+    <div><span>카드 이름</span><c:out value='${card.ciName}'/></div>
+    <div><span>카드사</span> <c:out value='${card.cardCompany}'/></div>
+    <div><span>설명</span> <c:out value='${card.explanation}'/></div>
+    <div><span>연회비</span> <c:out value='${card.annualFee}'/>원</div>
+    <div><span>해외 겸용</span><c:out value='${card.overseasUse}'/></div>
+    <div><span>할인율</span><c:out value='${card.discountRate}'/>%</div>
+        ">
         <img src="/account/asset/images/${card.fileLink}">
-        </div>
     </li>
 </c:forEach>
     </ul>
 </div>
-        <div class="description-box">
+        <div class="box card-recommendation-box">
             <p id="description"></p>
         </div>
     </div>
@@ -176,6 +181,8 @@
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+    
+
     
     console.log("Recommended Cards: ${recommendedCards}");
     console.log("Recommended Cards Size: ${recommendedCards.size()}");
@@ -903,15 +910,18 @@ flipContainer.flipster({
     buttons: false,
     onItemSwitch: function (currentItem, previousItem) {
         var description = $(currentItem).data('description');
-        $('#description').text(description);
+        var strippedDescription = description.replace(/<[^>]+>/g, '');
+        
+        $('#description').html(description);
     }
 });
 
 
     // 초기 설명 표시
-    var initialItem = flipContainer.flipster('current');
-    var initialDescription = $(initialItem).data('description');
-    $('#description').text(initialDescription);
+var initialItem = flipContainer.flipster('current');
+var initialDescription = $(initialItem).data('description');
+var strippedInitialDescription = initialDescription.replace(/<[^>]+>/g, '');
+$('#description').text(strippedInitialDescription);
 
     </script>
 </body>

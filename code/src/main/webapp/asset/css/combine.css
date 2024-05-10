@@ -2227,3 +2227,20 @@ height: 30px;
   border: none;
   cursor: pointer;
 }
+
+.card-image-wrapper {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.card-image-wrapper img {
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: contain;
+}
