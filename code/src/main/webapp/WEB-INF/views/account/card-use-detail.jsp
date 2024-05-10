@@ -4,6 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>BudgetBuddy | 카드 사용</title>
+
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
@@ -27,11 +29,6 @@
 </head>
 <style>
 
-	#cardDetailImgPlace {
-    	margin: 0;
-    	width: 250px;
-    }
-   
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
@@ -90,8 +87,9 @@
 		<c:if test="${not empty list}">
     			<img src="/account/asset/images/${list[0].fileLink}" id="cardDetailImgPlace">
 		</c:if>
-	</div>
-			<table class="transaction-table">
+
+<!-- transaction-table -->
+			<table class="table-style">
 				<thead>
 					<tr>
 						<th>날짜</th>
@@ -119,6 +117,7 @@
 				</thead>
 				<tbody id="transaction-list"></tbody>
 			</table>
+		</div>
 		</div>
 
 
