@@ -188,20 +188,20 @@
               <form action="/account/user/member/edit-info.do" method="POST" id="userinfo">
                 <div class="userinfo-content">
                     <div class="userinfo left">이름</div>
-                    <div class="userinfo right"><input class="editcontrol" type="text" name="name"></div>
+                    <div class="userinfo right"><input class="editcontrol" type="text" name="name" value="${dto.name}"></div>
                 </div>
                 <div class="userinfo-content">
                     <div class="userinfo left">닉네임</div>
-                    <div class="userinfo right"><input class="editcontrol" type="text" name="nickname" ></div>
+                    <div class="userinfo right"><input class="editcontrol" type="text" name="nickname" value="${dto.nickname}"></div>
                 </div>
                 <div class="userinfo-content">
                     <div class="userinfo left">전화번호</div>
-                    <div class="userinfo right"><input class="editcontrol" type="text" name="phonenumber" ></div>
+                    <div class="userinfo right"><input class="editcontrol" type="text" name="phonenumber" value="${dto.phoneNumber}"></div>
                 </div>
                 <div class="userinfo-content">
                     <div class="userinfo left">주민등록번호</div>
                     <div class="userinfo right" id="ssn">
-                      <input class="editcontrol" type="text" name="ssn">
+                      <input class="editcontrol" type="text" name="ssn" value="${dto.ssn}" readonly>
                     </div>
                 </div>
                 <div class="userinfo-content">
