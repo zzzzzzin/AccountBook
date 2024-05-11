@@ -23,17 +23,10 @@ public class Write extends HttpServlet {
 		@Override
 		protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-			PostDTO dto = new PostDTO();
-			//새글 쓰기? 답변글 쓰기?
-			String reply = req.getParameter("reply");
-			String thread = req.getParameter("thread");
-			String depth = req.getParameter("depth");
+			String seqBoard = req.getParameter("seqBoard");
 			
-			//dto.
-			req.setAttribute("reply", reply);
-			req.setAttribute("thread", thread);
-			req.setAttribute("depth", depth);
-
+			req.setAttribute("seqBoard", seqBoard);
+			
 			RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/write.jsp");
 			dispatcher.forward(req, resp);
 
@@ -42,49 +35,37 @@ public class Write extends HttpServlet {
 		@Override
 		protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 			try {
-				
-			//1. MultipartRequest
-			MultipartRequest multi = new MultipartRequest(
-					req,
-					req.getRealPath("/asset/images"),
-					1024 * 1024 * 10,
-					"UTF-8",
-					new DefaultFileRenamePolicy()
-				);
 			
 			HttpSession session = req.getSession();
 			String id = (String)session.getAttribute("id"); // 세션 으로 user id 가져오기
 			req.setCharacterEncoding("UTF-8");
+						
 			
-			
-			//2. multi.getParameter("title")
-			BoardDAO user = new BoardDAO();
+			BoardDAO dao = new BoardDAO();
 			int secretCheck = 0;
 			
-			String seqBoard = multi.getParameter("seqBoard");
-			String seqUser = user.readSession(id); // BoardDAO 객체의 readSession 메소드 호출
-			String title = multi.getParameter("title");
-			String content = multi.getParameter("content");
-//			int secretCheck = Integer.parseInt(multi.getParameter("secretCheck"));
-			String secret = multi.getParameter("secretCheck");
+			String seqBoard = req.getParameter("seqBoard");
+			String seqUser = dao.readSession(id); // BoardDAO 객체의 readSession 메소드 호출
+			String title = req.getParameter("title");
+			String content = req.getParameter("content");
+			String secret = req.getParameter("secretCheck");
+	
+			
 			if(secret == null) {
 				secretCheck = 0;
 			} else {
 				secretCheck = 1;
 			}
-			String pic = multi.getFilesystemName("pic");
 			
-			//3. PostDTO dto = new PostDTO(); > setXXX()
-			
-			BoardDAO dao = new BoardDAO();
+
 			PostDTO dto = new PostDTO();
+			
 			dto.setSeqBoard(seqBoard);
 			dto.setSeqUser(seqUser);
 			dto.setTitle(title);
 			dto.setContent(content);
 			dto.setSecretCheck(secretCheck);
 		
-			//4. DAO dao = new DAO(); > dao.add(dto);
 			int result = dao.boardWrite(dto);
 
 			
@@ -97,8 +78,6 @@ public class Write extends HttpServlet {
 				writer.print(OutputUtil.redirect("실패했습니다."));
 				writer.close();
 			}
-			
-			//5. result > location.href = "";
 			
 			
 			} catch (Exception e) {

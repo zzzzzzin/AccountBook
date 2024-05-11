@@ -136,7 +136,7 @@
 	            <!-- 페이지바 -->
 				<div id="pagebar">${pagebar}</div>
 	            <div class="write-btn">
-	                <a href="/account/board/write.do" class="button purple-btn submit-btn-style bottom-btn-style">글작성</a>
+	                <a href="/account/board/write.do?seqBoard=${seqBoard}" class="button purple-btn submit-btn-style bottom-btn-style">글작성</a>
 	            </div>
 	        </div>
 	    </div>
