@@ -5,6 +5,7 @@
 <html>
 <head>
     <title>BudgetBuddy | 게시판</title>
+    <link type="image/png" sizes="16x16" rel="icon" href="/account/asset/images/icons8-돈-상자-16.png">
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">

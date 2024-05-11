@@ -731,6 +731,11 @@ textarea.input-style-form-lg {
 }
 
 /* 게시판 */
+
+body > div > div.content > div > div:nth-child(2) > form > div.button-group {
+	display: flex;
+	justify-content: flex-end;	
+}
 .board-search-container {
 	display: flex;
 	margin-right: 4%;
