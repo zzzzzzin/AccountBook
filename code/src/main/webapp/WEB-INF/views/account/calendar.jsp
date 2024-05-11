@@ -113,7 +113,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: right;
+    justify-content: space-between !important;
     width: 100%; 
     }
     
@@ -137,7 +137,7 @@
     justify-content: center;
     align-items: flex-end;
     padding-left: 20px;
-    width: 30%;
+    width: 40%;
     flex-direction: column;
 }
 
@@ -150,14 +150,12 @@
 
 #wishlist {
     padding: 20px;
-    background: #f9f9f9;
+    background: #ffffff;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+   	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); 
     margin: 10px;
-    border: 1px solid black;
+    border: 1px solid #ccc;
     width: 100%;
-    margin: auto;
-    margin-top: 10px;
     
 }
 
@@ -183,7 +181,6 @@
 
 #wishlist button {
     padding: 8px 16px;
-    background-color: #009CFF;
     color: white;
     border: none;
     border-radius: 4px;
@@ -191,7 +188,6 @@
 }
 
 #wishlist button:hover {
-    background-color: #007dca;
 }
 
 #wishListItems li {
@@ -242,15 +238,25 @@
     
 }
 #thismonthstat {
-    flex-grow: 1;
+    flex-grow: 1; 
     font-weight: bold;
     padding: 20px;
-    background: #f9f9f9;
+    background: #ffffff;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    border: 1px solid black;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border: 1px solid #ccc;
     width: 100%;
+    margin:10px;
 }
+
+  .abovestat{
+        display: flex;
+        align-items: center;
+    }
+
+    .abovestat div{
+    	margin: 10px;
+    }
 
 .transin {
     flex: 1;
@@ -309,12 +315,47 @@
     display: flex;  /* Use flexbox for layout */
     justify-content: space-between; /* Space between the main elements */
     align-items: start; /* Align items at the start of the container */
-    padding: 20px; /* Padding around the content */
     width: 100%;
 }
 #calendar{
 	width: 100%;
 }
+
+
+
+#aboverowright{
+	display: flex;
+}
+
+.fc-button-primary{
+
+}
+
+/* FullCalendar Button Color Customization */
+.fc-button {
+    background-color: #ADA0DE !important;
+    border: 1px solid #ADA0DE !important;
+    border-radius: 0.25em !important;
+    display: inline-block;
+    font-size: 1em;
+    font-weight: 400;
+    line-height: 1.5;
+    padding: 0.4em 0.65em;
+    text-align: center;
+    user-select: none;
+    vertical-align: middle;
+    color: #fff;   /* Green border */
+}
+
+.fc .fc-button-group > .fc-button {
+	margin: 5px;
+}
+
+.fc-button:hover {
+    background-color: #45A049; /* Darker green background on hover */
+}
+
+
     
 
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
@@ -350,7 +391,11 @@
             <!-- Navbar End -->
         <!-- Content End -->
         <div id="fakecontent">
-            <div id="aboverow">
+            <div id="aboverow" class="content-header">
+            <div class="content-title-style">
+						<h3>달력 가계부</h3>
+					</div>
+					<div id="aboverowright">
       		<form method = "GET" id="accountSearchForm" action="/account/account/list.do">
                 <div class="right-icon" id="searchicon"><i class="fa-solid fa-magnifying-glass"></i></div> 
                 <div id="searchbar" >
@@ -359,6 +404,7 @@
                 </div>
             </form>    
                 <div class="right-icon" id="categoryselector"><i class="fa-solid fa-list-check"></i></div> 
+                </div>
             </div>
             <div id="middlebottom">
             <div id='calendar'></div>
@@ -380,12 +426,12 @@
                     <div id="wishlistrow1">
                         <h3>Wish List</h3>
                         <div id="addWishItemtitle">
-                            <button id="addrightnow">Add Item</button>
+                            <button id="addrightnow" class="purple-btn button">추가하기</button>
                         </div>
                     </div>
                     <div id="wishlistrow2">
                         <input type="text" id="newItemInput" placeholder="Type and press enter" style="display: none;">
-                        <button id="newItemButton" style="display: none">추가하기</button>
+                        <button id="newItemButton" style="display: none" class="purple-btn button">추가하기</button>
                     </div>
                     <div id="wishListItems">
                         
@@ -603,8 +649,8 @@
         console.log(totalPositive);
         console.log(totalNegative);
         
-        let formattedPositive = (totalPositive > 0 ? '+'+totalPositive.toLocaleString() : totalPositive.toLocaleString());
-        let formattedNegative = (totalNegative < 0 ? totalNegative.toLocaleString() : '-'+totalNegative.toLocaleString());
+        let formattedPositive = (totalPositive > 0 ? '+'+totalPositive.toLocaleString()+'원' : totalPositive.toLocaleString());
+        let formattedNegative = (totalNegative < 0 ? totalNegative.toLocaleString() : '-'+totalNegative.toLocaleString()+'원');
         document.getElementById('monthindicate').innerHTML = headerMonth;
         document.getElementById('totalPositive').innerHTML = formattedPositive;
         document.getElementById('totalNegative').innerHTML = formattedNegative;
@@ -862,7 +908,7 @@
       			   					useLocation: obj.loc,
       			   					content: obj.content,
       			   					amount: obj.amount,
-      			   					amountindicator: (obj.amountindicator==='출금'?'+':'-'),
+      			   					amountindicator: (obj.amountindicator==='2'?'+':'-'),
       			   					paymentMethod : (obj.paymentMethod+'\xa0'+obj.aliasname+':'+obj.cardnumber),
       			   					category: obj.category,
       			   					fixed: obj.fixed,
@@ -914,6 +960,9 @@
                 procbutton.style.display = 'none';
                 editbutton.style.display = 'inline-block';
                 delbutton.style.display = 'inline-block';
+                
+                console.clear();
+                console.log(info.event.extendedProps.amountindicator);
                 console.log(info.event.extendedProps.paymentMethod)
             	modal.show();
                 
@@ -993,7 +1042,10 @@
     	                                        paymentMethod: document.getElementsByClassName('modalmethodofpayment')[0].value,
     	                                        amount: document.getElementById('eventModalIoc').value,
     	                                        amountindicator: document.getElementsByClassName('modalincreasedecrease')[0].value,
-    	                                        isFixedExpense: document.getElementById('fixedexpense').checked ? '1' : '0'
+    	                                        isFixedExpense: document.getElementById('fixedexpense').checked ? '1' : '0',
+    	                                        		seq: seq,
+    	                    	                        seqacc: seqacc,
+    	                    	                        seqrcc: seqrcc
     	                                    }
     	                                };
     	                            

@@ -150,7 +150,6 @@
 }
 
 #wishlist button:hover {
-    background-color: #007dca;
 }
 
 #wishListItems li {
@@ -249,33 +248,7 @@
 	flex-direction: row;
 }
 
-.three h1 {
-  font-size: 28px;
-  font-weight: 500;
-  letter-spacing: 0;
-  line-height: 1.5em;
-  padding-bottom: 15px;
-  position: relative;
-}
-.three h1:before {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 5px;
-  width: 55px;
-  background-color: #111;
-}
-.three h1:after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 2px;
-  height: 1px;
-  width: 95%;
-  max-width: 255px;
-  background-color: #333;
-}
+
 
 #wishlist button:hover {
     background-color: #007dca;
@@ -326,7 +299,9 @@
       
       	<div id="fakecontent">
       		<div id="aboverow">
-      		<div id="pagetitle" class="three"><h1>목록</h1></div>
+      		<div class="content-title-style">
+						<h3>가계부 목록</h3>
+					</div>
       		<div id="aboverowrightside">
 	      		<form method = "GET" id="accountSearchForm">
 	                <div class="right-icon" id="searchicon"><i class="fa-solid fa-magnifying-glass"></i></div> 
@@ -363,7 +338,7 @@
                     </div>
                     <div id="wishlistrow2">
                         <input type="text" id="newItemInput" placeholder="기입칸" style="display: none;">
-                        <button id="newItemButton" style="display: none">추가하기</button>
+                        <button id="newItemButton" style="display: none" class="purple-btn button">추가하기</button>
                     </div>
                     <div id="wishListItems">
                         

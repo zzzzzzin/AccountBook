@@ -86,18 +86,11 @@ public class BoardDAO {
 		try {
 			PostDTO dto = new PostDTO();
 			
-			String sql = "select FILELINK as profileImg from TBLPROFILEIMG where seq = (select SEQPROFILEIMG from tblmember where id = ?)";
+			 
 			
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, id);
 			
-			rs = pstat.executeQuery();
 			
-			if(rs.next()) {
-				dto.setProfileImg(rs.getString("profileImg"));
-			}
-			
-			sql = "select\r\n"
+			String sql = "select\r\n"
 					+ "    po_seq as seq,\r\n"
 					+ "    me_nickname as me_nickname,\r\n"
 					+ "    ad_nickname as ad_nickname,\r\n"
@@ -147,6 +140,26 @@ public class BoardDAO {
 				dto.setFileLink(rs.getString("filelink"));
 					
 			}
+			
+			String searchnic;
+			
+			if(dto.getme_nickName()==null) {
+				searchnic = dto.getad_nickName();
+			}else {
+				searchnic = dto.getme_nickName();
+			}
+			
+			sql = "select FILELINK as profileImg from TBLPROFILEIMG where seq = (select SEQPROFILEIMG from tblmember where nickname = ?)";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1,searchnic);
+			
+			rs = pstat.executeQuery();
+			
+			if(rs.next()) {
+				dto.setProfileImg(rs.getString("profileImg"));
+			}
+			
 			
 			return dto;
 		} catch (Exception e) {
@@ -200,8 +213,8 @@ public class BoardDAO {
 					+ "    po_secretcheck AS secretcheck,\r\n"
 					+ "    po_blindcheck AS blindcheck,\r\n"
 					+ "    us_seq AS seqpost,\r\n"
-					+ "    af_filename AS filename,\r\n"
-					+ "    af_filelink AS filelink,\r\n"
+					+ "    img_filename AS filename,\r\n"
+					+ "    img_filelink AS filelink,\r\n"
 					+ "    ROW_NUMBER() OVER (ORDER BY po_writedate DESC) AS rnum\r\n"
 					+ "FROM vwboard2\r\n"
 					+ where + ")"
@@ -314,8 +327,8 @@ public class BoardDAO {
 					+ "    po_secretcheck as secretcheck,\r\n"
 					+ "    po_blindcheck as blindcheck,\r\n"
 					+ "    us_seq as seqpost,\r\n"
-					+ "    af_filename as filename,\r\n"
-					+ "    af_filelink as filelink\r\n"
+					+ "    img_filename as filename,\r\n"
+					+ "    img_filelink as filelink\r\n"
 					+ "from vwboard2 where ca_seq = ?\r\n"
 					+ "order by po_writedate desc";
 			
@@ -446,8 +459,8 @@ public class BoardDAO {
 					+ "    po_secretcheck as secretcheck,\r\n"
 					+ "    po_blindcheck as blindcheck,\r\n"
 					+ "    us_seq as seqpost,\r\n"
-					+ "    af_filename as filename,\r\n"
-					+ "    af_filelink as filelink\r\n"
+					+ "    img_filename as filename,\r\n"
+					+ "    img_filelink as filelink\r\n"
 					+ "from vwboard2 where ca_seq = ?\r\n"
 					+ "order by po_writedate desc";
 			
@@ -627,8 +640,8 @@ public class BoardDAO {
 					+ "po_secretcheck as secretcheck,\r\n"
 					+ "po_blindcheck as blindcheck,\r\n"
 					+ "us_seq as seqpost,\r\n"
-					+ "af_filename as filename,\r\n"
-					+ "af_filelink as filelink\r\n"
+					+ "img_filename as filename,\r\n"
+					+ "img_filelink as filelink\r\n"
 					+ "from vwboard2\r\n"
 					+ "WHERE ca_seq =  ?) "
 					+ where;
