@@ -22,6 +22,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <style>
 
@@ -94,17 +95,19 @@
     </div>
     <div class="index-page-box-area">
         <section class="box">
-            <h4><a href="/account/board/view.do">게시판</a></h4>
+            <h4><a href="/account/board/view.do"><i class="fas fa-clipboard"></i> 게시판</a></h4>
+            <p>!설명 부분 박스 스타일 수정할 예정!</p>
+            <p>이미지도 확정X 수정하셔도 돼요</p>
             <p>게시판에 대한 설명을 여기에 추가하세요.</p>
         </section>
 
         <section class="box">
-            <h4><a href="/account/account/calendar.do">대시보드</a></h4>
+            <h4><a href="/account/account/calendar.do"><i class="fas fa-piggy-bank"></i> 대시보드</a></h4>
             <p>대시보드에 대한 설명을 여기에 추가하세요.</p>
         </section>
 
         <section class="box">
-            <h4><a href="/account/card/recommendation.do">카드추천</a></h4>
+            <h4><a href="/account/card/recommendation.do"><i class="fa-solid fa-ranking-star"></i> 카드 추천</a></h4>
             <p>카드추천에 대한 설명을 여기에 추가하세요.</p>
         </section>
     </div>

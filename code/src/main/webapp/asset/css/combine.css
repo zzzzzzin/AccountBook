@@ -117,6 +117,8 @@ font-family: "Noto Sans KR", sans-serif;
 
 .index-page-box-area {
 	display: flex;
+    gap: 16px;
+    flex-direction: column;
 }
 	
 
