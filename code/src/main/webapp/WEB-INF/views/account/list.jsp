@@ -277,6 +277,18 @@
   background-color: #333;
 }
 
+#wishlist button:hover {
+    background-color: #007dca;
+}
+
+.category-icon {
+    vertical-align: middle; /* Aligns the icon vertically with the text */
+    width: 20px;            /* Adjust width as needed */
+    height: auto;           /* Keeps the aspect ratio of the image */
+    margin-right: 5px;      /* Adds a small space between the icon and the category name */
+}
+
+
 
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
@@ -384,8 +396,57 @@
 	categories.push('${dto.acName}');
 	</c:forEach>
 	console.log(categories);
-   
+	const categoryData = [
+	    "SNS수입 - sns.svg",
+	    "건강 - healthy.svg",
+	    "경조사 - CAC.svg",
+	    "교육 - edu.svg",
+	    "교통 - traffic.svg",
+	    "구독료 - subscriptionFee.svg",
+	    "금융수입 - inancialincome.svg",
+	    "급여 - salary.svg",
+	    "기부금 - donation.svg",
+	    "더치페이 - dutchpay.svg",
+	    "로열티 - royalty.svg",
+	    "문화생활 - culturallife.svg",
+	    "미용 - beauty.svg",
+	    "보험금 - insurancemoney.svg",
+	    "부동산 - realestate.svg",
+	    "부업 - sideline.svg",
+	    "사업 수입 - business.svg",
+	    "상속 - inheritance.svg",
+	    "상여금 - bonus.svg",
+	    "생활용품 - Householdgoods.svg",
+	    "세금 - tax.svg",
+	    "쇼핑 - shopping.svg",
+	    "수수료 - charge.svg",
+	    "숙박 - lodgment.svg",
+	    "아르바이트 - parttime.svg",
+	    "앱테크 - app.svg",
+	    "여가 - Leisure.svg",
+	    "여행 - travel.svg",
+	    "용돈 - pinmoney.svg",
+	    "유흥 - pleasure.svg",
+	    "육아 - parenting.svg",
+	    "음식 - food.svg",
+	    "이자 - interest.svg",
+	    "장학금 - scholarship.svg",
+	    "저축 - saving.svg",
+	    "주거 - dwelling.svg",
+	    "카페 - cafe.svg",
+	    "통신 - communication.svg"
+	];
 
+	// Initialize an empty object to hold the category-image mappings
+	const categoryImages = {};
+
+	// Iterate through each item in the array, split the string, and populate the object
+	categoryData.forEach(item => {
+	    const [key, value] = item.split(' - ');
+	    categoryImages[key.trim()] = value.trim();
+	});
+	
+   
 	
 	// 미리 정의된 색상 팔레트
 	const colorPalette = [
@@ -394,6 +455,9 @@
 	    '#DD6C41', '#A57A11', '#647E17', '#007A3E', '#007165', '#96525D', '#FFE3E9', '#BFA5A8', '#53D0B9', '#6FDEAA',
 	    '#97EA96', '#C6F381', '#F6746C', '#CA638D', '#896095', '#4D587F', '#C7B1E6', '#FAEAFF', '#65BAA9', '#FFCA57'
 	];
+	
+	
+	
 	
 	// colors 객체에 각 카테고리에 고유한 색상 할당
 	categories.forEach((categoryName, index) => {
@@ -412,76 +476,75 @@
 	}
 	
 
-    function addTransaction(date, category, where, amount, amountIndicator, content) {
-        // Create main transaction container
-        const transContent = document.createElement('div');
-        transContent.id = 'transcontent';
+	function addTransaction(date, category, where, amount, amountIndicator, content) {
+	    // Create main transaction container
+	    const transContent = document.createElement('div');
+	    transContent.id = 'transcontent';
+	    transContent.className = 'transaction';
 
-        const transDate = document.createElement('div');
-        transDate.className = 'transin transdate';
-        transDate.textContent = date;
-        // Set the background color based on the category
-        transDate.style.backgroundColor = colors[category] || "#f0f0f0"; 
-        updateTransDateColor(category);
-        
-        const transMiddle = document.createElement('div');
-        transMiddle.className = 'transmiddle';
+	    const transDate = document.createElement('div');
+	    transDate.className = 'transin transdate';
+	    transDate.textContent = date;
+	    // Set the background color based on the category
+	    transDate.style.backgroundColor = colors[category] || "#f0f0f0"; 
+	    updateTransDateColor(category);
+	    
+	    const transMiddle = document.createElement('div');
+	    transMiddle.className = 'transmiddle';
 
-//         const transCategory = document.createElement('div');
-//         transCategory.className = 'transin';
-//         transCategory.id = 'transcategory';
-//         transCategory.textContent = category + '|' + where;
+	    // Container for category and where
+	    const cateWhere = document.createElement('div');
+	    cateWhere.id = 'catewhere';
+	    cateWhere.className = 'transin';
 
-        const transSub = document.createElement('div');
-        transSub.className = 'transsub';
+	    const transCategory = document.createElement('div');
+	    transCategory.className = 'transcategory';
 
-		const transCategory = document.createElement('div');
-		transCategory.className = 'transin'; // 클래스 추가
-		transCategory.id = 'transcategory';
-		transCategory.textContent = category + 	' | '; // where는 따로 추가할 예정
-		
-		const transWhere = document.createElement('div');
-		transWhere.className = 'transin'; // 클래스 추가
-		transWhere.id = 'transwhere';
-		transWhere.textContent = where; // where 내용 추가
-
-        const transDetail = document.createElement('div');
-        transDetail.className = 'transin';
-        transDetail.id = 'transdetail';
-        transDetail.textContent = content;
-        
-//         const transWContent = document.createElement('div');
-//         transWhere.className = 'transin';
-//         transWhere.id = 'transcontent';
-//         transWhere.textContent = content;
-
-        transSub.appendChild(transCategory);
-        transSub.appendChild(transWhere);
-        
-        transMiddle.appendChild(transSub);
-        transMiddle.appendChild(transDetail);
-
-        const transRightBox = document.createElement('div');
-        transRightBox.className = 'transrightbox';
-
-		const transAmount = document.createElement('div');
-		    transAmount.className = 'transin';
+	    // Create and append the category icon image if it exists
+		    const iconImg = document.createElement('img');
+		    // Ensure the path is concatenated correctly
+		    var filepath = categoryImages[category]
 		    
-		    if (amountIndicator === '+') { // 입금일 때
-		        transAmount.id += 'transamountplus';
-		    } else if (amountIndicator === '-') { // 출금일 때
-		        transAmount.id += 'transamountminus';
-		    }
-		    transAmount.textContent = amountIndicator + amount + '원';
+		    iconImg.src = '/account/asset/images/icon/'+filepath;
+		    iconImg.className = 'category-icon';
+		    transCategory.appendChild(iconImg);
 
-		transRightBox.appendChild(transAmount);
 
-        transContent.appendChild(transDate);
-        transContent.appendChild(transMiddle);
-        transContent.appendChild(transRightBox);
+	    // Append category name next to the icon
+	    const categoryName = document.createElement('span');
+	    categoryName.textContent = ' ' + category;
+	    transCategory.appendChild(categoryName);
 
-        document.getElementById('leftcol').appendChild(transContent);
-    }
+	    const transWhere = document.createElement('div');
+	    transWhere.className = 'transwhere';
+	    transWhere.textContent = ' | ' + where;
+
+	    // Append category and where to the cateWhere container
+	    cateWhere.appendChild(transCategory);
+	    cateWhere.appendChild(transWhere);
+	    transMiddle.appendChild(cateWhere);
+
+	    const transDetail = document.createElement('div');
+	    transDetail.className = 'transdetail';
+	    transDetail.textContent = content;
+	    transMiddle.appendChild(transDetail);
+
+	    const transRightBox = document.createElement('div');
+	    transRightBox.className = 'transrightbox';
+
+	    const transAmount = document.createElement('div');
+	    transAmount.className = 'transin';
+	    transAmount.textContent = (amountIndicator === '+' ? '+' : '-') + parseFloat(amount).toLocaleString() + '원'; // Format the amount
+	    transRightBox.appendChild(transAmount);
+
+	    transContent.appendChild(transDate);
+	    transContent.appendChild(transMiddle);
+	    transContent.appendChild(transRightBox);
+
+	    document.getElementById('leftcol').appendChild(transContent);
+	}
+
+
 
     
     var transactions = [];
