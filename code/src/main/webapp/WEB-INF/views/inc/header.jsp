@@ -101,9 +101,9 @@
 <header id="navheader">
 	<nav>
             <div id="view-header-btn" class="">
-           	 	<a href="/account/board/view.do" class="header-content ">게시판</a>
            	 	<a href="/account/account/calendar.do" class="header-content ">대시보드</a>
            	 	<a href="/account/card/recommendation.do" class="header-content ">카드추천</a>
+           	 	<a href="/account/board/view.do" class="header-content ">게시판</a>
            	 	<a href="/account/user/member/info.do" class="header-content ">마이페이지</a>
            	 	
 				<c:if test="${empty id}">
