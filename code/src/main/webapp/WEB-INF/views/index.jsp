@@ -22,10 +22,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <style>
 
-    body {
+/*     body {
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
@@ -36,33 +37,20 @@
         padding: 20px;
     }
     
-    .banner img {
-        width: 100%;
-        height: 150px;
-    }
-    
     main {
         display: flex;
         justify-content: space-around;
         padding: 20px;
     }
     
-    .section {
-        width: 30%;
-        padding: 20px;
-        background-color: #f4f4f4;
-        border-radius: 5px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-    
-    h2 {
+    h3 {
         color: #333;
     }
     
     p {
         color: #666;
     }
-   
+    */
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
@@ -96,37 +84,43 @@
             <!-- Navbar End -->
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
-        
-    <header>
-        <div class="banner">
-            <!-- 배너 이미지를 여기에 추가하세요 -->
-            <img src="/account/asset/images/banner.jpg" alt="배너 이미지">
-        </div>
-    </header>
+    <div class="content-total-style">   
+        <div class="index-page">
 
-    <main>
-        <section class="section">
-            <h2><a href="/account/board/view.do">게시판</a></h2>
+    <div class="index-page-item-area main-box-container-style">
+    <div>
+    	<section>
+            <h2> 소비 패턴 분석을 통한 지출 관리 친구 <span>"BudgetBuddy"</span></h2>
+    	</section>
+    </div>
+    <div class="index-page-box-area">
+        <section class="box">
+            <h4><a href="/account/board/view.do"><i class="fas fa-clipboard"></i> 게시판</a></h4>
+            <p>!설명 부분 박스 스타일 수정할 예정!</p>
+            <p>이미지도 확정X 수정하셔도 돼요</p>
             <p>게시판에 대한 설명을 여기에 추가하세요.</p>
         </section>
 
-        <section class="section">
-            <h2><a href="">대시보드</a></h2>
+        <section class="box">
+            <h4><a href="/account/account/calendar.do"><i class="fas fa-piggy-bank"></i> 대시보드</a></h4>
             <p>대시보드에 대한 설명을 여기에 추가하세요.</p>
         </section>
 
-        <section class="section">
-            <h2><a href="">카드추천</a></h2>
+        <section class="box">
+            <h4><a href="/account/card/recommendation.do"><i class="fa-solid fa-ranking-star"></i> 카드 추천</a></h4>
             <p>카드추천에 대한 설명을 여기에 추가하세요.</p>
         </section>
-    </main>
+    </div>
+    </div>
+    	<div class="index-page-item-area">
+        	<img src="/account/asset/images/BudgetBuddy.jpg" alt="이미지">
+        </div>
 
     <script src="script.js"></script>
 
         <!-- fakecontent 끝 -->
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-        
+        </div>
+        </div>
     </div>
     </div>
 
