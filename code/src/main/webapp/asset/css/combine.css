@@ -234,7 +234,6 @@ background: #dfd6e8;
 	background-color: #786CA7;
     border: 1px solid #786CA7;
 }
-
 /* .purple-btn:visited {
   background: #786CA7;
   color: white;
@@ -1099,7 +1098,7 @@ textarea,
 }
 #write > div:nth-child(4) {
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-end;
 }
 
 body > div > div > div > div > div > div > form > div:nth-child(17) > label {
