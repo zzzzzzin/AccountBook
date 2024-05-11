@@ -2024,11 +2024,10 @@ width: 100px !;
 
 /* 카드 조회 시작 */
 .myCards {
-        width: 80%;
     }
 
     .myCard {
-        border: 1px solid black;
+        border: 1px solid #CCC;
         width: 600px;
         height: 150px;
         display: flex;
@@ -2040,16 +2039,19 @@ width: 100px !;
     }
 
     .myCardImg {
-        background-color: aqua;
-        width: 100px;
-        height: 70px;
-        border-radius: 50%;
-        position: relative;
-    }
+    background-color: lightgrey;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
     .myCardImg>img {
-        width: 80px;
-        height: 50px;
+        max-width: 100px;
+    	max-height: 100px;
         /* position: absolute; */
         top: 10%;
         right: 10%;
@@ -2068,24 +2070,27 @@ width: 100px !;
     .myCardCompany>div:first-child,
     .myCardNickname>div:first-child {
         margin-right: 10px;
-        background-color: #ffffff;
+        /* background-color: #ffffff; */
         margin: 2px;
+        font-weight: bold;
     }
 
     .myCardName>div:nth-child(2),
     .myCardCompany>div:nth-child(2),
     .myCardNickname>div:nth-child(2) {
-        background-color: #ffffff;
+       /*  background-color: #ffffff; */
         margin: 2px;
 
     }
 
     .moreMyCard {
-        border: 1px solid black;
+        border: 1px solid #CCC;
+        display: flex;
         width: 600px;
         height: 150px;
         border-radius: 10px;
         padding: 10px;
+        margin-top: 5px;
     }
 
     .myCardMoreNum {
@@ -2097,6 +2102,7 @@ width: 100px !;
 
     .myCardMoreNum>div {
         background-color: #ffffff;
+        font-weight: bold;
     }
 
     .myCardMoreNoneNum {
@@ -2108,7 +2114,7 @@ width: 100px !;
     .myCardMoreName,
     .myCardMoreNickname,
     .myCardMorePeriod {
-        text-align: center;
+        /* text-align: center; */
     }
 
     .myCardMoreCompany>div:nth-child(1),
@@ -2117,6 +2123,7 @@ width: 100px !;
     .myCardMorePeriod>div:nth-child(1) {
         background-color: #ffffff;
         margin-bottom: 3px;
+        font-weight: bold;
     }
 
     .myCardMoreCompany>div:nth-child(2),
@@ -2130,7 +2137,7 @@ width: 100px !;
         position: relative;        
     }
 
-    .myCardBtn > button {
+    /* .myCardBtn > button {
         border: none;
         border-radius: 10px;
         background-color: aquamarine;
@@ -2139,7 +2146,7 @@ width: 100px !;
         left: 10px;
         width: 50px;
         height: 40px;
-    }
+    } */
 
     .addMyCard {
         position: relative;
@@ -2153,7 +2160,6 @@ width: 100px !;
         position: absolute;
         top: 30px;
         right: 250px;
-        background-color: aquamarine;
         text-align: center;
         font-weight: bold;
     }

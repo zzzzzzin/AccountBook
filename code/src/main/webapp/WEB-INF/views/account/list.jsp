@@ -239,6 +239,41 @@
 
 
 
+.categorylist{
+    border: 1px solid black;
+    width: 50%;
+    height: 30px;
+    margin: 5px;
+}
+
+#categorymodalbody{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.categorylistselector{
+    display: flex;
+    border: 1px solid #CCC;
+    background-color: #F3f6f9;
+    width: auto;
+    margin: 5px;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.categorylistselector:hover{
+    cursor: pointer;
+    box-shadow: 0 4px 4px rgba(0,0,0,0.1);
+}
+
+.categorylistselector.selected {
+    background-color: #ADD8E6; /* Light blue background for selected category */
+    color: white;
+}
+
+
+
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
@@ -326,6 +361,32 @@
         </div>
 
         <!-- fakecontent 끝 -->
+        
+        <div class="modal fade" id="categorymodal" tabindex="-1"
+    aria-labelledby="eventProduceModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modalBackground">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="eventProduceModalLabel">카테고리 선택</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="categorymodalbody">
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal" id="btnEventShow">취소</button>
+                    <button type="submit" class="btn btn-primary" id="btnEventProduce">완료
+                        </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        
     </div>
     </div>
 
@@ -346,6 +407,88 @@
     <c:forEach items="${cList}" var = "dto">
 	categories.push('${dto.acName}');
 	</c:forEach>
+	
+	console.log(categories)
+document.addEventListener('DOMContentLoaded', function() {
+    // Assuming the element has an ID 'categoryselector' based on your previous snippets
+    var categoryselector = document.getElementById('categoryselector');
+    const modalBody = document.getElementById('categorymodalbody');
+    const submitBtn = document.getElementById('btnEventProduce');
+    var modal = new bootstrap.Modal(document.getElementById("categorymodal"));
+    const showbtn = document.getElementById('btnEventShow');
+    
+    categoryselector.addEventListener('click', function() {
+        var categorymodalbody = document.getElementById('categorymodalbody');
+        const submitBtn = document.getElementById('btnEventProduce');
+        var categorylistselect = document.getElementById('categorylistselector');
+        let selectedCategory = '';
+
+        // Check if the modal body is empty and populate it if it is
+        if (categorymodalbody.children.length <= 0) {
+            categories.forEach(category => {
+                var cate = document.createElement('div');
+                cate.className = 'categorylistselector purple-btn';
+                cate.textContent = category; // Using textContent for better security and performance
+                categorymodalbody.appendChild(cate);
+            });
+            
+            
+        }
+
+        modal.show();
+    });
+    
+    modalBody.addEventListener('click', function(event) {
+        if (event.target.classList.contains('categorylistselector')) {
+            selectedCategory = event.target.innerHTML; // Retrieve the selected category
+            console.log('Selected Category:', selectedCategory);
+            // Optionally, highlight the selected category
+            const currentActive = modalBody.querySelector('.active');
+            if (currentActive) {
+                currentActive.classList.remove('active');
+            }
+            event.target.classList.add('active');
+        }
+    });
+
+    // Handling the submit button click to filter transactions by the selected category
+    submitBtn.addEventListener('click', function() {
+        if (selectedCategory) {
+            console.log('Filtering transactions for category:', selectedCategory);
+            filterTransactionsByCategory(selectedCategory);
+        }
+        
+        function filterTransactionsByCategory(category) {
+            const allTransactions = document.querySelectorAll('#transcontent');
+            allTransactions.forEach(trans => {
+                const transCategory = trans.querySelector('.transcategory span').textContent.trim();
+                if (transCategory !== category) {
+                    trans.style.display = 'none'; // Hide transactions that do not match the category
+                } else {
+                    trans.style.display = ''; // Show transactions that match the category
+                }
+            });
+            // Close the modal after filtering
+            modal.hide();
+        }
+    });
+    
+    showbtn.addEventListener('click',function(){
+    	const allTransactions = document.querySelectorAll('#transcontent');
+        allTransactions.forEach(trans => {
+                trans.style.display = ''; // Hide transactions that do not match the category
+        });
+        // Close the modal after filtering
+        modal.hide();
+    })
+    
+    
+    
+});
+
+        
+        
+	
 	console.log(categories);
 	const categoryData = [
 	    "SNS수입 - sns.svg",
@@ -397,7 +540,8 @@
 	    categoryImages[key.trim()] = value.trim();
 	});
 	
-   
+	
+
 	
 	// 미리 정의된 색상 팔레트
 	const colorPalette = [
@@ -485,8 +629,14 @@
 
 	    const transAmount = document.createElement('div');
 	    transAmount.className = 'transin';
-	    transAmount.textContent = (amountIndicator === '+' ? '+' : '-') + parseFloat(amount).toLocaleString() + '원'; // Format the amount
+	    transAmount.textContent = (amountIndicator === '+' ? '+' : '-') + amount.toLocaleString() + '원'; // Format the amount
 	    transRightBox.appendChild(transAmount);
+	    
+	    if (amountIndicator === '+') {
+	        transAmount.style.color = 'green'; // Positive amounts in green
+	    } else {
+	        transAmount.style.color = 'red'; // Negative amounts in red
+	    }
 
 	    transContent.appendChild(transDate);
 	    transContent.appendChild(transMiddle);
@@ -513,9 +663,8 @@
 	    	    
 	    transactions.push(transactionItem);
 	</c:forEach>
-
-	console.log(transactions);
-
+	
+	
     transactions.forEach(transaction => {
         addTransaction(transaction.date, transaction.category, transaction.where, transaction.amount, transaction.amountIndicator, transaction.content);
     });
@@ -582,6 +731,11 @@
             searchbar.style.display = 'none';
         }
     };
+
+    
+
+
+    
     //검색 기능 끝
     
      document.addEventListener('DOMContentLoaded', function() {
@@ -591,6 +745,14 @@
         const newItemButton = document.getElementById('newItemButton');
         const cbcbbox = document.getElementById('addcheckbox');
         const delitembtn = document.getElementById('listdelbutton');
+        const catemodal = document.getElementById('categorymodal');
+        
+        
+        
+        
+        
+
+        
         
 
         // Toggle input field visibility and focus when the button is clicked
@@ -599,6 +761,7 @@
                 newItemInput.style.display = 'block';
                 newItemButton.style.display = 'block';
                 newItemInput.focus();
+                console.log('addclick')
             } else {
                 newItemInput.style.display = 'none';
                 newItemButton.style.display = 'none';
@@ -666,6 +829,11 @@
             }
         });
          
+       
+        
+        
+        
+        
         
         $(document).ready(function() {
             // AJAX request to fetch data as soon as the page loads

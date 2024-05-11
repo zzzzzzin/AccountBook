@@ -1238,6 +1238,8 @@ public class AccountDAO {
 		        pstat.setInt(6, 2);
 		        pstat.setInt(7, Integer.parseInt(dto.getFdwContent()));
 		        pstat.setInt(8, Integer.parseInt(dto.getSeqDepositWithdrawalStatus()));
+		        System.out.println("dao indicator: "+dto.getSeqDepositWithdrawalStatus());
+		        
 
 		        int indicate = pstat.executeUpdate();
 
