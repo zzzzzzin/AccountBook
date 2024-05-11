@@ -52,7 +52,7 @@
 								</div>
 								<label>비밀번호</label>
 								<div class="form-group" id="pwboxnow">
-									<input type="text" type="password" name="pw"
+									<input type="password" name="pw"
 										class="form-control input-style-form">
 								</div>
 								<label>비밀번호 확인</label>
@@ -141,7 +141,7 @@
 								</div> -->
 								<div class="text-center">
 									<button type="submit"
-										class="button purple-btn full-btn submit-btn-style">가입하기</button>
+										class="button purple-btn full-btn submit-btn-style" id="registerButton">가입하기</button>
 								</div>
 								<div class="d-flex"></div>
 							</form>
@@ -169,8 +169,16 @@
 	<!-- endinject -->
 	<script>
 	
+	document.getElementById("registerButton").addEventListener("click", function() {
+		alert('회원가입 완료');
+        document.querySelector("form").submit(); // 폼 제출
+        window.location.href = "/account/index.do"; // 리다이렉트
+    });
+	
+	
+	
 	$(document).ready(function() {
-	    $(".duplicateBtn").click(function(e) {
+	    $(".check-duplicate-button").click(function(e) {
 	        e.preventDefault();
 	        
 	        var field = $(this).data("field");
