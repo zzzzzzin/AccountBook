@@ -28,8 +28,9 @@ values (9, 4, 8, '출석', '출췍', '2024-04-29', null, 0, 0, 0, 0, 0, 0);
 
 insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck) 
 values (10, 4, 6, '욕', '욕욕욕욕욕욕욕', '2024-04-29', null, 0, 0, 0, 0, 0, 1);
-
-
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values
+(1000, 2, 160,'일상 공유합니다!','오늘은 날씨가 참 좋네요. 산책하기 딱 좋은 날씨입니다.','2023-01-15',null,0,0,0,0,0,0);
 
 --구매 위시 목록 tblPurchaseWishList
 INSERT INTO tblPurchaseWishList(seq,productName,seqAcc) VALUES (1,'자동차',1);
