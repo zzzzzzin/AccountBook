@@ -329,6 +329,94 @@ insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate
 values (248, 3, 160,'이용자 피드백 시스템 도입 제안','이용자 피드백을 좀 더 적극적으로 수렴할 수 있는 시스템이 필요한 것 같아요. 피드백 게시판 등을 운영하면 어떨까요?','2024-02-12',null,0,0,0,0,0,0);
 insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
 values (249, 3, 160,'봄맞이 이벤트 제안드려요','봄을 맞아 사이트에 생기를 불어넣을 수 있는 이벤트를 진행하면 좋을 것 같아요. 예를 들어 OO 이벤트 등이 어떨까요?','2024-03-22',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (250, 3, 160,'검색어 자동완성 기능 추가 제안','검색어를 입력할 때 자동완성 기능이 있으면 편리할 것 같아요. 사용자 경험 향상에 도움이 될 거예요.','2023-01-14',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (251, 3, 160,'비밀번호 변경 주기 설정 기능 요청','계정 보안을 위해 비밀번호 변경 주기를 설정할 수 있는 기능이 필요할 것 같아요. 주기적으로 변경을 유도하는 알림 등도 있으면 좋겠네요.','2023-02-23',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (252, 3, 160,'커뮤니티 활성화를 위한 아이디어 제안','커뮤니티 활성화를 위해 우수 게시글 선정 이벤트를 진행하면 어떨까요? 사용자 참여를 유도하는 데 효과적일 것 같아요.','2023-03-04',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (253, 3, 160,'모바일 앱 UI 개선 요청드려요','모바일 앱의 UI가 조금 더 직관적이었으면 좋겠어요. 사용성 개선을 위한 UI 업데이트를 제안드립니다.','2023-04-12',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (254, 3, 160,'이벤트 당첨자 발표 방식 제안','이벤트 당첨자 발표 시 개별 연락도 좋지만, 사이트 내에 당첨자 게시판을 만들면 더 투명할 것 같아요.','2023-05-21',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (255, 3, 160,'컨텐츠 업로드 오류 제보드려요','컨텐츠 업로드 시 간헐적으로 오류가 발생하는 것 같아요. 업로드 프로세스를 점검해 주시면 감사하겠습니다.','2023-06-30',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (256, 3, 160,'게시글 작성 시 미리보기 기능 제안','게시글 작성 시 미리보기 기능이 있으면 편리할 것 같아요. 작성한 게시글의 최종 모습을 확인할 수 있어서 좋을 거 같네요.','2023-07-09',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (257, 3, 160,'사이트 내 쪽지 기능 추가 건의드려요','사이트 내에서 사용자 간 쪽지를 주고받을 수 있는 기능이 있으면 소통이 더 활발해질 것 같아요.','2023-08-18',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (258, 3, 160,'콘텐츠 다운로드 속도 개선 요청합니다','콘텐츠 다운로드 속도가 조금 느린 편인 것 같아요. 다운로드 속도 개선을 위한 방안을 마련해 주시면 좋겠습니다.','2023-09-27',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (259, 3, 160,'회원 등급제 도입 제안드려요','사이트 내 회원 등급제를 도입하면 사용자 참여도를 높일 수 있을 것 같아요. 등급별 혜택 등을 제공하면 좋겠어요.','2023-10-06',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (260, 3, 160,'사이트 접속 오류 제보합니다','가끔 사이트 접속이 원활하지 않을 때가 있어요. 접속 오류에 대한 점검 부탁드립니다.','2023-11-15',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (261, 3, 160,'겨울맞이 이벤트 아이디어 제안해요','겨울을 맞아 사이트 분위기를 바꿔보는 건 어떨까요? 겨울 느낌 나는 디자인으로 변경하는 이벤트를 제안드려요.','2023-12-24',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (262, 3, 160,'새해 계획 공유 이벤트 제안합니다','새해를 맞아 사용자들의 새해 계획을 공유하는 이벤트를 진행하면 어떨까요? 서로의 목표를 응원하는 분위기를 조성할 수 있을 거예요.','2024-01-02',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (263, 3, 160,'밸런타인데이 이벤트 아이디어 제안드려요','밸런타인데이를 맞아 사랑을 주제로 한 이벤트를 진행하면 좋을 것 같아요. 사랑에 관한 사용자들의 이야기를 공유하는 게시판을 만들어보면 어떨까요?','2024-02-14',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (264, 3, 160,'화이트데이 이벤트 제안합니다','밸런타인데이에 이어 화이트데이 이벤트도 진행하면 좋겠어요. 사랑받는 사람들을 위한 특별한 이벤트를 기획해보는 건 어떨까요?','2024-03-14',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (265, 3, 160,'웹 접근성 개선 제안드려요','웹 접근성을 높이면 더 많은 사용자들이 편리하게 이용할 수 있을 것 같아요. 접근성 개선을 위한 방안을 마련해 주시면 좋겠습니다.','2023-01-22',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (266, 3, 160,'모바일 앱 푸시 알림 오류 제보해요','모바일 앱에서 푸시 알림이 제대로 수신되지 않을 때가 있어요. 푸시 알림 기능에 대한 점검 부탁드립니다.','2023-03-03',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (267, 3, 160,'사이트 내 채팅 기능 추가 제안합니다','사이트 내에 실시간 채팅 기능이 있으면 사용자들 간의 소통이 더 활발해질 것 같아요. 채팅 기능 추가를 제안드려요.','2023-04-11',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (268, 3, 160,'이벤트 상품 다양화 요청드려요','이벤트 상품으로 제공되는 품목들이 조금 더 다양했으면 좋겠어요. 사용자들의 관심을 끌 수 있는 다양한 상품을 제안드립니다.','2023-05-20',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (269, 3, 160,'게시글 작성 시 첨부 파일 확장자 제한 제안','게시글 작성 시 첨부 파일의 확장자를 제한하는 것이 보안상 좋을 것 같아요. 허용된 확장자만 업로드할 수 있도록 설정하는 걸 제안합니다.','2023-06-29',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (270, 3, 160,'콘텐츠 추천 알고리즘 개선 제안해요','현재 콘텐츠 추천 알고리즘이 사용자의 관심사를 정확히 반영하지 못하는 것 같아요. 추천 알고리즘 개선을 통해 사용자 만족도를 높일 수 있을 거예요.','2023-07-08',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (271, 3, 160,'여름 휴가 시즌 이벤트 아이디어 제안드려요','여름 휴가 시즌을 맞아 특별한 이벤트를 진행하면 어떨까요? 사용자들의 휴가 계획을 공유하고 추천하는 게시판을 만들어보는 건 어떨까요?','2023-08-17',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (272, 3, 160,'사이트 로고 변경 제안합니다','사이트 로고를 좀 더 세련되고 현대적인 느낌으로 변경하면 어떨까요? 브랜드 이미지 향상에 도움이 될 것 같아요.','2023-09-26',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (274, 3, 160,'할로윈 데이 이벤트 제안드려요','할로윈 데이를 맞아 사이트에 특별한 이벤트를 진행하면 어떨까요? 호러 영화 추천 게시판이나 할로윈 분장 콘테스트 등 다양한 이벤트를 기획해보면 좋을 것 같아요.','2023-10-31',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (275, 3, 160,'감사절 맞이 이벤트 아이디어 제안합니다','감사절을 맞이하여 사용자들에게 감사 인사를 전하는 이벤트를 진행하면 어떨까요? 감사 메시지를 공유하는 게시판을 만들어 서로 감사 인사를 나누는 것도 좋을 것 같아요.','2023-11-23',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (276, 3, 160,'크리스마스 이벤트 제안드려요','크리스마스를 맞아 특별한 이벤트를 기획해보면 어떨까요? 크리스마스 트리 꾸미기 콘테스트나 크리스마스 노래 추천 게시판 등 다양한 이벤트를 진행할 수 있을 것 같아요.','2023-12-25',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (277, 3, 160,'이벤트 당첨자 선정 방식 제안합니다','이벤트 당첨자 선정 시 좀 더 투명하고 공정한 방식을 도입하면 어떨까요? 랜덤 추첨 방식이나 참여도에 따른 가중치 부여 등 다양한 방법을 고려해보면 좋을 것 같아요.','2024-01-15',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (278, 3, 160,'발렌타인 데이 이벤트 아이디어 제안해요','발렌타인 데이를 맞아 사랑을 주제로 한 이벤트를 진행해보면 어떨까요? 사랑 고백 메시지 공유 게시판이나 초콜릿 만들기 레시피 공유 등 다양한 이벤트를 기획할 수 있을 거예요.','2024-02-14',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (279, 3, 160,'화이트 데이 이벤트 제안드려요','발렌타인 데이에 이어 화이트 데이에도 특별한 이벤트를 진행하면 좋을 것 같아요. 사랑받은 사람들을 위한 이벤트를 기획해보는 건 어떨까요?','2024-03-14',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (280, 3, 160,'봄맞이 이벤트 아이디어 제안합니다','봄을 맞아 사이트에 생기를 불어넣을 수 있는 이벤트를 진행해보면 어떨까요? 봄 관련 사진 콘테스트나 봄 데이트 코스 추천 게시판 등 다양한 이벤트를 기획할 수 있을 거예요.','2024-03-21',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (281, 3, 160,'사이트 접속 오류 개선 요청드려요','최근 사이트 접속 시 종종 오류가 발생하는 것 같아요. 안정적인 서비스 제공을 위해 접속 오류 개선을 요청드립니다.','2023-01-31',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (282, 3, 160,'콘텐츠 업데이트 주기 제안합니다','콘텐츠 업데이트 주기를 좀 더 짧게 조정하면 어떨까요? 사용자들의 관심과 참여를 유지하기 위해 주기적인 콘텐츠 업데이트가 필요할 것 같아요.','2023-03-10',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (283, 3, 160,'사이트 로딩 속도 개선 요청드려요','사이트 로딩 속도가 느려서 불편함을 느끼는 사용자들이 있는 것 같아요. 로딩 속도 개선을 통해 사용자 경험을 향상시킬 수 있을 거예요.','2023-04-19',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (284, 3, 160,'모바일 앱 업데이트 제안합니다','모바일 앱의 기능과 디자인을 업데이트하면 좋을 것 같아요. 사용자 편의성을 높이고 최신 트렌드를 반영한 앱으로 개선하는 것을 제안드려요.','2023-05-28',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (285, 3, 160,'고객 센터 응답 속도 개선 요청드려요','고객 센터에 문의했을 때 응답 속도가 느린 편이에요. 신속하고 정확한 답변을 받을 수 있도록 고객 센터 응대 속도 개선을 요청드립니다.','2023-07-07',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (286, 3, 160,'이벤트 경품 발송 지연 개선 요청합니다','이벤트에 당첨되었는데 경품 발송이 많이 지연되는 경우가 있어요. 당첨자들의 기대감을 유지하기 위해 경품 발송 프로세스를 개선해주시면 감사하겠습니다.','2023-08-16',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (287, 3, 160,'추석 맞이 이벤트 아이디어 제안드려요','추석을 맞아 사이트에서 특별한 이벤트를 진행하면 어떨까요? 명절 인사 나누기 게시판이나 추석 음식 레시피 공유 등 다양한 이벤트를 기획해볼 수 있을 것 같아요.','2023-09-27',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (288, 3, 160,'할로윈 데이 이벤트 제안합니다','할로윈 데이를 맞아 사이트에 특별한 이벤트를 준비하면 좋을 것 같아요. 무서운 이야기 공유 게시판이나 할로윈 코스프레 콘테스트 등 다채로운 이벤트를 진행해보면 어떨까요?','2023-10-31',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (289, 3, 160,'겨울 시즌 이벤트 아이디어 제안드려요','겨울 시즌을 맞아 사이트에 특별한 분위기를 연출하는 건 어떨까요? 크리스마스 트리 꾸미기 이벤트나 겨울 풍경 사진 콘테스트 등 다양한 이벤트를 기획해볼 수 있을 거예요.','2023-12-15',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (290, 3, 160,'이벤트 참여 방법 개선 제안합니다','현재 이벤트 참여 방법이 조금 복잡하다는 의견이 있어요. 더 간단하고 직관적인 참여 방법으로 개선한다면 사용자 참여율을 높일 수 있을 것 같아요.','2024-01-24',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (291, 3, 160,'발렌타인 데이 이벤트 제안드려요','발렌타인 데이를 맞아 사랑을 테마로 한 이벤트를 진행해보면 어떨까요? 러브 스토리 공유 이벤트나 하트 모양 디자인 콘테스트 등 다양한 아이디어를 생각해볼 수 있을 거예요.','2024-02-14',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (292, 3, 160,'화이트 데이 이벤트 아이디어 제안합니다','화이트 데이에도 특별한 이벤트를 준비하면 좋을 것 같아요. 사랑 고백 이벤트나 달콤한 디저트 레시피 공유 등 다채로운 콘텐츠를 마련해보는 건 어떨까요?','2024-03-14',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (293, 3, 160,'봄 시즌 이벤트 제안드려요','봄을 맞아 사이트에 생기 넘치는 분위기를 연출하면 좋을 것 같아요. 봄꽃 구경 명소 추천 이벤트나 봄 패션 콘테스트 등 다양한 아이디어를 기획해볼 수 있을 거예요.','2024-03-22',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (294, 3, 160,'사이트 내 알림 기능 개선 요청합니다','사이트 내 알림 기능이 제대로 작동하지 않는 경우가 있어요. 중요한 공지나 이벤트 소식을 놓치지 않도록 알림 기능 개선을 요청드립니다.','2023-02-09',null,0,0,0,0,0,0);
 commit;
 --구매 위시 목록 tblPurchaseWishList
 INSERT INTO tblPurchaseWishList(seq,productName,seqAcc) VALUES (1,'자동차',1);
