@@ -11,8 +11,7 @@
 <meta content="" name="description">
 
 <!-- Favicon -->
-<link href="img/favicon.ico" rel="icon">
-
+     <link type="image/png" sizes="16x16" rel="icon" href="/account/asset/images/icons8-돈-상자-16.png">
 <!-- Google Web Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

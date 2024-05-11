@@ -5,6 +5,7 @@
 <html>
 <head>
 <title>BudgetBuddy | 회원가입</title>
+     <link type="image/png" sizes="16x16" rel="icon" href="/account/asset/images/icons8-돈-상자-16.png">
 <meta charset="UTF-8">
 <%@include file="/WEB-INF/views/inc/asset.jsp"%>
 <!-- Required meta tags -->

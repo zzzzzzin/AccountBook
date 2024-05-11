@@ -6,6 +6,7 @@
 <head><title>BudgetBuddy | 비밀번호 찾기</title>
 
 <head>
+     <link type="image/png" sizes="16x16" rel="icon" href="/account/asset/images/icons8-돈-상자-16.png">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <%@include file="/WEB-INF/views/inc/asset.jsp"%>
