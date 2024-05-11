@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-<head>
+<head><title>BudgetBuddy | 아이디 찾기</title>
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,78 +11,33 @@
 <link rel="stylesheet" href="/account/asset/css/style.css">
 <link rel="stylesheet" href="/account/asset/css/corona_style.css">
 <style>
-body {
-	color: black;
-}
 
-.card {
-	border: none;
-}
-
-.form-control {
-	background-color: #D9D9D9;
-	border: none;
-}
-
-.form-control.click {
-	background-color: #D9D9D9;
-	border: none;
-}
-
-.btn-primary {
-	background-color: #D9D9D9;
-	border: #D9D9D9;
-	color: black;
-}
-
-.btn-primary:hover {
-	background-color: #D9D9D9;
-	border: #D9D9D9;
-	color: black;
-}
-
-.btn-primary.click {
-	background-color: #D9D9D9;
-	border: #D9D9D9;
-	color: black;
-}
-
-.find {
-	text-align: center;
-}
 </style>
 </head>
-<title>
-아이디 찾기
-</title>
 <body>
 	<%@include file="/WEB-INF/views/inc/header.jsp"%>
 
 	<div class="container-scroller">
-		<div class="container-fluid page-body-wrapper full-page-wrapper">
-			<div class="row w-100 m-0">
-				<div
-					class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
-					<div class="card col-lg-4 mx-auto">
-						<div class="card-body px-5 py-5">
+		<div class="content-total-style">
+			<div class="user-info-input-page-container login-page-container user-info-box-container-style">
+				<div class="user-info-container-style">
+					<div class="">
+						<div class="card-body">
 							<h3 class="card-title text-left mb-3">아이디 찾기</h3>
 							<div class="successFind">
 								<form method="post" action="/account/user/find-id.do">
 									<div class="form-group">
 										<label>이름</label> <input type="text"
-											class="form-control p_input" name="name">
+											class="form-control input-style-form" name="name">
 									</div>
 									<div class="form-group">
-										<label>주민번호</label> <input type="text"
-											class="form-control p_input" name="ssn">
+										<label>주민등록번호</label> <input type="text"
+											class="form-control input-style-form" name="ssn">
 									</div>
-									<div class="text-center">
-										<button type="submit"
-											class="btn btn-primary btn-block enter-btn">아이디 찾기</button>
-									</div>
+									<button type="submit" class="button purple-btn full-btn submit-btn-style">아이디 찾기</button>
 								</form>
 
-								<div class="successFind">
+								<div class="text-line-area">
 									<c:choose>
 										<c:when test="${not empty foundId}">
 											<p>회원님의 아이디는 ${foundId} 입니다.</p>
@@ -90,9 +45,9 @@ body {
 										<c:when test="${empty foundId and not empty param.name}">
 											<p>입력한 정보와 일치하는 아이디가 없습니다.</p>
 										</c:when>
-										<c:otherwise>
+<%-- 										<c:otherwise>
 											<p>이름과 주민번호를 입력하여 아이디를 찾아주세요.</p>
-										</c:otherwise>
+										</c:otherwise> --%>
 									</c:choose>
 								</div>
 							</div>

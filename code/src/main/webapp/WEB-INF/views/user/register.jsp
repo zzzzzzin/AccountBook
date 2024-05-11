@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>BudgetBuddy | 회원가입</title>
 <meta charset="UTF-8">
 <%@include file="/WEB-INF/views/inc/asset.jsp"%>
 <!-- Required meta tags -->
@@ -23,43 +24,12 @@
 <!-- End layout styles -->
 <link rel="shortcut icon" href="/account/asset/images/favicon.png" />
 <style>
-/* #username {
-	display: flex;
-}
-.duplicateBtn {
-	margin-left: 10px;
-	height: 40px;
-	width: 15%;
-}
-.colorD9 {
-	background-color: #D9D9D9;
-}
-.inputbox {
-	height: 40px;
-}
-.dupnone {
-	width: 85%;
-}
-.colorAAA {
-	background-color: #AAAAAA;
-}
-.radsetcss {
-	margin-left: 30px;
-}
-.marginfix {
 
-	
+#username {
+    display: flex;
+    gap: 5px;
 }
-.updatefix {
-	align-items: center;
-}
-#survey {
 
-	
-}
-#duptext {
-	font-size: 10px;
-} */
 </style>
 </head>
 <body>
@@ -70,9 +40,9 @@
 				<div class="user-info-container-style">
 					<div class="">
 						<div class="card-body">
-							<h3 class="card-title text-left mb-3">Register</h3>
+							<h3 class="card-title text-left mb-3">회원가입</h3>
 							<form method="post" action="/account/user/register.do">
-								<label>ID(이메일)</label>
+								<label>아이디(이메일))</label>
 								<div class="form-group " id="username">
 									<input type="text" name="id"
 										class="form-control input-style-form">
@@ -82,10 +52,10 @@
 								</div>
 								<label>비밀번호</label>
 								<div class="form-group" id="pwboxnow">
-									<input type="text" type="password" name="pw"
+									<input type="password" name="pw"
 										class="form-control input-style-form">
 								</div>
-								<label>비밀번호 재입력</label>
+								<label>비밀번호 확인</label>
 								<div class="form-group" id="username">
 									<input  type="password" name="pwConfirm"
 										class="form-control input-style-form">
@@ -111,7 +81,7 @@
 								    <span id="duptext">중복 확인</span>
 								</button>
 								</div>
-								<label>주민등록 번호</label>
+								<label>주민등록번호</label>
 								<div class="form-group" id="username">
 									<input type="text" name="ssn"
 										class="form-control input-style-form">
@@ -156,7 +126,7 @@
 									<label>저축 목표 기간</label>
 									<div class="form-group" id="pwboxnow">
 										<select class="form-control input-style-form select-box-style" name="seqSavingsPeriod">
-											<option value="" selected disabled>기간을 선택해주세요</option>
+											<option value="" selected disabled>기간을 선택해주세요.</option>
 											<option value="0">없음</option>
 											<option value="1">1 개월</option>
 											<option value="3">3 개월</option>
@@ -171,7 +141,7 @@
 								</div> -->
 								<div class="text-center">
 									<button type="submit"
-										class="button purple-btn full-btn submit-btn-style">가입하기</button>
+										class="button purple-btn full-btn submit-btn-style" id="registerButton">가입하기</button>
 								</div>
 								<div class="d-flex"></div>
 							</form>
@@ -199,8 +169,16 @@
 	<!-- endinject -->
 	<script>
 	
+	document.getElementById("registerButton").addEventListener("click", function() {
+		alert('회원가입 완료');
+        document.querySelector("form").submit(); // 폼 제출
+        window.location.href = "/account/index.do"; // 리다이렉트
+    });
+	
+	
+	
 	$(document).ready(function() {
-	    $(".duplicateBtn").click(function(e) {
+	    $(".check-duplicate-button").click(function(e) {
 	        e.preventDefault();
 	        
 	        var field = $(this).data("field");

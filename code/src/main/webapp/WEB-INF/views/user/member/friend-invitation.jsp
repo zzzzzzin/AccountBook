@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>BudgetBuddy | 친구 초대</title>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
@@ -24,15 +25,10 @@
     <!-- Libraries Stylesheet -->
 </head>
 <style>
-
-   
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
 </style>
-<title>
-친구 초대
-</title>
 <body>
     <div class="container-xxl position-relative bg-white d-flex p-0">
         <!-- Spinner Start -->
@@ -63,31 +59,29 @@
         <!-- fakecontent 안에서 작성 -->
 
 			<div class="content-total-style">
-			<div class="text-container-friendinvite">
-					<!-- 글을 여기에 추가하세요 -->
-					<p>소비 패턴 분석을 통한 지출 관리 친구 BudgetBuddy를 <br> 친구에게 공유하세요!</p>
-					<a id="kakaotalk-sharing-btn" href="javascript:;"> <img
-						src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png"
-						alt="카카오톡 공유 보내기 버튼" />
+				<div class="content-header">
+					<div class="content-title-style">
+						<h3>친구 초대</h3>
+					</div>
+					<div class="note-style">
+						<div class="note-style-text">
+							<!-- 글을 여기에 추가하세요 -->
+							<div>소비 패턴 분석을 통한 지출 관리 친구 <span>"BudgetBuddy"</span> 를</div>
+							<div>친구에게 공유하세요!</div>
+						</div>
+						<div>
+							<a id="kakaotalk-sharing-btn" href="javascript:;"> <img
+								src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png"
+								alt="카카오톡 공유 보내기 버튼" />
+						</div>
+					</div>
 				</div>
 				<div class="image-container-friendinvite">
 					<!-- 이미지를 여기에 추가하세요 -->
 					<img src="/account/asset/images/BudgetBuddy.jpg" alt="이미지" id = "img-friendinvite">
 				</div>
-<!-- 				<div class="text-container-friendinvite"> -->
-<!-- 					글을 여기에 추가하세요 -->
-<!-- 					<p>소비 패턴 분석을 통한 지출 관리 친구 BudgetBuddy를 <br> 친구에게 공유하세요!</p> -->
-<!-- 					<a id="kakaotalk-sharing-btn" href="javascript:;"> <img -->
-<!-- 						src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png" -->
-<!-- 						alt="카카오톡 공유 보내기 버튼" /> -->
-<!-- 				</div> -->
-			</div>
-
 
 			<!-- fakecontent 끝 -->
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-        
     </div>
     </div>
 

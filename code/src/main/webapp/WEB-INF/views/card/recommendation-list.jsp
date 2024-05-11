@@ -3,9 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
-<title>
-${selectedCategory} 카드 추천
-</title>
+<title>BudgetBuddy | ${selectedCategory} 카드 추천</title>
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -34,11 +32,10 @@ ${selectedCategory} 카드 추천
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
-    .card-image img {
-        width: 30px;
-        height: 30px;
-        object-fit: cover;
-    }
+.fakecontent .card-container .card .card-image img {
+  width: 100px !important;
+  height: auto;
+}
 </style>
 <script type="module" src="chart.min.js"></script>
 <body>
@@ -70,9 +67,13 @@ ${selectedCategory} 카드 추천
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
         
-<div class="fakecontent">
-    <h2>선택된 카테고리: ${selectedCategory}</h2>
-    <div class="card-container">
+	<div class="content-total-style">
+    <div class="content-header">
+    	<div class="content-title-style">
+    		<h3>${selectedCategory} 카드 추천</h3>
+    	</div>
+	</div>
+    <div class="card-use-list">
         <c:choose>
             <c:when test="${empty list}">
                 <div class="card">
@@ -81,9 +82,11 @@ ${selectedCategory} 카드 추천
             </c:when>
             <c:otherwise>
                 <c:forEach items="${list}" var="dto" varStatus="loop">
-                    <div class="card">
+                    <div class="box card-use-item">
                         <div class="card-image">
+                        <div class="card-image-wrapper">
                                 <img src="${pageContext.request.contextPath}/asset/images/${dto.fileLink}">
+                            </div>
                             </div>
                         <div class="card-details">
                             <div class="card-name" >${dto.ciName}</div>
@@ -98,9 +101,6 @@ ${selectedCategory} 카드 추천
 
         <!-- fakecontent 끝 -->
         <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-        
-
     <!-- JavaScript Libraries -->
    
     <!-- Template Javascript -->

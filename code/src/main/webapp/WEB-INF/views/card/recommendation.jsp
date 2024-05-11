@@ -124,7 +124,7 @@
     }
     
     .flipster img{
-    	width: 300px;
+    	width: 150px;
     	height: auto;
     }
     #categorymodalbody{
@@ -233,12 +233,6 @@
                 <div class="modal-body" id="categorymodalbody">
 
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="button gray-btn"
-                        data-bs-dismiss="modal">취소</button>
-                    <button type="button" class="button purple-btn" id="btnEventProduce">완료
-                        </button>
                 </div>
             </div>
         </div>
