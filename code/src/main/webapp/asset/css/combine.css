@@ -1096,11 +1096,6 @@ textarea,
 .button-group {
 	gap: 10px;
 }
-#write > div:nth-child(4) {
-	display: flex;
-	justify-content: flex-end;
-}
-
 body > div > div > div > div > div > div > form > div:nth-child(17) > label {
 	margin-right: 5px;
 }

@@ -106,7 +106,7 @@
 					       <textarea id="content" name="content" placeholder="내용을 입력해 주세요." class="input-style-form"></textarea>
 					     </div>
 					     
-					     <div>
+					     <div class="secret-box-display">
 					     	<div class="user-info-input-box">
 									<label><input type="checkbox" name="secretCheck" value="select" id="challenge" class="submit-btn-style"/>비밀글</label>
 							</div>
@@ -134,16 +134,27 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
     
+    
+/*     #write > div:nth-child(4) {
+    	display: flex;
+    	justify-content: flex-end;
+    } */
+
     console.log('${seqBoard}');
     
     document.addEventListener('DOMContentLoaded', function() {
         var seqBoard = ${seqBoard};
         var userInfoInputBox = document.querySelector('.user-info-input-box');
+        var secretBoxDisplay = document.querySelector('.secret-box-display');
         
         if (seqBoard == 3) {
-            userInfoInputBox.style.display = 'block';
+            userInfoInputBox.style.display = 'flex';
+            secretBoxDisplay.style.display = 'flex';
+            secretBoxDisplay.style.justifyContent = 'space-between';
         } else {
             userInfoInputBox.style.display = 'none';
+            secretBoxDisplay.style.display = 'flex';
+            secretBoxDisplay.style.justifyContent = 'flex-end';
         }
     });
 	    
