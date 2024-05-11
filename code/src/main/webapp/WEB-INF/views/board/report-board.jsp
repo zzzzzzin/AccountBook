@@ -28,12 +28,6 @@
     <!-- Libraries Stylesheet -->
 </head>
 <style>
-	
-   	#pagebar{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-	}
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       

@@ -1014,6 +1014,27 @@ comment-edit-form textarea,
   width: 1px;
   height: 1px;
 }
+/* 페이징 처리 */
+ #pagebar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    padding-top: 24px;
+    font-size: 15px;
+	}
+	
+ .paging-nowpage{
+	color: #FC8C79;
+    text-decoration: underline;
+    font-weight: bold;
+	}
+
+  #pagebar a:hover{
+	color: #f0a69a;;
+    text-decoration: underline;
+	}
+
 /* 메인게시판 끝 */
 
 /* 게시글 작성 */
