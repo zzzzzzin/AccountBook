@@ -34,9 +34,6 @@
     #periodcheck button{
         margin: 5px;
     }
-    
-    #fakecontent{
-    }
 
     #monthgoal{
         width: 300px;
@@ -179,16 +176,6 @@
     width: 30%;
 }
 
-#wishlist button {
-    padding: 8px 16px;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-#wishlist button:hover {
-}
 
 #wishListItems li {
     list-style: none;
@@ -390,7 +377,7 @@
             <!-- 상당 메뉴 끝-->
             <!-- Navbar End -->
         <!-- Content End -->
-        <div id="fakecontent">
+        <div class="content-total-style">
             <div id="aboverow" class="content-header">
             <div class="content-title-style">
 						<h3>달력 가계부</h3>

@@ -140,18 +140,6 @@
 #newitembutton{
     width: 30%;
 }
-
-#wishlist button {
-    padding: 8px 16px;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-#wishlist button:hover {
-}
-
 #wishListItems li {
     list-style: none;
     margin-top: 8px;
@@ -250,10 +238,6 @@
 
 
 
-#wishlist button:hover {
-    background-color: #007dca;
-}
-
 .category-icon {
     vertical-align: middle; /* Aligns the icon vertically with the text */
     width: 20px;            /* Adjust width as needed */
@@ -297,7 +281,7 @@
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
       
-      	<div id="fakecontent">
+      	<div class="content-total-style">
       		<div id="aboverow">
       		<div class="content-title-style">
 						<h3>가계부 목록</h3>
