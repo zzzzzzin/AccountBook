@@ -213,8 +213,8 @@ public class BoardDAO {
 					+ "    po_secretcheck AS secretcheck,\r\n"
 					+ "    po_blindcheck AS blindcheck,\r\n"
 					+ "    us_seq AS seqpost,\r\n"
-					+ "    af_filename AS filename,\r\n"
-					+ "    af_filelink AS filelink,\r\n"
+					+ "    img_filename AS filename,\r\n"
+					+ "    img_filelink AS filelink,\r\n"
 					+ "    ROW_NUMBER() OVER (ORDER BY po_writedate DESC) AS rnum\r\n"
 					+ "FROM vwboard2\r\n"
 					+ where + ")"
@@ -327,8 +327,8 @@ public class BoardDAO {
 					+ "    po_secretcheck as secretcheck,\r\n"
 					+ "    po_blindcheck as blindcheck,\r\n"
 					+ "    us_seq as seqpost,\r\n"
-					+ "    af_filename as filename,\r\n"
-					+ "    af_filelink as filelink\r\n"
+					+ "    img_filename as filename,\r\n"
+					+ "    img_filelink as filelink\r\n"
 					+ "from vwboard2 where ca_seq = ?\r\n"
 					+ "order by po_writedate desc";
 			
@@ -459,8 +459,8 @@ public class BoardDAO {
 					+ "    po_secretcheck as secretcheck,\r\n"
 					+ "    po_blindcheck as blindcheck,\r\n"
 					+ "    us_seq as seqpost,\r\n"
-					+ "    af_filename as filename,\r\n"
-					+ "    af_filelink as filelink\r\n"
+					+ "    img_filename as filename,\r\n"
+					+ "    img_filelink as filelink\r\n"
 					+ "from vwboard2 where ca_seq = ?\r\n"
 					+ "order by po_writedate desc";
 			
@@ -640,8 +640,8 @@ public class BoardDAO {
 					+ "po_secretcheck as secretcheck,\r\n"
 					+ "po_blindcheck as blindcheck,\r\n"
 					+ "us_seq as seqpost,\r\n"
-					+ "af_filename as filename,\r\n"
-					+ "af_filelink as filelink\r\n"
+					+ "img_filename as filename,\r\n"
+					+ "img_filelink as filelink\r\n"
 					+ "from vwboard2\r\n"
 					+ "WHERE ca_seq =  ?) "
 					+ where;
