@@ -110,38 +110,37 @@
 	                </tr>
 	                <c:if test="${attendanceList.size() == 0}">
 					    <tr>
-					        <td colspan="6">게시물이 없습니다.</td>
+					    	<td></td>
+					    	<td></td>
+					        <td>게시물이 없습니다.</td>
+					        <td></td>
+					        <td></td>
 					    </tr>
 					</c:if>
-
-						<c:forEach var="attendance" items="${attendanceList}">
-							<tr>
-								<td>${attendance.seq}</td>
-								<td class="blind-post-title-style"><c:choose>
-										<c:when test="${attendance.blindCheck eq '1'}">
-				                    관리자에 의해 블라인드 처리되었습니다.
-				                </c:when>
-										<c:otherwise>
-											<a href="/account/board/discussion.do?seq=${attendance.seq}">${attendance.title}</a>
-										</c:otherwise>
-									</c:choose></td>
-								<td>${attendance.me_nickName != null ? attendance.me_nickName : attendance.ad_nickName}</td>
-								<td>${attendance.writeDate}</td>
-								<td>${attendance.viewCount}</td>
-								<td>${attendance.likeCount}</td>
-								<%-- <td id="secret"><c:choose>
-										<c:when test="${attendance.secretCheck eq '1'}">
-											<div class="fas fa-lock lock-icon"></div>
-										</c:when>
-										<c:otherwise>
-											<div class="fas fa-unlock unlock-icon"></div>
-										</c:otherwise>
-									</c:choose></td> --%>
-	
-							</tr>
-						</c:forEach>
-					</tbody>
+	                
+					<c:forEach items="${attendanceList}" var="attendance" varStatus="status">
+			                <tr>
+			                    <td>${status.count}</td>
+						        <td class="blind-post-title-style">
+						            <c:choose>
+						                <c:when test="${attendance.blindCheck eq '1'}">
+						                    관리자에 의해 블라인드 처리 되었습니다.
+						                </c:when>
+						                <c:otherwise>
+						                	<a href="/account/board/discussion.do?seq=${attendance.seq}">${attendance.title}</a>					                    
+						                </c:otherwise>
+						            </c:choose>
+						        </td>
+						        <td>${attendance.me_nickName != null ? attendance.me_nickName : attendance.ad_nickName}</td>
+						        <td>${attendance.writeDate}</td>
+						        <td>${attendance.viewCount}</td>
+						        <td>${attendance.likeCount}</td>				      
+			                </tr>
+	                </c:forEach>
+	                </tbody>
 	            </table>
+	            <!-- 페이지바 -->
+				<div id="pagebar">${pagebar}</div>
 	            <div class="write-btn">
 	                <a href="/account/board/write.do" class="button purple-btn submit-btn-style bottom-btn-style">글작성</a>
 	            </div>
