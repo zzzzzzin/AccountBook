@@ -38,10 +38,10 @@ public class FindPw extends HttpServlet {
     	System.out.println(name);
     	
     	UserDAO dao =  new UserDAO();
-    	UserDTO checkId = dao.checkId(id, name);
+    	int checkId = dao.checkId(id, name);
     	
     	//일치하는 회원 정보가 존재하면
-    	if(checkId != null) {
+    	if(checkId != 0) {
     		
     		int result = dao.gmailSend(id, name);
     		
