@@ -257,6 +257,7 @@
 </div>
 <input type="hidden" name="seqUser" value="${not empty sessionScope.seqUser ? sessionScope.seqUser : ''}">
 <!-- 댓글 쓰기 시작 -->
+<c:if test="${not empty sessionScope.seqUser}">
 <div class="comment-form">
     <form id="commentForm">
         <input type="hidden" name="seqPost" value="${param.seq}">
@@ -265,7 +266,7 @@
         <button type="submit" class="button purple-btn submit-btn-style">등록하기</button>
     </form>
 </div>
-
+</c:if>
 <!-- 댓글 쓰기 끝 -->
            
           </div>
