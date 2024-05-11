@@ -86,18 +86,11 @@ public class BoardDAO {
 		try {
 			PostDTO dto = new PostDTO();
 			
-			String sql = "select FILELINK as profileImg from TBLPROFILEIMG where seq = (select SEQPROFILEIMG from tblmember where id = ?)";
+			 
 			
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, id);
 			
-			rs = pstat.executeQuery();
 			
-			if(rs.next()) {
-				dto.setProfileImg(rs.getString("profileImg"));
-			}
-			
-			sql = "select\r\n"
+			String sql = "select\r\n"
 					+ "    po_seq as seq,\r\n"
 					+ "    me_nickname as me_nickname,\r\n"
 					+ "    ad_nickname as ad_nickname,\r\n"
@@ -147,6 +140,26 @@ public class BoardDAO {
 				dto.setFileLink(rs.getString("filelink"));
 					
 			}
+			
+			String searchnic;
+			
+			if(dto.getme_nickName()==null) {
+				searchnic = dto.getad_nickName();
+			}else {
+				searchnic = dto.getme_nickName();
+			}
+			
+			sql = "select FILELINK as profileImg from TBLPROFILEIMG where seq = (select SEQPROFILEIMG from tblmember where nickname = ?)";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1,searchnic);
+			
+			rs = pstat.executeQuery();
+			
+			if(rs.next()) {
+				dto.setProfileImg(rs.getString("profileImg"));
+			}
+			
 			
 			return dto;
 		} catch (Exception e) {
