@@ -1431,6 +1431,9 @@ body > div > div > div > div > div > div > form > div:nth-child(17) > label {
     padding: 30px 0;
     gap: 50px;
 }
+#secondrow > div{
+    min-height: 280px;
+}
 
 #thridrow{
     display: flex;
