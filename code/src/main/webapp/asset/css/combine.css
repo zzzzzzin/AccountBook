@@ -964,10 +964,11 @@ comment-edit-form textarea,
   border-collapse: collapse;
 }
 
+.user-post-management-btn-box span:hover,
+.user-post-management-btn-box a:hover,
 #commentlevel1info > div > div:nth-child(3) span:hover {
 	color: #FC8C79;
     text-decoration: underline;
-
 }
 .user-post-management-btn-box span,
 .user-post-management-btn-box a,
