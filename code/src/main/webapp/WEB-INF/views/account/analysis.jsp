@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<title>BudgetBuddy | 가계부</title>
+<title>BudgetBuddy | 가계부 분석</title>
 <html>
 <head>
     <meta charset="utf-8">
@@ -170,6 +170,7 @@
 
 			</div>
 		</div>
+	</div>
 
 		<!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
