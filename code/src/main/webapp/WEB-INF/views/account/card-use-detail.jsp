@@ -85,7 +85,11 @@
 	<div class="card-use-detail-box">
 		
 		<c:if test="${not empty list}">
-    			<img src="/account/asset/images/${list[0].fileLink}" id="cardDetailImgPlace">
+			<div class="card-image card-detail">
+	           <div class="card-image-wrapper card-detail">
+    				<img src="/account/asset/images/${list[0].fileLink}" id="cardDetailImgPlace">
+	            </div>
+             </div>
 		</c:if>
 
 <!-- transaction-table -->

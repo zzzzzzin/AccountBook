@@ -32,10 +32,10 @@
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
-.fakecontent .card-container .card .card-image img {
+/* .fakecontent .card-container .card .card-image img {
   width: 100px !important;
   height: auto;
-}
+} */
 </style>
 <script type="module" src="chart.min.js"></script>
 <body>
@@ -83,15 +83,15 @@
             <c:otherwise>
                 <c:forEach items="${list}" var="dto" varStatus="loop">
                     <div class="box card-use-item">
-                        <div class="card-image">
-                        <div class="card-image-wrapper">
-                                <img src="${pageContext.request.contextPath}/asset/images/${dto.fileLink}">
+                        	<div class="card-image">
+	                        	<div class="card-image-wrapper">
+	                                <img src="${pageContext.request.contextPath}/asset/images/${dto.fileLink}">
+	                            </div>
                             </div>
-                            </div>
-                        <div class="card-details">
-                            <div class="card-name" >${dto.ciName}</div>
-                            <div class="card-company">${dto.cardCompany}</div>
-                        </div>
+                            <div class="card-recommendation-info-box" >
+								<h4>${dto.ciName}</h4>
+								<div class="card-company">${dto.cardCompany}</div>
+							</div>
                     </div>
                 </c:forEach>
             </c:otherwise>

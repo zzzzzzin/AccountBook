@@ -85,16 +85,20 @@
 		<div class="card-use-list">
 				<c:forEach items="${list}" var="dto">
 						<div class="link-box-style box card-use-item" onclick="location.href='/account/account/card-use-detail.do?seqMyCard=${dto.seqMyCard}&startDate=${map.startDate}&endDate=${map.endDate}';">
-							<img src="/account/asset/images/${dto.fileLink}" id="cardImgPlace" >
+							<div class="card-image">
+	                        	<div class="card-image-wrapper">
+									<img src="/account/asset/images/${dto.fileLink}" id="cardImgPlace" >
+	                            </div>
+                            </div>
 							<div class="card-use-info-box" >
-								<div class="card-use-name">
+								<h4>
 									<c:if test="${dto.alias != null}">
 										${dto.alias}
 									</c:if>
 									<c:if test="${dto.alias == null}">
 										${dto.cfName}
 									</c:if>
-								</div> <br>
+								</h4>
 								<div class="card-use-price">총 ${dto.totalPrice}원</div>
 							</div>
 						</div>
