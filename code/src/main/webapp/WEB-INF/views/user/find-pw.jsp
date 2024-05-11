@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
+<head><title>BudgetBuddy | 비밀번호 찾기</title>
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,91 +13,32 @@
 <link rel="stylesheet" href="/account/asset/css/vendor.bundle.base.css">
 <link rel="stylesheet" href="/account/asset/css/corona_style.css">
 <style>
-      body { 
-        color: black;
-      }
-      .card {
-        border: none;
-      }
-      .form-control {
-        background-color: #D9D9D9;
-        border: none;
-      }
-      .form-control.click {
-        background-color: #D9D9D9;
-        border: none;
-      }
-      .btn-primary {
-        background-color: #D9D9D9;
-        border: #D9D9D9;
-        color: black;
-      }
 
-      .btn-primary:hover {
-        background-color: #D9D9D9;
-        border: #D9D9D9;
-        color: black;
-      }
-
-      .btn-primary.click {
-        background-color: #D9D9D9;
-        border: #D9D9D9;
-        color: black;
-      }
-      .find {
-        text-align: center;
-      }
-      
-      .find-pw-sucess, .find-pw-fail {
-        background-color: #d9d9d9;
-        margin: auto;
-        text-align: center;
-        width: 300px;
-        padding: 5px;
-      }
-
-    .find-pw-fail {
-      visibility: hidden;
-    }
-    .find-pw-close {
-      display: flex;
-      justify-content: flex-end;
-    }
-
-    .find-pw-close-btn {
-      align-items: end;
-      border: none;
-      width: 50px;
-      height: 30px;
-    }
 </style>
 </head>
-<title>
-비밀번호 찾기
-</title>
+
 <body>
 
 	<%@include file="/WEB-INF/views/inc/header.jsp"%>
 	
 	<div class="container-scroller">
-      <div class="container-fluid page-body-wrapper full-page-wrapper">
-        <div class="row w-100 m-0">
-          <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
-            <div class="card col-lg-4 mx-auto">
-              <div class="card-body px-5 py-5">
+      <div class="content-total-style">
+        <div class="user-info-input-page-container login-page-container user-info-box-container-style">
+          <div class="user-info-container-style">
+            <div class="">
+              <div class="card-body">
                 <h3 class="card-title text-left mb-3">비밀번호 찾기</h3>
                 <form method="POST">
 	                  <div class="form-group">
 	                    <label>아이디(이메일)</label>
-	                    <input type="text" class="form-control p_input" name="id">
+	                    	<input type="text" class="form-control input-style-form" name="id">
 	                  </div>
 	                  <div class="form-group">
 	                    <label>이름</label>
-	                    <input type="text" class="form-control p_input" name="name">
+	                    	<input type="text" class="form-control input-style-form" name="name">
 	                  </div>
-	                  <div class="text-center">
-	                    <button type="submit" class="btn btn-primary btn-block enter-btn">비밀번호 찾기</button>
-                  </div>
+	                  <button type="submit" class="button purple-btn full-btn submit-btn-style">비밀번호 찾기</button>
+                  
                 </form>
               </div>
             </div>
@@ -131,8 +74,8 @@
 	        </button>
 	      </div>
 	      <div class="modal-body">
-	        <div class="find-pw-success">이메일로 비밀번호 재설정 링크를 전송했습니다.</div>
-	        <div class="find-pw-fail">이메일 전송을 실패했습니다.</div>
+	        <div class="find-pw-success" style="display: none;">이메일로 비밀번호 재설정 링크를 전송했습니다.</div>
+	        <div class="find-pw-fail" style="display: none;">이메일 전송을 실패했습니다.</div>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
@@ -151,8 +94,10 @@
 	    function showModal() {
 	        if (result === 1) {
 	            $('#find-pw-modal .find-pw-success').show();
+// 	            $('#find-pw-modal .find-pw-fail').hide();
 	        } else if (result === 0) {
 	            $('#find-pw-modal .find-pw-fail').show();
+// 	            $('#find-pw-modal .find-pw-success').hide();
 	        }
 	        $('#find-pw-modal').modal('show'); // 모달 보이기
 	    }

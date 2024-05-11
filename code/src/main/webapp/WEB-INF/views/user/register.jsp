@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>BudgetBuddy | 회원가입</title>
 <meta charset="UTF-8">
 <%@include file="/WEB-INF/views/inc/asset.jsp"%>
 <!-- Required meta tags -->
@@ -24,6 +25,11 @@
 <link rel="shortcut icon" href="/account/asset/images/favicon.png" />
 <style>
 
+#username {
+    display: flex;
+    gap: 5px;
+}
+
 </style>
 </head>
 <body>
@@ -34,9 +40,9 @@
 				<div class="user-info-container-style">
 					<div class="">
 						<div class="card-body">
-							<h3 class="card-title text-left mb-3">Register</h3>
+							<h3 class="card-title text-left mb-3">회원가입</h3>
 							<form method="post" action="/account/user/register.do">
-								<label>ID(이메일)</label>
+								<label>아이디(이메일))</label>
 								<div class="form-group " id="username">
 									<input type="text" name="id"
 										class="form-control input-style-form">
@@ -49,7 +55,7 @@
 									<input type="text" type="password" name="pw"
 										class="form-control input-style-form">
 								</div>
-								<label>비밀번호 재입력</label>
+								<label>비밀번호 확인</label>
 								<div class="form-group" id="username">
 									<input  type="password" name="pwConfirm"
 										class="form-control input-style-form">
@@ -75,7 +81,7 @@
 								    <span id="duptext">중복 확인</span>
 								</button>
 								</div>
-								<label>주민등록 번호</label>
+								<label>주민등록번호</label>
 								<div class="form-group" id="username">
 									<input type="text" name="ssn"
 										class="form-control input-style-form">
@@ -120,7 +126,7 @@
 									<label>저축 목표 기간</label>
 									<div class="form-group" id="pwboxnow">
 										<select class="form-control input-style-form select-box-style" name="seqSavingsPeriod">
-											<option value="" selected disabled>기간을 선택해주세요</option>
+											<option value="" selected disabled>기간을 선택해주세요.</option>
 											<option value="0">없음</option>
 											<option value="1">1 개월</option>
 											<option value="3">3 개월</option>

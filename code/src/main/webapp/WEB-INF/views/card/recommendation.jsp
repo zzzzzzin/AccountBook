@@ -124,7 +124,7 @@
     }
     
     .flipster img{
-    	width: 300px;
+    	width: 150px;
     	height: auto;
     }
     #categorymodalbody{

@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-
+<title>BudgetBuddy | 맞춤 추천</title>
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -31,9 +31,6 @@
     <link rel="stylesheet" href="/account/asset/css/combine.css">
 </script>
 </head>
-<title>
-BudgetBuddy | 가계부 기반 카드 맞춤 추천
-</title>
 <style>
 
 .flipster--loop {
@@ -108,8 +105,8 @@ BudgetBuddy | 가계부 기반 카드 맞춤 추천
         background-color: #f9f9f9;
     }
     img {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: auto;
 }
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
@@ -143,35 +140,39 @@ BudgetBuddy | 가계부 기반 카드 맞춤 추천
             <!-- Navbar End -->
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
+      <div id="content-total-style">
+      	<div class="content-header">
+					<div class="content-title-style">
+						<h3>맞춤 추천</h3>
+					</div>
+			</div>
       
         <div class="flipster-container">
-<div class="flipster">
-    <ul class="flip-items">
-<c:forEach var="card" items="${recommendedCards}" varStatus="loop">
-    <li data-flip-title="${loop.index + 1}"
-     data-flip-category="${card.category}" 
-     data-description="
-    <div><span>카드 이름</span><c:out value='${card.ciName}'/></div>
-    <div><span>카드사</span> <c:out value='${card.cardCompany}'/></div>
-    <div><span>설명</span> <c:out value='${card.explanation}'/></div>
-    <div><span>연회비</span> <c:out value='${card.annualFee}'/>원</div>
-    <div><span>해외 겸용</span><c:out value='${card.overseasUse}'/></div>
-    <div><span>할인율</span><c:out value='${card.discountRate}'/>%</div>
-        ">
-        <img src="/account/asset/images/${card.fileLink}">
-    </li>
-</c:forEach>
-    </ul>
-</div>
+			<div class="flipster">
+			    <ul class="flip-items">
+			<c:forEach var="card" items="${recommendedCards}" varStatus="loop">
+			    <li data-flip-title="${loop.index + 1}"
+			     data-flip-category="${card.category}" 
+			     data-description="
+			    <div><span>카드 이름</span><c:out value='${card.ciName}'/></div>
+			    <div><span>카드사</span> <c:out value='${card.cardCompany}'/></div>
+			    <div><span>설명</span> <c:out value='${card.explanation}'/></div>
+			    <div><span>연회비</span> <c:out value='${card.annualFee}'/>원</div>
+			    <div><span>해외 겸용</span><c:out value='${card.overseasUse}'/></div>
+			    <div><span>할인율</span><c:out value='${card.discountRate}'/>%</div>
+			        ">
+			        <img src="/account/asset/images/${card.fileLink}">
+			    </li>
+			</c:forEach>
+			    </ul>
+			</div>
         <div class="box card-recommendation-box">
             <p id="description"></p>
         </div>
     </div>
-
+    </div>
         <!-- fakecontent 끝 -->
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-        
+
     </div>
     </div>
 
