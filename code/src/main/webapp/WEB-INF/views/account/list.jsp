@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>BudgetBuddy | 가계부 목록</title>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
@@ -25,15 +26,6 @@
     <!-- Libraries Stylesheet -->
 </head>
 <style>
-#fakecontent {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%; 
-    margin: auto; 
-    padding: 20px;
-    background: #FFFFFF; 
-}
 
 #transcontent {
     border: 1px solid #ccc; /* Lighter border color */
@@ -282,47 +274,47 @@
         <!-- fakecontent 안에서 작성 -->
       
       	<div class="content-total-style">
-      		<div id="aboverow">
+      		<div id="aboverow" class="content-header">
       		<div class="content-title-style">
 						<h3>가계부 목록</h3>
 					</div>
-      		<div id="aboverowrightside">
-	      		<form method = "GET" id="accountSearchForm">
-	                <div class="right-icon" id="searchicon"><i class="fa-solid fa-magnifying-glass"></i></div> 
-	                <div id="searchbar" >
-	                	<input type="text" name="word" value="${map.word}" placeholder="내용 or 사용처">
-	                	<input type="submit" value="검색">
-	                </div>
-	            </form>    
-	                <div class="right-icon" id="categoryselector"><i class="fa-solid fa-list-check"></i></div> 
-	            </div>
+      				<div id="aboverowright">
+			      		<form method = "GET" id="accountSearchForm">
+			                <div class="right-icon" id="searchicon"><i class="fa-solid fa-magnifying-glass"></i></div> 
+			                <div id="searchbar" class="account-search-box-container">
+			                	<input type="text" name="word" value="${map.word}" placeholder="내용 or 사용처" class="input-style-form">
+			                	<input type="submit" value="검색" class="button purple-btn">
+			                </div>
+			            </form>    
+	                	<div class="right-icon" id="categoryselector"><i class="fa-solid fa-list-check"></i></div> 
+                	</div>
             </div>
           	<div id="nextrow">
           		<div id="leftcol"></div>
           		<div id="rightcol">
           		<div id="thismonthstat">
           			<div id="monthheader">
-          				<h1 style="display: flex;"><div id="monthindicate"></div>월</h1>
+          				<h4 style="display: flex;"><div id="monthindicate"></div>월</h4>
           			</div>
                     <div class="abovestat" id="spendstat">
-                        <div>이번달 지출:</div>
+                        <span>이번달 지출</span>
                         <div id="totalNegative">$0</div>
                     </div>
                     <div class="abovestat" id="incomestat">
-                        <div>이번달 수입:</div>
+                        <span>이번달 수입</span>
                         <div id="totalPositive">$0</div>
                     </div>
                 </div>
 					<div id="wishlist">
                     <div id="wishlistrow1">
-                        <h3>Wish List</h3>
+                        <h4>Wish List</h4>
                         <div id="addWishItemtitle">
                             <button id="addrightnow" class="purple-btn button">추가하기</button>
                         </div>
                     </div>
                     <div id="wishlistrow2">
-                        <input type="text" id="newItemInput" placeholder="기입칸" style="display: none;">
-                        <button id="newItemButton" style="display: none" class="purple-btn button">추가하기</button>
+                        <input type="text" id="newItemInput" placeholder="구매 위시 항목" style="display: none;" class="input-style-form">
+                        <button id="newItemButton" style="display: none" class="purple-btn button">추가</button>
                     </div>
                     <div id="wishListItems">
                         
@@ -578,13 +570,13 @@
 
     
     
- 	// 검색 기능
+	 // 검색 기능
     var searchicon = document.getElementById('searchicon');
     var searchbar = document.getElementById('searchbar');
    
     searchicon.onclick = function() {
         if (searchbar.style.display === 'none') {
-            searchbar.style.display = 'block';
+            searchbar.style.display = 'flex';
             searchbar.focus();
         } else {
             searchbar.style.display = 'none';
