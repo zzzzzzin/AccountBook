@@ -234,7 +234,6 @@ background: #dfd6e8;
 	background-color: #786CA7;
     border: 1px solid #786CA7;
 }
-
 /* .purple-btn:visited {
   background: #786CA7;
   color: white;
@@ -270,6 +269,29 @@ background: #dfd6e8;
 .gray-btn.active {
   background: #8b8992;
   color: white;
+}
+
+.dark-black-btn {
+	background-color: #6c757d;
+    border: 1px solid #6c757d;
+    border-radius: 0.25em;
+    display: inline-block;
+    font-size: 1em;
+    font-weight: 400;
+    line-height: 1.5;
+    padding: 0.4em 0.65em;
+    text-align: center;
+    user-select: none;
+    vertical-align: middle;
+    color:#fff;
+}
+.dark-black-btn:hover {
+	background-color: #5C6369;
+    border: 1px solid #5C6369;
+}
+.dark-black-btn:active {
+	background-color: #5C6369;
+    color: white;
 }
 
 .light-purple-btn {
@@ -1076,67 +1098,12 @@ textarea,
 }
 #write > div:nth-child(4) {
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-end;
 }
 
 body > div > div > div > div > div > div > form > div:nth-child(17) > label {
 	margin-right: 5px;
 }
-
-
-
-
-/* .comment-form button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  background-color: #555;
-  color: #fff;
-  cursor: pointer;
-} */
-
-/* .post-actions-comment i.material-icons {
-	font-size: 16px;
-}
-
-.post-actions-comment span {
-	position: relative;
-	font-size: 14px;
-	top: -10px
-}
- */
-/* 댓글 시작*/
-/* .container-comment {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.post-box {
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 20px;
-  margin-bottom: 20px;
-}
-
-
-.post-info span {
- margin-bottom: 5px;
-  margin: 10px;
-}
-
-
-.comment-reply {
-  margin-left: 20px;
-}
-
-.post-box {
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 20px;
-    margin-bottom: 20px;
-  } */
-/* 댓글 끝*/
 
 
 /* 친구 초대 */
@@ -1192,12 +1159,6 @@ body > div > div > div > div > div > div > form > div:nth-child(17) > label {
 
 }
 
-
-
-
-
-
-
 /* 가계부 */
 #aboverow {
     display: flex;
@@ -1205,6 +1166,10 @@ body > div > div > div > div > div > div > form > div:nth-child(17) > label {
     align-items: center;
     justify-content: right;
     width: 100%; 
+}
+
+#aboverowright {
+	display: flex;
 }
         
     
@@ -1221,8 +1186,31 @@ body > div > div > div > div > div > div > form > div:nth-child(17) > label {
     margin: 10px;    
 }
 
+#searchbar.account-search-box-container {
+/* 	display: flex; */
+	gap: 5px;
+}
+
+#aboverowright i:hover {
+	cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* 가계부 목록 */
-#transamount, #transtype  { color: red; } 
+/* #transamount, #transtype  { color: red; } */
 #transamountplus { color: #1bbd00; }
 #transamountminus { color: #ff0009; }
 
@@ -1232,7 +1220,7 @@ body > div > div > div > div > div > div > form > div:nth-child(17) > label {
     justify-content: center;
     align-items: center;
     font-weight: bold;
-	font-size: 16px; 
+/* 	font-size: 16px;  */
     /* border-right: 1px solid #eee; */
 }
 
@@ -1253,10 +1241,6 @@ body > div > div > div > div > div > div > form > div:nth-child(17) > label {
 
 
 #transwhere{
-}
-#transcategory{
-  font-weight: bold;
-  font-size: 20px;
 }
 
 #accountSearchForm {
@@ -1332,10 +1316,11 @@ body > div > div > div > div > div > div > form > div:nth-child(17) > label {
     color: #574141;
 }
 
-.spending-price-red {
+.spending-price-red,
+#totalNegative {
     font-weight: bold;
     font-size: 16px;
-    color: #960005;
+    color: #FF788D;
 }
 
 .usable-price-num {
@@ -1356,10 +1341,11 @@ body > div > div > div > div > div > div > form > div:nth-child(17) > label {
     color: #CC8B3E;
 }
 
-.anyalysis-savings-price {
+.anyalysis-savings-price, 
+#totalPositive {
     font-weight: bold;
     font-size: 16px;
-    color: #84B652;
+    color: #366ECD;
 }
 
 .anyalysis-remaining-price {
@@ -1443,6 +1429,9 @@ body > div > div > div > div > div > div > form > div:nth-child(17) > label {
     justify-content: center;
     padding: 30px 0;
     gap: 50px;
+}
+#secondrow > div{
+    min-height: 280px;
 }
 
 #thridrow{
@@ -1621,6 +1610,9 @@ body > div > div > div > div > div > div > form > div:nth-child(17) > label {
   
 
 /* 달력 모달 시작 */
+#thismonthstat h4 {
+	font-family: 'TTLaundryGothicB';
+}
 
 #searchbar{
     display: none;
@@ -1670,6 +1662,15 @@ margin: 0 5px;
 
 .selectSize{
 width: 100px !;
+}
+
+.transcategory {
+	display: flex;
+	margin-right: 8px;
+	font-size: 16px;
+}
+#catewhere.transin {
+	display: flex;
 }
 /* 달력 모달 끝 */
 
@@ -1846,6 +1847,10 @@ width: 100px !;
 /* 카드 추가하기 끝*/
 
 /* 카드 추천 시작 */
+/* .card-list-img {
+	width: 260px;
+    text-align: center;
+} */
 .card-container {
   display: flex;
   flex-direction: column;
@@ -1871,40 +1876,94 @@ width: 100px !;
   margin-right: 20px;
 }
 
+.card-recommendation-box {
+	display: table;
+    table-layout: fixed;
+    position: relative;
+    width: 100%;
+    border-radius: 12px;
+    box-sizing: border-box;
+}
 
 .card-image{
     width: 240px;
     text-align: center;
+    display: flex;
+    width: 100%;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 150px;
 }
 
-
-.card-image.card-detail {
-	 width: 350px;
-}
-
-.card-image-wrapper.card-detail {
-	width: 175px;
-    height: 175px;
-}
-
-.card-image-wrapper {
-    display: inline-block;
+.recommendation-card-img {
+	display: inline-block;
     width: 120px;
     height: 120px;
-    background: #eff0f7;
+    background: #f5f5f5;
+    border-radius: 100%;
+    position: relative;
+    text-align: center;
+    min-width: 120px;
+}
+
+/* .card-image-wrapper {
+	    display: block;
+} */
+.card-image-wrapper {
+	display: inline-block;
+    width: 120px;
+    height: 120px;
+    background: #f5f5f5;
     border-radius: 100%;
     position: relative;
 }
-
-
-.card-image-wrapper img {
-    position: absolute;
+.card-image-wrapper a {
+	display: block;
+	outline: 0 !important;
+    box-shadow: none;
+    background-color: unset;
+}
+.card-image-wrapper img,
+.card-detail-image-wrapper img {
+	width: auto;
+	height: auto;
+	position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     max-width: 100%;
     max-height: 100%;
 }
+.card-detail-image-wrapper {
+	 display: inline-block;
+    width: 200px;
+    height: 200px;
+    background: #f5f5f5;
+    border-radius: 100%;
+    position: relative;
+    text-align: center;
+    min-width: 120px;
+}
+.card-image.card-detail {
+	text-align: center;
+    display: flex;
+    width: 30%;
+    gap: 0;
+    padding: 0;
+}
+.card-use-detail-container-style {
+	display: flex;
+    flex-direction: row;
+}
+/* .recommendation-card-img.card-detail {
+	 width: 350px;
+} */
+
+/* .card-image-wrapper.card-detail {
+	width: 175px;
+    height: 175px;
+} */
 
 #description > div > div > span {
 	color: #f0a69a;
@@ -1921,8 +1980,10 @@ width: 100px !;
 }
 
 .card-recommendation-box {
-	padding-bottom: 5px;
-	margin-bottom: 20px;
+	display: flex;
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
 }
 
 

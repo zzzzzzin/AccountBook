@@ -102,15 +102,18 @@
 					</form>
 				</div>
 
-	<div class="card-use-detail-box">
+<div class="card-use-detail-container-style">
+	<div class="card-image card-detail">
 		
 		<c:if test="${not empty list}">
-			<div class="card-image card-detail">
-	           <div class="card-image-wrapper card-detail">
+			<div class="card-detail">
+	           <P class="card-detail-image-wrapper">
+	           		<a></a>
     				<img src="/account/asset/images/${list[0].fileLink}" id="cardDetailImgPlace">
-	            </div>
+	            </P>
              </div>
 		</c:if>
+		</div>
 
 <!-- transaction-table -->
 			<table class="table-style">
@@ -141,7 +144,6 @@
 				</thead>
 				<tbody id="transaction-list"></tbody>
 			</table>
-		</div>
 		</div>
 
 
