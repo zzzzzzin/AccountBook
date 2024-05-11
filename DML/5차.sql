@@ -417,6 +417,471 @@ insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate
 values (293, 3, 160,'봄 시즌 이벤트 제안드려요','봄을 맞아 사이트에 생기 넘치는 분위기를 연출하면 좋을 것 같아요. 봄꽃 구경 명소 추천 이벤트나 봄 패션 콘테스트 등 다양한 아이디어를 기획해볼 수 있을 거예요.','2024-03-22',null,0,0,0,0,0,0);
 insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
 values (294, 3, 160,'사이트 내 알림 기능 개선 요청합니다','사이트 내 알림 기능이 제대로 작동하지 않는 경우가 있어요. 중요한 공지나 이벤트 소식을 놓치지 않도록 알림 기능 개선을 요청드립니다.','2023-02-09',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (295, 3, 160,'게시글 검색 기능 개선 제안드려요','게시글 검색 시 원하는 결과를 찾기 어려울 때가 있어요. 검색 알고리즘을 개선하여 더 정확한 검색 결과를 제공해주시면 좋겠습니다.','2023-03-20',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (296, 3, 160,'사이트 내 메시지 기능 추가 제안합니다','사이트 내에서 사용자 간 메시지를 주고받을 수 있는 기능이 있으면 좋을 것 같아요. 소통과 교류를 활성화하는 데 도움이 될 거예요.','2023-04-29',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (297, 3, 160,'이벤트 리워드 다양화 제안드려요','이벤트 참여에 대한 리워드가 좀 더 다양해지면 좋겠어요. 포인트, 할인 쿠폰, 실물 경품 등 다채로운 리워드를 제공하는 것을 제안합니다.','2023-06-08',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (298, 3, 160,'사이트 접속 오류 개선 요청드립니다','최근 사이트 접속 시 자주 오류가 발생하는 것 같아요. 원활한 서비스 이용을 위해 접속 오류 개선을 요청드려요.','2023-07-18',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (299, 3, 160,'여름 휴가 시즌 이벤트 제안합니다','여름 휴가 시즌을 맞아 특별한 이벤트를 진행하면 어떨까요? 휴가지 추천 공유 이벤트나 여름 음식 레시피 콘테스트 등 다양한 아이디어를 기획해볼 수 있을 거예요.','2023-08-27',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (300, 3, 160,'추석 연휴 이벤트 아이디어 제안드려요','추석 연휴를 맞아 사이트에서 특별한 이벤트를 준비하면 좋을 것 같아요. 가족 사진 콘테스트나 명절 인사 나누기 이벤트 등 다채로운 기획을 해볼 수 있을 거예요.','2023-09-26',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (301, 3, 160,'할로윈 이벤트 제안합니다','할로윈 분위기를 내기 위해 사이트에 특별한 이벤트를 진행하면 어떨까요? 무서운 이야기 공모전이나 호러 영화 추천 이벤트 등 다양한 아이디어를 생각해볼 수 있을 거예요.','2023-10-31',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (302, 3, 160,'연말 이벤트 제안드려요','한 해를 마무리하는 연말을 맞아 사이트에서 의미 있는 이벤트를 기획하면 좋을 것 같아요. 한 해 동안의 추억 공유 이벤트나 새해 계획 세우기 이벤트 등 다양한 아이디어를 제안드려요.','2023-12-24',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (303, 3, 160,'겨울 시즌 이벤트 아이디어 제안합니다','겨울 분위기를 물씬 느낄 수 있는 이벤트를 진행하면 어떨까요? 눈 내리는 풍경 사진 콘테스트나 따뜻한 겨울 음식 레시피 공유 이벤트 등 다채로운 기획을 해볼 수 있을 거예요.','2024-01-13',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (304, 3, 160,'발렌타인데이 이벤트 제안드려요','사랑하는 사람들을 위한 발렌타인데이 이벤트를 준비하면 좋을 것 같아요. 사랑 고백 메시지 이벤트나 초콜릿 만들기 콘테스트 등 다양한 아이디어를 기획해볼 수 있을 거예요.','2024-02-14',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (305, 3, 160,'화이트데이 이벤트 제안합니다','발렌타인데이에 이어 화이트데이에도 특별한 이벤트를 진행하면 어떨까요? 사랑받은 사람들을 위한 감사 메시지 이벤트나 사랑의 선물 추천 이벤트 등 다채로운 기획을 해볼 수 있을 거예요.','2024-03-14',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (306, 3, 160,'봄맞이 이벤트 아이디어 제안드려요','봄의 활기찬 분위기를 느낄 수 있는 이벤트를 기획하면 좋을 것 같아요. 봄꽃 구경 명소 공유 이벤트나 봄나들이 코디 콘테스트 등 다양한 아이디어를 제안드려요.','2024-03-23',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (307, 3, 160,'사이트 내 채팅 기능 추가 제안드립니다','사이트 내에서 실시간으로 채팅할 수 있는 기능이 있으면 사용자 간 소통이 더 활발해질 것 같아요. 채팅 기능 추가를 제안드려요.','2023-02-28',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (308, 3, 160,'이벤트 당첨자 발표 방식 개선 요청합니다','이벤트 당첨자 발표 시 개별 연락도 중요하지만, 사이트 내에 당첨자 게시판을 마련하면 더 투명하게 공개할 수 있을 것 같아요.','2023-04-07',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (309, 3, 160,'커뮤니티 게시판 개선 제안드려요','커뮤니티 게시판의 카테고리를 더 세분화하고 정리하면 사용자들이 원하는 정보를 더 쉽게 찾을 수 있을 것 같아요.','2023-05-16',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (310, 3, 160,'사이트 로고 변경 제안합니다','사이트 로고를 좀 더 심플하고 모던한 디자인으로 변경하면 어떨까요? 브랜드 이미지 쇄신에 도움이 될 것 같아요.','2023-06-25',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (311, 3, 160,'여름 휴가 이벤트 아이디어 제안드려요','무더운 여름, 시원한 휴가 이벤트를 진행하면 어떨까요? 휴가지 추천 공유 이벤트나 여름 별미 레시피 콘테스트 등 다양한 기획을 해볼 수 있을 거예요.','2023-08-04',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (312, 3, 160,'추석 명절 이벤트 제안합니다','풍성한 한가위를 맞아 사이트에서 특별한 이벤트를 준비하면 좋을 것 같아요. 명절 음식 자랑 대회나 가족 사진 콘테스트 등 다채로운 기획을 해볼 수 있을 거예요.','2023-09-27',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (313, 3, 160,'핼러윈 데이 이벤트 아이디어 제안드려요','오싹한 분위기의 핼러윈 데이, 사이트에서도 특별한 이벤트를 진행하면 어떨까요? 무서운 분장 사진 콘테스트나 오싹한 이야기 공모전 등 다양한 아이디어를 기획해볼 수 있을 거예요.','2023-10-31',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (314, 3, 160,'연말연시 이벤트 제안합니다','다사다난했던 한 해를 마무리하는 연말연시, 사이트에서 의미 있는 이벤트를 기획하면 좋을 것 같아요. 한 해를 돌아보는 에세이 공모전이나 새해 소망 나누기 이벤트 등 다채로운 아이디어를 제안드려요.','2023-12-24',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (315, 3, 160,'겨울 이벤트 아이디어 제안드려요','추운 겨울, 사이트에서 따뜻한 분위기의 이벤트를 진행하면 어떨까요? 귀여운 눈사람 그리기 대회나 따뜻한 겨울 음료 레시피 공유 이벤트 등 다양한 기획을 해볼 수 있을 거예요.','2024-01-22',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (316, 3, 160,'발렌타인데이 이벤트 제안합니다','사랑이 가득한 발렌타인데이, 사이트에서도 로맨틱한 이벤트를 준비하면 좋을 것 같아요. 사랑 고백 이벤트나 하트 디자인 콘테스트 등 다채로운 아이디어를 기획해볼 수 있을 거예요.','2024-02-14',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (317, 3, 160,'화이트데이 이벤트 아이디어 제안드려요','발렌타인데이에 이어 화이트데이에도 특별한 이벤트를 진행하면 어떨까요? 달콤한 사탕 만들기 콘테스트나 사랑의 편지 쓰기 이벤트 등 다양한 기획을 해볼 수 있을 거예요.','2024-03-14',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (318, 3, 160,'봄소풍 이벤트 제안합니다','따스한 봄날, 사이트에서 특별한 소풍 이벤트를 진행하면 어떨까요? 꽃구경 명소 추천 이벤트나 봄소풍 도시락 콘테스트 등 다채로운 아이디어를 기획해볼 수 있을 거예요.','2024-03-24',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (319, 3, 160,'사이트 내 설문 조사 기능 추가 제안드려요','사이트 내에서 사용자들을 대상으로 간단한 설문 조사를 진행할 수 있는 기능이 있으면 좋을 것 같아요. 사용자 의견 수렴에 도움이 될 거예요.','2023-03-06',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (320, 3, 160,'게시글 작성 시 이미지 첨부 오류 개선 요청합니다','게시글 작성 시 이미지 첨부가 원활하지 않을 때가 있어요. 이미지 업로드 관련 오류 개선을 요청드려요.','2023-04-15',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (321, 3, 160,'쪽지 기능 개선 제안드립니다','현재 쪽지 기능이 조금 불편한 점이 있는 것 같아요. 쪽지함 분류나 검색 기능 등을 추가하면 사용성이 높아질 거예요.','2023-05-24',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (322, 3, 160,'사이트 색상 테마 변경 제안해요','사이트의 색상 테마를 좀 더 산뜻하고 밝은 분위기로 변경하면 어떨까요? 사용자들에게 긍정적인 인상을 줄 수 있을 거예요.','2023-07-03',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (323, 3, 160,'여름 휴가철 이벤트 아이디어 제안드려요','무더위를 날려버릴 시원한 여름 휴가 이벤트를 진행하면 좋을 것 같아요. 워터파크 티켓 증정 이벤트나 아이스크림 빙수 만들기 콘테스트 등 다양한 기획을 해볼 수 있을 거예요.','2023-08-12',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (324, 3, 160,'추석 연휴 이벤트 제안합니다','풍성한 한가위를 맞아 사이트에서 따뜻한 정을 나누는 이벤트를 준비하면 어떨까요? 고향 음식 자랑 대회나 가족 사진 콘테스트 등 다채로운 기획을 해볼 수 있을 거예요.','2023-09-27',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (325, 3, 160,'핼러윈 파티 이벤트 아이디어 제안드려요','신나는 핼러윈 파티 분위기를 사이트에서도 느낄 수 있도록 특별한 이벤트를 진행하면 좋을 것 같아요. 핼러윈 코스튬 콘테스트나 호박 카빙 대회 등 다양한 아이디어를 기획해볼 수 있을 거예요.','2023-10-31',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (326, 3, 160,'연말 감사 이벤트 제안합니다','한 해 동안 사이트를 이용해주신 사용자들께 감사의 마음을 전하는 이벤트를 기획하면 어떨까요? 감사 메시지 공모전이나 한 해를 마무리하는 에세이 콘테스트 등 의미 있는 이벤트를 진행해볼 수 있을 거예요.','2023-12-24',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (327, 3, 160,'신년 맞이 이벤트 아이디어 제안드려요','새로운 해를 맞아 사이트에서 의미 있는 이벤트를 진행하면 좋을 것 같아요. 새해 목표 공유 이벤트나 새해 소망 나누기 이벤트 등 다채로운 기획을 해볼 수 있을 거예요.','2024-01-01',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (328, 3, 160,'발렌타인데이 초콜릿 만들기 이벤트 제안합니다','사랑하는 사람들을 위해 직접 초콜릿을 만들어보는 이벤트를 진행하면 어떨까요? 초콜릿 만들기 과정을 공유하고 완성품을 자랑하는 게시판을 마련해볼 수 있을 거예요.','2024-02-14',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (329, 3, 160,'화이트데이 감사 메시지 이벤트 아이디어 제안드려요','화이트데이를 맞아 사랑하는 사람들에게 감사 메시지를 전하는 이벤트를 진행하면 좋을 것 같아요. 감사 메시지를 작성하고 공유하는 게시판을 마련해볼 수 있을 거예요.','2024-03-14',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (330, 3, 160,'봄맞이 대청소 이벤트 제안합니다','봄을 맞아 집안 대청소를 하는 이벤트를 진행하면 어떨까요? 대청소 전후 사진을 공유하고 청소 노하우를 나누는 게시판을 마련해볼 수 있을 거예요.','2024-03-25',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (331, 3, 160,'사이트 로딩 속도 개선 요청드립니다','최근 사이트 로딩 속도가 다소 느려진 것 같아요. 사용자 경험 향상을 위해 로딩 속도 개선을 요청드려요.','2023-03-14',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (332, 3, 160,'게시글 편집 기능 오류 제보드려요','게시글 편집 시 간혹 오류가 발생하는 경우가 있어요. 편집 기능 관련 오류 점검 부탁드립니다.','2023-04-23',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (333, 3, 160,'커뮤니티 게시판 공지사항 기능 추가 제안해요','커뮤니티 게시판에 공지사항을 상단에 고정할 수 있는 기능이 있으면 좋을 것 같아요. 중요한 공지를 사용자들이 놓치지 않고 확인할 수 있을 거예요.','2023-06-02',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (334, 3, 160,'사이트 폰트 변경 제안드립니다','현재 사이트에서 사용 중인 폰트를 좀 더 가독성 높은 폰트로 변경하면 어떨까요? 사용자들이 글을 읽기에 더 편안할 거예요.','2023-07-11',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (335, 3, 160,'여름방학 맞이 이벤트 아이디어 제안해요','학생들의 여름방학을 맞아 특별한 이벤트를 진행하면 좋을 것 같아요. 방학 계획 공유 이벤트나 여름 독서 챌린지 등 다양한 기획을 해볼 수 있을 거예요.','2023-08-20',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (336, 3, 160,'추석 연휴 게시판 운영 제안드립니다','추석 연휴 기간 동안 사이트 내에 특별 게시판을 운영하면 어떨까요? 명절 인사 나누기, 고향 자랑하기 등 사용자들이 소통할 수 있는 공간을 마련해주는 거예요.','2023-09-27',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (337, 3, 160,'가을 시즌 이벤트 제안합니다','낭만적인 가을을 맞아 사이트에서 특별한 이벤트를 진행하면 좋을 것 같아요. 가을 풍경 사진 콘테스트, 독서의 계절 책 추천이벤트 등 다양한 기획을 해볼 수 있을 거예요.','2023-10-15',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (338, 3, 160,'연말 결산 이벤트 아이디어 제안드려요','한 해를 마무리하는 연말, 사이트에서 의미 있는 이벤트를 진행하면 좋을 것 같아요. 올해의 베스트 게시글 선정, 새해 계획 세우기 이벤트 등 다채로운 기획을 해볼 수 있을 거예요.','2023-12-10',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (339, 3, 160,'새해 첫날 이벤트 제안합니다','새해 첫날, 사이트에서 특별한 이벤트를 진행하면 어떨까요? 새해 인사 나누기, 새해 소망 공유하기 등 사용자들과 함께 새해를 맞이하는 이벤트를 기획해볼 수 있을 거예요.','2024-01-01',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (340, 3, 160,'발렌타인데이 러브레터 이벤트 아이디어 제안드려요','사랑하는 사람에게 마음을 전하는 발렌타인데이, 사이트에서 러브레터 이벤트를 진행하면 어떨까요? 사랑의 편지를 작성하고 공유하는 게시판을 마련해볼 수 있을 거예요.','2024-02-14',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (341, 3, 160,'화이트데이 사랑의 선물 이벤트 제안합니다','화이트데이를 맞아 사랑하는 사람들에게 특별한 선물을 준비하는 이벤트를 진행하면 좋을 것 같아요. 선물 아이디어를 공유하고 자랑하는 게시판을 마련해볼 수 있을 거예요.','2024-03-14',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (342, 3, 160,'봄 소풍 준비 이벤트 아이디어 제안드려요','화창한 봄날, 사이트에서 특별한 소풍 준비 이벤트를 진행하면 어떨까요? 소풍 도시락 레시피 공유, 봄나들이 코디 추천 등 다양한 콘텐츠를 마련해볼 수 있을 거예요.','2024-03-30',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (343, 3, 160,'사이트 내 친구 추천 기능 추가 제안합니다','사이트 내에서 친구를 추천하고 소개할 수 있는 기능이 있으면 좋을 것 같아요. 비슷한 관심사를 가진 사람들끼리 친구를 맺고 소통할 수 있는 공간을 마련해주는 거예요.','2023-04-01',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (344, 3, 160,'게시글 스크랩 기능 개선 요청드려요','현재 게시글 스크랩 기능이 조금 불편한 점이 있어요. 스크랩한 게시글을 폴더별로 분류하고 관리할 수 있도록 개선해주시면 감사하겠습니다.','2023-05-10',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (345, 3, 160,'사이트 접속 오류 개선 요청합니다','가끔 사이트 접속 시 오류 메시지가 뜨면서 접속이 원활하지 않을 때가 있어요. 접속 오류 개선을 위한 점검 부탁드립니다.','2023-06-19',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (346, 3, 160,'여름휴가 계획 공유 이벤트 제안해요','무더운 여름, 사이트에서 시원한 여름휴가 계획을 공유하는 이벤트를 진행하면 어떨까요? 휴가지 추천, 여행 팁 공유 등 유익한 정보를 나누는 게시판을 마련해볼 수 있을 거예요.','2023-07-28',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (347, 3, 160,'신학기 맞이 이벤트 아이디어 제안드립니다','새로운 학기를 맞이하는 학생들을 위해 사이트에서 특별한 이벤트를 준비하면 좋을 것 같아요. 새 학기 계획 세우기, 학용품 추천 등 다양한 콘텐츠를 마련해볼 수 있을 거예요.','2023-08-25',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (348, 3, 160,'가을 독서 이벤트 제안합니다','책 읽기 좋은 계절 가을, 사이트에서 특별한 독서 이벤트를 진행하면 어떨까요? 독서 감상문 공모전, 추천 도서 리스트 공유 등 다채로운 기획을 해볼 수 있을 거예요.','2023-10-05',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (349, 3, 160,'연말 파티 이벤트 아이디어 제안드려요','한 해를 마무리하는 연말, 사이트에서 즐거운 파티 이벤트를 진행하면 좋을 것 같아요. 파티 음식 레시피 공유, 파티 게임 아이디어 나누기 등 다양한 콘텐츠를 마련해볼 수 있을 거예요.','2023-12-15',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (350, 3, 160,'새해 목표 달성 이벤트 제안합니다','새로운 해를 맞아 사이트에서 의미 있는 이벤트를 진행하면 어떨까요? 새해 목표를 세우고 달성해나가는 과정을 공유하는 게시판을 마련해볼 수 있을 거예요.','2024-01-10',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (351, 4, 160,'오늘도 출석 완료!','하루하루 성실하게 출석하는 중입니다. 오늘도 화이팅!','2023-01-01',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (352, 4, 160,'출석 백일 달성!','매일 빠짐없이 출석한 결과 100일 달성했습니다. 뿌듯해요!','2023-01-10',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (353, 4, 160,'오늘의 한 마디','오늘은 새로운 마음으로 하루를 시작하는 중이에요. 좋은 하루 보내세요!','2023-01-20',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (354, 4, 160,'일요일 출석!','즐거운 일요일도 출석으로 시작합니다. 오늘 하루도 알차게 보내봐요!','2023-01-29',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (355, 4, 160,'2월 첫 출석','2월의 첫 출석입니다. 이번 달도 열심히 출석해볼게요!','2023-02-01',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (356, 4, 160,'발렌타인데이 출석','사랑하는 사람들과 함께 보내는 발렌타인데이에도 출석 완료!','2023-02-14',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (357, 4, 160,'눈 오는 날 출석','창밖으로 펑펑 눈이 내리는 걸 보니 기분이 좋아요. 오늘도 출석!','2023-02-25',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (358, 4, 160,'3월 시작!','벌써 3월이 시작되었네요. 새로운 달도 화이팅!','2023-03-01',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (359, 4, 160,'화이트데이 출석','화이트데이에도 어김없이 출석하는 중이에요. 달콤한 하루 되세요!','2023-03-14',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (360, 4, 160,'봄나들이 출석','날씨가 좋아 가벼운 마음으로 출석합니다. 모두 즐거운 봄나들이 다녀오세요!','2023-03-25',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (361, 4, 160,'4월의 시작','4월의 첫 출석이에요. 벚꽃 구경하기 좋은 날씨네요!','2023-04-01',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (362, 4, 160,'봄바람 맞으며 출석','상쾌한 봄바람을 맞으며 출석합니다. 오늘도 좋은 하루 보내세요!','2023-04-10',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (363, 4, 160,'봄비 오는 날 출석','봄비가 내리는 날, 우산 챙기는 걸 잊지 마세요. 출석 완료!','2023-04-20',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (364, 4, 160,'5월 출석 시작!','어린이날도 있는 5월, 첫 출석으로 시작합니다!','2023-05-01',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (365, 4, 160,'어버이날 출석','부모님께 감사한 마음을 전하는 어버이날, 오늘도 출석 완료했어요.','2023-05-08',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (366, 4, 160,'푸른 하늘 출석','화창한 5월의 하늘처럼 맑은 마음으로 출석합니다!','2023-05-15',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (367, 4, 160,'비 오는 날 출석','비가 오는 날에도 빠짐없이 출석하는 중이에요. 편안한 하루 보내세요!','2023-05-25',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (368, 4, 160,'6월의 시작','어느새 상반기의 마지막 달, 6월이 시작되었어요. 첫 출석 완료!','2023-06-01',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (369, 4, 160,'현충일 출석','나라를 위해 목숨 바친 분들께 감사하는 마음으로 출석합니다.','2023-06-06',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (370, 4, 160,'뜨거운 여름 출석','여름의 시작을 알리는 6월, 더위에 지치지 않게 화이팅!','2023-06-15',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (371, 4, 160,'장마철 출석','장마철에도 우산 챙기며 빠짐없이 출석하고 있어요.','2023-06-25',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (372, 4, 160,'7월 맞이 출석','2023년도 벌써 반이 지났네요. 7월도 화이팅!','2023-07-01',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (373, 4, 160,'초복 출석','무더위 속 초복, 건강 관리 잘하시고 보양식 드세요!','2023-07-12',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (374, 4, 160,'중복 출석','찜통더위에도 매일 출석하는 중입니다. 중복 잘 보내세요!','2023-07-23',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (375, 4, 160,'8월 첫 출석','8월에도 변함없이 출석합니다. 모두 힘내세요!','2023-08-01',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (376, 4, 160,'말복 출석','무더위가 절정에 이른 말복, 건강 조심하시고 화이팅하세요!','2023-08-12',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (377, 4, 160,'가을 준비 출석','아침저녁으로 선선한 바람이 부는 걸 보니 가을이 다가오나 봐요.','2023-08-25',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (378, 4, 160,'9월 맞이 출석','이제 정말 가을이 온 것 같아요. 9월의 첫 출석입니다!','2023-09-01',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (379, 4, 160,'추석 연휴 출석','즐거운 한가위 되세요! 연휴에도 빠짐없이 출석 중입니다.','2023-09-28',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (380, 4, 160,'10월의 시작','이제 완연한 가을이네요. 10월의 첫 출석 인사드려요!','2023-10-01',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (381, 4, 160,'한글날 출석','한글날을 맞아 우리 글에 대한 자부심을 가져봅니다. 출석 완료!','2023-10-09',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (382, 4, 160,'산책하기 좋은 날 출석','선선한 날씨에 가벼운 산책을 다녀왔어요. 오늘도 출석!','2023-10-20',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (383, 4, 160,'2월 중순 출석!','2월도 벌써 절반이 지나가네요. 오늘도 출석 완료!','2024-02-15',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (384, 4, 160,'봄 기운 느껴지는 출석','날씨가 따뜻해지니 봄이 오는 게 느껴져요. 오늘도 화이팅!','2024-02-25',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (385, 4, 160,'3월 첫 출석','봄의 시작, 3월입니다! 첫 출석 완료했어요.','2024-03-01',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (386, 4, 160,'화이트데이 출석','화이트데이에도 빠짐없이 출석하는 중이에요. 달콤한 하루 되세요!','2024-03-14',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (387, 4, 160,'벚꽃 시즌 출석','길가에 벚꽃이 만개했어요. 눈이 즐거운 출석입니다!','2024-03-25',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (388, 4, 160,'여름 준비 출석','슬슬 여름을 준비해야 할 때인 것 같아요. 오늘도 화이팅!','2023-05-10',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (389, 4, 160,'더워지는 날씨 출석','날씨가 점점 더워지고 있어요. 건강 관리 잘하면서 출석해요!','2023-05-25',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (390, 4, 160,'열대야 출석','밤에도 덥고 습한 열대야가 시작되었어요. 잠 잘 때 주의하세요!','2023-06-15',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (391, 4, 160,'장마철 출석','비가 자주 오는 장마철이에요. 우산 챙기는 거 잊지 마세요!','2023-07-05',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (392, 4, 160,'무더위 출석','한여름의 무더위가 기승을 부리는 중이에요. 건강 조심하세요!','2023-07-25',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (393, 4, 160,'가을 햇살 출석','선선한 가을 햇살을 맞으며 출석합니다. 오늘도 좋은 하루 되세요!','2023-09-10',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (394, 4, 160,'독서의 계절 출석','책 읽기 좋은 계절, 가을이에요. 좋아하는 책 읽으며 출석해요!','2023-10-05',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (395, 4, 160,'쌀쌀해지는 날씨 출석','아침저녁으로 쌀쌀한 날씨에요. 따뜻하게 입고 출석하세요!','2023-10-25',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (396, 4, 160,'첫눈 오는 날 출석','올해의 첫눈이 내렸어요! 설레는 마음으로 출석합니다.','2023-11-15',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (397, 4, 160,'크리스마스 이브 출석','크리스마스 이브에도 변함없이 출석하는 중이에요. 행복한 성탄절 되세요!','2023-12-24',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (398, 4, 160,'연말 출석','2023년의 마지막 날, 연말 분위기 느끼며 출석해요!','2023-12-31',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (399, 4, 160,'새해 첫 출석','2024년 첫 출석입니다! 새해 복 많이 받으세요.','2024-01-01',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (400, 4, 160,'따뜻한 봄 기다리며 출석','아직은 쌀쌀하지만 따뜻한 봄을 기다리며 출석해요!','2024-02-05',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (401, 4, 160,'봄맞이 출석','완연한 봄 날씨에요. 상쾌한 마음으로 출석합니다!','2024-03-15',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (402, 4, 160,'여름 준비 시작 출석','슬슬 여름 준비를 시작해야 할 때에요. 오늘도 힘차게 출석!','2023-05-20',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (403, 4, 160,'더위 조심 출석','날이 많이 더워졌어요. 건강 관리 잘하면서 출석해요!','2023-06-05',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (404, 4, 160,'장마철 습기 조심 출석','장마철 습기로 몸이 찌뿌둥한 날이에요. 건강 유의하면서 출석합니다!','2023-07-15',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (405, 4, 160,'폭염 속 출석','연일 계속되는 폭염이에요. 더위 조심하시고 화이팅하세요!','2023-08-10',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (406, 4, 160,'선선한 바람 맞으며 출석','선선한 가을 바람이 부네요. 오늘도 상쾌한 마음으로 출석!','2023-09-20',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (407, 4, 160,'독서의 계절 무르익어가는 출석','책 읽기 좋은 계절이 무르익어가고 있어요. 좋아하는 책과 함께 출석해요!','2023-10-15',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (408, 4, 160,'쌀쌀한 가을밤 출석','가을밤이 쌀쌀해졌어요. 감기 조심하시고 따뜻하게 출석하세요!','2023-11-05',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (409, 4, 160,'첫눈 기다리는 출석','첫눈이 오기만을 기다리고 있어요. 설레는 마음으로 출석합니다!','2023-12-01',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (410, 4, 160,'크리스마스 분위기 물씬 출석','거리 곳곳에 크리스마스 분위기가 물씬 풍겨요. 기분 좋은 출석이에요!','2023-12-20',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (411, 4, 160,'새해 준비하는 출석','다가오는 새해를 준비하는 마음으로 출석합니다. 모두 새해 복 많이 받으세요!','2023-12-30',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (412, 4, 160,'봄을 알리는 출석','봄을 알리는 꽃들이 피기 시작했어요. 상쾌한 마음으로 출석해요!','2024-03-05',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (413, 4, 160,'봄나들이 다녀온 출석','화창한 봄날 나들이 다녀왔어요. 기분 전환도 하고 출석도 하고!','2024-03-25',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (414, 4, 160,'여름 준비 착착 출석','여름이 다가오고 있어요. 미리미리 준비하며 출석합니다!','2023-05-30',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (415, 4, 160,'더위 속 출석','무더위가 기승을 부리는 요즘, 건강 관리 잘하며 출석해요!','2023-06-25',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (416, 4, 160,'장마 끝 무렵 출석','장마가 끝나갈 무렵이에요. 습한 날씨 조심하면서 출석합니다!','2023-07-20',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (417, 4, 160,'무더위 절정 출석','무더위가 절정에 달했어요. 건강 잘 챙기시면서 출석하세요!','2023-08-15',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (418, 4, 160,'선선한 밤 출석','밤에는 선선한 바람이 불어 좋아요. 오늘도 상쾌하게 출석!','2023-09-10',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (419, 4, 160,'책 읽는 가을 출석','독서의 계절 가을, 책 읽는 재미에 푹 빠져 출석합니다!','2023-10-05',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (420, 4, 160,'쌀쌀해진 날씨 출석','일교차가 커진 요즘, 건강 유의하시면서 출석하세요!','2023-11-15',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (421, 4, 160,'크리스마스 준비 출석','크리스마스 준비로 바쁜 요즘, 마음의 여유를 갖고 출석해요!','2023-12-10',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (422, 4, 160,'연말 마무리 출석','2023년의 마무리를 하는 중이에요. 잘 마무리하면서 출석합니다!','2023-12-25',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (423, 4, 160,'설날 연휴 출석','즐거운 설 연휴 보내시면서 빠짐없이 출석해요!','2024-02-10',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (424, 4, 160,'봄 향기 가득 출석','봄 내음 가득한 요즘, 기분 좋게 출석합니다!','2024-03-15',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (425, 4, 160,'여름밤 산책 출석','더운 날씨에 밤 산책하며 출석하니 좋네요!','2023-06-20',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (426, 4, 160,'장마 끝자락 출석','장마가 끝나가는 것 같아요. 마지막 장마 기간도 화이팅하며 출석!','2023-07-30',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (427, 4, 160,'무더위 한풀 꺾인 출석','무더위가 한풀 꺾인 것 같아요. 선선해진 날씨 맞으며 출석해요!','2023-08-25',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (428, 4, 160,'가을 정취 물씬 출석','선선한 바람에 가을 정취가 물씬 풍겨요. 좋아하는 계절 맞으며 출석!','2023-09-20',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (429, 4, 160,'늦가을 감성 출석','늦가을의 감성을 느끼며 출석합니다. 오늘도 힘내세요!','2023-10-25',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (430, 4, 160,'겨울 준비 출석','겨울이 성큼 다가온 것 같아요. 따뜻한 옷 준비하면서 출석해요!','2023-11-20',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (431, 4, 160,'연말 분위기 물씬 출석','연말 분위기가 물씬 풍기는 거리를 걸으며 출석합니다!','2023-12-15',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (432, 4, 160,'설 연휴 마무리 출석','즐거웠던 설 연휴를 마무리하며 출석해요. 새해 복 많이 받으세요!','2024-02-15',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (433, 4, 160,'봄맞이 대청소 출석','봄을 맞아 대청소하는 날, 상쾌한 기분으로 출석합니다!','2024-03-20',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (434, 4, 160,'초여름 날씨 출석','초여름 날씨가 느껴지는 요즘, 더위 조심하시면서 출석하세요!','2023-06-10',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (435, 4, 160,'장마철 건강 조심 출석','습하고 꿉꿉한 장마철, 건강 유의하시면서 출석해요!','2023-07-15',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (436, 4, 160,'늦더위 속 출석','늦더위에 지치지 말고 화이팅하면서 출석합니다!','2023-08-30',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (437, 4, 160,'선선한 밤공기 마시며 출석','선선해진 밤공기 마시며 산책하는 기분으로 출석해요!','2023-09-25',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (438, 4, 160,'늦가을 정취 만끽 출석','낙엽 밟으며 늦가을 정취 만끽하는 기분으로 출석합니다!','2023-11-01',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (439, 4, 160,'첫눈 오길 기대하며 출석','첫눈이 오기만을 기다리며 설레는 마음으로 출석해요!','2023-12-05',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (440, 4, 160,'성탄절 분위기 느끼며 출석','성탄절 분위기에 취해 마음까지 따뜻해지는 출석이에요!','2023-12-20',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (441, 4, 160,'수능 끝 홀가분 출석','수능이 끝나 홀가분한 마음으로 출석합니다. 모두 고생 많으셨어요!','2023-11-17',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (442, 4, 160,'눈 올 듯 말 듯 출석','눈이 올 듯 말 듯한 날씨, 설레는 마음으로 출석해요!','2023-12-10',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (443, 4, 160,'새해 소망 담아 출석','새해 소망을 담아 첫 출석합니다. 올 한 해도 모두 건강하시길!','2024-01-01',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (444, 4, 160,'봄의 기운 느끼며 출석','봄의 기운이 느껴지는 요즘, 상쾌한 마음으로 출석해요!','2024-03-10',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (445, 4, 160,'벚꽃 흩날리는 출석','벚꽃 잎이 흩날리는 풍경을 보며 출석합니다. 봄이 참 좋네요!','2024-03-25',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (446, 4, 160,'여름휴가 계획 세우며 출석','여름휴가 계획 세우는 재미에 푹 빠진 요즘, 출석도 빼놓을 수 없죠!','2023-06-15',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (447, 4, 160,'후덥지근한 날씨 속 출석','후덥지근한 날씨에 지치지 않게 화이팅하며 출석합니다!','2023-07-20',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (448, 4, 160,'선선해진 아침 공기 맞으며 출석','선선해진 아침 공기를 맞으며 상쾌하게 출석해요!','2023-09-05',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (449, 4, 160,'읽고 싶은 책 구매하고 출석','읽고 싶었던 책을 구매한 기쁨에 젖어 출석합니다!','2023-10-15',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (450, 4, 160,'한파 속 따뜻함 느끼며 출석','매서운 한파 속에서도 마음만은 따뜻하게, 오늘도 출석 완료!','2023-12-25',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (451, 4, 163,'새해 첫 출석!','2023년 첫 출석입니다. 올 한 해도 화이팅!','2023-01-01',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (452, 4, 163,'설 연휴 출석','즐거운 설 연휴 보내시고 출석도 잊지 마세요!','2023-01-22',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (453, 4, 163,'봄 기운 느끼며 출석','날씨가 따뜻해져 봄이 온 것 같아요. 기분 좋은 출석이에요!','2023-03-05',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (454, 4, 163,'벚꽃 구경 다녀온 출석','벚꽃 구경하고 온 기분 좋은 하루, 출석도 빼놓을 수 없죠!','2023-04-10',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (455, 4, 163,'어린이날 출석','어린이날 선물 받으러 갔다 온 재미난 하루, 출석으로 마무리해요!','2023-05-05',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (456, 4, 163,'더위 시작되는 출석','슬슬 더워지기 시작하네요. 건강 조심하면서 출석해요!','2023-06-01',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (457, 4, 163,'장마철 출석','비가 자주 오는 장마철이에요. 우산 챙기면서 출석하세요!','2023-07-10',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (458, 4, 163,'무더위 한창 출석','무더위가 한창이네요. 건강 관리 잘하시면서 출석해요!','2023-08-15',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (459, 4, 163,'가을 하늘 보며 출석','높고 푸른 가을 하늘 보는 재미에 빠진 하루, 출석도 완료!','2023-09-20',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (460, 4, 163,'독서의 계절 출석','책 읽기 좋은 계절이에요. 좋아하는 책과 함께 출석해요!','2023-10-25',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (461, 4, 163,'첫눈 기다리는 출석','첫눈이 오길 기다리는 마음으로 출석 중이에요!','2023-11-30',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (462, 4, 163,'크리스마스 이브 출석','크리스마스 이브에도 변함없이 출석하는 중이에요. 메리 크리스마스!','2023-12-24',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (463, 4, 163,'새해 첫날 출석','2024년 첫날, 새로운 마음으로 출석합니다. 새해 복 많이 받으세요!','2024-01-01',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (464, 4, 163,'졸업식 마친 출석','졸업식을 마치고 홀가분한 마음으로 출석해요. 모두 축하드려요!','2024-02-15',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (465, 4, 163,'봄나들이 준비 중 출석','따뜻한 봄날 나들이 계획 세우느라 바쁜 요즘, 출석은 필수!','2024-03-20',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (466, 4, 163,'여름휴가 오기 전 출석','여름휴가 오기 전 마지막 출근, 출석하고 휴가 떠나요!','2023-07-25',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (467, 4, 163,'가을 운동회 다녀온 출석','가을 운동회 다녀온 날, 상쾌한 기분으로 출석합니다!','2023-10-10',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (468, 4, 163,'한파 속 출석','춥다 추워도 꾸준히 출석하는 중이에요. 모두 감기 조심하세요!','2023-12-05',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (469, 4, 163,'발렌타인데이 출석','사랑하는 사람들과 함께한 발렌타인데이, 출석으로 마무리해요!','2024-02-14',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (470, 4, 163,'화이트데이 출석','달달한 화이트데이, 사탕 먹으면서 출석 중이에요!','2024-03-14',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (471, 4, 163,'벚꽃 엔딩 출석','벚꽃 지는 모습 보면서 출석하니 왠지 감성적이네요.','2023-04-20',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (472, 4, 163,'어버이날 감사 출석','부모님께 감사 인사 전하고 온 어버이날, 마음이 따뜻해지네요.','2023-05-08',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (473, 4, 163,'무더위 녹이는 출석','아이스크림 먹으며 무더위를 녹이는 중이에요. 시원한 출석!','2023-08-05',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (474, 4, 163,'선선한 바람 맞이 출석','선선한 바람 맞으며 기분 좋게 출석합니다. 가을 최고!','2023-09-15',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (475, 4, 163,'독서 삼매경 출석','읽고 싶었던 책에 빠져 시간 가는 줄 모르고 출석 중이에요!','2023-10-30',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (476, 4, 163,'첫눈 감상 출석','올해 첫눈 구경하느라 정신없는 하루, 출석도 잊지 않아요!','2023-11-25',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (477, 4, 163,'성탄절 축하 출석','메리 크리스마스! 행복한 성탄절 보내시길 바라요. 축하 출석!','2023-12-25',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (478, 4, 163,'새해 소망 담은 출석','새해 소망 담아 첫 출석합니다. 올해는 꼭 이루길!','2024-01-05',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (479, 4, 163,'봄 향기 가득 출석','봄 내음 가득한 공기 마시며 상쾌하게 출석해요!','2024-03-10',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (480, 4, 163,'신학기 준비 출석','새 학기 시작 준비하느라 정신없는 3월, 출석은 필수!','2024-03-02',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (481, 4, 163,'입학식 마친 출석','입학식 마치고 설레는 마음으로 출석합니다. 새로운 시작!','2023-03-02',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (482, 4, 163,'개강 첫 출석','개강 첫날, 새로운 마음가짐으로 출석합니다. 화이팅!','2023-03-15',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (483, 4, 163,'중간고사 끝 출석','중간고사가 끝나고 홀가분한 마음으로 출석해요. 모두 고생 많으셨어요!','2023-04-25',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (484, 4, 163,'어린이날 축하 출석','어린이날 선물 받은 기쁨을 나누고 싶어 출석합니다. 축하해요!','2023-05-05',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (485, 4, 163,'스승의 날 감사 출석','스승의 날, 선생님께 감사 인사 드리고 출석합니다. 존경합니다!','2023-05-15',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (486, 4, 163,'무더위 속 출석','더위에 지쳐가는 요즘, 건강 잘 챙기면서 출석 중이에요!','2023-08-10',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (487, 4, 163,'가을 축제 즐기는 출석','가을 축제 구경 다녀온 날, 즐거운 마음으로 출석합니다!','2023-10-05',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (488, 4, 163,'기말고사 준비 출석','기말고사 준비로 바쁜 12월, 열심히 출석하면서 공부해요!','2023-12-10',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (489, 4, 163,'크리스마스 선물 감사 출석','크리스마스 선물 받아 기분 좋은 하루, 감사한 마음으로 출석합니다!','2023-12-26',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (490, 4, 163,'졸업 앞둔 출석','졸업을 앞두고 설레는 마음으로 출석합니다. 좋은 결실 맺길!','2024-02-20',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (491, 4, 163,'봄맞이 대청소 출석','집안 대청소하고 상쾌한 기분으로 출석해요. 봄맞이 끝!','2024-03-15',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (492, 4, 163,'새학기 시작 출석','설레는 마음으로 새학기를 맞이하는 출석, 화이팅!','2023-03-04',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (493, 4, 163,'봄비 오는 날 출석','봄비 내리는 날, 우산 쓰고 등교하는 기분으로 출석합니다!','2023-04-05',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (494, 4, 163,'어버이날 감사 출석','부모님께 감사 인사 드리고 행복한 마음으로 출석해요!','2023-05-08',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (495, 4, 163,'복날 삼계탕 출석','복날 맞아 삼계탕 먹고 더위 이기는 힘을 얻어 출석합니다!','2023-07-15',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (496, 4, 163,'가을 운동회 출석','가을 운동회 준비로 바쁜 하루, 파이팅 넘치게 출석해요!','2023-09-30',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (497, 4, 163,'수능 마친 출석','수능 끝나고 홀가분한 마음으로 출석합니다. 고생 많았어요!','2023-11-17',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (498, 4, 163,'연말 모임 다녀온 출석','연말 모임 즐기고 온 하루, 행복한 마음으로 출석해요!','2023-12-27',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (499, 4, 163,'발렌타인데이 초콜릿 출석','발렌타인데이 초콜릿 만들어 선물하고 달콤한 출석 중이에요!','2024-02-14',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (500, 4, 163,'봄소풍 다녀온 출석','봄소풍 잘 다녀와서 기분 좋은 하루, 마무리로 출석합니다!','2024-03-25',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (501, 3, 163,'사이트 로딩 속도 개선 건의드려요','최근 사이트 접속 시 로딩 속도가 느려진 것 같아요. 개선 방안을 마련해주시면 감사하겠습니다.','2023-01-05',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (502, 3, 163,'검색 기능 오류 제보합니다','검색 기능을 사용하면 가끔 오류 메시지가 뜨면서 검색이 되지 않아요. 확인 부탁드립니다.','2023-02-12',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (503, 3, 163,'새로운 카테고리 추가 제안드려요','현재 카테고리 외에도 OO 관련 카테고리를 추가하면 좋을 것 같아요. 검토 부탁드립니다!','2023-03-20',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (504, 3, 163,'이벤트 아이디어 제안합니다!','다가오는 OO 시즌을 맞아 OO 관련 이벤트를 진행하면 어떨까요? 사용자들의 참여도 높일 수 있을 것 같아요.','2023-04-08',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (505, 3, 163,'버그 발생 신고드립니다','OO 기능을 사용하던 중 버그가 발생했어요. 원인 파악 및 수정 부탁드려요!','2023-05-16',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (506, 3, 163,'회원 등급 제도 개선 건의드려요','현재 회원 등급 제도가 조금 아쉬운 점이 있어요. 등급별 혜택을 좀 더 다양화하면 좋을 것 같아요.','2023-06-23',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (507, 3, 163,'사이트 내 알림 기능 추가 제안합니다','사이트 내 알림 기능이 있으면 유용할 것 같아요. 활동 내역이나 새 글 알림 등을 받아볼 수 있게 해주세요!','2023-07-02',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (508, 3, 163,'댓글 작성 오류 신고드려요','댓글 작성 시 간헐적으로 오류가 발생해요. 댓글이 등록되지 않는 문제 해결 부탁드립니다!','2023-08-11',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (509, 3, 163,'태그 기능 추가 건의드립니다','게시글에 태그를 달 수 있는 기능이 있으면 좋을 것 같아요. 관련 글 검색에도 유용할 거예요.','2023-09-28',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (510, 3, 163,'홈페이지 디자인 개선 제안드려요','홈페이지 디자인을 좀 더 깔끔하고 모던하게 바꾸면 어떨까요? 사용자 친화적인 UI가 필요할 것 같아요.','2023-10-07',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (511, 3, 163,'새로운 이벤트 아이디어 제안합니다','OO 브랜드와 콜라보한 이벤트를 진행하면 좋을 것 같아요. 사용자들의 호응도 높을 거예요!','2023-11-15',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (512, 3, 163,'연말 이벤트 제안드립니다!','한 해를 마무리하는 연말, 사이트 내에서 특별한 이벤트를 진행하면 어떨까요? 사용자들과 함께 뜻깊은 시간 보내면 좋겠어요.','2023-12-24',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (513, 3, 163,'새해 맞이 업데이트 건의드려요','새해를 맞아 사이트 디자인을 조금 바꿔보는 건 어떨까요? 신선한 느낌을 줄 수 있을 것 같아요.','2024-01-03',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (514, 3, 163,'로그인 오류 제보드립니다','가끔 로그인이 되지 않는 오류가 발생해요. 빠른 조치 부탁드려요!','2024-02-12',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (515, 3, 163,'봄맞이 이벤트 제안드려요','따뜻한 봄을 맞아 사이트 내에서 OO 관련 이벤트를 진행하면 어떨까요? 사용자들에게 즐거움을 줄 수 있을 거예요.','2024-03-22',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (516, 3, 163,'메인 페이지 개선 건의합니다','메인 페이지의 구성을 좀 더 간결하고 눈에 띄게 바꾸면 좋을 것 같아요. 중요한 공지사항이나 이벤트를 강조해주세요!','2023-01-14',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (517, 3, 163,'쪽지 기능 오류 제보드려요','쪽지를 보내려고 하면 오류 메시지가 뜨면서 전송이 안 돼요. 확인 부탁드립니다!','2023-02-23',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (518, 3, 163,'개인정보 보호 강화 제안합니다','개인정보 보호를 위해 로그인 시 2차 인증을 추가하는 건 어떨까요? 사용자들의 정보 보안에 도움이 될 거예요.','2023-03-04',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (519, 3, 163,'사이트 접속 불가 신고드려요','현재 사이트 접속이 되지 않아요. 빠른 복구 조치 부탁드립니다!','2023-04-12',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (520, 3, 163,'인기 게시글 노출 방식 제안드려요','인기 게시글 선정 시 조회수뿐만 아니라 댓글 수, 좋아요 수 등을 종합적으로 반영하면 어떨까요?','2023-05-21',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (521, 3, 163,'커뮤니티 활성화 아이디어 제안합니다','커뮤니티 활성화를 위해 정기적인 이벤트나 공동 프로젝트를 진행하는 건 어떨까요? 사용자들의 참여를 이끌어낼 수 있을 거예요.','2023-06-30',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (522, 3, 163,'프로필 사진 오류 신고드립니다','프로필 사진을 업로드하려고 하면 오류가 발생해요. 수정 부탁드려요!','2023-07-09',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (523, 3, 163,'실시간 채팅 기능 제안드려요','사이트 내에 실시간 채팅 기능이 있으면 사용자들 간의 소통이 더 활발해질 것 같아요.','2023-08-18',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (524, 3, 163,'비밀번호 변경 요청 방식 개선 건의드립니다','비밀번호 변경 시 이메일 인증 외에도 휴대폰 인증 옵션을 추가하면 좋을 것 같아요.','2023-09-27',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (525, 3, 163,'맞춤형 추천 기능 제안합니다','사용자의 활동 패턴을 분석해 맞춤형 콘텐츠를 추천해주는 기능이 있으면 좋겠어요. 사용자 경험 향상에 도움이 될 거예요.','2023-10-06',null,0,0,0,0,0,0);
+insert into tblPost (seq, seqBoard, seqUser, title, content, writeDate, editDate, viewCount, likeCount, dislikeCount, reportCount, secretCheck, blindCheck)
+values (526, 3, 163,'게시글 작성 오류 제보드려요','게시글 작성 시 첨부 파일 업로드가 되지 않아요. 오류 수정 부탁드립니다!','2023-11-15',null,0,0,0,0,0,0);
+
 commit;
 --구매 위시 목록 tblPurchaseWishList
 INSERT INTO tblPurchaseWishList(seq,productName,seqAcc) VALUES (1,'자동차',1);
