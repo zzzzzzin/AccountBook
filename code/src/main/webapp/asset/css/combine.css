@@ -633,6 +633,7 @@ textarea.input-style-form-lg {
 .login-page-container {
 	margin: 80px 0 !important;
 }
+.modal-title h5,
 .user-info-input-page-container h3 {
 	font-family: 'WavvePADO-Regular';
 }

@@ -78,7 +78,7 @@
 	        <div class="find-pw-fail" style="display: none;">이메일 전송을 실패했습니다.</div>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+	        <button type="button" class=" button gray-btn submit-btn-style" data-dismiss="modal">닫기</button>
 	      </div>
 	    </div>
 	  </div>
@@ -106,7 +106,7 @@
 	    showModal();
 
 	    // 닫기 버튼 클릭 시 모달 닫기 및 페이지 이동 또는 새로고침
-	    $('#find-pw-modal .close, #find-pw-modal .btn-secondary').click(function() {
+	    $('#find-pw-modal .close, #find-pw-modal .submit-btn-style').click(function() {
 	        $('#find-pw-modal').modal('hide'); // 모달 닫기
 	        
 	        if (result === 1) {
