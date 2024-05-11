@@ -40,6 +40,7 @@
                 <span class="sr-only">Loading...</span>
             </div>
         </div>
+      </div>
         <!-- Spinner End -->
 
 
@@ -61,19 +62,38 @@
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
       	<div class="container">
-		   <h2>글쓰기</h2>
-		   <form method="POST" action="/account/board/write.do" enctype="multipart/form-data">
+   		<h2>글쓰기</h2>
+		<form method="POST" action="/account/board/write.do" id="write">
 		     <div class="form-group">
 		       <label for="category">게시판 카테고리</label>
-		       <select id="seqBoard" name="seqBoard">
-		       	<c:if test="${not empty sessionScope.seqUser && (sessionScope.seqUser == comment.seqUser || sessionScope.seqPriv == 3)}">
-		         <option value="1">공지사항</option> <!-- 관리자만 작성 가능 -->
-		         </c:if>
-		         <option value="2">자유 게시판</option>
-		         <option value="3">건의 사항 게시판</option> <!-- 비밀글은 여기서만 가능 -->
-		         <option value="4">출석 게시판</option>
+		       <select id="seqBoard" name="seqBoard">	       
+			       <c:if test="${sessionScope.seqPriv == 3 && seqBoard == 1}">
+				       <option value="1">공지사항</option>
+				       <option value="2">자유 게시판</option>
+				       <option value="3">건의 사항 게시판</option>
+				       <option value="4">출석 게시판</option>
+				   </c:if>
+				       
+			       <c:if test="${seqBoard == 2}">
+				       <option value="2">자유 게시판</option>
+				       <option value="3">건의 사항 게시판</option>
+				       <option value="4">출석 게시판</option>
+			       </c:if>
+			       
+			       <c:if test="${seqBoard == 3}">
+			       	   <option value="3">건의 사항 게시판</option>
+				       <option value="2">자유 게시판</option>
+				       <option value="4">출석 게시판</option>
+			       </c:if>
+			       
+			      <%-- <c:if test="${seqBoard == 4">
+			       	   <option value="4">출석 게시판</option>
+				       <option value="2">자유 게시판</option>
+				       <option value="3">건의 사항 게시판</option>			       
+			       </c:if> --%>
 		       </select>
 		     </div>
+		     
 		     <div class="form-group">
 		       <label for="title">제목</label>
 		       <input type="text" id="title" name="title" placeholder="제목을 입력해 주세요.">
@@ -82,38 +102,26 @@
 		       <label for="content">내용</label>
 		       <textarea id="content" name="content" placeholder="내용을 입력해 주세요."></textarea>
 		     </div>
-		     <div class="file-attach">
-		       <label for="file-input">파일 첨부<i class="material-icons">attach_file</i></label>
-		       <input type="file" id="file-input" style="display:none;">
-		       <input type="file" id="pic" name="pic" style="display:none;">
-		     </div>
-		     <div>
-				<th>비밀글</th>
-				<td>
-				    <label style="user-select: none;">
-				        <td>
-						    <label style="user-select: none;"><!-- 체크를 눌러야 글이 올라간다? -->
-						        <!-- <input id="checkboxx" type="checkbox" name="secretCheck" value="0" onchange="updateCheckboxValue(this)"> -->
-						    	<input type="checkbox" name="secretCheck" value="0" onchange="this.value = this.checked ? '1' : '0'">
-						    </label>
-						</td>
-				    </label>
-				</td>
-			</div>
-		     <div class="button-group">
 		     
+		     <div>
+		      <table>
+		       <tr>
+		        <th>비밀글</th>
+		        <td><input type="checkbox" name="secretCheck" value="select"></td>           
+		       </tr>
+		      </table>
+		     </div>
+		     
+		    <div class="button-group">		     
 		       <button type="submit">등록</button>
 		       <button type="button" onclick="javascript:history.back();">취소</button>
-		     </div>
-		   </form>
-  		</div>  
-      	  
-
+		    </div>
+		</form>
+		</div>
 		<!-- fakecontent 끝 -->
 		<!-- Back to Top -->
-		<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>    
-    	</div>
-    </div>
+		<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a> 
+		   
 
     <!-- JavaScript Libraries -->
    
@@ -121,20 +129,7 @@
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-    var now = document.getElementById('checkboxx').value;
-    console.log(now);
-
-    function updateCheckboxValue(checkbox) {
-        if (checkbox.checked) {
-            checkbox.value = '1';
-            console.log('checked');
-            console.log(checkbox.value)
-        } else {
-            checkbox.value = '0';
-            console.log('not checked');
-            console.log(checkbox.value);
-        }
-    }
+    
     </script>
 </body>
 

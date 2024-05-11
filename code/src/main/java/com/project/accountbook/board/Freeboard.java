@@ -136,12 +136,14 @@ public class Freeboard extends HttpServlet {
 			sb.append(String.format(" <a href='/account/board/freeBoard.do?page=%d&column=%s&word=%s'>[다음 %d페이지]</a> ", n, column, word, blockSize));
 		}
 		
+		
 		req.setAttribute("freeList", freeList); // freeList 객체를 요청 객체에 추가
 		req.setAttribute("map", map);
 		req.setAttribute("nowPage", nowPage);
 		req.setAttribute("totalCount", totalCount);
 		req.setAttribute("totalPage", totalPage);
 		req.setAttribute("pagebar", sb.toString());
+		req.setAttribute("seqBoard", "2");
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/free-board.jsp");
 		dispatcher.forward(req, resp);

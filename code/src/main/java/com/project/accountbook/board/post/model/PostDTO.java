@@ -24,6 +24,7 @@ public class PostDTO {
 	private int secretCheck;
 	private int blindCheck;
 	private String seqCategory;
+	private String id;
 	
 	public String getSeqCategory() {
 		return seqCategory;
@@ -175,6 +176,14 @@ public class PostDTO {
 
 	public void setProfileImg(String profileImg) {
 		this.profileImg = profileImg;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 }
