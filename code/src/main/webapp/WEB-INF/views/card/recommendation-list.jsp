@@ -32,10 +32,6 @@
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
-/* .fakecontent .card-container .card .card-image img {
-  width: 100px !important;
-  height: auto;
-} */
 </style>
 <script type="module" src="chart.min.js"></script>
 <body>
@@ -78,15 +74,17 @@
             <c:when test="${empty list}">
                 <div class="card">
                     <div>선택된 카테고리에 해당하는 추천 카드가 없습니다.</div>
-                </div>
+                 
             </c:when>
             <c:otherwise>
+                <div class="card-recommendation-box">
                 <c:forEach items="${list}" var="dto" varStatus="loop">
-                    <div class="box card-use-item">
-                        	<div class="card-image">
-	                        	<div class="card-image-wrapper">
+                    <div class="box card-image">
+                        	<div class="recommendation-card-img">
+	                        	<p class="card-image-wrapper">
+	                                <a></a>
 	                                <img src="${pageContext.request.contextPath}/asset/images/${dto.fileLink}">
-	                            </div>
+	                             </p>
                             </div>
                             <div class="card-recommendation-info-box" >
 								<h4>${dto.ciName}</h4>
@@ -94,6 +92,7 @@
 							</div>
                     </div>
                 </c:forEach>
+                </div>
             </c:otherwise>
         </c:choose>
     </div>

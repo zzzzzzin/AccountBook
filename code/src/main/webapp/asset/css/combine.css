@@ -1847,6 +1847,10 @@ width: 100px !;
 /* 카드 추가하기 끝*/
 
 /* 카드 추천 시작 */
+/* .card-list-img {
+	width: 260px;
+    text-align: center;
+} */
 .card-container {
   display: flex;
   flex-direction: column;
@@ -1872,40 +1876,94 @@ width: 100px !;
   margin-right: 20px;
 }
 
+.card-recommendation-box {
+	display: table;
+    table-layout: fixed;
+    position: relative;
+    width: 100%;
+    border-radius: 12px;
+    box-sizing: border-box;
+}
 
 .card-image{
     width: 240px;
     text-align: center;
+    display: flex;
+    width: 100%;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 150px;
 }
 
-
-.card-image.card-detail {
-	 width: 350px;
-}
-
-.card-image-wrapper.card-detail {
-	width: 175px;
-    height: 175px;
-}
-
-.card-image-wrapper {
-    display: inline-block;
+.recommendation-card-img {
+	display: inline-block;
     width: 120px;
     height: 120px;
-    background: #eff0f7;
+    background: #f5f5f5;
+    border-radius: 100%;
+    position: relative;
+    text-align: center;
+    min-width: 120px;
+}
+
+/* .card-image-wrapper {
+	    display: block;
+} */
+.card-image-wrapper {
+	display: inline-block;
+    width: 120px;
+    height: 120px;
+    background: #f5f5f5;
     border-radius: 100%;
     position: relative;
 }
-
-
-.card-image-wrapper img {
-    position: absolute;
+.card-image-wrapper a {
+	display: block;
+	outline: 0 !important;
+    box-shadow: none;
+    background-color: unset;
+}
+.card-image-wrapper img,
+.card-detail-image-wrapper img {
+	width: auto;
+	height: auto;
+	position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     max-width: 100%;
     max-height: 100%;
 }
+.card-detail-image-wrapper {
+	 display: inline-block;
+    width: 200px;
+    height: 200px;
+    background: #f5f5f5;
+    border-radius: 100%;
+    position: relative;
+    text-align: center;
+    min-width: 120px;
+}
+.card-image.card-detail {
+	text-align: center;
+    display: flex;
+    width: 30%;
+    gap: 0;
+    padding: 0;
+}
+.card-use-detail-container-style {
+	display: flex;
+    flex-direction: row;
+}
+/* .recommendation-card-img.card-detail {
+	 width: 350px;
+} */
+
+/* .card-image-wrapper.card-detail {
+	width: 175px;
+    height: 175px;
+} */
 
 #description > div > div > span {
 	color: #f0a69a;
@@ -1922,8 +1980,10 @@ width: 100px !;
 }
 
 .card-recommendation-box {
-	padding-bottom: 5px;
-	margin-bottom: 20px;
+	display: flex;
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
 }
 
 
