@@ -83,14 +83,16 @@
 				</div>
 		
 		<div class="card-use-list">
+			<div class="card-recommendation-box">
 				<c:forEach items="${list}" var="dto">
-						<div class="link-box-style box card-use-item" onclick="location.href='/account/account/card-use-detail.do?seqMyCard=${dto.seqMyCard}&startDate=${map.startDate}&endDate=${map.endDate}';">
-							<div class="card-image">
-	                        	<div class="card-image-wrapper">
-									<img src="/account/asset/images/${dto.fileLink}" id="cardImgPlace" >
-	                            </div>
+						<div class="card-image link-box-style box" onclick="location.href='/account/account/card-use-detail.do?seqMyCard=${dto.seqMyCard}&startDate=${map.startDate}&endDate=${map.endDate}';">
+							<div class="recommendation-card-img">
+	                        	<p class="card-image-wrapper">
+	                        		<a></a>
+									<img src="/account/asset/images/${dto.fileLink}" >
+	                            </p>
                             </div>
-							<div class="card-use-info-box" >
+							<div class="card-recommendation-info-box" >
 								<h4>
 									<c:if test="${dto.alias != null}">
 										${dto.alias}
@@ -103,7 +105,8 @@
 							</div>
 						</div>
 					</c:forEach>
-		</div>
+				</div>
+			</div>
 		</div>
 
 		<!-- fakecontent 끝 -->
