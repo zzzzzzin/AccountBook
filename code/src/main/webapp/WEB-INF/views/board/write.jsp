@@ -89,11 +89,11 @@
 							       <option value="4">출석 게시판</option>
 						       </c:if>
 						       
-						      <%-- <c:if test="${seqBoard == 4">
+						       <c:if test="${seqBoard == 4}"> 
 						       	   <option value="4">출석 게시판</option>
 							       <option value="2">자유 게시판</option>
-							       <option value="3">건의 사항 게시판</option>			       
-						       </c:if> --%>
+							       <option value="3">건의 사항 게시판</option>
+						       </c:if>
 					       </select>
 					     </div>
 					     
@@ -134,6 +134,19 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
     
+    console.log('${seqBoard}');
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        var seqBoard = ${seqBoard};
+        var userInfoInputBox = document.querySelector('.user-info-input-box');
+        
+        if (seqBoard == 3) {
+            userInfoInputBox.style.display = 'block';
+        } else {
+            userInfoInputBox.style.display = 'none';
+        }
+    });
+	    
     </script>
 </body>
 

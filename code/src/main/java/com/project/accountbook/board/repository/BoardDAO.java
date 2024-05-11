@@ -478,7 +478,16 @@ public class BoardDAO {
 				dto.setSeq(rs.getString("seq"));
 				dto.setSeqBoard(rs.getString("seqboard"));
 				dto.setSeqUser(rs.getString("sequser"));
-				dto.setTitle(rs.getString("title"));
+				
+				if(rs.getString("title").length() > 28) {
+					dto.setTitle(rs.getString("title").substring(0, 28) + " ...");
+				} else {
+					dto.setTitle(rs.getString("title"));
+				}
+					
+					
+				
+				
 				dto.setContent(rs.getString("content"));
 				dto.setWriteDate(rs.getString("writedate"));
 				dto.setEditDate(rs.getString("editdate"));
