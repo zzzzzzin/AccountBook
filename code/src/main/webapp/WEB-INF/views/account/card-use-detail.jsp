@@ -4,7 +4,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>BudgetBuddy | 카드 사용</title>
+<title>BudgetBuddy | 
+<c:forEach items="${list}" var="dto">
+		<c:if test="${dto.alias != null}">
+		${dto.alias}
+		</c:if>
+		<c:if test="${dto.alias == null}">
+		${dto.cfName}
+		</c:if>
+</c:forEach>
+ 카드 사용 내역</title>
 
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -65,7 +74,18 @@
 
 	<div class="content-total-style">
 			<div class="content-header">
-					<div class="content-title-style"><h3>카드 사용</h3></div>
+					<div class="content-title-style">
+					<h3>
+							<c:forEach items="${list}" var="dto">
+								<c:if test="${dto.alias != null}">
+		${dto.alias}
+		</c:if>
+								<c:if test="${dto.alias == null}">
+		${dto.cfName}
+		</c:if>
+							</c:forEach>
+							카드 사용 내역
+					</h3></div>
 					
 					<form id="selectDateForm" method="GET">
 						<div class="date-range-total-box">
