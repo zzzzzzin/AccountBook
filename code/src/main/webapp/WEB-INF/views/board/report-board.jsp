@@ -111,16 +111,21 @@
 					        <td>게시물이 없습니다.</td>
 					    </tr>
 					</c:if>
-	                <c:forEach items="${reportList}" var="report">
+	                <c:forEach items="${reportList}" var="report" varStatus="status">
 			                <tr>
-			                    <td>${report.seq}</td>
+			                    <td>${status.count}</td>
 						        <td>
 						            <c:choose>
 						                <c:when test="${report.blindCheck eq '1'}">
 						                    관리자에 의해 블라인드 처리 되었습니다.
 						                </c:when>
 						                <c:otherwise>
-						                	<a href="/account/board/discussion.do?seq=${report.seq}">${report.title}</a>					                    
+						                	<c:if test="${report.secretCheck == 1 && sessionScope.seqUser != report.seqUser}">
+						                	<a href="#!">${report.title}</a>
+						                	</c:if>
+						                	<c:if test="${(report.secretCheck == 1 && sessionScope.seqUser == report.seqUser) || report.secretCheck == 0}">
+			                    			<a href="/account/board/discussion.do?seq=${report.seq}">${report.title}</a>
+			                    			</c:if>
 						                </c:otherwise>
 						            </c:choose>
 						        </td>
@@ -146,7 +151,7 @@
 	            <!-- 페이지바 -->
 				<div id="pagebar">${pagebar}</div>
 	            <div class="write-btn">
-	                <a href="/account/board/write.do" class="button purple-btn submit-btn-style bottom-btn-style">글작성</a>
+	                <a href="/account/board/write.do?seqBoard=${seqBoard}" class="button purple-btn submit-btn-style bottom-btn-style">글작성</a>
 	            </div>
 	        </div>
 	        
@@ -177,6 +182,9 @@
         });
     });
 
+    console.log('${report.seqUser}');
+    console.log('sessionScope.seqUser');
+    
     </script>
 </body>
 

@@ -62,10 +62,12 @@ public class BoardDAO {
 			pstat.setString(3, dto.getTitle());
 			pstat.setString(4, dto.getContent());
 			pstat.setInt(5, dto.getSecretCheck());
+
+			System.out.println(sql);
+			int result = pstat.executeUpdate();
+			System.out.println("result: "+result);
 			
-			System.out.println("conn: " + conn.isClosed());
-			
-			return pstat.executeUpdate(); // 실행 결과 반환
+			return result; // 실행 결과 반환
 
 		} catch (Exception e) {
 
@@ -113,7 +115,8 @@ public class BoardDAO {
 					+ "    po_blindcheck as blindcheck,\r\n"
 					+ "    us_seq as seqpost,\r\n"
 					+ "    af_filename as filename,\r\n"
-					+ "    af_filelink as filelink\r\n"
+					+ "    af_filelink as filelink,\r\n"
+					+ "    me_id as id\r\n"
 					+ "from vwboard2 where po_seq = ?";
 			
 			pstat = conn.prepareStatement(sql);
@@ -137,6 +140,7 @@ public class BoardDAO {
 				dto.setBlindCheck(rs.getInt("blindcheck"));
 				dto.setad_nickName(rs.getString("ad_nickname"));
 				dto.setme_nickName(rs.getString("me_nickname"));
+				dto.setId(rs.getString("id"));
 				
 				dto.setSeqPost(rs.getString("seqpost"));
 				dto.setFileName(rs.getString("filename"));
@@ -177,56 +181,62 @@ public class BoardDAO {
 				where = String.format("where ca_seq = %s", seq);
 			}
 		
-//			String sql = "select \r\n"
-//					+ "    po_seq as seq,\r\n"
-//					+ "    me_nickname as me_nickname,\r\n"
-//					+ "    ad_nickname as ad_nickname,\r\n"
-//					+ "    ca_seq as seqboard,\r\n"
-//					+ "    po_seqUser as seqUser,\r\n"
-//					+ "    po_title as title,\r\n"
-//					+ "    po_content as content,\r\n"
-//					+ "    po_writedate as writedate,\r\n"
-//					+ "    po_editdate as editdate,\r\n"
-//					+ "    po_viewcount as viewcount,\r\n"
-//					+ "    po_likecount as likecount,\r\n"
-//					+ "    po_dislikecount as dislikecount,\r\n"
-//					+ "    po_reportcount as reportcount,\r\n"
-//					+ "    po_secretcheck as secretcheck,\r\n"
-//					+ "    po_blindcheck as blindcheck,\r\n"
-//					+ "    us_seq as seqpost,\r\n"
-//					+ "    af_filename as filename,\r\n"
-//					+ "    af_filelink as filelink\r\n"
+			String sql = "select * from\r\n"
+					+ "(SELECT\r\n"
+					+ "    po_seq AS seq,\r\n"
+					+ "    me_nickname AS me_nickname,\r\n"
+					+ "    me_id AS id,\r\n"
+					+ "    ad_nickname AS ad_nickname,\r\n"
+					+ "    ca_seq AS seqboard,\r\n"
+					+ "    po_seqUser AS seqUser,\r\n"
+					+ "    po_title AS title,\r\n"
+					+ "    po_content AS content,\r\n"
+					+ "    po_writedate AS writedate,\r\n"
+					+ "    po_editdate AS editdate,\r\n"
+					+ "    po_viewcount AS viewcount,\r\n"
+					+ "    po_likecount AS likecount,\r\n"
+					+ "    po_dislikecount AS dislikecount,\r\n"
+					+ "    po_reportcount AS reportcount,\r\n"
+					+ "    po_secretcheck AS secretcheck,\r\n"
+					+ "    po_blindcheck AS blindcheck,\r\n"
+					+ "    us_seq AS seqpost,\r\n"
+					+ "    af_filename AS filename,\r\n"
+					+ "    af_filelink AS filelink,\r\n"
+					+ "    ROW_NUMBER() OVER (ORDER BY po_writedate DESC) AS rnum\r\n"
+					+ "FROM vwboard2\r\n"
+					+ where + ")"
+					+ "where rnum between ? and ?";
+			
+//			String sql = "select * from (select\r\n"
+//					+ "po_seq as seq,\r\n"
+//					+ "me_nickname as me_nickname,\r\n"
+//					+ "me_id as id,\r\n"
+//					+ "ad_nickname as ad_nickname,\r\n"
+//					+ "ca_seq as seqboard,\r\n"
+//					+ "po_seqUser as seqUser,\r\n"
+//					+ "po_title as title,\r\n"
+//					+ "po_content as content,\r\n"
+//					+ "po_writedate as writedate,\r\n"
+//					+ "po_editdate as editdate,\r\n"
+//					+ "po_viewcount as viewcount,\r\n"
+//					+ "po_likecount as likecount,\r\n"
+//					+ "po_dislikecount as dislikecount,\r\n"
+//					+ "po_reportcount as reportcount,\r\n"
+//					+ "po_secretcheck as secretcheck,\r\n"
+//					+ "po_blindcheck as blindcheck,\r\n"
+//					+ "us_seq as seqpost,\r\n"
+//					+ "af_filename as filename,\r\n"
+//					+ "af_filelink as filelink,\r\n"
+//					+ "rownum as rnum\r\n"
 //					+ "from vwboard2\r\n"
 //					+ where
-//					+ " ORDER BY seq DESC";
+//					+ " ORDER BY rnum DESC) where rnum between ? and ?";
 			
-			String sql = "select * from (select\r\n"
-					+ "po_seq as seq,\r\n"
-					+ "me_nickname as me_nickname,\r\n"
-					+ "ad_nickname as ad_nickname,\r\n"
-					+ "ca_seq as seqboard,\r\n"
-					+ "po_seqUser as seqUser,\r\n"
-					+ "po_title as title,\r\n"
-					+ "po_content as content,\r\n"
-					+ "po_writedate as writedate,\r\n"
-					+ "po_editdate as editdate,\r\n"
-					+ "po_viewcount as viewcount,\r\n"
-					+ "po_likecount as likecount,\r\n"
-					+ "po_dislikecount as dislikecount,\r\n"
-					+ "po_reportcount as reportcount,\r\n"
-					+ "po_secretcheck as secretcheck,\r\n"
-					+ "po_blindcheck as blindcheck,\r\n"
-					+ "us_seq as seqpost,\r\n"
-					+ "af_filename as filename,\r\n"
-					+ "af_filelink as filelink,\r\n"
-					+ "rownum as rnum\r\n"
-					+ "from vwboard2\r\n"
-					+ where
-					+ " ORDER BY seq DESC) where rnum between ? and ?";
 			
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, map.get("begin"));
 			pstat.setString(2, map.get("end"));
+
 			
 			rs = pstat.executeQuery();
 			
@@ -241,7 +251,7 @@ public class BoardDAO {
 				
 				dto.setSeq(rs.getString("seq"));
 				dto.setSeqBoard(rs.getString("seqboard"));
-				dto.setSeqUser(rs.getString("sequser"));
+				dto.setSeqUser(rs.getString("seqUser"));
 				dto.setTitle(rs.getString("title"));
 				dto.setContent(rs.getString("content"));
 				
@@ -261,6 +271,9 @@ public class BoardDAO {
 				dto.setBlindCheck(rs.getInt("blindcheck"));
 				dto.setad_nickName(rs.getString("ad_nickname"));
 				dto.setme_nickName(rs.getString("me_nickname"));
+				dto.setId(rs.getString("id"));
+				dto.setSeqUser(rs.getString("seqUser"));
+				dto.setSecretCheck(rs.getInt("secretcheck"));
 				
 				dto.setSeqPost(rs.getString("seqpost"));
 				dto.setFileName(rs.getString("filename"));
@@ -304,7 +317,7 @@ public class BoardDAO {
 					+ "    af_filename as filename,\r\n"
 					+ "    af_filelink as filelink\r\n"
 					+ "from vwboard2 where ca_seq = ?\r\n"
-					+ "order by seq desc";
+					+ "order by po_writedate desc";
 			
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, seq);
@@ -436,7 +449,7 @@ public class BoardDAO {
 					+ "    af_filename as filename,\r\n"
 					+ "    af_filelink as filelink\r\n"
 					+ "from vwboard2 where ca_seq = ?\r\n"
-					+ "order by seq desc";
+					+ "order by po_writedate desc";
 			
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, seq);

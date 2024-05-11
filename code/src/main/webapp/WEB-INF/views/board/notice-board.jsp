@@ -131,7 +131,9 @@
 				<div id="pagebar">${pagebar}</div>
 				
 	            <div class="write-btn">
-	                <a href="/account/board/write.do" class="button purple-btn submit-btn-style bottom-btn-style">글작성</a>
+	            	<c:if test="${sessionScope.seqPriv == 3}">
+	                <a href="/account/board/write.do?seqBoard=${seqBoard}" class="button purple-btn submit-btn-style">글작성</a>
+	                </c:if>
 	            </div>
 	        </div>
 	    </div>

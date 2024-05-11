@@ -145,6 +145,7 @@ public class ReportBoard extends HttpServlet {
 		req.setAttribute("totalCount", totalCount);
 		req.setAttribute("totalPage", totalPage);
 		req.setAttribute("pagebar", sb.toString());
+		req.setAttribute("seqBoard", "3");
 		
 	
 				
