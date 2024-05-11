@@ -27,31 +27,86 @@
 </head>
 <style>
 
-/*     body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-    }
-    
-    header {
-        background-color: #333;
-        padding: 20px;
-    }
-    
-    main {
-        display: flex;
-        justify-content: space-around;
-        padding: 20px;
-    }
-    
-    h3 {
-        color: #333;
-    }
-    
-    p {
-        color: #666;
-    }
-    */
+blockquote{
+  display:block;
+  background: #fff;
+  padding: 15px 20px 15px 45px;
+  margin: 0 0 20px;
+  position: relative;
+  
+   border-left-color: #ADA0DE;
+  border-right-color: #786CA7;
+ 
+  /*Font*/
+  font-family: Georgia, serif;
+  font-size: 14px;
+  line-height: 1.2;
+  color: #666;
+ 
+  /*Box Shadow - (Optional)*/
+  -moz-box-shadow: 2px 2px 15px #ccc;
+  -webkit-box-shadow: 2px 2px 15px #ccc;
+  box-shadow: 2px 2px 15px #ccc;
+ 
+  /*Borders - (Optional)*/
+  border-left-style: solid;
+  border-left-width: 15px;
+  border-right-style: solid;
+  border-right-width: 2px;
+}
+ 
+blockquote::before{
+  content: &quot;\201C&quot;; /*Unicode for Left Double Quote*/
+ 
+  /*Font*/
+  font-family: Georgia, serif;
+  font-size: 60px;
+  font-weight: bold;
+  color: #999;
+ 
+  /*Positioning*/
+  position: absolute;
+  left: 10px;
+  top:5px;
+ 
+}
+ 
+blockquote::after{
+  /*Reset to make sure*/
+  content: &quot;&quot;;
+}
+ 
+blockquote a{
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0 3px;
+/*   color: #c76c0c; */
+}
+ 
+blockquote a:hover{
+/*  color: #666; */
+}
+ 
+blockquote em{
+  font-style: italic;
+}
+ 
+  /*Default Color Palette*/
+blockquote.default{
+  border-left-color: #656d77;
+  border-right-color: #434a53;
+}
+
+.page-description h4 a {
+font-family: 'TTLaundryGothicB';
+}
+
+.index-page-item-area hr {
+	padding: 0;
+	margin: 0;
+	color: #afb0b2;
+}
+
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
@@ -91,30 +146,41 @@
     <div class="index-page-item-area main-box-container-style">
     <div>
     	<section>
-            <h2> 소비 패턴 분석을 통한 지출 관리 친구 <span>"BudgetBuddy"</span></h2>
+            <h2>
+            <span>
+            "소비 패턴 분석을 통한
+            </span>
+            <span>
+            지출 관리 친구"
+            </span>
+            </h2>
+<!--             <span>"Budget</span><span>Buddy"</span> -->
     	</section>
     </div>
+    <hr>
     <div class="index-page-box-area">
-        <section class="box">
-            <h4><a href="/account/board/view.do"><i class="fas fa-clipboard"></i> 게시판</a></h4>
-            <p>!설명 부분 박스 스타일 수정할 예정!</p>
-            <p>이미지도 확정X 수정하셔도 돼요</p>
-            <p>게시판에 대한 설명을 여기에 추가하세요.</p>
-        </section>
-
-        <section class="box">
+    	<blockquote class="page-description">
             <h4><a href="/account/account/calendar.do"><i class="fas fa-piggy-bank"></i> 대시보드</a></h4>
-            <p>대시보드에 대한 설명을 여기에 추가하세요.</p>
-        </section>
-
-        <section class="box">
+            <p>설명을 여기에 추가하세요.</p>
+            <p></p>
+            <p></p>
+		</blockquote>
+    	<blockquote class="page-description">
             <h4><a href="/account/card/recommendation.do"><i class="fa-solid fa-ranking-star"></i> 카드 추천</a></h4>
-            <p>카드추천에 대한 설명을 여기에 추가하세요.</p>
-        </section>
+            <p>설명을 여기에 추가하세요.</p>
+		</blockquote>
+	   	<blockquote class="page-description">
+            <h4><a href="/account/board/view.do"><i class="fas fa-clipboard"></i> 게시판</a></h4>
+<!-- 		  <h1><span class="Cpage-description">page-description</span> - Blockquote Color Palette</h1>   -->
+            <p>설명을 여기에 추가하세요.</p>
+		</blockquote>
     </div>
     </div>
-    	<div class="index-page-item-area">
+<!--     	<div class="index-page-item-area">
         	<img src="/account/asset/images/BudgetBuddy.jpg" alt="이미지">
+        </div> -->
+    	<div class="index-page-item-area">
+        	<img src="/account/asset/images/green-account-book-img.jpeg" alt="이미지">
         </div>
 
     <script src="script.js"></script>
@@ -132,16 +198,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
 
-    document.addEventListener('DOMContentLoaded', function() {
-    const sidebarToggler = document.getElementById('sidebar-toggler');
-    const sidebar = document.querySelector('.sidebar');
-    const content = document.querySelector('.content');
-
-        sidebarToggler.addEventListener('click', function() {
-        sidebar.classList.toggle('hidden');
-        content.classList.toggle('expanded');
-        });
-    });
 
     </script>
 </body>
