@@ -15,7 +15,8 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>출석게시판</title>
+    <title>BudgetBuddy | 출석 게시판</title>
+     <link type="image/png" sizes="16x16" rel="icon" href="/account/asset/images/icons8-돈-상자-16.png">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -116,9 +117,9 @@
 						<c:forEach var="attendance" items="${attendanceList}">
 							<tr>
 								<td>${attendance.seq}</td>
-								<td><c:choose>
+								<td class="blind-post-title-style"><c:choose>
 										<c:when test="${attendance.blindCheck eq '1'}">
-				                    관리자에 의해 블라인드 처리 되었습니다.
+				                    관리자에 의해 블라인드 처리되었습니다.
 				                </c:when>
 										<c:otherwise>
 											<a href="/account/board/discussion.do?seq=${attendance.seq}">${attendance.title}</a>
