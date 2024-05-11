@@ -116,9 +116,9 @@
 						<c:forEach var="attendance" items="${attendanceList}">
 							<tr>
 								<td>${attendance.seq}</td>
-								<td><c:choose>
+								<td class="blind-post-title-style"><c:choose>
 										<c:when test="${attendance.blindCheck eq '1'}">
-				                    관리자에 의해 블라인드 처리 되었습니다.
+				                    관리자에 의해 블라인드 처리되었습니다.
 				                </c:when>
 										<c:otherwise>
 											<a href="/account/board/discussion.do?seq=${attendance.seq}">${attendance.title}</a>

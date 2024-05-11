@@ -99,7 +99,7 @@
 
 					<c:forEach var="notice" items="${noticeList}" begin="0" end="4">
 			                <tr>
-						        <td>
+						        <td class="blind-post-title-style">
 						            <c:choose>
 						                <c:when test="${notice.blindCheck eq '1'}">
 						                    관리자에 의해 블라인드 처리 되었습니다.
@@ -128,10 +128,10 @@
 
 					<c:forEach var="free" items="${freeList}" begin="0" end="4">
 			                <tr>
-						    	<td>
+						    	<td class="blind-post-title-style">
 						            <c:choose>
 						                <c:when test="${free.blindCheck eq '1'}">
-						                    관리자에 의해 블라인드 처리 되었습니다.
+						                    관리자에 의해 블라인드 처리되었습니다.
 						                </c:when>
 						                <c:otherwise>
 						                	<a href="/account/board/discussion.do?seq=${free.seq}">${free.title}</a>
@@ -158,7 +158,7 @@
 
 			        <c:forEach var="report" items="${reportList}" begin="0" end="4">
                 		<tr>
-				    		<td>
+				    		<td class="blind-post-title-style">
 					            <c:choose>
 					                <c:when test="${report.blindCheck eq '1'}">
 					                    관리자에 의해 블라인드 처리 되었습니다.
@@ -188,7 +188,7 @@
 
 					<c:forEach var="attendance" items="${attendanceList}" begin="0" end="4">
 		                <tr>
-				    		<td>
+				    		<td class="blind-post-title-style">
 					            <c:choose>
 					                <c:when test="${attendance.blindCheck eq '1'}">
 					                    관리자에 의해 블라인드 처리 되었습니다.

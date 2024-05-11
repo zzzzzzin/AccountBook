@@ -115,7 +115,7 @@
 					<c:forEach items="${freeList}" var="free" varStatus="status">
 			                <tr>
 			                    <td>${status.count}</td>
-						        <td>
+						        <td class="blind-post-title-style">
 						            <c:choose>
 						                <c:when test="${free.blindCheck eq '1'}">
 						                    관리자에 의해 블라인드 처리 되었습니다.

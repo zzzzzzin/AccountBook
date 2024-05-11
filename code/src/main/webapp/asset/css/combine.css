@@ -979,7 +979,11 @@ comment-edit-form textarea,
     color: #979797;
 }
 
-
+/* 차단된 게시글 스타일 */
+.blind-post-title-style {
+	color: #c6cade;
+    cursor: not-allowed;
+}
 
 .board-list td {
   padding: 8px;
