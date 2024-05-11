@@ -31,7 +31,7 @@ public class UserDAO {
 	}
 
 	// 비밀번호 찾기 > 회원 정보 확인
-	public UserDTO checkId(String id, String name) {
+	public int checkId(String id, String name) {
 		try {
 			String sql = "select\r\n" + "count(*) count\r\n" + "from tblMember\r\n" + "where id = ?\r\n"
 					+ "and name = ?";
@@ -42,17 +42,13 @@ public class UserDAO {
 			rs = pstat.executeQuery();
 
 			if (rs.next()) {
-				UserDTO result = new UserDTO();
 
-				result.setId(id);
-				result.setName(name);
-
-				return result;
+				return rs.getInt("count");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		return 0;
 	}
 
 	// 비밀번호 찾기 시 이메일 전송

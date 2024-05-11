@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그아웃</title>
+<title>BudgetBuddy | 로그아웃</title>
 <link rel="stylesheet" href="http://pinnpublic.dothome.co.kr/cdn/example-min.css">
 <style>
 	

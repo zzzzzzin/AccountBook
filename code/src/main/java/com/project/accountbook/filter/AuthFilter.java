@@ -34,7 +34,7 @@ public class AuthFilter implements Filter {
 					|| req.getRequestURI().endsWith("reportBoard.do")
 					|| req.getRequestURI().endsWith("attendanceBoard.do")
 					|| req.getRequestURI().contains("/account/account/")
-					|| req.getRequestURI().contains("/account/user/member/")) {
+					|| req.getRequestURI().contains("/account/user/member/") && !req.getRequestURI().contains("reset-pw")) {
 
 //				response.setCharacterEncoding("UTF-8");
 //				PrintWriter writer = ((HttpServletResponse) response).getWriter();
