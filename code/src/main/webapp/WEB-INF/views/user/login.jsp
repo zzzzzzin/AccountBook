@@ -23,24 +23,11 @@
 <!-- End layout styles -->
 <link rel="shortcut icon" href="/account/asset/images/favicon.png" />
 <style>
-body {
-	color: black;
+
+.find-info-btn span {
+	color: #ccc;
 }
 
-.card {
-	border: none;
-}
-
-.form-control {
-	background-color: #D9D9D9;
-	border: none;
-}
-
-.find-info-btn {
-  width: 300px;
-  display: flex;
-  flex-direction: column;
-}
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 </style>
 </head>
@@ -52,14 +39,14 @@ body {
 				<div class="user-info-container-style">
 					<div class="">
 						<div class="card-body">
-							<h3 class="card-title text-left mb-3">Login</h3>
+							<h3 class="card-title text-left mb-3">로그인</h3>
 							<form method="POST" action="/account/user/login.do">
 								<div class="form-group">
-									<label>ID</label> <input type="text" name="id"
+									<label>아이디</label> <input type="text" name="id"
 										class="form-control input-style-form">
 								</div>
 								<div class="form-group">
-									<label>Password</label> <input type="password" name="pw"
+									<label>비밀번호</label> <input type="password" name="pw"
 										class="form-control input-style-form">
 								</div>
 								<div
@@ -74,10 +61,11 @@ body {
 
 								<div class="login-bottom-btn-box">
 									<p class="sign-up">
-										<a href="/account/user/register.do">Sign Up</a>
+										<a href="/account/user/register.do">회원가입</a>
 									</p>
 									<div class="find-info-btn">
 										<a href="/account/user/find-id.do" class="forgot-id">아이디 찾기</a>
+										<span> | </span>
 										<a href="/account/user/find-pw.do" class="forgot-pw">비밀번호 찾기</a>
 									</div>
 								
