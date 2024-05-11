@@ -27,7 +27,7 @@
 					<a href="/account/account/analysis.do" class="dropdown-item"><i class="fa-solid fa-chart-pie"></i> 분석</a>
 				</div>
 			</div>
-			<a href="/account/account/card-use.do" class="nav-item nav-link"><i class="fa-solid fa-credit-card"></i> 카드 사용</a>
+			<a href="/account/account/card-use.do" class="nav-item nav-link"><i class="fa-solid fa-credit-card"></i> 카드 사용 내역</a>
 		</div>
 	</nav>
 </div>

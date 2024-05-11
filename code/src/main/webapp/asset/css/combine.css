@@ -880,23 +880,6 @@ select {
   } */
 /* 댓글 끝*/
 
-#description > div > span {
-	color: #f0a69a;
-	font-size: 18px;
-	font-weight: bold;
-}
-
-#description > div {
-	display: flex;
-	flex-direction: column;
-	margin-bottom: 10px;
-}
-
-.card-recommendation-box {
-	padding-bottom: 5px;
-	margin-bottom: 20px;
-}
-
 
 /* 친구 초대 */
 /* 메모지 스타일 */
@@ -1069,28 +1052,6 @@ select {
     gap: 10px;
 }
 
-	#cardDetailImgPlace {
-    	margin: 0;
-    	width: 24%;
-    	height: 24%;
-    }
-    
-.card-image-wrapper {
-    width: 100px;
-    height: 100px;
-    margin: 0 auto;
-    border-radius: 50%;
-    background-color: #ddd;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-.card-image-wrapper img {
-    max-width: 80%;
-    max-height: 80%;
-    object-fit: contain;
-}
 /* 카드 사용 끝 */
 
 /* 분석 css 시작 */
@@ -1499,12 +1460,6 @@ width: 100px !;
   margin: 0 auto;
   padding: 20px;
 }
-.card-image {
-  width: 300px;
-  height: 100px;
-  border: 1px solid #ccc;
-  margin-bottom: 10px;
-}
 .transaction-table {
   width: 100%;
   border-collapse: collapse;
@@ -1763,42 +1718,92 @@ width: 100px !;
   margin-right: 20px;
 }
 
-.card-image {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  margin-right: 20px;
-  background-color: #ddd;
+
+.card-image{
+    width: 240px;
+    text-align: center;
 }
 
-.card-details {
-  display: flex;
-  flex-direction: column;
+
+.card-image.card-detail {
+	 width: 350px;
 }
 
-.card-name {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 5px;
+.card-image-wrapper.card-detail {
+	width: 175px;
+    height: 175px;
 }
 
-.card-company {
-  font-size: 18px;
-  color: #666;
+.card-image-wrapper {
+    display: inline-block;
+    width: 120px;
+    height: 120px;
+    background: #eff0f7;
+    border-radius: 100%;
+    position: relative;
 }
 
-.modal-button {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
+
+.card-image-wrapper img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+    max-height: 100%;
 }
+
+#description > div > div > span {
+	color: #f0a69a;
+	font-size: 20px;
+	font-weight: bold;
+	margin-right: 8px;
+}
+
+#description > div {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 10px;
+	gap: 20px;
+}
+
+.card-recommendation-box {
+	padding-bottom: 5px;
+	margin-bottom: 20px;
+}
+
+
+#description {
+	width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.box.card-recommendation-box {
+	display: flex;
+}
+/* #description > div:nth-child(1) > div {
+	display: flex;
+	flex-direction: column;
+	
+}
+ */
+/* .card-use-info-box,
+.card-recommendation-info-box {
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+} */
+.card-use-info-box h4,
+.card-recommendation-info-box h4,
+#description > div:nth-child(1) > span {
+		font-family: 'TTLaundryGothicB';
+
+}
+
+
 /* 카드 추천 끝 */
 
 /* 카드 조회 시작 */

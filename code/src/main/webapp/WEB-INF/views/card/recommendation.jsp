@@ -196,11 +196,15 @@
 									data-flip-category="${loop.index + 1}"
 									data-description="               
 <%-- 					                    <div>${loop.index + 1}</div> --%>
-					                    <div><span>카드 이름</span> ${dto.ciName}</div>
+										<div>
+					                    <div><span>카드명</span> ${dto.ciName}</div>
 					                    <div><span>카드사</span> ${dto.cardCompany}</div>
 					                    <div><span>설명</span> ${dto.explanation}</div>
+					                    </div>
+					                    <div>
 					                    <div><span>연회비</span> ${dto.annualFee}원</div>
 					                    <div><span>해외 겸용</span> ${dto.overseasUse}</div>
+					                    </div>
 					                ">
 									<img src="/account/asset/images/${dto.fileLink}">
 								</li>

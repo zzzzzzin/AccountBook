@@ -154,12 +154,16 @@
 			    <li data-flip-title="${loop.index + 1}"
 			     data-flip-category="${card.category}" 
 			     data-description="
-			    <div><span>카드 이름</span><c:out value='${card.ciName}'/></div>
+			     <div>
+			    <div><span>카드명</span><c:out value='${card.ciName}'/></div>
 			    <div><span>카드사</span> <c:out value='${card.cardCompany}'/></div>
 			    <div><span>설명</span> <c:out value='${card.explanation}'/></div>
+			    </div>
+			    <div>
 			    <div><span>연회비</span> <c:out value='${card.annualFee}'/>원</div>
 			    <div><span>해외 겸용</span><c:out value='${card.overseasUse}'/></div>
 			    <div><span>할인율</span><c:out value='${card.discountRate}'/>%</div>
+			    </div>
 			        ">
 			        <img src="/account/asset/images/${card.fileLink}">
 			    </li>
