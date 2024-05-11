@@ -25,19 +25,50 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
 	rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <!-- Libraries Stylesheet -->
 </head>
 
 <style>
+
+.fakecontent{
+	display: flex;
+	justify-content: center;
+}
+
+.myCardImg {
+    background-color: lightgrey;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.myCards {
+	
+}
+
+.myCardImg>img {
+    max-width: 100px;
+    max-height: 100px;
+    top: 10%;
+    right: 10%;
+}
+
+.moreMyCard{
+	display: flex;
+}
+
+
 <%@ include file="/WEB-INF/views/inc/asset.jsp" %>
 </style>
-<<<<<<< Updated upstream
 <title>
 나의 카드
 </title>
-=======
->>>>>>> Stashed changes
 
 <body>
 
@@ -92,13 +123,14 @@
 							</div>
 						</div>
 						<div class="myCardBtn">
-							<button class="material-symbols-outlined">expand_more</button>
+							<button id="expandbtn" class="purple-btn"><i class="fa-solid fa-angle-down"></i></button>
 						</div>
 					</div>
 					<div class="moreMyCard">
 						<!-- 카드 번호, 카드사, 카드명, 별칭, 유효기간 -->
 						<div class="myCardMoreNum">
 							<div>카드 번호</div>
+							<div>:</div>
 							<div>${dto.cardNumber}</div>
 						</div>
 						<div class="myCardMoreNoneNum">
@@ -118,14 +150,14 @@
 								<div>유효기간</div>
 								<div>${dto.validity}</div>
 							</div>
-							<button type="submit" class="gray-btn button submit-btn-style">삭제</button>
+							<button type="submit" class="purple-btn">삭제</button>
 						</div>
 					</div>
 					</c:forEach>
 					
 					<div class="addMyCard">
 						<button type="submit"
-							onclick="location.href='/account/user/member/add-my-card.do';">추가하기</button>
+							onclick="location.href='/account/user/member/add-my-card.do';" class="purple-btn">추가하기</button>
 					</div>
 				</div>
 			</div>
@@ -148,22 +180,10 @@
 		src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 	<script>
-	
-	
 
-    document.addEventListener('DOMContentLoaded', function() {
-    const sidebarToggler = document.getElementById('sidebar-toggler');
-    const sidebar = document.querySelector('.sidebar');
-    const content = document.querySelector('.content');
-
-        sidebarToggler.addEventListener('click', function() {
-        sidebar.classList.toggle('hidden');
-        content.classList.toggle('expanded');
-        });
-    });
     
     document.addEventListener('DOMContentLoaded', function () {
-        const expandButtons = document.querySelectorAll('.material-symbols-outlined');
+        const expandButtons = document.querySelectorAll('#expandbtn');
         const moreCards = document.querySelectorAll('.moreMyCard');
 
         // 초기에는 모든 moreMyCard를 숨깁니다.
@@ -174,12 +194,16 @@
         // 각각의 버튼에 대해 이벤트 리스너를 추가합니다.
         expandButtons.forEach((button, index) => {
             button.addEventListener('click', function () {
+            	const card = this.closest('.myCard');
                 if (moreCards[index].style.display === 'none') {
                     moreCards[index].style.display = 'block';
-                    button.textContent = 'expand_less';
+                    card.style.backgroundColor= '#ADA0DE';
+                    
+                    button.innerHTML = '<i class="fa-solid fa-chevron-up"></i>';
                 } else {
                     moreCards[index].style.display = 'none';
-                    button.textContent = 'expand_more';
+                    button.innerHTML = '<i class="fa-solid fa-angle-down"></i>';
+                    card.style.backgroundColor= '#FFFFFF';
                 }
             });
         });
