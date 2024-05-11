@@ -10,7 +10,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+        <link type="image/png" sizes="16x16" rel="icon" href="/account/asset/images/icons8-돈-상자-16.png">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,9 +33,6 @@
     }
     #periodcheck button{
         margin: 5px;
-    }
-    
-    #fakecontent{
     }
 
     #monthgoal{
@@ -179,16 +176,6 @@
     width: 30%;
 }
 
-#wishlist button {
-    padding: 8px 16px;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-#wishlist button:hover {
-}
 
 #wishListItems li {
     list-style: none;
@@ -390,7 +377,7 @@
             <!-- 상당 메뉴 끝-->
             <!-- Navbar End -->
         <!-- Content End -->
-        <div id="fakecontent">
+        <div class="content-total-style">
             <div id="aboverow" class="content-header">
             <div class="content-title-style">
 						<h3>달력 가계부</h3>

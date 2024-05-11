@@ -3,6 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <title>BudgetBuddy</title>
+<head>
+ <link type="image/png" sizes="16x16" rel="icon" href="/account/asset/images/icons8-돈-상자-16.png">
+</head>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/asset/css/temp/reset.css">
 
@@ -46,3 +49,4 @@
    
     <!-- Template Javascript -->
     <script src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
+    

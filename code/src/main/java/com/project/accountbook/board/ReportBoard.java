@@ -122,7 +122,7 @@ public class ReportBoard extends HttpServlet {
 		//페이지 리스트
 		while (!(loop > blockSize || n > totalPage)) {
 			if(n == nowPage) {
-				sb.append(String.format(" <a href='#!' style='color: #FC8E57;'>%d</a> ", n));
+				sb.append(String.format(" <a href='#!' class='paging-nowpage'>%d</a> ", n));
 			} else {
 				sb.append(String.format(" <a href='/account/board/reportBoard.do?page=%d&column=%s&word=%s'>%d</a> ", n, column, word, n));
 			}

@@ -9,6 +9,7 @@
 	<!-- <link rel="stylesheet" href="path/to/font-awesome/css/all.min.css"> -->
     <meta charset="utf-8">
     <title>BudgetBuddy | 건의 게시판</title>
+    <link type="image/png" sizes="16x16" rel="icon" href="/account/asset/images/icons8-돈-상자-16.png">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -28,12 +29,6 @@
     <!-- Libraries Stylesheet -->
 </head>
 <style>
-	
-   	#pagebar{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-	}
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
@@ -114,7 +109,7 @@
 	                <c:forEach items="${reportList}" var="report" varStatus="status">
 			                <tr>
 			                    <td>${status.count}</td>
-						        <td>
+						        <td class="blind-post-title-style">
 						            <c:choose>
 						                <c:when test="${report.blindCheck eq '1'}">
 						                    관리자에 의해 블라인드 처리 되었습니다.

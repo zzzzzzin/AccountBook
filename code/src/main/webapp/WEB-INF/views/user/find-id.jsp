@@ -10,6 +10,7 @@
 <%@include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="/account/asset/css/style.css">
 <link rel="stylesheet" href="/account/asset/css/corona_style.css">
+     <link type="image/png" sizes="16x16" rel="icon" href="/account/asset/images/icons8-돈-상자-16.png">
 <style>
 
 </style>

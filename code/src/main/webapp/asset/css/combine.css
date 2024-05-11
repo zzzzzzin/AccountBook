@@ -731,6 +731,11 @@ textarea.input-style-form-lg {
 }
 
 /* 게시판 */
+
+body > div > div.content > div > div:nth-child(2) > form > div.button-group {
+	display: flex;
+	justify-content: flex-end;	
+}
 .board-search-container {
 	display: flex;
 	margin-right: 4%;
@@ -979,7 +984,11 @@ comment-edit-form textarea,
     color: #979797;
 }
 
-
+/* 차단된 게시글 스타일 */
+.blind-post-title-style {
+	color: #c6cade;
+    cursor: auto;
+}
 
 .board-list td {
   padding: 8px;
@@ -1010,15 +1019,69 @@ comment-edit-form textarea,
   width: 1px;
   height: 1px;
 }
+/* 페이징 처리 */
+ #pagebar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    padding-top: 24px;
+    font-size: 15px;
+	}
+	
+ .paging-nowpage{
+	color: #FC8C79;
+    text-decoration: underline;
+    font-weight: bold;
+	}
+
+  #pagebar a:hover{
+	color: #f0a69a;;
+    text-decoration: underline;
+	}
+
 /* 메인게시판 끝 */
 
+/* 게시글 작성 */
 
+.post-write-container {
+}
 
+.form-group {
+  margin-bottom: 20px;
+}
 
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
 
+textarea,
+.form-group input[type="text"],
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
 
+.form-group textarea {
+  height: 200px;
+}
 
+.button-group {
+	gap: 10px;
+}
+#write > div:nth-child(4) {
+	display: flex;
+	justify-content: space-between;
+}
 
+body > div > div > div > div > div > div > form > div:nth-child(17) > label {
+	margin-right: 5px;
+}
 
 
 
@@ -1721,53 +1784,6 @@ width: 100px !;
 
 
 /* 게시판 글쓰기 */
-.container-write {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.form-group {
-  margin-bottom: 20px;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-textarea,
-.form-group input[type="text"],
-.form-group textarea,
-.form-group select {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-.form-group textarea {
-  height: 200px;
-}
-
-.button-group {
-  text-align: right;
-}
-
-.button-group button {
-  padding: 10px 20px;
-  margin-left: 10px;
-  border: none;
-  border-radius: 4px;
-  background-color: #555;
-  color: #fff;
-  cursor: pointer;
-}
-
-.button-group button:hover {
-  background-color: #373737;
-}
 
 .file-attach {
   display: flex;

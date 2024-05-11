@@ -86,6 +86,7 @@
   	color: #EFFDF6;
   	font-weight: bold;
   	font-weight: 600;
+  	text-shadow: 1px -1px 1px #88bfad;
   }
  
  .header-content:hover::before {
