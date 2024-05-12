@@ -750,6 +750,30 @@ textarea.input-style-form-lg {
 }
 
 /* 개인 정보 출력 input style */
+
+    
+    .user-profile-mypage-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #ccc;
+            margin: 10px 0 50px 0;
+            
+        }
+    .user-profile-mypage-img img{
+            width: 100%;
+            height: auto;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+
 .user-info-input-row-style {
     display: flex;
     /* margin-bottom: 10px; */
