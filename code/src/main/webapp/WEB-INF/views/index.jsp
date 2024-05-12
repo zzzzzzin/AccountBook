@@ -184,7 +184,7 @@ font-family: 'TTLaundryGothicB';
     </div>
     <hr>
     <div class="index-page-box-area">
-<!--     	<blockquote class="page-description">
+    	<blockquote class="page-description">
             <h4><a href="/account/account/calendar.do"><i class="fas fa-piggy-bank"></i> 대시보드</a></h4>
             <p>설명을 여기에 추가하세요.</p>
             <p></p>
@@ -197,64 +197,7 @@ font-family: 'TTLaundryGothicB';
 	   	<blockquote class="page-description">
             <h4><a href="/account/board/view.do"><i class="fas fa-clipboard"></i> 게시판</a></h4> 
             <p>설명을 여기에 추가하세요.</p>
-		</blockquote> -->
-<!-- 		<div class="box">
-			<h4><a href="/account/account/calendar.do"><i class="fas fa-piggy-bank"></i> 대시보드</a></h4>
-            <p>설명을 여기에 추가하세요.</p>
-            <p></p>
-            <p></p>
-		
-		</div>
-		<div class="box">
-			<h4><a href="/account/account/calendar.do"><i class="fas fa-piggy-bank"></i> 대시보드</a></h4>
-            <p>설명을 여기에 추가하세요.</p>
-            <p></p>
-            <p></p>
-		
-		</div>
-		<div class="box">
-			<h4><a href="/account/account/calendar.do"><i class="fas fa-piggy-bank"></i> 대시보드</a></h4>
-            <p>설명을 여기에 추가하세요.</p>
-            <p></p>
-            <p></p>
-		
-		</div> -->
-		
-		
-		<div class="index-note-style">
-						<div class="note-style-text">
-							<!-- 글을 여기에 추가하세요 -->
-							<div>
-							<h4><a href="/account/account/calendar.do"><i class="fas fa-piggy-bank"></i> 대시보드</a></h4>
-				            <p>설명을 여기에 추가하세요.</p>
-				            <p></p>
-				            <p></p>
-							</div>
-						</div>
-					</div>
-		<div class="index-note-style">
-						<div class="note-style-text">
-							<!-- 글을 여기에 추가하세요 -->
-							<div>
-							<h4><a href="/account/account/calendar.do"><i class="fas fa-piggy-bank"></i> 대시보드</a></h4>
-				            <p>설명을 여기에 추가하세요.</p>
-				            <p></p>
-				            <p></p>
-							</div>
-						</div>
-					</div>
-		<div class="index-note-style">
-						<div class="note-style-text">
-							<!-- 글을 여기에 추가하세요 -->
-							<div>
-							<h4><a href="/account/account/calendar.do"><i class="fas fa-piggy-bank"></i> 대시보드</a></h4>
-				            <p>설명을 여기에 추가하세요.</p>
-				            <p></p>
-				            <p></p>
-							</div>
-						</div>
-					</div>
-		
+		</blockquote>	
     </div>
     </div>
 <!--     	<div class="index-page-item-area">
