@@ -80,10 +80,10 @@
 				</div>
 
 				<div class="form-group">
-					<label for="cardName">카드명</label> <input class="form-control input-style-form" type="text" id="cardName" name="name">
+					<label for="cardName">카드명</label> <input class="form-control input-style-form" type="text" id="cardName" name="name" readonly>
 				</div>
 				<div class="form-group">
-					<label for="cardIssuer">카드사</label> <input class="form-control input-style-form" type="text" id="cardIssuer" name="cardCompany">
+					<label for="cardIssuer">카드사</label> <input class="form-control input-style-form" type="text" id="cardIssuer" name="cardCompany" readonly>
 				</div>
 				<div class="form-group">
 					<label for="cardNumber">카드 번호</label> <input class="form-control input-style-form" type="text" id="cardNumber" name="cardNumber">
