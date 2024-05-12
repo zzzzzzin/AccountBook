@@ -4,22 +4,6 @@ insert into tblBoard (seq, seqCategory) values (2, 2);
 insert into tblBoard (seq, seqCategory) values (3, 3);
 insert into tblBoard (seq, seqCategory) values (4, 4);
 
---뉴스 카테고리 목록 tblNewsCategoryList
-INSERT INTO tblNewsCategoryList(seq,seqnews,seqAccCategory) VALUES (1,1,35);
-INSERT INTO tblNewsCategoryList(seq,seqnews,seqAccCategory) VALUES (2,2,35);
-INSERT INTO tblNewsCategoryList(seq,seqnews,seqAccCategory) VALUES (3,3,35);
-INSERT INTO tblNewsCategoryList(seq,seqnews,seqAccCategory) VALUES (4,4,35);
-INSERT INTO tblNewsCategoryList(seq,seqnews,seqAccCategory) VALUES (5,5,35);
-INSERT INTO tblNewsCategoryList(seq,seqnews,seqAccCategory) VALUES (6,6,5);
-INSERT INTO tblNewsCategoryList(seq,seqnews,seqAccCategory) VALUES (7,7,5);
-INSERT INTO tblNewsCategoryList(seq,seqnews,seqAccCategory) VALUES (8,8,5);
-INSERT INTO tblNewsCategoryList(seq,seqnews,seqAccCategory) VALUES (9,9,5);
-INSERT INTO tblNewsCategoryList(seq,seqnews,seqAccCategory) VALUES (10,10,5);
-INSERT INTO tblNewsCategoryList(seq,seqnews,seqAccCategory) VALUES (11,11,33);
-INSERT INTO tblNewsCategoryList(seq,seqnews,seqAccCategory) VALUES (12,12,33);
-INSERT INTO tblNewsCategoryList(seq,seqnews,seqAccCategory) VALUES (13,13,33);
-INSERT INTO tblNewsCategoryList(seq,seqnews,seqAccCategory) VALUES (14,14,33);
-INSERT INTO tblNewsCategoryList(seq,seqnews,seqAccCategory) VALUES (15,15,33);
 
 --키워드 tblKeyword
 INSERT INTO tblKeyword(seq,content,seqAccCategoryNumber) VALUES (1,'주유',5);

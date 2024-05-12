@@ -184,7 +184,6 @@ insert into tblComments (seq, seqPost, seqUser, content, writeDate, likeCount, d
 insert into tblComments (seq, seqPost, seqUser, content, writeDate, likeCount, dislikeCount, reportCount) values (185, 470, 9, '서로 사랑하고 이해하며 살아가는 우리가 되어요.', '2024-04-24', 0, 0, 0);
 insert into tblComments (seq, seqPost, seqUser, content, writeDate, likeCount, dislikeCount, reportCount) values (186, 389, 10, '오늘 하루도 즐겁고 행복하게 보내세요!', '2024-04-13', 0, 0, 0);
 insert into tblComments (seq, seqPost, seqUser, content, writeDate, likeCount, dislikeCount, reportCount) values (187, 164, 7, '우리가 함께 만드는 아름다운 추억들!', '2024-04-01', 0, 0, 0);
-commit;
 --가계부 내용 tblAccInfo
 INSERT INTO tblAccInfo(SEQ,CONTENT,ACCINFODATE,PRICE,LOCATION,SEQACC,SEQREASONCHANGECATEGORY,SEQFIXEDFLUCTUATIONCHECK,SEQDEPOSITWITHDRAWALSTATUS) VALUES (1,'교촌치킨을 시켜서 넷플릭스를 봤다.','2024-01-01',45000,'교촌치킨',1,2,0,2);
 INSERT INTO tblAccInfo(SEQ,CONTENT,ACCINFODATE,PRICE,LOCATION,SEQACC,SEQREASONCHANGECATEGORY,SEQFIXEDFLUCTUATIONCHECK,SEQDEPOSITWITHDRAWALSTATUS) VALUES (2,'야외세차장','2024-01-21',10000,'반짝반짝세차장',1,1,0,2);
