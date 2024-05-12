@@ -7,6 +7,7 @@ CREATE TABLE tblMember (
 	phoneNumber   VARCHAR2(30) NOT NULL, -- 전화번호
 	ssn           VARCHAR2(13) NOT NULL, -- 주민등록 번호
 	gender        VARCHAR2(10) NOT NULL, -- 성별
+	reportCount   NUMBER       NOT NULL, -- 누적 신고 수
     joinDate      DATE         NOT NULL, -- 가입일
 	seqSurvey     NUMBER       NOT NULL, -- 설문조사 번호
 	seqProfileimg NUMBER       NOT NULL  -- 프로필 이미지 번호
@@ -390,6 +391,27 @@ ALTER TABLE tblAPI
 ALTER TABLE tblAPI
     ADD CONSTRAINT UK_tblAPI_name UNIQUE (name);
 
+-- 뉴스
+CREATE TABLE tblNews (
+	seq      NUMBER         NOT NULL, -- 번호
+	title    VARCHAR2(200)  NOT NULL, -- 제목
+	link  VARCHAR2(1000) NOT NULL, -- 링크
+	newsDate DATE           NOT NULL, -- 날짜
+	media    VARCHAR2(50)   NULL      -- 언론사
+);
+
+-- 뉴스
+ALTER TABLE tblNews
+	ADD
+		CONSTRAINT PK_tblNews -- 뉴스 기본키
+		PRIMARY KEY (
+			seq -- 번호
+		);
+        
+-- 뉴스 유니크 제약 조건
+ALTER TABLE tblNews
+    ADD CONSTRAINT UK_tblNews_link UNIQUE (link);
+
 -- 금지어
 CREATE TABLE tblBanWord (
 	seq     NUMBER         NOT NULL, -- 번호
@@ -408,6 +430,18 @@ ALTER TABLE tblBanWord
 ALTER TABLE tblBanWord
     ADD CONSTRAINT UK_tblBanWord_content UNIQUE (content);
 
+-- 로그
+CREATE TABLE tblLog (
+	seq NUMBER NOT NULL -- 번호
+);
+
+-- 로그
+ALTER TABLE tblLog
+	ADD
+		CONSTRAINT PK_tblLog -- 로그 기본키
+		PRIMARY KEY (
+			seq -- 번호
+		);
 
 -- 관리자
 CREATE TABLE tblAdmin (
@@ -635,6 +669,20 @@ ALTER TABLE tblReasonsChangeList
 ALTER TABLE tblReasonsChangeList
     ADD CONSTRAINT UK_tblReasonsChangeList_content UNIQUE (content);
 
+-- 뉴스 카테고리 목록
+CREATE TABLE tblNewsCategoryList (
+	seq            NUMBER NOT NULL, -- 번호
+	seqnews        NUMBER NOT NULL, -- 뉴스 번호
+	seqAccCategory NUMBER NOT NULL  -- 가계부 카테고리 번호
+);
+
+-- 뉴스 카테고리 목록
+ALTER TABLE tblNewsCategoryList
+	ADD
+		CONSTRAINT PK_tblNewsCategoryList -- 뉴스 카테고리 목록 기본키
+		PRIMARY KEY (
+			seq -- 번호
+		);
 
 -- 저축 기간
 CREATE TABLE tblSavingsPeriod (
@@ -1061,5 +1109,26 @@ ALTER TABLE tblFixedDepositWithdrawalCheck
 			seq -- 번호
 		);
 
+-- 뉴스 카테고리 목록
+ALTER TABLE tblNewsCategoryList
+	ADD
+		CONSTRAINT FK_tblNews_TO_tblNewsCategoryList -- 뉴스 -> 뉴스 카테고리 목록
+		FOREIGN KEY (
+			seqnews -- 뉴스 번호
+		)
+		REFERENCES tblNews ( -- 뉴스
+			seq -- 번호
+		);
+
+-- 뉴스 카테고리 목록
+ALTER TABLE tblNewsCategoryList
+	ADD
+		CONSTRAINT FK_tblAccCategory_TO_tblNewsCategoryList -- 가계부 카테고리 -> 뉴스 카테고리 목록
+		FOREIGN KEY (
+			seqAccCategory -- 가계부 카테고리 번호
+		)
+		REFERENCES tblAccCategory ( -- 가계부 카테고리
+			seq -- 번호
+		);
         
 commit;
