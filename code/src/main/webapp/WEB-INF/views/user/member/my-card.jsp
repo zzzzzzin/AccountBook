@@ -57,7 +57,7 @@
 	display: flex;
 }
 
-div.myCards > div:nth-child(2) > div.myCardMoreNum {
+.myCardMoreNum {
 	font-size: 20px;
 	font-weight: bold;
 }
@@ -155,7 +155,7 @@ div.myCards > div:nth-child(2) > div.myCardMoreNum {
 								<div>${dto.alias}</div>
 							</div>
 							<div class="myCardMorePeriod">
-								<div>유효기간</div>
+								<div>유효 기간</div>
 								<div>${dto.validity}</div>
 							</div>
 							<button type="submit" class="button gray-btn submit-btn-style">삭제</button>
