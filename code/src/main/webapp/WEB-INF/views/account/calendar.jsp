@@ -409,7 +409,6 @@
                         <span>이번달 수입</span>
                         <div id="totalPositive">$0</div>
                     </div>
-                    
                 </div>
                 <div id="wishlist">
                     <div id="wishlistrow1">
@@ -442,7 +441,6 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
-            
                 <div class="modal-body">
                     <form>
                         <div class="mb-3">
@@ -488,24 +486,16 @@
                                 <select class="input-style-form selectSize modalincreasedecrease" aria-label="Default select example"
                                     id="eventModalSelect">
                                     <option selected>+/-</option>
-                                    <option value="1">+</option>
-                                    <option value="2">-</option>
+                                    <option value="+">+</option>
+                                    <option value="-">-</option>
                                 </select>
                                 <input type="number" class="input-style-form" id="eventModalIoc">
                                 <input type="checkbox" id="fixedexpense">
                             </div>
                         </div>
                         <div class="mb-3" id="fixeddate">
-
-                            <label for="eventModalStart" class="col-form-label">고정 지출 날짜</label> 
-                             <textarea type="text" class="form-control fixedmemo" id="eventModalMemo"></textarea>
-                            <select class="form-select selectSize modalfixedperiod " aria-label="Default select example"
-                                    id="eventModalSelect">
-                                    <option selected>기간</option>
-                                    <option value="1">월</option>
-                                    <option value="2">분기</option>
-                                    <option value="3">년</option>
-                             </select>
+                            <label for="eventModalStart" class="col-form-label">고정 지출 날짜</label> <input type="datetime-local" id="eventModalStart"
+                                class="input-style-form" placeholder="datetime-local input">
                         </div>
                     </form>
                 </div>
@@ -536,7 +526,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="button gray-btn submit-btn-style" data-bs-dismiss="modal">취소</button>
-                    <button type="button" class="button purple-btn submit-btn-style" id="btnEventProduce">완료</button>
+                    <button type="button" class="button purple-btn submit-btn-style" id="btnEventProduce">완료
+                        </button>
                 </div>
             </div>
         </div>
@@ -572,7 +563,7 @@
    
    var cardlist = [];
    	<c:forEach items="${cardlist}" var = "dto">
-		cardlist.push('${dto.paymentMethod}, ${dto.paymentMethod}:${dto.alias}:${dto.cardNumber}');
+		cardlist.push('${dto.paymentMethod}, ${dto.paymentMethod} ${dto.alias}:${dto.cardNumber}');
 	</c:forEach>
 	
 	// 미리 정의된 색상 팔레트
@@ -694,10 +685,6 @@
         document.getElementById('eventModaluseloc').value = '';
         document.getElementById('eventModalIoc').value = '';
         document.getElementById('fixedexpense').checked = false; 
-        
-        if (document.getElementsByClassName('modalfixedperiod').length > 0) {
-            document.getElementsByClassName('modalfixedperiod')[0].selectedIndex = 0;
-        }
     }
     //모달 소환시 입력 무 (끝)
 
@@ -730,7 +717,7 @@
                 var parts = card.split(',');
                 var option = document.createElement('option');
                 option.classList.add('dynamic-option'); // Mark it as dynamically added for future updates
-                option.value = parts[1]; // Assuming the first part is the value
+                option.value = parts[0]; // Assuming the first part is the value
                 option.textContent = parts[1]; // Assuming the second part is the user-friendly name
                 paymentMethodSelect.appendChild(option);
             });
@@ -799,7 +786,7 @@
             if (checkbox.checked) {
                 fixedDateDiv.style.display = 'block'; // Show the fixed date input
             } else {
-                fixedDateDiv.style.display = 'hidden'; // Hide the fixed date input
+                fixedDateDiv.style.display = 'none'; // Hide the fixed date input
             }
         });
     //고정 지출 끝
@@ -814,55 +801,22 @@
         var amountindicator = document.getElementsByClassName('modalincreasedecrease')[0].value;
         var amount = document.getElementById('eventModalIoc').value;
         var isFixedExpense = document.getElementById('fixedexpense').checked;
-        var period;  
-		var memo;
-    
-		
-		if (isFixedExpense) {
-        	console.log('checked');
-	         period = document.getElementsByClassName('modalfixedperiod')[0].value;
-	         memo = document.getElementsByClassName('fixedmemo')[0].value;
-	         
-	         if(period==='기간' || !memo){
-	        	 alert('모든 필수 필드를 입력해주세요.');
-	        	 return;
-	         }
-        } else {
-             period = 0;
-        	 memo = 0;
-        }
         
-       	
-       	
-        console.log(isFixedExpense);
+        console.log('here')
         editbutton.style.display='none';
         delbutton.style.display='none';
         /* var isFixedperiod = document.getElementById('fixedexpense').checked;  */
         
         // Validate the inputs
-        if (!content || !start || !category || !amount ) {
+        if (!content || !start || !category || !amount) {
             alert('모든 필수 필드를 입력해주세요.'); // Alert if any required field is missing
             return;
         }
-        
-        console.log(content, start, category, useLocation, paymentMethod,amountindicator, amount, isFixedExpense, memo, period);
+        console.log(content, start, category, useLocation, paymentMethod,amountindicator, amount, isFixedExpense);
 
-        
-         let sign = amountindicator === '1' ? '+' : '-';
-         // Check if the amount is greater than 10000 and adjust accordingly
-         let displayAmount;
-         if (parseFloat(amount) > 10000) {
-             // Round up and remove the last 4 digits
-             displayAmount = Math.ceil(amount / 10000) * 10000;
-             displayAmount = displayAmount / 10000;
-             displayAmount = displayAmount +'만원';// Now this represents the '0000' truncated
-         } else {
-             displayAmount = amount;
-         };
-        
         // Create a new event object
         var event = {
-            title: category + sign + displayAmount,
+            title: category,
             start: start,
             allDay: true,
             color: colors[category], 
@@ -873,9 +827,7 @@
                 paymentMethod: paymentMethod,
                 amount: amount,
                 amountindicator: amountindicator,
-                isFixedExpense: isFixedExpense, 
-                fixedExpensePeriod: period,
-                fixedMemo: memo
+                isFixedExpense: isFixedExpense
             }
         };
 
@@ -897,9 +849,8 @@
         		paymentMethod: paymentMethod,
         		amount: amount,
         		amountindicator: amountindicator,
-        		isFixedExpense: isFixedExpense,
-        		isFixedperiod: period,
-        		fixedMemo: memo
+        		isFixedExpense: isFixedExpense
+        		/* isFixedperiod: isFixedperiod */
         	}
         })
         
@@ -935,21 +886,8 @@
          			dataType: 'json',
          			success: function(result){
          				result.forEach(obj =>{
-         					let sign = obj.amountIndicator === '1' ? '+' : '-';
-         	                // Check if the amount is greater than 10000 and adjust accordingly
-         	                let displayAmount;
-         	                if (parseFloat(obj.amount) > 10000) {
-         	                    // Round up and remove the last 4 digits
-         	                    displayAmount = Math.ceil(obj.amount / 10000) * 10000;
-         	                    displayAmount = displayAmount / 10000;
-         	                    displayAmount = displayAmount +'만원';// Now this represents the '0000' truncated
-         	                } else {
-         	                    displayAmount = obj.amount;
-         	                };
-         	                
-         					
          					calendar.addEvent({
-         						title: obj.category + sign + displayAmount,
+         						title: obj.category ,
          						allDay: true,
          						start: obj.start,
          						color: colors[obj.category], 
@@ -957,12 +895,11 @@
       			   					useLocation: obj.loc,
       			   					content: obj.content,
       			   					amount: obj.amount,
-      			   					amountindicator: obj.amountIndicator,
-      			   					paymentMethod : (obj.paymentMethod+':'+obj.aliasname+':'+obj.cardnumber),
+      			   					amountindicator: (obj.amountindicator==='2'?'+':'-'),
+      			   					paymentMethod : (obj.paymentMethod+'\xa0'+obj.aliasname+':'+obj.cardnumber),
       			   					category: obj.category,
       			   					fixed: obj.fixed,
       			   					fixedPeriod: obj.fixedperiod,
-      			   					fixedMemo: obj.fixedMemo,
       			   					seq: obj.seq,
       			   					seqacc: obj.seqacc,
       			   					seqrcc: obj.seqrcc
@@ -991,13 +928,11 @@
                 var paymentMethod = info.event.extendedProps.paymentMethod;
                 var amountindicator = info.event.extendedProps.amountindicator;
                 var amount = info.event.extendedProps.amount;
-                var isFixedExpense = info.event.extendedProps.fixed;
+                var isFixedExpense = info.event.extendedProps.isFixedExpense;
                 var seq = info.event.extendedProps.seq;
                 var seqacc = info.event.extendedProps.seqacc;
                 var seqrcc = info.event.extendedProps.seqrcc;
-                var fixed = info.event.extendedProps.fixed;
-                var period = info.event.extendedProps.fixedPeriod;
-                var memo = info.event.extendedProps.fixedMemo;
+                
                 
                 console.log(seq);
                 $('#eventModalcontent').val(info.event.extendedProps.content); 
@@ -1005,40 +940,18 @@
                 $('.modalselectcategory').val(info.event.extendedProps.category);
                 $('#eventModaluseloc').val(info.event.extendedProps.useLocation);
                 $('.modalmethodofpayment').val(info.event.extendedProps.paymentMethod);
-                $('.modalmethodofpayment').val(amountindicator);
                 $('.modalincreasedecrease').val(info.event.extendedProps.amountindicator);
                 $('#eventModalIoc').val(info.event.extendedProps.amount);
-                var checkbox = document.getElementById('fixedexpense');
+                $('#fixedexpense').prop('checked', info.event.extendedProps.isFixedExpense);
                 
-                
-                
-                var checkbox = document.getElementById('fixedexpense');
-                checkbox.checked = fixed > 0;
-                
-                console.log(info);
-                console.log(memo);
-                console.log(period);
                 procbutton.style.display = 'none';
                 editbutton.style.display = 'inline-block';
                 delbutton.style.display = 'inline-block';
                 
+                console.clear();
                 console.log(info.event.extendedProps.amountindicator);
-                console.log(info.event.extendedProps.paymentMethod);
-                console.log(fixed);
+                console.log(info.event.extendedProps.paymentMethod)
             	modal.show();
-            	if (fixed>0) {
-                    console.log('Checkbox checked status:', checkbox.checked);
-                    checkbox.checked = true;
-                    console.log('Checkbox checked status:', checkbox.checked);
-                    fixedDateDiv.style.display = 'block';
-                } else {
-                    console.log('Checkbox not found');
-                }
-            	
-            	if(period ==='1'){
-                    $('.modalfixedperiod').val('월');
-            	}
-                    $('#eventModalMemo').val(memo);
                 
                 /* eventProduceModal.addEventListener('hidden.bs.modal', function () {
                     window.location.reload();
@@ -1091,9 +1004,7 @@
     	                        amountindicator: document.getElementsByClassName('modalincreasedecrease')[0].value,
     	                        paymentMethod: document.getElementsByClassName('modalmethodofpayment')[0].value,
     	                        category: categories.indexOf(document.getElementsByClassName('modalselectcategory')[0].value),
-    	                        fixed: fixed,
-    	                	    period: document.getElementsByClassName('modalfixedperiod')[0].value,
-    	                	    memo: document.getElementsByClassName('fixedmemo')[0].value,
+    	                        fixed: document.getElementById('fixedexpense').checked ? '1' : '0',
     	                        seq: seq,
     	                        seqacc: seqacc,
     	                        seqrcc: seqrcc
@@ -1119,10 +1030,9 @@
     	                                        amount: document.getElementById('eventModalIoc').value,
     	                                        amountindicator: document.getElementsByClassName('modalincreasedecrease')[0].value,
     	                                        isFixedExpense: document.getElementById('fixedexpense').checked ? '1' : '0',
-    	                                       	fixed: fixed,
-    	                                        seq: seq,
-    	                    	                seqacc: seqacc,
-    	                    	                seqrcc: seqrcc
+    	                                        		seq: seq,
+    	                    	                        seqacc: seqacc,
+    	                    	                        seqrcc: seqrcc
     	                                    }
     	                                };
     	                            
