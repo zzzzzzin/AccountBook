@@ -1259,7 +1259,7 @@ body > div > div > div > div > div > div > form > div:nth-child(17) > label {
 .transmiddle{
   display: flex;
   flex-direction: column;
-  width: 65%;
+  width: 50%;
   align-items: baseline;
   justify-content: center;
   gap: 20px;

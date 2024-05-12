@@ -377,9 +377,9 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary"
+                    <button type="button" class="button gray-btn submit-btn-style"
                         data-bs-dismiss="modal" id="btnEventShow">취소</button>
-                    <button type="submit" class="btn btn-primary" id="btnEventProduce">완료
+                    <button type="submit" class="button purple-btn submit-btn-style" id="btnEventProduce">완료
                         </button>
                 </div>
             </div>
@@ -427,7 +427,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (categorymodalbody.children.length <= 0) {
             categories.forEach(category => {
                 var cate = document.createElement('div');
-                cate.className = 'categorylistselector purple-btn';
+                cate.className = 'categorylistselector light-purple-btn button';
                 cate.textContent = category; // Using textContent for better security and performance
                 categorymodalbody.appendChild(cate);
             });
