@@ -100,7 +100,7 @@
           <div class="user-info-container-style">
               <div class="user-profile-mypage-img">
               		개인 프로필 이미지
-                  <img alt="" src="">
+                  <img alt="" src="/account/asset/images/${dto.fileLink}">
               </div>
               <div class="user-info-input-row-style">
 					<div class="form-group"><label>이름</label><input type="text" class="input-style-form" value="${dto.name}" readonly></div>

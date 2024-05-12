@@ -158,7 +158,9 @@
 								<div>유효 기간</div>
 								<div>${dto.validity}</div>
 							</div>
-							<button type="submit" class="button gray-btn submit-btn-style">삭제</button>
+
+							<button type="button" class="purple-btn delBtnMyPage"data-seq="${dto.seq}">삭제</button>
+
 						</div>
 					</div>
 					</c:forEach>
@@ -214,6 +216,30 @@
         document.getElementById('addCardButton').addEventListener('click', function() {
             // 새로운 URL로 이동합니다.
             window.location.href = '새로운파일.jsp';
+        });
+    });
+    
+    $(document).ready(function() {
+        // 삭제 버튼 클릭 시 처리
+        $(".delBtnMyPage").click(function() {
+            var seq = $(this).data('seq'); // 삭제할 카드의 시퀀스 번호를 가져옵니다.
+            
+            var formData = {
+                seq: seq
+            };
+
+            // AJAX 요청을 보냅니다.
+            $.ajax({
+                type: "POST",
+                url: "/account/user/member/my-card.do",
+                data: formData,
+                success: function(response) {
+                    console.log("Server response: ", response);
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error occurred: ", error);
+                }
+            });
         });
     });
 
