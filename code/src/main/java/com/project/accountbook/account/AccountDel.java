@@ -32,7 +32,7 @@ public class AccountDel extends HttpServlet {
         try {
             req.setCharacterEncoding("UTF-8");
             String seq = req.getParameter("seq");
-
+            System.out.println(seq);
             AccountDAO dao = new AccountDAO();
             AccountInfoDTO dto = new AccountInfoDTO();
 

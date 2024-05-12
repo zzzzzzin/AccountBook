@@ -71,6 +71,8 @@ public class AccountJson extends HttpServlet {
 			obj.put("paymentMethod", dto.getPaymentMethod());
 			obj.put("aliasname", dto.getAlias());
 			obj.put("cardnumber", dto.getCardNumber());
+			obj.put("fixedMemo", dto.getFdwContent());
+			obj.put("fixedPeriod",dto.getFfpPeriod());
 			arr.add(obj);
 		}
 

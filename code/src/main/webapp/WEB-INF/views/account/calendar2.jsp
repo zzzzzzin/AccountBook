@@ -409,7 +409,6 @@
                         <span>이번달 수입</span>
                         <div id="totalPositive">$0</div>
                     </div>
-                    
                 </div>
                 <div id="wishlist">
                     <div id="wishlistrow1">
@@ -572,7 +571,7 @@
    
    var cardlist = [];
    	<c:forEach items="${cardlist}" var = "dto">
-		cardlist.push('${dto.paymentMethod}, ${dto.paymentMethod}:${dto.alias}:${dto.cardNumber}');
+		cardlist.push('${dto.paymentMethod}, ${dto.paymentMethod} ${dto.alias}:${dto.cardNumber}');
 	</c:forEach>
 	
 	// 미리 정의된 색상 팔레트
@@ -694,10 +693,6 @@
         document.getElementById('eventModaluseloc').value = '';
         document.getElementById('eventModalIoc').value = '';
         document.getElementById('fixedexpense').checked = false; 
-        
-        if (document.getElementsByClassName('modalfixedperiod').length > 0) {
-            document.getElementsByClassName('modalfixedperiod')[0].selectedIndex = 0;
-        }
     }
     //모달 소환시 입력 무 (끝)
 
@@ -799,7 +794,7 @@
             if (checkbox.checked) {
                 fixedDateDiv.style.display = 'block'; // Show the fixed date input
             } else {
-                fixedDateDiv.style.display = 'hidden'; // Hide the fixed date input
+                fixedDateDiv.style.display = 'none'; // Hide the fixed date input
             }
         });
     //고정 지출 끝
@@ -820,13 +815,8 @@
 		
 		if (isFixedExpense) {
         	console.log('checked');
-	         period = document.getElementsByClassName('modalfixedperiod')[0].value;
-	         memo = document.getElementsByClassName('fixedmemo')[0].value;
-	         
-	         if(period==='기간' || !memo){
-	        	 alert('모든 필수 필드를 입력해주세요.');
-	        	 return;
-	         }
+	         period = document.getElementById('modalfixedperiod')[0].value;
+	         memo = document.getElementById('fixedmemo')[0].value;
         } else {
              period = 0;
         	 memo = 0;
@@ -840,7 +830,7 @@
         /* var isFixedperiod = document.getElementById('fixedexpense').checked;  */
         
         // Validate the inputs
-        if (!content || !start || !category || !amount ) {
+        if (!content || !start || !category || !amount) {
             alert('모든 필수 필드를 입력해주세요.'); // Alert if any required field is missing
             return;
         }
@@ -886,7 +876,7 @@
 			addRequest.abort();
 		}
         
-        addRequest = $.ajax({
+        /* addRequest = $.ajax({
         	type: 'post',
         	url: '/account/account/calendar.do',
         	data:{
@@ -898,10 +888,10 @@
         		amount: amount,
         		amountindicator: amountindicator,
         		isFixedExpense: isFixedExpense,
-        		isFixedperiod: period,
-        		fixedMemo: memo
+        		isFixedperiod: isFixedperiod,
+        		fixedMemo, fixedMemo
         	}
-        })
+        }) */
         
 
         // Optionally clear the modal inputs
@@ -958,14 +948,15 @@
       			   					content: obj.content,
       			   					amount: obj.amount,
       			   					amountindicator: obj.amountIndicator,
-      			   					paymentMethod : (obj.paymentMethod+':'+obj.aliasname+':'+obj.cardnumber),
+      			   					paymentMethod : (obj.paymentMethod+'\xa0'+obj.aliasname+':'+obj.cardnumber),
       			   					category: obj.category,
       			   					fixed: obj.fixed,
       			   					fixedPeriod: obj.fixedperiod,
-      			   					fixedMemo: obj.fixedMemo,
+      			   					/* fixedMemo: fixedMemo, */
       			   					seq: obj.seq,
       			   					seqacc: obj.seqacc,
       			   					seqrcc: obj.seqrcc
+      			   					
          						}
          					})
          				})
@@ -991,13 +982,10 @@
                 var paymentMethod = info.event.extendedProps.paymentMethod;
                 var amountindicator = info.event.extendedProps.amountindicator;
                 var amount = info.event.extendedProps.amount;
-                var isFixedExpense = info.event.extendedProps.fixed;
+                var isFixedExpense = info.event.extendedProps.isFixedExpense;
                 var seq = info.event.extendedProps.seq;
                 var seqacc = info.event.extendedProps.seqacc;
                 var seqrcc = info.event.extendedProps.seqrcc;
-                var fixed = info.event.extendedProps.fixed;
-                var period = info.event.extendedProps.fixedPeriod;
-                var memo = info.event.extendedProps.fixedMemo;
                 
                 console.log(seq);
                 $('#eventModalcontent').val(info.event.extendedProps.content); 
@@ -1008,37 +996,16 @@
                 $('.modalmethodofpayment').val(amountindicator);
                 $('.modalincreasedecrease').val(info.event.extendedProps.amountindicator);
                 $('#eventModalIoc').val(info.event.extendedProps.amount);
-                var checkbox = document.getElementById('fixedexpense');
+                $('#fixedexpense').prop('checked', info.event.extendedProps.isFixedExpense);
                 
-                
-                
-                var checkbox = document.getElementById('fixedexpense');
-                checkbox.checked = fixed > 0;
-                
-                console.log(info);
-                console.log(memo);
-                console.log(period);
                 procbutton.style.display = 'none';
                 editbutton.style.display = 'inline-block';
                 delbutton.style.display = 'inline-block';
                 
+                console.clear();
                 console.log(info.event.extendedProps.amountindicator);
-                console.log(info.event.extendedProps.paymentMethod);
-                console.log(fixed);
+                console.log(info.event.extendedProps.paymentMethod)
             	modal.show();
-            	if (fixed>0) {
-                    console.log('Checkbox checked status:', checkbox.checked);
-                    checkbox.checked = true;
-                    console.log('Checkbox checked status:', checkbox.checked);
-                    fixedDateDiv.style.display = 'block';
-                } else {
-                    console.log('Checkbox not found');
-                }
-            	
-            	if(period ==='1'){
-                    $('.modalfixedperiod').val('월');
-            	}
-                    $('#eventModalMemo').val(memo);
                 
                 /* eventProduceModal.addEventListener('hidden.bs.modal', function () {
                     window.location.reload();
@@ -1091,9 +1058,7 @@
     	                        amountindicator: document.getElementsByClassName('modalincreasedecrease')[0].value,
     	                        paymentMethod: document.getElementsByClassName('modalmethodofpayment')[0].value,
     	                        category: categories.indexOf(document.getElementsByClassName('modalselectcategory')[0].value),
-    	                        fixed: fixed,
-    	                	    period: document.getElementsByClassName('modalfixedperiod')[0].value,
-    	                	    memo: document.getElementsByClassName('fixedmemo')[0].value,
+    	                        fixed: document.getElementById('fixedexpense').checked ? '1' : '0',
     	                        seq: seq,
     	                        seqacc: seqacc,
     	                        seqrcc: seqrcc
@@ -1119,10 +1084,9 @@
     	                                        amount: document.getElementById('eventModalIoc').value,
     	                                        amountindicator: document.getElementsByClassName('modalincreasedecrease')[0].value,
     	                                        isFixedExpense: document.getElementById('fixedexpense').checked ? '1' : '0',
-    	                                       	fixed: fixed,
-    	                                        seq: seq,
-    	                    	                seqacc: seqacc,
-    	                    	                seqrcc: seqrcc
+    	                                        		seq: seq,
+    	                    	                        seqacc: seqacc,
+    	                    	                        seqrcc: seqrcc
     	                                    }
     	                                };
     	                            

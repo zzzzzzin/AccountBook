@@ -1159,7 +1159,9 @@ public class AccountDAO {
 					+ "					    ai.SEQDEPOSITWITHDRAWALSTATUS as spendstatus,\r\n"
 					+ "					    rcl.CONTENT as paymentmethod,\r\n"
 					+ "					    mc.ALIAS as name,\r\n"
-					+ "					    mc.CARDNUMBER as cardnumber\r\n"
+					+ "					    mc.CARDNUMBER as cardnumber,\r\n"
+					+ "					    fdw.CONTENT as fdwcontent,\r\n"
+					+ "					    ffp.period as ffpperiod\r\n"
 					+ "					from TBLACCINFO ai\r\n"
 					+ "					    inner join TBLACC ac on ai.SEQACC = ac.SEQ\r\n"
 					+ "					    inner join TBLMEMBER me on ac.IDMEMBER = me.ID\r\n"
@@ -1197,6 +1199,8 @@ public class AccountDAO {
 				dto.setPaymentMethod(rs.getString("paymentmethod"));
 				dto.setAlias(rs.getString("name"));
 				dto.setCardNumber(rs.getString("cardnumber"));
+				dto.setFdwContent(rs.getString("fdwcontent"));
+				dto.setFfpPeriod(rs.getInt("ffpperiod"));
 				
 				list.add(dto);
 			}
@@ -1225,32 +1229,35 @@ public class AccountDAO {
 			if(rs.next()) {
 				dto.setSeqAcc(rs.getString("seq"));
 			}
-			 if (rs != null) rs.close();
+			 
+			System.out.println("select finish");
+			
+			 
 
 		        sql = "INSERT INTO tblAccInfo(SEQ, CONTENT, ACCINFODATE, PRICE, LOCATION, SEQACC, SEQREASONCHANGECATEGORY, SEQFIXEDFLUCTUATIONCHECK, SEQDEPOSITWITHDRAWALSTATUS) VALUES ((SELECT NVL(MAX(seq), 0) + 1 FROM tblAccInfo), ?, ?, ?, ?, ?, ?, ?, ?)";
 		        pstat = conn.prepareStatement(sql);
-
 		        pstat.setString(1, dto.getContent());
 		        pstat.setString(2, dto.getAccInfoDate());
 		        pstat.setInt(3, dto.getPrice());
 		        pstat.setString(4, dto.getLocation());
 		        pstat.setInt(5, Integer.parseInt(dto.getSeqAcc()));
-		        pstat.setInt(6, 2);
-		        pstat.setInt(7, Integer.parseInt(dto.getFdwContent()));
+		        pstat.setInt(6, Integer.parseInt(dto.getSeqReasonChangeCategory()));
+		        pstat.setInt(7, Integer.parseInt(dto.getSeqFixedFluctuationCheck()));
 		        pstat.setInt(8, Integer.parseInt(dto.getSeqDepositWithdrawalStatus()));
-		        System.out.println("dao indicator: "+dto.getSeqDepositWithdrawalStatus());
-		        
+        
 
 		        int indicate = pstat.executeUpdate();
-
-		        System.out.println("First insert result: " + indicate);
-
-		        // Prepare to insert into tblAccCategoryList
+		        
 		        sql = "INSERT INTO tblAccCategoryList(seq, seqAccCategory, seqAccInfo) VALUES ((SELECT NVL(MAX(seq), 0) + 1 FROM tblAccCategoryList), ?, (SELECT MAX(seq) FROM tblAccInfo))";
 		        pstat = conn.prepareStatement(sql);
 		        pstat.setString(1, dto.getSeqAccCategory());
 
 		        int indicate2 = pstat.executeUpdate();
+
+		        System.out.println("First insert result: " + indicate);
+
+		        // Prepare to insert into tblAccCategoryList
+		        
 
 		        System.out.println("Second insert result: " + indicate2);
 
@@ -1306,7 +1313,7 @@ public class AccountDAO {
 		
 		try {
 			
-			
+			//tblAccInfo
 			String sql = "UPDATE TBLACCINFO SET CONTENT = ?, ACCINFODATE = ?, PRICE = ?, LOCATION = ?, SEQACC = ?, SEQREASONCHANGECATEGORY = ?, SEQFIXEDFLUCTUATIONCHECK = ?, SEQDEPOSITWITHDRAWALSTATUS = ?  WHERE SEQ = ?";
 	        pstat = conn.prepareStatement(sql);
 	        pstat.setString(1, dto.getContent());
@@ -1315,20 +1322,36 @@ public class AccountDAO {
 	        pstat.setString(4, dto.getLocation());
 	        pstat.setInt(5, Integer.parseInt(dto.getSeqAcc()));
 	        pstat.setInt(6, Integer.parseInt(dto.getSeqReasonChangeCategory()));
-	        pstat.setInt(7, Integer.parseInt(dto.getFdwContent()));
+	        pstat.setInt(7, Integer.parseInt(dto.getSeqFixedFluctuationCheck()));
 	        pstat.setInt(8, Integer.parseInt(dto.getSeqDepositWithdrawalStatus()));
 	        pstat.setInt(9, Integer.parseInt(dto.getSeqAccInfo()));
 	        int firstUpdateResult = pstat.executeUpdate();
 
 	        // Second update statement
-	        
+	        // tblAccCategoryList
 	        sql = "UPDATE TBLACCCATEGORYLIST SET SEQACCCATEGORY = ? where SEQACCINFO = ?";
 	        pstat = conn.prepareStatement(sql);
 	        pstat.setInt(1, Integer.parseInt(dto.getSeqAccCategory()));
 	        pstat.setInt(2, Integer.parseInt(dto.getSeqAccInfo()));
 	        int secondUpdateResult = pstat.executeUpdate();
-
-
+	        
+	        //tblFixedDepositWithDrawalCheck
+	        sql = "UPDATE TBLFIXEDDEPOSITWITHDRAWALCHECK SET CONTENT = ?, SEQFIXEDFLUCTUATIONPERIOD = ? WHERE SEQ = ?";
+	        
+	        pstat = conn.prepareStatement(sql);
+	        pstat.setString(1, dto.getFdwContent());
+	        pstat.setInt(2, Integer.parseInt(dto.getSeqFixedFluctuationPeriod()));
+	        pstat.setInt(3, Integer.parseInt(dto.getSeqFixedFluctuationCheck()));
+	        int thirdUpdateResult = pstat.executeUpdate();
+	        
+	        sql = "UPDATE TBLREASONCHANGECATEGORY SET SEQREASONSCHANGELIST = ?, SEQMYCARD = null WHERE SEQ = ?";
+	        pstat = conn.prepareStatement(sql);
+	        pstat.setInt(1, Integer.parseInt(dto.getSeqReasonsChangeList()));
+	        pstat.setInt(2, Integer.parseInt(dto.getCardNumber()));
+	        pstat.setInt(3, Integer.parseInt(dto.getSeqAcc()));
+	        int forthUpdateResult = pstat.executeUpdate();
+	        
+	        
 	        System.out.println("First Update Result: " + firstUpdateResult + ", Second Update Result: " + secondUpdateResult);
 	        return firstUpdateResult;
 
@@ -1355,13 +1378,27 @@ public class AccountDAO {
 			pstat = conn.prepareStatement(sql);
 			pstat.setInt(1, Integer.parseInt(dto.getSeqAccInfo()));
 			
-			int seconddelResult = pstat.executeUpdate();
+			int finalresult = pstat.executeUpdate();
+			
+			
+			sql = "DELETE FROM tblFixedDepositWithdrawalCheck WHERE seq = (select seqFixedFluctuationCheck from tblaccinfo where seq = ?)";
+			pstat= conn.prepareStatement(sql);
+			pstat.setInt(1, Integer.parseInt(dto.getSeqAccInfo()));
+			int thirdResult = pstat.executeUpdate();
+			
+			
+			
+			sql = "DELETE FROM tblReasonChangeCategory WHERE seq = (select seqReasonChangeCategory from tblAccInfo where seq = ?)";
+			
+			pstat= conn.prepareStatement(sql);
+			pstat.setInt(1, Integer.parseInt(dto.getSeqAccInfo()));
+			int secondResult = pstat.executeUpdate();
 			
 			System.out.println("first: "+firstdelResult);
-			System.out.println("second: "+seconddelResult);
+			System.out.println("second: "+secondResult);
 			
 			
-			return seconddelResult;
+			return finalresult;
 			
 			
 		} catch (Exception e) {
@@ -1444,6 +1481,141 @@ public class AccountDAO {
 			
 		} catch (Exception e) {
 			System.out.println("AccountDAO.delwishlist");
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+
+	public int fixedevent(AccountInfoDTO dto) {
+		try {
+			
+			String sql = "INSERT INTO TBLFIXEDDEPOSITWITHDRAWALCHECK (SEQ, CONTENT, SEQFIXEDFLUCTUATIONPERIOD) VALUES ((SELECT NVL(MAX(seq), 0) + 1 FROM TBLFIXEDDEPOSITWITHDRAWALCHECK), ?, ?)";
+			
+			pstat = conn.prepareStatement(sql);
+			
+			pstat.setString(1, dto.getFdwContent());
+			pstat.setString(2, dto.getSeqFixedFluctuationPeriod());
+			
+			int indicate = pstat.executeUpdate();
+			
+			sql = "select seq from TBLFIXEDDEPOSITWITHDRAWALCHECK where content = ?";
+			
+			pstat= conn.prepareStatement(sql);
+			pstat.setString(1, dto.getFdwContent());
+			
+			rs =pstat.executeQuery();
+			int seqreturn =0;
+			if(rs.next()) {
+				seqreturn = rs.getInt("seq");
+			}
+			
+			System.out.println("fixed finsih");
+			return seqreturn;
+			
+			
+		} catch (Exception e) {
+			System.out.println("AccountDAO.fixedevent");
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+	public int makercc(int paycontentseq, String cardNum) {
+		try {
+			
+			String sql;
+			String cardSeq = null;
+			
+			if(cardNum != null) {
+				sql = "select SEQ from TBLMYCARD where CARDNUMBER=?";
+				
+				pstat = conn.prepareStatement(sql);
+				pstat.setString(1, cardNum);
+				
+				rs = pstat.executeQuery();
+				
+				if(rs.next()) {
+					cardSeq = rs.getString("seq");
+					System.out.println("cardseq: "+cardSeq);
+				}
+			
+			}
+			
+			if(cardSeq != null) {
+				sql = "INSERT INTO TBLREASONCHANGECATEGORY (SEQ, SEQREASONSCHANGELIST, SEQMYCARD) VALUES ((SELECT NVL(MAX(seq), 0) + 1 FROM TBLREASONCHANGECATEGORY), ?, ?)";
+				pstat = conn.prepareStatement(sql);
+				pstat.setInt(1, paycontentseq);
+				pstat.setInt(2, Integer.parseInt(cardSeq));
+			}else {
+				sql = "INSERT INTO TBLREASONCHANGECATEGORY (SEQ, SEQREASONSCHANGELIST, SEQMYCARD) VALUES ((SELECT NVL(MAX(seq), 0) + 1 FROM TBLREASONCHANGECATEGORY), ?, null)";
+				pstat = conn.prepareStatement(sql);
+				pstat.setInt(1, paycontentseq);
+			}
+			
+			int indicate = pstat.executeUpdate();			
+			
+			System.out.println("rcc finsih");
+			return indicate;
+			
+		} catch (Exception e) {
+			System.out.println("AccountDAO.makercc");
+			e.printStackTrace();
+		}
+		
+		
+		return 0;
+	}
+
+	public int dupEvent(AccountInfoDTO dto) {
+		
+		try {
+			
+			System.out.println("dup start");
+			String sql = "select seq from tblaccinfo where SEQFIXEDFLUCTUATIONCHECK = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setInt(1, Integer.parseInt(dto.getSeqFixedFluctuationCheck()));
+			
+			rs = pstat.executeQuery();
+			
+			if(rs.next()) {
+				dto.setSeqAccInfo(String.valueOf(rs.getInt("seq")));
+			}
+			sql = "select SEQREASONCHANGECATEGORY from tblaccinfo where SEQFIXEDFLUCTUATIONCHECK = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setInt(1, Integer.parseInt(dto.getSeqFixedFluctuationCheck()));
+			
+			rs = pstat.executeQuery();
+			
+			if(rs.next()) {
+				dto.setSeqReasonChangeCategory(String.valueOf(rs.getInt("SEQREASONCHANGECATEGORY")));
+			}
+			
+			sql ="call insert_interval_entries(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			pstat = conn.prepareStatement(sql);
+			
+			pstat.setInt(1,Integer.parseInt(dto.getSeqAccInfo()));			
+			pstat.setString(2, dto.getContent());
+			String dateString = dto.getAccInfoDate();
+			java.sql.Date sqlDate = java.sql.Date.valueOf(dateString);
+			System.out.println("sqlDate: "+sqlDate);
+			pstat.setDate(3, sqlDate);
+			pstat.setInt(4, dto.getPrice());
+			pstat.setString(5, dto.getLocation());
+			pstat.setInt(6, Integer.parseInt(dto.getSeqAcc()));
+			pstat.setInt(7, Integer.parseInt(dto.getSeqReasonChangeCategory()));
+			pstat.setInt(8, Integer.parseInt(dto.getSeqFixedFluctuationCheck()));
+			pstat.setInt(9, Integer.parseInt(dto.getSeqDepositWithdrawalStatus()));
+			pstat.setInt(10, Integer.parseInt(dto.getSeqAccCategory()));
+			int indicate = pstat.executeUpdate();			
+			System.out.println("proc indicate: "+indicate);
+			
+			return indicate;
+			
+		} catch (Exception e) {
+			System.out.println("AccountDAO.dupEvent");
 			e.printStackTrace();
 		}
 		
