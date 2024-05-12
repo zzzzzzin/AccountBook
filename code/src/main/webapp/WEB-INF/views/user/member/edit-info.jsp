@@ -29,34 +29,6 @@
 </head>
 <style>
 
-
-/* .user-profile-mypage {
-  width:90%;
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  background-color: #f3f6f9;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1); 
-  border-radius: 10px;
-}
-.user-profile-mypage-img {
-            min-width: 200px;
-            min-height: 200px;
-            border-radius: 50%;
-            background-color: #ddd;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 12px;
-            color: #666;
-            margin: 50px;
-            border: 1px solid black;
-            
-        }
- */
-    
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
 </style>
@@ -99,7 +71,6 @@
         	<form action="/account/user/member/edit-info.do" method="POST" id="userinfo">
           		<div class="user-info-container-style">
 	              <div class="user-profile-mypage-img">
-	                  개인 프로필 이미지
 	                  <img alt="" src="/account/asset/images/${dto.fileLink}">
 	              </div>
 	              <div class="user-info-input-row-style">
@@ -125,7 +96,6 @@
         
     </div>
     </div>
-</div>
     <!-- JavaScript Libraries -->
     <script>
     
