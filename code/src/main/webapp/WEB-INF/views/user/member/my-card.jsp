@@ -4,6 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>BudgetBuddy | 나의 카드 관리</title>
+
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="" name="keywords">
@@ -32,11 +34,6 @@
 
 <style>
 
-.fakecontent{
-	display: flex;
-	justify-content: center;
-}
-
 .myCardImg {
     background-color: lightgrey;
     width: 100px;
@@ -48,9 +45,6 @@
     align-items: center;
 }
 
-.myCards {
-	
-}
 
 .myCardImg>img {
     max-width: 100px;
@@ -63,13 +57,16 @@
 	display: flex;
 }
 
+.myCardMoreNum {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+
+
 
 <%@ include file="/WEB-INF/views/inc/asset.jsp" %>
 </style>
-<title>
-나의 카드
-</title>
-
 <body>
 
 	<div class="container-xxl position-relative bg-white d-flex p-0">
@@ -101,13 +98,25 @@
 			<!-- Navbar End -->
 			<!-- Content End -->
 			<!-- fakecontent 안에서 작성 -->
-			<div class="fakecontent">
+			<div class="content-total-style">
+				<div class="content-header">
+						<div class="content-title-style">
+							<h3>나의 카드 관리</h3>
+						</div>
+						<div class="addMyCard">
+						<button type="submit"
+							onclick="location.href='/account/user/member/add-my-card.do';" class="button purple-btn submit-btn-style">추가하기</button>
+					</div>
+				</div>
 				<div class="myCards">
 				<c:forEach items="${clist}" var="dto">
-					<div class="myCard">
-						<div class="myCardImg">
-							<img src="/account/asset/images/${dto.fileLink}" alt="">
-						</div>
+					<div class="box ard-image myCard">
+							<div class="recommendation-card-img">
+	                        	<p class="card-image-wrapper">
+	                                <a></a>
+									 <img src="/account/asset/images/${dto.fileLink}" alt="">
+	                             </p>
+                            </div>
 						<div class="myCard-detail">
 							<div class="myCardName">
 								<div>카드명</div>
@@ -126,12 +135,11 @@
 							<button id="expandbtn" class="purple-btn"><i class="fa-solid fa-angle-down"></i></button>
 						</div>
 					</div>
-					<div class="moreMyCard">
+					<div class="box moreMyCard">
 						<!-- 카드 번호, 카드사, 카드명, 별칭, 유효기간 -->
 						<div class="myCardMoreNum">
 							<div>카드 번호</div>
-							<div>:</div>
-							<div>${dto.cardNumber}</div>
+							 <div>${dto.cardNumber}</div>
 						</div>
 						<div class="myCardMoreNoneNum">
 							<div class="myCardMoreCompany">
@@ -147,18 +155,14 @@
 								<div>${dto.alias}</div>
 							</div>
 							<div class="myCardMorePeriod">
-								<div>유효기간</div>
+								<div>유효 기간</div>
 								<div>${dto.validity}</div>
 							</div>
-							<button type="submit" class="purple-btn">삭제</button>
+							<button type="submit" class="button gray-btn submit-btn-style">삭제</button>
 						</div>
 					</div>
 					</c:forEach>
-					
-					<div class="addMyCard">
-						<button type="submit"
-							onclick="location.href='/account/user/member/add-my-card.do';" class="purple-btn">추가하기</button>
-					</div>
+
 				</div>
 			</div>
 
@@ -166,10 +170,6 @@
 
 
 			<!-- fakecontent 끝 -->
-			<!-- Back to Top -->
-			<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i
-				class="bi bi-arrow-up"></i></a>
-
 		</div>
 	</div>
 
@@ -197,7 +197,7 @@
             	const card = this.closest('.myCard');
                 if (moreCards[index].style.display === 'none') {
                     moreCards[index].style.display = 'block';
-                    card.style.backgroundColor= '#ADA0DE';
+                    card.style.backgroundColor= '#F5ECFF';
                     
                     button.innerHTML = '<i class="fa-solid fa-chevron-up"></i>';
                 } else {
