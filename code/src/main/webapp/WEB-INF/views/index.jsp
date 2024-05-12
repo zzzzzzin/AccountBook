@@ -186,17 +186,17 @@ font-family: 'TTLaundryGothicB';
     <div class="index-page-box-area">
     	<blockquote class="page-description">
             <h4><a href="/account/account/calendar.do"><i class="fas fa-piggy-bank"></i> 대시보드</a></h4>
-            <p>설명을 여기에 추가하세요.</p>
-            <p></p>
-            <p></p>
+            <p>가계부 내용을 작성하는 달력</p>
+            <p>나의 수입/지출을 정리하고 해당 데이터들을 기반으로 내가 주로 사용하는 카테고리를 분류 소비패턴을 분석</p>
+            <p>가계부에 입력된 내용을 기반으로 분석하여 사용자의 효율적인 소비를 돕고 사용자의 소비와 관련된 내용의 뉴스기사 데이터를 제공</p>
 		</blockquote>
     	<blockquote class="page-description">
             <h4><a href="/account/card/recommendation.do"><i class="fa-solid fa-ranking-star"></i> 카드 추천</a></h4>
-            <p>설명을 여기에 추가하세요.</p>
+            <p>소비 카테고리 별로 카드를 추천하고 가계부 기반으로 사용자가 어떤 카드를 썼을 때 혜택을 많이 볼 수 있는가를 분석</p>
 		</blockquote>
 	   	<blockquote class="page-description">
             <h4><a href="/account/board/view.do"><i class="fas fa-clipboard"></i> 게시판</a></h4> 
-            <p>설명을 여기에 추가하세요.</p>
+            <p>이용자들을 위한 커뮤니티 기능 (게시판) 존재</p>
 		</blockquote>	
     </div>
     </div>
