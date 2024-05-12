@@ -1337,8 +1337,8 @@ body > div > div > div > div > div > div > form > div:nth-child(17) > label {
 }
 
 .max-spending-category-brown {
-    font-weight: bold;
-    font-size: 16px;
+	font-family: 'WavvePADO-Regular';
+    font-size: 17px;
     color: #574141;
 }
 
@@ -1477,16 +1477,17 @@ body > div > div > div > div > div > div > form > div:nth-child(17) > label {
 	flex-direction: column;
 }
 .max-spending-category-subtitle-brown {
-	font-weight: bold;
     color: #574141;
+	font-family: 'WavvePADO-Regular';
 }  
 #news-title {
-	font-weight: bold;
+	font-family: 'WavvePADO-Regular';
 	font-size: 18px;	
 	color: #574141;
 }
 #news-title:hover {	
 	color: #897171;
+	text-decoration: underline;
 }
 /* 사이드바 시작*/
 .sidebar {
