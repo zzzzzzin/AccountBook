@@ -106,41 +106,50 @@
 					        <td>게시물이 없습니다.</td>
 					    </tr>
 					</c:if>
-	                <c:forEach items="${reportList}" var="report" varStatus="status">
-			                <tr>
-			                    <td>${status.count}</td>
-						        <td class="blind-post-title-style">
-						            <c:choose>
-						                <c:when test="${report.blindCheck eq '1'}">
-						                    관리자에 의해 블라인드 처리 되었습니다.
-						                </c:when>
-						                <c:otherwise>
-						                	<c:if test="${report.secretCheck == 1 && sessionScope.seqUser != report.seqUser}">
-						                	<a href="#!">${report.title}</a>
-						                	</c:if>
-						                	<c:if test="${(report.secretCheck == 1 && sessionScope.seqUser == report.seqUser) || report.secretCheck == 0}">
-			                    			<a href="/account/board/discussion.do?seq=${report.seq}">${report.title}</a>
-			                    			</c:if>
-						                </c:otherwise>
-						            </c:choose>
-						        </td>
-						        <td>${report.me_nickName != null ? report.me_nickName : report.ad_nickName}</td>
-						        <td>${report.writeDate}</td>
-						        <td>${report.viewCount}</td>
-						        <td>${report.likeCount}</td>
-						        <td id="secret">
-						            <c:choose>
-						                <c:when test="${report.secretCheck eq '1'}">
-						                	<div class="fas fa-lock lock-icon"></div>
-						                </c:when>
-						                <c:otherwise>
-						                    <div class="fas fa-unlock unlock-icon"></div>
-						                </c:otherwise>
-						            </c:choose>
-						        </td>
-						      
-			                </tr>
-	                </c:forEach>
+					
+<c:forEach items="${reportList}" var="report" varStatus="status">
+    <tr>
+        <td>${status.count}</td>
+        <td class="blind-post-title-style">
+            <c:choose>
+                <c:when test="${report.blindCheck eq '1'}">
+                    관리자에 의해 블라인드 처리 되었습니다.
+                </c:when>
+                <c:otherwise>
+                    <c:if test="${report.secretCheck == 1}">
+                        <c:choose>
+                            <c:when test="${sessionScope.seqUser == report.seqUser || sessionScope.seqPriv == 1}">
+                                <a href="/account/board/discussion.do?seq=${report.seq}">${report.title}</a>
+                            </c:when>
+                            <c:otherwise>
+                                <a href="#!" onclick="showSecretAlert()">${report.title}</a>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:if>
+                    <c:if test="${report.secretCheck == 0}">
+                        <a href="/account/board/discussion.do?seq=${report.seq}">${report.title}</a>
+                    </c:if>
+                </c:otherwise>
+            </c:choose>
+        </td>
+        <td>${report.me_nickName != null ? report.me_nickName : report.ad_nickName}</td>
+        <td>${report.writeDate}</td>
+        <td>${report.viewCount}</td>
+        <td>${report.likeCount}</td>
+        <td id="secret">
+            <c:choose>
+                <c:when test="${report.secretCheck eq '1'}">
+                    <div class="fas fa-lock lock-icon"></div>
+                </c:when>
+                <c:otherwise>
+                    <div class="fas fa-unlock unlock-icon"></div>
+                </c:otherwise>
+            </c:choose>
+        </td>
+    </tr>
+</c:forEach>
+	                
+	                
 	                </tbody>
 	            </table>
 	            <!-- 페이지바 -->
@@ -166,6 +175,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
 
+    function showSecretAlert() {
+    	  alert("비밀글은 관리자와 본인만 볼 수 있습니다.");
+    	}
+    
     document.addEventListener('DOMContentLoaded', function() {
     const sidebarToggler = document.getElementById('sidebar-toggler');
     const sidebar = document.querySelector('.sidebar');

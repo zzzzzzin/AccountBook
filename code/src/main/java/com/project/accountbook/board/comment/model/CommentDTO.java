@@ -5,6 +5,7 @@ import java.util.List;
 //tblComments(전체), tblReplyComments(seqComments)
 public class CommentDTO {
 	
+	
     private int replyCount;
     private String nickname;
     

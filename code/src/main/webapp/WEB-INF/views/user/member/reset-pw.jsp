@@ -34,11 +34,11 @@
 	                  </div>
 	                  <div class="form-group">
 	                    <label>새 비밀번호</label>
-	                    <input type="text" class="form-control input-style-form" name="pw">
+	                    <input type="password" class="form-control input-style-form" name="pw">
 	                  </div>
 	                  <div class="form-group">
 	                    <label>새 비밀번호(확인)</label>
-	                    <input type="text" class="form-control input-style-form" name="pwCheck">
+	                    <input type="password" class="form-control input-style-form" name="pwCheck">
 	                  </div>
 	                  <button type="submit" class="button purple-btn full-btn submit-btn-style">수정하기</button>
                 </form>

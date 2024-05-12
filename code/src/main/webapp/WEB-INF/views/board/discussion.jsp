@@ -211,17 +211,17 @@
                         <i class="material-icons" id="subcommentarrow">subdirectory_arrow_right</i>
                         <c:choose>
                             <c:when test="${not empty replyComment.profileImage}">
-                                <img class="user-image" src="/account/asset/images/${comment.profileImage}" alt="사용자 이미지">
+                                <img class="user-image" src="/account/asset/images/${replyComment.profileImage}" alt="사용자 이미지">
                             </c:when>
                             <c:otherwise>
-                                <img class="user-image" src="/account/asset/images/${comment.profileImage}" alt="기본 사용자 이미지">
+                                <img class="user-image" src="/account/asset/images/${replyComment.profileImage}" alt="기본 사용자 이미지">
                             </c:otherwise>
                         </c:choose>
                         
                         <div class="post-info-box">
 	                    	<div id="board-user-nickname-style">${replyComment.nickname}</div>
 							<div class="post-content">
-				                <div id="commentcontent">${comment.content}</div>
+				                <div id="commentcontent">${replyComment.content}</div>
 				            </div>
 	                    	<div class="comment-bottom-btn-area">
 							<div>${replyComment.writeDate}</div>
@@ -257,6 +257,7 @@
 </div>
 <input type="hidden" name="seqUser" value="${not empty sessionScope.seqUser ? sessionScope.seqUser : ''}">
 <!-- 댓글 쓰기 시작 -->
+<c:if test="${not empty sessionScope.seqUser}">
 <div class="comment-form">
     <form id="commentForm">
         <input type="hidden" name="seqPost" value="${param.seq}">
@@ -265,7 +266,7 @@
         <button type="submit" class="button purple-btn submit-btn-style">등록하기</button>
     </form>
 </div>
-
+</c:if>
 <!-- 댓글 쓰기 끝 -->
            
           </div>

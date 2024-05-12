@@ -179,7 +179,7 @@
 			<!-- Navbar End -->
 			<!-- Content End -->
 			<!-- fakecontent 안에서 작성 -->
-			<div id="content-total-style">
+			<div class="content-total-style">
 			<div class="content-header">
 					<div class="content-title-style">
 						<h3>카테고리별 추천</h3>
