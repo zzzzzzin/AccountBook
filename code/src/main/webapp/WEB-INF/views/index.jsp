@@ -186,7 +186,6 @@ font-family: 'TTLaundryGothicB';
     <div class="index-page-box-area">
     	<blockquote class="page-description">
             <h4><a href="/account/account/calendar.do"><i class="fas fa-piggy-bank"></i> 대시보드</a></h4>
-<<<<<<< HEAD
             <strong>대시보드는 사용자가 가계부를 효과적으로 관리하고 금융 상황을 시각적으로 파악할 수 있습니다.</strong><br><br>
 			<ol style="padding-left: 0">
 			<br>
