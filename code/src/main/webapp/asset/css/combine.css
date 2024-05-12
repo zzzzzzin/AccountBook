@@ -2024,17 +2024,19 @@ width: 100px !;
 
 /* 카드 조회 시작 */
 .myCards {
-    }
+	display: flex;
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+		
+}
 
     .myCard {
-        border: 1px solid #CCC;
-        width: 600px;
-        height: 150px;
+
         display: flex;
         justify-content: space-evenly;
         align-items: center;
         border-radius: 10px;
-        margin-top: 30px;
        
     }
 
@@ -2084,13 +2086,9 @@ width: 100px !;
     }
 
     .moreMyCard {
-        border: 1px solid #CCC;
         display: flex;
-        width: 600px;
         height: 150px;
-        border-radius: 10px;
         padding: 10px;
-        margin-top: 5px;
     }
 
     .myCardMoreNum {
@@ -2148,7 +2146,7 @@ width: 100px !;
         height: 40px;
     } */
 
-    .addMyCard {
+/*     .addMyCard {
         position: relative;
     }
 
@@ -2162,7 +2160,7 @@ width: 100px !;
         right: 250px;
         text-align: center;
         font-weight: bold;
-    }
+    } */
 /* 카드 조회 끝 */
 
 /* component find-pw-modal 시작*/
