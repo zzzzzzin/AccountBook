@@ -96,7 +96,6 @@
         
     </div>
     </div>
-</div>
     <!-- JavaScript Libraries -->
     <script>
     
