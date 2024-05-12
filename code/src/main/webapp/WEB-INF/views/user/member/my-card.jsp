@@ -159,7 +159,7 @@
 								<div>${dto.validity}</div>
 							</div>
 
-							<button type="button" class="purple-btn delBtnMyPage"data-seq="${dto.seq}">삭제</button>
+							<button type="button" class="dark-black-btn button submit-btn-style delBtnMyPage"data-seq="${dto.seq}">삭제</button>
 
 						</div>
 					</div>
