@@ -28,10 +28,16 @@
 
 /* * {font-family: 'Open Sans', sans-serif;} */
 
+
 * {
-/* 	line-height: 2.1; */
-/* 	letter-spacing: -0.0375em;  */
-	font-family: "Noto Sans KR", sans-serif;
+ list-style: none;
+ text-decoration: none;
+ padding: 0;
+ margin: 0;
+ box-sizing: border-box;
+ line-height: 1.5;
+ letter-spacing: -0.0375em; 
+ font-family: "Noto Sans KR", sans-serif;
 }
 
 /* 덮어쓰기 */
@@ -101,6 +107,9 @@ font-family: "Noto Sans KR", sans-serif;
 
 .index-page-item-area {
 	width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
 }
 
 .index-page img {
@@ -1761,14 +1770,6 @@ width: 100px !;
 /* 카드사용 끝 */
 
 /* reset */
-
-* {
-  list-style: none;
-  text-decoration: none;
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
 .clearfix:after {
   content: '';
   display: block;

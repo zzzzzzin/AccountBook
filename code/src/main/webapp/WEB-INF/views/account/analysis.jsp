@@ -100,8 +100,8 @@
 							<div>							
 								지난 달은 <span class="spending-price-red">${categoryUsageMap.beforeAcUsage}원</span>을 사용했고, <br>
 								이번 달은 <span class="spending-price-red">${categoryUsageMap.nowAcUsage}원</span>을 사용했습니다. <br>
-							</div>
-							<div>
+							</div><br>
+							<div class="analysis-comment-style">
 								<c:if test="${categoryUsageMap.beforeAcUsage > categoryUsageMap.nowAcUsage}">
     								지난 달보다 ${categoryUsageMap.acName}에서 지출이 줄었네요!<br>
     								현재를 유지해보세요!
