@@ -2,7 +2,6 @@ package com.project.accountbook.user.member;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.project.accountbook.card.model.CardDTO;
 import com.project.accountbook.user.member.model.MemberInfoDTO;
 import com.project.accountbook.user.member.repository.MemberInfoDAO;
 
@@ -39,4 +39,22 @@ public class MyCard extends HttpServlet {
 		dispatcher.forward(req, resp);
 
 	}
+	
+//	@Override
+//	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//
+//		HttpSession session = req.getSession();
+//		String id = (String)req.getParameter("id");
+//		String seq = req.getParameter("seq");
+//		
+//		System.out.println(id);
+//		System.out.println(seq);
+//		
+//		MemberInfoDAO dao = new MemberInfoDAO();
+//		MemberInfoDTO dto = dao.delMyCard(id, seq);
+//		
+//		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/member/my-card.jsp");
+//		dispatcher.forward(req, resp);
+//
+//	}
 }

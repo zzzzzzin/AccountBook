@@ -189,11 +189,6 @@
 
         // Click event for the submit button
         $("#sendout").click(function() {
-            /* if (!selectedDate) {
-                alert("Please select a date first."); // Alert if no date is selected
-                return; // Stop the function if no date is selected
-            }
- */
             var formData = {
                 cardName: $("#cardName").val(),
                 cardIssuer: $("#cardIssuer").val(),

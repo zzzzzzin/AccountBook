@@ -32,7 +32,16 @@ public class MemberInfoDTO {
 	private String validity;
 	private String mcIdMember;
 	private String seqCardInformation;
+	private String seq;
 	
+	public String getSeq() {
+		return seq;
+	}
+
+	public void setSeq(String seq) {
+		this.seq = seq;
+	}
+
 	//카드 정보
 	private String Name;
 	private String explanation;
