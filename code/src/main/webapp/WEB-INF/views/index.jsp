@@ -107,7 +107,32 @@ font-family: 'TTLaundryGothicB';
 	color: #afb0b2;
 }
 
-    
+.index-note-style {
+  position: relative;
+  width: 100%%;
+  padding: 1.2em 1.5em;
+/*   margin: 24% 0 0 21%; */
+/*   color: #fff; */
+  background: #FEF9EA;
+  overflow: hidden;
+  display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.index-note-style:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-width: 0 16px 16px 0;
+  border-style: solid;
+  border-color: #fff #fff #FCF1CA #FCF1CA ;
+  background: #D5BEC2;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 1px rgba(0, 0, 0, 0.2);
+  display: block;
+  width: 0
+}    
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
 </style>
@@ -170,10 +195,9 @@ font-family: 'TTLaundryGothicB';
             <p>설명을 여기에 추가하세요.</p>
 		</blockquote>
 	   	<blockquote class="page-description">
-            <h4><a href="/account/board/view.do"><i class="fas fa-clipboard"></i> 게시판</a></h4>
-<!-- 		  <h1><span class="Cpage-description">page-description</span> - Blockquote Color Palette</h1>   -->
+            <h4><a href="/account/board/view.do"><i class="fas fa-clipboard"></i> 게시판</a></h4> 
             <p>설명을 여기에 추가하세요.</p>
-		</blockquote>
+		</blockquote>	
     </div>
     </div>
 <!--     	<div class="index-page-item-area">
