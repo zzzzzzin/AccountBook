@@ -95,13 +95,13 @@
 					<div id="customMsg">
 						<div>
 							<div>
-								지난 달 가장 많이 소비한 <br> 카테고리는 <a class="max-spending-category-brown">${categoryUsageMap.acName}</a>입니다.						
+								지난 달 가장 많이 소비한 <br> 카테고리는 <span class="max-spending-category-brown">"${categoryUsageMap.acName}"</span>입니다.						
 							</div><br>
 							<div>							
-								지난 달은 <a class="spending-price-red">${categoryUsageMap.beforeAcUsage}원</a>을 사용했고, <br>
-								이번 달은 <a class="spending-price-red">${categoryUsageMap.nowAcUsage}원</a>을 사용했습니다. <br>
-							</div>
-							<div>
+								지난 달은 <span class="spending-price-red">${categoryUsageMap.beforeAcUsage}원</span>을 사용했고, <br>
+								이번 달은 <span class="spending-price-red">${categoryUsageMap.nowAcUsage}원</span>을 사용했습니다. <br>
+							</div><br>
+							<div class="analysis-comment-style">
 								<c:if test="${categoryUsageMap.beforeAcUsage > categoryUsageMap.nowAcUsage}">
     								지난 달보다 ${categoryUsageMap.acName}에서 지출이 줄었네요!<br>
     								현재를 유지해보세요!
@@ -128,32 +128,32 @@
 
 				<div id="secondrow">
 					<div id="monthgoal" class="box">
-						저축 목표 기간 <a class="anyalysis-period-num">${challengeInfoMap.spPeriod}개월</a><br>
-						저축 목표 금액 <a class ="anyalysis-goals-price" >${challengeInfoMap.savingsGoals}원</a><br>
-						현재 저축 금액 <a class ="anyalysis-savings-price" >${challengeInfoMap.totalSaving}원</a><br>
-						남은 저축 금액 <a class ="anyalysis-remaining-price" >${challengeInfoMap.remainingSavings}원</a>
+						저축 목표 기간 <span class="anyalysis-period-num">${challengeInfoMap.spPeriod}개월</span><br>
+						저축 목표 금액 <span class ="anyalysis-goals-price" >${challengeInfoMap.savingsGoals}원</span><br>
+						현재 저축 금액 <span class ="anyalysis-savings-price" >${challengeInfoMap.totalSaving}원</span><br>
+						남은 저축 금액 <span class ="anyalysis-remaining-price" >${challengeInfoMap.remainingSavings}원</span>
 					</div>
 					<div id="currentsituation" class="box">
-						<div>저축 목표 기간 중 <a class="anyalysis-period-num">${challengeInfoMap.monthsSinceJoin}개월</a>이 지났습니다!</div><br>
-						<div>이번 달 지출금은 총 <a class="spending-price-red">${challengeInfoMap.monthUsage}원</a>,<br> 월 평균 지출금은 <a class="spending-price-red">${challengeInfoMap.avgMonthlySpending}원</a>입니다.</div><br>
+						<div>저축 목표 기간 중 <span class="anyalysis-period-num">${challengeInfoMap.monthsSinceJoin}개월</span>이 지났습니다!</div><br>
+						<div>이번 달 지출금은 총 <span class="spending-price-red">${challengeInfoMap.monthUsage}원</span>,<br> 월 평균 지출금은 <span class="spending-price-red">${challengeInfoMap.avgMonthlySpending}원</span>입니다.</div><br>
 						<c:if test="${challengeInfoMap.goalAchievementPeriod <= 0}">
 							<div class ="anyalysis-goals-price" >목표 저축 금액까지 소요 예상 기간을 계산할 수 없습니다.</div><br>
-							<div><a class="anyalysis-period-num">${challengeInfoMap.spPeriod - challengeInfoMap.monthsSinceJoin}개월</a> 안에 목표 금액을 저축하려면</div>
-							<div>매달 평균 <a class ="anyalysis-remaining-price" >${challengeInfoMap.avgMonthlySavingsPrice}원</a>을 저축해야합니다!</div>
+							<div><span class="anyalysis-period-num">${challengeInfoMap.spPeriod - challengeInfoMap.monthsSinceJoin}개월</span> 안에 목표 금액을 저축하려면</div>
+							<div>매달 평균 <span class ="anyalysis-remaining-price" >${challengeInfoMap.avgMonthlySavingsPrice}원</span>을 저축해야합니다!</div>
 						</c:if>
 						<c:if test="${challengeInfoMap.goalAchievementPeriod > 0}">
-							<div>이 기세로는 목표 저축 금액까지 <a class="anyalysis-period-num">${challengeInfoMap.goalAchievementPeriod}개월</a>이 필요합니다!</div><br>
-							<div><a class="anyalysis-period-num">${challengeInfoMap.spPeriod - challengeInfoMap.monthsSinceJoin}개월</a> 안에 목표 금액을 저축하려면</div>
-							<div>매달 평균 <a class ="anyalysis-remaining-price" >${challengeInfoMap.avgMonthlySavingsPrice}원</a>을 저축해야합니다!</div>
-							<div>이번 달은 <a class ="usable-price-num">${challengeInfoMap.avgMonthlyUsablePrice}원</a>을 사용할 수 있으며,</div>
-							<div>일 평균 <a class ="usable-price-num">${challengeInfoMap.avgDailyUsablePrice}원</a>을 사용할 수 있습니다.</div>
+							<div>이 기세로는 목표 저축 금액까지 <span class="anyalysis-period-num">${challengeInfoMap.goalAchievementPeriod}개월</span>이 필요합니다!</div><br>
+							<div><span class="anyalysis-period-num">${challengeInfoMap.spPeriod - challengeInfoMap.monthsSinceJoin}개월</span> 안에 목표 금액을 저축하려면</div>
+							<div>매달 평균 <span class ="anyalysis-remaining-price" >${challengeInfoMap.avgMonthlySavingsPrice}원</span>을 저축해야합니다!</div>
+							<div>이번 달은 <span class ="usable-price-num">${challengeInfoMap.avgMonthlyUsablePrice}원</span>을 사용할 수 있으며,</div>
+							<div>일 평균 <span class ="usable-price-num">${challengeInfoMap.avgDailyUsablePrice}원</span>을 사용할 수 있습니다.</div>
 						</c:if>
 					</div>
 				</div>
 				
 				<div id="thridrow">
 					<div>
-						<h5><a class="max-spending-category-subtitle-brown">"${acName}"</a> 관련 최근 경제 뉴스</h5>
+						<h5><span class="max-spending-category-subtitle-brown">"${acName}"</span> 관련 최근 경제 뉴스</h5>
 					</div>
 					<div id="news-content" class="box full-box">
 						<c:forEach items="${newsList}" var="dto" varStatus="loop">

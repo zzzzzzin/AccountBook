@@ -82,9 +82,6 @@
 	              <div class="user-info-input-row-style">
 	                    <div class="form-group"><label>전화번호</label><input class="input-style-form" type="text" name="phonenumber" value="${dto.phoneNumber}"></div>
 	               </div>
-	              <div class="user-info-input-row-style">
-	                    <div class="form-group" id="ssn"><label>주민등록번호</label><input class="input-style-form" type="text" name="ssn" value="${dto.ssn}" readonly></div>
-	               </div>
                <button type="submit" class="button purple-btn info-submit-long-btn submit-btn-style" id="submit-button">수정하기</button>
       		</div>
    		</form>
