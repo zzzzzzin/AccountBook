@@ -92,6 +92,7 @@
 									</c:forEach>
 								</tbody>
 							</table>
+							<%-- <div id="pagebar">${pagebar}</div> --%>
 						</div>
 					</div>
 				</section>
