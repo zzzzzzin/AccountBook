@@ -18,9 +18,20 @@ import org.json.simple.JSONObject;
 import com.project.accountbook.account.model.AccountInfoDTO;
 import com.project.accountbook.account.repository.AccountDAO;
 
+/**
+ * 회원의 가계부 수정을 처리하는 서블릿 클래스입니다.
+ */
 @WebServlet("/account/calendaredit.do")
 public class AccountEdit extends HttpServlet {
 
+	/**
+     * POST 요청을 처리하여 가계부 정보를 수정하고 결과를 반환합니다.
+     *
+     * @param req  HTTP 요청 객체
+     * @param resp HTTP 응답 객체
+     * @throws ServletException 서블릿 예외
+     * @throws IOException      입출력 예외
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("application/json");

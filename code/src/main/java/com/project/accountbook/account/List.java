@@ -19,9 +19,20 @@ import org.json.simple.JSONObject;
 import com.project.accountbook.account.model.AccountInfoDTO;
 import com.project.accountbook.account.repository.AccountDAO;
 
+/**
+ * 가계부 목록을 관리하는 서블릿 클래스입니다.
+ */
 @WebServlet("/account/list.do")
 public class List extends HttpServlet {
 
+	 /**
+     * GET 요청을 처리하여 가계부 목록을 가져옵니다.
+     *
+     * @param req  HTTP 요청 객체
+     * @param resp HTTP 응답 객체
+     * @throws ServletException 서블릿 예외
+     * @throws IOException      입출력 예외
+     */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
