@@ -39,27 +39,64 @@ public class AccountEdit extends HttpServlet {
             String amount = req.getParameter("amount");
             String amountIndicator = req.getParameter("amountindicator");
             String isFixedExpense = req.getParameter("fixed");
+            String fixedperiod = req.getParameter("period");
+            String memo = req.getParameter("memo");
             String seq = req.getParameter("seq");
             String seqacc = req.getParameter("seqacc");
             String seqrcc = req.getParameter("seqrcc");
-
+            String method = null;
+    		String cardNum = null;
+    		if(paymentMethod != null) {
+    			String [] paymethod = paymentMethod.split(":");
+    			method = paymethod[0];
+    			cardNum = paymethod[2];
+    		}
+    		int paycontentseq = 0;
+    		System.out.println("2. methodcheck");
+    		if(method.contains("카드")) {
+    			if(method.contains("체크")) {
+    				paycontentseq = 3;
+    			}else {
+    				paycontentseq = 2;
+    			}
+    		}else {
+    			if (method.contains("계좌")) {
+    				paycontentseq = 1;
+    			}else {
+    				paycontentseq = 4;
+    			}
+    		}
+    		if(fixedperiod!=null) {
+    			if(Integer.parseInt(fixedperiod)==1) {
+    				fixedperiod = "1";
+    			}else if(Integer.parseInt(fixedperiod)==3) {
+    				fixedperiod ="2";
+    			}else if(Integer.parseInt(fixedperiod)==12) {
+    				fixedperiod="3";
+    			}
+    		}
             AccountDAO dao = new AccountDAO();
             AccountInfoDTO dto = new AccountInfoDTO();
-
             // Set DTO properties from request
             System.out.println("dto start");
             dto.setIdMember(id);
-            dto.setSeqAccInfo(seq);
-            dto.setAccInfoDate(accInfoDate);
-            dto.setLocation(location);
-            dto.setContent(content);
-            dto.setSeqAccCategory(category);
-            dto.setSeqReasonsChangeList(paymentMethod);
-            dto.setPrice(Integer.parseInt(amount));
-            dto.setSeqDepositWithdrawalStatus(amountIndicator.equals("+") ? "1" : "2");
-            dto.setFdwContent(isFixedExpense);
             dto.setSeqAcc(seqacc);
             dto.setSeqReasonChangeCategory(seqrcc);
+            dto.setCardNumber(cardNum);
+    		dto.setAccInfoDate(accInfoDate);
+    		dto.setLocation(location);
+    		dto.setContent(content);
+    		dto.setSeqAccCategory(category);
+    		dto.setSeqReasonsChangeList(String.valueOf(paycontentseq));
+    		dto.setPrice(Integer.parseInt(amount));
+    		dto.setSeqDepositWithdrawalStatus(amountIndicator.equals("+") ? "1" : "2");
+    		if (Integer.parseInt(isFixedExpense)>=0) {
+    			dto.setSeqFixedFluctuationPeriod(fixedperiod);
+    			dto.setFdwContent(memo);
+    			dto.setSeqFixedFluctuationCheck(isFixedExpense);
+    		}else {
+    			dto.setSeqFixedFluctuationCheck("0");
+    		}
             System.out.println("dto end");
             
 
