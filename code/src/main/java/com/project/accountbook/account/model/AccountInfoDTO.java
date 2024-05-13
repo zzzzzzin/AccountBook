@@ -72,6 +72,7 @@ public class AccountInfoDTO {
 
 	private String paymentMethod;
 	private String cardNumber;
+
 	public String getContent() {
 		return content;
 	}

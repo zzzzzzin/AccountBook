@@ -120,7 +120,6 @@ public class AccountDAO {
 		return 0;
 	}
 	
-	
 	//가계부 분석 읽기
 	public ArrayList<AccountInfoDTO> nowAnalysis(String id, HashMap<String, String> map) {
 		
