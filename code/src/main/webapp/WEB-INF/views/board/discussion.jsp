@@ -696,14 +696,14 @@ function addReplyComment(btn) {
  		
  		$('#like_button').click(function() {
  			postlike(${post.seqBoard});
- 			location.reload();
- 			//console.log('추천 버튼');
+ 			//location.reload();
+ 			console.log('추천 버튼');
  		});
  		
  		$('#dislike_button').click(function() {
  			postdislike(${post.seqBoard});
- 			location.reload();
- 			//console.log('비추천 버튼');
+ 			//location.reload();
+ 			console.log('비추천 버튼');
  		});
  	}
 	
@@ -730,8 +730,9 @@ function addReplyComment(btn) {
 	
 	if(temp !== reportSeq){
 		$('#report_button').click(function() {
+			console.log('신고버튼');
 			postreport(${post.seqBoard});
-			location.reload();
+			//location.reload();
 		});
 	}
 	

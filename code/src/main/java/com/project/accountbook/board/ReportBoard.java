@@ -158,19 +158,58 @@ public class ReportBoard extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		String seq = req.getParameter("seq"); //Post seq
-		String type = req.getParameter("type"); //Like, Dislike 구분
+		String type = req.getParameter("type"); //Like, Dislike, Report 구분
 		
-		if(type.equals("like")) {
-			
-			dao.like(seq);
-			
-		} else if (type.equals("dislike")) {
-			
-			dao.dislike(seq);
+		
+		Cookie postcookie;
+		Cookie[] cookies = req.getCookies(); // 모든 쿠키 가져오기
+		boolean postcheck = false;
+		boolean reportcheck = false;
+		
+		
+		
+
+		if (cookies!= null) {
+		    for (Cookie c : cookies) {
+		        String name = c.getName(); // 쿠키 이름 가져오기
+		        String value = c.getValue(); //쿠기 내용 가져오기
+		        if (name.equals("postSeq"+seq) && value.equals(seq)) {
+		        	postcheck = true;
+		        } 	        
+		        if(name.equals("report"+seq) && value.equals(seq)) {
+		        	reportcheck = true;
+		        }
+		    }
+	    }
+
+		
+		if(postcheck == false) {
+			reportcheck = true;
+			if(type.equals("like")) {	
+				dao.like(seq);
+				postcookie = new Cookie("postSeq"+seq, seq);
+				//postcookie.setMaxAge(60 * 60 * 24); //하루
+				postcookie.setMaxAge(60 * 60); //1시간
+				postcookie.setPath("/");
+				resp.addCookie(postcookie);
+				
+			} else if (type.equals("dislike")) {
+				dao.dislike(seq);
+				postcookie = new Cookie("postSeq"+seq, seq);
+				//postcookie.setMaxAge(60 * 60 * 24);
+				postcookie.setMaxAge(60 * 60);
+				postcookie.setPath("/");
+				resp.addCookie(postcookie);
+			}
 		}
 		
-		//RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/discussion.jsp");
-		//dispatcher.forward(req, resp);		
+		if(reportcheck == false) {
+			dao.report(seq);
+			postcookie = new Cookie("report"+seq , seq);
+			postcookie.setMaxAge(60 * 60);
+			postcookie.setPath("/");
+			resp.addCookie(postcookie);	
+		}		
 	
 	
 	}
