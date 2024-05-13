@@ -176,7 +176,7 @@ public class Account extends HttpServlet {
 		  
 		  int indicate = dao.addEvent(dto);
 		  
-		  if(dto.getSeqFixedFluctuationCheck() !=null) {
+		  if(dto.getSeqFixedFluctuationCheck() == "true") {
 			  
 			  int makemore = dao.dupEvent(dto);
 			  System.out.println("proc insert : "+makemore);

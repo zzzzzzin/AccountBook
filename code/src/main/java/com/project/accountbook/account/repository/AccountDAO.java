@@ -1214,7 +1214,7 @@ public class AccountDAO {
 		        pstat.setString(4, dto.getLocation());
 		        pstat.setInt(5, Integer.parseInt(dto.getSeqAcc()));
 		        pstat.setInt(6, 2);
-		        pstat.setInt(7, Integer.parseInt(dto.getFdwContent()));
+		        pstat.setInt(7, Integer.parseInt(dto.getSeqFixedFluctuationCheck()));
 		        pstat.setInt(8, Integer.parseInt(dto.getSeqDepositWithdrawalStatus()));
 		        System.out.println("dao indicator: "+dto.getSeqDepositWithdrawalStatus());
 		        
@@ -1293,7 +1293,7 @@ public class AccountDAO {
 	        pstat.setString(4, dto.getLocation());
 	        pstat.setInt(5, Integer.parseInt(dto.getSeqAcc()));
 	        pstat.setInt(6, Integer.parseInt(dto.getSeqReasonChangeCategory()));
-	        pstat.setInt(7, Integer.parseInt(dto.getFdwContent()));
+	        pstat.setInt(7, Integer.parseInt(dto.getSeqFixedFluctuationCheck()));
 	        pstat.setInt(8, Integer.parseInt(dto.getSeqDepositWithdrawalStatus()));
 	        pstat.setInt(9, Integer.parseInt(dto.getSeqAccInfo()));
 	        int firstUpdateResult = pstat.executeUpdate();

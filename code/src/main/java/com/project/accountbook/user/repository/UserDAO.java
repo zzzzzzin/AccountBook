@@ -481,8 +481,14 @@ public class UserDAO {
 	            HashMap<String, String> map = new HashMap<>();
 	            map.put("title", rs.getString("title"));
 	            map.put("seq", String.valueOf(rs.getInt("seq")));
-	            map.put("content", rs.getString("content"));
-	            map.put("nickname", rs.getString("nickname"));
+	            
+	            if(rs.getString("content").length() > 250) {
+	            	map.put("content", rs.getString("content").substring(0, 250)+" ...");
+	            } else {
+	            	map.put("content", rs.getString("content"));
+	            }
+	            
+	            map.put("nickname", rs.getString("nickname"));	            
 	            map.put("writedate", rs.getString("writedate"));
 	            map.put("viewCount", String.valueOf(rs.getInt("viewCount")));
 	            map.put("likeCount", String.valueOf(rs.getInt("likeCount")));
@@ -518,6 +524,67 @@ public int getSeqUserByMemberId(String memberId) {
         e.printStackTrace();
     }
     return 0;
+}
+
+public int getTotalCount(String id) {
+	
+	try {
+		
+		String sql = "select count(*) as cnt\r\n"
+				+ " from tblUser u inner join tblPost p\r\n"
+				+ "    on u.seq = p.seqUser\r\n"
+				+ "       inner join tblMember m\r\n"
+				+ "           on u.idMember = m.id\r\n"
+				+ "              where id = ?"; 
+		
+		pstat = conn.prepareStatement(sql);
+		pstat.setString(1, id);
+		rs = pstat.executeQuery();
+		
+		if(rs.next()) {
+			return rs.getInt("cnt");
+		}
+		
+		
+		
+		
+	} catch (Exception e) {
+		System.out.println("UserDAO.getTotalCount");
+		e.printStackTrace();
+	}
+	
+	
+	
+	return 0;
+}
+
+public int getTotalcommentNum(String id) {
+	
+	try {
+		String sql = "SELECT count(*) as cnt " +
+                "FROM tblPost p " +
+                "INNER JOIN tblComments c ON p.seq = c.seqPost " +
+                "INNER JOIN tblUser u ON u.seq = c.seqUser " +
+                "INNER JOIN tblMember m ON u.idMember = m.id " +
+                "WHERE m.id = ?";
+		
+		pstat = conn.prepareStatement(sql);
+		
+		pstat.setString(1, id);
+		
+		rs = pstat.executeQuery();
+		
+		if(rs.next()) {
+			return rs.getInt("cnt");
+		}
+		
+	} catch (Exception e) {
+		System.out.println("UserDAO.getTotalcommentNum");
+		e.printStackTrace();
+	}
+	
+	
+	return 0;
 }
 
 }

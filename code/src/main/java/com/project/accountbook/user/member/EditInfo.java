@@ -1,6 +1,7 @@
 package com.project.accountbook.user.member;
 
 import java.io.IOException;
+import java.util.Enumeration;
 import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.project.accountbook.user.member.repository.MemberInfoDAO;
 import com.project.accountbook.user.model.UserDTO;
 
@@ -46,7 +49,6 @@ public class EditInfo extends HttpServlet {
 	    String name = req.getParameter("name");
 	    String nickname = req.getParameter("nickname");
 	    String phonenumber = req.getParameter("phonenumber");
-	    String ssn = req.getParameter("ssn");
 
 	   
 	    HashMap<String, String> map = new HashMap<>();
@@ -78,9 +80,6 @@ public class EditInfo extends HttpServlet {
 	    	map.put("phonenumber", beforePhoneNumber);
 	    }
 	    
-	    if (ssn != null && !ssn.isEmpty()) {
-	    	map.put("ssn", ssn);
-	    }
 
 	    // DAO를 사용하여 업데이트 수행
 	    dao = new MemberInfoDAO();
@@ -88,7 +87,7 @@ public class EditInfo extends HttpServlet {
 	    
 	    resp.setCharacterEncoding("UTF-8");
 	    
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/member/info.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/member/edit-info.jsp");
 		dispatcher.forward(req, resp);
 
 	}

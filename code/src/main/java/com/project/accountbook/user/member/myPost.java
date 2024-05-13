@@ -22,12 +22,75 @@ public class myPost extends HttpServlet{
 
         HttpSession session = req.getSession();
         String id = (String)session.getAttribute("id");
+        String page = req.getParameter("page");
+		
+		int nowPage = 0;	
+		int totalCount = 0;	
+		int pageSize = 10;	
+		int totalPage = 0;	
+		int begin = 0;		
+		int end = 0;		
+		int n = 0;			
+		int loop = 0;
+		int blockSize = 10;
+		
+		if(page == null || page.equals("")) {
+			nowPage = 1;
+		} else {
+			nowPage = Integer.parseInt(page);
+		}
+			
+		begin = ((nowPage - 1) * pageSize) + 1;
+		end = begin + pageSize - 1;
 
         UserDAO dao = new UserDAO();
         ArrayList<PostDTO> plist = dao.getMyPosts(id);
+        
+        totalCount = dao.getTotalCount(id);
+		totalPage = (int)Math.ceil((double)totalCount / pageSize);
+		
+		
+		//페이지 바
+		StringBuilder sb = new StringBuilder();
+		
+		loop = 1;
+		n = ((nowPage - 1) / blockSize) * blockSize + 1;
+		
+		
+		
+		//이전 페이지
+		if (n == 1) {
+			sb.append(String.format(" <a href='#!'>[이전 %d페이지]</a> ", blockSize));
+		} else {
+			sb.append(String.format(" <a href='/account/board/my-post.do?page=%d'>[이전 %d페이지]</a> ", n - 1,blockSize));
+		}
+
+		
+		//페이지 리스트
+		while (!(loop > blockSize || n > totalPage)) {
+			if(n == nowPage) {
+				sb.append(String.format(" <a href='#!' class='paging-nowpage'>%d</a> ", n));
+			} else {
+				sb.append(String.format(" <a href='/account/board/my-post.do?page=%d'>%d</a> ", n,n));
+			}
+			
+			loop++;
+			n++;
+		}
+		
+		//다음 페이지
+		if (n >= totalPage) {
+			sb.append(String.format(" <a href='#!'>[다음 %d페이지]</a> ", blockSize));
+		} else {
+			sb.append(String.format(" <a href='/account/board/board/my-post.do?page=%d'>[다음 %d페이지]</a> ", n, blockSize));
+		}
 
         req.setCharacterEncoding("UTF-8");
         req.setAttribute("plist", plist);
+        req.setAttribute("nowPage", nowPage);
+		req.setAttribute("totalCount", totalCount);
+		req.setAttribute("totalPage", totalPage);
+		req.setAttribute("pagebar", sb.toString());
         
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/member/my-post.jsp");
         dispatcher.forward(req, resp);
