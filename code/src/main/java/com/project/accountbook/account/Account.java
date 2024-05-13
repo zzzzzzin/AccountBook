@@ -109,10 +109,9 @@ public class Account extends HttpServlet {
 		String price = req.getParameter("amount");
 		String seqDepositWithdrawalStatus = req.getParameter("amountindicator");
 		String fdwContent = req.getParameter("isFixedExpense");
+		String fdwperiod = req.getParameter("fixedExpensePeriod");
 		
-		if ("false".equals(fdwContent)) {
-		    fdwContent = "0";
-		}
+		
 		
 		
 //		System.out.println("day" + accInfoDate);
@@ -123,16 +122,11 @@ public class Account extends HttpServlet {
 //		System.out.println(seqReasonsChangeList);
 //		System.out.println(fdwContent);
 //		System.out.println(price);
-		
-		
-		
-		if(seqDepositWithdrawalStatus == "+") {
-			seqDepositWithdrawalStatus = "1";
-		}else {
-			seqDepositWithdrawalStatus="2";
-		}
 		AccountInfoDTO dto = new AccountInfoDTO();
 		AccountDAO dao = new AccountDAO();
+		
+		
+		
 		
 		dto.setIdMember(id);
 		dto.setAccInfoDate(accInfoDate);

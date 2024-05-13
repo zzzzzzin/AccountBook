@@ -6,6 +6,8 @@
 <head>
     <meta charset="utf-8">
     <title>BudgetBuddy | 공지 게시판</title>
+    <link type="image/png" sizes="16x16" rel="icon" href="/account/asset/images/icons8-돈-상자-16.png">
+   
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -25,12 +27,6 @@
     <!-- Libraries Stylesheet -->
 </head>
 <style>
-    
-    #pagebar{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-	}
 	
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
@@ -93,7 +89,7 @@
     
 		    <!-- board list area -->
 		    <div id="board-list">
-	        	<div class="container">
+	        	<div class="">
 	           		<table class="table-style">
 					<tbody>
 		                <tr>
@@ -129,8 +125,11 @@
 	            </table>
 	            <!-- 페이지바 -->
 				<div id="pagebar">${pagebar}</div>
+				
 	            <div class="write-btn">
-	                <a href="/account/board/write.do" class="button purple-btn submit-btn-style">글작성</a>
+	            	<c:if test="${sessionScope.seqPriv == 3}">
+	                <a href="/account/board/write.do?seqBoard=${seqBoard}" class="button purple-btn submit-btn-style">글작성</a>
+	                </c:if>
 	            </div>
 	        </div>
 	    </div>

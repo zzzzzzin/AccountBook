@@ -4,13 +4,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>BudgetBuddy | 가계부 목록</title>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+         <link type="image/png" sizes="16x16" rel="icon" href="/account/asset/images/icons8-돈-상자-16.png"><link href="img/favicon.ico" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,15 +26,6 @@
     <!-- Libraries Stylesheet -->
 </head>
 <style>
-#fakecontent {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%; 
-    margin: auto; 
-    padding: 20px;
-    background: #FFFFFF; 
-}
 
 #transcontent {
     border: 1px solid #ccc; /* Lighter border color */
@@ -140,19 +132,6 @@
 #newitembutton{
     width: 30%;
 }
-
-#wishlist button {
-    padding: 8px 16px;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-#wishlist button:hover {
-    background-color: #007dca;
-}
-
 #wishListItems li {
     list-style: none;
     margin-top: 8px;
@@ -249,33 +228,50 @@
 	flex-direction: row;
 }
 
-.three h1 {
-  font-size: 28px;
-  font-weight: 500;
-  letter-spacing: 0;
-  line-height: 1.5em;
-  padding-bottom: 15px;
-  position: relative;
+
+
+.category-icon {
+    vertical-align: middle; /* Aligns the icon vertically with the text */
+    width: 20px;            /* Adjust width as needed */
+    height: auto;           /* Keeps the aspect ratio of the image */
+    margin-right: 5px;      /* Adds a small space between the icon and the category name */
 }
-.three h1:before {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 5px;
-  width: 55px;
-  background-color: #111;
+
+
+
+.categorylist{
+    border: 1px solid black;
+    width: 50%;
+    height: 30px;
+    margin: 5px;
 }
-.three h1:after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 2px;
-  height: 1px;
-  width: 95%;
-  max-width: 255px;
-  background-color: #333;
+
+#categorymodalbody{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 }
+
+.categorylistselector{
+    display: flex;
+    border: 1px solid #CCC;
+    background-color: #F3f6f9;
+    width: auto;
+    margin: 5px;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.categorylistselector:hover{
+    cursor: pointer;
+    box-shadow: 0 4px 4px rgba(0,0,0,0.1);
+}
+
+.categorylistselector.selected {
+    background-color: #ADD8E6; /* Light blue background for selected category */
+    color: white;
+}
+
 
 
     
@@ -312,46 +308,48 @@
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
       
-      	<div id="fakecontent">
-      		<div id="aboverow">
-      		<div id="pagetitle" class="three"><h1>목록</h1></div>
-      		<div id="aboverowrightside">
-	      		<form method = "GET" id="accountSearchForm">
-	                <div class="right-icon" id="searchicon"><i class="fa-solid fa-magnifying-glass"></i></div> 
-	                <div id="searchbar" >
-	                	<input type="text" name="word" value="${map.word}" placeholder="내용 or 사용처">
-	                	<input type="submit" value="검색">
-	                </div>
-	            </form>    
-	                <div class="right-icon" id="categoryselector"><i class="fa-solid fa-list-check"></i></div> 
-	            </div>
+      	<div class="content-total-style">
+      		<div id="aboverow" class="content-header">
+      		<div class="content-title-style">
+						<h3>가계부 목록</h3>
+					</div>
+      				<div id="aboverowright">
+			      		<form method = "GET" id="accountSearchForm">
+			                <div class="right-icon" id="searchicon"><i class="fa-solid fa-magnifying-glass"></i></div> 
+			                <div id="searchbar" class="account-search-box-container">
+			                	<input type="text" name="word" value="${map.word}" placeholder="내용 or 사용처" class="input-style-form">
+			                	<input type="submit" value="검색" class="button purple-btn">
+			                </div>
+			            </form>    
+	                	<div class="right-icon" id="categoryselector"><i class="fa-solid fa-list-check"></i></div> 
+                	</div>
             </div>
           	<div id="nextrow">
           		<div id="leftcol"></div>
           		<div id="rightcol">
           		<div id="thismonthstat">
           			<div id="monthheader">
-          				<h1 style="display: flex;"><div id="monthindicate"></div>월</h1>
+          				<h4 style="display: flex;"><div id="monthindicate"></div>월</h4>
           			</div>
                     <div class="abovestat" id="spendstat">
-                        <div>이번달 지출:</div>
+                        <span>이번달 지출</span>
                         <div id="totalNegative">$0</div>
                     </div>
                     <div class="abovestat" id="incomestat">
-                        <div>이번달 수입:</div>
+                        <span>이번달 수입</span>
                         <div id="totalPositive">$0</div>
                     </div>
                 </div>
 					<div id="wishlist">
                     <div id="wishlistrow1">
-                        <h3>Wish List</h3>
+                        <h4>Wish List</h4>
                         <div id="addWishItemtitle">
                             <button id="addrightnow" class="purple-btn button">추가하기</button>
                         </div>
                     </div>
                     <div id="wishlistrow2">
-                        <input type="text" id="newItemInput" placeholder="기입칸" style="display: none;">
-                        <button id="newItemButton" style="display: none">추가하기</button>
+                        <input type="text" id="newItemInput" placeholder="구매 위시 항목" style="display: none;" class="input-style-form">
+                        <button id="newItemButton" style="display: none" class="purple-btn button">추가</button>
                     </div>
                     <div id="wishListItems">
                         
@@ -363,6 +361,32 @@
         </div>
 
         <!-- fakecontent 끝 -->
+        
+        <div class="modal fade" id="categorymodal" tabindex="-1"
+    aria-labelledby="eventProduceModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modalBackground">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="eventProduceModalLabel">카테고리 선택</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="categorymodalbody">
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="button gray-btn submit-btn-style"
+                        data-bs-dismiss="modal" id="btnEventShow">취소</button>
+                    <button type="submit" class="button purple-btn submit-btn-style" id="btnEventProduce">완료
+                        </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        
     </div>
     </div>
 
@@ -383,8 +407,140 @@
     <c:forEach items="${cList}" var = "dto">
 	categories.push('${dto.acName}');
 	</c:forEach>
+	
+	console.log(categories)
+document.addEventListener('DOMContentLoaded', function() {
+    // Assuming the element has an ID 'categoryselector' based on your previous snippets
+    var categoryselector = document.getElementById('categoryselector');
+    const modalBody = document.getElementById('categorymodalbody');
+    const submitBtn = document.getElementById('btnEventProduce');
+    var modal = new bootstrap.Modal(document.getElementById("categorymodal"));
+    const showbtn = document.getElementById('btnEventShow');
+    
+    categoryselector.addEventListener('click', function() {
+        var categorymodalbody = document.getElementById('categorymodalbody');
+        const submitBtn = document.getElementById('btnEventProduce');
+        var categorylistselect = document.getElementById('categorylistselector');
+        let selectedCategory = '';
+
+        // Check if the modal body is empty and populate it if it is
+        if (categorymodalbody.children.length <= 0) {
+            categories.forEach(category => {
+                var cate = document.createElement('div');
+                cate.className = 'categorylistselector light-purple-btn button';
+                cate.textContent = category; // Using textContent for better security and performance
+                categorymodalbody.appendChild(cate);
+            });
+            
+            
+        }
+
+        modal.show();
+    });
+    
+    modalBody.addEventListener('click', function(event) {
+        if (event.target.classList.contains('categorylistselector')) {
+            selectedCategory = event.target.innerHTML; // Retrieve the selected category
+            console.log('Selected Category:', selectedCategory);
+            // Optionally, highlight the selected category
+            const currentActive = modalBody.querySelector('.active');
+            if (currentActive) {
+                currentActive.classList.remove('active');
+            }
+            event.target.classList.add('active');
+        }
+    });
+
+    // Handling the submit button click to filter transactions by the selected category
+    submitBtn.addEventListener('click', function() {
+        if (selectedCategory) {
+            console.log('Filtering transactions for category:', selectedCategory);
+            filterTransactionsByCategory(selectedCategory);
+        }
+        
+        function filterTransactionsByCategory(category) {
+            const allTransactions = document.querySelectorAll('#transcontent');
+            allTransactions.forEach(trans => {
+                const transCategory = trans.querySelector('.transcategory span').textContent.trim();
+                if (transCategory !== category) {
+                    trans.style.display = 'none'; // Hide transactions that do not match the category
+                } else {
+                    trans.style.display = ''; // Show transactions that match the category
+                }
+            });
+            // Close the modal after filtering
+            modal.hide();
+        }
+    });
+    
+    showbtn.addEventListener('click',function(){
+    	const allTransactions = document.querySelectorAll('#transcontent');
+        allTransactions.forEach(trans => {
+                trans.style.display = ''; // Hide transactions that do not match the category
+        });
+        // Close the modal after filtering
+        modal.hide();
+    })
+    
+    
+    
+});
+
+        
+        
+	
 	console.log(categories);
-   
+	const categoryData = [
+	    "SNS수입 - sns.svg",
+	    "건강 - healthy.svg",
+	    "경조사 - CAC.svg",
+	    "교육 - edu.svg",
+	    "교통 - traffic.svg",
+	    "구독료 - subscriptionFee.svg",
+	    "금융수입 - inancialincome.svg",
+	    "급여 - salary.svg",
+	    "기부금 - donation.svg",
+	    "더치페이 - dutchpay.svg",
+	    "로열티 - royalty.svg",
+	    "문화생활 - culturallife.svg",
+	    "미용 - beauty.svg",
+	    "보험금 - insurancemoney.svg",
+	    "부동산 - realestate.svg",
+	    "부업 - sideline.svg",
+	    "사업 수입 - business.svg",
+	    "상속 - inheritance.svg",
+	    "상여금 - bonus.svg",
+	    "생활용품 - Householdgoods.svg",
+	    "세금 - tax.svg",
+	    "쇼핑 - shopping.svg",
+	    "수수료 - charge.svg",
+	    "숙박 - lodgment.svg",
+	    "아르바이트 - parttime.svg",
+	    "앱테크 - app.svg",
+	    "여가 - Leisure.svg",
+	    "여행 - travel.svg",
+	    "용돈 - pinmoney.svg",
+	    "유흥 - pleasure.svg",
+	    "육아 - parenting.svg",
+	    "음식 - food.svg",
+	    "이자 - interest.svg",
+	    "장학금 - scholarship.svg",
+	    "저축 - saving.svg",
+	    "주거 - dwelling.svg",
+	    "카페 - cafe.svg",
+	    "통신 - communication.svg"
+	];
+
+	// Initialize an empty object to hold the category-image mappings
+	const categoryImages = {};
+
+	// Iterate through each item in the array, split the string, and populate the object
+	categoryData.forEach(item => {
+	    const [key, value] = item.split(' - ');
+	    categoryImages[key.trim()] = value.trim();
+	});
+	
+	
 
 	
 	// 미리 정의된 색상 팔레트
@@ -394,6 +550,9 @@
 	    '#DD6C41', '#A57A11', '#647E17', '#007A3E', '#007165', '#96525D', '#FFE3E9', '#BFA5A8', '#53D0B9', '#6FDEAA',
 	    '#97EA96', '#C6F381', '#F6746C', '#CA638D', '#896095', '#4D587F', '#C7B1E6', '#FAEAFF', '#65BAA9', '#FFCA57'
 	];
+	
+	
+	
 	
 	// colors 객체에 각 카테고리에 고유한 색상 할당
 	categories.forEach((categoryName, index) => {
@@ -412,76 +571,81 @@
 	}
 	
 
-    function addTransaction(date, category, where, amount, amountIndicator, content) {
-        // Create main transaction container
-        const transContent = document.createElement('div');
-        transContent.id = 'transcontent';
+	function addTransaction(date, category, where, amount, amountIndicator, content) {
+	    // Create main transaction container
+	    const transContent = document.createElement('div');
+	    transContent.id = 'transcontent';
+	    transContent.className = 'transaction';
 
-        const transDate = document.createElement('div');
-        transDate.className = 'transin transdate';
-        transDate.textContent = date;
-        // Set the background color based on the category
-        transDate.style.backgroundColor = colors[category] || "#f0f0f0"; 
-        updateTransDateColor(category);
-        
-        const transMiddle = document.createElement('div');
-        transMiddle.className = 'transmiddle';
+	    const transDate = document.createElement('div');
+	    transDate.className = 'transin transdate';
+	    transDate.textContent = date;
+	    // Set the background color based on the category
+	    transDate.style.backgroundColor = colors[category] || "#f0f0f0"; 
+	    updateTransDateColor(category);
+	    
+	    const transMiddle = document.createElement('div');
+	    transMiddle.className = 'transmiddle';
 
-//         const transCategory = document.createElement('div');
-//         transCategory.className = 'transin';
-//         transCategory.id = 'transcategory';
-//         transCategory.textContent = category + '|' + where;
+	    // Container for category and where
+	    const cateWhere = document.createElement('div');
+	    cateWhere.id = 'catewhere';
+	    cateWhere.className = 'transin';
 
-        const transSub = document.createElement('div');
-        transSub.className = 'transsub';
+	    const transCategory = document.createElement('div');
+	    transCategory.className = 'transcategory';
 
-		const transCategory = document.createElement('div');
-		transCategory.className = 'transin'; // 클래스 추가
-		transCategory.id = 'transcategory';
-		transCategory.textContent = category + 	' | '; // where는 따로 추가할 예정
-		
-		const transWhere = document.createElement('div');
-		transWhere.className = 'transin'; // 클래스 추가
-		transWhere.id = 'transwhere';
-		transWhere.textContent = where; // where 내용 추가
-
-        const transDetail = document.createElement('div');
-        transDetail.className = 'transin';
-        transDetail.id = 'transdetail';
-        transDetail.textContent = content;
-        
-//         const transWContent = document.createElement('div');
-//         transWhere.className = 'transin';
-//         transWhere.id = 'transcontent';
-//         transWhere.textContent = content;
-
-        transSub.appendChild(transCategory);
-        transSub.appendChild(transWhere);
-        
-        transMiddle.appendChild(transSub);
-        transMiddle.appendChild(transDetail);
-
-        const transRightBox = document.createElement('div');
-        transRightBox.className = 'transrightbox';
-
-		const transAmount = document.createElement('div');
-		    transAmount.className = 'transin';
+	    // Create and append the category icon image if it exists
+		    const iconImg = document.createElement('img');
+		    // Ensure the path is concatenated correctly
+		    var filepath = categoryImages[category]
 		    
-		    if (amountIndicator === '+') { // 입금일 때
-		        transAmount.id += 'transamountplus';
-		    } else if (amountIndicator === '-') { // 출금일 때
-		        transAmount.id += 'transamountminus';
-		    }
-		    transAmount.textContent = amountIndicator + amount + '원';
+		    iconImg.src = '/account/asset/images/icon/'+filepath;
+		    iconImg.className = 'category-icon';
+		    transCategory.appendChild(iconImg);
 
-		transRightBox.appendChild(transAmount);
 
-        transContent.appendChild(transDate);
-        transContent.appendChild(transMiddle);
-        transContent.appendChild(transRightBox);
+	    // Append category name next to the icon
+	    const categoryName = document.createElement('span');
+	    categoryName.textContent = ' ' + category;
+	    transCategory.appendChild(categoryName);
 
-        document.getElementById('leftcol').appendChild(transContent);
-    }
+	    const transWhere = document.createElement('div');
+	    transWhere.className = 'transwhere';
+	    transWhere.textContent = ' | ' + where;
+
+	    // Append category and where to the cateWhere container
+	    cateWhere.appendChild(transCategory);
+	    cateWhere.appendChild(transWhere);
+	    transMiddle.appendChild(cateWhere);
+
+	    const transDetail = document.createElement('div');
+	    transDetail.className = 'transdetail';
+	    transDetail.textContent = content;
+	    transMiddle.appendChild(transDetail);
+
+	    const transRightBox = document.createElement('div');
+	    transRightBox.className = 'transrightbox';
+
+	    const transAmount = document.createElement('div');
+	    transAmount.className = 'transin';
+	    transAmount.textContent = (amountIndicator === '+' ? '+' : '-') + amount.toLocaleString() + '원'; // Format the amount
+	    transRightBox.appendChild(transAmount);
+	    
+	    if (amountIndicator === '+') {
+	        transAmount.style.color = 'green'; // Positive amounts in green
+	    } else {
+	        transAmount.style.color = 'red'; // Negative amounts in red
+	    }
+
+	    transContent.appendChild(transDate);
+	    transContent.appendChild(transMiddle);
+	    transContent.appendChild(transRightBox);
+
+	    document.getElementById('leftcol').appendChild(transContent);
+	}
+
+
 
     
     var transactions = [];
@@ -499,9 +663,8 @@
 	    	    
 	    transactions.push(transactionItem);
 	</c:forEach>
-
-	console.log(transactions);
-
+	
+	
     transactions.forEach(transaction => {
         addTransaction(transaction.date, transaction.category, transaction.where, transaction.amount, transaction.amountIndicator, transaction.content);
     });
@@ -556,18 +719,23 @@
 
     
     
- 	// 검색 기능
+	 // 검색 기능
     var searchicon = document.getElementById('searchicon');
     var searchbar = document.getElementById('searchbar');
    
     searchicon.onclick = function() {
         if (searchbar.style.display === 'none') {
-            searchbar.style.display = 'block';
+            searchbar.style.display = 'flex';
             searchbar.focus();
         } else {
             searchbar.style.display = 'none';
         }
     };
+
+    
+
+
+    
     //검색 기능 끝
     
      document.addEventListener('DOMContentLoaded', function() {
@@ -577,6 +745,14 @@
         const newItemButton = document.getElementById('newItemButton');
         const cbcbbox = document.getElementById('addcheckbox');
         const delitembtn = document.getElementById('listdelbutton');
+        const catemodal = document.getElementById('categorymodal');
+        
+        
+        
+        
+        
+
+        
         
 
         // Toggle input field visibility and focus when the button is clicked
@@ -585,6 +761,7 @@
                 newItemInput.style.display = 'block';
                 newItemButton.style.display = 'block';
                 newItemInput.focus();
+                console.log('addclick')
             } else {
                 newItemInput.style.display = 'none';
                 newItemButton.style.display = 'none';
@@ -652,6 +829,11 @@
             }
         });
          
+       
+        
+        
+        
+        
         
         $(document).ready(function() {
             // AJAX request to fetch data as soon as the page loads

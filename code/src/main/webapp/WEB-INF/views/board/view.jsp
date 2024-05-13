@@ -6,6 +6,7 @@
 <head>
     <meta charset="utf-8">
     <title>BudgetBuddy | 게시판 홈</title>
+    <link type="image/png" sizes="16x16" rel="icon" href="/account/asset/images/icons8-돈-상자-16.png">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -99,7 +100,7 @@
 
 					<c:forEach var="notice" items="${noticeList}" begin="0" end="4">
 			                <tr>
-						        <td>
+						        <td class="blind-post-title-style">
 						            <c:choose>
 						                <c:when test="${notice.blindCheck eq '1'}">
 						                    관리자에 의해 블라인드 처리 되었습니다.
@@ -128,10 +129,10 @@
 
 					<c:forEach var="free" items="${freeList}" begin="0" end="4">
 			                <tr>
-						    	<td>
+						    	<td class="blind-post-title-style">
 						            <c:choose>
 						                <c:when test="${free.blindCheck eq '1'}">
-						                    관리자에 의해 블라인드 처리 되었습니다.
+						                    관리자에 의해 블라인드 처리되었습니다.
 						                </c:when>
 						                <c:otherwise>
 						                	<a href="/account/board/discussion.do?seq=${free.seq}">${free.title}</a>
@@ -158,7 +159,7 @@
 
 			        <c:forEach var="report" items="${reportList}" begin="0" end="4">
                 		<tr>
-				    		<td>
+				    		<td class="blind-post-title-style">
 					            <c:choose>
 					                <c:when test="${report.blindCheck eq '1'}">
 					                    관리자에 의해 블라인드 처리 되었습니다.
@@ -188,7 +189,7 @@
 
 					<c:forEach var="attendance" items="${attendanceList}" begin="0" end="4">
 		                <tr>
-				    		<td>
+				    		<td class="blind-post-title-style">
 					            <c:choose>
 					                <c:when test="${attendance.blindCheck eq '1'}">
 					                    관리자에 의해 블라인드 처리 되었습니다.

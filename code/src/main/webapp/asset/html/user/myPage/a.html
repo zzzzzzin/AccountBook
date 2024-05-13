@@ -72,44 +72,26 @@
         border-radius: 10px;
         padding: 10px;
     }
+    
 
-    .myCardMoreNum {
-        display: flex;
-        justify-content: space-evenly;
-        margin-top: 10px;
-        margin-bottom: 30px;
-    }
 
-    .myCardMoreNum>div {
-        background-color: #ffffff;
-    }
+.myCardMoreNum{
+    display: flex;
+    flex-direction: row;
+}
 
-    .myCardMoreNoneNum {
-        display: flex;
-        justify-content: space-evenly;
-    }
+.myCardMoreNoneNum{
+    display: flex;
+    flex-direction: column;
+}
 
-    .myCardMoreCompany,
-    .myCardMoreName,
-    .myCardMoreNickname,
-    .myCardMorePeriod {
-        text-align: center;
-    }
+.myCardMoreNoneNum div{
+    display: flex;
+    flex-direction: row;
 
-    .myCardMoreCompany>div:nth-child(1),
-    .myCardMoreName>div:nth-child(1),
-    .myCardMoreNickname>div:nth-child(1),
-    .myCardMorePeriod>div:nth-child(1) {
-        background-color: #ffffff;
-        margin-bottom: 3px;
-    }
+}
 
-    .myCardMoreCompany>div:nth-child(2),
-    .myCardMoreName>div:nth-child(2),
-    .myCardMoreNickname>div:nth-child(2),
-    .myCardMorePeriod>div:nth-child(2) {
-        background-color: #ffffff;
-    }
+  
 
     .myCardBtn {
         position: relative;        
@@ -142,7 +124,10 @@
         text-align: center;
         font-weight: bold;
     }
+    #morecardcontent{
+        margin: 10px;
 
+    }
     
 
 
@@ -176,6 +161,7 @@
         </div>
         <div class="moreMyCard">
             <!-- 카드 번호, 카드사, 카드명, 별칭, 유효기간 -->
+            <div id="morecardcontent">
             <div class="myCardMoreNum">
                 <div>카드 번호</div>
                 <div>1234-1234</div>
@@ -198,6 +184,7 @@
                     <div>0000년 00월</div>
                 </div>
             </div>
+        </div>
         </div>
         <div class="myCard">
             <div class="myCardImg">

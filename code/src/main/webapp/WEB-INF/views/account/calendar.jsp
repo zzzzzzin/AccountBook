@@ -4,13 +4,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>BudgetBuddy | 가계부 달력</title>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+        <link type="image/png" sizes="16x16" rel="icon" href="/account/asset/images/icons8-돈-상자-16.png">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,9 +34,6 @@
     }
     #periodcheck button{
         margin: 5px;
-    }
-    
-    #fakecontent{
     }
 
     #monthgoal{
@@ -88,9 +86,9 @@
 #onerowinput #eventModalSelect{
     width: 50px;
 }
-.form-select, .form-control {
+/* .input-style-form, .input-style-form {
     margin: 0 5px; 
-}
+} */
 .selectSize{
     width: 100px ;
 }
@@ -113,7 +111,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: right;
+    justify-content: space-between !important;
     width: 100%; 
     }
     
@@ -124,20 +122,20 @@
 
 
 
-#spendstat :nth-child(2){
-    color: rgb(244, 0, 0);
+/* #spendstat :nth-child(2){
+    color: #fe7e70;
 }
 
 #incomestat :nth-child(2){
-    color: rgb(0, 76, 216);
-}
+    color: #366ECD;
+} */
 
 #bottomrow{
     display: flex;
     justify-content: center;
     align-items: flex-end;
     padding-left: 20px;
-    width: 30%;
+    width: 40%;
     flex-direction: column;
 }
 
@@ -150,14 +148,12 @@
 
 #wishlist {
     padding: 20px;
-    background: #f9f9f9;
+    background: #ffffff;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+   	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); 
     margin: 10px;
-    border: 1px solid black;
+    border: 1px solid #ccc;
     width: 100%;
-    margin: auto;
-    margin-top: 10px;
     
 }
 
@@ -181,18 +177,6 @@
     width: 30%;
 }
 
-#wishlist button {
-    padding: 8px 16px;
-    background-color: #009CFF;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-#wishlist button:hover {
-    background-color: #007dca;
-}
 
 #wishListItems li {
     list-style: none;
@@ -242,15 +226,25 @@
     
 }
 #thismonthstat {
-    flex-grow: 1;
+    flex-grow: 1; 
     font-weight: bold;
     padding: 20px;
-    background: #f9f9f9;
+    background: #ffffff;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    border: 1px solid black;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border: 1px solid #ccc;
     width: 100%;
+    margin:10px;
 }
+
+  .abovestat{
+        display: flex;
+        align-items: center;
+    }
+
+    .abovestat div{
+    	margin: 10px;
+    }
 
 .transin {
     flex: 1;
@@ -309,12 +303,47 @@
     display: flex;  /* Use flexbox for layout */
     justify-content: space-between; /* Space between the main elements */
     align-items: start; /* Align items at the start of the container */
-    padding: 20px; /* Padding around the content */
     width: 100%;
 }
 #calendar{
 	width: 100%;
 }
+
+
+
+#aboverowright{
+	display: flex;
+}
+
+.fc-button-primary{
+
+}
+
+/* FullCalendar Button Color Customization */
+.fc-button {
+    background-color: #ADA0DE !important;
+    border: 1px solid #ADA0DE !important;
+    border-radius: 0.25em !important;
+    display: inline-block;
+    font-size: 1em;
+    font-weight: 400;
+    line-height: 1.5;
+    padding: 0.4em 0.65em;
+    text-align: center;
+    user-select: none;
+    vertical-align: middle;
+    color: #fff;   /* Green border */
+}
+
+.fc .fc-button-group > .fc-button {
+	margin: 5px;
+}
+
+.fc-button:hover {
+    background-color: #45A049; /* Darker green background on hover */
+}
+
+
     
 
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
@@ -349,43 +378,48 @@
             <!-- 상당 메뉴 끝-->
             <!-- Navbar End -->
         <!-- Content End -->
-        <div id="fakecontent">
-            <div id="aboverow">
-      		<form method = "GET" id="accountSearchForm" action="/account/account/list.do">
-                <div class="right-icon" id="searchicon"><i class="fa-solid fa-magnifying-glass"></i></div> 
-                <div id="searchbar" >
-                	<input type="text" name="word" value="${map.word}" placeholder="내용 or 사용처">
-                	<input type="submit" value="검색">
-                </div>
-            </form>    
-                <div class="right-icon" id="categoryselector"><i class="fa-solid fa-list-check"></i></div> 
+        <div class="content-total-style">
+            <div id="aboverow" class="content-header">
+            <div class="content-title-style">
+						<h3>가계부 달력</h3>
+					</div>
+					<div id="aboverowright">
+			      		<form method = "GET" id="accountSearchForm" action="/account/account/list.do">
+			                <div class="right-icon" id="searchicon"><i class="fa-solid fa-magnifying-glass"></i></div> 
+			                <div id="searchbar" class="account-search-box-container">
+			                	<input type="text" name="word" value="${map.word}" placeholder="내용 or 사용처" class="input-style-form">
+			                	<input type="submit" value="검색" class="button purple-btn">
+			                </div>
+			            </form>    
+	                	<div class="right-icon" id="categoryselector"><i class="fa-solid fa-list-check"></i></div> 
+                	</div>
             </div>
             <div id="middlebottom">
             <div id='calendar'></div>
             <div id="bottomrow">
                 <div id="thismonthstat">
           			<div id="monthheader">
-          				<h1 style="display: flex;"><div id="monthindicate"></div>월</h1>
+          				<h4 style="display: flex;"><div id="monthindicate"></div>월</h4>
           			</div>
                     <div class="abovestat" id="spendstat">
-                        <div>이번달 지출:</div>
+                        <span>이번달 지출</span>
                         <div id="totalNegative">$0</div>
                     </div>
                     <div class="abovestat" id="incomestat">
-                        <div>이번달 수입:</div>
+                        <span>이번달 수입</span>
                         <div id="totalPositive">$0</div>
                     </div>
                 </div>
                 <div id="wishlist">
                     <div id="wishlistrow1">
-                        <h3>Wish List</h3>
+                        <h4>Wish List</h4>
                         <div id="addWishItemtitle">
-                            <button id="addrightnow">Add Item</button>
+                            <button id="addrightnow" class="purple-btn button">추가하기</button>
                         </div>
                     </div>
                     <div id="wishlistrow2">
-                        <input type="text" id="newItemInput" placeholder="Type and press enter" style="display: none;">
-                        <button id="newItemButton" style="display: none">추가하기</button>
+                        <input type="text" id="newItemInput" placeholder="구매 위시 항목" style="display: none;" class="input-style-form">
+                        <button id="newItemButton" style="display: none" class="purple-btn button">등록</button>
                     </div>
                     <div id="wishListItems">
                         
@@ -403,7 +437,7 @@
         <div class="modalBackground">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="eventProduceModalLabel">가게부 추가</h5>
+                    <h5 class="modal-title" id="eventProduceModalLabel">가계부 추가</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
@@ -417,19 +451,19 @@
                         </div>
                         <div class="mb-3">
                             <label for="eventModalStart" class="col-form-label">날짜</label> <input type="datetime-local" id="eventModalStart"
-                                class="form-control" placeholder="datetime-local input">
+                                class="input-style-form" placeholder="datetime-local input">
                         </div>
                         <div class="mb-3">
                             <label for="eventModalTitle" class="col-form-label">내용</label> <textarea
-                                type="text" class="form-control" id="eventModalcontent"></textarea>
+                                type="text" class="input-style-form" id="eventModalcontent"></textarea>
                         </div>
                         <div class="mb-3">
                             <label for="eventModalTitle" class="col-form-label">사용처</label> <input
-                                type="text" class="form-control" id="eventModaluseloc">
+                                type="text" class="input-style-form" id="eventModaluseloc">
                         </div>
                         <div class="mb-3">
                             <label for="eventModalSelect" class="col-form-label">카테고리</label>
-                            <select class="form-select modalselectcategory" aria-label="Default select example"
+                            <select class="input-style-form modalselectcategory" aria-label="Default select example"
                                 id="eventModalSelect">
                                 <option selected>카테고리</option>
                                 <option value="1">개인일정</option>
@@ -439,7 +473,7 @@
 
                         <div class="mb-3">
                             <label for="eventModalSelect" class="col-form-label">지불 방식</label>
-                            <select class="form-select modalmethodofpayment" aria-label="Default select example"
+                            <select class="input-style-form modalmethodofpayment" aria-label="Default select example"
                                 id="eventModalSelect">
                                 <option selected>지불 방식</option>
                                 <option value="1">카드</option>
@@ -449,28 +483,27 @@
                         <div class="mb-3" id="onerow">
                             <div for="eventModalEnd" class="col-form-label" id="onrowlabel">금액</div>
                             <div id="onerowinput">
-                                <select class="form-select selectSize modalincreasedecrease" aria-label="Default select example"
+                                <select class="input-style-form selectSize modalincreasedecrease" aria-label="Default select example"
                                     id="eventModalSelect">
                                     <option selected>+/-</option>
                                     <option value="+">+</option>
                                     <option value="-">-</option>
                                 </select>
-                                <input type="number" class="form-control" id="eventModalIoc">
+                                <input type="number" class="input-style-form" id="eventModalIoc">
                                 <input type="checkbox" id="fixedexpense">
                             </div>
                         </div>
                         <div class="mb-3" id="fixeddate">
                             <label for="eventModalStart" class="col-form-label">고정 지출 날짜</label> <input type="datetime-local" id="eventModalStart"
-                                class="form-control" placeholder="datetime-local input">
+                                class="input-style-form" placeholder="datetime-local input">
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary"
-							data-bs-dismiss="modal">취소</button>
-					<button type="button" class="btn btn-primary" id="deleteEventBtn">삭제</button>
-					<button type="button" class="btn btn-primary" id="editEventBtn">수정</button>
-					<button type="button" class="btn btn-primary" id="produceEventBtn">생성</button>
+                    <button type="button" class="button gray-btn submit-btn-style" data-bs-dismiss="modal">취소</button>
+					<button type="button" class="button dark-black-btn submit-btn-style" id="deleteEventBtn">삭제</button>
+					<button type="button" class="button purple-btn submit-btn-style" id="editEventBtn">수정</button>
+					<button type="button" class="btn purple-btn submit-btn-style" id="produceEventBtn">생성</button>
                 </div>
             </div>
         </div>
@@ -492,9 +525,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary"
-                        data-bs-dismiss="modal">취소</button>
-                    <button type="button" class="btn btn-primary" id="btnEventProduce">완료
+                    <button type="button" class="button gray-btn submit-btn-style" data-bs-dismiss="modal">취소</button>
+                    <button type="button" class="button purple-btn submit-btn-style" id="btnEventProduce">완료
                         </button>
                 </div>
             </div>
@@ -603,8 +635,8 @@
         console.log(totalPositive);
         console.log(totalNegative);
         
-        let formattedPositive = (totalPositive > 0 ? '+'+totalPositive.toLocaleString() : totalPositive.toLocaleString());
-        let formattedNegative = (totalNegative < 0 ? totalNegative.toLocaleString() : '-'+totalNegative.toLocaleString());
+        let formattedPositive = (totalPositive > 0 ? '+'+totalPositive.toLocaleString()+'원' : totalPositive.toLocaleString());
+        let formattedNegative = (totalNegative < 0 ? totalNegative.toLocaleString() : '-'+totalNegative.toLocaleString()+'원');
         document.getElementById('monthindicate').innerHTML = headerMonth;
         document.getElementById('totalPositive').innerHTML = formattedPositive;
         document.getElementById('totalNegative').innerHTML = formattedNegative;
@@ -714,9 +746,10 @@
 
             if (categorymodalbody.children.length <= 0) {
                 categories.forEach(category => {
-                    var cate = document.createElement('div');
+                    var cate = document.createElement('button');
+//                     var cate = document.createElement('div');
                     console.log(category)
-                    cate.className = 'categorylistselector';
+                    cate.className = 'categorylistselector light-purple-btn button';
                     cate.innerHTML = '<div>' + category + '</div>';
                     categorymodalbody.appendChild(cate);
                 });
@@ -732,7 +765,7 @@
 	   
 	    searchicon.onclick = function() {
 	        if (searchbar.style.display === 'none') {
-	            searchbar.style.display = 'block';
+	            searchbar.style.display = 'flex';
 	            searchbar.focus();
 	        } else {
 	            searchbar.style.display = 'none';
@@ -862,7 +895,7 @@
       			   					useLocation: obj.loc,
       			   					content: obj.content,
       			   					amount: obj.amount,
-      			   					amountindicator: (obj.amountindicator==='출금'?'+':'-'),
+      			   					amountindicator: (obj.amountindicator==='2'?'+':'-'),
       			   					paymentMethod : (obj.paymentMethod+'\xa0'+obj.aliasname+':'+obj.cardnumber),
       			   					category: obj.category,
       			   					fixed: obj.fixed,
@@ -914,6 +947,9 @@
                 procbutton.style.display = 'none';
                 editbutton.style.display = 'inline-block';
                 delbutton.style.display = 'inline-block';
+                
+                console.clear();
+                console.log(info.event.extendedProps.amountindicator);
                 console.log(info.event.extendedProps.paymentMethod)
             	modal.show();
                 
@@ -993,7 +1029,10 @@
     	                                        paymentMethod: document.getElementsByClassName('modalmethodofpayment')[0].value,
     	                                        amount: document.getElementById('eventModalIoc').value,
     	                                        amountindicator: document.getElementsByClassName('modalincreasedecrease')[0].value,
-    	                                        isFixedExpense: document.getElementById('fixedexpense').checked ? '1' : '0'
+    	                                        isFixedExpense: document.getElementById('fixedexpense').checked ? '1' : '0',
+    	                                        		seq: seq,
+    	                    	                        seqacc: seqacc,
+    	                    	                        seqrcc: seqrcc
     	                                    }
     	                                };
     	                            

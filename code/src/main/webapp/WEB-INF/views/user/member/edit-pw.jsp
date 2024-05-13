@@ -4,15 +4,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>BudgetBuddy | 개인정보 관리</title>
+<title>BudgetBuddy | 비밀번호 수정</title>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
-
+     <link type="image/png" sizes="16x16" rel="icon" href="/account/asset/images/icons8-돈-상자-16.png">
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -61,7 +60,7 @@
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
 		<div class="content-total-style">
-			<div class="content-header">
+				<div class="content-header">
 					<div class="content-title-style">
 						<h3>비밀번호 수정</h3>
 					</div>
@@ -78,7 +77,7 @@
 							<div class="user-info-input-row-style">
 								<div class="form-group"><label>새 비밀번호(확인)</label><input type="text" class="input-style-form" name="checkPw"></div>
 						</div>
-						<button type="submit" class="button purple-btn info-submit-long-btn submit-btn-style" onclick="window.location.reload();">수정 완료</button>
+						<button type="submit" class="button purple-btn info-submit-long-btn submit-btn-style" onclick="window.location.reload();">수정하기</button>
 					</div>
 					</form>
 				</div>

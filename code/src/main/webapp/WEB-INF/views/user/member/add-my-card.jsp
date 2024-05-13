@@ -4,13 +4,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>BudgetBuddy | 나의 카드 추가</title>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+         <link type="image/png" sizes="16x16" rel="icon" href="/account/asset/images/icons8-돈-상자-16.png">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,9 +28,6 @@
 <%@ include file ="/WEB-INF/views/inc/asset.jsp"%>
 
 </style>
-<title>
-내 카드 추가
-</title>
 <body>
     <div class="container-xxl position-relative bg-white d-flex p-0">
         <!-- Spinner Start -->
@@ -58,10 +56,19 @@
             <!-- Navbar End -->
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
-
-			<form method="POST" action="/account/user/member/add-my-card.do" class="container-addcard" id="myForm">
-				<div class="form-group-addcard">
-					<select id="cardSelect">
+        <div class="content-total-style">
+				<div class="content-header">
+						<div class="content-title-style">
+							<h3>나의 카드 추가</h3>
+						</div>
+					</div>
+		<div class="mypage-box-container-style">
+			<form method="POST" action="/account/user/member/add-my-card.do" id="myForm">
+			<div class="user-info-container-style">
+			<div class="card-body">
+				<div class="form-group">
+				<label>카드 종류</label>
+					<select class="form-control input-style-form select-box-style" id="cardSelect">
 						<c:forEach items="${list}" var="list">
 							<option value="${list.seq}" data-name="${list.ciName}" 
 								data-issuer="${list.cardCompany}" data-img="${list.fileLink}">${list.ciName}</option>
@@ -72,32 +79,33 @@
 					</div>
 				</div>
 
-				<div class="form-group-addcard">
-					<label for="cardName">카드명</label> <input type="text" id="cardName" name="name">
+				<div class="form-group">
+					<label for="cardName">카드명</label> <input class="form-control input-style-form" type="text" id="cardName" name="name" readonly>
 				</div>
-				<div class="form-group-addcard">
-					<label for="cardIssuer">카드사</label> <input type="text" id="cardIssuer" name="cardCompany">
+				<div class="form-group">
+					<label for="cardIssuer">카드사</label> <input class="form-control input-style-form" type="text" id="cardIssuer" name="cardCompany" readonly>
 				</div>
-				<div class="form-group-addcard">
-					<label for="cardNumber">카드번호</label> <input type="text" id="cardNumber" name="cardNumber">
+				<div class="form-group">
+					<label for="cardNumber">카드 번호</label> <input class="form-control input-style-form" type="text" id="cardNumber" name="cardNumber">
 				</div>
-				<div class="form-group-addcard">
-					<label for="nickname">별칭</label> <input type="text" id="nickname" name="alias">
+				<div class="form-group">
+					<label for="nickname">별칭</label> <input class="form-control input-style-form" type="text" id="nickname" name="alias">
 				</div>
-				<div class="form-group-addcard">
-					<label for="expirationDate">유효기간</label> 
-					<input type="text" id="expirationDate" name="validity" class="datepicker">
+				<div class="form-group">
+					<label for="expirationDate">유효 기간</label> 
+					<input class="form-control input-style-form" type="text" id="expirationDate" name="validity" class="datepicker">
 				</div>
-				<div class="button-group-addcard">
-					<button type="button" onclick="location.href='/account/user/member/my-card.do'">취소</button>
-					<button id="sendout" type="button" onclick="location.href='/account/user/member/my-card.do'">완료</button>
+				<div class="add-my-card-btn-container">
+					<button class="button gray-btn submit-btn-style " type="button" onclick="location.href='/account/user/member/my-card.do'">취소</button>
+					<button class="button purple-btn submit-btn-style" id="sendout" type="button" onclick="location.href='/account/user/member/my-card.do'">완료</button>
 				</div>
+			</div>
+			</div>
 			</form>
-
+		</div>
+		</div>
 			<!-- fakecontent 끝 -->
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-        
+
     </div>
     </div>
 
@@ -189,11 +197,6 @@
 
         // Click event for the submit button
         $("#sendout").click(function() {
-            /* if (!selectedDate) {
-                alert("Please select a date first."); // Alert if no date is selected
-                return; // Stop the function if no date is selected
-            }
- */
             var formData = {
                 cardName: $("#cardName").val(),
                 cardIssuer: $("#cardIssuer").val(),

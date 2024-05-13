@@ -4,15 +4,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>BudgetBuddy | 게시판 이용 내역</title>
+<title>BudgetBuddy | 내가 쓴 글</title>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
-
+     <link type="image/png" sizes="16x16" rel="icon" href="/account/asset/images/icons8-돈-상자-16.png">
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -69,7 +68,7 @@
 				<section class="notice">
 					<!-- board list area -->
 					<div id="board-list">
-						<div class="container">
+						<div class="">
 							<table class="table-style">
 								<tbody>
 									<tr>

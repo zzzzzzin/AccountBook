@@ -4,6 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<head><title>BudgetBuddy | 비밀번호 재설정</title>
+     <link type="image/png" sizes="16x16" rel="icon" href="/account/asset/images/icons8-돈-상자-16.png">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <%@include file="/WEB-INF/views/inc/asset.jsp"%>
@@ -11,96 +13,34 @@
 <link rel="stylesheet" href="/account/asset/css/vendor.bundle.base.css">
 <link rel="stylesheet" href="/account/asset/css/corona_style.css">
 <style>
-      body { 
-        color: black;
-      }
-      .card {
-        border: none;
-      }
-      .form-control {
-        background-color: #D9D9D9;
-        border: none;
-      }
-      .form-control.click {
-        background-color: #D9D9D9;
-        border: none;
-      }
-      .btn-primary {
-        background-color: #D9D9D9;
-        border: #D9D9D9;
-        color: black;
-      }
-
-      .btn-primary:hover {
-        background-color: #D9D9D9;
-        border: #D9D9D9;
-        color: black;
-      }
-
-      .btn-primary.click {
-        background-color: #D9D9D9;
-        border: #D9D9D9;
-        color: black;
-      }
-      .find {
-        text-align: center;
-      }
-      
-      .find-pw-sucess, .find-pw-fail {
-        background-color: #d9d9d9;
-        margin: auto;
-        text-align: center;
-        width: 300px;
-        padding: 5px;
-      }
-
-    .find-pw-fail {
-      visibility: hidden;
-    }
-    .find-pw-close {
-      display: flex;
-      justify-content: flex-end;
-    }
-
-    .find-pw-close-btn {
-      align-items: end;
-      border: none;
-      width: 50px;
-      height: 30px;
-    }
 </style>
 </head>
-<title>
-비밀번호 재설정
-</title>
 
 <body>
 
 	<%@include file="/WEB-INF/views/inc/header.jsp"%>
 	
 	<div class="container-scroller">
-      <div class="container-fluid page-body-wrapper full-page-wrapper">
-        <div class="row w-100 m-0">
-          <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
-            <div class="card col-lg-4 mx-auto">
-              <div class="card-body px-5 py-5">
+      <div class="content-total-style">
+        <div class="user-info-input-page-container login-page-container user-info-box-container-style">
+          <div class="user-info-container-style">
+            <div class="">
+              <div class="card-body">
                 <h3 class="card-title text-left mb-3">비밀번호 재설정</h3>
                 <form method="POST">
 	                  <div class="form-group">
 	                    <label>아이디(이메일)</label>
-	                    <input type="text" class="form-control p_input" name="id" value="${id}" readonly>
+	                    <input type="text" class="form-control input-style-form" name="id" value="${id}" readonly>
 	                  </div>
 	                  <div class="form-group">
 	                    <label>새 비밀번호</label>
-	                    <input type="text" class="form-control p_input" name="pw">
+	                    <input type="password" class="form-control input-style-form" name="pw">
 	                  </div>
 	                  <div class="form-group">
 	                    <label>새 비밀번호(확인)</label>
-	                    <input type="text" class="form-control p_input" name="pwCheck">
+	                    <input type="password" class="form-control input-style-form" name="pwCheck">
 	                  </div>
-	                  <div class="text-center">
-	                    <button type="submit" class="btn btn-primary btn-block enter-btn">비밀번호 변경</button>
-                  </div>
+	                  <button type="submit" class="button purple-btn full-btn submit-btn-style">수정하기</button>
                 </form>
               </div>
             </div>

@@ -4,14 +4,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<title>BudgetBuddy | 내가 쓴 댓글</title>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
-
+     <link type="image/png" sizes="16x16" rel="icon" href="/account/asset/images/icons8-돈-상자-16.png">
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,9 +31,6 @@
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
 </style>
-<title>
-내가 쓴 댓글
-</title>
 <body>
     <div class="container-xxl position-relative bg-white d-flex p-0">
         <!-- Spinner Start -->
@@ -62,13 +60,18 @@
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
 
-			<div id="fakecontent">
+			<div class="content-total-style">
+				<div class="content-header">
+						<div class="content-title-style">
+							<h3>내가 쓴 댓글</h3>
+						</div>
+				</div>
 				<section class="notice">
 					<!-- board list area -->
 					<div id="board-list">
-						<div class="container">
-							<table class="board-table">
-								<thead>
+						<div class="">
+							<table class="table-style">
+								<tbody>
 									<tr>
 										<th scope="col" class="th-title">제목</th>
 										<th scope="col" class="th-comment">나의 댓글</th>
@@ -77,19 +80,15 @@
 										<th scope="col" class="th-view">조회수</th>
 										<th scope="col" class="th-like">추천</th>
 									</tr>
-								</thead>
-								<tbody>
 									<c:forEach items="${commentsList}" var="comment">
-									<%-- <c:if test="${commen}"> --%>
 										<tr>
-											<th><a href="/account/board/discussion.do?seq=${comment.seq}">${comment.title}</a></th>
+											<td><a href="/account/board/discussion.do?seq=${comment.seq}">${comment.title}</a></td>
 											<td>${comment.content}</td>
 											<td>${comment.nickname}</td>
 											<td>${comment.writedate}</td>
 											<td>${comment.viewCount}</td>
 											<td>${comment.likeCount}</td>
 										</tr>
-									<%-- </c:if> --%>
 									</c:forEach>
 								</tbody>
 							</table>
@@ -98,10 +97,7 @@
 				</section>
 			</div>
 
-			<!-- fakecontent 끝 -->
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-        
+			<!-- fakecontent 끝 -->     
     </div>
     </div>
 

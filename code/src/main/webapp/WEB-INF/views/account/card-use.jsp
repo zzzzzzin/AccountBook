@@ -4,14 +4,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>BudgetBuddy | 카드 사용</title>
+<title>BudgetBuddy | 카드 사용 내역</title>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+         <link type="image/png" sizes="16x16" rel="icon" href="/account/asset/images/icons8-돈-상자-16.png">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -64,7 +64,7 @@
 
 		<div class="content-total-style">
 			<div class="content-header">
-					<div class="content-title-style"><h3>카드 사용</h3></div>				
+					<div class="content-title-style"><h3>카드 사용 내역</h3></div>				
 					
 					
 					<form id="selectDateForm" method="GET">
@@ -83,23 +83,30 @@
 				</div>
 		
 		<div class="card-use-list">
+			<div class="card-recommendation-box">
 				<c:forEach items="${list}" var="dto">
-						<div class="link-box-style box card-use-item" onclick="location.href='/account/account/card-use-detail.do?seqMyCard=${dto.seqMyCard}&startDate=${map.startDate}&endDate=${map.endDate}';">
-							<img src="/account/asset/images/${dto.fileLink}" id="cardImgPlace" >
-							<div class="card-use-info-box" >
-								<div class="card-use-name">
+						<div class="card-image link-box-style box" onclick="location.href='/account/account/card-use-detail.do?seqMyCard=${dto.seqMyCard}&startDate=${map.startDate}&endDate=${map.endDate}';">
+							<div class="recommendation-card-img">
+	                        	<p class="card-image-wrapper">
+	                        		<a></a>
+									<img src="/account/asset/images/${dto.fileLink}" >
+	                            </p>
+                            </div>
+							<div class="card-recommendation-info-box" >
+								<h4>
 									<c:if test="${dto.alias != null}">
 										${dto.alias}
 									</c:if>
 									<c:if test="${dto.alias == null}">
 										${dto.cfName}
 									</c:if>
-								</div> <br>
+								</h4>
 								<div class="card-use-price">총 ${dto.totalPrice}원</div>
 							</div>
 						</div>
 					</c:forEach>
-		</div>
+				</div>
+			</div>
 		</div>
 
 		<!-- fakecontent 끝 -->

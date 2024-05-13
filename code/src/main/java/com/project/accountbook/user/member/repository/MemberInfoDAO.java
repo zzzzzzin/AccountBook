@@ -158,7 +158,10 @@ public class MemberInfoDAO {
 
 		try {
 
-			String sql = "select * from tblMember where id = ?";
+			String sql = "select * from tblMember m\r\n"
+					+ "left outer join tblProfileimg p \r\n"
+					+ "on m.seqProfileimg = p.seq\r\n"
+					+ "where m.id = ?";
 
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, id);
@@ -170,6 +173,7 @@ public class MemberInfoDAO {
 				UserDTO dto = new UserDTO();
 
 				// 이름, 닉네임, 성별, 전화번호, 주민등록번호
+				dto.setFileLink(rs.getString("fileLink"));
 				dto.setName(rs.getString("name"));
 				dto.setNickname(rs.getString("nickname"));
 				dto.setGender(rs.getString("gender"));
@@ -464,6 +468,7 @@ public class MemberInfoDAO {
 			while(rs.next()) {
 				MemberInfoDTO dto = new MemberInfoDTO();
 				
+				dto.setSeqMyCard(rs.getInt("seq"));
 				dto.setName(rs.getString("name"));
 				dto.setCardCompany(rs.getString("cardCompany"));
 				dto.setAlias(rs.getString("alias"));
@@ -485,7 +490,7 @@ public class MemberInfoDAO {
 		return null;
 	}
 
-	public void addMyCard(String id, CardDTO dto ) {
+	public void addMyCard(String id, CardDTO dto) {
 
 		try {
 			
@@ -524,24 +529,24 @@ public class MemberInfoDAO {
 		
 	}
 
-	public void delMyCard(int seq) {
+	public MemberInfoDTO delMyCard(String id, String seq) {
 
 		try {
 			
-			String sql = "delete from tblMyCard where seq = ?";
+			String sql = "DELETE FROM tblMyCard WHERE idMember = ? AND seq = ?";
 			
-			pstat = conn.prepareStatement(sql);
-			
-			pstat.setInt(1, seq);
-			pstat.executeUpdate();
-			
-			System.out.println("삭제 성공");
+			 pstat = conn.prepareStatement(sql);
+			 pstat.setString(1, id);
+			 pstat.setString(2, seq);
+		        
+			 pstat.executeUpdate();
 			
 		} catch (Exception e) {
-			System.out.println("MemberInfoDAO.delMyCard");
+			System.out.println("MemberInfoDTO: delMyCard");
 			e.printStackTrace();
 		}
 		
+		return null;
 	}
 
 

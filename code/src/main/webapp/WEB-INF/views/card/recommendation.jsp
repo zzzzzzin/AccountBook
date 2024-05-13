@@ -11,7 +11,7 @@
 <meta content="" name="description">
 
 <!-- Favicon -->
-<link href="img/favicon.ico" rel="icon">
+     <link type="image/png" sizes="16x16" rel="icon" href="/account/asset/images/icons8-돈-상자-16.png">
 
 <!-- Google Web Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -124,7 +124,7 @@
     }
     
     .flipster img{
-    	width: 300px;
+    	width: 150px;
     	height: auto;
     }
     #categorymodalbody{
@@ -179,7 +179,7 @@
 			<!-- Navbar End -->
 			<!-- Content End -->
 			<!-- fakecontent 안에서 작성 -->
-			<div id="content-total-style">
+			<div class="content-total-style">
 			<div class="content-header">
 					<div class="content-title-style">
 						<h3>카테고리별 추천</h3>
@@ -196,11 +196,15 @@
 									data-flip-category="${loop.index + 1}"
 									data-description="               
 <%-- 					                    <div>${loop.index + 1}</div> --%>
-					                    <div><span>카드 이름</span> ${dto.ciName}</div>
+										<div>
+					                    <div><span>카드명</span> ${dto.ciName}</div>
 					                    <div><span>카드사</span> ${dto.cardCompany}</div>
 					                    <div><span>설명</span> ${dto.explanation}</div>
+					                    </div>
+					                    <div>
 					                    <div><span>연회비</span> ${dto.annualFee}원</div>
 					                    <div><span>해외 겸용</span> ${dto.overseasUse}</div>
+					                    </div>
 					                ">
 									<img src="/account/asset/images/${dto.fileLink}">
 								</li>
@@ -233,12 +237,6 @@
                 <div class="modal-body" id="categorymodalbody">
 
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="button gray-btn"
-                        data-bs-dismiss="modal">취소</button>
-                    <button type="button" class="button purple-btn" id="btnEventProduce">완료
-                        </button>
                 </div>
             </div>
         </div>

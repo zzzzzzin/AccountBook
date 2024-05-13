@@ -4,7 +4,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>BudgetBuddy | 카드 사용</title>
+<title>BudgetBuddy | 
+<c:forEach items="${list}" var="dto">
+		<c:if test="${dto.alias != null}">
+		${dto.alias}
+		</c:if>
+		<c:if test="${dto.alias == null}">
+		${dto.cfName}
+		</c:if>
+</c:forEach>
+ 카드 사용 내역</title>
 
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -12,7 +21,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+         <link type="image/png" sizes="16x16" rel="icon" href="/account/asset/images/icons8-돈-상자-16.png">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -65,7 +74,18 @@
 
 	<div class="content-total-style">
 			<div class="content-header">
-					<div class="content-title-style"><h3>카드 사용</h3></div>
+					<div class="content-title-style">
+					<h3>
+							<c:forEach items="${list}" var="dto">
+								<c:if test="${dto.alias != null}">
+		${dto.alias}
+		</c:if>
+								<c:if test="${dto.alias == null}">
+		${dto.cfName}
+		</c:if>
+							</c:forEach>
+							카드 사용 내역
+					</h3></div>
 					
 					<form id="selectDateForm" method="GET">
 						<div class="date-range-total-box">
@@ -82,11 +102,18 @@
 					</form>
 				</div>
 
-	<div class="card-use-detail-box">
+<div class="card-use-detail-container-style">
+	<div class="card-image card-detail">
 		
 		<c:if test="${not empty list}">
-    			<img src="/account/asset/images/${list[0].fileLink}" id="cardDetailImgPlace">
+			<div class="card-detail">
+	           <P class="card-detail-image-wrapper">
+	           		<a></a>
+    				<img src="/account/asset/images/${list[0].fileLink}" id="cardDetailImgPlace">
+	            </P>
+             </div>
 		</c:if>
+		</div>
 
 <!-- transaction-table -->
 			<table class="table-style">
@@ -117,7 +144,6 @@
 				</thead>
 				<tbody id="transaction-list"></tbody>
 			</table>
-		</div>
 		</div>
 
 

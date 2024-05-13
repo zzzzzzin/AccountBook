@@ -4,13 +4,14 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>글 수정</title>
+  <title>BudgetBuddy | 게시글 수정</title>
+  <link type="image/png" sizes="16x16" rel="icon" href="/account/asset/images/icons8-돈-상자-16.png">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
 
   <!-- Favicon -->
-  <link href="img/favicon.ico" rel="icon">
+
 
   <!-- Google Web Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -46,28 +47,32 @@
       <!-- Navbar End -->
 
       <!-- Content Start -->
-      <div class="container">
-        <h2>글 수정</h2>
+      <div class="content-total-style board-write-container-style">
+        <div class="content-header">
+					<div class="content-title-style">
+						<h3>게시글 수정</h3>
+					</div>
+				</div>
+		<div>
         <form method="POST" action="/account/board/edit.do">
-          <input type="hidden" name="seq" value="${post.seq}">
+          <input type="hidden" name="seq" value="${post.seq}" >
           <div class="form-group">
             <label for="title">제목</label>
-            <input type="text" id="title" name="title" value="${post.title}" required>
+            <input type="text" id="title" name="title" value="${post.title}" required class="input-style-form">
           </div>
           <div class="form-group">
             <label for="content">내용</label>
-            <textarea id="content" name="content" required>${post.content}</textarea>
+            <textarea id="content" name="content" required class="input-style-form">${post.content}</textarea>
           </div>
           <div class="button-group">
-            <button type="submit">수정</button>
-            <button type="button" onclick="history.back();">취소</button>
+            <button type="submit" class="button purple-btn submit-btn-style">등록</button>
+            <button type="button"  class="button gray-btn submit-btn-style" onclick="history.back();">취소</button>
           </div>
         </form>
       </div>
+     </div>
       <!-- Content End -->
-
-      <!-- Back to Top -->
-      <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>    
+ 
     </div>
     <!-- Content End -->
   </div>

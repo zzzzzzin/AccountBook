@@ -121,7 +121,7 @@ public class NoticeBoard extends HttpServlet {
 		//페이지 리스트
 		while (!(loop > blockSize || n > totalPage)) {
 			if(n == nowPage) {
-				sb.append(String.format(" <a href='#!' style='color: #FC8E57;'>%d</a> ", n));
+				sb.append(String.format(" <a href='#!' class='paging-nowpage'>%d</a> ", n));
 			} else {
 				sb.append(String.format(" <a href='/account/board/noticeBoard.do?page=%d&column=%s&word=%s'>%d</a> ", n, column, word, n));
 			}
@@ -136,7 +136,6 @@ public class NoticeBoard extends HttpServlet {
 		} else {
 			sb.append(String.format(" <a href='/account/board/board/noticeBoard.do?page=%d&column=%s&word=%s'>[다음 %d페이지]</a> ", n, column, word, blockSize));
 		}
-
 		
 		req.setAttribute("noticeList", noticeList); // noticeList 객체를 요청 객체에 추가
 		req.setAttribute("map", map);		
@@ -144,6 +143,7 @@ public class NoticeBoard extends HttpServlet {
 		req.setAttribute("totalCount", totalCount);
 		req.setAttribute("totalPage", totalPage);
 		req.setAttribute("pagebar", sb.toString());
+		req.setAttribute("seqBoard", "1");
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/notice-board.jsp");
 		dispatcher.forward(req, resp);

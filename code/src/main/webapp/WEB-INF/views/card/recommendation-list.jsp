@@ -3,9 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
-<title>
-${selectedCategory} 카드 추천
-</title>
+<title>BudgetBuddy | ${selectedCategory} 카드 추천</title>
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -13,7 +11,7 @@ ${selectedCategory} 카드 추천
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+         <link type="image/png" sizes="16x16" rel="icon" href="/account/asset/images/icons8-돈-상자-16.png">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,11 +32,6 @@ ${selectedCategory} 카드 추천
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
-    .card-image img {
-        width: 30px;
-        height: 30px;
-        object-fit: cover;
-    }
 </style>
 <script type="module" src="chart.min.js"></script>
 <body>
@@ -70,27 +63,36 @@ ${selectedCategory} 카드 추천
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
         
-<div class="fakecontent">
-    <h2>선택된 카테고리: ${selectedCategory}</h2>
-    <div class="card-container">
+	<div class="content-total-style">
+    <div class="content-header">
+    	<div class="content-title-style">
+    		<h3>${selectedCategory} 카드 추천</h3>
+    	</div>
+	</div>
+    <div class="card-use-list">
         <c:choose>
             <c:when test="${empty list}">
                 <div class="card">
                     <div>선택된 카테고리에 해당하는 추천 카드가 없습니다.</div>
-                </div>
+                 
             </c:when>
             <c:otherwise>
+                <div class="card-recommendation-box">
                 <c:forEach items="${list}" var="dto" varStatus="loop">
-                    <div class="card">
-                        <div class="card-image">
-                                <img src="${pageContext.request.contextPath}/asset/images/${dto.fileLink}">
+                    <div class="box card-image">
+                        	<div class="recommendation-card-img">
+	                        	<p class="card-image-wrapper">
+	                                <a></a>
+	                                <img src="${pageContext.request.contextPath}/asset/images/${dto.fileLink}">
+	                             </p>
                             </div>
-                        <div class="card-details">
-                            <div class="card-name" >${dto.ciName}</div>
-                            <div class="card-company">${dto.cardCompany}</div>
-                        </div>
+                            <div class="card-recommendation-info-box" >
+								<h4>${dto.ciName}</h4>
+								<div class="card-company">${dto.cardCompany}</div>
+							</div>
                     </div>
                 </c:forEach>
+                </div>
             </c:otherwise>
         </c:choose>
     </div>
@@ -98,9 +100,6 @@ ${selectedCategory} 카드 추천
 
         <!-- fakecontent 끝 -->
         <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-        
-
     <!-- JavaScript Libraries -->
    
     <!-- Template Javascript -->

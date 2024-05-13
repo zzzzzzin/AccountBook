@@ -5,7 +5,8 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>자유게시판</title>
+    <title>BudgetBuddy | 자유 게시판</title>
+     <link type="image/png" sizes="16x16" rel="icon" href="/account/asset/images/icons8-돈-상자-16.png">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -25,12 +26,6 @@
     <!-- Libraries Stylesheet -->
 </head>
 <style>
-
-   #pagebar{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-	}
     
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
@@ -64,39 +59,36 @@
         <!-- Navbar End -->
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
+        <div class="content-total-style">
       	<section class="freeboard">
-        <div class="page-title">
-        	<div class="container">
-            	<h3>자유 게시판</h3>
-            </div>
-        </div>
-      
-    
-	    <!-- board seach area -->
-	    <div id="board-search">
-	      <div class="container">
-	        <div class="search-window">
-	          <form id="formSearch" method="GET" action="/account/board/freeBoard.do">
-	            <div class="search-wrap">              
-	              <select name="column">
-	                <option value="total">제목+내용</option>
-	                <option value="title">제목</option>
-	                <option value="content">내용</option>
-	              </select>
-	              <label for="search" class="blind">게시판 검색</label>
-	              <input id="search" type="search" name="word" placeholder="검색어를 입력해주세요." value="">
-	              <button type="submit" class="btn btn-dark">검색</button>	              			
-	            </div>
-	          </form>
-	        </div>
-	      </div>
-	    </div>
-    
+				<div class="content-header">
+					<div class="content-title-style">
+						<h3>자유 게시판</h3>
+					</div>
+					<div class="board-search-container">
+						<div>
+							<form id="formSearch" method="GET" action="/account/board/freeBoard.do">
+								<div class="board-search-wrap">
+									<select name="column">
+										<option value="total">제목+내용</option>
+										<option value="title">제목</option>
+										<option value="content">내용</option>
+									</select> <label for="search" class="blind">게시판 검색</label> <input
+										class="input-style-form board-search-input" id="search"
+										type="search" name="word" placeholder="검색어를 입력해주세요." value="">
+									<button type="submit"
+										class="button purple-btn board-search-btn">검색</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+
 	    <!-- board list area -->
 	    <div id="board-list">
-	        <div class="container">
-	            <table class="board-table">
-	                <thead>
+	        <div class="">
+	            <table class="table-style">
+	                <tbody>
 	                <tr>
 	                    <th scope="col" class="th-num">번호</th>
 	                    <th scope="col" class="th-title">제목</th>
@@ -105,8 +97,6 @@
 	                    <th scope="col" class="th-view">조회수</th>
 	                    <th scope="col" class="th-like">추천</th>
 	                </tr>
-	                </thead>
-	                <tbody>
 	                <c:if test="${freeList.size() == 0}">
 					    <tr>
 					    	<td></td>
@@ -120,7 +110,7 @@
 					<c:forEach items="${freeList}" var="free" varStatus="status">
 			                <tr>
 			                    <td>${status.count}</td>
-						        <td>
+						        <td class="blind-post-title-style">
 						            <c:choose>
 						                <c:when test="${free.blindCheck eq '1'}">
 						                    관리자에 의해 블라인드 처리 되었습니다.
@@ -141,17 +131,15 @@
 	            <!-- 페이지바 -->
 				<div id="pagebar">${pagebar}</div>
 	            <div class="write-btn">
-	                <a href="/account/board/write.do" class="btn btn-dark">글작성</a>
+	                <a href="/account/board/write.do?seqBoard=${seqBoard}" class="button purple-btn submit-btn-style bottom-btn-style">글작성</a>
 	            </div>
 	        </div>
 	    </div>
       
       	</section>
+      	</div>
 
         <!-- fakecontent 끝 -->
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-        
     	</div>
     </div>
 

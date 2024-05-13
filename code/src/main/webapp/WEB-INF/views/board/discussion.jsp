@@ -5,6 +5,7 @@
 <html>
 <head>
     <title>BudgetBuddy | 게시판</title>
+    <link type="image/png" sizes="16x16" rel="icon" href="/account/asset/images/icons8-돈-상자-16.png">
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
@@ -116,19 +117,21 @@
               <div class="post-header" id="maincontent">
                 <img class="user-image" src="/account/asset/images/${post.profileImg}" >
                 <div class="post-info-box">
-                  <div>${post.me_nickName != null ? post.me_nickName : post.ad_nickName}</div> 
-                  <div>${post.writeDate}</div>
+                  <div id="board-user-nickname-style">${post.me_nickName != null ? post.me_nickName : post.ad_nickName}</div> 
+                  <div>${post.writeDate}  <span>조회 ${post.viewCount}</span>
+                  
+					<div class="user-post-management-btn-box">
+	                 <!-- 로그인한 사용자와 게시글 작성자가 일치하는 경우에만 수정 버튼 표시 -->
+				    <c:if test="${not empty sessionScope.seqUser && sessionScope.seqUser == post.seqUser}">
+				      <span><a href="/account/board/edit.do?seq=${post.seq}">수정</a></span>
+				    </c:if>
+				    <c:if test="${not empty sessionScope.seqUser && (sessionScope.seqUser == post.seqUser || sessionScope.seqPriv == 3)}">
+				       <span class="delete-post" data-post-seq="${post.seq}">삭제</span>
+				    </c:if>          
+	              </div> 
+                  </div>
                 </div>
                 
-				<div class="user-post-management-btn-box">
-                 <!-- 로그인한 사용자와 게시글 작성자가 일치하는 경우에만 수정 버튼 표시 -->
-			    <c:if test="${not empty sessionScope.seqUser && sessionScope.seqUser == post.seqUser}">
-			      <span><a href="/account/board/edit.do?seq=${post.seq}">수정</a></span>
-			    </c:if>
-			    <c:if test="${not empty sessionScope.seqUser && (sessionScope.seqUser == post.seqUser || sessionScope.seqPriv == 3)}">
-			       <span class="delete-post" data-post-seq="${post.seq}">삭제</span>
-			    </c:if>          
-              </div> 
               </div>
               
               <div class="post-content" id="postmaincontent">
@@ -136,7 +139,7 @@
               </div>
               
               <div class="post-actions" id="postmaincontentreaction">
-              	<span id="like_button"><i class="material-icons">thumb_up</i><span id="post-like">${post.likeCount}</span></span>
+              	<div><span id="like_button"><i class="material-icons">thumb_up</i><span id="post-like">${post.likeCount}</span></span></div>
                 <span id="dislike_button"><i class="material-icons">thumb_down</i><span id="post-dislike">${post.dislikeCount}</span></span>
                 <span id="report_button"><i class="material-icons">report</i><span id="post-report">${post.reportCount}</span></span>
               </div> 
@@ -157,72 +160,96 @@
                         </c:otherwise>
                     </c:choose>
                     <div class="post-info-box">
-                    	<div>${comment.nickname}</div>
-                    	<div>${comment.writeDate}</div>
+                    	<div id="board-user-nickname-style">${comment.nickname}</div>
+                    	<div class="post-content">
+			                <div id="commentcontent">${comment.content}</div>
+			            </div>
+                    	<div class="comment-bottom-btn-area">
+								<div>${comment.writeDate}</div>
+								<div>
+									<span class="reply-toggle">답글</span>
+									<c:if
+										test="${not empty sessionScope.seqUser && sessionScope.seqUser == comment.seqUser}">
+										<span class="edit-comment" data-comment-seq="${comment.seq}">수정</span>
+									</c:if>
+									<c:if
+										test="${not empty sessionScope.seqUser && (sessionScope.seqUser == comment.seqUser || sessionScope.seqPriv == 3)}">
+										<span class="delete-comment" data-comment-seq="${comment.seq}">삭제</span>
+									</c:if>
+								</div>
+							</div>
                     </div>
                 </div>
-		<div class="post-actions-comment">
-		    <span><i class="material-icons">thumb_up</i> ${comment.likeCount}</span>
-		    <span><i class="material-icons">thumb_down</i> ${comment.dislikeCount}</span>
-		    <span class="reply-toggle">답글</span>
-		    <c:if test="${not empty sessionScope.seqUser && sessionScope.seqUser == comment.seqUser}">
-		        <span class="edit-comment" data-comment-seq="${comment.seq}">수정</span>
-		    </c:if>
-		<c:if test="${not empty sessionScope.seqUser && (sessionScope.seqUser == comment.seqUser || sessionScope.seqPriv == 3)}">
-		    <span class="delete-comment" data-comment-seq="${comment.seq}">삭제</span>
-		</c:if>
-		</div>
+			<div class="post-actions-comment">
+				<div>
+				    <span><i class="material-icons">thumb_up</i> ${comment.likeCount}</span>
+				    <span><i class="material-icons">thumb_down</i> ${comment.dislikeCount}</span>
+				</div>
+			</div>
             </div>
-            <div class="post-content">
+           <%--  <div class="post-content">
                 <div id="commentcontent">${comment.content}</div>
-            </div>
-			<!-- 답글 작성 폼 -->
+            </div> --%>
+
+
+							<!-- 답글 작성 폼 -->
 			<div class="comment-form reply-form" style="display: none;">
 			    <form onsubmit="return false;">
 			        <input type="hidden" name="seqComments" value="${comment.seq}">
 			        <input type="hidden" name="seqUser" value="${sessionScope.seqUser}">
 			        <input type="hidden" name="seqPost" value="${post.seq}">
-			        <textarea name="content" placeholder="답글을 입력하세요."></textarea>
-			        <button type="button" onclick="addReplyComment(this)" class="button purple-btn submit-btn-style">답글 등록</button>
+			        <textarea name="content" placeholder="내용을 입력하세요."></textarea>
+			        <button type="button" onclick="addReplyComment(this)" class="button purple-btn submit-btn-style">등록하기</button>
 			    </form>
 			</div>
             </div>
               <!-- 대댓글 시작 -->
               <c:forEach var="replyComment" items="${comment.replyComments}">
             <div class="comment-box comment-reply">
-                <div class="post-header" id="commentlevel1head">
+                <div class="board-user-info-box" id="commentlevel1head">
                     <div class="post-info" id="commentlevel1info">
                         <i class="material-icons" id="subcommentarrow">subdirectory_arrow_right</i>
                         <c:choose>
                             <c:when test="${not empty replyComment.profileImage}">
-                                <img class="user-image" src="/account/asset/images/${comment.profileImage}" alt="사용자 이미지">
+                                <img class="user-image" src="/account/asset/images/${replyComment.profileImage}" alt="사용자 이미지">
                             </c:when>
                             <c:otherwise>
-                                <img class="user-image" src="/account/asset/images/${comment.profileImage}" alt="기본 사용자 이미지">
+                                <img class="user-image" src="/account/asset/images/${replyComment.profileImage}" alt="기본 사용자 이미지">
                             </c:otherwise>
                         </c:choose>
                         
                         <div class="post-info-box">
-                    	<div>${replyComment.nickname}</div>
-                    	<div>${replyComment.writeDate}</div>
-                    	</div>
-    
-                    </div>
-				<div class="post-actions-comment">
-				    <span><i class="material-icons">thumb_up</i> ${comment.likeCount}</span>
-				    <span><i class="material-icons">thumb_down</i> ${comment.dislikeCount}</span>
-				    <span class="reply-toggle">답글</span>
-				    <c:if test="${sessionScope.seqUser eq replyComment.seqUser}">
-				<span class="edit-reply-comment" data-reply-comment-seq="${replyComment.seq}">수정</span>
-				</c:if>
-				<c:if test="${not empty sessionScope.seqUser && (sessionScope.seqUser == replyComment.seqUser || sessionScope.seqPriv == 3)}">
-				    <span class="delete-reply-comment" data-reply-comment-seq="${replyComment.seq}">삭제</span>
-				</c:if>
-				</div>
-                </div>
-                <div class="post-content">
+	                    	<div id="board-user-nickname-style">${replyComment.nickname}</div>
+							<div class="post-content">
+				                <div id="commentcontent">${replyComment.content}</div>
+				            </div>
+	                    	<div class="comment-bottom-btn-area">
+							<div>${replyComment.writeDate}</div>
+	                    	<div>
+<!-- 								<span class="reply-toggle">답글</span> -->
+								<c:if test="${sessionScope.seqUser eq replyComment.seqUser}">
+									<span class="edit-reply-comment" data-reply-comment-seq="${replyComment.seq}">수정</span>
+								</c:if>
+								<c:if test="${not empty sessionScope.seqUser && (sessionScope.seqUser == replyComment.seqUser || sessionScope.seqPriv == 3)}">
+									<span class="delete-reply-comment" data-reply-comment-seq="${replyComment.seq}">삭제</span>
+								</c:if>
+							</div>
+						</div>
+						 </div>
+						</div>
+						
+						<div class="post-actions-comment">
+							<div>
+							    <span><i class="material-icons">thumb_up</i> ${comment.likeCount}</span>
+							    <span><i class="material-icons">thumb_down</i> ${comment.dislikeCount}</span>
+							</div>
+						</div>
+					</div>
+						
+
+<%--                 <div class="post-content">
                     <div id="commentcontent">${replyComment.content}</div>
-                </div>
+                </div> --%>
             </div>
         </c:forEach>
               <!-- 대댓글 끝 -->
@@ -230,15 +257,16 @@
 </div>
 <input type="hidden" name="seqUser" value="${not empty sessionScope.seqUser ? sessionScope.seqUser : ''}">
 <!-- 댓글 쓰기 시작 -->
+<c:if test="${not empty sessionScope.seqUser}">
 <div class="comment-form">
     <form id="commentForm">
         <input type="hidden" name="seqPost" value="${param.seq}">
         <input type="hidden" name="seqUser" value="${sessionScope.seqUser}">
-        <textarea name="commentContent" id="commentContent" placeholder="댓글을 입력하세요." required></textarea>
-        <button type="submit" class="button purple-btn submit-btn-style">댓글 등록</button>
+        <textarea name="commentContent" id="commentContent" placeholder="내용을 입력하세요." required></textarea>
+        <button type="submit" class="button purple-btn submit-btn-style">등록하기</button>
     </form>
 </div>
-
+</c:if>
 <!-- 댓글 쓰기 끝 -->
            
           </div>
@@ -254,8 +282,10 @@
     <form onsubmit="return false;">
         <input type="hidden" name="commentSeq" value="${comment.seq}">
         <textarea name="editedContent">${comment.content}</textarea>
-        <button type="button" onclick="updateComment(this)" class="button purple-btn submit-btn-style">저장</button>
-        <button type="button" onclick="cancelEdit(this)" class="button purple-btn submit-btn-style">취소</button>
+        <div class="comment-edit-btn-container">
+	        <button type="button" onclick="updateComment(this)" class="button purple-btn submit-btn-style">등록</button>
+	        <button type="button" onclick="cancelEdit(this)" class="button gray-btn submit-btn-style">취소</button>
+        </div>
     </form>
 </div>
     <!-- JavaScript Libraries -->
@@ -267,9 +297,11 @@
 <form onsubmit="return false;">
     <input type="hidden" name="replyCommentSeq" value="${replyComment.seq}">
     <textarea name="editedContent">${replyComment.content}</textarea>
-    <button type="button" onclick="updateReplyComment(this)" class="button purple-btn submit-btn-style">저장</button>
-    <button type="button" onclick="cancelReplyEdit(this)" class="button purple-btn submit-btn-style">취소</button>
-</form>
+    <div class="comment-edit-btn-container">
+	    <button type="button" onclick="updateReplyComment(this)" class="button purple-btn submit-btn-style">등록</button>
+	    <button type="button" onclick="cancelReplyEdit(this)" class="button gray-btn submit-btn-style">취소</button>
+    </div>
+</form>s
 </div>
    
     <!-- Template Javascript -->
@@ -349,8 +381,10 @@ $(document).on('click', '.edit-reply-comment', function() {
                    '<form onsubmit="return false;">' +
                    '<input type="hidden" name="replyCommentSeq" value="' + replyCommentSeq + '">' +
                    '<textarea name="editedContent">' + replyCommentContent + '</textarea>' +
+                   '<div class="comment-edit-btn-container">' +
                    '<button type="button" onclick="updateReplyComment(this)" class="button purple-btn submit-btn-style">저장</button>' +
-                   '<button type="button" onclick="cancelReplyEdit(this)" class="button purple-btn submit-btn-style">취소</button>' +
+                   '<button type="button" onclick="cancelReplyEdit(this)" class="button gray-btn submit-btn-style">취소</button>' +
+                   '</div>'+
                    '</form>' +
                    '</div>';
     commentBox.find('.post-content').hide().after(editForm);
@@ -374,8 +408,10 @@ $(document).on('click', '.edit-reply-comment', function() {
                    '<form onsubmit="return false;">' +
                    '<input type="hidden" name="replyCommentSeq" value="' + replyCommentSeq + '">' +
                    '<textarea name="editedContent">' + replyCommentContent + '</textarea>' +
+                   '<div class="comment-edit-btn-container">' +
                    '<button type="button" onclick="updateReplyComment(this)" class="button purple-btn submit-btn-style">저장</button>' +
-                   '<button type="button" onclick="cancelReplyEdit(this)" class="button purple-btn submit-btn-style">취소</button>' +
+                   '<button type="button" onclick="cancelReplyEdit(this)" class="button gray-btn submit-btn-style">취소</button>' +
+                   '</div>'+
                    '</form>' +
                    '</div>';
     commentBox.find('.post-content').hide().after(editForm);
@@ -507,8 +543,10 @@ $(document).on('click', '.edit-comment', function() {
                    '<form onsubmit="return false;">' +
                    '<input type="hidden" name="commentSeq" value="' + commentSeq + '">' +
                    '<textarea name="editedContent">' + commentContent + '</textarea>' +
+                   '<div class="comment-edit-btn-container">' +
                    '<button type="button" onclick="updateComment(this)" class="button purple-btn submit-btn-style">저장</button>' +
-                   '<button type="button" onclick="cancelEdit(this)" class="button purple-btn submit-btn-style">취소</button>' +
+                   '<button type="button" onclick="cancelEdit(this)" class="button gray-btn submit-btn-style">취소</button>' +
+                   '</div>' +
                    '</form>' +
                    '</div>';
     commentBox.find('.post-content').hide().after(editForm);

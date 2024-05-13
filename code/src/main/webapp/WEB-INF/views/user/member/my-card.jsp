@@ -4,14 +4,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>BudgetBuddy | 나의 카드 관리</title>
+
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="" name="keywords">
 <meta content="" name="description">
 
 <!-- Favicon -->
-<link href="img/favicon.ico" rel="icon">
-
+     <link type="image/png" sizes="16x16" rel="icon" href="/account/asset/images/icons8-돈-상자-16.png">
 <!-- Google Web Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -26,18 +27,46 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
 	rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <!-- Libraries Stylesheet -->
 </head>
 
 <style>
+
+.myCardImg {
+    background-color: lightgrey;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.myCardImg>img {
+    max-width: 100px;
+    max-height: 100px;
+    top: 10%;
+    right: 10%;
+}
+
+.moreMyCard{
+	display: flex;
+}
+
+.myCardMoreNum {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+
+
+
 <%@ include file="/WEB-INF/views/inc/asset.jsp" %>
 </style>
-<title>
-나의 카드
-</title>
-
-
 <body>
 
 	<div class="container-xxl position-relative bg-white d-flex p-0">
@@ -69,13 +98,25 @@
 			<!-- Navbar End -->
 			<!-- Content End -->
 			<!-- fakecontent 안에서 작성 -->
-			<div class="fakecontent">
+			<div class="content-total-style">
+				<div class="content-header">
+						<div class="content-title-style">
+							<h3>나의 카드 관리</h3>
+						</div>
+						<div class="addMyCard">
+						<button type="submit"
+							onclick="location.href='/account/user/member/add-my-card.do';" class="button purple-btn submit-btn-style">추가하기</button>
+					</div>
+				</div>
 				<div class="myCards">
 				<c:forEach items="${clist}" var="dto">
-					<div class="myCard">
-						<div class="myCardImg">
-							<img src="/account/asset/images/${dto.fileLink}" alt="">
-						</div>
+					<div class="box ard-image myCard">
+							<div class="recommendation-card-img">
+	                        	<p class="card-image-wrapper">
+	                                <a></a>
+									 <img src="/account/asset/images/${dto.fileLink}" alt="">
+	                             </p>
+                            </div>
 						<div class="myCard-detail">
 							<div class="myCardName">
 								<div>카드명</div>
@@ -91,13 +132,14 @@
 							</div>
 						</div>
 						<div class="myCardBtn">
-							<button class="material-symbols-outlined">expand_more</button>
+							<button id="expandbtn" class="purple-btn"><i class="fa-solid fa-angle-down"></i></button>
 						</div>
 					</div>
-					<div class="moreMyCard">
+					<div class="box moreMyCard">
+						<!-- 카드 번호, 카드사, 카드명, 별칭, 유효기간 -->
 						<div class="myCardMoreNum">
 							<div>카드 번호</div>
-							<div>${dto.cardNumber}</div>
+							 <div>${dto.cardNumber}</div>
 						</div>
 						<div class="myCardMoreNoneNum">
 							<div class="myCardMoreCompany">
@@ -113,18 +155,16 @@
 								<div>${dto.alias}</div>
 							</div>
 							<div class="myCardMorePeriod">
-								<div>유효기간</div>
+								<div>유효 기간</div>
 								<div>${dto.validity}</div>
 							</div>
-							<button type="submit" data-seq="${dto.seqMyCard}" class="gray-btn button submit-btn-style" id="delBtn">삭제</button>
+
+							<button type="button" class="dark-black-btn button submit-btn-style delBtnMyPage"data-seq="${dto.seq}">삭제</button>
+
 						</div>
 					</div>
 					</c:forEach>
-					
-					<div class="addMyCard">
-						<button type="submit"
-							onclick="location.href='/account/user/member/add-my-card.do';">추가하기</button>
-					</div>
+
 				</div>
 			</div>
 
@@ -132,10 +172,6 @@
 
 
 			<!-- fakecontent 끝 -->
-			<!-- Back to Top -->
-			<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i
-				class="bi bi-arrow-up"></i></a>
-
 		</div>
 	</div>
 
@@ -146,22 +182,10 @@
 		src="${pageContext.request.contextPath}/asset/css/temp/js/main.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 	<script>
-	
-	
 
-    document.addEventListener('DOMContentLoaded', function() {
-    const sidebarToggler = document.getElementById('sidebar-toggler');
-    const sidebar = document.querySelector('.sidebar');
-    const content = document.querySelector('.content');
-
-        sidebarToggler.addEventListener('click', function() {
-        sidebar.classList.toggle('hidden');
-        content.classList.toggle('expanded');
-        });
-    });
     
     document.addEventListener('DOMContentLoaded', function () {
-        const expandButtons = document.querySelectorAll('.material-symbols-outlined');
+        const expandButtons = document.querySelectorAll('#expandbtn');
         const moreCards = document.querySelectorAll('.moreMyCard');
 
         // 초기에는 모든 moreMyCard를 숨깁니다.
@@ -172,12 +196,16 @@
         // 각각의 버튼에 대해 이벤트 리스너를 추가합니다.
         expandButtons.forEach((button, index) => {
             button.addEventListener('click', function () {
+            	const card = this.closest('.myCard');
                 if (moreCards[index].style.display === 'none') {
                     moreCards[index].style.display = 'block';
-                    button.textContent = 'expand_less';
+                    card.style.backgroundColor= '#F5ECFF';
+                    
+                    button.innerHTML = '<i class="fa-solid fa-chevron-up"></i>';
                 } else {
                     moreCards[index].style.display = 'none';
-                    button.textContent = 'expand_more';
+                    button.innerHTML = '<i class="fa-solid fa-angle-down"></i>';
+                    card.style.backgroundColor= '#FFFFFF';
                 }
             });
         });
@@ -191,32 +219,29 @@
         });
     });
     
-    document.addEventListener('DOMContentLoaded', function() {
-        const delButtons = document.querySelectorAll('.delBtn');
-        
-        delButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const seq = button.dataset.seq;
-                
-                deleteCard(seq);
+    $(document).ready(function() {
+        // 삭제 버튼 클릭 시 처리
+        $(".delBtnMyPage").click(function() {
+            var seq = $(this).data('seq'); // 삭제할 카드의 시퀀스 번호를 가져옵니다.
+            
+            var formData = {
+                seq: seq
+            };
+
+            // AJAX 요청을 보냅니다.
+            $.ajax({
+                type: "POST",
+                url: "/account/user/member/my-card.do",
+                data: formData,
+                success: function(response) {
+                    console.log("Server response: ", response);
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error occurred: ", error);
+                }
             });
         });
     });
-
-    function deleteCard(seq) {
-        $.ajax({
-            type: "POST",
-            url: "/account/user/member/my-card.do",
-            data: { seq: seq },
-            success: function(response) {
-                console.log("카드 삭제 요청이 성공했습니다.");
-                location.reload();
-            },
-            error: function(xhr, status, error) {
-                console.error("카드 삭제 요청 중 오류가 발생했습니다.");
-            }
-        });
-    }
 
     </script>
 </body>

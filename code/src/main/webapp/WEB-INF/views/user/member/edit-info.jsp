@@ -4,13 +4,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>BudgetBuddy | 개인정보 수정</title>
+
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+         <link type="image/png" sizes="16x16" rel="icon" href="/account/asset/images/icons8-돈-상자-16.png">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,127 +29,6 @@
 </head>
 <style>
 
-
-.user-profile-mypage {
-  width:90%;
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  background-color: #f3f6f9;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1); 
-  border-radius: 10px;
-}
-.user-profile-mypage-img {
-            min-width: 200px;
-            min-height: 200px;
-            border-radius: 50%;
-            background-color: #ddd;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 12px;
-            color: #666;
-            margin: 50px;
-            border: 1px solid black;
-            
-        }
-
-
-
-.left{
-  width: 50%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 5px;
-  
-}
-.right{
-  width: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-#userinfo {
-  display: flex;
-  flex-direction: column;
-  width: 100%; 
-  max-width: 600px; 
-  padding: 20px;
-  background: #f3f6f9; 
-  border-radius: 8px; 
-}
-
-.userinfo-content {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between; 
-  align-items: baseline;
-  margin-bottom: 10px; 
-  padding: 10px; 
-  border-bottom: 1px solid #ddd; 
-  
-}
-
-.userinfo.left {
-  flex: 1;
-  text-align: left;
-  font-weight: bold;
-  padding: 10px 20px; 
-  background-color: #e8e8e8; 
-  border-right: 2px solid #ccc; 
-  box-shadow: inset 0 0 5px rgba(0,0,0,0.1); 
-  margin-right: 10px; 
-}
-
-.userinfo.right {
-  flex: 1.5; 
-  text-align: right;
-  font-weight: normal;
-  padding: 10px 20px; 
-  color: #555;
-  background-color: #fff;
-  border-left: none;
-}
-
-/* Enhances the last item by removing the bottom border */
-.userinfo-content:last-child {
-  border-bottom: none;
-}
-
-#picture{
-  width: 100%;
-  border: 1px solid black;
-}
-
-.editcontrol{
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  border: none;
-  width: 100%;
-}
-
-#submit-button{
-  width: 100%;
-  background-color: #d9d9d9;
-  color: black;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-#submit-button:hover{
-  box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
-  border-radius: 5px;
-}
-
-    
     <%@include file="/WEB-INF/views/inc/asset.jsp"%>
       
 </style>
@@ -180,35 +61,30 @@
         <!-- Content End -->
         <!-- fakecontent 안에서 작성 -->
         <div class="content-total-style">
+        	<div class="content-header">
+					<div class="content-title-style">
+						<h3>개인정보 수정</h3>
+					</div>
+			</div>
         <div class="mypage-box-container-style">
-          <div class="user-profile-mypage">
-              <div class="user-profile-mypage-img">
-                  개인 프로필 이미지
-              </div>
-              <form action="/account/user/member/edit-info.do" method="POST" id="userinfo">
-                <div class="userinfo-content">
-                    <div class="userinfo left">이름</div>
-                    <div class="userinfo right"><input class="editcontrol" type="text" name="name" value="${dto.name}"></div>
-                </div>
-                <div class="userinfo-content">
-                    <div class="userinfo left">닉네임</div>
-                    <div class="userinfo right"><input class="editcontrol" type="text" name="nickname" value="${dto.nickname}"></div>
-                </div>
-                <div class="userinfo-content">
-                    <div class="userinfo left">전화번호</div>
-                    <div class="userinfo right"><input class="editcontrol" type="text" name="phonenumber" value="${dto.phoneNumber}"></div>
-                </div>
-                <div class="userinfo-content">
-                    <div class="userinfo left">주민등록번호</div>
-                    <div class="userinfo right" id="ssn">
-                      <input class="editcontrol" type="text" name="ssn" value="${dto.ssn}" readonly>
-                    </div>
-                </div>
-                <div class="userinfo-content">
-                    <button type="submit" id="submit-button" >수정</button>
-              </div>
-              </form>
-      </div>
+              
+        	<form action="/account/user/member/edit-info.do" method="POST" id="userinfo">
+          		<div class="user-info-container-style">
+	              <div class="user-profile-mypage-img">
+	                  <img alt="" src="/account/asset/images/${dto.fileLink}">
+	              </div>
+	              <div class="user-info-input-row-style">
+	                    <div class="form-group"><label>이름</label><input class="input-style-form" type="text" name="name" value="${dto.name}"></div>
+	               </div>
+	              <div class="user-info-input-row-style">
+	                    <div class="form-group"><label>닉네임</label><input class="input-style-form" type="text" name="nickname" value="${dto.nickname}"></div>
+	               </div>
+	              <div class="user-info-input-row-style">
+	                    <div class="form-group"><label>전화번호</label><input class="input-style-form" type="text" name="phonenumber" value="${dto.phoneNumber}"></div>
+	               </div>
+               <button type="submit" class="button purple-btn info-submit-long-btn submit-btn-style" id="submit-button">수정하기</button>
+      		</div>
+   		</form>
     </div>
   </div>
 
@@ -217,7 +93,6 @@
         
     </div>
     </div>
-</div>
     <!-- JavaScript Libraries -->
     <script>
     
