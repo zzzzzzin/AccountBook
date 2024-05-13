@@ -1,7 +1,5 @@
 package com.project.accountbook.board.post.model;
 
-import java.util.Date;
-
 import lombok.Data;
 
 /*
