@@ -2,16 +2,9 @@ package com.project.accountbook.account.model;
 
 import lombok.Data;
 
-/*
-tblAccInfo
-tblAcc
-tblPurchaseWishList
-tblFixedDepositWithdrawalCheck
-tblAccCategoryList
-tblReasonChangeCategory
-tblCardInformation
-tblMyCard
-*/
+/**
+ * 가계부 내용을 담는 DTO 클래스입니다.
+ */
 @Data
 public class AccountInfoDTO {
 	
@@ -59,9 +52,7 @@ public class AccountInfoDTO {
 	private String link;
 	private String pubDate;
 	private String description;
-//	private String media;
-		
-	
+			
 	//변동 사유 카테고리
 	private String seqReasonsChangeList;
 	private String seqMyCard;
@@ -72,7 +63,6 @@ public class AccountInfoDTO {
 	
 	//나의 카드
 	private String alias;
-
 	private String paymentMethod;
 	private String cardNumber;		
 }

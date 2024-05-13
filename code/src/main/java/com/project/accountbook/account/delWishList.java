@@ -19,9 +19,20 @@ import org.json.simple.JSONObject;
 import com.project.accountbook.account.model.AccountInfoDTO;
 import com.project.accountbook.account.repository.AccountDAO;
 
+/**
+ * 구매 위시 항목을 삭제하는 서블릿 클래스입니다.
+ */
 @WebServlet("/account/delwishlist.do")
 public class delWishList extends HttpServlet {
 
+	 /**
+     * POST 요청을 처리하여 구매 위시 항목을 삭제합니다.
+     *
+     * @param req  HTTP 요청 객체
+     * @param resp HTTP 응답 객체
+     * @throws ServletException 서블릿 예외
+     * @throws IOException      입출력 예외
+     */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -47,9 +58,6 @@ public class delWishList extends HttpServlet {
 		
 		System.out.println(indicate);
 		
-		
 	}
-
-
 
 }

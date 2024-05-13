@@ -18,9 +18,20 @@ import org.json.simple.JSONObject;
 import com.project.accountbook.account.model.AccountInfoDTO;
 import com.project.accountbook.account.repository.AccountDAO;
 
+/**
+ * 회원의 가계부 정보를 관리하는 서블릿 클래스입니다.
+ */
 @WebServlet("/account/calendar.do")
 public class Account extends HttpServlet {
 
+	/**
+     * GET 요청을 처리하여 가계부 캘린더 정보를 가져오고, 화면에 표시합니다.
+     *
+     * @param req  HTTP 요청 객체
+     * @param resp HTTP 응답 객체
+     * @throws ServletException 서블릿 예외
+     * @throws IOException      입출력 예외
+     */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -88,6 +99,14 @@ public class Account extends HttpServlet {
 
 	}
 
+	/**
+     * POST 요청을 처리하여 가계부 이벤트를 추가하고, 관련 작업을 수행합니다.
+     *
+     * @param req  HTTP 요청 객체
+     * @param resp HTTP 응답 객체
+     * @throws ServletException 서블릿 예외
+     * @throws IOException      입출력 예외
+     */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -184,8 +203,7 @@ public class Account extends HttpServlet {
 		  
 		  System.out.println("tblrcc insert : "+runcheck);
 		  
-		  System.out.println("tblaccinfo insert : "+indicate);
-		 
+		  System.out.println("tblaccinfo insert : "+indicate); 
 
 	}
 

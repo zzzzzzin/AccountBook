@@ -19,9 +19,20 @@ import org.json.simple.JSONObject;
 import com.project.accountbook.account.model.AccountInfoDTO;
 import com.project.accountbook.account.repository.AccountDAO;
 
+/**
+ * 회원의 구매 위시 항목을 처리하는 서블릿 클래스입니다.
+ */
 @WebServlet("/account/wishlist.do")
 public class getWishlist extends HttpServlet {
 
+	 /**
+     * GET 요청을 처리하여 회원의 구매 위시 항목을 가져와서 JSON 형식으로 응답합니다.
+     *
+     * @param req  HTTP 요청 객체
+     * @param resp HTTP 응답 객체
+     * @throws ServletException 서블릿 예외
+     * @throws IOException      입출력 예외
+     */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -58,6 +69,14 @@ public class getWishlist extends HttpServlet {
 
 	}
 	
+	 /**
+     * POST 요청을 처리하여 회원의 구매 위시 항목을 추가합니다.
+     *
+     * @param req  HTTP 요청 객체
+     * @param resp HTTP 응답 객체
+     * @throws ServletException 서블릿 예외
+     * @throws IOException      입출력 예외
+     */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -79,10 +98,7 @@ public class getWishlist extends HttpServlet {
 		int indicate = dao.addlist(dto);
 		
 		System.out.println(indicate);
-		
-		
+
 	}
-
-
 
 }
