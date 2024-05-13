@@ -129,19 +129,14 @@ public class AccountDAO {
 			String period = map.get("period");
 			
 			String sql = "select\r\n"
-					+ "sum(ai.price) totalPrice,\r\n"
-					+ "ac.name acName, --카테고리\r\n"
-					+ "mc.idMember idMember\r\n"
-					+ "from tblAccInfo ai\r\n"
-					+ "    inner join tblAccCategoryList acl\r\n"
-					+ "        on acl.seqAccInfo = ai.seq\r\n"
-					+ "            inner join tblAccCategory ac\r\n"
-					+ "                on ac.seq = acl.seqAccCategory\r\n"
-					+ "                    inner join tblReasonChangeCategory rcc \r\n"
-					+ "                        on rcc.seq = ai.seqReasonChangeCategory\r\n"
-					+ "                            inner join tblMyCard mc\r\n"
-					+ "                                on mc.seq = rcc.seqMyCard\r\n"
-					+ "                                    where mc.idMember = ?\r\n";
+					+ "    sum(price) totalPrice,\r\n"
+					+ "    ac.NAME acName\r\n"
+					+ "from tblaccinfo ai\r\n"
+					+ "    inner join TBLACCCATEGORYLIST acl on ai.SEQ = acl.SEQACCINFO\r\n"
+					+ "    inner join TBLACCCATEGORY ac on acl.SEQACCCATEGORY = ac.SEQ\r\n"
+					+ "    inner join TBLACC a on ai.SEQACC = a.SEQ\r\n"
+					+ "    inner join TBLMEMBER me on a.IDMEMBER = me.ID\r\n"
+					+ "    where IDMEMBER = ?";
 			
 			
 			if (period.equals("day")) {
@@ -158,7 +153,8 @@ public class AccountDAO {
 
 			}
 			
-			 sql += "and ai.seqDepositWithdrawalStatus = 2 group by ac.name, mc.idMember";
+			 sql += "and ai.SEQDEPOSITWITHDRAWALSTATUS = 2\r\n"
+			 		+ "    group by ac.NAME";
 			
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, id);
@@ -193,19 +189,14 @@ public class AccountDAO {
 			String period = map.get("period");
 			
 			String sql = "select\r\n"
-					+ "sum(ai.price) totalPrice,\r\n"
-					+ "ac.name acName, --카테고리\r\n"
-					+ "mc.idMember idMember\r\n"
-					+ "from tblAccInfo ai\r\n"
-					+ "    inner join tblAccCategoryList acl\r\n"
-					+ "        on acl.seqAccInfo = ai.seq\r\n"
-					+ "            inner join tblAccCategory ac\r\n"
-					+ "                on ac.seq = acl.seqAccCategory\r\n"
-					+ "                    inner join tblReasonChangeCategory rcc \r\n"
-					+ "                        on rcc.seq = ai.seqReasonChangeCategory\r\n"
-					+ "                            inner join tblMyCard mc\r\n"
-					+ "                                on mc.seq = rcc.seqMyCard\r\n"
-					+ "                                    where mc.idMember = ?\r\n";
+					+ "    sum(price) totalPrice,\r\n"
+					+ "    ac.NAME acName\r\n"
+					+ "from tblaccinfo ai\r\n"
+					+ "    inner join TBLACCCATEGORYLIST acl on ai.SEQ = acl.SEQACCINFO\r\n"
+					+ "    inner join TBLACCCATEGORY ac on acl.SEQACCCATEGORY = ac.SEQ\r\n"
+					+ "    inner join TBLACC a on ai.SEQACC = a.SEQ\r\n"
+					+ "    inner join TBLMEMBER me on a.IDMEMBER = me.ID\r\n"
+					+ "    where IDMEMBER = ?";
 			
 			
 			if (period.equals("day")) {
@@ -223,8 +214,8 @@ public class AccountDAO {
 
 			}
 			
-			 sql += "and ai.seqDepositWithdrawalStatus = 2 --입출금 상태\r\n"
-			 		+ "                                                            group by ac.name, mc.idMember";
+			 sql += "and ai.SEQDEPOSITWITHDRAWALSTATUS = 2\r\n"
+			 		+ "    group by ac.NAME";
 			
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, id);
@@ -803,7 +794,7 @@ public class AccountDAO {
 //		return null;
 //	}
 	
-	public ArrayList search(String category) {
+	public ArrayList<AccountInfoDTO> search(String category) {
 		UserDAO dao = new UserDAO();
 		HashMap<String, String> apiInfoMap = dao.getAPIKey("2");
 

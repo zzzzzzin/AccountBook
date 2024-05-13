@@ -946,8 +946,10 @@ comment-edit-form textarea,
     width: 700px;
 }
 
+
+
 #commentForm,
-#postpagecontent > div.comments > div:nth-child(1) > div.comment-form.reply-form > form {
+#postpagecontent > div.comments > div > div.comment-form.reply-form > form {
 	display: flex;
     flex-direction: column;
     align-items: flex-end;

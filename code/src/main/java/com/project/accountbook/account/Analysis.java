@@ -45,8 +45,6 @@ public class Analysis extends HttpServlet {
 		HashMap<String, String> challengeInfoMap = dao.getChallenge(id);
 		HashMap<String, String> categoryUsageMap = dao.getComparisonCategoryUsage(id);
 		
-//		HashMap<String, String> apiInfoMap = userDao.getAPIKey("2"); //뉴스 api id, key
-//		AccountInfoDTO dto = 
 		ArrayList<AccountInfoDTO> newsList =  dao.search(categoryUsageMap.get("acName"));
 		
 		req.setAttribute("nList", nList);
