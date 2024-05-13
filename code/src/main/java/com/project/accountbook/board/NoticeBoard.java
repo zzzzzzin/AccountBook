@@ -180,6 +180,7 @@ public class NoticeBoard extends HttpServlet {
 
 		
 		if(postcheck == false) {
+			reportcheck = true;
 			if(type.equals("like")) {	
 				dao.like(seq);
 				postcookie = new Cookie("postSeq"+seq, seq);
