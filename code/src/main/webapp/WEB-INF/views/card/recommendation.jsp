@@ -1015,10 +1015,24 @@ flipContainer.flipster({
 
 
     // 초기 설명 표시
-    var initialItem = flipContainer.flipster('current');
-    var initialDescription = $(initialItem).data('description');
-    $('#description').text(initialDescription);
+	
+var initialItem = flipContainer.flipster('current');
+var initialDescription = $(initialItem).data('description');
 
+if (initialDescription) {
+    $('#description').html(initialDescription);
+} else {
+    $('#description').html(`
+            <div>
+    		<div>저희 카드 추천 프로그램은</div> <span>회원님의 소비 패턴과 라이프스타일을 분석하여 가장 적합한 카드를 추천해 드립니다.</span>
+    		<div>회원님의 연령대, 직업, 월 평균 지출액, 주요 소비 카테고리 등을 종합적으로 고려하여</div> <span>최적의 혜택을 제공하는 카드를 선별했습니다.</span>
+    		<div>추천된 카드 중에서 마음에 드는 카드를 클릭하시면</div> <span>해당 카드의 상세 정보를 확인하실 수 있습니다.</span>
+    		<div>연회비, 할인 및 적립 혜택, 부가서비스 등을 꼼꼼히 비교해 보시고</div> <span>회원님께 가장 알맞은 카드를 선택해 보세요.</span>
+    		<div>카드 발급을 통해</div> <span>똑똑한 소비생활을 즐기실 수 있게 되기를 바랍니다.</span>
+    		<div>감사합니다.</div>
+    		</div>
+    `);
+}
     </script>
 </body>
 
