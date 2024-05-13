@@ -131,8 +131,8 @@ public class BoardDAO {
 				dto.setReportCount(rs.getInt("reportcount"));
 				dto.setSecretCheck(rs.getInt("secretcheck"));
 				dto.setBlindCheck(rs.getInt("blindcheck"));
-				dto.setad_nickName(rs.getString("ad_nickname"));
-				dto.setme_nickName(rs.getString("me_nickname"));
+				dto.setAd_nickName(rs.getString("ad_nickname"));
+				dto.setMe_nickName(rs.getString("me_nickname"));
 				dto.setId(rs.getString("id"));
 				
 				dto.setSeqPost(rs.getString("seqpost"));
@@ -143,10 +143,10 @@ public class BoardDAO {
 			
 			String searchnic;
 			
-			if(dto.getme_nickName()==null) {
-				searchnic = dto.getad_nickName();
+			if(dto.getMe_nickName()==null) {
+				searchnic = dto.getAd_nickName();
 			}else {
-				searchnic = dto.getme_nickName();
+				searchnic = dto.getMe_nickName();
 			}
 			
 			sql = "select FILELINK as profileImg from TBLPROFILEIMG where seq = (select SEQPROFILEIMG from tblmember where nickname = ?)";
@@ -282,8 +282,8 @@ public class BoardDAO {
 				dto.setReportCount(rs.getInt("reportcount"));
 				dto.setSecretCheck(rs.getInt("secretcheck"));
 				dto.setBlindCheck(rs.getInt("blindcheck"));
-				dto.setad_nickName(rs.getString("ad_nickname"));
-				dto.setme_nickName(rs.getString("me_nickname"));
+				dto.setAd_nickName(rs.getString("ad_nickname"));
+				dto.setMe_nickName(rs.getString("me_nickname"));
 				dto.setId(rs.getString("id"));
 				dto.setSeqUser(rs.getString("seqUser"));
 				dto.setSecretCheck(rs.getInt("secretcheck"));
@@ -356,8 +356,8 @@ public class BoardDAO {
 				dto.setReportCount(rs.getInt("reportcount"));
 				dto.setSecretCheck(rs.getInt("secretcheck"));
 				dto.setBlindCheck(rs.getInt("blindcheck"));
-				dto.setad_nickName(rs.getString("ad_nickname"));
-				dto.setme_nickName(rs.getString("me_nickname"));
+				dto.setAd_nickName(rs.getString("ad_nickname"));
+				dto.setMe_nickName(rs.getString("me_nickname"));
 				
 				dto.setSeqPost(rs.getString("seqpost"));
 				dto.setFileName(rs.getString("filename"));
@@ -497,8 +497,8 @@ public class BoardDAO {
 				dto.setReportCount(rs.getInt("reportcount"));
 				dto.setSecretCheck(rs.getInt("secretcheck"));
 				dto.setBlindCheck(rs.getInt("blindcheck"));
-				dto.setad_nickName(rs.getString("ad_nickname"));
-				dto.setme_nickName(rs.getString("me_nickname"));
+				dto.setAd_nickName(rs.getString("ad_nickname"));
+				dto.setMe_nickName(rs.getString("me_nickname"));
 				
 				dto.setSeqPost(rs.getString("seqpost"));
 				dto.setFileName(rs.getString("filename"));
