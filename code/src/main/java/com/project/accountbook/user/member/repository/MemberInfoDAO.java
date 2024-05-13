@@ -193,6 +193,27 @@ public class MemberInfoDAO {
 		return null;
 	}
 	
+	public void editImg(String id, String img) {
+
+		try {
+			
+			String sql = "update tblProfileimg set fileLink = ?"
+					+ "where seq = (select seqProfileimg from tblMember where id = ?)";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, img);
+			pstat.setString(2, id);
+		        
+			pstat.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("MemberInfoDAO.editImg");
+			e.printStackTrace();
+			// TODO: handle exception
+		}
+		
+	}
+	
 	public void resetPw(String id, String pw) {
 		try {
 
@@ -294,15 +315,15 @@ public class MemberInfoDAO {
 
 		try {
 			
-			String sql = "update tblMember set name = ?, nickname = ?, phonenumber = ?, ssn = ? where id = ?";
+			String sql = "update tblMember set name = ?, nickname = ?, phonenumber = ?"
+					+ " where id = ?";
 			
 			pstat = conn.prepareStatement(sql);
 			
 			pstat.setString(1, map.get("name"));
 			pstat.setString(2, map.get("nickname"));
 			pstat.setString(3, map.get("phonenumber"));
-			pstat.setString(4, map.get("ssn"));
-			pstat.setString(5, id);
+			pstat.setString(4, id);
 			
 			pstat.executeUpdate();
 			
@@ -478,7 +499,9 @@ public class MemberInfoDAO {
 				dto.setSeqMyCard(rs.getInt("seq"));
 				
 				list.add(dto);
+				
 			}
+			System.out.println(list);
 			return list;
 			
 			
@@ -549,6 +572,9 @@ public class MemberInfoDAO {
 		return null;
 	}
 
+	
+
+	
 
 	
 
