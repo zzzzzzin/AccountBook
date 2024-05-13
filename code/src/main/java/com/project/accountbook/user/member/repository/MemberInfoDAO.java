@@ -454,7 +454,7 @@ public class MemberInfoDAO {
 		
 		try {
 			String sql = "select ci.name as name, ci.cardCompany as cardCompany , mc.alias as alias"
-					+ ", mc.cardNumber as cardNumber , mc.validity as validity, ci.fileLink as fileLink, ci.seq\r\n"
+					+ ", mc.cardNumber as cardNumber , mc.validity as validity, ci.fileLink as fileLink, mc.seq as seq\r\n"
 					+ "from tblMyCard mc inner join tblMember m\r\n"
 					+ "    on mc.idMember = m.id\r\n"
 					+ "        inner join tblCardInformation ci\r\n"
@@ -475,6 +475,7 @@ public class MemberInfoDAO {
 				dto.setCardNumber(rs.getString("cardNumber"));
 				dto.setValidity(rs.getString("validity"));
 				dto.setFileLink(rs.getString("fileLink"));
+				dto.setSeqMyCard(rs.getInt("seq"));
 				
 				list.add(dto);
 			}
