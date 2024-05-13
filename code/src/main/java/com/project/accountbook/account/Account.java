@@ -178,7 +178,6 @@ public class Account extends HttpServlet {
 		  
 		  if(dto.getSeqFixedFluctuationCheck() !=null) {
 			  
-			  
 			  int makemore = dao.dupEvent(dto);
 			  System.out.println("proc insert : "+makemore);
 		  }
