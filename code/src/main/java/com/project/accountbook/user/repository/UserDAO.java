@@ -439,7 +439,7 @@ public class UserDAO {
 				PostDTO dto = new PostDTO();
 
 				dto.setTitle(rs.getString("title"));
-				dto.setme_nickName(rs.getString("nickname"));
+				dto.setMe_nickName(rs.getString("nickname"));
 				dto.setWriteDate(rs.getString("writeDate"));
 				dto.setViewCount(rs.getInt("viewCount"));
 				dto.setLikeCount(rs.getInt("likeCount"));

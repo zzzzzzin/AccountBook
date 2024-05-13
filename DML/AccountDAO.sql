@@ -198,11 +198,11 @@ SELECT
     MAX(totalPrice) AS beforeAcUsage,
     SUM(CASE WHEN ai.accInfoDate BETWEEN TRUNC(SYSDATE, 'MM') - INTERVAL '1' MONTH AND TRUNC(SYSDATE, 'MM') THEN ai.price ELSE 0 END) AS nowAcUsage
 FROM 
-    max_category mc
-    INNER JOIN tblaccinfo ai ON ai.price = mc.acName
+    tblaccinfo ai
     INNER JOIN TBLACCCATEGORYLIST acl ON ai.SEQ = acl.SEQACCINFO
     INNER JOIN TBLACCCATEGORY ac ON acl.SEQACCCATEGORY = ac.SEQ
     INNER JOIN TBLACC a ON ai.SEQACC = a.SEQ
+    inner join max_category mc on mc.acName = ac.name
     INNER JOIN TBLMEMBER me ON a.IDMEMBER = me.ID
 WHERE 
     me.ID = 'abc003@naver.com'
