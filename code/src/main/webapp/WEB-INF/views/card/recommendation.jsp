@@ -191,7 +191,7 @@
 				<div class="flipster-container">
 					<div class="flipster">
 						<ul class="flip-items">
-							<c:forEach var="dto" items="${list}" varStatus="loop">
+							<c:forEach var="dto" items="${list}" begin="1" end ="10" varStatus="loop">
 								<li data-flip-title="${loop.index + 1}"
 									data-flip-category="${loop.index + 1}"
 									data-description="               
@@ -253,7 +253,6 @@
 	<script>
 	
     document.addEventListener('DOMContentLoaded', function() {
-    	console.log("recommendation.jsp - DOMContentLoaded");
         var categoryselector = document.getElementById('categoryselector');
         var categorymodalbody = document.getElementById('categorymodalbody');
 
