@@ -28,12 +28,9 @@ public class MyCard extends HttpServlet {
 		MemberInfoDTO dto = new MemberInfoDTO();
 		
 		ArrayList<MemberInfoDTO> clist = dao.getMyCards(id);
-
-		//System.out.println("나의 카드들: "+ clist);
 		
 		req.setCharacterEncoding("UTF-8");
 		req.setAttribute("clist", clist);
-		
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/member/my-card.jsp");
 		dispatcher.forward(req, resp);

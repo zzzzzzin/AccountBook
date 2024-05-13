@@ -2410,3 +2410,9 @@ width: 100px !;
   cursor: pointer;
 }
 
+.post-content {
+    word-wrap: break-word;
+    word-break: break-all;
+    max-width: 100%;
+    }
+  
