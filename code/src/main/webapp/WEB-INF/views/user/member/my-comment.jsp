@@ -83,7 +83,7 @@
 									<c:forEach items="${commentsList}" var="comment">
 										<tr>
 											<td><a href="/account/board/discussion.do?seq=${comment.seq}">${comment.title}</a></td>
-											<td>${comment.content}</td>
+											<td class="post-content">${comment.content}</td>
 											<td>${comment.nickname}</td>
 											<td>${comment.writedate}</td>
 											<td>${comment.viewCount}</td>
