@@ -14,19 +14,27 @@ import javax.servlet.http.HttpSession;
 
 import com.project.accountbook.util.OutputUtil;
 
+/**
+ * 사용자 권한을 검사하여 로그인이 필요한 페이지에 대한 접근을 제어하는 필터입니다.
+ */
 public class AuthFilter implements Filter {
 
+	 /**
+     * 서블릿 필터가 요청을 필터링하는 메서드입니다.
+     * 
+     * @param request  요청 객체
+     * @param response 응답 객체
+     * @param chain    필터 체인
+     * @throws IOException      입출력 예외가 발생할 경우
+     * @throws ServletException 서블릿 예외가 발생할 경우
+     */
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 
-//		System.out.println("권한 체크");
 		HttpServletRequest req = (HttpServletRequest) request;
 
 		HttpSession session = req.getSession();
-
-//		System.out.println(session.getAttribute("id") == null ? "익명" : session.getAttribute("id"));
-//		System.out.println(req.getRequestURI());
 
 		if (session.getAttribute("id") == null) {
 
@@ -35,11 +43,6 @@ public class AuthFilter implements Filter {
 					|| req.getRequestURI().endsWith("attendanceBoard.do")
 					|| req.getRequestURI().contains("/account/account/")
 					|| req.getRequestURI().contains("/account/user/member/") && !req.getRequestURI().contains("reset-pw")) {
-
-//				response.setCharacterEncoding("UTF-8");
-//				PrintWriter writer = ((HttpServletResponse) response).getWriter();
-//				writer.print(OutputUtil.redirect("로그인한 사용자만 이용할 수 있습니다."));
-//				writer.close();
 				
 				HttpServletResponse httpResponse = (HttpServletResponse) response;
 		        httpResponse.sendRedirect("/account/user/login.do");
