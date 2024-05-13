@@ -86,9 +86,10 @@
 											<td>${dto.viewCount}</td>
 											<td>${dto.likeCount}</td>
 										</tr>
-									</c:forEach>
-								</tbody>
+									</c:forEach>								
+								</tbody>								
 							</table>
+							<div id="pagebar">${pagebar}</div>
 						</div>
 					</div>
 				</section>
