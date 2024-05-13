@@ -481,8 +481,14 @@ public class UserDAO {
 	            HashMap<String, String> map = new HashMap<>();
 	            map.put("title", rs.getString("title"));
 	            map.put("seq", String.valueOf(rs.getInt("seq")));
-	            map.put("content", rs.getString("content"));
-	            map.put("nickname", rs.getString("nickname"));
+	            
+	            if(rs.getString("content").length() > 250) {
+	            	map.put("content", rs.getString("content").substring(0, 250)+" ...");
+	            } else {
+	            	map.put("content", rs.getString("content"));
+	            }
+	            
+	            map.put("nickname", rs.getString("nickname"));	            
 	            map.put("writedate", rs.getString("writedate"));
 	            map.put("viewCount", String.valueOf(rs.getInt("viewCount")));
 	            map.put("likeCount", String.valueOf(rs.getInt("likeCount")));
