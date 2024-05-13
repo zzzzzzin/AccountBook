@@ -73,6 +73,7 @@
 	              <div class="user-profile-mypage-img">
 	                  <img alt="" src="/account/asset/images/${dto.fileLink}">
 	              </div>
+	              <input type="file" class="purple-btn button" id="editImgBtn" name="img">
 	              <div class="user-info-input-row-style">
 	                    <div class="form-group"><label>이름</label><input class="input-style-form" type="text" name="name" value="${dto.name}"></div>
 	               </div>
@@ -82,7 +83,7 @@
 	              <div class="user-info-input-row-style">
 	                    <div class="form-group"><label>전화번호</label><input class="input-style-form" type="text" name="phonenumber" value="${dto.phoneNumber}"></div>
 	               </div>
-               <button type="submit" class="button purple-btn info-submit-long-btn submit-btn-style" id="submit-button">수정하기</button>
+               <button type="submit" class="button purple-btn info-submit-long-btn submit-btn-style" id="submit-button" onclick="location.href='/account/user/member/edit-info.jsp?name=';">수정하기</button>
       		</div>
    		</form>
     </div>
