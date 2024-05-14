@@ -14,9 +14,15 @@ import javax.servlet.http.HttpSession;
 import com.project.accountbook.user.member.repository.MemberInfoDAO;
 import com.project.accountbook.util.OutputUtil;
 
+/**
+ * ResetPw 서블릿은 사용자의 비밀번호를 재설정합니다.
+ */
 @WebServlet("/user/member/reset-pw.do")
 public class ResetPw extends HttpServlet {
 
+	/**
+     * GET 요청을 처리하여 비밀번호 재설정 페이지로 이동합니다.
+     */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -29,6 +35,9 @@ public class ResetPw extends HttpServlet {
 
 	}
 
+	/**
+     * POST 요청을 처리하여 비밀번호를 재설정합니다.
+     */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

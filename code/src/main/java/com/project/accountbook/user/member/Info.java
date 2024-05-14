@@ -13,9 +13,15 @@ import javax.servlet.http.HttpSession;
 import com.project.accountbook.user.member.repository.MemberInfoDAO;
 import com.project.accountbook.user.model.UserDTO;
 
+/**
+ * Info 서블릿은 사용자 정보를 조회합니다.
+ */
 @WebServlet("/user/member/info.do")
 public class Info extends HttpServlet {
 
+	/**
+	 * GET 요청을 처리하여 사용자 정보 페이지로 이동합니다.
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		

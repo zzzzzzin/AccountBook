@@ -13,9 +13,15 @@ import javax.servlet.http.HttpSession;
 
 import com.project.accountbook.user.repository.UserDAO;
 
+/**
+ * FriendInvitation 서블릿은 사용자가 친구 초대 기능을 수행하는 페이지를 처리합니다.
+ */
 @WebServlet("/user/member/friend-invitation.do")
 public class FriendInvitation extends HttpServlet {
 
+	/**
+	 * GET 요청을 처리하여 친구 초대 페이지로 이동합니다.
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

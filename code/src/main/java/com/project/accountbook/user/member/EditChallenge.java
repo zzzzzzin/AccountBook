@@ -17,9 +17,15 @@ import org.json.simple.JSONObject;
 import com.project.accountbook.user.member.model.MemberInfoDTO;
 import com.project.accountbook.user.member.repository.MemberInfoDAO;
 
+/**
+ * EditChallenge 서블릿은 사용자의 도전 정보를 수정합니다.
+ */
 @WebServlet("/user/member/edit-challenge.do")
 public class EditChallenge extends HttpServlet {
 
+	/**
+	 * GET 요청을 처리하여 도전 정보 수정 페이지로 이동합니다.
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -50,6 +56,9 @@ public class EditChallenge extends HttpServlet {
 
 	}
 
+	/**
+	 * POST 요청을 처리하여 사용자의 도전 정보를 업데이트합니다.
+	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

@@ -15,9 +15,15 @@ import com.project.accountbook.card.model.CardDTO;
 import com.project.accountbook.user.member.model.MemberInfoDTO;
 import com.project.accountbook.user.member.repository.MemberInfoDAO;
 
+/**
+ * MyCard 서블릿은 사용자의 카드 정보를 관리합니다.
+ */
 @WebServlet("/user/member/my-card.do")
 public class MyCard extends HttpServlet {
 
+	/**
+	 * GET 요청을 처리하여 사용자의 카드 정보를 가져와서 페이지에 표시합니다.
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

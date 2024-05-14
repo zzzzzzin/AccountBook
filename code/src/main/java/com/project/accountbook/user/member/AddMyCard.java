@@ -20,6 +20,11 @@ import com.project.accountbook.user.member.repository.MemberInfoDAO;
 @WebServlet("/user/member/add-my-card.do")
 public class AddMyCard extends HttpServlet {
 
+	/**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     * HTTP GET 메서드를 처리합니다.
+     * 사용 가능한 카드 목록을 가져와 "add-my-card.jsp" 뷰로 요청을 전달합니다.
+     */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -39,6 +44,11 @@ public class AddMyCard extends HttpServlet {
 
 	}
 	
+	 /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+     * HTTP POST 메서드를 처리합니다.
+     * 요청 매개변수에서 카드 정보를 가져와 데이터베이스에 카드를 추가하고 사용자를 "my-card" 페이지로 리디렉션합니다.
+     */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");

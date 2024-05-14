@@ -15,17 +15,28 @@ import com.project.accountbook.user.member.model.MemberInfoDTO;
 import com.project.accountbook.user.model.UserDTO;
 import com.project.accountbook.util.DBUtil;
 
+/**
+ * 회원 정보 및 관련 작업을 관리하는 DAO (데이터 액세스 오브젝트) 클래스입니다.
+ */
 public class MemberInfoDAO {
 	private Connection conn;
 	private Statement stat;
 	private PreparedStatement pstat;
 	private ResultSet rs;
 
+	/**
+     * 데이터베이스 연결을 초기화하는 생성자입니다.
+     */
 	public MemberInfoDAO() {
 		this.conn = DBUtil.open("125.241.245.222", "webproject", "java1234");
 	}
 
-	//나의 카드 추가
+	/**
+     * 회원의 계정에 새로운 카드를 추가합니다.
+     *
+     * @param dto 카드 정보를 담고 있는 DTO입니다.
+     * @return 작업이 성공하면 0, 그렇지 않으면 오류 코드를 반환합니다.
+     */
 	public int addMycard(MemberInfoDTO dto) {
 
 		try {
@@ -48,7 +59,12 @@ public class MemberInfoDAO {
 		return 0;
 	}
 
-	// 나의 카드 삭제
+	/**
+     * 회원의 계정에서 카드를 삭제합니다.
+     *
+     * @param dto 카드 정보를 담고 있는 DTO입니다.
+     * @return 작업이 성공하면 0, 그렇지 않으면 오류 코드를 반환합니다.
+     */
 	public int delMyCard(MemberInfoDTO dto) {
 
 		try {
@@ -67,7 +83,13 @@ public class MemberInfoDAO {
 		return 0;
 	}
 
-	// 나의카드 수정
+
+	/**
+	 * 회원의 카드 정보를 업데이트하는 메서드입니다.
+	 *
+	 * @param dto 업데이트할 카드 정보를 담고 있는 MemberInfoDTO 객체입니다.
+	 * @return 업데이트가 성공하면 1을 반환합니다. 실패하면 0을 반환합니다.
+	 */
 	public int updateMyCard(MemberInfoDTO dto) {
 
 		try {
@@ -88,7 +110,13 @@ public class MemberInfoDAO {
 		return 0;
 	}
 
-	// 나의 카드 정보 가져오기
+	/**
+	 * 회원의 특정 카드 정보를 가져오는 메서드입니다.
+	 *
+	 * @param cardNumber 가져올 카드의 카드번호입니다.
+	 * @return 해당 카드의 정보를 담고 있는 MemberInfoDTO 객체를 반환합니다.
+	 *         만일 해당하는 카드가 없으면 null을 반환합니다.
+	 */
 	public MemberInfoDTO getMyCard(String cardNumber) {
 
 		try {
@@ -119,7 +147,13 @@ public class MemberInfoDAO {
 		return null;
 	}
 
-	// 나의 카드 리스트
+	/**
+	 * 회원의 모든 카드 정보 리스트를 가져오는 메서드입니다.
+	 *
+	 * @param McIdMember 회원의 아이디입니다.
+	 * @return 회원의 모든 카드 정보를 담고 있는 MemberInfoDTO 객체의 리스트를 반환합니다.
+	 *         만일 카드 정보가 없으면 null을 반환합니다.
+	 */
 	public ArrayList<MemberInfoDTO> listMyCard(String McIdMember) {
 
 		try {
@@ -154,6 +188,13 @@ public class MemberInfoDAO {
 
 	}
 
+	/**
+	 * 회원의 정보를 가져오는 메서드입니다.
+	 *
+	 * @param id 회원의 아이디입니다.
+	 * @return 해당하는 회원의 정보를 담고 있는 UserDTO 객체를 반환합니다.
+	 *         만일 해당하는 회원이 없으면 null을 반환합니다.
+	 */
 	public UserDTO getMemberInfo(String id) {
 
 		try {
@@ -193,6 +234,12 @@ public class MemberInfoDAO {
 		return null;
 	}
 	
+	/**
+	 * 회원의 프로필 이미지를 수정하는 메서드입니다.
+	 *
+	 * @param id 회원의 아이디입니다.
+	 * @param img 새로 설정할 프로필 이미지 링크입니다.
+	 */
 	public void editImg(String id, String img) {
 
 		try {
@@ -214,6 +261,12 @@ public class MemberInfoDAO {
 		
 	}
 	
+	/**
+	 * 회원의 비밀번호를 변경하는 메서드입니다.
+	 *
+	 * @param id 회원의 아이디입니다.
+	 * @param pw 새로운 비밀번호입니다.
+	 */
 	public void resetPw(String id, String pw) {
 		try {
 
@@ -235,6 +288,13 @@ public class MemberInfoDAO {
 		
 	}
 
+	/**
+	 * 회원의 비밀번호를 초기화 메서드입니다.
+	 *
+	 * @param id 회원의 아이디입니다.
+	 * @return 해당하는 회원의 비밀번호를 반환합니다.
+	 *         만일 해당하는 회원이 없으면 null을 반환합니다.
+	 */
 	public String getPw(String id) {
 		
 		try {
@@ -258,6 +318,12 @@ public class MemberInfoDAO {
 		return null;
 	}
 
+	/**
+	 * 회원의 비밀번호를 변경하는 메서드입니다.
+	 *
+	 * @param id 회원의 아이디입니다.
+	 * @param pw 새로운 비밀번호입니다.
+	 */
 	public void editPw(String id, String pw) {
 		
 		try {
@@ -276,6 +342,13 @@ public class MemberInfoDAO {
 		
 	}
 	
+	/**
+	 * 회원의 비밀번호를 가져오는 메서드입니다.
+	 *
+	 * @param id 회원의 아이디입니다.
+	 * @return 해당하는 회원의 비밀번호를 반환합니다.
+	 *         만일 해당하는 회원이 없으면 null을 반환합니다.
+	 */
 	public String getPhoneNumber(String id) {
 
 		try {
@@ -311,6 +384,12 @@ public class MemberInfoDAO {
 	}
 	
 
+	/**
+	 * 회원의 정보를 업데이트하는 메서드입니다.
+	 *
+	 * @param id  회원의 아이디입니다.
+	 * @param map 업데이트할 정보를 담고 있는 HashMap입니다.
+	 */
 	public void updateUserInfo(String id, HashMap<String, String> map) {
 
 		try {
@@ -335,10 +414,13 @@ public class MemberInfoDAO {
 		}
 	}
 	
-	
-	
-
-	
+	/**
+	 * 전화번호가 고유한지 확인하는 메서드입니다.
+	 *
+	 * @param phoneNumber 확인할 전화번호입니다.
+	 * @param id          현재 회원의 아이디입니다.
+	 * @return 전화번호가 고유한 경우 true, 아닌 경우 false를 반환합니다.
+	 */
 	public boolean isPhoneNumberUnique(String phoneNumber, String id) {
 		try {
 	        String sql = "SELECT COUNT(*) AS count FROM tblMember WHERE phonenumber = ? AND id != ?";
@@ -355,11 +437,16 @@ public class MemberInfoDAO {
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    }
-	    // 오류가 발생하거나 결과가 없는 경우에는 일단 중복이 아니라고 간주
-		System.out.println("번호 중복값 존재");
 	    return true;
 	}
 
+	/**
+	 * 회원의 챌린지 정보를 가져오는 메서드입니다.
+	 *
+	 * @param id 회원의 아이디입니다.
+	 * @return 해당 회원의 도전 정보를 담고 있는 MemberInfoDTO 객체의 리스트를 반환합니다.
+	 *         만일 도전 정보가 없으면 null을 반환합니다.
+	 */
 	public ArrayList<MemberInfoDTO> getChallengeInfo(String id) {
 		
 		ArrayList<MemberInfoDTO> list = new ArrayList<>();
@@ -398,6 +485,13 @@ public class MemberInfoDAO {
 		return null;
 	}
 
+	/**
+	 * 회원의 월급을 수정하는 메서드입니다.
+	 *
+	 * @param id      회원의 아이디입니다.
+	 * @param sallary 새로 설정할 월급입니다.
+	 * @return 수정된 회원의 정보를 담고 있는 MemberInfoDTO 객체를 반환합니다.
+	 */
 	public MemberInfoDTO editSallary(String id, String sallary) {
 
 		try {
@@ -420,6 +514,13 @@ public class MemberInfoDAO {
 		return null;
 	}
 
+	/**
+	 * 회원의 저축 목표를 수정하는 메서드입니다.
+	 *
+	 * @param id   회원의 아이디입니다.
+	 * @param goal 새로 설정할 저축 목표입니다.
+	 * @return 수정된 회원의 정보를 담고 있는 MemberInfoDTO 객체를 반환합니다.
+	 */
 	public MemberInfoDTO editGoal(String id, String goal) {
 
 		try {
@@ -442,6 +543,15 @@ public class MemberInfoDAO {
 		return null;
 	}
 
+	
+
+	/**
+	 * 회원의 저축 목표 기간을 수정하는 메서드입니다.
+	 *
+	 * @param id     회원의 아이디입니다.
+	 * @param period 새로 설정할 저축 목표 기간입니다.
+	 * @return 수정된 회원의 정보를 담고 있는 MemberInfoDTO 객체를 반환합니다.
+	 */
 	public MemberInfoDTO editPeriod(String id, String period) {
 
 		try {
@@ -469,6 +579,13 @@ public class MemberInfoDAO {
 		return null;
 	}
 
+	/**
+	 * 회원의 모든 카드 정보 리스트를 가져오는 메서드입니다.
+	 *
+	 * @param id 회원의 아이디입니다.
+	 * @return 회원의 모든 카드 정보를 담고 있는 MemberInfoDTO 객체의 리스트를 반환합니다.
+	 *         만일 카드 정보가 없으면 null을 반환합니다.
+	 */
 	public ArrayList<MemberInfoDTO> getMyCards(String id) {
 
 		ArrayList<MemberInfoDTO> list = new ArrayList<>();
@@ -513,6 +630,12 @@ public class MemberInfoDAO {
 		return null;
 	}
 
+	/**
+	 * 회원의 카드를 추가하는 메서드입니다.
+	 *
+	 * @param id  회원의 아이디입니다.
+	 * @param dto 추가할 카드 정보를 담고 있는 CardDTO 객체입니다.
+	 */
 	public void addMyCard(String id, CardDTO dto) {
 
 		try {

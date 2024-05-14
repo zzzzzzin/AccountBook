@@ -17,9 +17,15 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.project.accountbook.user.member.repository.MemberInfoDAO;
 import com.project.accountbook.user.model.UserDTO;
 
+/**
+ * EditInfo 서블릿은 사용자 정보 수정을 처리합니다.
+ */
 @WebServlet("/user/member/edit-info.do")
 public class EditInfo extends HttpServlet {
 
+	/**
+	 * GET 요청을 처리하여 사용자 정보 수정 페이지로 이동합니다.
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -38,6 +44,9 @@ public class EditInfo extends HttpServlet {
 
 	}
 	
+	/**
+	 * POST 요청을 처리하여 사용자 정보를 업데이트합니다.
+	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

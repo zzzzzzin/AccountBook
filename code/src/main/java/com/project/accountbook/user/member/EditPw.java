@@ -12,9 +12,15 @@ import javax.servlet.http.HttpSession;
 
 import com.project.accountbook.user.member.repository.MemberInfoDAO;
 
+/**
+ * EditPw 서블릿은 사용자의 비밀번호를 변경하는 기능을 처리합니다.
+ */
 @WebServlet("/user/member/edit-pw.do")
 public class EditPw extends HttpServlet {
 
+	/**
+	 * GET 요청을 처리하여 비밀번호 변경 페이지로 이동합니다.
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -24,6 +30,9 @@ public class EditPw extends HttpServlet {
 
 	}
 
+	/**
+	 * POST 요청을 처리하여 비밀번호를 변경합니다.
+	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
